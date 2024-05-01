@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
-body{
+
+body {
     overflow-x: hidden;
 }
+
 html {
     box-sizing: border-box;
 }
@@ -40,6 +42,7 @@ html {
     transition: background-position-x 0.9s linear;
     text-align: center;
     padding-top: 10px;
+
     a {
         font-size: 1.25em;
         color: #e7e7e7;
@@ -60,35 +63,42 @@ html {
         margin-right: 30px;
     }
 }
+
 .menu a.dropdown-arrow:after {
-	content: "\25BE";
-	margin-left: 5px;
+    content: "\25BE";
+    margin-left: 5px;
 }
-.menu ul.sub-menus{
+
+.menu ul.sub-menus {
     margin-top: 10px;
-	height: auto;
-	overflow: hidden;
-	width: 200px;
-	background: #343A40;
-	position: absolute;
-	z-index: 99;
-	display: none;
+    height: auto;
+    overflow: hidden;
+    width: 200px;
+    background: #343A40;
+    position: absolute;
+    z-index: 99;
+    display: none;
 }
-.menu ul.sub-menus a{
+
+.menu ul.sub-menus a {
     margin-left: 10px;
     color: white;
 }
+
 .menu ul.sub-menus li {
-	display: block;
-	text-align: left;
-	width: 100%;
+    display: block;
+    text-align: left;
+    width: 100%;
 }
+
 .menu li:hover ul.sub-menus {
-	display: block
+    display: block
 }
-.menu ul.sub-menus a:hover{
+
+.menu ul.sub-menus a:hover {
     color: #d94f5c;
 }
+
 @keyframes line {
     0% {
         background-position-x: 390px;
@@ -99,19 +109,23 @@ html {
     border-radius: 10px;
     margin-left: 5px;
 }
+
 .btn-search {
     color: #d94f5c;
     border-color: #d94f5c;
-    &:hover{
+
+    &:hover {
         color: white;
         background-color: #d94f5c;
         border-color: #d94f5c;
     }
 }
+
 .profile-img {
     width: 100%;
     text-align: center;
 }
+
 /* filter: grayscale(100%);: Chuyển hình ảnh thành ảnh đen trắng.
 filter: sepia(100%);: Chuyển hình ảnh thành hiệu ứng sepia.
 filter: brightness(150%);: Tăng độ sáng của hình ảnh.
@@ -144,24 +158,28 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     white-space: pre-line;
     pointer-events: none;
 }
+
 .profile-img img:hover {
     transform: scale(1.15);
     filter: grayscale(0%) brightness(40%) contrast(130%);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
+
 .profile-img :hover::after {
     opacity: 1;
 }
 
-.row{
+.row {
     margin: 0;
 }
 
 /* =============== About scroll bar =============== */
 
 :root {
-    --primary-color: rgb(163, 163, 163); /* Màu gốc của bạn */
-    --scroll-thumb-color: #d94f5c; /* Màu của thanh kéo */
+    --primary-color: rgb(163, 163, 163);
+    /* Màu gốc của bạn */
+    --scroll-thumb-color: #d94f5c;
+    /* Màu của thanh kéo */
 }
 
 ::-webkit-scrollbar {
@@ -171,18 +189,21 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 /* Track là phần nền của thanh cuộn */
 ::-webkit-scrollbar-track {
-    background-color: var(ưhite); /* Sử dụng màu gốc */
+    background-color: var(ưhite);
+    /* Sử dụng màu gốc */
 }
 
 /* Thumb là thanh kéo mà bạn kéo để di chuyển thanh cuộn */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-thumb-color); /* Sử dụng màu của thanh kéo */
+    background-color: var(--scroll-thumb-color);
+    /* Sử dụng màu của thanh kéo */
     border-radius: 5px;
 }
 
 /* Hover Thumb là màu khi di chuột qua thanh cuộn */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #d43040; /* Màu khi hover */
+    background-color: #d43040;
+    /* Màu khi hover */
 }
 
 .scroll-top-icon {
@@ -191,7 +212,8 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     bottom: 20px;
     right: 40px;
     font-size: var(3rem);
-    color: var(--scroll-thumb-color); /* Sử dụng màu của thanh kéo */
+    color: var(--scroll-thumb-color);
+    /* Sử dụng màu của thanh kéo */
     cursor: pointer;
     z-index: 9999;
 }
@@ -199,28 +221,87 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 .show-scroll {
     visibility: visible;
 }
+
 /* =============== Text Section 1 =============== */
-.about-me{
-    margin-top: 200px;
+.about-me {
+    margin-top: 150px;
     text-align: justify;
     padding-right: 50px;
 }
-.about-me h1{
-    font-family: 'cursive', sans-serif;
-    color: #d94f5c;
+
+/* About me section */
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+svg {
+    text-align: center;
+	font-family: "Russo One", sans-serif;
+	width: 100%; height: 100%;
 }
-#contract-here{
+svg text {
+	animation: stroke 3.5s;
+	stroke-width: 1;
+	stroke: #D94F5C;
+	font-size: 55px;
+    fill: #D94F5C;
+}
+@keyframes stroke {
+	0%   {
+		fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1);
+		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 3;
+	}
+	60%  {fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1); }
+	80%  {fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1); stroke-width: 3; }
+	100% {
+		fill: rgba(212,48,64,1); stroke: rgba(217,79,92,0);
+		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 5;
+	}
+}
+
+.wrapper {background-color: #FFFFFF;};
+/* About me button */
+
+#contract-here {
     margin-top: 20px;
     background-color: #d94f5dec;
-    border-color : #d94f5c;
+    border-color: #d94f5c;
     border-radius: 20px;
     padding: 15px 15px;
-    &:hover{
+    animation: button-contract 3s ease-in 3s infinite alternate forwards;
+
+    &:hover {
         background-color: #e34554;
     }
 }
 
 
+@keyframes button-contract {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        transform: translateY(-30px) rotate(-6deg);
+    }
+
+    30% {
+        transform: translateY(15px) rotate(6deg);
+    }
+
+    45% {
+        transform: translateY(-15px) rotate(-3.6deg);
+    }
+
+    60% {
+        transform: translateY(9px) rotate(2.4deg);
+    }
+
+    75% {
+        transform: translateY(-6px) rotate(-1.2deg);
+    }
+}
 
 
 
@@ -231,10 +312,11 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 }
 
 @media screen and (max-width: 1000px) {
-    body{
+    body {
         overflow: hidden;
     }
-    .search{
+
+    .search {
         width: 100%;
     }
 }
