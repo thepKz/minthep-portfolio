@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+body{
+    overflow-x: hidden;
+}
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1.1px;
+}
+
+body,
+html {
+    /* background: #1c1d22; */
+    height: 300vh;
+    font-family: "Varela Round", sans-serif;
+    transition: all .75s ease-in-out;
+    scroll-behavior: smooth;
+}
+
+.menu {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    max-width: 720px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.menu li {
+    width: 125px;
+    height: 50px;
+    transition: background-position-x 0.9s linear;
+    text-align: center;
+    padding-top: 10px;
+    a {
+        font-size: 1.25em;
+        color: #e7e7e7;
+        text-decoration: none;
+        transition: all 0.45s;
+    }
+
+    &:hover {
+        background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+        animation: line 1s;
+    }
+
+    &:hover a {
+        color: #d94f5c;
+    }
+
+    &:not(:last-child) {
+        margin-right: 30px;
+    }
+}
+.menu a.dropdown-arrow:after {
+	content: "\25BE";
+	margin-left: 5px;
+}
+.menu ul.sub-menus{
+    margin-top: 10px;
+	height: auto;
+	overflow: hidden;
+	width: 200px;
+	background: #343A40;
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+.menu ul.sub-menus a{
+    margin-left: 10px;
+    color: white;
+}
+.menu ul.sub-menus li {
+	display: block;
+	text-align: left;
+	width: 100%;
+}
+.menu li:hover ul.sub-menus {
+	display: block
+}
+.menu ul.sub-menus a:hover{
+    color: #d94f5c;
+}
+@keyframes line {
+    0% {
+        background-position-x: 390px;
+    }
+}
+
+.search button {
+    border-radius: 10px;
+    margin-left: 5px;
+}
+.btn-search {
+    color: #d94f5c;
+    border-color: #d94f5c;
+    &:hover{
+        color: white;
+        background-color: #d94f5c;
+        border-color: #d94f5c;
+    }
+}
+.profile-img {
+    width: 100%;
+    text-align: center;
+}
+/* filter: grayscale(100%);: Chuyển hình ảnh thành ảnh đen trắng.
+filter: sepia(100%);: Chuyển hình ảnh thành hiệu ứng sepia.
+filter: brightness(150%);: Tăng độ sáng của hình ảnh.
+filter: contrast(200%);: Tăng độ tương phản của hình ảnh.
+filter: saturate(200%);: Tăng độ bão hòa màu sắc của hình ảnh.
+filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
+.profile-img img {
+    border: 3px solid #00000099;
+    margin-top: 175px;
+    width: 550px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    filter: grayscale(0%) brightness(95%) contrast(130%) sepia(5%);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out;
+}
+
+.profile-img.show-japanese ::after {
+    content: var(--after-content-japanese);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    color: rgb(255, 255, 255);
+    font-size: 1.25em;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    line-height: 2.75;
+    white-space: pre-line;
+    pointer-events: none;
+}
+.profile-img img:hover {
+    transform: scale(1.15);
+    filter: grayscale(0%) brightness(40%) contrast(130%);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+.profile-img :hover::after {
+    opacity: 1;
+}
+
+.row{
+    margin: 0;
+}
+
+/* =============== About scroll bar =============== */
+
+:root {
+    --primary-color: rgb(163, 163, 163); /* Màu gốc của bạn */
+    --scroll-thumb-color: #d94f5c; /* Màu của thanh kéo */
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+/* Track là phần nền của thanh cuộn */
+::-webkit-scrollbar-track {
+    background-color: var(ưhite); /* Sử dụng màu gốc */
+}
+
+/* Thumb là thanh kéo mà bạn kéo để di chuyển thanh cuộn */
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb-color); /* Sử dụng màu của thanh kéo */
+    border-radius: 5px;
+}
+
+/* Hover Thumb là màu khi di chuột qua thanh cuộn */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d43040; /* Màu khi hover */
+}
+
+.scroll-top-icon {
+    visibility: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    font-size: var(3rem);
+    color: var(--scroll-thumb-color); /* Sử dụng màu của thanh kéo */
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.show-scroll {
+    visibility: visible;
+}
+/* =============== Text Section 1 =============== */
+.about-me{
+    margin-top: 200px;
+    text-align: justify;
+    padding-right: 50px;
+}
+.about-me h1{
+    font-family: 'cursive', sans-serif;
+    color: #d94f5c;
+}
+#contract-here{
+    margin-top: 20px;
+    background-color: #d94f5dec;
+    border-color : #d94f5c;
+    border-radius: 20px;
+    padding: 15px 15px;
+    &:hover{
+        background-color: #e34554;
+    }
+}
+
+
+
+
+
+
+#error-404 {
+    margin-top: 300px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+    body{
+        overflow: hidden;
+    }
+    .search{
+        width: 100%;
+    }
+}

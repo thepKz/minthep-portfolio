@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScrollReveal Test</title>
+  <link rel="icon" href="duong-dan-den-favicon-cua-ban/favicon.ico" type="image/x-icon">
+
+  <style>
+    .box {
+      width: 500px;
+      height: 800px;
+      background-color: #ccc;
+      margin: 20px;
+      opacity: 0; /* Mặc định ẩn các phần tử */
+      transition: opacity 0.5s ease-in-out; /* Hiệu ứng chuyển đổi */
+    }
+    .box.reveal {
+        opacity: 1; /* Hiển thị phần tử khi được ScrollReveal áp dụng */
+      }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box reveal">Box 1</div>
+    <div class="box reveal">Box 2</div>
+    <div class="box reveal">Box 3</div>
+    <div class="box reveal">Box 1</div>
+    <div class="box reveal">Box 2</div>
+    <div class="box reveal">Box 3</div>
+    <!-- Thêm nhiều phần tử khác nếu cần -->
+  </div>
+
+  <script src="https://unpkg.com/scrollreveal"></script> <!-- Thêm ScrollReveal -->
+  <script>
+    // Đợi tất cả các tài nguyên trang web được tải xong
+    window.onload = function() {
+      // Định cấu hình ScrollReveal
+      ScrollReveal().reveal('.box', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
+        delay: 200, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
+        duration: 800, // Thời gian thực hiện hiệu ứng (milliseconds)
+        origin: 'bottom', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
+        distance: '20px', // Khoảng cách mà phần tử di chuyển (pixels)
+        easing: 'ease-in-out', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
+        reset: true // Thiết lập lại hiệu ứng sau mỗi lần xuất hiện
+      });
+    };
+  </script>
+</body>
+</html>

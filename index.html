@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Min Thep</title>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+
+    <!-- Link tới Bootstrap CSS từ CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link toi Style CSS-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar bg-dark fixed-top">
+            <div class="container-fluid">
+                <ul class="menu">
+                    <li><a href="#!">Home</a></li>
+                    <li><a href="#profile-img">Contact</a></li>
+                    <li><a class="dropdown-arrow" href="#!">Project</a>
+                        <ul class="sub-menus">
+                            <li><a href="http://">Products 1</a></li>
+                            <li><a href="http://">Products 2</a></li>
+                            <li><a href="http://">Products 3</a></li>
+                            <li><a href="http://">Products 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#!">WonYoung</a></li>
+                </ul>
+                <form class="d-flex search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="Container" id="content"><!--Container-->
+        <div class="row">
+            <!-- Content profile -->
+            <div class="col-md-6 profile-img">
+                <div class="box-left ">
+                    <img src="img/profile.jpeg" alt="avatar" class="avatar" id="profile-img">
+                </div>
+            </div>
+            <div class="col-md-6 about-me">
+                <h1 class="text-center box-top">About Me</h1>
+                <p>Hello! Mình là MinThep, mình hiện tại đang học tập để trở thành một Software Engineer. Dưới đây là
+                    một chút về mình:</p>
+                <p>Mình hiện tại đang kì 4 của FPT và sắp tới mình sẽ dự định vào ngành hẹp KS(Korean Software).
+                    Mục tiêu của mình hiện tại là đạt được N4 tiếng nhật trong tháng 12 năm nay,
+                    và cố gắng đạt được TOPIK 3 trong tháng 3 năm sau. Tuy hơi không liên quan gì tới Tech nhưng đây là
+                    sở thích của mình. </p>
+                <p>Tất nhiên rồi, mình luôn sắp xếp thời gian học công nghệ một cách linh hoạt đồng thời học thêm các kỹ
+                    năng cần thiết để nâng cao chất lượng công việc trong tương lai. Ngoài ra thì mình học thiên hướng
+                    về Front-end nhưng mình cũng muốn thử học Back-end (Tùy vào thời gian).</p>
+                <p>Nếu bạn quan tâm về ngành KS hoặc muốn hợp tác với mình, đừng ngần ngại liên hệ. Mình rất vui được
+                    kết nối và trò chuyện với bạn!</p>
+                <button id="contract-here" class="btn btn-primary box-right">Contract Here!</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="error-404" style="display: none;">
+        <!-- Nội dung thông báo 404 Not Found -->
+        <img src="img/Forbidden.png" alt="art" class="img-fluid">
+        <h1>403 For Bidden!</h1>
+        <p>Oops! Nhà nghèo nên không làm responsive cho điện thoại nhé!</p>
+    </div>
+    <!-- Scripts -->
+    <script src="mycode.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
