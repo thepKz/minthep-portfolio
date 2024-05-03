@@ -21,6 +21,7 @@ body,
 html {
     /* background: #1c1d22; */
     height: 300vh;
+    /* Set tam thoi, id: tamthoi */
     font-family: "Varela Round", sans-serif;
     transition: all .75s ease-in-out;
     scroll-behavior: smooth;
@@ -134,7 +135,7 @@ filter: saturate(200%);: Tăng độ bão hòa màu sắc của hình ảnh.
 filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 .profile-img img {
     border: 3px solid #00000099;
-    margin-top: 175px;
+    margin-top: 50px;
     width: 550px;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -146,7 +147,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 .profile-img.show-japanese ::after {
     content: var(--after-content-japanese);
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     color: rgb(255, 255, 255);
@@ -224,7 +225,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 /* =============== Text Section 1 =============== */
 .about-me {
-    margin-top: 150px;
+    margin-top: 25px;
     text-align: justify;
     padding-right: 50px;
 }
@@ -234,30 +235,48 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 .anime-svg svg {
     text-align: center;
-	font-family: "Russo One", sans-serif;
-	width: 100%; height: 100%;
-}
-.anime-svg svg text {
-	animation: stroke 5.5s;
-	stroke-width: 1;
-	stroke: #D94F5C;
-	font-size: 55px;
-    fill: #D94F5C;
-}
-@keyframes stroke {
-	0%   {
-		fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1);
-		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 3;
-	}
-	60%  {fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1); }
-	80%  {fill: rgba(212,48,64,0); stroke: rgba(217,79,92,1); stroke-width: 3; }
-	100% {
-		fill: rgba(212,48,64,1); stroke: rgba(217,79,92,0);
-		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 5;
-	}
+    font-family: "Russo One", sans-serif;
+    width: 100%;
+    height: 100%;
 }
 
-.wrapper {background-color: #FFFFFF;}
+.anime-svg svg text {
+    animation: stroke 5.5s;
+    stroke-width: 1;
+    stroke: #D94F5C;
+    font-size: 55px;
+    fill: #D94F5C;
+}
+
+@keyframes stroke {
+    0% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 3;
+    }
+
+    60% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+    }
+
+    80% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+        stroke-width: 3;
+    }
+
+    100% {
+        fill: rgba(212, 48, 64, 1);
+        stroke: rgba(217, 79, 92, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 5;
+    }
+}
+
 
 
 /* About me button */
@@ -314,7 +333,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     body {
         overflow: hidden;
     }
@@ -323,3 +342,54 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
         width: 100%;
     }
 }
+
+/* =============== Set cursor =============== */
+.div-cursor {
+    position: absolute;
+    opacity: 1;
+    top: -50px;
+    left: -100px;
+    z-index: 1;
+    transform: rotate(-90deg);
+    animation: cursor 3s ease 1s infinite normal none;
+}
+
+.text-cursor {
+    font-family: "Varela Round", sans-serif !important;
+
+    font-weight: bold;
+    color:  #d94f5c;
+    text-shadow: 0 0 3px rgb(255, 0, 0);
+
+    width: 100%;
+    position: absolute;
+    transform: rotate(49deg);
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+.cursor {
+    width: 100px;
+    height: 100px;
+    -webkit-filter: hue-rotate(40deg);
+    filter: hue-rotate(40deg);
+}
+
+
+
+@keyframes cursor {
+    0% {
+        transform: scale(1) rotate(-90deg);
+    }
+
+    50% {
+        transform: scale(1.1) rotate(-85deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(-90deg);
+    }
+}
+
+/* =============== Text Section 2 =============== */

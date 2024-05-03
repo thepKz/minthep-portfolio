@@ -4,7 +4,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
         duration: 2500, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'bottom', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
-        distance: '500px', // Khoảng cách mà phần tử di chuyển (pixels)
+        distance: '200px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease-in-out', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
         reset: true // Thiết lập lại hiệu ứng sau mỗi lần xuất hiện
     });
@@ -12,7 +12,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
         duration: 2500, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'left', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
-        distance: '500px', // Khoảng cách mà phần tử di chuyển (pixels)
+        distance: '200px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
         reset: true // Thiết lập lại hiệu ứng sau mỗi lần xuất hiện
     });
@@ -20,7 +20,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
         duration: 2500, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'top', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
-        distance: '500px', // Khoảng cách mà phần tử di chuyển (pixels)
+        distance: '200px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
         reset: true // Thiết lập lại hiệu ứng sau mỗi lần xuất hiện
     });
@@ -28,7 +28,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
         duration: 2500, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'right', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
-        distance: '500px', // Khoảng cách mà phần tử di chuyển (pixels)
+        distance: '200px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
         reset: true // Thiết lập lại hiệu ứng sau mỗi lần xuất hiện
     });
@@ -52,24 +52,32 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
 document.addEventListener('DOMContentLoaded', () => {
     const profileImgContainer = document.querySelector('.profile-img');
 
-    // Nếu bạn có nhiều hơn một hình ảnh, bạn có thể cần chỉnh sửa selector hoặc sử dụng vòng lặp để thêm sự kiện cho từng hình ảnh.
+    // Ở đây thiết lập lại hiệu ứng cho phần tử có class 'profile-img'
+    // Bởi vì dính nhiều bugs quá, nên set --after-content-japanese thay đổi 4 ngôn ngữ dựa trên var này luôn
+
 
     profileImgContainer.addEventListener('mouseenter', function() {
         // Hiển thị tiếng Nhật
         this.style.setProperty('--after-content-japanese', '"美しい空に心が溶ける\\A現実と夢の間で揺れる\\Aただ、その美しさに惹かれるだけ"');
         this.classList.add('show-japanese');
+        console.log("Run okay japan");
+
+        // Hiện thị tiếng Hàn
+        setTimeout(() => {
+            this.style.setProperty('font-size', '0.9em');
+            this.style.setProperty('--after-content-japanese', '"아름다운 하늘에 마음이 녹다\\A 현실과 꿈의 사이에서 흔들리다\\A 그저, 그 아름다움에 끌리다"');
+        }, 4000);
         
-        // Đặt hẹn giờ để đổi thành tiếng Anh sau 5 giây
+        // Đặt hẹn giờ để đổi thành tiếng Anh sau 4 giây
         setTimeout(() => {
             this.style.setProperty('font-size', '0.9em');
             this.style.setProperty('--after-content-japanese', '"My heart melts in the beautiful sky\\A Between reality and dreams, I sway\\A Just drawn to its beauty alone"');
-            // Hủy biến custom sau khi đã hiển thị tiếng Anh
-        }, 4000);
+        }, 8000);
 
         setTimeout(()=>{
             this.style.setProperty('font-size', '0.55em');
             this.style.setProperty('--after-content-japanese', '"Trái tim tôi tan chảy trong bầu trời đẹp\\AGiữa hiện thực và giấc mơ, tôi lung lay \\A Chỉ đơn giản là bị cuốn hút bởi vẻ đẹp duy nhất của nó"');
-        },8000);
+        },12000);
     });
 
     profileImgContainer.addEventListener('mouseleave', function() {
@@ -82,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 404 not found
 function checkScreenSize() {
-    if (window.innerWidth < 1000) {
+    if (window.innerWidth < 1200) {
         document.getElementById('content').style.display = 'none';
         document.getElementById('error-404').style.display = 'block';
     } else {
@@ -118,4 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Check
+// Set cursor đầu
+ var cursor = document.querySelector('.div-cursor');
+ var img_circle = document.querySelector('#profile-img');
+
+img_circle.addEventListener('mouseenter', function() {
+    cursor.style.display = 'none';
+});

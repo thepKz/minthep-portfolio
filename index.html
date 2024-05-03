@@ -19,14 +19,14 @@
         <nav class="navbar bg-dark fixed-top">
             <div class="container-fluid">
                 <ul class="menu">
-                    <li><a href="#!">Home</a></li>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about-me">Contact</a></li>
-                    <li><a class="dropdown-arrow" href="#!">Project</a>
+                    <li><a class="dropdown-arrow" href="#!">Blog</a>
                         <ul class="sub-menus">
-                            <li><a href="http://">Products 1</a></li>
-                            <li><a href="http://">Products 2</a></li>
-                            <li><a href="http://">Products 3</a></li>
-                            <li><a href="http://">Products 4</a></li>
+                            <li><a href="http://">Blog 1</a></li>
+                            <li><a href="http://">Blog 2</a></li>
+                            <li><a href="http://">Blog 3</a></li>
+                            <li><a href="http://">Blog 4</a></li>
                         </ul>
                     </li>
                     <li><a href="#!">WonYoung</a></li>
@@ -39,15 +39,25 @@
         </nav>
     </div>
 
-    <div class="Container" id="content"><!--Container-->
+    <div class="container-fluid" id="content"><!--Container-->
+
+        <div class="box-top" id="home">
+            <iframe src="_testing/Fancy Swiper slider/index.html" frameborder="0" style="width: 100%; height: 120vh; overflow: hidden"></iframe>
+        </div>
+
+        <!-- About me -->
         <div class="row" id="about-me">
             <!-- Content profile -->
             <div class="col-md-6 profile-img">
-                <div class="box-left ">
+                <div class="box-left">
                     <img src="img/profile.jpeg" alt="avatar" class="avatar" id="profile-img">
                 </div>
             </div>
             <div class="col-md-6 about-me">
+                <div class="div-cursor box-top">
+                    <img src="img/cursor.png" alt="cursor" class="cursor box-right">
+                    <h6 class="text-cursor box-top">Hover this</h6>
+                </div>
                 <div class="wrapper anime-svg box-top">
                     <svg>
                         <text x="50%" y="50%" dy=".35em" text-anchor="middle">
@@ -76,13 +86,15 @@
                 </div>
             </div>
         </div>
+
+        
     </div>
 
     <div id="error-404" style="display: none;">
         <!-- Nội dung thông báo 404 Not Found -->
         <img src="img/Forbidden.png" alt="art" class="img-fluid">
         <h1>403 For Bidden!</h1>
-        <p>Oops! Nhà nghèo nên không làm responsive cho điện thoại nhé!</p>
+        <p>Oops! Nhà nghèo nên không làm responsive cho thiết bị dưới 1200px nhé!</p>
     </div>
     <!-- Scripts -->
     <script src="mycode.js"></script>
