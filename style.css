@@ -20,7 +20,8 @@ html {
 body,
 html {
     /* background: #1c1d22; */
-    height: 300vh;
+    /* height: 300vh; */
+    height:auto;
     /* Set tam thoi, id: tamthoi */
     font-family: "Varela Round", sans-serif;
     transition: all .75s ease-in-out;
@@ -334,9 +335,6 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 }
 
 @media screen and (max-width: 1200px) {
-    body {
-        overflow: hidden;
-    }
 
     .search {
         width: 100%;
@@ -348,29 +346,25 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     position: absolute;
     opacity: 1;
     top: -50px;
-    left: -100px;
+    left: -200px;
     z-index: 1;
-    transform: rotate(-90deg);
     animation: cursor 3s ease 1s infinite normal none;
 }
 
 .text-cursor {
     font-family: "Varela Round", sans-serif !important;
-
-    font-weight: bold;
+    font-size:  1.25em;
     color:  #d94f5c;
     text-shadow: 0 0 3px rgb(255, 0, 0);
-
     width: 100%;
     position: absolute;
-    transform: rotate(49deg);
-    top: 0px;
+    top: 37px;
     left: 0px;
     text-align: center;
 }
 
 .cursor {
-    width: 100px;
+    width: 200px;
     height: 100px;
     -webkit-filter: hue-rotate(40deg);
     filter: hue-rotate(40deg);
@@ -378,18 +372,34 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 
 
+
 @keyframes cursor {
     0% {
-        transform: scale(1) rotate(-90deg);
+        transform: scale(1) ;
     }
 
     50% {
-        transform: scale(1.1) rotate(-85deg);
+        transform: scale(1.1);
     }
 
     100% {
-        transform: scale(1) rotate(-90deg);
+        transform: scale(1);
     }
 }
 
 /* =============== Text Section 2 =============== */
+#home{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.blog{
+    margin-top: 100px;
+    display: block;
+    width: 100%;
+}
+
+
+.bakery{
+    margin-left: -15px;
+    margin-right: -15px;
+}
