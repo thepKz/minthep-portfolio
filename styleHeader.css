@@ -652,8 +652,12 @@ body {
 .section__slider {
   width: 100%;
   height: auto;
-  background-color: #f2f3f3;
+  height: 100vh; /* Đảm bảo kích thước của body bằng kích thước của trình duyệt */
+  background-color: #f2f3f3; /* Màu nền mặc định */
+  background-image: linear-gradient(to bottom, #f2f3f3, #ffffff);
 }
+
+/*Testing CSS*/
 
 @media (min-width: 1200px) {
   .section__slider {
@@ -691,6 +695,9 @@ body {
     box-shadow: 6px 4px 11px -1px rgba(9, 0, 0, 0.352);
     max-width: 1200px;
     width: 100%;
+  }
+  .container__center {
+    background-color: white;
   }
 }
 
