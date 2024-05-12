@@ -134,3 +134,24 @@ img_circle.addEventListener('mouseenter', function() {
     cursor.style.display = 'none';
 });
 // header js
+
+
+/**
+ * Sử dụng sự kiện scroll để kiểm tra vị trí cuốn của người dùng trên trang web.
+ * Nếu vị trí cuốn lớn hơn chiều cao của thanh điều hướng, thì sẽ thêm class 'scrolled' vào thanh điều hướng.
+ * Ngược lại, nếu vị trí cuốn nhỏ hơn hoặc bằng chiều cao của thanh điều hướng, thì sẽ xóa class 'scrolled' khỏi thanh điều hướng.
+ */
+
+window.addEventListener('scroll', function() {
+    var header = document.querySelector('.wonyoung');
+    var scrollPosition = window.scrollY;
+    var navbarHeight = header.offsetHeight;
+
+    if (scrollPosition > navbarHeight) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+

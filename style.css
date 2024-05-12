@@ -403,3 +403,34 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     margin-left: -15px;
     margin-right: -15px;
 }
+/* =============== End Text Section 2 =============== */
+/* =============== Wonyoung =============== */
+
+.wonyoung {
+    background-image: url("../img/wonyoung.jpg");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 100% 100%;
+    background-attachment: cover;
+    height: 300vh;
+    transition: background-size 0.5s ease;
+    position: relative;
+}
+
+.wonyoung::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300vh;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/* =============== BLOG 1 =============== */
+
+.blog1-right {
+    margin-top: 100px;
+    text-align: justify;
+}
