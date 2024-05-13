@@ -11,24 +11,24 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Link toi Style CSS-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div>
-        <nav class="navbar bg-dark fixed-top">
+        <nav class="navbar bg-dark fixed-top">c
             <div class="container-fluid">
                 <ul class="menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about-me">Contact</a></li>
-                    <li><a class="dropdown-arrow" href="#!">Blog</a>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a class="dropdown-arrow" href="index.html#about-me">Introduce</a>
                         <ul class="sub-menus">
-                            <li><a href="http://">Blog 1</a></li>
-                            <li><a href="http://">Blog 2</a></li>
-                            <li><a href="http://">Blog 3</a></li>
-                            <li><a href="http://">Blog 4</a></li>
+                            <li><a href="index.html#blog1">Blog 1</a></li>
+                            <li><a href="index.html#blog2">Blog 2</a></li>
+                            <li><a href="index.html#blog3">Blog 3</a></li>
+                            <li><a href="index.html#blog4">Blog 4</a></li>
                         </ul>
                     </li>
+                    <li><a href="textblog.html">My Blog</a></li>
                     <li><a href="#!">WonYoung</a></li>
                 </ul>
                 <form class="d-flex search">
@@ -38,7 +38,6 @@
             </div>
         </nav>
     </div>
-
     <div class="container-fluid" id="content"><!--Container-->
 
         <div class="box-top" id="home">
@@ -83,7 +82,7 @@
             </div>
         </div>
         <div class="row section-2">
-            <div class="wrapper anime-svg box-top blog ">
+            <div class="wrapper anime-svg box-top blog" id="blog1">
                 <svg>
                     <text x="50%" y="50%" dy=".35em" text-anchor="middle">
                         Blog 1: Ngôn ngữ
@@ -94,15 +93,49 @@
                 <iframe src="bakery.html" frameborder="0" style="width: 100%; aspect-ratio: 16/16"></iframe>
             </div>
             <div class="col-md-6 box-right blog1-right">
-                <p>Ngôn ngữ về IT thì hiện tại mình đang học các mảng liên quan tới Front-end là chính, có thể kể đến như Java, Python, C, C++, Javascript, HTML, CSS và 1 chút kiến thức về SQL.</p>
-                <p>Số lượng tuy không nhiều nhưng mình đã nắm vững được cơ bản, hiểu cơ chế hoạt động và đang cải thiện trình độ Java và giải thuật. Ngoài ra mình sẽ dự định học thêm C# và Framework Reactjs.</p>
-                <p>Còn về ggoại ngữ giao tiếp thì mình có tiếng Anh, tiếng Nhật và tiếng Hàn. Tiếng anh mình đủ để đọc và nghe về tài liệu chuyên ngành, Nhật thì đang dự định học tới N4 chỉ vì đam mê tiếng nhật thôi =))) Còn về tiếng Hàn thì mình đang nhắm tới mục tiêu TOPIK 6 nhưng giờ vẫn đang học bảng chữ cái... Lí do tại sao phải TOPIK 6 thì do là mình dự định đi Hàn mà =))</p>
-            <p>Tại sao lại học ngoại ngữ? Học ngoại ngữ có nhiều lợi ích. Khi bạn du lịch đến một quốc gia khác và có thể giao tiếp bằng ngôn ngữ của họ, bạn sẽ cảm thấy thú vị hơn. Thực tế, ngôn ngữ chỉ là công cụ giao tiếp, nhưng nếu bạn biết nhiều ngôn ngữ, bạn sẽ trở nên thú vị hơn. 素晴らしいですね！</p>
+                <p>Ngôn ngữ về IT thì hiện tại mình đang học các mảng liên quan tới Front-end là chính, có thể kể đến
+                    như Java, Python, C, C++, Javascript, HTML, CSS và 1 chút kiến thức về SQL.</p>
+                <p>Số lượng tuy không nhiều nhưng mình đã nắm vững được cơ bản, hiểu cơ chế hoạt động và đang cải thiện
+                    trình độ Java và giải thuật. Ngoài ra mình sẽ dự định học thêm C# và Framework Reactjs.</p>
+                <p>Còn về ggoại ngữ giao tiếp thì mình có tiếng Anh, tiếng Nhật và tiếng Hàn. Tiếng anh mình đủ để đọc
+                    và nghe về tài liệu chuyên ngành, Nhật thì đang dự định học tới N4 chỉ vì đam mê tiếng nhật thôi
+                    =))) Còn về tiếng Hàn thì mình đang nhắm tới mục tiêu TOPIK 6 nhưng giờ vẫn đang học bảng chữ cái...
+                    Lí do tại sao phải TOPIK 6 thì do là mình dự định đi Hàn mà =))</p>
+                <p>Tại sao lại học ngoại ngữ? Học ngoại ngữ có nhiều lợi ích. Khi bạn du lịch đến một quốc gia khác và
+                    có thể giao tiếp bằng ngôn ngữ của họ, bạn sẽ cảm thấy thú vị hơn. Thực tế, ngôn ngữ chỉ là công cụ
+                    giao tiếp, nhưng nếu bạn biết nhiều ngôn ngữ, bạn sẽ trở nên thú vị hơn. 素晴らしいですね！</p>
+            </div>
+        </div>
+
+        <div class="row section-2">
+            <div class="wrapper anime-svg box-top blog" id="blog2">
+                <svg>
+                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                        Blog 2: Blog học hành
+                    </text>
+                </svg>
+            </div>
+            <div class="col-md-6 bakery box-left blog1-left">
+                <iframe src="bakery.html" frameborder="0" style="width: 100%; aspect-ratio: 16/16"></iframe>
+            </div>
+            <div class="col-md-6 box-right blog1-right">
+                <p>Mình đang xây dựng 1 website blog của mình, nếu như bạn chưa biết thì mình là người hay takenote các
+                    môn học ở Fuoverflow cho mọi người có thể học tốt. Tại sao lại làm vậy? Mình sẽ nhớ kiến thức lại
+                    lâu hơn, và sau này có quên thì mình chỉ cần click lại là ra! Còn mình muốn public note để cho mọi
+                    người
+                    đỡ tốn thời gian để research như mình trước đó và mình thấy những kiến thức này cũng cần để đi làm.
+                </p>
+                <p>Ngoài ra mình còn có note trên Notion, thường là để private do những cái này mình tốn kha khá tiền
+                    vào và private cũng để tôn trọng tác gỉả. Hiện tại mình đang xây dựng blog trên <a href="textblog.html">My Blog</a> <strong>(hiện
+                        tại chưa có nên mình để đại blog test)</strong>, bạn có thể tham khảo để có một trải nghiệm tốt trên website của mình nhé
+                </p>
             </div>
         </div>
     </div>
+
+
     <!-- Làm div về Jang WonJoung -->
-    <div class="wonyoung" style="background-color: rgba(0, 0, 0, 0.5);">
+    <div id="wonyoung-background" style="background-color: rgba(0, 0, 0, 0.5);">
         <div style="background-color: rgba(0, 0, 0, 0.5); padding: 5%; color: white;">
             <div class="wrapper anime-svg box-top blog" style="color: white;">
                 <svg>
@@ -112,10 +145,8 @@
                 </svg>
             </div>
             <div class="wonyoung-intro"></div>
-            <p>Jang Won-young là một nữ ca sĩ, người mẫu kiêm người dẫn chương trình truyền hình người Hàn Quốc. Cô được
-                biết đến là thành viên của nhóm nhạc nữ IVE và là cựu thành viên của nhóm nhạc dự án IZ*ONE. Won Young
-                sinh ngày 31/8/2004 ở Ichon-dong, Yongsan, Seoul, Hàn Quốc, là em út trong gia đình có hai con gái</p>
-            <p>Cái này lười làm nên để thi xong rồi làm.</p>
+            <p>Jang Won-young là vợ mình. Hết.</p>
+            <p>Cái này lười làm quá hehe</p>
         </div>
     </div>
 
@@ -130,7 +161,7 @@
         <p>Oops! Nhà nghèo nên không làm responsive cho thiết bị dưới 1200px nhé!</p>
     </div>
     <!-- Scripts -->
-    <script src="mycode.js"></script>
+    <script src="js/mycode.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
