@@ -437,3 +437,8 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 #myblog-1{
     margin-top: 100px !important;
 }
+
+/* Set height for blog*/
+.set-height{
+    height: 1000px;
+}
