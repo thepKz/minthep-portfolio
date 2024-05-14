@@ -77,7 +77,42 @@
                     <p>Nếu bạn quan tâm về ngành KS hoặc muốn hợp tác với mình, đừng ngần ngại liên hệ. Mình rất vui
                         được
                         kết nối và trò chuyện với bạn!</p>
-                    <button id="contract-here" class="btn btn-danger box-right">Contract Here!</button>
+                    <button id="contract-here" class="btn btn-danger box-right" data-bs-toggle="modal"
+                        data-bs-target="#contactModal">Contact me</button>
+                    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactModalLabel">Contact me</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="contact.php" method="POST">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" name="message"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Send message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,19 +150,22 @@
                     </text>
                 </svg>
             </div>
-        
+
             <div class="col-md-6 box-left blog1-right">
                 <p>Mình đang xây dựng 1 website blog của mình, nếu như bạn chưa biết thì mình là người hay takenote các
-                    môn học ở Fuoverflow cho mọi người có thể học tốt. Tại sao lại làm vậy? Mình sẽ nhớ kiến thức lại
+                    môn học ở <a href="https://fuoverflow.com/">FUoverflow</a> cho mọi người có thể học tốt. Tại sao lại
+                    làm vậy? Mình sẽ nhớ kiến thức lại
                     lâu hơn, và sau này có quên thì mình chỉ cần click lại là ra! Còn mình muốn public note để cho mọi
                     người
                     đỡ tốn thời gian để research như mình trước đó và mình thấy những kiến thức này cũng cần để đi làm.
                 </p>
                 <p>Ngoài ra mình còn có note trên Notion, thường là để private do những cái này mình tốn kha khá tiền
-                    vào và private cũng để tôn trọng tác gỉả. Hiện tại mình đang xây dựng blog trên <a href="blog/textblog.html">My Blog</a> <strong>(hiện
-                        tại chưa có nên mình để đại blog test)</strong>, bạn có thể tham khảo để có một trải nghiệm tốt trên website của mình nhé
+                    vào và private cũng để tôn trọng tác gỉả. Hiện tại mình đang xây dựng blog trên <a
+                        href="blog/textblog.html">My Blog</a> <strong>(hiện
+                        tại chưa có nên mình để đại blog test)</strong>, bạn có thể tham khảo để có một trải nghiệm tốt
+                    trên website của mình nhé
                 </p>
-            </div>    
+            </div>
             <div class="col-md-6 bakery box-right blog1-right">
                 <video autoplay loop muted class="img-fluid">
                     <source src="img/0508.mp4" type="video/mp4">
@@ -143,7 +181,7 @@
         <div style="background-color: rgba(0, 0, 0, 0.5); padding: 5%; color: white;">
             <div class="wrapper anime-svg box-top blog" style="color: white;">
                 <svg>
-                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                    <text x="50%" y="50%" dy=".85em" text-anchor="middle">
                         Jang WonYoung
                     </text>
                 </svg>
@@ -167,8 +205,9 @@
     <!-- Scripts -->
     <script src="js/mycode.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
