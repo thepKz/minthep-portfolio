@@ -93,9 +93,11 @@ function checkScreenSize() {
     if (window.innerWidth < 1200) {
         document.getElementById('content').style.display = 'none';
         document.getElementById('error-404').style.display = 'block';
+        document.getElementById('wonyoung-background').style.display = 'none';
     } else {
         document.getElementById('content').style.display = 'block';
         document.getElementById('error-404').style.display = 'none';
+        document.getElementById('wonyoung-background').style.display = 'block';
     }
 }
 
@@ -106,6 +108,7 @@ window.addEventListener('resize', checkScreenSize);
 
 
 //////////////////////////////////////////
+// dùng để chạy tới điểm ở trên menu
 document.addEventListener('DOMContentLoaded', function() {
     var links = document.querySelectorAll('.Container .menu a[href^="#"]');
     
@@ -141,17 +144,4 @@ img_circle.addEventListener('mouseenter', function() {
  * Nếu vị trí cuốn lớn hơn chiều cao của thanh điều hướng, thì sẽ thêm class 'scrolled' vào thanh điều hướng.
  * Ngược lại, nếu vị trí cuốn nhỏ hơn hoặc bằng chiều cao của thanh điều hướng, thì sẽ xóa class 'scrolled' khỏi thanh điều hướng.
  */
-
-window.addEventListener('scroll', function() {
-    var header = document.querySelector('.wonyoung');
-    var scrollPosition = window.scrollY;
-    var navbarHeight = header.offsetHeight;
-
-    if (scrollPosition > navbarHeight) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
 

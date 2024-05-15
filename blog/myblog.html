@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Thep</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="myblog/myblog.css">
+    <style>
+        @media screen and (max-width: 1090px) {
+            .menu {
+                margin-bottom: 25px;
+            }
+
+            .author {
+                margin: 0 !important;
+                text-align: center !important;
+            }
+            p {
+                text-align: justify ;
+            }
+            .list-group-item a {
+                word-break: break-word;
+                overflow-wrap: break-word;
+              }
+              #header form{
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+              }
+        }
+    </style>
+</head>
+<body>
+    <div id = "header">
+        <nav class="navbar bg-dark fixed-top">
+            <div class="container-fluid">
+                <ul class="menu">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a class="dropdown-arrow" href="../index.html#about-me">Introduce</a>
+                        <ul class="sub-menus">
+                            <li><a href="../index.html#blog1">Blog 1</a></li>
+                            <li><a href="../index.html#blog2">Blog 2</a></li>
+                            <li><a href="../index.html#blog3">Blog 3</a></li>
+                            <li><a href="../index.html#blog4">Blog 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="textblog-1.html">My Blog</a></li>
+
+                    <li><a href="#!">WonYoung</a></li>
+                </ul>
+                <form class="d-flex search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

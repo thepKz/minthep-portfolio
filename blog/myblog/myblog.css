@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
+body {
+    overflow-x: hidden;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1.1px;
+}
+
+body,
+html {
+    /* background: #1c1d22; */
+    /* height: 300vh; */
+    height:auto;
+    /* Set tam thoi, id: tamthoi */
+    font-family: "Varela Round", sans-serif;
+    transition: all .75s ease-in-out;
+    scroll-behavior: smooth;
+}
+
+.menu {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: start;
+    max-width: 720px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.menu li {
+    width: 125px;
+    height: 50px;
+    transition: background-position-x 0.9s linear;
+    text-align: center;
+    padding-top: 10px;
+
+    a {
+        font-size: 1.25em;
+        color: #e7e7e7;
+        text-decoration: none;
+        transition: all 0.45s;
+    }
+
+    &:hover {
+        background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+        animation: line 1s;
+    }
+
+    &:hover a {
+        color: #d94f5c;
+    }
+
+    &:not(:last-child) {
+        margin-right: 30px;
+    }
+}
+
+.menu a.dropdown-arrow:after {
+    content: "\25BE";
+    margin-left: 5px;
+}
+
+.menu ul.sub-menus {
+    margin-top: 10px;
+    height: auto;
+    overflow: hidden;
+    width: 200px;
+    background: #343A40;
+    position: absolute;
+    z-index: 99;
+    display: none;
+}
+
+.menu ul.sub-menus a {
+    margin-left: 10px;
+    color: white;
+}
+
+.menu ul.sub-menus li {
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.menu li:hover ul.sub-menus {
+    display: block
+}
+
+.menu ul.sub-menus a:hover {
+    color: #d94f5c;
+}
+
+@keyframes line {
+    0% {
+        background-position-x: 390px;
+    }
+}
+
+.search button {
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.btn-search {
+    color: #d94f5c;
+    border-color: #d94f5c;
+
+    &:hover {
+        color: white;
+        background-color: #d94f5c;
+        border-color: #d94f5c;
+    }
+}
+
+.row {
+    margin: 0;
+}
+/* =============== About scroll bar =============== */
+
+:root {
+    --primary-color: rgb(163, 163, 163);
+    /* Màu gốc của bạn */
+    --scroll-thumb-color: #d94f5c;
+    /* Màu của thanh kéo */
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+/* Track là phần nền của thanh cuộn */
+::-webkit-scrollbar-track {
+    background-color: var(white);
+    /* Sử dụng màu gốc */
+}
+
+/* Thumb là thanh kéo mà bạn kéo để di chuyển thanh cuộn */
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb-color);
+    /* Sử dụng màu của thanh kéo */
+    border-radius: 5px;
+}
+
+/* Hover Thumb là màu khi di chuột qua thanh cuộn */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d43040;
+    /* Màu khi hover */
+}
+
+.scroll-top-icon {
+    visibility: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    font-size: var(3rem);
+    color: var(--scroll-thumb-color);
+    /* Sử dụng màu của thanh kéo */
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.show-scroll {
+    visibility: visible;
+}
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+.anime-svg svg {
+    text-align: center;
+    font-family: "Russo One", sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.anime-svg svg text {
+    animation: stroke 5.5s;
+    stroke-width: 1;
+    stroke: #D94F5C;
+    font-size: 55px;
+    fill: #D94F5C;
+}
+
+@keyframes stroke {
+    0% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 3;
+    }
+
+    60% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+    }
+
+    80% {
+        fill: rgba(212, 48, 64, 0);
+        stroke: rgba(217, 79, 92, 1);
+        stroke-width: 3;
+    }
+
+    100% {
+        fill: rgba(212, 48, 64, 1);
+        stroke: rgba(217, 79, 92, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 5;
+    }
+}
