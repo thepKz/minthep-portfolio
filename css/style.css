@@ -342,33 +342,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 }
 
 /* =============== Set cursor =============== */
-.div-cursor {
-    position: absolute;
-    opacity: 1;
-    top: -50px;
-    left: -200px;
-    z-index: 1;
-    animation: cursor 3s ease 1s infinite normal none;
-}
 
-.text-cursor {
-    font-family: "Varela Round", sans-serif !important;
-    font-size:  1.25em;
-    color:  #d94f5c;
-    text-shadow: 0 0 3px rgb(255, 0, 0);
-    width: 100%;
-    position: absolute;
-    top: 37px;
-    left: 0px;
-    text-align: center;
-}
-
-.cursor {
-    width: 200px;
-    height: 100px;
-    -webkit-filter: hue-rotate(40deg);
-    filter: hue-rotate(40deg);
-}
 
 
 
