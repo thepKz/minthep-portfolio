@@ -2,7 +2,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
     // Định cấu hình ScrollReveal
     ScrollReveal().reveal('.box-bottom', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
-        duration: 1700, // Thời gian thực hiện hiệu ứng (milliseconds)
+        duration: 1000, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'bottom', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
         distance: '150px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease-in-out', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
@@ -10,7 +10,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
     });
     ScrollReveal().reveal('.box-left', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
-        duration: 1700, // Thời gian thực hiện hiệu ứng (milliseconds)
+        duration: 1000, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'left', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
         distance: '150px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
@@ -18,7 +18,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
     });
     ScrollReveal().reveal('.box-top', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
-        duration: 1700, // Thời gian thực hiện hiệu ứng (milliseconds)
+        duration: 1000, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'top', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
         distance: '150px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
@@ -26,7 +26,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
     });
     ScrollReveal().reveal('.box-right', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
-        duration: 1700, // Thời gian thực hiện hiệu ứng (milliseconds)
+        duration: 1000, // Thời gian thực hiện hiệu ứng (milliseconds)
         origin: 'right', // Nơi mà phần tử xuất hiện từ (top, right, bottom, left)
         distance: '150px', // Khoảng cách mà phần tử di chuyển (pixels)
         easing: 'ease', // Kiểu chuyển động (ease, ease-in, ease-out, ease-in-out)
@@ -40,7 +40,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
         ScrollReveal().reveal(paragraph, {
             delay: 100 * index,  // Mỗi đoạn p sẽ xuất hiện sau 200ms so với đoạn trước
             distance: '500px',   // Khoảng cách di chuyển
-            duration: 2500,     // Thời gian thực hiện hiệu ứng (ms)
+            duration: 2000,     // Thời gian thực hiện hiệu ứng (ms)
             easing: 'ease', // Kiểu easing
             origin: 'right',   // Hướng xuất hiện
             reset: true         // Đặt lại hiệu ứng sau mỗi lần xuất hiện

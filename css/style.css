@@ -421,12 +421,12 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 .blog1-right {
     padding: 50px;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: justify;
     font-size: 1.25em;
 }   
 .section-2 {
-    margin-top: 300px;
+    margin-top: 100px;
     text-align: justify;
 }
 
