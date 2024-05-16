@@ -145,3 +145,6 @@ img_circle.addEventListener('mouseenter', function() {
  * Ngược lại, nếu vị trí cuốn nhỏ hơn hoặc bằng chiều cao của thanh điều hướng, thì sẽ xóa class 'scrolled' khỏi thanh điều hướng.
  */
 
+$('#contactModal').on('show.bs.modal', function () {
+    $('.modal-content').addClass('animate__animated animate__bounceIn');
+  });

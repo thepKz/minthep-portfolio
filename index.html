@@ -74,27 +74,27 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="contactModalLabel">Liên hệ với mình</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                             </div>
                             <div class="modal-body">
                                 <form action="contact.php" method="POST">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Tên</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Trương Mỹ Lan" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="LanTMSE20@fpt.edu.vn" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="message" class="form-label">Tin nhắn</label>
-                                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Kho báu 673.000 tỷ..." required></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Gửi</button>
+                                    <button type="submit" class="btn btn-danger text-center justify-content-center">Gửi</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
                             </div>
                         </div>
                     </div>
@@ -200,6 +200,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/mycode.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </body>
 
 </html>

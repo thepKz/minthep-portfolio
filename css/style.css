@@ -416,3 +416,41 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 .set-height{
     height: 1000px;
 }
+.modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+/* Tăng kích thước của nút đóng */
+
+/* Tùy chỉnh nền của modal */
+.modal-content {
+    background-color: #343a4084; /* Thay đổi màu nền */
+    border-radius: 10px; /* Làm tròn góc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Thêm bóng */
+}
+.modal-content label{
+    color: white;
+}
+/* Tùy chỉnh tiêu đề modal */
+.modal-title {
+    color: #d94f5c; /* Thay đổi màu chữ */
+    font-size: 1.5em; /* Tăng kích thước chữ */
+}
+.btn-close {
+    background-color: #f44336; /* Màu nền của nút */
+    color: white; /* Màu của chữ 'X' */
+    font-size: 18px; /* Kích thước của chữ 'X' */
+    line-height: 1; /* Điều chỉnh vị trí chữ 'X' theo chiều dọc */
+    border: none; /* Loại bỏ viền */
+    display: inline-block; /* Để nút có thể điều chỉnh kích thước */
+    width: 30px; /* Chiều rộng của nút */
+    height: 30px; /* Chiều cao của nút */
+    text-align: center; /* Căn chữ 'X' theo chiều ngang */
+    border-radius: 50%; /* Làm tròn nút */
+    transition: background-color 0.3s; /* Thêm hiệu ứng khi thay đổi màu nền */
+}
+
+.btn-close:hover {
+    background-color: #d32f2f; /* Thay đổi màu nền khi di chuột qua nút */
+}
