@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="myblog/myblog.css">
+    <link rel="stylesheet" href="css/wy.css">
     <style>
         @media screen and (max-width: 1090px) {
             .menu {
@@ -18,23 +19,27 @@
                 margin: 0 !important;
                 text-align: center !important;
             }
+
             p {
-                text-align: justify ;
+                text-align: justify;
             }
+
             .list-group-item a {
                 word-break: break-word;
                 overflow-wrap: break-word;
-              }
-              #header form{
+            }
+
+            #header form {
                 width: 100%;
                 justify-content: center;
                 text-align: center;
-              }
+            }
         }
     </style>
 </head>
+
 <body>
-    <div id = "header">
+    <div id="header">
         <nav class="navbar bg-dark fixed-top">
             <div class="container-fluid">
                 <ul class="menu">
@@ -47,9 +52,9 @@
                             <li><a href="../index.html#blog4">Blog 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="textblog-1.html">My Blog</a></li>
+                    <li><a href="../blog/textblog-1.html">My Blog</a></li>
 
-                    <li><a href="../wy/wy.html">WonYoung</a></li>
+                    <li><a href="wy.html">WonYoung</a></li>
                 </ul>
                 <form class="d-flex search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -58,9 +63,14 @@
             </div>
         </nav>
     </div>
+
+    <div style="background: #141414">
+        <iframe src="home.html" frameborder="0" style="width: 100%; height: 120vh; overflow: hidden"></iframe>
+    </div><div style="background: linear-gradient(to bottom, #141414, white); height: 200vh;"></div>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
