@@ -255,3 +255,21 @@ svg text {
     color: #d94f5c;
     font-size: 1.7em;
 }
+
+@media screen and (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+    svg text {
+        font-size: 40px;
+    }
+    h1 {
+      font-size: 3vw;
+      line-height: 3vw;
+    }
+    span{
+      font-size: 1.5em !important;}
+    p {
+      font-size: 15px !important;
+    }
+  }

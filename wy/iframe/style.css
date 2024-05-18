@@ -110,3 +110,9 @@ body{
 	transform: translateZ(calc(var(--index) * 10));
     margin: 0.2vw;
 }
+@media screen and (max-width: 768px) {
+    .items .item:active, .items .item:focus {
+    height: 20vh;
+    width: 40vw;
+    }
+  }
