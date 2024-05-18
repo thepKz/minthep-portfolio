@@ -1,0 +1,138 @@
+/* author: https://codepen.io/Tiopayo/pen/GRYoMEZ
+Paul Roger */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap');
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --font1: "Poppins";
+}
+
+::-webkit-scrollbar {
+  height: 1px;
+  width: 1px;
+}
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  margin: 0;
+  font-family: var(--font1);
+  background-color: #141414;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.flex, .flex__col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex__col {
+  flex-direction: column;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main.flex {
+  width: 100%;
+  height: 200vh;
+  align-items: flex-start;
+}
+
+.items {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.items__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vw;
+  height: 150vw;
+  gap: 2vw;
+  transform: translate(-50%, -50%) rotate(45deg);
+  will-change: transform;
+}
+
+.items__col {
+  position: relative;
+  gap: 2vw;
+  will-change: transform;
+}
+
+.item {
+  position: relative;
+  width: 20vw;
+  height: auto;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  will-change: width;
+}
+
+.item img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  padding: 20%;
+  align-items: flex-start;
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 100%;
+  transform: translate(-50%, -50%) scale(0);
+  will-change: border-radius transform;
+}
+
+h1 {
+  font-size: 4vw;
+  font-weight: 700;
+  line-height: 4vw;
+  margin: 0;
+  transform-origin: top left;
+  transform: scale(0);
+  will-change: transform;
+}
+
+p {
+  font-size: 1.2vw;
+  font-weight: 600;
+  transform-origin: top left;
+  transform: scale(0);
+  will-change: transform;
+}
+
+.noise {
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-image: url("https://www.paulrogerdev.fr/codepen/noise.png");
+}

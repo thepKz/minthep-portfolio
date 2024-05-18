@@ -21,8 +21,8 @@ body,
 html {
     /* background: #1c1d22; */
     /* height: 300vh; */
-    height:auto;
     /* Set tam thoi, id: tamthoi */
+    background: #141414;
     font-family: "Varela Round", sans-serif;
     transition: all .75s ease-in-out;
     scroll-behavior: smooth;
@@ -218,4 +218,40 @@ html {
         stroke-dasharray: 50% 0;
         stroke-width: 5;
     }
+}
+@import url("https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap");
+
+svg {
+	font-family: "Hina Mincho", sans-serif;
+	width: 100%; height: 100%;
+}
+svg text {
+	animation: stroke 6s infinite alternate;
+	stroke-width: 2;
+	stroke: #FFFFFF;
+	font-size: 108px;
+}
+@keyframes stroke {
+	0%   {
+		fill: rgba(217,79,92,0); stroke: rgba(255,255,255,1);
+		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+	}
+	70%  {fill: rgba(217,79,92,0); stroke: rgba(255,255,255,1); }
+	80%  {fill: rgba(217,79,92,0); stroke: rgba(255,255,255,1); stroke-width: 3; }
+	100% {
+		fill: rgba(217,79,92,1); stroke: rgba(255,255,255,0);
+		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+	}
+}
+
+#about-wy p{
+    font-size: 1.45em;
+    text-align: justify;
+    margin-top: 100px;
+    color: white !important;
+}
+
+.wy-important{
+    color: #d94f5c;
+    font-size: 1.7em;
 }

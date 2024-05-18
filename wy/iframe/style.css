@@ -45,7 +45,7 @@ body{
     content: '';
     position: absolute;
     height: 100%;
-    width: 20px;
+    width: 30px;
     right: calc(var(--index) * -1);
 }
 
@@ -104,9 +104,9 @@ body{
 
 .items .item:active, .items .item:focus {
     height: 40vh;
-	width: 20vw;
+	width: 18vw;
 	filter: inherit;
 	z-index: 100;
 	transform: translateZ(calc(var(--index) * 10));
-    margin: 0 .45vw;
+    margin: 0.2vw;
 }
