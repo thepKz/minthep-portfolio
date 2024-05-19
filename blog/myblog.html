@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,23 +19,30 @@
                 margin: 0 !important;
                 text-align: center !important;
             }
+
             p {
-                text-align: justify ;
+                text-align: justify;
             }
+
             .list-group-item a {
                 word-break: break-word;
                 overflow-wrap: break-word;
-              }
-              #header form{
+            }
+
+            #header form {
                 width: 100%;
                 justify-content: center;
                 text-align: center;
-              }
+            }
+            #search-check {
+                display: none !important;
+            }
         }
     </style>
 </head>
-<body>
-    <div id = "header">
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <div id="header">
         <nav class="navbar bg-dark fixed-top">
             <div class="container-fluid">
                 <ul class="menu">
@@ -47,10 +55,20 @@
                             <li><a href="../index.html#blog4">Blog 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="textblog-1.html">My Blog</a></li>
+                    <li><a href="myblog.html">My Blog</a></li>
 
                     <li><a href="../wy/wy.html">WonYoung</a></li>
                 </ul>
+                <form class="d-flex search" id="search-check">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <nav class="navbar bg-dark">
+            <div class="container-fluid">
                 <form class="d-flex search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success btn-search" type="submit">Search</button>
@@ -58,9 +76,158 @@
             </div>
         </nav>
     </div>
+
+    <div class="container">
+        <div class="anime-svg box-top">
+            <svg>
+                <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                    My Blog List
+                </text>
+            </svg>
+            <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
+        </div>
+        <div class="card-3">
+            <div class="wrapper">
+                <div class="card">
+                    <img src="textblog-0/textblog-0.jpg">
+                    <div class="info">
+                        <h2>Welcome to Japanese</h2>
+                        <p>Hướng dẫn học tiếng Nhật cho những bạn học JPD113 và những bạn muốn học tiếng Nhật.<strong>(Đang cập nhật)</strong></p>
+                        <button onclick="window.open('textblog-0.html', '_blank')">Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="textblog-1/textblog-1.jpg">
+                    <div class="info">
+                        <h1>JPD113</h1>
+                        <p>Dành cho những bạn đang học môn JPD113, và đây là bước mở đầu để học tiếng Nhật.</p>
+                        <button onclick="window.open('textblog-1.html', '_blank')">Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="textblog-2/textblog-2.jpg">
+                    <div class="info">
+                        <h1>JPD123</h1>
+                        <p>Dành cho những bạn đang học môn JPD123, đây là phần tiếp theo của môn JPD113. Từ vựng và ngữ pháp khá nhiều nên lưu ý! <strong>(Đang cập nhật)</strong></p>
+                        <button onclick="window.open('textblog-2.html', '_blank')">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card-3">
+            <div class="wrapper">
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Mountain</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Road</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Protester</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-3">
+            <div class="wrapper">
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Mountain</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Road</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Protester</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-3">
+            <div class="wrapper">
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Mountain</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Road</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="img/1.jpg">
+                    <div class="info">
+                        <h1>Protester</h1>
+                        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+                        <button>Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+    </div>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && 
+                (e.keyCode === 67 || 
+                 e.keyCode === 86 || 
+                 e.keyCode === 85 || 
+                 e.keyCode === 117 || 
+                 e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        };
+    </script>
 </body>
+
 </html>

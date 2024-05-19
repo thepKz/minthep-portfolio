@@ -710,3 +710,13 @@ body {
   font-family: "Varela Round", sans-serif !important;
   color: #d94f5c !important;
 }
+
+
+@media screen and (max-width: 1268px) {
+  .section__slider {
+      height: auto; /* Điều chỉnh kích thước của body */
+  }
+  .section__slider .container__center {
+      width: 100%; /* Điều chỉnh kích thước của container */
+  }
+}

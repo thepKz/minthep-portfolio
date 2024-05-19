@@ -454,3 +454,49 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 .btn-close:hover {
     background-color: #d32f2f; /* Thay đổi màu nền khi di chuột qua nút */
 }
+
+@media screen and (max-width: 1200px) {
+    #home iframe{
+        height: 150vh !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    *{
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    #search-check {
+        display: none !important;
+    }
+    #home{
+        margin-top: 50px;
+    }
+    .menu {
+        margin-bottom: 25px;
+    }
+
+    .author {
+        margin: 0 !important;
+        text-align: center !important;
+    }
+    p {
+        text-align: justify ;
+    }
+    .list-group-item a {
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+    #profile-img{
+
+            max-width: 80%;
+            height: auto;
+        
+    }
+    .anime-svg svg text{
+        font-size: 30px;
+    }
+
+    #wonyoung-background{
+        display:none !important;
+    }
+}

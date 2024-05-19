@@ -89,17 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 404 not found
-function checkScreenSize() {
-    if (window.innerWidth < 1200) {
-        document.getElementById('content').style.display = 'none';
-        document.getElementById('error-404').style.display = 'block';
-        document.getElementById('wonyoung-background').style.display = 'none';
-    } else {
-        document.getElementById('content').style.display = 'block';
-        document.getElementById('error-404').style.display = 'none';
-        document.getElementById('wonyoung-background').style.display = 'block';
-    }
-}
+// function checkScreenSize() {
+//     if (window.innerWidth < 1200) {
+//         document.getElementById('content').style.display = 'none';
+//         document.getElementById('error-404').style.display = 'block';
+//         document.getElementById('wonyoung-background').style.display = 'none';
+//     } else {
+//         document.getElementById('content').style.display = 'block';
+//         document.getElementById('error-404').style.display = 'none';
+//         document.getElementById('wonyoung-background').style.display = 'block';
+//     }
+// }
 
 // Gọi hàm kiểm tra kích thước màn hình khi trang được tải và cửa sổ được thay đổi kích thước
 window.addEventListener('load', checkScreenSize);

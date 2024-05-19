@@ -29,12 +29,14 @@
                 word-break: break-word;
                 overflow-wrap: break-word;
               }
-
+              #search-check {
+                display: none !important;
+            }
         }
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <div>
         <nav class="navbar bg-dark fixed-top">
             <div class="container-fluid">
@@ -48,17 +50,23 @@
                             <li><a href="../index.html#blog4">Blog 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="textblog-1.html">My Blog</a></li>
+                    <li><a href="myblog.html">My Blog</a></li>
 
-                    <li><a href="#!">WonYoung</a></li>
+                    <li><a href="../wy/wy.html">WonYoung</a></li>
                 </ul>
-                <form class="d-flex search" >
+                <form class="d-flex search" id="search-check" >
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success btn-search" type="submit">Search</button>
                 </form>
             </div>
         </nav>
     </div>
+
+
+
+
+
+
     <div id="myblog-1" class="container">
         <div class="wrapper anime-svg box-top">
             <svg>
@@ -73,7 +81,7 @@
         <p>Đầu tiên, đây là blog mà mình tự tạo để ôn thi JPD113 (tương đương 1/4 trình độ N5). Mình tham khảo từ <a
                 href="https://www.tofugu.com/japanese-grammar/date-and-time/">Tofugu</a>. Nếu có bất kỳ sai sót nào, xin
             vui lòng liên hệ. Blog này bao gồm toàn bộ kiến thức đã học trong môn JPD113. Nếu bạn đang chuẩn bị học môn
-            này, hãy nhấp vào <a href="#">link</a> này.</p>
+            này, hãy nhấp vào <a href="#">link</a> này. Ngoài ra thì mình disable copy rồi nếu cần thì ib nhé!</p>
         <br><br><br>
         <h3><b>Tài nguyên học tập:</b></h3><br>
         <p>File ở dưới là script phần nghe cuốn Dekiru cho bạn dễ theo dõi.</p>
@@ -83,16 +91,16 @@
         <ol class="list-group">
             <li class="list-group-item">Bảng chữ cái ở <a href = "https://www.duolingo.com/learn" target="_blank">Duolingo</a> hoặc link này: <a
                     href="https://www.realkana.com/hiragana" target="_blank"
-                    rel="nofollow ugc noopener">https://www.realkana.com/hiragana</a></li>
+                    rel="nofollow ugc noopener">Hiragana Learning</a>.</li>
             <li class="list-group-item">Link quizlet học các loại verb: <a
                     href="https://quizlet.com/vn/815088820/dekiru1_jpd113_v-flash-cards/" target="_blank"
-                    rel="nofollow ugc noopener">https://quizlet.com/vn/815088820/dekiru1_jpd113_v-flash-cards/</a></li>
+                    rel="nofollow ugc noopener">Quizlet verb</a>.</li>
             <li class="list-group-item">Link quizlet học từ vựng JPD113 đầy đủ: <a
                     href="https://quizlet.com/vn/683127375/jpd113-bai-123-flash-cards/" target="_blank"
-                    rel="nofollow ugc noopener">https://quizlet.com/vn/683127375/jpd113-bai-123-flash-cards/</a></li>
+                    rel="nofollow ugc noopener">Quizlet Words</a>.</li>
             <li class="list-group-item">Link quizlet trợ từ: <a
                     href="https://quizlet.com/vn/815088142/dekiru1_jpd113_tro-tu-flash-cards/" target="_blank"
-                    rel="nofollow ugc noopener">https://quizlet.com/vn/815088142/dekiru1_jpd113_tro-tu-flash-cards/</a>
+                    rel="nofollow ugc noopener">Quizlet Particles</a>.
             </li>
         </ol>
         <br>
@@ -1071,6 +1079,23 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer class="footer mt-auto py-3 bg-dark">
         <div class="text-center">
             <span class="text-muted">Page này không có footer</span>
@@ -1080,7 +1105,21 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script>
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && 
+                (e.keyCode === 67 || 
+                 e.keyCode === 86 || 
+                 e.keyCode === 85 || 
+                 e.keyCode === 117 || 
+                 e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        };
+    </script>
 </body>
 
 </html>

@@ -34,6 +34,9 @@
                 justify-content: center;
                 text-align: center;
             }
+            #search-check {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -52,17 +55,20 @@
                             <li><a href="../index.html#blog4">Blog 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="../blog/textblog-1.html">My Blog</a></li>
+                    <li><a href="../blog/myblog.html">My Blog</a></li>
 
                     <li><a href="wy.html">WonYoung</a></li>
                 </ul>
-                <form class="d-flex search">
+                <form class="d-flex search" id="search-check">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success btn-search" type="submit">Search</button>
                 </form>
             </div>
         </nav>
     </div>
+
+
+
     <div style="background: #141414; margin-top: 60px;">
         <iframe src="header.html" frameborder="0" style="width: 100%; height: 110vh; overflow: hidden"></iframe>
     </div>
