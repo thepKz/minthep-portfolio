@@ -1,5 +1,6 @@
 window.onload = function () { // Khi minh Scroll thi no moi xuan hien
     // Định cấu hình ScrollReveal
+    if (window.innerWidth > 1000) {
     ScrollReveal().reveal('.box-bottom', { // Áp dụng hiệu ứng cho các phần tử có class 'box'
         delay: 150, // Khoảng thời gian chờ trước khi hiệu ứng xuất hiện (milliseconds)
         duration: 1000, // Thời gian thực hiện hiệu ứng (milliseconds)
@@ -46,6 +47,7 @@ window.onload = function () { // Khi minh Scroll thi no moi xuan hien
             reset: true         // Đặt lại hiệu ứng sau mỗi lần xuất hiện
         });
     });
+}
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -102,8 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // }
 
 // Gọi hàm kiểm tra kích thước màn hình khi trang được tải và cửa sổ được thay đổi kích thước
-window.addEventListener('load', checkScreenSize);
-window.addEventListener('resize', checkScreenSize);
 
 
 
@@ -148,3 +148,7 @@ img_circle.addEventListener('mouseenter', function() {
 $('#contactModal').on('show.bs.modal', function () {
     $('.modal-content').addClass('animate__animated animate__bounceIn');
   });
+
+
+window.addEventListener('load', checkScreenSize);
+window.addEventListener('resize', checkScreenSize);

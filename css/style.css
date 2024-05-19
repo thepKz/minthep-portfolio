@@ -460,7 +460,10 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
         height: 150vh !important;
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
+    .container{
+        width: 100% !important;
+    }
     *{
         margin-left: auto !important;
         margin-right: auto !important;
@@ -498,5 +501,24 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
     #wonyoung-background{
         display:none !important;
+    }
+    li {
+        font-size: 10px !important;
+    }
+    #header, .menu {
+        height: 0px !important;
+        display: flex !important;
+    }
+    #home iframe{
+        height: 150vh !important;
+    }
+    .profile-img.show-japanese ::after{
+        font-size: 0.9em !important;
+    }
+    .anime-svg svg text{
+        font-size: 20px !important;
+    }
+    .about-me, .blog1-right, .section-2{
+        padding: 0 !important;
     }
 }
