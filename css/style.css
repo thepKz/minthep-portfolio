@@ -522,3 +522,46 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
         padding: 0 !important;
     }
 }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    perspective: 600px; /* Tạo hiệu ứng 3D */
+  }
+  
+  .card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.8s; /* Thêm hiệu ứng chuyển động */
+  }
+  
+  .card-front {
+    background-color: #f0f0f0;
+  }
+  
+  .card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg); /* Lật mặt sau ban đầu */
+  }
+  
+  .card.flipped .card-front {
+    transform: rotateY(-180deg); /* Lật mặt trước khi click */
+  }
+  
+  .card.flipped .card-back {
+    transform: rotateY(0deg); /* Hiển thị mặt sau khi click */
+  }

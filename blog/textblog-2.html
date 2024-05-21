@@ -11,6 +11,11 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        .vietnamese-col {
+            display: table-cell;
+            /* Hiển thị cột ban đầu */
+        }
+
         @media screen and (max-width: 1090px) {
             .menu {
                 margin-bottom: 25px;
@@ -388,8 +393,10 @@
     </div>
     <div class="container mt-5">
         <h1 class="mb-4">Từ vựng JPD113</h1>
-        <button class="btn btn-primary" id="toggleButton">Ẩn/Hiện Bảng</button>
+        <button class="btn btn-primary" id="toggleButton">Ẩn/Hiện Tiếng Việt</button>
+        <button class="btn btn-secondary" id="shuffleButton">Trộn Từ</button>
         <table class="table table-bordered table-striped" id="vocabularyTable">
+
             <thead>
                 <tr>
                     <th>Từ vựng</th>
@@ -1719,6 +1726,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const table = document.getElementById('vocabularyTable');
+            const toggleButton = document.getElementById('toggleButton');
+            const shuffleButton = document.getElementById('shuffleButton');
+
+            // Trích xuất từ vựng từ bảng HTML (giống như trước)
+            const vocabularyData = [];
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                // ... (phần này giữ nguyên)
+            });
+
+            // Tạo các thẻ từ vựng
+            const cardContainer = document.createElement('div');
+            cardContainer.classList.add('card-container');
+            document.body.appendChild(cardContainer);
+
+            vocabularyData.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                <div class="card-front">${item.word}</div>
+                <div class="card-back">${item.meaning}</div>
+              `;
+                cardContainer.appendChild(card);
+
+                // Xử lý sự kiện click để lật thẻ
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
+            });
+
+            // Ẩn bảng và nút trộn từ
+            table.style.display = 'none';
+            shuffleButton.style.display = 'none';
+        });
+
+
         $(document).ready(function () {
             // Ẩn bảng ngay khi tài liệu sẵn sàng
             $('#vocabularyTable').hide();
