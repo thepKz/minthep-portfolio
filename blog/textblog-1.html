@@ -7,10 +7,8 @@
     <title>Min Thep</title>
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
 
-    <!-- Link tới Bootstrap CSS từ CDN -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Link toi Style CSS-->
     <link rel="stylesheet" href="../css/style.css">
     <style>
         @media screen and (max-width: 1090px) {
@@ -22,20 +20,22 @@
                 margin: 0 !important;
                 text-align: center !important;
             }
+
             p {
-                text-align: justify ;
+                text-align: justify;
             }
+
             .list-group-item a {
                 word-break: break-word;
                 overflow-wrap: break-word;
-              }
-              #search-check {
-                display: none !important;
             }
+
             li {
                 font-size: 10px !important;
             }
-            #header, .menu {
+
+            #header,
+            .menu {
                 height: 0px !important;
                 display: flex !important;
             }
@@ -49,8 +49,12 @@
             <div class="container-fluid">
                 <ul class="menu">
                     <li><a href="../index.html#home">Home</a></li>
-                    <li><a class="dropdown-arrow" href="../index.html#about-me">Introduce</a>
-                        <ul class="sub-menus">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle dropdown-arrow" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Introduce
+                        </a>
+                        <ul class="dropdown-menu sub-menus" aria-labelledby="dropdownMenuLink">
                             <li><a href="../index.html#blog1">Blog 1</a></li>
                             <li><a href="../index.html#blog2">Blog 2</a></li>
                             <li><a href="../index.html#blog3">Blog 3</a></li>
@@ -58,16 +62,12 @@
                         </ul>
                     </li>
                     <li><a href="myblog.html">My Blog</a></li>
-
                     <li><a href="../wy/wy.html">WonYoung</a></li>
                 </ul>
-                <form class="d-flex search" id="search-check" >
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
-                </form>
             </div>
         </nav>
     </div>
+    <div style="height: 50px;"></div>
 
 
 

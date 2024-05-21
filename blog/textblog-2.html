@@ -7,10 +7,8 @@
     <title>Min Thep</title>
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
 
-    <!-- Link tới Bootstrap CSS từ CDN -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Link toi Style CSS-->
     <link rel="stylesheet" href="../css/style.css">
     <style>
         @media screen and (max-width: 1090px) {
@@ -31,10 +29,13 @@
                 word-break: break-word;
                 overflow-wrap: break-word;
             }
+
             li {
                 font-size: 10px !important;
             }
-            #header, .menu {
+
+            #header,
+            .menu {
                 height: 0px !important;
                 display: flex !important;
             }
@@ -48,8 +49,12 @@
             <div class="container-fluid">
                 <ul class="menu">
                     <li><a href="../index.html#home">Home</a></li>
-                    <li><a class="dropdown-arrow" href="../index.html#about-me">Introduce</a>
-                        <ul class="sub-menus">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle dropdown-arrow" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Introduce
+                        </a>
+                        <ul class="dropdown-menu sub-menus" aria-labelledby="dropdownMenuLink">
                             <li><a href="../index.html#blog1">Blog 1</a></li>
                             <li><a href="../index.html#blog2">Blog 2</a></li>
                             <li><a href="../index.html#blog3">Blog 3</a></li>
@@ -57,18 +62,12 @@
                         </ul>
                     </li>
                     <li><a href="myblog.html">My Blog</a></li>
-
                     <li><a href="../wy/wy.html">WonYoung</a></li>
                 </ul>
-                <form class="d-flex search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
-                </form>
             </div>
         </nav>
     </div>
-    <div style="height: 50px;">
-    </div>
+    <div style="height: 50px;"></div>
 
     <div class="container">
         <div class="wrapper anime-svg box-top">
@@ -77,21 +76,320 @@
                     JPD123
                 </text>
             </svg>
-            <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
+            <p class="text-muted author text-right" style="margin-right: 200px;">Author: Min Thep</p>
             <div class="border-top my-3"></div>
-
         </div>
-        <p>Đầu tiên, đây là blog mà để ôn thi JPD123 (tương đương 1/2 trình độ N5) và tất cả đều được mình tự biên soạn
-            100%. Nếu có bất kỳ sai sót nào, xin
-            vui lòng liên hệ mình nhé. Blog này bao gồm toàn bộ kiến thức đã học trong môn JPD123 và bạn đang mất gốc
-            môn JPD113
-            thì hãy nhấp vào <a href="textblog-1.html" target="_blank">link</a> này. Ngoài ra thì mình disable copy rồi
-            nếu cần thì ib nhé!</p>
-        <br><br><br>
+        <p class="text-justify">Đầu tiên, đây là blog để ôn thi JPD123 (tương đương 1/2 trình độ N5) và tất cả đều được
+            mình tự biên soạn 100%. Nếu có bất kỳ sai sót nào, xin vui lòng liên hệ mình nhé. Blog này bao gồm toàn bộ
+            kiến thức đã học trong môn JPD123 và nếu bạn đang mất gốc môn JPD113 thì hãy nhấp vào <a
+                href="textblog-1.html" target="_blank">link</a> này. Ngoài ra thì mình disable copy rồi nếu cần thì ib
+            nhé!</p>
+
+        <div class="container mt-5">
+            <h1 class="mb-4">Bài 4: Chia tính từ い và な</h1>
+
+            <h2>I. Chia tính từ い và な</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tính từ đuôi い</th>
+                        <th>Tính từ đuôi な</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Phủ định</td>
+                        <td>Adj-い + くないです (kunai desu)</td>
+                        <td>Adj-な + じゃありません (ja arimasen)</td>
+                    </tr>
+                    <tr>
+                        <td>Phủ định quá khứ</td>
+                        <td>Adj-い + くなかったです (kuna katta desu)</td>
+                        <td>Adj-な + じゃありませんでした (ja arimasen deshita)</td>
+                    </tr>
+                    <tr>
+                        <td>Quá khứ</td>
+                        <td>Adj-い + かったです (katta desu)</td>
+                        <td>Adj-な + でした (deshita)</td>
+                    </tr>
+                    <tr>
+                        <td>Khẳng định</td>
+                        <td>Adj-い + です (desu)</td>
+                        <td>Adj-な + です (desu)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-info">
+                <strong>Lưu ý:</strong>
+                <ul>
+                    <li>Có một số tính từ kết thúc với âm い nhưng lại là tính từ đuôi な (Ví dụ như ゆうめい・きらい・きれい).</li>
+                    <li>Trừ dạng khẳng định của tính từ đuôi い, còn lại, đều phải bỏ đuôi い và な khi chia tính từ.</li>
+                    <li>いい là tính từ đặc biệt: いい → よくない → よかった → よくなかった.</li>
+                </ul>
+            </div>
+
+            <h2>II. Tính từ + Danh từ & Tính từ + Động từ</h2>
+            <h3>1. Tính từ + Danh từ</h3>
+            <p>Giữ nguyên đuôi い và な khi đứng trước danh từ. Nếu không có âm い hoặc な ở cuối tính từ thì phải thêm vào.
+            </p>
+            <ul>
+                <li>Ví dụ: あたらしいじてんしゃ (Chiếc xe đạp mới), ゆうめいなやま (Ngọn núi nổi tiếng).</li>
+            </ul>
+
+            <h3>2. Tính từ + Động từ</h3>
+            <p>
+                <strong>Tính từ đuôi い:</strong> Adj-い + く + Động từ <br>
+                <strong>Tính từ đuôi な:</strong> Adj-な + に + Động từ
+            </p>
+            <p>Bỏ đuôi い và な khi đứng trước động từ để đổi tính từ thành trạng từ.</p>
+            <ul>
+                <li>Ví dụ: パンをちいさくきります (Cắt nhỏ bánh mì), きれいにします (Làm sạch).</li>
+            </ul>
+
+            <h2>III. Các từ chỉ mức độ</h2>
+            <ul>
+                <li><strong>とても</strong> + Adj: rất, mang nghĩa khẳng định</li>
+                <li><strong>あまり</strong> + Adj: Không ... lắm, mang nghĩa phủ định</li>
+                <li><strong>すこし</strong> + Adj-い: Một chút, mang nghĩa khẳng định</li>
+                <li><strong>ぜんぜん</strong> + Adj-な: Hoàn toàn không, mang nghĩa phủ định</li>
+            </ul>
+            <p>Các từ chỉ mức độ đứng trước tính từ như trong tiếng Anh (Very clean).</p>
+
+            <h2>IV. Liên từ</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Từ nối</th>
+                        <th>Ý nghĩa</th>
+                        <th>Cấu trúc</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>が</td>
+                        <td>nhưng</td>
+                        <td>Câu 1 が Câu 2</td>
+                        <td>Dùng để nối hai vế trái chiều trong cùng một câu.</td>
+                    </tr>
+                    <tr>
+                        <td>しかし</td>
+                        <td>nhưng</td>
+                        <td>Câu 1. しかし Câu 2</td>
+                        <td>Dùng để tạo thành hai câu đơn, vế sau thường trái ngược với vế trước.</td>
+                    </tr>
+                    <tr>
+                        <td>そして</td>
+                        <td>và</td>
+                        <td>Câu 1. そして Câu 2</td>
+                        <td>Dùng để nối hai câu đơn, vế sau bổ sung hoặc tiếp nối ý nghĩa của vế trước.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Bài 5: Mong muốn</h1>
+
+        <h2>I. Mong muốn</h2>
+
+        <h3>1. わたしは N がほしいです (Tôi muốn có N)</h3>
+        <p>Chỉ sử dụng cho ngôi thứ nhất và ngôi thứ hai. ほしい là tính từ đuôi い nên sẽ chia giống các tính
+            từ đuôi い khác.</p>
+
+        <p>Câu hỏi mong muốn: なにがほしいですか (Bạn muốn cái gì?)</p>
+
+
+        <h3>2. V_たい (Mong muốn làm một việc gì đó)</h3>
+        <p>V_たい là tính từ đuôi い. Tương tự ほしい, chỉ dùng cho ngôi thứ nhất và ngôi thứ hai.</p>
+        <ul>
+            <li>Ví dụ: にほんへいきたいです (Tôi muốn đi Nhật Bản)</li>
+            <li>Câu nghi vấn: どこへいきたいですか (Bạn muốn đi đâu?)</li>
+        </ul>
+        <div class="alert alert-info">
+            <strong>Lưu ý:</strong> Có thể thay thế trợ từ を bằng が. Trợ từ が được dùng thường xuyên hơn
+            vì V_たい được xem như tính từ.
+        </div>
+
+        <h2>II. Mục đích của chuyến đi</h2>
+        <p>Cấu trúc: A へ V/N にいきます/きます/かえります</p>
+        <ul>
+            <li>V là động từ bỏ đi đuôi ます và N là danh từ trong danh-động từ.</li>
+            <li>Nghĩa: Đi đến A để làm gì đó.</li>
+            <li>Ví dụ: としょかんへほんをかりにきます (Tôi đến thư viện để mượn sách).</li>
+        </ul>
+        <div class="alert alert-info">
+            <strong>Lưu ý:</strong> Nếu trước trợ từ に là một sự kiện thì cả câu có thể hiểu là tham gia
+            hoặc quan sát sự kiện đó.
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Bài 6: So sánh</h1>
+
+        <h2>I. So sánh hơn và so sánh kém</h2>
+        <p>
+            <strong>So sánh hơn:</strong> A は B より + Adj + です (A hơn B)<br>
+            Ví dụ: にほんごはえいごよりむずかしいです (Tiếng Nhật khó hơn tiếng Anh).
+        </p>
+        <p>
+            <strong>So sánh kém:</strong> A は B ほど + Adj + です (A kém hơn B)<br>
+            Ví dụ: えいごはにほんごほどむずかしくないです (Tiếng Anh không khó bằng tiếng Nhật).
+        </p>
+
+        <h2>II. So sánh nhất</h2>
+        <p>
+            <strong>Cấu trúc:</strong> N のなかで A がいちばん + ... + です (Trong tập hợp N thì A là nhất).<br>
+            Ví dụ: 一年で八月がいちばんあついです (Trong 1 năm, tháng 8 là nóng nhất).
+        </p>
+        <div class="alert alert-info">
+            <strong>Lưu ý:</strong> N có thể là cụm N1 と N2 と N3 と ...
+        </div>
+
+        <h2>III. Câu hỏi so sánh</h2>
+
+        <h3>1. Câu hỏi so sánh 2 đối tượng</h3>
+        <p>
+            <strong>Cấu trúc:</strong> A と B とどちらが + Adj + ですか (Giữa A và B, cái nào hơn?)<br>
+            Ví dụ: 英語と日本語とどちらがむずかしいですか (Tiếng Anh và tiếng Nhật, tiếng nào khó hơn?)
+        </p>
+        <p>
+            <strong>Trả lời:</strong> N のほうが Adj です (N thì hơn về ...).
+        </p>
+
+        <h3>2. Câu hỏi so sánh nhất</h3>
+        <p>
+            <strong>Cấu trúc:</strong> N で + nghi vấn từ (なに/いつ/どこ/だれ) がいちばん + ... + ですか<br>
+            Ví dụ: 一年でいつがいちばんあついですか (Trong một năm, khi nào nóng nhất?)
+        </p>
+    </div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Bài 7: Động từ thể て</h1>
+    
+        <h2>I. Chia động từ thể て</h2>
+    
+        <p>Động từ thể て được hình thành bằng cách thay đổi đuôi của động từ dạng từ điển (Vます). Có ba nhóm động từ chính và một số động từ bất quy tắc cần lưu ý:</p>
+    
+        <h3>Nhóm 1: Động từ kết thúc bằng âm い</h3>
+        <ul>
+            <li>Âm cuối là き, ぎ → đổi thành いて/いで</li>
+            <li>Âm cuối là ち, い → đổi thành って</li>
+            <li>Âm cuối là り, み, び, に, し → đổi thành んで/して</li>
+        </ul>
+        <p>Ví dụ: かきます (viết) → かいて, いそぎます (vội vàng) → いそいで, のみます (uống) → のんで, たちます (đứng) → たって, あそびます (chơi) → あそんで</p>
+        <div class="alert alert-info">
+            <strong>Lưu ý:</strong>
+            Một số động từ nhóm 1 có cách chia đặc biệt:
+            <ul>
+                <li>いきます (đi) → いって</li>
+                <li>かいます (mua) → かって</li>
+                <li>かえります (trở về) → かえって</li>
+                <li>きます (đến) → きて</li>
+            </ul>
+        </div>
+    
+        <h3>Nhóm 2: Động từ kết thúc bằng âm え (ngoại trừ する và くる)</h3>
+        <ul>
+            <li>Bỏ え và thêm て.</li>
+            <li>Ví dụ: たべます (ăn) → たべて, みせます (cho xem) → みせて</li>
+        </ul>
+    
+        <h3>Nhóm 3: Động từ kết thúc bằng âm う, く, ぐ, す, ぬ, ぶ, む, る</h3>
+        <ul>
+            <li>Âm う, つ, る → đổi thành って</li>
+            <li>Âm く → đổi thành いて</li>
+            <li>Âm ぐ → đổi thành いで</li>
+            <li>Âm す → đổi thành して</li>
+            <li>Âm ぬ, ぶ, む → đổi thành んで</li>
+        </ul>
+        <p>Ví dụ: かう (mua) → かって, かつ (thắng) → かって, のぼる (leo) → のぼって, 
+                きく (nghe) → きいて, いそぐ (vội vàng) → いそいで, 
+                はなす (nói) → はなして, しぬ (chết) → しんで, 
+                よぶ (gọi) → よんで, のむ (uống) → のんで</p>
+    
+        <h3>Động từ bất quy tắc</h3>
+        <ul>
+            <li>します (làm) → して</li>
+            <li>きます (đến) → きて</li>
+        </ul>
+    
+        <h2>II. Cách dùng động từ thể て</h2>
+    
+        <h3>1. V_て + ください (Vui lòng làm...)</h3>
+        <p>Dùng để đưa ra yêu cầu hoặc nhờ vả một cách lịch sự.</p>
+        <ul>
+            <li>Ví dụ: ゆっくりはなしてください。(Vui lòng nói chậm hơn.)</li>
+        </ul>
+    
+        <h3>2. V_て + います (Đang làm...)</h3>
+        <p>Dùng để diễn tả một hành động đang diễn ra.</p>
+        <ul>
+            <li>Ví dụ: テレビをみています。(Tôi đang xem TV.)</li>
+        </ul>
+    </div>
+    
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Một số ngữ pháp khác từ bài 4 đến bài 7</h1>
+        <ol>
+            <li>Khoảng thời gian を Động từ (Làm gì đó trong bao lâu)</li>
+            <li>Phương tiện で Động từ ます (Làm gì đó bằng phương tiện)</li>
+            <li>Địa điểm 1 から Địa điểm 2 まで Khoảng thời gian (Từ địa điểm 1 đến địa điểm 2 mất khoảng thời
+                gian...)</li>
+            <li>A は B の Phương hướng (A nằm ở hướng... của B)</li>
+            <li>N1 は + どんな + N2/どう + ですか (Như thế nào?)
+                <ul>
+                    <li>どう: N1 thì như thế nào? / Có thể mang nghĩa đề xuất một cái gì đó</li>
+                    <li>どんな + N2: N2 thì như thế nào? (N1 bổ nghĩa cho N2)</li>
+                </ul>
+            </li>
+            <li>Địa điểm に Sự vật/Sự việc が あります (Tại đâu đó, có cái gì đó) (Nhấn mạnh vào chủ thể là địa
+                điểm)
+                <ul>
+                    <li>Địa điểm で Sự kiện が あります (Tại đâu đó, có sự kiện gì đó)</li>
+                </ul>
+            </li>
+            <li>~ね/~よ (Nhỉ/Đấy)
+                <ul>
+                    <li>ね: Dùng để đồng tình/xác nhận lại ý kiến của người nói</li>
+                    <li>よ: Dùng để thông báo một sự việc mà người nói nghĩ là người nghe không
+                        biết/Nhấn mạnh ý kiến, tình cảm</li>
+                </ul>
+            </li>
+            <li>Danh từ と Động từ ます (Làm gì đó với ai đó)</li>
+            <li>どうして ..........か (Câu hỏi tại sao .....) → ...... から (Vì ......)</li>
+            <li>V - ました/ませんでした (V ở thì quá khứ/phủ định quá khứ)</li>
+            <li>N が 好き/きらい です (Thích/Ghét một cái gì đó)</li>
+            <li>V - ましょう/ませんか (Rủ rê làm gì đó/Mời làm gì đó)</li>
+            <li>N が + lượng từ (trợ số từ) + あります (Có bao nhiêu cái gì đó)</li>
+            <li>もう V ました (Đã làm cái gì đó rồi - đã hoàn thành)
+                <ul>
+                    <li>もう: rồi</li>
+                    <li>まだ: vẫn</li>
+                </ul>
+            </li>
+            <li>N の V 方 (kata) (Cách làm một cái gì đó)</li>
+            <li>Người/Con vật に Địa điểm が います (Người/Con vật ở đâu đó) (Nhấn mạnh vào sự tồn tại của chủ
+                thể là con người, con vật)
+                <ul>
+                    <li>います sử dụng cho đối tượng có thể di chuyển (người/con vật)</li>
+                </ul>
+            </li>
+            <li>Đồ vật に Địa điểm が あります (nhấn mạnh vào sự tồn tại của chủ thể là đồ vật)
+                <ul>
+                    <li>あります sử dụng cho đối tượng không thể tự di chuyển</li>
+                </ul>
+            </li>
+        </ol>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <script>
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
