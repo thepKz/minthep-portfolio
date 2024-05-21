@@ -525,8 +525,9 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 .card-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Cho phép các thẻ xuống dòng khi không đủ chỗ */
+    justify-content: center; /* Căn giữa các thẻ trên trục chính */
+    gap: 10px; /* Khoảng cách giữa các thẻ */
   }
   
   .card {

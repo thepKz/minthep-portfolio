@@ -393,9 +393,12 @@
     </div>
     <div class="container mt-5">
         <h1 class="mb-4">Từ vựng JPD113</h1>
-        <button class="btn btn-primary" id="toggleButton">Ẩn/Hiện Tiếng Việt</button>
-        <button class="btn btn-secondary" id="shuffleButton">Trộn Từ</button>
-        <table class="table table-bordered table-striped" id="vocabularyTable">
+        <button class="btn btn-primary" id="flashcardModeButton">Chế độ Flashcard</button>
+        <button class="btn btn-secondary" id="tableModeButton">Chế độ Bảng</button>
+        <button class="btn btn-danger" id="offModeButton">Tắt</button>
+    
+        <div id="flashcardContainer" class="card-container" style="display:none;"></div> 
+        <table class="table table-bordered table-striped" id="vocabularyTable" style="display:none;">
 
             <thead>
                 <tr>
@@ -1728,50 +1731,51 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const table = document.getElementById('vocabularyTable');
-            const toggleButton = document.getElementById('toggleButton');
-            const shuffleButton = document.getElementById('shuffleButton');
-
-            // Trích xuất từ vựng từ bảng HTML (giống như trước)
-            const vocabularyData = [];
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                // ... (phần này giữ nguyên)
-            });
-
-            // Tạo các thẻ từ vựng
-            const cardContainer = document.createElement('div');
-            cardContainer.classList.add('card-container');
-            document.body.appendChild(cardContainer);
-
+            const flashcardContainer = document.getElementById('flashcardContainer');
+          
+            const vocabularyData = Array.from(table.querySelectorAll('tbody tr')).map(row => ({
+              word: row.cells[0].textContent,
+              meaning: row.cells[1].textContent
+            }));
+          
+            // Tạo flashcards và thêm vào container
             vocabularyData.forEach(item => {
-                const card = document.createElement('div');
-                card.classList.add('card');
-                card.innerHTML = `
+              const card = document.createElement('div');
+              card.classList.add('card');
+              card.innerHTML = `
                 <div class="card-front">${item.word}</div>
                 <div class="card-back">${item.meaning}</div>
               `;
-                cardContainer.appendChild(card);
-
-                // Xử lý sự kiện click để lật thẻ
-                card.addEventListener('click', () => {
-                    card.classList.toggle('flipped');
-                });
+              flashcardContainer.appendChild(card);
+          
+              card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+              });
             });
-
-            // Ẩn bảng và nút trộn từ
-            table.style.display = 'none';
-            shuffleButton.style.display = 'none';
-        });
-
-
-        $(document).ready(function () {
-            // Ẩn bảng ngay khi tài liệu sẵn sàng
-            $('#vocabularyTable').hide();
-
-            $('#toggleButton').click(function () {
-                $('#vocabularyTable').toggle();
+          
+            // Xử lý nút "Chế độ Flashcard"
+            const flashcardModeButton = document.getElementById('flashcardModeButton');
+            flashcardModeButton.addEventListener('click', () => {
+              flashcardContainer.style.display = 'flex';
+              table.style.display = 'none';
             });
-        });
+          
+            // Xử lý nút "Chế độ Bảng"
+            const tableModeButton = document.getElementById('tableModeButton');
+            tableModeButton.addEventListener('click', () => {
+              table.style.display = 'table';
+              flashcardContainer.style.display = 'none';
+            });
+          
+            // Xử lý nút "Tắt"
+            const offModeButton = document.getElementById('offModeButton');
+            offModeButton.addEventListener('click', () => {
+              table.style.display = 'none';
+              flashcardContainer.style.display = 'none';
+            });
+          });
+          
+
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
                 (e.keyCode === 67 ||
