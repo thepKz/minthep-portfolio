@@ -40,6 +40,17 @@
                 display: flex !important;
             }
         }
+        .animated-text {
+            animation: color-change 8s infinite alternate ease-in-out;
+          }
+          
+          @keyframes color-change {
+            0% { color: #007bff; transform: scale(1); opacity: 1; }
+            25% { color: #6f42c1; transform: scale(1.1); opacity: 0.8; }
+            50% { color: #fd7e14; transform: scale(1.2); opacity: 0.6; }
+            75% { color: #dc3545; transform: scale(1.1); opacity: 0.8; }
+            100% { color: #28a745; transform: scale(1); opacity: 1; }
+          }
     </style>
 </head>
 
@@ -82,9 +93,8 @@
         </div> -->
         <div class="text-center align-items-center">
             <!-- Nội dung thông báo 404 Not Found -->
-            <img src="../img/Forbidden.png" alt="art" class="img-fluid">
-            <h1>403 For Bidden!</h1>
-            <p>Oops! Page này chưa cập nhật chế độ mobile hoặc đang bảo trì, bạn qua My Blog coi tạm nhé!</p>
+            <img src="../img/Forbidden.png" alt="art" class="img-fluid" style="width: 50%;">
+            <h1 class="animated-text">Oops! Page này chưa cập nhật chế độ mobile hoặc đang bảo trì, bạn qua My Blog coi tạm nhé!</h1>
         </div>
     </div>
 

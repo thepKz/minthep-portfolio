@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Min Thep</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        @media screen and (max-width: 1090px) {
+            .menu {
+                margin-bottom: 25px;
+            }
+
+            .author {
+                margin: 0 !important;
+                text-align: center !important;
+            }
+
+            p {
+                text-align: justify;
+            }
+
+            .list-group-item a {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+
+            li {
+                font-size: 10px !important;
+            }
+
+            #header,
+            .menu {
+                height: 0px !important;
+                display: flex !important;
+            }
+        }
+        .animated-text {
+            animation: color-change 8s infinite alternate ease-in-out;
+          }
+          
+          @keyframes color-change {
+            0% { color: #007bff; transform: scale(1); opacity: 1; }
+            25% { color: #6f42c1; transform: scale(1.1); opacity: 0.8; }
+            50% { color: #fd7e14; transform: scale(1.2); opacity: 0.6; }
+            75% { color: #dc3545; transform: scale(1.1); opacity: 0.8; }
+            100% { color: #28a745; transform: scale(1); opacity: 1; }
+          }
+    </style>
+</head>
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <div>
+        <nav class="navbar bg-dark fixed-top">
+            <div class="container-fluid">
+                <ul class="menu">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle dropdown-arrow" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Introduce
+                        </a>
+                        <ul class="dropdown-menu sub-menus" aria-labelledby="dropdownMenuLink">
+                            <li><a href="../index.html#blog1">Blog 1</a></li>
+                            <li><a href="../index.html#blog2">Blog 2</a></li>
+                            <li><a href="../index.html#blog3">Blog 3</a></li>
+                            <li><a href="../index.html#blog4">Blog 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="myblog.html">My Blog</a></li>
+                    <li><a href="../wy/wy.html">WonYoung</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div style="height: 50px;"></div>
+
+
+    <div class="container">
+        <!-- <div class="wrapper anime-svg box-top">
+            <svg>
+                <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                    JPD123
+                </text>
+            </svg>
+            <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
+            <div class="border-top my-3"></div>
+        </div> -->
+        <div class="text-center align-items-center">
+            <!-- Nội dung thông báo 404 Not Found -->
+            <img src="../img/Forbidden.png" alt="art" class="img-fluid" style="width: 50%;">
+            <h1 class="animated-text">Oops! Page này chưa cập nhật chế độ mobile hoặc đang bảo trì, bạn qua My Blog coi tạm nhé!</h1>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.onkeydown = function (e) {
+            if (e.ctrlKey &&
+                (e.keyCode === 67 ||
+                    e.keyCode === 86 ||
+                    e.keyCode === 85 ||
+                    e.keyCode === 117 ||
+                    e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            } else {
+                return true;
+            }
+        };
+    </script>
+</body>
+
+</html>
