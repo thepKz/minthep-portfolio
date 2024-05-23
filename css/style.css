@@ -597,3 +597,6 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 #shuffleButton{
     margin-top: 10px;
 }
+p {
+    text-align: justify;
+}
