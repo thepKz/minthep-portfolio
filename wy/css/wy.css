@@ -161,7 +161,7 @@ html {
 
 .scroll-top-icon {
     visibility: hidden;
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     right: 40px;
     font-size: var(3rem);

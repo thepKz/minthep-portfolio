@@ -45,7 +45,7 @@ body{
     content: '';
     position: absolute;
     height: 100%;
-    width: 30px;
+    width: 40px;
     right: calc(var(--index) * -1);
 }
 
