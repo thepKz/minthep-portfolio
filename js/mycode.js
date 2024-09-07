@@ -152,3 +152,51 @@ $('#contactModal').on('show.bs.modal', function () {
 
 window.addEventListener('load', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
+
+// Dark mode toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+darkModeToggle.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+});
+
+// Check for saved dark mode preference
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.checked = true;
+}
+
+// Use ES6+ features for existing code
+const checkScreenSize = () => {
+  if (window.innerWidth < 1200) {
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('error-404').style.display = 'block';
+    document.getElementById('wonyoung-background').style.display = 'none';
+  } else {
+    document.getElementById('content').style.display = 'block';
+    document.getElementById('error-404').style.display = 'none';
+    document.getElementById('wonyoung-background').style.display = 'block';
+  }
+};
+
+window.addEventListener('load', checkScreenSize);
+window.addEventListener('resize', checkScreenSize);
+
+// Lazy loading
+const lazyImages = document.querySelectorAll('.lazy-load');
+const lazyLoad = target => {
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove('lazy-load');
+        observer.disconnect();
+      }
+    });
+  });
+
+  io.observe(target);
+};
+
+lazyImages.forEach(lazyLoad);

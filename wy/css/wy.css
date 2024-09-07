@@ -249,6 +249,7 @@ svg text {
     text-align: justify;
     margin-top: 100px;
     color: white !important;
+    padding: 0 100px;
 }
 
 .wy-important{
@@ -273,3 +274,7 @@ svg text {
       font-size: 15px !important;
     }
   }
+
+.scroll-down {
+    cursor: pointer;
+}
