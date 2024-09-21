@@ -530,12 +530,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
     gap: 10px; /* Khoảng cách giữa các thẻ */
   }
   
-  .card {
-    width: 200px;
-    height: 150px;
-    margin: 10px;
-    perspective: 600px; /* Tạo hiệu ứng 3D */
-  }
+
   
   .card-front, .card-back {
     width: 100%;
@@ -641,9 +636,9 @@ p {
 /* Experience Section */
 .timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-}
+  }
 .skill-item i.fa-html5 { color: #E34F26; }
 .skill-item i.fa-css3-alt { color: #1572B6; }
 .skill-item i.fa-js-square { color: #F7DF1E; }
@@ -666,54 +661,53 @@ p {
 .timeline::after {
     content: '';
     position: absolute;
-    width: 2px;
-    background-color: var(--secondary-color);
+    width: 6px;
+    background-color: #d94f5c;
     top: 0;
     bottom: 0;
     left: 50%;
-    margin-left: -1px;
-}
+    margin-left: -3px;
+  }
 
-.timeline-item {
+  .timeline-item {
     padding: 10px 40px;
     position: relative;
     background-color: inherit;
     width: 50%;
-}
-
-.timeline-item:nth-child(odd) {
-    left: 0;
-}
-
-.timeline-item:nth-child(even) {
-    left: 50%;
-}
-
-.timeline-content {
-    padding: 20px 30px;
-    background-color: #fff;
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-content::after {
+  }
+  
+  .timeline-item::after {
     content: '';
     position: absolute;
     width: 25px;
     height: 25px;
     right: -17px;
-    background-color: #fff;
-    border: 4px solid var(--secondary-color);
+    background-color: white;
+    border: 4px solid #d94f5c;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
-}
-
-.timeline-item:nth-child(even) .timeline-content::after {
+  }
+  
+  .timeline-item:nth-child(odd) {
+    left: 0;
+  }
+  
+  .timeline-item:nth-child(even) {
+    left: 50%;
+  }
+  
+  .timeline-item:nth-child(even)::after {
     left: -16px;
-}
-
+  }
+  
+  .timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 .timeline-date {
     color: #666;
     font-style: italic;
@@ -726,7 +720,7 @@ p {
     
     .timeline-item {
         width: 100%;
-        padding-left: 70px;
+        padding-left: 25px;
         padding-right: 25px;
     }
     

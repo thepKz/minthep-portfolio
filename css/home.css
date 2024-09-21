@@ -22,13 +22,63 @@
 }
 
 #projects .card {
-    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 #projects .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+#projects .card-img-top {
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+#projects .card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+#projects .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+}
+
+#projects .card-text {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+#projects .btn-primary {
+    margin-top: auto;
+    background-color: #d94f5c;
+    border-color: #d94f5c;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#projects .btn-primary:hover {
+    background-color: #c13c49;
+    border-color: #c13c49;
+}
+
+@media (max-width: 768px) {
+    #projects .card {
+        margin-bottom: 2rem;
+    }
+}
 #contact form {
     max-width: 500px;
     margin: 0 auto;
@@ -72,8 +122,22 @@
 }
 
 @media (max-width: 768px) {
+    .lead {
+
+        text-align: center;
+    }
+    .skil-logo {
+        width: 100%;
+    }
+
+    .skill-item {
+        width: 100%;
+    }
     #skills .skill-card {
         margin-bottom: 20px;
+    }
+    .timeline-item::after, .timeline::after{
+        display:none;
     }
 }
 

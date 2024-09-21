@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>MAS291 - Mathematical Analysis</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="textblog-3/textblog-3.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">MAS291</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5 pt-5">
+        <div class="jumbotron text-center">
+            <h1 class=" display-4 text-danger">MAS291</h1>
+
+            <p class="text-muted text-right">Author: Min Thep</p>
+        </div>
+        
+        <article class="content">
+            <section id="table-of-contents" class="mb-5">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#chapter1">Chapter 1: Introduction and Role of Statistics in Engineering</a></li>
+                    <li><a href="#chapter2">Chapter 2: Probability</a></li>
+                    <li><a href="#chapter3">Chapter 3: Discrete Random Variables and Probability Distributions</a></li>
+                </ul>
+            </section>
+            <section class="downloads mb-4">
+                <h3 class="mb-5">Downloads</h3>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="textblog-3/slides.rar" download class="btn btn-block">
+                            <i class="fas fa-file-powerpoint mr-2"></i>Slides
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="textblog-3/Exercise Book MAS291  2021.pdf" download class="btn btn-block">
+                            <i class="fas fa-file-alt mr-2"></i>Exercises
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="textblog-3/SummaryMAS291.pdf" download class="btn btn-block">
+                            <i class="fas fa-file-pdf mr-2"></i>Formula Sheet
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="textblog-3/Montgomery_Runger_Applied_Statistics_and_Probability_for_Engineers,_5th.pdf" download class="btn btn-block">
+                            <i class="fas fa-book mr-2"></i>Book
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter mb-5" id="chapter1">
+                <h2 class="mb-4">Chapter 1: Introduction and Role of Statistics in Engineering</h2>
+                <p class="lead">Xác xuất thống kê sử dụng, thu thập, phân tích data để đưa ra kết luận, giải quyết vấn đề trong lĩnh vực kỹ thuật và công nghệ.</p>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Phương pháp thống kê chính</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Descriptive statistics (thống kê mô tả):</strong> Tóm tắt, trình bày dữ liệu bằng các đồ thị, bảng biểu và các đại lượng đặc trưng.</li>
+                            <li class="list-group-item"><strong>Inferential statistics (thống kê suy luận):</strong> Mô tả, suy đoán tính chất một tổng thể dựa trên 1 mẫu, sử dụng trong việc kiểm định giả thuyết và ước lượng tham số.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Các khái niệm quan trọng</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Data:</strong> Thông tin từ các quan sát, đếm, đo lường hoặc phản hồi.</li>
+                            <li class="list-group-item"><strong>Population:</strong> Tổng thể nghiên cứu (toàn bộ đối tượng quan tâm trong lĩnh vực của bài toán).</li>
+                            <li class="list-group-item"><strong>Parameter:</strong> Đặc trưng số học mô tả đặc tính của Population.</li>
+                            <li class="list-group-item"><strong>Sample:</strong> Tập con được chọn từ Population để nghiên cứu.</li>
+                            <li class="list-group-item"><strong>Statistic:</strong> Đặc trưng số học mô tả đặc tính của Sample, dùng để ước lượng Parameter.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Phân loại dữ liệu</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Qualitative data (dữ liệu định tính):</strong> Không thể đo lường bằng số, như màu sắc, loại vật liệu, ...</li>
+                            <li class="list-group-item"><strong>Quantitative data (dữ liệu định lượng):</strong> Có thể đo lường bằng số, như chiều cao, trọng lượng, ...</li>
+                            <li class="list-group-item"><strong>Discrete data (dữ liệu rời rạc):</strong> Có thể đếm được, như số lượng sản phẩm lỗi, số lần thử nghiệm, ...</li>
+                            <li class="list-group-item"><strong>Continuous data (dữ liệu liên tục):</strong> Có thể nhận bất kỳ giá trị nào trong một khoảng, như thời gian, nhiệt độ, ...</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Phương pháp thu thập dữ liệu</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Observational study:</strong> Nghiên cứu quan sát không can thiệp vào đối tượng.</li>
+                            <li class="list-group-item"><strong>Experiment:</strong> Nghiên cứu có can thiệp và kiểm soát các yếu tố.</li>
+                            <li class="list-group-item"><strong>Retrospective study:</strong> Nghiên cứu dựa trên dữ liệu trong quá khứ.</li>
+                            <li class="list-group-item"><strong>Prospective study:</strong> Nghiên cứu theo dõi đối tượng trong tương lai.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Ứng dụng trong kỹ thuật</h3>
+                    </div>
+                    <div class="card-body">
+                    
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Kiểm soát chất lượng sản phẩm</li>
+                            <li class="list-group-item">Tối ưu hóa quy trình sản xuất</li>
+                            <li class="list-group-item">Phân tích độ tin cậy của hệ thống</li>
+                            <li class="list-group-item">Dự đoán tuổi thọ của thiết bị</li>
+                            <li class="list-group-item">Thiết kế và phân tích thí nghiệm</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Ví dụ minh họa</h3>
+                    </div>
+                    <div class="card-body">
+                        <button id="showExampleBtn" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent" style="display: none;">
+                            <h4>Ví dụ: Kiểm soát chất lượng trong sản xuất chip điện tử</h4>
+                            <p>Một nhà máy sản xuất chip điện tử muốn đảm bảo rằng không quá 1% sản phẩm bị lỗi. Họ sử dụng phương pháp thống kê để:</p>
+                            <ul>
+                                <li>Thu thập dữ liệu về tỷ lệ lỗi trong các lô sản xuất.</li>
+                                <li>Phân tích dữ liệu để xác định nguyên nhân gây lỗi.</li>
+                                <li>Áp dụng biểu đồ kiểm soát để theo dõi quá trình sản xuất theo thời gian.</li>
+                                <li>Sử dụng phân tích hồi quy để dự đoán tỷ lệ lỗi dựa trên các yếu tố sản xuất.</li>
+                            </ul>
+                            <p>Thông qua việc áp dụng các phương pháp thống kê, nhà máy có thể cải thiện quy trình sản xuất và duy trì tỷ lệ lỗi dưới mức 1%.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter mb-5" id="chapter2">
+                <h2 class="mb-4">Chapter 2: Probability</h2>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.1 Sample spaces and events (Không gian mẫu và biến cố)</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Random experiment (Thí nghiệm ngẫu nhiên)</h4>
+                        <p>Là một thực nghiệm để dẫn tới những kết quả khả thi.</p>
+                        <div class="example">
+                            <p><strong>Ví dụ:</strong> Tung 1 đồng xu</p>
+                            <p><strong>Outcomes:</strong> xấp hoặc ngửa</p>
+                        </div>
+                
+                        <h4>Sample space (Không gian mẫu)</h4>
+                        <p>Chứa tất cả những kết quả có khả năng xảy ra, ký hiệu là S.</p>
+                        <div class="example">
+                            <p><strong>Ví dụ:</strong> Tung đồng xu 2 lần</p>
+                            <p><strong>Outcomes:</strong> S = {xấp xấp, xấp ngửa, ngửa ngửa, ngửa xấp}</p>
+                        </div>
+                
+                        <h4>Tree diagram (Biểu đồ cây)</h4>
+                        <p>Không gian mẫu có thể được biểu diễn dạng biểu đồ cây.</p>
+                        <div class="example">
+                            <p><strong>Ví dụ:</strong> Tung 1 đồng xu sau đó tung tiếp 1 cái xúc xắc</p>
+                            <img src="textblog-3/tree-diagram-example.png" alt="Tree diagram example" class="img-fluid">
+                        </div>
+                
+                        <h4>Event (Biến cố)</h4>
+                        <p>Tập con của không gian mẫu.</p>
+                        <div class="example">
+                            <p><strong>Ví dụ:</strong> Tung 1 đồng xu 3 lần, biến cố là đúng 2 lần ra mặt sấp</p>
+                        </div>
+                
+                        <h4>Set Operations (Phép toán tập hợp)</h4>
+                        <ul>
+                            <li><strong>Union (hợp):</strong> A ∪ B, đúng khi nằm trong A hoặc B hoặc cả hai</li>
+                            <img src="textblog-3/hop.png" alt="Union example" class="img-fluid img-fix">
+                            <li><strong>Intersection (giao):</strong> A ∩ B, đúng khi nằm trong cả hai</li>
+                            <img src="textblog-3/giao.png" alt="Intersection example" class="img-fluid img-fix">
+                            <li><strong>Complement (phần bù):</strong> A', ngược lại với A</li>
+                            <img src="textblog-3/bu.png" alt="Complement example" class="img-fluid img-fix">
+                        </ul>
+                
+                        <h4>Counting techniques (Kỹ thuật đếm)</h4>
+                        <h5>Multiplication Rule (Quy tắc nhân)</h5>
+                        <p>Trong một quy trình gồm nhiều bước, nếu mỗi bước có một số lựa chọn nhất định, tổng số cách thực hiện toàn bộ quy trình được tính bằng tích của số lựa chọn ở mỗi bước.</p>
+                        <div class="mb-4">
+                            <div class="card-body">
+                                <button id="showExampleBtn2_1" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <div id="exampleContent2_1" style="display: none;">
+                                    <p><strong>Question:</strong> Mã sản phẩm có thể gồm 2, 3, 4 hoặc 5 chữ cái với xác suất như nhau. Để tính tổng số mã sản phẩm có thể có, ta cần xem xét số lựa chọn ở mỗi bước (số lượng chữ cái trong mã).</p>
+                                    <p><strong>Answer:</strong></p>
+                                    <ul>
+                                        <li>Trường hợp 1 (2 chữ cái): 4 * 26 * 26 = 2.704 mã</li>
+                                        <li>Trường hợp 2 (3 chữ cái): 4 * 26 * 26 * 26 = 70.304 mã</li>
+                                        <li>Trường hợp 3 (4 chữ cái): 4 * 26 * 26 * 26 * 26 = 1.827.904 mã</li>
+                                        <li>Trường hợp 4 (5 chữ cái): 4 * 26 * 26 * 26 * 26 * 26 = 47.525.504 mã</li>
+                                    </ul>
+                                    <p>Tổng số mã sản phẩm có thể có là:</p>
+                                    <p>2.704 + 70.304 + 1.827.904 + 47.525.504 = 49.426.416 mã</p>
+                                    <p><strong>Giải thích:</strong> Chúng ta sử dụng quy tắc nhân (<strong>Multiplication Rule</strong>) để tính số lượng mã cho mỗi trường hợp. Sau đó, áp dụng quy tắc cộng để tính tổng số mã có thể có từ tất cả các trường hợp.</p>
+                            </div>
+                        </div>
+                        <h5>Permutations (Hoán vị)</h5>
+                        <p>Hoán vị đề cập đến số cách sắp xếp một tập hợp các phần tử theo một thứ tự cụ thể. Khi chọn r phần tử từ n phần tử và quan tâm đến thứ tự, ta sử dụng công thức nPr. Điều này thường áp dụng trong các tình huống như sắp xếp người trong một hàng hoặc chọn các vị trí trong một đội.</p>
+                        <div class="mb-4">
+                            <div class="card-body">
+                                <button id="showExampleBtn2_2" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <div id="exampleContent2_2" style="display: none;">
+                                    <p><strong>Question:</strong> Có bao nhiêu cách để sắp xếp 3 cuốn sách trên kệ nếu chúng ta có 5 cuốn sách khác nhau để chọn?</p>
+                                    <p><strong>Answer:</strong></p>
+                                    <p>Công thức tính hoán vị:</p>
+                                    <p class="text-center">
+                                        \[nPr = \frac{n!}{(n-r)!}\]
+                                    </p>
+                                    <p>Trong đó:</p>
+                                    <ul>
+                                        <li>n là tổng số phần tử</li>
+                                        <li>r là số phần tử cần sắp xếp</li>
+                                    </ul>
+                                    <br>
+                                    <ul>
+                                        <li>Ta cần chọn 3 cuốn sách từ 5 cuốn sách và sắp xếp chúng theo thứ tự.</li>
+                                        <li>Sử dụng công thức hoán vị: nPr = n! / (n-r)!</li>
+                                        <li>Trong trường hợp này, n = 5 (tổng số sách) và r = 3 (số sách cần chọn và sắp xếp)</li>
+                                        <li>Số cách sắp xếp 3 cuốn sách là: 5P3 = 5! / (5-3)! = 5! / 2! = 5 * 4 * 3 = 60</li>
+                                    </ul>
+                                    <p><strong>Kết luận:</strong> Có 60 cách khác nhau để sắp xếp 3 cuốn sách trên kệ.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h5>Combination (Tổ hợp)</h5>
+                        <p>Tổ hợp liên quan đến việc chọn một nhóm phần tử từ một tập hợp lớn hơn mà không quan tâm đến thứ tự. Khi chọn r phần tử từ n phần tử mà không cần quan tâm đến thứ tự, ta sử dụng công thức nCr. Điều này thường được áp dụng trong các tình huống như chọn một nhóm người từ một tập hợp lớn hơn để thực hiện một nhiệm vụ, trong đó vai trò cụ thể của từng người không quan trọng.</p>
+                        <div class="mb-4">
+                            <div class="card-body">
+                                <button id="showExampleBtn2_3" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <div id="exampleContent2_3" style="display: none;">
+                                    <p><strong>Question:</strong> Một lô hàng có 350 mẫu, trong đó có 8 mẫu bị lỗi. Chúng ta chọn ngẫu nhiên 2 mẫu không hoàn lại. Tính xác suất cả hai mẫu đều bị lỗi.</p>
+                                    <p><strong>Answer:</strong></p>
+                                    <p>Để giải quyết bài toán này, ta sử dụng tổ hợp để tính:</p>
+                                    <ul>
+                                        <li>Số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị lỗi</li>
+                                        <li>Số cách chọn bất kỳ 2 mẫu từ 350 mẫu</li>
+                                    </ul>
+                                    <p>Công thức tính tổ hợp:</p>
+                                    <p class="text-center">
+                                        \[nCr = \frac{n!}{r!(n-r)!}\]
+                                    </p>
+                                    <p>Trong đó:</p>
+                                    <ul>
+                                        <li>n là tổng số phần tử</li>
+                                        <li>r là số phần tử cần chọn</li>
+                                    </ul>
+                                    <br>
+                                    <p><strong>Bước 1:</strong> Tính số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị lỗi</p>
+                                    <p>8C2 = 8! / (2! * 6!) = 28</p>
+                                    <p><strong>Bước 2:</strong> Tính số cách chọn bất kỳ 2 mẫu từ 350 mẫu</p>
+                                    <p>350C2 = 350! / (2! * 348!) = 61075</p>
+                                    <p><strong>Bước 3:</strong> Tính xác suất cả hai mẫu đều bị lỗi</p>
+                                    <p>P(cả hai mẫu đều bị lỗi) = 28 / 61075 ≈ 0.000458</p>
+                                    <p><strong>Kết luận:</strong> Xác suất cả hai mẫu đều bị lỗi là khoảng 0.0458%.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                        
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.2 Probability</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Xác suất của một biến cố trong một phép thử với n khả năng xảy ra như nhau là 1/n.</p>
+                        <p class="text-center">
+                            \[P(A) = \frac{\text{số trường hợp thuận lợi}}{\text{tổng số trường hợp có thể xảy ra}}\]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.3 Addition Rules</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Quy tắc cộng xác suất cho hai sự kiện A và B:</p>
+                        <p class="text-center">
+                            \[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]
+                        </p>
+                        <p>Nếu A và B là hai sự kiện độc lập:</p>
+                        <p class="text-center">
+                            \[P(A \cup B) = P(A) + P(B)\]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.4 Conditional Probability</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Xác suất có điều kiện của sự kiện B khi biết A đã xảy ra:</p>
+                        <p class="text-center">
+                            \[P(B|A) = \frac{P(A \cap B)}{P(A)}\]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.5 Multiplication and Total Probability Rules</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Quy tắc nhân xác suất:</p>
+                        <p class="text-center">
+                            \[P(A \cap B) = P(A)P(B|A) = P(B)P(A|B)\]
+                        </p>
+                        <p>Quy tắc xác suất toàn phần:</p>
+                        <p class="text-center">
+                            \[P(A) = \sum_{i=1}^n P(A|B_i)P(B_i)\]
+                        </p>
+                        <p>Trong đó B₁, B₂, ..., Bₙ là một phân hoạch của không gian mẫu S.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.6 Bayes' Theorem</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Công thức Bayes:</p>
+                        <p class="text-center">
+                            \[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
+                        </p>
+                        <p>Hoặc dạng tổng quát:</p>
+                        <p class="text-center">
+                            \[P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^n P(B|A_j)P(A_j)}\]
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter mb-5" id="chapter3">
+                <h2 class="mb-4">Chapter 3: Discrete Random Variables and Probability Distributions</h2>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.1 Discrete Random Variables</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận một số lượng giá trị đếm được hoặc hữu hạn. Nói cách khác, tập hợp các giá trị mà nó có thể nhận là một tập hợp rời rạc, không phải là một khoảng liên tục.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.2 Probability distributions and Probability Mass Functions</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[f(x_i) = P(X=x_i) \text{ với mọi } i = 1, 2, ... n\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.3 Cumulative Distribution Function</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[F(x) = P(X \leq x) = \sum_{x_i \leq x} f(x_i)\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.4 Mean and Variance of a Discrete Random Variable</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Mean (μ): \[E(X) = \sum x_i \cdot P(X = x_i)\]</p>
+                        <p>Variance (σ²): \[V(X) = E[(X - \mu)^2] = \sum (x_i - \mu)^2 \cdot P(X = x_i)\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.5 Discrete Uniform Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[P(X = x_i) = \frac{1}{n} \text{ với mọi } i = 1, 2, ..., n\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.6 Binomial Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.7 Geometric and Negative Binomial Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Geometric: \[P(X = x) = (1-p)^{x-1} \cdot p\]</p>
+                        <p>Negative Binomial: \[P(X = x) = \binom{x-1}{r-1} p^r (1-p)^{x-r}\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.8 Hypergeometric Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[P(X = x) = \frac{\binom{K}{x} \binom{N-K}{n-x}}{\binom{N}{n}}\]</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.9 Poisson Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>\[P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}\]</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <button id="back-to-top" class="btn btn-primary" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="textblog-3/textblog-3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+</html>

@@ -55,7 +55,7 @@
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-        <div id="header">
+    <div id="header">
         <nav class="navbar bg-dark fixed-top">
             <div class="container-fluid">
                 <ul class="menu">
@@ -70,15 +70,15 @@
 
 
     <div class="container">
-        <!-- <div class="wrapper anime-svg box-top">
+        <div class="wrapper anime-svg box-top">
             <svg>
                 <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                    JPD123
+                    MAS291
                 </text>
             </svg>
             <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
             <div class="border-top my-3"></div>
-        </div> -->
+        </div>
         <div class="text-center align-items-center">
             <!-- Nội dung thông báo 404 Not Found -->
             <img src="../img/Forbidden.png" alt="art" class="img-fluid" style="width: 50%;">

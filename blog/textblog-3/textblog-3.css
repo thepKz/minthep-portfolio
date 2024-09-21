@@ -1,0 +1,288 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.wrapper {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.anime-svg {
+    width: 100%;
+    height: 100px;
+}
+
+.anime-svg svg {
+    width: 100%;
+    height: 100%;
+}
+
+.anime-svg text {
+    font-size: 48px;
+    font-weight: bold;
+    fill: #007bff;
+}
+
+.author {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.content {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #dc3545; /* Changed to red (Bootstrap's danger color) */
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #0056b3;
+    margin-top: 20px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.MathJax {
+    font-size: 26px !important;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .anime-svg text {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .MathJax {
+        font-size: 14px !important;
+    }
+}
+.downloads {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.downloads h2 {
+    margin-bottom: 1rem;
+}
+
+.downloads ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.downloads li {
+    margin-bottom: 0.5rem;
+}
+
+.downloads a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.downloads a:hover {
+    text-decoration: underline;
+}
+
+
+.jumbotron {
+    background-color: #f8f9fa;
+}
+
+.chapter h3 {
+    cursor: pointer;
+}
+
+.chapter h3:hover {
+    color: #007bff;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}
+
+#back-to-top.show {
+    display: block;
+}
+.btn-orange {
+    color: #fff;
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background-color: #e96b02;
+    border-color: #dc6502;
+}
+.math-formula {
+    padding: 10px;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#exampleContent {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+#exampleContent h4 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+#exampleContent ul {
+    padding-left: 20px;
+}
+
+#exampleContent li {
+    margin-bottom: 5px;
+}
+
+#table-of-contents {
+    background-color: #f8f9fa;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+#table-of-contents h3 {
+    color: #dc3545;
+    margin-bottom: 10px;
+}
+
+#table-of-contents ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#table-of-contents li {
+    margin-bottom: 5px;
+}
+
+#table-of-contents a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+.example {
+    background-color: #f0f8ff;
+    border-left: 4px solid #007bff;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.example p {
+    margin-bottom: 5px;
+}
+
+.card-body h4 {
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.card-body h5 {
+    color: #0056b3;
+    margin-top: 15px;
+}
+.example {
+    background-color: #f0f8ff;
+    border-left: 4px solid #007bff;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.example p {
+    margin-bottom: 5px;
+}
+
+.card-body h4 {
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.card-body h5 {
+    color: #0056b3;
+    margin-top: 15px;
+}
+
+.img-fix{
+    aspect-ratio: 5/3;
+    width: 450px;
+
+}
+#exampleContent2_1 ul {
+    list-style-type: none; /* Loại bỏ dấu chấm tròn */
+    padding-left: 0; /* Loại bỏ padding mặc định */
+}
+
+#exampleContent2_1 li {
+    margin-bottom: 5px; /* Thêm khoảng cách giữa các mục */
+}

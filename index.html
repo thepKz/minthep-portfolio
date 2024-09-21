@@ -8,6 +8,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .skills-grid {
@@ -35,18 +36,20 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar bg-dark fixed-top">
-            <div class="container-fluid">
-                <ul class="menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="blog/myblog.html">My Blog</a></li>
-                    <li><a href="wy/wy.html">WonYoung</a></li>
-                </ul>
-                <form class="d-flex search" id="search-check">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success btn-search" type="submit">Search</button>
-                </form>
+    <header id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">MAS291</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog/myblog.html">My Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -113,7 +116,7 @@
                                 <h3>RESTful API</h3>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-bolt fa-3x mb-3"></i>
+                                <img src="img/vite-svgrepo-com.svg" alt="Vite Logo" class="skill-logo mb-3">
                                 <h3>Vite</h3>
                             </div>
                             <div class="skill-item">
@@ -125,7 +128,7 @@
                                 <h3>Java</h3>
                             </div>
                             <div class="skill-item">
-                                <i class="fas fa-database fa-3x mb-3"></i>
+                                <img src="img/mongodb-svgrepo-com.svg" alt="MongoDB Logo" class="skill-logo mb-3">
                                 <h3>MongoDB</h3>
                             </div>
                             <div class="skill-item">
@@ -184,52 +187,114 @@
                 </div>
             </div>
         </section>
-        <div>
-            <h1>Update Soon</h1>
-        </div>
-        <!-- <section id="projects" class="projects">
+        <section id="projects" class="py-5">
             <div class="container">
-                <h2>Featured Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <img src="img/project1.jpg" alt="Birthday Project">
-                        <h3>Birthday Project</h3>
-                        <p>A special birthday celebration webpage with animations and interactive elements.</p>
-                        <a href="https://thepkz.github.io/PiGiPiHi/" class="project-link" target="_blank">View Project</a>
+                <h2 class="text-center mb-5">My Projects</h2>
+                <div class="row">
+                    <!-- Project 1: Birthday Project -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project1.png" class="card-img-top" alt="Birthday Project">
+                            <div class="card-body">
+                                <h5 class="card-title">Birthday Project</h5>
+                                <p class="card-text">A special birthday celebration webpage with animations and interactive elements.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> HTML, CSS, JavaScript, GSAP</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Help people create birthday projects for friends</p>
+                                <a href="https://thepkz.github.io/PiGiPiHi/" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card">
-                        <img src="img/project2.jpg" alt="Valentine's Day Project">
-                        <h3>Valentine's Day Project</h3>
-                        <p>A romantic Valentine's Day webpage for sharing love and affection.</p>
-                        <a href="https://thepkz.github.io/thepValentine/" class="project-link" target="_blank">View Project</a>
+                    
+                    <!-- Project 2: Valentine's Day Project -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project2.png" class="card-img-top" alt="Valentine's Day Project">
+                            <div class="card-body">
+                                <h5 class="card-title">Valentine's Day Project</h5>
+                                <p class="card-text">A romantic Valentine's Day webpage for sharing love and affection.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Help people create Valentine's Day projects for loved ones</p>
+                                <a href="https://thepkz.github.io/thepValentine/" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card">
-                        <img src="img/project3.jpg" alt="Birthday Cake Project">
-                        <h3>Birthday Cake Project</h3>
-                        <p>An interactive birthday cake animation created with HTML, CSS, and JavaScript.</p>
-                        <a href="https://thepkz.github.io/birthday-cake/" class="project-link" target="_blank">View Project</a>
+
+                    <!-- Project 3: Bầu Cua Tôm Cá -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project3.png" class="card-img-top" alt="Bầu Cua Tôm Cá">
+                            <div class="card-body">
+                                <h5 class="card-title">Bầu Cua Tôm Cá (Tết version)</h5>
+                                <p class="card-text">A traditional Vietnamese game recreated with modern web technologies.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> JavaScript, HTML, CSS</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Preserve and modernize traditional games</p>
+                                <a href="https://thepkz.github.io/bau-cua-tom-ca-ver-tet/" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card">
-                        <img src="img/project4.jpg" alt="Map Project">
-                        <h3>Map Project</h3>
-                        <p>An interactive map application showcasing various locations and information.</p>
-                        <a href="https://thepkz.github.io/map_for_all/" class="project-link" target="_blank">View Project</a>
+
+                    <!-- Project 4: GenKiKoi -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project4.png" class="card-img-top" alt="GenKiKoi">
+                            <div class="card-body">
+                                <h5 class="card-title">GenKiKoi (Team project)</h5>
+                                <p class="card-text">A comprehensive veterinary service management software for Koi fish.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Back-end Developer, Tester, API Designer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> TypeScript, React, Node.js</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Streamline veterinary services for Koi fish</p>
+                                <a href="https://github.com/thepKz/GenKiKoi" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: BeautifulMap API -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project5.png" class="card-img-top" alt="BeautifulMap API">
+                            <div class="card-body">
+                                <h5 class="card-title">BeautifulMap API</h5>
+                                <p class="card-text">An API for location search and route calculation, easily integrated into web and mobile applications.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Back-end Developer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> JavaScript, Node.js, Express</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Provide mapping services for developers</p>
+                                <a href="https://github.com/thepKz/beautifulmap-api" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Wheel of Names -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img src="img/project6.png" class="card-img-top" alt="Wheel of Names">
+                            <div class="card-body">
+                                <h5 class="card-title">Wheel of Names</h5>
+                                <p class="card-text">An interactive "wheel of fortune" application with customizable features.</p>
+                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
+                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> JavaScript, HTML, CSS</p>
+                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Create an engaging random selection tool</p>
+                                <a href="https://thepkz.github.io/wheel-of-names/" class="btn btn-primary" target="_blank">View Project</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
     </main>
 
-    <!-- <footer>
-        <div class="container">
-            <p>&copy; 2023 Min Thep. All rights reserved.</p>
+    <footer class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <p class="mb-0 text-center" >&copy; 2023 Min Thep. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://github.com/thepKz" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/thepmaitan26" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@minthep2611" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
-    </footer> -->
+    </footer>
 
     <script src="js/mycode.js"></script>
 </body>
