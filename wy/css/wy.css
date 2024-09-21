@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
 body {
+    background: #060e1b;
     overflow-x: hidden;
 }
 
@@ -274,6 +275,431 @@ svg text {
       font-size: 15px !important;
     }
   }
+
+.scroll-down {
+    cursor: pointer;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 1090px) {
+    .menu {
+        margin-bottom: 25px;
+    }
+
+    .author {
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .list-group-item a {
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    #header form {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    #search-check {
+        display: none !important;
+    }
+    li {
+        font-size: 10px !important;
+    }
+    #header, .menu {
+        height: 0px !important;
+        display: flex !important;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    color: white;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    width: 100%;  /* Thêm dòng này */
+    pointer-events: none;  /* Thêm dòng này */
+}
+
+.hero-content * {
+    pointer-events: auto;  /* Thêm đoạn này */
+}
+
+.hero-section h1 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+    4.166666667% {
+        clip: rect(91px, 9999px, 43px, 0);
+    }
+    8.333333333% {
+        clip: rect(65px, 9999px, 59px, 0);
+    }
+    /* ... (more keyframes) ... */
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 119px, 0);
+    }
+    4.166666667% {
+        clip: rect(8px, 9999px, 97px, 0);
+    }
+    8.333333333% {
+        clip: rect(5px, 9999px, 53px, 0);
+    }
+    /* ... (more keyframes) ... */
+}
+
+/* Masonry Gallery */
+.masonry-gallery {
+    column-count: 3;
+    column-gap: 1rem;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Style Tips */
+.style-tips {
+    background-color: #f8f8f8;
+    padding: 4rem 0;
+}
+
+.tips-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tip {
+    text-align: center;
+    max-width: 300px;
+    margin: 2rem;
+}
+
+.tip i {
+    font-size: 3rem;
+    color: #ff00c1;
+    margin-bottom: 1rem;
+}
+
+/* Fashion Shows */
+.video-gallery {
+    display: flex;
+    overflow-x: auto;
+    padding: 2rem 0;
+}
+
+.video-item {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 2rem;
+}
+
+.video-item video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Brand Collaborations */
+.brand-collabs {
+    background: linear-gradient(135deg, #000, #222);
+    padding: 4rem 0;
+    overflow: hidden;
+}
+
+.brand-collabs .section-title {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.brand-carousel {
+    display: flex;
+    animation: carouselSlide 30s linear infinite;
+}
+
+.brand-item {
+    flex: 0 0 200px;
+    margin: 0 2rem;
+    perspective: 1000px;
+    transition: transform 0.5s;
+}
+
+.brand-item:hover {
+    transform: scale(1.1) rotateY(10deg);
+}
+
+.brand-item img {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: all 0.5s;
+}
+
+.brand-item:hover img {
+    filter: brightness(1) invert(0);
+    transform: translateZ(20px);
+}
+
+.brand-item span {
+    display: block;
+    text-align: center;
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.brand-item:hover span {
+    opacity: 1;
+}
+
+@keyframes carouselSlide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    
+    .masonry-gallery {
+        column-count: 2;
+    }
+    
+    .tips-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#main-game {
+    position: relative;
+    z-index: 1;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.fashion-showcase {
+    padding: 2rem 0;
+    background-color: #f8f8f8;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    padding: 0 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.showcase-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 3 / 4;
+}
+
+.showcase-item.horizontal {
+    grid-column: span 2;
+    aspect-ratio: 1.75 / 1;
+}
+
+.showcase-item img, .showcase-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.showcase-item:hover img, .showcase-item:hover video {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 0.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.showcase-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.overlay p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.style-tips, .brand-collabs {
+    padding: 4rem 0;
+}
+
+.tips-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tip {
+    text-align: center;
+    max-width: 300px;
+    margin: 2rem;
+}
+
+.tip i {
+    font-size: 3rem;
+    color: #ff00c1;
+    margin-bottom: 1rem;
+}
+
+.brand-slider {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brand-item {
+    flex: 0 0 150px;
+    margin: 1rem;
+}
+
+.brand-item img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.brand-item:hover img {
+    filter: grayscale(0%);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
 
 .scroll-down {
     cursor: pointer;
