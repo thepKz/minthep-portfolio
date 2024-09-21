@@ -1,0 +1,143 @@
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    .hero-section .subtitle {
+        font-size: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    iframe {
+        height: 80vh;
+    }
+}
+@media (max-width: 768px) {
+    .brand-carousel {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .brand-item {
+        width: 45%;
+        margin: 10px;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+    #about-wy {
+        padding: 20px;
+    }
+    #about-wy p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+@media (max-width: 768px) {
+    .hero-section h1.glitch {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+    }
+
+    .hero-section h1.glitch::before,
+    .hero-section h1.glitch::after {
+        display: none;
+    }
+
+    .hero-section .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .scroll-down {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1.glitch {
+        font-size: 1.5rem;
+    }
+}
+p.subtitle{
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #about-wy {
+      padding: 10px!important;
+    }
+  
+    #about-wy p {
+        padding: 10px!important;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  
+    .wy-important {
+      font-size: 1.2em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #about-wy {
+      padding: 10px!important;
+    }
+  
+    #about-wy p {
+        padding: 10px!important;
+      font-size: 0.8rem;
+    }
+  
+    .wy-important {
+      font-size: 1em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .brand-collabs {
+        display: none;
+        padding: 20px 10px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .brand-carousel {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .brand-item {
+        width: calc(50% - 20px);
+        margin: 10px;
+    }
+
+    .brand-item img {
+        max-width: 80px;
+        height: auto;
+    }
+
+    .brand-item span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-item {
+        width: calc(100% - 20px);
+    }
+}
