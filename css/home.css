@@ -1,0 +1,79 @@
+/* home.css */
+.hero {
+    background-color: #f8f9fa;
+    padding: 100px 0;
+    margin-top: 50px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.profile-img img {
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.about-me {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+#projects .card {
+    transition: transform 0.3s ease-in-out;
+}
+
+#projects .card:hover {
+    transform: translateY(-10px);
+}
+
+#contact form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+    .profile-img img {
+        margin-top: 30px;
+    }
+}
+
+#skills .skill-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#skills .skill-card:hover {
+    transform: translateY(-5px);
+}
+
+#skills .skill-card i {
+    color: #007bff;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #007bff !important;
+}
+
+@media (max-width: 768px) {
+    #skills .skill-card {
+        margin-bottom: 20px;
+    }
+}
+

@@ -183,20 +183,25 @@ window.addEventListener('load', checkScreenSize);
 window.addEventListener('resize', checkScreenSize);
 
 // Lazy loading
-const lazyImages = document.querySelectorAll('.lazy-load');
-const lazyLoad = target => {
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.classList.remove('lazy-load');
-        observer.disconnect();
-      }
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const lazyLoad = target => {
+        const io = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.disconnect();
+                }
+            });
+        });
 
-  io.observe(target);
-};
+        io.observe(target);
+    };
 
-lazyImages.forEach(lazyLoad);
+    lazyImages.forEach(lazyLoad);
+});
+
+
+

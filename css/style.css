@@ -163,8 +163,8 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 
 .profile-img img:hover {
     transform: scale(1.15);
-    filter: grayscale(0%) brightness(40%) contrast(130%);
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    filter: grayscale(0%) brightness(50%) contrast(110%);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .profile-img :hover::after {
@@ -599,4 +599,175 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 }
 p {
     text-align: justify;
+}
+/* Skills Section */
+.skill-item img {
+    width: 50px; /* hoặc kích thước phù hợp với thiết kế của bạn */
+    height: auto;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.skill-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-item i {
+    color: #d94f5c;
+}
+
+.skill-item h3 {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+}
+
+.skill-item p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Experience Section */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.skill-item i.fa-html5 { color: #E34F26; }
+.skill-item i.fa-css3-alt { color: #1572B6; }
+.skill-item i.fa-js-square { color: #F7DF1E; }
+.skill-item i.fa-react { color: #61DAFB; }
+.skill-item i.fa-node-js { color: #339933; }
+.skill-item i.fa-git-alt { color: #F05032; }
+.skill-item i.fa-server { color: #FF6C37; } /* Màu cho RESTful API */
+.skill-item i.fa-bolt { color: #646CFF; } /* Màu cho Vite */
+.skill-item i.fa-typescript { color: #007ACC; }
+.skill-item i.fa-java { color: #007396; }
+.skill-item i.fa-database:nth-of-type(1) { color: #47A248; } /* MongoDB */
+.skill-item i.fa-database:nth-of-type(2) { color: #CC2927; } /* SQL Server */
+.skill-item h3 {
+    color: #333; /* hoặc màu bạn muốn cho văn bản */
+}
+.skill-item:hover i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--secondary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: #fff;
+    border: 4px solid var(--secondary-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    left: -16px;
+}
+
+.timeline-date {
+    color: #666;
+    font-style: italic;
+}
+
+@media screen and (max-width: 600px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+    
+    .timeline-content::after {
+        left: -15px;
+    }
+}
+/* Education Section */
+#education {
+    background-color: #f8f9fa;
+}
+
+#education .timeline-item {
+    margin-bottom: 30px;
+}
+
+#education .timeline-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#education h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#education .timeline-date {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    #education .timeline-item {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
