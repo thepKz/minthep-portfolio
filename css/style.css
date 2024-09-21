@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
-
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 body {
     overflow-x: hidden;
 }
@@ -232,7 +232,7 @@ filter: hue-rotate(90deg);: Xoay màu sắc của hình ảnh (90 độ). */
 }
 
 /* About me section */
-@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
 
 .anime-svg svg {
     text-align: center;
