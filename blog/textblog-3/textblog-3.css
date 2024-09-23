@@ -286,3 +286,32 @@ li {
 #exampleContent2_1 li {
     margin-bottom: 5px; /* Thêm khoảng cách giữa các mục */
 }
+
+/* Thêm vào cuối file */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 56px; /* Điều chỉnh nếu cần thiết */
+        left: 0;
+        right: 0;
+        background-color: #343a40;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+}
+
+.navbar-toggler {
+    border-color: rgba(255,255,255,.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
