@@ -46,7 +46,9 @@
 }
 
 #projects .card-body {
+    margin-left: 0 !important;
     display: flex;
+    text-align: left;
     flex-direction: column;
     flex-grow: 1;
     background-color: #f8f9fa;

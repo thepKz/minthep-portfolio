@@ -73,6 +73,50 @@ $(document).ready(function() {
             return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
         });
     });
+    $('#showExampleBtn22_2').click(function() {
+        var $exampleContent = $('#exampleContent22_2');
+        var $button = $(this);
+        $exampleContent.slideToggle();
+        $button.text(function(i, text) {
+            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+        });
+    });
+
+    $('#showExampleBtn21_3').click(function() {
+        var $exampleContent = $('#exampleContent21_3');
+        var $button = $(this);
+        $exampleContent.slideToggle();
+        $button.text(function(i, text) {
+            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+        });
+    });
+
+    $('#showExampleBtn2_4').click(function() {
+        var $exampleContent = $('#exampleContent2_4');
+        var $button = $(this);
+        $exampleContent.slideToggle();
+        $button.text(function(i, text) {
+            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+        });
+    });
+
+    $('#showExampleBtn2_5').click(function() {
+        var $exampleContent = $('#exampleContent2_5');
+        var $button = $(this);
+        $exampleContent.slideToggle();
+        $button.text(function(i, text) {
+            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+        });
+    });
+
+    $('#showExampleBtn2_6').click(function() {
+        var $exampleContent = $('#exampleContent2_6');
+        var $button = $(this);
+        $exampleContent.slideToggle();
+        $button.text(function(i, text) {
+            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+        });
+    });
 });
 
 MathJax = {

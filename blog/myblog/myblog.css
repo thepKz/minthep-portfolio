@@ -221,17 +221,19 @@ html {
 }
 
 /* =============== Cạt đồ họa =============== */
-.card-3{
+.card-3 {
     margin-top: 40px;
 }
 .wrapper {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .card {
-    width: 320px;
+    width: calc(33.33% - 20px);
+    min-width: 280px;
     height: 360px;
     border-radius: 15px;
     padding: 1.5rem;
@@ -241,6 +243,19 @@ html {
     align-items: flex-end;
     transition: 0.4s ease-out;
     box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
 }
 
 .card:hover {

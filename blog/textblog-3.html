@@ -220,7 +220,7 @@
                         <p>Trong một quy trình gồm nhiều bước, nếu mỗi bước có một số lựa chọn nhất định, tổng số cách thực hiện toàn bộ quy trình được tính bằng tích của số lựa chọn ở mỗi bước.</p>
                         <div class="mb-4">
                             <div class="card-body">
-                                <button id="showExampleBtn2_1" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <button id="showExampleBtn2_1" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
                                 <div id="exampleContent2_1" style="display: none;">
                                     <p><strong>Question:</strong> Mã sản phẩm có thể gồm 2, 3, 4 hoặc 5 chữ cái với xác suất như nhau. Để tính tổng số mã sản phẩm có thể có, ta cần xem xét số lựa chọn ở mỗi bước (số lượng chữ cái trong mã).</p>
                                     <p><strong>Answer:</strong></p>
@@ -239,7 +239,7 @@
                         <p>Hoán vị đề cập đến số cách sắp xếp một tập hợp các phần tử theo một thứ tự cụ thể. Khi chọn r phần tử từ n phần tử và quan tâm đến thứ tự, ta sử dụng công thức nPr. Điều này thường áp dụng trong các tình huống như sắp xếp người trong một hàng hoặc chọn các vị trí trong một đội.</p>
                         <div class="mb-4">
                             <div class="card-body">
-                                <button id="showExampleBtn2_2" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <button id="showExampleBtn2_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
                                 <div id="exampleContent2_2" style="display: none;">
                                     <p><strong>Question:</strong> Có bao nhiêu cách để sắp xếp 3 cuốn sách trên kệ nếu chúng ta có 5 cuốn sách khác nhau để chọn?</p>
                                     <p><strong>Answer:</strong></p>
@@ -267,13 +267,13 @@
                         <p>Tổ hợp liên quan đến việc chọn một nhóm phần tử từ một tập hợp lớn hơn mà không quan tâm đến thứ tự. Khi chọn r phần tử từ n phần tử mà không cần quan tâm đến thứ tự, ta sử dụng công thức nCr. Điều này thường được áp dụng trong các tình huống như chọn một nhóm người từ một tập hợp lớn hơn để thực hiện một nhiệm vụ, trong đó vai trò cụ thể của từng người không quan trọng.</p>
                         <div class="mb-4">
                             <div class="card-body">
-                                <button id="showExampleBtn2_3" class="btn btn-primary mb-3">Hiển thị ví dụ</button>
+                                <button id="showExampleBtn2_3" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
                                 <div id="exampleContent2_3" style="display: none;">
                                     <p><strong>Question:</strong> Một lô hàng có 350 mẫu, trong đó có 8 mẫu bị lỗi. Chúng ta chọn ngẫu nhiên 2 mẫu không hoàn lại. Tính xác suất cả hai mẫu đều bị lỗi.</p>
                                     <p><strong>Answer:</strong></p>
                                     <p>Để giải quyết bài toán này, ta sử dụng tổ hợp để tính:</p>
                                     <ul>
-                                        <li>Số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị l���i</li>
+                                        <li>Số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị lỗi</li>
                                         <li>Số cách chọn bất kỳ 2 mẫu từ 350 mẫu</li>
                                     </ul>
                                     <p>Công thức tính tổ hợp:</p>
@@ -300,7 +300,7 @@
                         
                     </div>
                 </div>
-
+                
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">2.2 Probability</h3>
@@ -310,67 +310,101 @@
                         <p class="text-center">
                             \[P(A) = \frac{\text{số trường hợp thuận lợi}}{\text{tổng số trường hợp có thể xảy ra}}\]
                         </p>
+                        <div class="text-center">
+                            <button id="showExampleBtn22_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        </div>
+                        <div id="exampleContent22_2" style="display: none;">
+                            <p><strong>Question:</strong> Trong một phép thử tung đồng xu, tính xác suất đồng xu ra mặt sấp.</p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Vì có 2 khả năng xảy ra (mặt sấp hoặc mặt ngửa), xác suất ra mặt sấp là:</p>
+                            <p class="text-center">\[P(sấp) = \frac{1}{2}\]</p>
+                        </div>
                     </div>
                 </div>
-
+                
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">2.3 Addition Rules</h3>
                     </div>
                     <div class="card-body">
-                        <p>Quy tắc cộng xác suất cho hai sự kiện A và B:</p>
+                        <p class="text-left">Quy tắc cộng xác suất cho hai sự kiện A và B:</p>
                         <p class="text-center">
                             \[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]
                         </p>
-                        <p>Nếu A và B là hai sự kiện độc lập:</p>
-                        <p class="text-center">
-                            \[P(A \cup B) = P(A) + P(B)\]
-                        </p>
+                        <div class="text-center">
+                            <button id="showExampleBtn21_3" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        </div>
+                        <div id="exampleContent21_3" style="display: none;">
+                            <p><strong>Question:</strong> Xét một bộ bài 52 lá, tính xác suất rút được một lá là quân bích hoặc quân át.</p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Có 13 lá quân bích và 4 lá quân át, trong đó có 1 lá vừa là quân bích vừa là quân át. Áp dụng quy tắc cộng:</p>
+                            <p class="text-center">\[P(bích \cup át) = P(bích) + P(át) - P(bích \cap át)\]</p>
+                            <p>\[P(bích \cup át) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}\]</p>
+                        </div>
                     </div>
                 </div>
-
+                
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">2.4 Conditional Probability</h3>
                     </div>
                     <div class="card-body">
-                        <p>Xác suất có điều kiện của sự kiện B khi biết A đã xảy ra:</p>
+                        <p class="text-left">Xác suất có điều kiện của sự kiện B khi biết A đã xảy ra:</p>
                         <p class="text-center">
                             \[P(B|A) = \frac{P(A \cap B)}{P(A)}\]
                         </p>
+                        <div class="text-center">
+                            <button id="showExampleBtn2_4" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        </div>
+                        <div id="exampleContent2_4" style="display: none;">
+                            <p><strong>Question:</strong> Một hộp có 5 bi đỏ và 3 bi xanh. Nếu lấy ngẫu nhiên 1 bi và nó là bi đỏ, tính xác suất rút được bi xanh ở lần rút thứ hai (không hoàn lại).</p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Sau lần rút đầu tiên, hộp còn 7 bi, trong đó có 3 bi xanh. Xác suất có điều kiện là:</p>
+                            <p class="text-center">\[P(xanh|đỏ) = \frac{3}{7}\]</p>
+                        </div>
                     </div>
                 </div>
-
+                
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">2.5 Multiplication and Total Probability Rules</h3>
                     </div>
                     <div class="card-body">
-                        <p>Quy tắc nhân xác suất:</p>
+                        <p class="text-left">Quy tắc nhân xác suất:</p>
                         <p class="text-center">
                             \[P(A \cap B) = P(A)P(B|A) = P(B)P(A|B)\]
                         </p>
-                        <p>Quy tắc xác suất toàn phần:</p>
-                        <p class="text-center">
-                            \[P(A) = \sum_{i=1}^n P(A|B_i)P(B_i)\]
-                        </p>
-                        <p>Trong đó B₁, B₂, ..., Bₙ là một phân hoạch của không gian mẫu S.</p>
+                        <div class="text-center">
+                            <button id="showExampleBtn2_5" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        </div>
+                        <div id="exampleContent2_5" style="display: none;">
+                            <p><strong>Question:</strong> Một hộp có 3 bi đỏ và 2 bi xanh. Nếu lấy ngẫu nhiên 2 bi không hoàn lại, tính xác suất cả hai bi đều là đỏ.</p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Xác suất rút được bi đỏ đầu tiên là 3/5, và sau đó rút được bi đỏ thứ hai là 2/4:</p>
+                            <p class="text-center">\[P(đỏ \cap đỏ) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10}\]</p>
+                        </div>
                     </div>
                 </div>
-
+                
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">2.6 Bayes' Theorem</h3>
                     </div>
                     <div class="card-body">
-                        <p>Công thức Bayes:</p>
+                        <p class="text-left">Công thức Bayes:</p>
                         <p class="text-center">
                             \[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
                         </p>
-                        <p>Hoặc dạng tổng quát:</p>
-                        <p class="text-center">
-                            \[P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^n P(B|A_j)P(A_j)}\]
-                        </p>
+                        <div class="text-center">
+                            <button id="showExampleBtn2_6" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        </div>
+                        <div id="exampleContent2_6" style="display: none;">
+                            <p><strong>Question:</strong> Một xét nghiệm y tế có độ chính xác 95% khi phát hiện bệnh (nếu có bệnh). Xác suất một người mắc bệnh là 0.01%. Tính xác suất một người mắc bệnh nếu kết quả xét nghiệm là dương tính.</p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Áp dụng định lý Bayes:</p>
+                            <p class="text-center">\[P(bệnh|dương tính) = \frac{P(dương tính|bệnh)P(bệnh)}{P(dương tính)}\]</p>
+                            <p>\[P(bệnh|dương tính) = \frac{0.95 \times 0.0001}{P(dương tính)}\]</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -391,7 +425,7 @@
                     <div class="card-header">
                         <h3 class="mb-0">3.2 Probability distributions and Probability Mass Functions</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body"> 
                         <p>\[f(x_i) = P(X=x_i) \text{ với mọi } i = 1, 2, ... n\]</p>
                     </div>
                 </div>
