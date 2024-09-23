@@ -16,7 +16,7 @@
 <body>
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
+
                 <a class="navbar-brand" href="#home">Min Thep</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,6 @@
                         <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
                     </ul>
-                </div>
             </div>
         </nav>
     </header>
@@ -43,9 +42,18 @@
             <section id="table-of-contents" class="mb-5">
                 <h3>Table of Contents</h3>
                 <ul>
-                    <li><a href="#chapter1">Chapter 1: Introduction and Role of Statistics in Engineering</a></li>
-                    <li><a href="#chapter2">Chapter 2: Probability</a></li>
-                    <li><a href="#chapter3">Chapter 3: Discrete Random Variables and Probability Distributions</a></li>
+                    <li><a href="#pt1">PT1:</a>
+                        <ul>
+                            <li><a href="#chapter1">Chapter 1: Introduction and Role of Statistics in Engineering</a></li>
+                            <li><a href="#chapter2">Chapter 2: Probability</a>
+
+                            </li>
+                            <li><a href="#chapter3">Chapter 3: Discrete Random Variables and Probability Distributions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#pt2">PT2:(Updatesau)</a></li>
+                    <li><a href="#pt3">PT3:(Updatesau)</a></li>
                 </ul>
             </section>
             <section class="downloads mb-4">
@@ -73,7 +81,7 @@
                     </div>
                 </div>
             </section>
-
+            <div id="pt1"></div>
             <section class="chapter mb-5" id="chapter1">
                 <h2 class="mb-4">Chapter 1: Introduction and Role of Statistics in Engineering</h2>
                 <p class="lead">Xác xuất thống kê sử dụng, thu thập, phân tích data để đưa ra kết luận, giải quyết vấn đề trong lĩnh vực kỹ thuật và công nghệ.</p>
@@ -411,34 +419,51 @@
 
             <section class="chapter mb-5" id="chapter3">
                 <h2 class="mb-4">Chapter 3: Discrete Random Variables and Probability Distributions</h2>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.1 Discrete Random Variables</h3>
                     </div>
                     <div class="card-body">
-                        <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận một số lượng giá trị đếm được hoặc hữu hạn. Nói cách khác, tập hợp các giá trị mà nó có thể nhận là một tập hợp rời rạc, không phải là một khoảng liên tục.</p>
+                        <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận một số lượng giá trị đếm được hoặc hữu hạn.</p>
+                        <button id="showExampleBtn3_1" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_1" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Số mặt xuất hiện khi tung một con xúc xắc là một biến ngẫu nhiên rời rạc. Nó chỉ có thể nhận các giá trị nguyên từ 1 đến 6.</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.2 Probability distributions and Probability Mass Functions</h3>
                     </div>
                     <div class="card-body"> 
                         <p>\[f(x_i) = P(X=x_i) \text{ với mọi } i = 1, 2, ... n\]</p>
+                        <button id="showExampleBtn3_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_2" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Xét việc tung một đồng xu công bằng. Biến ngẫu nhiên X là số mặt ngửa xuất hiện.</p>
+                            <p>P(X = 0) = 0.5 (không có mặt ngửa)</p>
+                            <p>P(X = 1) = 0.5 (có một mặt ngửa)</p>
+                            <p>Đây chính là hàm khối xác suất (PMF) của biến ngẫu nhiên X.</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.3 Cumulative Distribution Function</h3>
                     </div>
                     <div class="card-body">
                         <p>\[F(x) = P(X \leq x) = \sum_{x_i \leq x} f(x_i)\]</p>
+                        <button id="showExampleBtn3_3" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_3" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Tiếp tục với ví dụ tung đồng xu ở trên:</p>
+                            <p>F(0) = P(X ≤ 0) = P(X = 0) = 0.5</p>
+                            <p>F(1) = P(X ≤ 1) = P(X = 0) + P(X = 1) = 0.5 + 0.5 = 1</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.4 Mean and Variance of a Discrete Random Variable</h3>
@@ -446,27 +471,45 @@
                     <div class="card-body">
                         <p>Mean (μ): \[E(X) = \sum x_i \cdot P(X = x_i)\]</p>
                         <p>Variance (σ²): \[V(X) = E[(X - \mu)^2] = \sum (x_i - \mu)^2 \cdot P(X = x_i)\]</p>
+                        <button id="showExampleBtn3_4" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_4" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Cho biến ngẫu nhiên X với phân phối xác suất sau:</p>
+                            <p>P(X = 1) = 0.2, P(X = 2) = 0.5, P(X = 3) = 0.3</p>
+                            <p>Mean: E(X) = 1(0.2) + 2(0.5) + 3(0.3) = 2.1</p>
+                            <p>Variance: V(X) = (1-2.1)²(0.2) + (2-2.1)²(0.5) + (3-2.1)²(0.3) = 0.49</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.5 Discrete Uniform Distribution</h3>
                     </div>
                     <div class="card-body">
                         <p>\[P(X = x_i) = \frac{1}{n} \text{ với mọi } i = 1, 2, ..., n\]</p>
+                        <button id="showExampleBtn3_5" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_5" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Khi tung một con xúc xắc công bằng, xác suất xuất hiện mỗi mặt là như nhau và bằng 1/6.</p>
+                            <p>P(X = 1) = P(X = 2) = ... = P(X = 6) = 1/6</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.6 Binomial Distribution</h3>
                     </div>
                     <div class="card-body">
                         <p>\[P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}\]</p>
+                        <button id="showExampleBtn3_6" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_6" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Một nhà máy sản xuất bóng đèn với tỷ lệ sản phẩm lỗi là 5%. Tính xác suất trong 10 bóng đèn có đúng 2 bóng bị lỗi.</p>
+                            <p>Ở đây, n = 10, x = 2, p = 0.05</p>
+                            <p>P(X = 2) = C(10,2) * (0.05)² * (0.95)⁸ ≈ 0.0746</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.7 Geometric and Negative Binomial Distribution</h3>
@@ -474,27 +517,88 @@
                     <div class="card-body">
                         <p>Geometric: \[P(X = x) = (1-p)^{x-1} \cdot p\]</p>
                         <p>Negative Binomial: \[P(X = x) = \binom{x-1}{r-1} p^r (1-p)^{x-r}\]</p>
+                        <button id="showExampleBtn3_7" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_7" style="display: none;">
+                            <p><strong>Ví dụ (Geometric):</strong> Xác suất một học sinh đậu kỳ thi là 0.7. Tính xác suất học sinh đó phải thi 3 lần mới đậu.</p>
+                            <p>P(X = 3) = (1-0.7)² * 0.7 = 0.063</p>
+                            <p><strong>Ví dụ (Negative Binomial):</strong> Tính xác suất cần ném xúc xắc 5 lần để có được 2 lần ra số 6.</p>
+                            <p>P(X = 5) = C(4,1) * (1/6)² * (5/6)³ ≈ 0.0321</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.8 Hypergeometric Distribution</h3>
                     </div>
                     <div class="card-body">
                         <p>\[P(X = x) = \frac{\binom{K}{x} \binom{N-K}{n-x}}{\binom{N}{n}}\]</p>
+                        <button id="showExampleBtn3_8" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_8" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Một hộp có 20 bóng đèn, trong đó 5 bóng bị lỗi. Nếu lấy ngẫu nhiên 4 bóng, tính xác suất có đúng 2 bóng lỗi.</p>
+                            <p>Ở đây, N = 20, K = 5, n = 4, x = 2</p>
+                            <p>P(X = 2) = [C(5,2) * C(15,2)] / C(20,4) ≈ 0.2159</p>
+                        </div>
                     </div>
                 </div>
-
+            
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">3.9 Poisson Distribution</h3>
                     </div>
                     <div class="card-body">
                         <p>\[P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}\]</p>
+                        <button id="showExampleBtn3_9" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                        <div id="exampleContent3_9" style="display: none;">
+                            <p><strong>Ví dụ:</strong> Trung bình có 3 cuộc gọi đến tổng đài trong 1 giờ. Tính xác suất có đúng 2 cuộc gọi trong 1 giờ tiếp theo.</p>
+                            <p>Ở đây, λ = 3, x = 2</p>
+                            <p>P(X = 2) = (e⁻³ * 3²) / 2! ≈ 0.2240</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.10 Phân biệt các phương pháp</h3>
+                    </div>
+                    <div class="card-body">
+                        <h4>Phân biệt các phân phối xác suất rời rạc:</h4>
+                        <ul>
+                            <li>
+                                <strong>Binomial (Nhị thức):</strong>
+                                <p>Tình huống: Bạn tung đồng xu 10 lần và đếm số lần ra mặt ngửa.</p>
+                                <p>Đặc điểm: Số lần thử cố định, kết quả chỉ có 2 khả năng (thành công/thất bại), xác suất không đổi qua mỗi lần thử.</p>
+                            </li>
+                            <li>
+                                <strong>Geometric (Hình học):</strong>
+                                <p>Tình huống: Bạn tung đồng xu cho đến khi ra mặt ngửa lần đầu tiên và đếm số lần tung.</p>
+                                <p>Đặc điểm: Đếm số lần thử cho đến khi có kết quả mong muốn đầu tiên.</p>
+                            </li>
+                            <li>
+                                <strong>Negative Binomial (Nhị thức âm):</strong>
+                                <p>Tình huống: Bạn tung đồng xu cho đến khi ra mặt ngửa 3 lần và đếm tổng số lần tung.</p>
+                                <p>Đặc điểm: Đếm số lần thử cho đến khi có được số lần thành công mong muốn.</p>
+                            </li>
+                            <li>
+                                <strong>Hypergeometric (Siêu bội):</strong>
+                                <p>Tình huống: Trong hộp có 10 bi đỏ và 20 bi xanh, bạn lấy ra 5 bi và đếm số bi đỏ.</p>
+                                <p>Đặc điểm: Lấy mẫu từ tổng thể hữu hạn mà không hoàn lại, xác suất thay đổi sau mỗi lần lấy.</p>
+                            </li>
+                            <li>
+                                <strong>Poisson:</strong>
+                                <p>Tình huống: Đếm số cuộc gọi đến tổng đài trong 1 giờ.</p>
+                                <p>Đặc điểm: Đếm số sự kiện xảy ra trong một khoảng thời gian hoặc không gian cố định.</p>
+                            </li>
+                            <li>
+                                <strong>Uniform (Đều):</strong>
+                                <p>Tình huống: Tung xúc xắc 6 mặt công bằng.</p>
+                                <p>Đặc điểm: Mọi kết quả có xác suất xảy ra như nhau.</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
+            <div id="pt2"></div>
         </article>
     </main>
     <button id="back-to-top" class="btn btn-primary" title="Back to Top">

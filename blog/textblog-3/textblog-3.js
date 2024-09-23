@@ -117,6 +117,16 @@ $(document).ready(function() {
             return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
         });
     });
+    for (let i = 1; i <= 10; i++) {
+        $(`#showExampleBtn3_${i}`).click(function() {
+            var $exampleContent = $(`#exampleContent3_${i}`);
+            var $button = $(this);
+            $exampleContent.slideToggle();
+            $button.text(function(i, text) {
+                return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
+            });
+        });
+    }
 });
 
 MathJax = {
