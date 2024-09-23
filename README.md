@@ -59,4 +59,4 @@ Minthep
 
 ## Giấy phép
 
-[Thêm thông tin về giấy phép nếu có]
+Trường cho nên không cần :>
