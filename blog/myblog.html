@@ -77,11 +77,6 @@
             </svg>
             <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
         </div>
-        <div id="seeding_gemix" style="text-align:center; margin-top:20px;">
-            <p style="font-size:20px; color:#333;">✨<strong>Quảng Cáo:</strong> Nếu bạn muốn ủng hộ mình, hãy ghé thăm <a href="https://www.facebook.com/profile.php?id=61566566902519" target="_blank" style="text-decoration:none; color:#FF5722; font-weight:bold;">Gemix</a> nhé! 🛒</p>
-            <img src="myblog/meo.png" alt="Gemix Decor" style="width:200px; border-radius:10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
-            <button onclick="window.open('https://www.facebook.com/profile.php?id=61566566902519', '_blank')" style="margin-top: 10px; padding: 10px 20px; background-color: #FF5722; color: white; border: none; border-radius: 5px; cursor: pointer;">Visit Gemix</button>
-        </div>
         <div class="card-3">
             <div class="wrapper">
                 <div class="card">
@@ -125,7 +120,25 @@
                 </div>
             </div>
         </div>
-       
+        <div id="seeding_gemix" style="text-align:center; margin-top:20px;">
+            <p style="font-size:20px; color:#333;">✨<strong>Quảng Cáo:</strong> Nếu bạn muốn ủng hộ mình, hãy ghé thăm các cửa hàng dưới đây nhé! 🛒</p>
+            <div style="display: flex; justify-content: space-around; margin-top: 15px;">
+                <div>
+                    <p><strong>Gemix</strong> - Đồ dùng Công nghệ</p>
+                    <button onclick="window.open('https://www.facebook.com/profile.php?id=61566566902519', '_blank')" style="padding: 10px 20px; background-color: #FF5722; color: white; border: none; border-radius: 5px; cursor: pointer;">Visit Gemix</button>
+                </div>
+                <div style="margin: 5px;">
+                    <p><strong>Dudu Store</strong> - Phụ kiện trang trí cho nữ</p>
+                    <button onclick="window.open('https://www.facebook.com/profile.php?id=61565519977323', '_blank')" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Visit Dudu Store</button>
+                </div>
+            </div>
+            <div style="margin-top: 10px;margin-bottom: 10px; text-align: center;">
+                <p><strong>Mã giảm giá đặc biệt:</strong> Nhập "MinThep" để được giảm 20k cho đơn hàng của bạn!</p>
+                <div style="background-color: #f8f9fa; border: 1px dashed #007bff; padding: 10px; display: inline-block;">
+                    <span style="font-size: 18px; font-weight: bold; color: #007bff;">MinThep</span>
+                </div>
+            </div>
+        </div>
         <!-- <div class="card-3">
             <div class="wrapper">
                 <div class="card">
@@ -224,19 +237,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.onkeydown = function(e) {
-            if (e.ctrlKey && 
-                (e.keyCode === 67 || 
-                 e.keyCode === 86 || 
-                 e.keyCode === 85 || 
-                 e.keyCode === 117 || 
-                 e.keyCode === 83)) {
-                e.preventDefault();
-                return false;
-            } else {
-                return true;
-            }
-        };
     </script>
 </body>
 
