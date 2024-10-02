@@ -8,9 +8,10 @@
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        
         @media screen and (max-width: 1090px) {
             .menu {
                 margin-bottom: 25px;
@@ -47,7 +48,7 @@
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#home">Min Thep</a>
+                <a class="navbar-brand" href="../index.html">Min Thep</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,36 +74,19 @@
             </svg>
             <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
             <div class="border-top my-3"></div>
-
+            <div>
+                <p class="update-info">
+                    <i class="fas fa-clock"></i>
+                    <span class="update-text">Last Updated:</span>
+                    <span class="update-time">20:00 PM, October 2, 2024</span>
+                </p>
+            </div>
         </div>
         <p>Đầu tiên, đây là blog mà mình tự tạo để ôn thi JPD113 (tương đương 1/4 trình độ N5). Mình tham khảo từ <a
                 href="https://www.tofugu.com/japanese-grammar/date-and-time/">Tofugu</a>. Nếu có bất kỳ sai sót nào, xin
             vui lòng liên hệ nhé!. Nếu bạn đang chuẩn bị học môn
             này, hãy nhấp vào <a href="textblog-0.html">link</a> này! Ngoài ra mình xin được chặn copy ở page này nhé!</p>
-            <div id="seeding_gemix" class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%; margin-top: 10px; background-color: #e6f3ff; border-color: #b8daff;">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <p style="font-size: 16px; color: #004085; margin-bottom: 10px;">
-                    ✨ <strong>Quảng Cáo:</strong> Nếu bạn muốn ủng hộ mình, hãy ghé thăm các cửa hàng dưới đây nhé!
-                </p>
-                <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                    <div>
-                        <a href="https://www.facebook.com/profile.php?id=61566566902519" target="_blank" style="color: #FF5722; font-weight: bold;">Gemix</a> - Đồ dùng Công nghệ
-                        <button onclick="window.open('https://www.facebook.com/profile.php?id=61566566902519', '_blank')" 
-                                style="display: inline-block; margin-left: 10px; padding: 5px 10px; background-color: #FF5722; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">
-                            Xem Ngay
-                        </button>
-                    </div>
-                    <div>
-                        <a href="https://www.facebook.com/profile.php?id=61565519977323" target="_blank" style="color: #4CAF50; font-weight: bold;">Dudu Store</a> - Phụ kiện trang trí cho nữ
-                        <button onclick="window.open('https://www.facebook.com/profile.php?id=61565519977323', '_blank')" 
-                                style="display: inline-block; margin-left: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">
-                            Xem Ngay
-                        </button>
-                    </div>
-                </div>
-            </div>
+
 
         <h3>Tài nguyên học tập:</h3>
         <div class="alert alert-info">
@@ -1134,7 +1118,9 @@
 
 
 
-
+    <button id="back-to-top" class="btn btn-primary" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
 
     <footer class="footer mt-auto py-3 bg-dark">
@@ -1146,6 +1132,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
@@ -1160,6 +1147,21 @@
                 return true;
             }
         };
+         // Back to top button
+    var btn = $('#back-to-top');
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, '200');
+    });
+
     </script>
 </body>
 

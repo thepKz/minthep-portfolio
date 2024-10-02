@@ -18,7 +18,7 @@
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 
-            <a class="navbar-brand" href="#home">Min Thep</a>
+            <a class="navbar-brand" href="../index.html">Min Thep</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,19 +39,15 @@
 
             <p class="text-muted text-right">Author: Min Thep</p>
         </div>
-        <div id="seeding_gemix" style="text-align:center; margin-top:20px;">
-            <p style="font-size:20px; color:#333;">✨<strong>Quảng Cáo:</strong> Nếu bạn muốn ủng hộ mình, hãy ghé thăm các cửa hàng dưới đây nhé! 🛒</p>
-            <div style="display: flex; justify-content: space-around; margin-top: 15px;">
-                <div>
-                    <p><strong>Gemix</strong> - Đồ dùng Công nghệ</p>
-                    <button onclick="window.open('https://www.facebook.com/profile.php?id=61566566902519', '_blank')" style="padding: 10px 20px; background-color: #FF5722; color: white; border: none; border-radius: 5px; cursor: pointer;">Visit Gemix</button>
-                </div>
-                <div style="margin: 5px;">
-                    <p><strong>Dudu Store</strong> - Phụ kiện trang trí cho nữ</p>
-                    <button onclick="window.open('https://www.facebook.com/profile.php?id=61565519977323', '_blank')" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Visit Dudu Store</button>
-                </div>
-            </div>
-        </div>
+        <div>
+            <p class="update-info">
+                <i class="fas fa-clock"></i>
+                <span class="update-text">Last Updated:</span>
+                <span class="update-time">20:00 PM, October 2, 2024</span>
+            </p>
+            
+</div>
+
         <article class="content">
             <section id="table-of-contents" class="mb-5">
                 <h3>Table of Contents</h3>
@@ -907,11 +903,11 @@
                             <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu điểm thi của 15 sinh viên: 65, 70, 75, 80, 82, 83, 85, 85, 88, 90, 90, 92, 95, 98, 100</p>
                             <p><strong>Stem-and-Leaf Diagram:</strong></p>
                             <pre>
-6 | 5
-7 | 0 5
-8 | 0 2 3 5 5 8
-9 | 0 0 2 5 8
-10| 0
+                                6 | 5
+                                7 | 0 5
+                                8 | 0 2 3 5 5 8
+                                9 | 0 0 2 5 8
+                                10| 0
                             </pre>
                             <p><strong>Sample median:</strong> 85 (số thứ 8 trong dãy đã sắp xếp)</p>
                             <p><strong>Sample mode:</strong> 85 và 90 (xuất hiện 2 lần)</p>
@@ -1007,6 +1003,21 @@
                             <p><strong>Đầu mút dưới:</strong> max(10, 15 - 1.5*8) = max(10, 3) = 10 phút</p>
                             <p>Trong trường hợp này, không có outliers vì tất cả các điểm đều nằm trong khoảng từ đầu mút dưới đến đầu mút trên.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter mb-5" id="interactive-exercises">
+                <h2 class="mb-4">Bài tập tương tác</h2>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">Bài tập 1: Tính xác suất</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Một hộp chứa 5 bi đỏ và 3 bi xanh. Tính xác suất rút được bi đỏ.</p>
+                        <input type="number" id="probability-answer" class="form-control mb-2" step="0.01" min="0" max="1">
+                        <button onclick="checkProbability()" class="btn btn-primary">Kiểm tra</button>
+                        <p id="probability-feedback" class="mt-2"></p>
                     </div>
                 </div>
             </section>

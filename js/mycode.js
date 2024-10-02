@@ -29,11 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Xử lý navbar toggle
     const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    if (navbarToggler && navbarCollapse) {
+    if (navbarToggler) {
         navbarToggler.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
+            console.log('Navbar toggler clicked'); // Để debug
         });
     }
 });

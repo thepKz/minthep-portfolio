@@ -148,3 +148,18 @@ MathJax = {
         scale: 1.5 // Tăng kích thước lên 150%
     }
 };
+
+
+function checkProbability() {
+    const answer = parseFloat(document.getElementById('probability-answer').value);
+    const correctAnswer = 5/8;
+    const feedback = document.getElementById('probability-feedback');
+    
+    if (Math.abs(answer - correctAnswer) < 0.01) {
+        feedback.textContent = 'Chính xác! Xác suất là 5/8 = 0.625';
+        feedback.style.color = 'green';
+    } else {
+        feedback.textContent = 'Chưa đúng. Hãy thử lại!';
+        feedback.style.color = 'red';
+    }
+}

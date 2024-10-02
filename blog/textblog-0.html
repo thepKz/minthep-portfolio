@@ -8,7 +8,7 @@
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         @media screen and (max-width: 1090px) {
@@ -691,7 +691,9 @@
 
 
 
-
+    <button id="back-to-top" class="btn btn-primary" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
 
 
@@ -699,7 +701,23 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+         // Back to top button
+    var btn = $('#back-to-top');
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function (e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, '200');
+    });
+
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
                 (e.keyCode === 67 ||
