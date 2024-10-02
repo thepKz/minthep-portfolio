@@ -857,3 +857,6 @@ p {
     .accordion .card-body p {
     margin-bottom: 10px;
     }
+    li {
+    font-size: 16px;
+    }

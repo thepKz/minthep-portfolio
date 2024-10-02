@@ -1,44 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Min Thep</title>
+    <title>Học Tiếng Nhật Cùng Min Thep</title>
     <link rel="icon" href="../img/logo.ico" type="image/x-icon">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        @media screen and (max-width: 1090px) {
-            .menu {
-                margin-bottom: 25px;
-            }
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
 
-            .author {
-                margin: 0 !important;
-                text-align: center !important;
-            }
+        body {
+            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
 
-            p {
-                text-align: justify;
-            }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-            .list-group-item a {
-                word-break: break-word;
-                overflow-wrap: break-word;
-            }
+        header {
+            background-image: url('https://cdna.artstation.com/p/assets/images/images/016/532/222/original/lennart-butz-japan-12.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-            li {
-                font-size: 10px !important;
-            }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
 
-            #header,
-            .menu {
-                height: 0px !important;
-                display: flex !important;
-            }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .table {
+            margin-top: 1rem;
+        }
+
+        .table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a7bd5;
+            border-color: #3a7bd5;
+        }
+
+        .alert-info {
+            background-color: #e8f4fd;
+            border-color: #b8daff;
+            color: #004085;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+        }
+
+        #back-to-top:hover {
+            background-color: #3a7bd5;
         }
 
         .animated-text {
@@ -46,677 +126,452 @@
         }
 
         @keyframes color-change {
-            0% {
-                color: #007bff;
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            25% {
-                color: #6f42c1;
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-
-            50% {
-                color: #fd7e14;
-                transform: scale(1.2);
-                opacity: 0.6;
-            }
-
-            75% {
-                color: #dc3545;
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-
-            100% {
-                color: #28a745;
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { color: var(--primary-color); }
+            50% { color: var(--secondary-color); }
+            100% { color: var(--primary-color); }
         }
 
-        header {
-            background-image: url(https://cdna.artstation.com/p/assets/images/images/016/532/222/original/lennart-butz-japan-12.gif);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 40vh;
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.5rem; }
+            
+            .table {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="../index.html">Min Thep</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<body>
+    <header>
+        <div class="container text-center">
+            <h1 class="display-4 animated-text">Học Tiếng Nhật Cùng Min Thep</h1>
+            <p class="lead text-danger">Khám phá ngôn ngữ và văn hóa Nhật Bản</p>
+        </div>
     </header>
-    <div class="anime-svg box-top">
-        <svg>
-            <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                Introduction to Japanese Language
-            </text>
-        </svg>
-        <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
-    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Min Thep</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hiragana">Hiragana</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#katakana">Katakana</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kanji">Kanji</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="container mt-5">
-        <main class="container mt-5">
-            <article>
-                <section id="start" class="p-3 mb-2 grammar-point">
-                    <h3 class="display-5">Bắt đầu hành trình học tiếng Nhật từ đâu?</h3>
-                    <p class="lead">Chuẩn bị bắt đầu hành trình học tiếng Nhật? Đặc biệt là các môn học JPD113 và
-                        JPD123? Bước đầu tiên và cực kỳ quan trọng là nắm vững bảng chữ cái Hiragana và Katakana.</p>
-                    <p><b>Hiragana</b>, bảng chữ cái cơ bản, chính là chìa khóa để mở cánh cửa tiếng Nhật.
-                        <b>Katakana</b> thì giúp bạn hiểu rõ hơn về các từ vựng mượn từ tiếng nước ngoài.
-                    </p>
-                </section>
-                <section id="hiragana" class="p-3 mb-2 grammar-point">
-                    <h3 class="display-4">Hiragana:</h3>
-                    <ol style="margin-left: 15px!important;">
-                        <li>
-                            <h4>Tập trung và kiên trì:</h4>
-                            <p>Dành thời gian mỗi ngày để học 2-4 hàng Hiragana. Hãy quan sát kỹ hình dáng từng chữ cái,
-                                ghi nhớ và luyện viết trên giấy. Việc viết theo thứ tự các nét cũng rất quan trọng, giúp
-                                bạn nhớ lâu hơn.</p>
-                        </li>
-                        <li>
-                            <h4>Sử dụng công cụ hỗ trợ:</h4>
-                            <p>Trang web <a href="https://tudienjp.com/alphabet"
-                                    target="_blank">tudienjp.com/alphabet</a> cung cấp đầy đủ gần như hầu hết mọi thứ về
-                                tiếng Nhật. Ngoài ra, extension của cái web này khi bạn di chuột vào bất kì ngôn ngữ nào
-                                đều có thể dịch được, rất tiện lợi cho việc học tiếng Nhật và các thứ tiếng khác.</p>
-                        </li>
-                        <li>
-                            <h4>Luyện tập từ vựng:</h4>
-                            <p>Hãy truy cập <a href="https://www.realkana.com/hiragana"
-                                    target="_blank">realkana.com/hiragana</a> để luyện tập cả Hiragana và Katakana (Hơi
-                                khó dùng với người lần đầu truy cập, tự mò nhen). Ngoài ra mình recommend cao
-                                <strong>Duolingo</strong> vì hầu như từ vựng và ngữ pháp đều có hết trong duolingo và
-                                mình cũng đã xong 2 sections ở trong đấy, tương đương với gần N5!</p>
-                        </li>
-                        <li>
-                            <h4>Đừng quên chữ cái ghép và các dấu tenten, maru:</h4>
-                            <p>Hiragana có các chữ cái ghép (double char), được tạo bằng cách thêm dấu nhỏ (っ) hoặc các
-                                chữ cái nhỏ (ゃ, ゅ, ょ) vào sau một số chữ cái khác. Ngoài ra, còn có các dấu tenten và maru để tạo thêm các âm khác (Đọc ở dưới).</p>
-                        </li>
-                        <li>
-                            <h4>Thực hành với từ vựng:</h4>
-                            <p>Sau khi đã nắm vững Hiragana, hãy bắt đầu học các từ vựng đơn giản. Điều này giúp bạn
-                                củng cố kiến thức và làm quen với cách sử dụng Hiragana trong ngữ cảnh thực tế. Bạn có
-                                thể sử dụng các ứng dụng học từ vựng như Anki hoặc Quizlet, hoặc đơn giản là viết ra
-                                giấy và đọc lại nhiều lần.</p>
-                        </li>
-                    </ol>
-                    <br>
-                    <br>
-                    <h3 class="display-5">Bảng chữ cái Hiragana:</h3>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>あ (a)</th>
-                                <th>い (i)</th>
-                                <th>う (u)</th>
-                                <th>え (e)</th>
-                                <th>お (o)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>∅</th>
-                                <td>あ</td>
-                                <td>い</td>
-                                <td>う</td>
-                                <td>え</td>
-                                <td>お</td>
-                            </tr>
-                            <tr>
-                                <th>k</th>
-                                <td>か</td>
-                                <td>き</td>
-                                <td>く</td>
-                                <td>け</td>
-                                <td>こ</td>
-                            </tr>
-                            <tr>
-                                <th>s</th>
-                                <td>さ</td>
-                                <td>し</td>
-                                <td>す</td>
-                                <td>せ</td>
-                                <td>そ</td>
-                            </tr>
-                            <tr>
-                                <th>t</th>
-                                <td>た</td>
-                                <td>ち</td>
-                                <td>つ</td>
-                                <td>て</td>
-                                <td>と</td>
-                            </tr>
-                            <tr>
-                                <th>n</th>
-                                <td>な</td>
-                                <td>に</td>
-                                <td>ぬ</td>
-                                <td>ね</td>
-                                <td>の</td>
-                            </tr>
-                            <tr>
-                                <th>h</th>
-                                <td>は</td>
-                                <td>ひ</td>
-                                <td>ふ</td>
-                                <td>へ</td>
-                                <td>ほ</td>
-                            </tr>
-                            <tr>
-                                <th>m</th>
-                                <td>ま</td>
-                                <td>み</td>
-                                <td>む</td>
-                                <td>め</td>
-                                <td>も</td>
-                            </tr>
-                            <tr>
-                                <th>y</th>
-                                <td>や</td>
-                                <td></td>
-                                <td>ゆ</td>
-                                <td></td>
-                                <td>よ</td>
-                            </tr>
-                            <tr>
-                                <th>r</th>
-                                <td>ら</td>
-                                <td>り</td>
-                                <td>る</td>
-                                <td>れ</td>
-                                <td>ろ</td>
-                            </tr>
-                            <tr>
-                                <th>w</th>
-                                <td>わ</td>
-                                <td></td>
-                                <td>ん</td>
-                                <td></td>
-                                <td>を</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br>
+        <main>
+            <section id="intro" class="section">
+                <h2 class="display-5">Bắt đầu hành trình học tiếng Nhật</h2>
+                <p class="lead">Bạn đang háo hức bắt đầu cuộc phiêu lưu vào thế giới tiếng Nhật, đặc biệt là với các môn học JPD113 và JPD123? Hãy cùng nhau đặt những nền tảng vững chắc cho hành trình thú vị này!</p>
+                <p><b>Hiragana</b> là chìa khóa đầu tiên mở ra cánh cửa kỳ diệu của ngôn ngữ Nhật Bản. Còn <b>Katakana</b> sẽ là người bạn đồng hành, giúp bạn tiếp cận với những từ ngữ quốc tế trong tiếng Nhật một cách dễ dàng hơn.</p>
+            </section>
 
-                    <h3 class="display-5">Bảng chữ cái Hiragana với Tenten và Maru</h3>
-                    <p class="lead">Trong tiếng Nhật, tenten (゛- được gọi là dakuten) và maru (゜- được gọi là
-                        handakuten) được thêm vào một số ký tự hiragana để thay đổi âm thanh của chúng. Tenten biểu thị
-                        sự biến đổi từ âm vô thanh sang hữu thanh, trong khi maru biểu thị sự biến đổi từ âm "h" thành
-                        âm "p".</p>
-
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Hiragana gốc</th>
-                                <th>Tenten (゛)</th>
-                                <th>Maru (゜)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>か (ka)</td>
-                                <td>が (ga)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>き (ki)</td>
-                                <td>ぎ (gi)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>く (ku)</td>
-                                <td>ぐ (gu)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>け (ke)</td>
-                                <td>げ (ge)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>こ (ko)</td>
-                                <td>ご (go)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>さ (sa)</td>
-                                <td>ざ (za)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>し (shi)</td>
-                                <td>じ (ji)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>す (su)</td>
-                                <td>ず (zu)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>せ (se)</td>
-                                <td>ぜ (ze)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>そ (so)</td>
-                                <td>ぞ (zo)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>た (ta)</td>
-                                <td>だ (da)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>ち (chi)</td>
-                                <td>ぢ (ji)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>つ (tsu)</td>
-                                <td>づ (zu)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>て (te)</td>
-                                <td>で (de)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>と (to)</td>
-                                <td>ど (do)</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>は (ha)</td>
-                                <td>ば (ba)</td>
-                                <td>ぱ (pa)</td>
-                            </tr>
-                            <tr>
-                                <td>ひ (hi)</td>
-                                <td>び (bi)</td>
-                                <td>ぴ (pi)</td>
-                            </tr>
-                            <tr>
-                                <td>ふ (fu)</td>
-                                <td>ぶ (bu)</td>
-                                <td>ぷ (pu)</td>
-                            </tr>
-                            <tr>
-                                <td>へ (he)</td>
-                                <td>べ (be)</td>
-                                <td>ぺ (pe)</td>
-                            </tr>
-                            <tr>
-                                <td>ほ (ho)</td>
-                                <td>ぼ (bo)</td>
-                                <td>ぽ (po)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                    <br>
-                    <br>
-                    <h3 class="display-5">Bảng chữ cái ghép (Double Character) trong Hiragana:</h3>
-                    <p class="lead">Chữ cái ghép trong Hiragana được tạo bằng cách kết hợp một chữ cái hàng "i" (い段) với một chữ cái nhỏ ゃ, ゅ, ょ. Chữ cái ghép thường được phát âm nhanh hơn và có âm "y" nhẹ ở giữa.</p>
-                    
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>ゃ (ya)</th>
-                                <th>ゅ (yu)</th>
-                                <th>ょ (yo)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>k</th>
-                                <td>きゃ (kya)</td>
-                                <td>きゅ (kyu)</td>
-                                <td>きょ (kyo)</td>
-                            </tr>
-                            <tr>
-                                <th>g</th>
-                                <td>ぎゃ (gya)</td>
-                                <td>ぎゅ (gyu)</td>
-                                <td>ぎょ (gyo)</td>
-                            </tr>
-                            <tr>
-                                <th>s</th>
-                                <td>しゃ (sha)</td>
-                                <td>しゅ (shu)</td>
-                                <td>しょ (sho)</td>
-                            </tr>
-                            <tr>
-                                <th>z</th>
-                                <td>じゃ (ja)</td>
-                                <td>じゅ (ju)</td>
-                                <td>じょ (jo)</td>
-                            </tr>
-                            <tr>
-                                <th>t</th>
-                                <td>ちゃ (cha)</td>
-                                <td>ちゅ (chu)</td>
-                                <td>ちょ (cho)</td>
-                            </tr>
-                            <tr>
-                                <th>n</th>
-                                <td>にゃ (nya)</td>
-                                <td>にゅ (nyu)</td>
-                                <td>にょ (nyo)</td>
-                            </tr>
-                            <tr>
-                                <th>h</th>
-                                <td>ひゃ (hya)</td>
-                                <td>ひゅ (hyu)</td>
-                                <td>ひょ (hyo)</td>
-                            </tr>
-                            <tr>
-                                <th>b</th>
-                                <td>びゃ (bya)</td>
-                                <td>びゅ (byu)</td>
-                                <td>びょ (byo)</td>
-                            </tr>
-                            <tr>
-                                <th>p</th>
-                                <td>ぴゃ (pya)</td>
-                                <td>ぴゅ (pyu)</td>
-                                <td>ぴょ (pyo)</td>
-                            </tr>
-                            <tr>
-                                <th>m</th>
-                                <td>みゃ (mya)</td>
-                                <td>みゅ (myu)</td>
-                                <td>みょ (myo)</td>
-                            </tr>
-                            <tr>
-                                <th>r</th>
-                                <td>りゃ (rya)</td>
-                                <td>りゅ (ryu)</td>
-                                <td>りょ (ryo)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="alert alert-info">
-                        <strong>Lưu ý:</strong>
-                        <p>Ngoài các chữ cái ghép trên, Hiragana còn có chữ "っ" (tsu nhỏ) không phát âm mà dùng để làm
-                            âm đứng trước nó mạnh hơn (ví dụ: "きっと" - kitto).</p>
+            <section id="hiragana" class="section">
+                <h2 class="display-4">Hiragana: Nền tảng của tiếng Nhật</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Khám phá thế giới Hiragana:</h3>
+                        <ol>
+                            <li>
+                                <h4>Phương pháp học hiệu quả:</h4>
+                                <p>Tập trung vào 2-3 hàng Hiragana mỗi ngày. Chú ý đến cách viết, thứ tự nét và luyện tập đều đặn.</p>
+                            </li>
+                            <li>
+                                <h4>Các dạng Hiragana cần nắm vững:</h4>
+                                <ul>
+                                    <li><strong>Hiragana cơ bản:</strong> 46 ký tự nền tảng.</li>
+                                    <li><strong>Hiragana với dấu dakuten (゛):</strong> Biến đổi âm, ví dụ か (ka) thành が (ga).</li>
+                                    <li><strong>Hiragana với dấu handakuten (゜):</strong> Áp dụng cho hàng H, ví dụ は (ha) thành ぱ (pa).</li>
+                                    <li><strong>Hiragana kép:</strong> Kết hợp hai ký tự tạo âm mới, như きょ (kyo), しゃ (sha).</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4>Tài nguyên học tập:</h4>
+                                <p><a href="https://tudienjp.com/alphabet" target="_blank">Tudienjp.com</a> cung cấp thông tin chi tiết về cách viết và phát âm Hiragana.</p>
+                            </li>
+                            <li>
+                                <h4>Luyện tập tương tác:</h4>
+                                <p><a href="https://www.realkana.com/hiragana" target="_blank">Realkana.com</a> cung cấp các bài tập tương tác để rèn luyện khả năng nhận diện Hiragana và Katakana.</p>
+                            </li>
+                        </ol>
                     </div>
-                </section>
-                <br>
-                <br>
-                <section id="katakana" class="p-3 mb-2 grammar-point">
-                    <h3 class="display-4">Katakana:</h3>
-                    <p class="lead">Katakana thường được sử dụng để viết các từ mượn từ tiếng nước ngoài, tên riêng của người nước ngoài, hoặc để nhấn mạnh một số từ ngữ nhất định. Mặc dù không phổ biến bằng Hiragana, nhưng việc nắm vững Katakana vẫn rất quan trọng để bạn có thể đọc hiểu tiếng Nhật một cách toàn diện.</p>
-                
-                    <h3>Bảng chữ cái Katakana:</h3>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>ア (a)</th>
-                                <th>イ (i)</th>
-                                <th>ウ (u)</th>
-                                <th>エ (e)</th>
-                                <th>オ (o)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>∅</th>
-                                <td>ア</td>
-                                <td>イ</td>
-                                <td>ウ</td>
-                                <td>エ</td>
-                                <td>オ</td>
-                            </tr>
-                            <tr>
-                                <th>k</th>
-                                <td>カ</td>
-                                <td>キ</td>
-                                <td>ク</td>
-                                <td>ケ</td>
-                                <td>コ</td>
-                            </tr>
-                            <tr>
-                                <th>s</th>
-                                <td>サ</td>
-                                <td>シ</td>
-                                <td>ス</td>
-                                <td>セ</td>
-                                <td>ソ</td>
-                            </tr>
-                            <tr>
-                                <th>t</th>
-                                <td>タ</td>
-                                <td>チ</td>
-                                <td>ツ</td>
-                                <td>テ</td>
-                                <td>ト</td>
-                            </tr>
-                            <tr>
-                                <th>n</th>
-                                <td>ナ</td>
-                                <td>ニ</td>
-                                <td>ヌ</td>
-                                <td>ネ</td>
-                                <td>ノ</td>
-                            </tr>
-                            <tr>
-                                <th>h</th>
-                                <td>ハ</td>
-                                <td>ヒ</td>
-                                <td>フ</td>
-                                <td>ヘ</td>
-                                <td>ホ</td>
-                            </tr>
-                            <tr>
-                                <th>m</th>
-                                <td>マ</td>
-                                <td>ミ</td>
-                                <td>ム</td>
-                                <td>メ</td>
-                                <td>モ</td>
-                            </tr>
-                            <tr>
-                                <th>y</th>
-                                <td>ヤ</td>
-                                <td></td>
-                                <td>ユ</td>
-                                <td></td>
-                                <td>ヨ</td>
-                            </tr>
-                            <tr>
-                                <th>r</th>
-                                <td>ラ</td>
-                                <td>リ</td>
-                                <td>ル</td>
-                                <td>レ</td>
-                                <td>ロ</td>
-                            </tr>
-                            <tr>
-                                <th>w</th>
-                                <td>ワ</td>
-                                <td></td>
-                                <td>ン</td>
-                                <td></td>
-                                <td>ヲ</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                
-                    <div class="alert alert-info">
-                        <strong>Lưu ý:</strong>
+                    <div class="col-md-6">
+                        <h3>Bảng chữ cái Hiragana:</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>a</th>
+                                        <th>i</th>
+                                        <th>u</th>
+                                        <th>e</th>
+                                        <th>o</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>∅</th>
+                                        <td>あ</td>
+                                        <td>い</td>
+                                        <td>う</td>
+                                        <td>え</td>
+                                        <td>お</td>
+                                    </tr>
+                                    <tr>
+                                        <th>k</th>
+                                        <td>か</td>
+                                        <td>き</td>
+                                        <td>く</td>
+                                        <td>け</td>
+                                        <td>こ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>s</th>
+                                        <td>さ</td>
+                                        <td>し</td>
+                                        <td>す</td>
+                                        <td>せ</td>
+                                        <td>そ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>t</th>
+                                        <td>た</td>
+                                        <td>ち</td>
+                                        <td>つ</td>
+                                        <td>て</td>
+                                        <td>と</td>
+                                    </tr>
+                                    <tr>
+                                        <th>n</th>
+                                        <td>な</td>
+                                        <td>に</td>
+                                        <td>ぬ</td>
+                                        <td>ね</td>
+                                        <td>の</td>
+                                    </tr>
+                                    <tr>
+                                        <th>h</th>
+                                        <td>は</td>
+                                        <td>ひ</td>
+                                        <td>ふ</td>
+                                        <td>へ</td>
+                                        <td>ほ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>m</th>
+                                        <td>ま</td>
+                                        <td>み</td>
+                                        <td>む</td>
+                                        <td>め</td>
+                                        <td>も</td>
+                                    </tr>
+                                    <tr>
+                                        <th>y</th>
+                                        <td>や</td>
+                                        <td></td>
+                                        <td>ゆ</td>
+                                        <td></td>
+                                        <td>よ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>r</th>
+                                        <td>ら</td>
+                                        <td>り</td>
+                                        <td>る</td>
+                                        <td>れ</td>
+                                        <td>ろ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>w</th>
+                                        <td>わ</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>を</td>
+                                    </tr>
+                                    <tr>
+                                        <th>n</th>
+                                        <td colspan="5">ん</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="katakana" class="section">
+                <h2 class="display-4">Katakana: Người bạn mới trong hành trình</h2>
+                <p class="lead">Katakana là hệ thống chữ viết dùng cho từ ngoại lai, tên riêng nước ngoài, và đôi khi để nhấn mạnh. Hãy cùng khám phá Katakana!</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Bảng chữ cái Katakana:</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>a</th>
+                                        <th>i</th>
+                                        <th>u</th>
+                                        <th>e</th>
+                                        <th>o</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>∅</th>
+                                        <td>ア</td>
+                                        <td>イ</td>
+                                        <td>ウ</td>
+                                        <td>エ</td>
+                                        <td>オ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>k</th>
+                                        <td>カ</td>
+                                        <td>キ</td>
+                                        <td>ク</td>
+                                        <td>ケ</td>
+                                        <td>コ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>s</th>
+                                        <td>サ</td>
+                                        <td>シ</td>
+                                        <td>ス</td>
+                                        <td>セ</td>
+                                        <td>ソ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>t</th>
+                                        <td>タ</td>
+                                        <td>チ</td>
+                                        <td>ツ</td>
+                                        <td>テ</td>
+                                        <td>ト</td>
+                                    </tr>
+                                    <tr>
+                                        <th>n</th>
+                                        <td>ナ</td>
+                                        <td>ニ</td>
+                                        <td>ヌ</td>
+                                        <td>ネ</td>
+                                        <td>ノ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>h</th>
+                                        <td>ハ</td>
+                                        <td>ヒ</td>
+                                        <td>フ</td>
+                                        <td>ヘ</td>
+                                        <td>ホ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>m</th>
+                                        <td>マ</td>
+                                        <td>ミ</td>
+                                        <td>ム</td>
+                                        <td>メ</td>
+                                        <td>モ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>y</th>
+                                        <td>ヤ</td>
+                                        <td></td>
+                                        <td>ユ</td>
+                                        <td></td>
+                                        <td>ヨ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>r</th>
+                                        <td>ラ</td>
+                                        <td>リ</td>
+                                        <td>ル</td>
+                                        <td>レ</td>
+                                        <td>ロ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>w</th>
+                                        <td>ワ</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ヲ</td>
+                                    </tr>
+                                    <tr>
+                                        <th>n</th>
+                                        <td colspan="5">ン</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Lưu ý khi học Katakana:</h3>
                         <ul>
-                            <li>Katakana còn có các chữ ghép như "キャ" (kya), "シュ" (shu), "チョ" (cho),...</li>
-                            <li>Chữ katakana này dễ quên lắm, mình học 3 tháng nhưng mình nhìn vô chữ katakana mình còn ớn, vì katakana có phần chữ ghép đặc biệt <a href="https://www.realkana.com/katakana/extended" target="_blank">Extend katakana</a> và <a href="https://www.realkana.com/katakana/double" target="_blank">Double characters</a>, các bạn tự tham khảo nhé!</li>
+                            <li>Katakana có các chữ ghép như "キャ" (kya), "シュ" (shu), "チョ" (cho),...</li>
+                            <li>Chú ý đến các chữ Katakana đặc biệt trong <a href="https://www.realkana.com/katakana/extended" target="_blank">Extend katakana</a> và <a href="https://www.realkana.com/katakana/double" target="_blank">Double characters</a>.</li>
+                            <li>Đặc biệt lưu ý các nét viết của các chữ dễ nhầm lẫn như シ (shi), ツ (tsu), ソ (so), ン (n):</li>
+                            <ul>
+                                <li>シ (shi): Nét dài viết từ dưới lên</li>
+                                <li>ツ (tsu): Nét dài viết từ trên xuống</li>
+                                <li>ソ (so): Nét dài viết từ trên xuống</li>
+                                <li>ン (n): Nét dài viết từ dưới lên</li>
+                            </ul>
                         </ul>
                     </div>
-                
-                
-                    <h3>Phân biệt các chữ cái dễ nhầm lẫn:</h3>
-                    <ul>
-                        <li>
-                            <h4>シ (shi) và ツ (tsu):</h4>
-                            <p>Chữ "shi" (シ) có nét dài từ dưới lên, trong khi chữ "tsu" (ツ) từ trên xuống.</p>
-                        </li>
-                        <li>
-                            <h4>ソ (so) và ン (n):</h4>
-                            <p>Chữ "so" (ソ) nét từ trên xuống, trong khi chữ "n" (ン) từ dưới lên.</p>
-                        </li>
-                    </ul>
-                </section>
-                <br>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h3>Ứng dụng Katakana trong cuộc sống:</h3>
+                        <p>Katakana không chỉ dùng để viết từ ngoại lai, mà còn có nhiều ứng dụng thú vị khác:</p>
+                        <ul>
+                            <li>Tên thương hiệu: Nhiều thương hiệu nước ngoài được viết bằng Katakana, ví dụ: マクドナルド (McDonald's), アップル (Apple).</li>
+                            <li>Từ mượn: Nhiều từ tiếng Anh được "Nhật hóa" và viết bằng Katakana, ví dụ: コンピューター (computer), スマートフォン (smartphone).</li>
+                            <li>Nhấn mạnh: Đôi khi Katakana được dùng để nhấn mạnh một từ hoặc cụm từ trong câu, tương tự như việc sử dụng chữ in đậm trong tiếng Việt.</li>
+                            <li>Tên động vật và thực vật: Nhiều tên động vật và thực vật được viết bằng Katakana, đặc biệt là các loài không phải bản địa của Nhật Bản.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h3>Mẹo học Katakana hiệu quả:</h3>
+                        <ol>
+                            <li>Tập viết thường xuyên: Viết Katakana mỗi ngày sẽ giúp bạn nhớ lâu hơn.</li>
+                            <li>Liên hệ với hình ảnh: Tạo ra các hình ảnh liên tưởng để nhớ các ký tự Katakana.</li>
+                            <li>Sử dụng flashcards: Tạo bộ flashcards Katakana và ôn tập thường xuyên.</li>
+                            <li>Đọc nhãn sản phẩm: Tìm và đọc các nhãn sản phẩm được viết bằng Katakana trong cuộc sống hàng ngày.</li>
+                            <li>Luyện nghe: Nghe và nhận biết các từ Katakana trong bài hát, phim ảnh Nhật Bản.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
 
-                <section id="kanji" class="p-3 mb-2 grammar-point">
-                    <h3 class="display-4">Kanji:</h3>
-                    <p class="lead">Kanji là hệ thống chữ viết phức tạp nhất trong tiếng Nhật, được vay mượn từ chữ Hán. Mỗi ký tự kanji có thể có nhiều cách đọc và ý nghĩa khác nhau tùy thuộc vào ngữ cảnh.</p>
-                    
-                    <h4>Đặc điểm của Kanji:</h4>
-                    <ul>
-                        <li>Mỗi ký tự kanji thường đại diện cho một khái niệm hoặc ý tưởng.</li>
-                        <li>Kanji có thể được kết hợp để tạo ra từ mới với ý nghĩa phức tạp hơn.</li>
-                        <li>Có hai cách đọc chính: âm Hán (onyomi) và âm Nhật (kunyomi).</li>
-                    </ul>
-                    
-                    <h4>Một số Kanji cơ bản:</h4>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Kanji</th>
-                                    <th>Ý nghĩa</th>
-                                    <th>Onyomi</th>
-                                    <th>Kunyomi</th>
-                                    <th>Ví dụ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>日</td>
-                                    <td>Ngày, mặt trời</td>
-                                    <td>NICHI, JITSU</td>
-                                    <td>hi, -bi, -ka</td>
-                                    <td>日本 (Nihon): Nhật Bản</td>
-                                </tr>
-                                <tr>
-                                    <td>人</td>
-                                    <td>Người</td>
-                                    <td>JIN, NIN</td>
-                                    <td>hito</td>
-                                    <td>日本人 (Nihonjin): Người Nhật</td>
-                                </tr>
-                                <tr>
-                                    <td>山</td>
-                                    <td>Núi</td>
-                                    <td>SAN</td>
-                                    <td>yama</td>
-                                    <td>富士山 (Fujisan): Núi Phú Sĩ</td>
-                                </tr>
-                                <tr>
-                                    <td>水</td>
-                                    <td>Nước</td>
-                                    <td>SUI</td>
-                                    <td>mizu</td>
-                                    <td>水曜日 (Suiyoubi): Thứ Tư</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <section id="kanji" class="section">
+                <h2 class="display-4">Kanji: Chìa khóa mở cánh cửa văn hóa Nhật Bản</h2>
+                <p class="lead">Kanji là hệ thống chữ viết độc đáo của tiếng Nhật, được vay mượn từ chữ Hán. Đây không chỉ là một cách viết, mà còn là một kho tàng văn hóa đầy màu sắc, mang trong mình lịch sử và triết lý của người Nhật.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Kanji là gì?</h3>
+                        <ul>
+                            <li>Kanji là các ký tự biểu ý, mỗi ký tự đại diện cho một ý nghĩa cụ thể.</li>
+                            <li>Khác với Hiragana và Katakana, Kanji không biểu thị âm tiết mà biểu thị ý nghĩa.</li>
+                            <li>Có hàng nghìn ký tự Kanji, nhưng bạn chỉ cần khoảng 2000 ký tự để đọc được hầu hết các văn bản thông thường.</li>
+                        </ul>
                     </div>
-                
-                    <h4>Phương pháp học Kanji hiệu quả:</h4>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">1. Học theo bộ thủ</h5>
-                                    <p class="card-text">Nhóm các kanji có cùng bộ thủ để dễ nhớ và hiểu ý nghĩa.</p>
-                                </div>
+                    <div class="col-md-6">
+                        <h3>Điểm đặc biệt của Kanji:</h3>
+                        <ul>
+                            <li>Mỗi ký tự Kanji như một bức tranh thu nhỏ, kể một câu chuyện về ý nghĩa của nó. Ví dụ: 木 (cây), 森 (rừng - nhiều cây).</li>
+                            <li>Kanji có khả năng "kết hợp" với nhau, tạo ra vô vàn từ mới. Ví dụ: 日 (ngày) + 本 (gốc) = 日本 (Nhật Bản).</li>
+                            <li>Có hai cách đọc chính:
+                                <ul>
+                                    <li>Âm Hán (onyomi): cách đọc dựa trên âm Hán cổ</li>
+                                    <li>Âm Nhật (kunyomi): cách đọc bản địa của Nhật Bản</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h3>Bí kíp học Kanji vui vẻ và hiệu quả:</h3>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">1. Kể chuyện với Kanji</h5>
+                                <p class="card-text">Tưởng tượng mỗi Kanji là một nhân vật trong câu chuyện của bạn. Ví dụ: 山 (núi) trông như một ngọn núi có ba đỉnh.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">2. Sử dụng flashcards</h5>
-                                    <p class="card-text">Tạo và ôn tập thường xuyên với flashcards để ghi nhớ kanji.</p>
-                                </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">2. Kanji trong túi</h5>
+                                <p class="card-text">Sử dụng ứng dụng học Kanji trên điện thoại như WaniKani hoặc Anki để học mọi lúc mọi nơi.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">3. Luyện viết hàng ngày</h5>
-                                    <p class="card-text">Thực hành viết kanji mỗi ngày để cải thiện khả năng ghi nhớ.</p>
-                                </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">3. Kanji trong cuộc sống</h5>
+                                <p class="card-text">Tìm kiếm và ghi nhớ Kanji trong môi trường xung quanh bạn, từ biển hiệu đến bao bì sản phẩm.</p>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">4. Học theo bộ thủ</h5>
+                                <p class="card-text">Nhiều Kanji được tạo thành từ các thành phần nhỏ hơn gọi là bộ thủ. Học các bộ thủ phổ biến sẽ giúp bạn dễ dàng nhớ và đoán nghĩa của Kanji mới.</p>
                             </div>
                         </div>
                     </div>
-                
-                    <div class="alert alert-info">
-                        <strong>Lưu ý:</strong> Việc học kanji đòi hỏi thời gian và sự kiên nhẫn. Bắt đầu với những kanji cơ bản và thường xuyên sử dụng là cách tiếp cận hiệu quả. Hãy kiên trì và thực hành đều đặn!
+                </div>
+            </section>
+
+            <section id="resources" class="section">
+                <h2 class="display-4">Tài nguyên học tập</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Sách và tài liệu:</h3>
+                        <ul>
+                            <li>Genki: An Integrated Course in Elementary Japanese</li>
+                            <li>Minna no Nihongo</li>
+                            <li>Kanji Look and Learn</li>
+                        </ul>
                     </div>
-                </section>
-            </article>
+                    <div class="col-md-6">
+                        <h3>Ứng dụng và trang web:</h3>
+                        <ul>
+                            <li><a href="https://www.duolingo.com/" target="_blank">Duolingo</a></li>
+                            <li><a href="https://apps.ankiweb.net/" target="_blank">Anki</a></li>
+                            <li><a href="https://jisho.org/" target="_blank">Jisho</a> - Từ điển trực tuyến</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="motivation" class="section">
+                <h2 class="display-4">Lời động viên</h2>
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-0">Hãy nhớ rằng, mỗi bước tiến trong việc học tiếng Nhật đều là một thành công đáng tự hào. Đừng ngại khó khăn, hãy kiên trì và tận hưởng hành trình khám phá ngôn ngữ tuyệt vời này!</p>
+                </div>
+            </section>
         </main>
     </div>
-
-
-
-
-
 
     <button id="back-to-top" class="btn btn-primary" title="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-         // Back to top button
-    var btn = $('#back-to-top');
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 300) {
-            btn.addClass('show');
-        } else {
-            btn.removeClass('show');
-        }
-    });
+        // Back to top button
+        var btn = $('#back-to-top');
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
 
-    btn.on('click', function (e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: 0 }, '200');
-    });
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '200');
+        });
 
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
@@ -731,6 +586,14 @@
                 return true;
             }
         };
+
+        // Smooth scroll for internal links
+        $(document).on('click', 'a[href^="#"]', function (event) {
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 500);
+        });
     </script>
 </body>
 
