@@ -11,7 +11,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        
+        h2 {
+            color: red;
+        }
+
+        .section-anchor {
+            display: block;
+            position: relative;
+            top: -80px;
+            /* Điều chỉnh giá trị này tùy theo chiều cao của header */
+            visibility: hidden;
+
+        }
+
+        header {
+            background-image: url(https://i.pinimg.com/originals/3c/31/c8/3c31c8503d9e31400e96d4b90b93c141.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-attachment: fixed;
+
+            width: 100%;
+            overflow: hidden;
+            z-index: -11;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: -50vh;
+            background: inherit;
+            height: 30vh;
+            z-index: -111;
+            background-position: center bottom;
+        }
+
+        #myblog-1 {
+            background-color: rgba(255, 255, 255, 0.397);
+            margin-top: 40px !important;
+
+        }
+
+        body {
+            background-color: white;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .table {
+            font-size: 14px;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
         @media screen and (max-width: 1090px) {
             .menu {
                 margin-bottom: 25px;
@@ -32,7 +93,7 @@
             }
 
             li {
-                font-size: 10px !important;
+                font-size: 14px !important;
             }
 
             #header,
@@ -49,7 +110,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="../index.html">Min Thep</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -62,8 +124,6 @@
             </div>
         </nav>
     </header>
-
-
 
     <div id="myblog-1" class="container">
         <div class="wrapper anime-svg box-top">
@@ -78,15 +138,63 @@
                 <p class="update-info">
                     <i class="fas fa-clock"></i>
                     <span class="update-text">Last Updated:</span>
-                    <span class="update-time">20:00 PM, October 2, 2024</span>
+                    <span class="update-time">0:30 AM, October 3, 2024</span>
                 </p>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            <h4 class="alert-heading">Chào mừng bạn đến với blog ôn thi JPD113!</h4>
+                            <p>Đây là nơi mình tổng hợp kiến thức để chuẩn bị cho kỳ thi tương đương 1/4 trình độ N5. Nội
+                                dung được tham khảo từ nhiều nguồn đáng tin cậy, bao gồm <a
+                                    href="https://www.tofugu.com/japanese-grammar/date-and-time/"
+                                    class="alert-link">Tofugu</a>. Mình rất mong nhận được phản hồi từ các bạn nếu phát hiện
+                                bất kỳ sai sót nào.</p>
+                            <hr>
+                            <p class="mb-0">Nếu bạn đang chuẩn bị học môn này, đừng quên ghé thăm <a href="textblog-0.html"
+                                    class="alert-link">bài viết giới thiệu</a> của mình nhé!</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Lưu ý quan trọng</h5>
+                                <p class="card-text">Blog này được thiết kế để hỗ trợ việc học tập hiệu quả, vì vậy mình đã
+                                    tắt chức năng sao chép để khuyến khích các bạn ghi chép và tiếp thu kiến thức một cách
+                                    chủ động.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="table-of-contents">
+                <h2>Mục lục</h2>
+                <ul>
+                    <li><a href="#tai-nguyen">Tài nguyên học tập</a></li>
+                    <li><a href="#ngay-gio">Ngày và giờ trong JDP113</a>
+                        <ul>
+                            <li><a href="#dem-thang">I. Đếm Tháng</a></li>
+                            <li><a href="#dem-ngay">II. Đếm Ngày</a></li>
+                            <li><a href="#ngay-trong-tuan">III. Ngày trong tuần</a></li>
+                            <li><a href="#dem-gio">IV. Số đếm giờ</a></li>
+                            <li><a href="#dem-phut">V. Số phút</a></li>
+                            <li><a href="#dem-tuoi">VI. Đếm tuổi</a></li>
+                            <li><a href="#dem-tang">VII. Đếm tầng</a></li>
+                            <li><a href="#dem-so">VIII. Đếm số</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#ngu-phap">Ngữ pháp JPD113</a></li>
+                    <li><strong><a href="#speaking">SPEAKING (Phần quan trọng! Update sau vì mình cấn chục cái project
+                                :) )</a></strong></li>
+                </ul>
+            </div>
         </div>
-        <p>Đầu tiên, đây là blog mà mình tự tạo để ôn thi JPD113 (tương đương 1/4 trình độ N5). Mình tham khảo từ <a
-                href="https://www.tofugu.com/japanese-grammar/date-and-time/">Tofugu</a>. Nếu có bất kỳ sai sót nào, xin
-            vui lòng liên hệ nhé!. Nếu bạn đang chuẩn bị học môn
-            này, hãy nhấp vào <a href="textblog-0.html">link</a> này! Ngoài ra mình xin được chặn copy ở page này nhé!</p>
-
+        <div id="tai-nguyen" class="section-anchor"></div>
 
         <h3>Tài nguyên học tập:</h3>
         <div class="alert alert-info">
@@ -128,97 +236,128 @@
                     rel="nofollow ugc noopener">Quizlet Particles</a>.
             </li>
         </ol>
-        <br>
-        <br>
+        <div id="ngay-gio" class="section-anchor"></div>
+
         <h3><b>Ngày và giờ trong JDP113:</b> </h3>
         <br>
-        <h5>I/ Đếm
-            Th&aacute;ng:<br>Note: Số b&igrave;nh thường đi với 月. Số đặc biệt l&agrave; 4 7 9.</h5>
+        <div id="dem-thang" class="section-anchor"></div>
+        <h2>I/ Đếm Tháng:</h2>
+        <h5>Lưu ý: Hầu hết các tháng sử dụng số thông thường kết hợp với 月 (がつ - gatsu). Tuy nhiên, có 3 tháng đặc biệt
+            cần chú ý:</h5>
+        <ul>
+            <li>Tháng 4: しがつ (shigatsu)</li>
+            <li>Tháng 7: しちがつ (shichigatsu)</li>
+            <li>Tháng 9: くがつ (kugatsu)</li>
+        </ul>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th style="color: rgb(224, 224, 224) rgb(224, 224, 224) rgb(33, 150, 243);">Japanese</th>
-                        <th style="color: rgb(224, 224, 224) rgb(224, 224, 224) rgb(33, 150, 243);">Reading</th>
-                        <th style="color: rgb(224, 224, 224) rgb(224, 224, 224) rgb(33, 150, 243);">English</th>
+                        <th>Số</th>
+                        <th>Kanji</th>
+                        <th>Hiragana</th>
+                        <th>Romaji</th>
+                        <th>Tiếng Việt</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">一月 / １月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">いちがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">January</td>
+                        <td>1</td>
+                        <td>一月</td>
+                        <td>いちがつ</td>
+                        <td>ichigatsu</td>
+                        <td>Tháng Một</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">二月 / ２月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">にがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">February</td>
+                        <td>2</td>
+                        <td>二月</td>
+                        <td>にがつ</td>
+                        <td>nigatsu</td>
+                        <td>Tháng Hai</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">三月 / ３月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">さんがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">March</td>
+                        <td>3</td>
+                        <td>三月</td>
+                        <td>さんがつ</td>
+                        <td>sangatsu</td>
+                        <td>Tháng Ba</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">四月 / ４月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);"><strong>しがつ</strong></td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">April</td>
+                        <td>4</td>
+                        <td>四月</td>
+                        <td><strong>しがつ</strong></td>
+                        <td>shigatsu</td>
+                        <td>Tháng Tư</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">五月 / ５月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">ごがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">May</td>
+                        <td>5</td>
+                        <td>五月</td>
+                        <td>ごがつ</td>
+                        <td>gogatsu</td>
+                        <td>Tháng Năm</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">六月 / ６月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">ろくがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">June</td>
+                        <td>6</td>
+                        <td>六月</td>
+                        <td>ろくがつ</td>
+                        <td>rokugatsu</td>
+                        <td>Tháng Sáu</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">七月 / ７月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);"><strong>しちがつ</strong></td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">July</td>
+                        <td>7</td>
+                        <td>七月</td>
+                        <td><strong>しちがつ</strong></td>
+                        <td>shichigatsu</td>
+                        <td>Tháng Bảy</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">八月 / ８月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">はちがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">August</td>
+                        <td>8</td>
+                        <td>八月</td>
+                        <td>はちがつ</td>
+                        <td>hachigatsu</td>
+                        <td>Tháng Tám</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">九月 / ９月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);"><strong>くがつ</strong></td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">September</td>
+                        <td>9</td>
+                        <td>九月</td>
+                        <td><strong>くがつ</strong></td>
+                        <td>kugatsu</td>
+                        <td>Tháng Chín</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">十月 / １０月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">じゅうがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">October</td>
+                        <td>10</td>
+                        <td>十月</td>
+                        <td>じゅうがつ</td>
+                        <td>jūgatsu</td>
+                        <td>Tháng Mười</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">十一月 / １１月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">じゅういちがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">November</td>
+                        <td>11</td>
+                        <td>十一月</td>
+                        <td>じゅういちがつ</td>
+                        <td>jūichigatsu</td>
+                        <td>Tháng Mười Một</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">十二月 / １２月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">じゅうにがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">December</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid rgb(224, 224, 224);">何月</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">なんがつ</td>
-                        <td style="border: 1px solid rgb(224, 224, 224);">Which month(s)?</td>
+                        <td>12</td>
+                        <td>十二月</td>
+                        <td>じゅうにがつ</td>
+                        <td>jūnigatsu</td>
+                        <td>Tháng Mười Hai</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p><br></p>
-        <h5 style="text-align: justify;">II/ Đếm Ng&agrave;y:<br>Note:
-            Các số đặc biệt trong tiếng Nhật bao gồm các số từ 1 đến 10, cùng với 14 (đọc là “juu yokka”), 24 (đọc là
-            “ni juu yokka”) và 20 (đọc là “hatsuka”). Để phân biệt giữa 4 (“Yokka”) và 8 (“Youka”), bạn có thể chú ý vào
-            cách phát âm: số 4 có âm giống “Yot ka” trong khi số 8 có âm “yo” kéo dài, nghe giống “yooo ka”.</h5>
+        <h5>Câu hỏi: 何月ですか (なんがつですか) ?</h5>
+        <p>Trả lời: ＿月です。</p>
+        <div id="dem-ngay" class="section-anchor"></div>
+        <h2 style="text-align: justify;">II/ Đếm Ngày:</h2>
+        <h5>Note:
+            Các số đặc biệt trong tiếng Nhật bao gồm các số từ 1 đến 10, cùng với 14 (đọc là "じゅうよっか"), 24 (đọc là
+            "にじゅうよっか") và 20 (đọc là "はつか"). Để phân biệt giữa 4 ("よっか") và 8 ("ようか"), bạn có thể chú ý vào
+            cách phát âm: số 4 có âm giống “Yot ka” trong khi số 8 có âm “よ” kéo dài, nghe giống “Yooo ka”.</h5>
         <p><span>--&gt;
-                C&acirc;u hỏi: なんにちですか？</span></p>
+                Câu hỏi: なんにちですか？</span></p>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -426,8 +565,8 @@
             </table>
         </div>
         <p><br></p>
-        <h5>III/ Ng&agrave;y
-            trong tuần:</h5>
+        <div id="ngay-trong-tuan" class="section-anchor"></div>
+        <h2>III/ Ngày trong tuần:</h2>
         <p><span>-&gt;
                 Đặt c&acirc;u hỏi: なんよう日ですか？ (Thứ mấy?)</span></p>
         <div class="table-responsive">
@@ -494,7 +633,8 @@
             </table>
         </div>
         <p><br></p>
-        <h5>IV/ Số đếm giờ:</h5>
+        <div id="dem-gio" class="section-anchor"></div>
+        <h2>IV/ Số đếm giờ:</h2>
         <p><span>Note:
                 Ở số đếm giờ ta c&oacute; 午前「ごぜん」l&agrave; a.m v&agrave; 午後「ごご」l&agrave; p.m. V&iacute; dụ nếu 17h sẽ
                 ghi
@@ -604,8 +744,8 @@
             </table>
         </div>
         <br>
-        <h5>V/ Số
-            ph&uacute;t:</h5>
+        <div id="dem-phut" class="section-anchor"></div>
+        <h2>V/ Số phút:</h2>
         <p><span>Note: Th&ecirc;m
                 c&aacute;c hậu tố &quot;-ぷん&quot; hoặc &quot;-ふん&quot; t&ugrave;y v&agrave;o quy tắc ph&aacute;t
                 &acirc;m
@@ -711,428 +851,878 @@
             </table>
         </div>
         <br>
-        <h5>VI/ Đếm
-            tuổi:&nbsp;<br><span>Số +
-                さい , đặc biệt đu&ocirc;i ~1 ~8 ~0 bị mất &acirc;m.</span></h5>
+        <div id="dem-tuoi" class="section-anchor"></div>
+        <h2>VI/ Đếm tuổi:</h2>
+        <h5>Cách đếm tuổi trong tiếng Nhật:</h5>
+        <ul>
+            <li>Công thức cơ bản: Số + さい (sai)</li>
+            <li>Lưu ý các trường hợp đặc biệt:</li>
+            <ul>
+                <li>Khi số kết thúc bằng 1: いっさい (issai)</li>
+                <li>Khi số kết thúc bằng 8: はっさい (hassai)</li>
+                <li>Khi số kết thúc bằng 0: じゅっさい (jussai)</li>
+            </ul>
+        </ul>
+        <p>Trong các trường hợp đặc biệt, âm cuối của số bị thay đổi khi kết hợp với さい.</p>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Number</th>
-                        <th>Japanese</th>
-                        <th>Romanization</th>
+                        <th>Số</th>
+                        <th>Tiếng Nhật</th>
+                        <th>Romaji</th>
+                        <th>Ghi chú</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>一才 (いっさい)</td>
+                        <td>一歳 (いっさい)</td>
                         <td>issai</td>
+                        <td>Trường hợp đặc biệt</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>二才 (にさい)</td>
+                        <td>二歳 (にさい)</td>
                         <td>nisai</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>三才 (さんさい)</td>
+                        <td>三歳 (さんさい)</td>
                         <td>sansai</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>四才 (よんさい)</td>
+                        <td>四歳 (よんさい)</td>
                         <td>yonsai</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>五才 (ごさい)</td>
+                        <td>五歳 (ごさい)</td>
                         <td>gosai</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>六才 (ろくさい)</td>
+                        <td>六歳 (ろくさい)</td>
                         <td>rokusai</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td>七才 (ななさい)</td>
+                        <td>七歳 (ななさい)</td>
                         <td>nanasai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>8</strong></td>
-                        <td>八才 (はっさい)</td>
+                        <td>8</td>
+                        <td>八歳 (はっさい)</td>
                         <td>hassai</td>
+                        <td>Trường hợp đặc biệt</td>
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td>九才 (きゅうさい)</td>
+                        <td>九歳 (きゅうさい)</td>
                         <td>kyūsai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>10</strong></td>
-                        <td>十才 (じゅっさい)</td>
+                        <td>10</td>
+                        <td>十歳 (じゅっさい)</td>
                         <td>jussai</td>
+                        <td>Trường hợp đặc biệt</td>
                     </tr>
                     <tr>
-                        <td>11</td>
-                        <td>十一才 (じゅういっさい)</td>
-                        <td>jūissai</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>十二才 (じゅうにさい)</td>
-                        <td>jūnisai</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td>十三才 (じゅうさんさい)</td>
-                        <td>jūsansai</td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td>十四才 (じゅうよんさい)</td>
-                        <td>jūyonsai</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>十五才 (じゅうごさい)</td>
-                        <td>jūgosai</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>十六才 (じゅうろくさい)</td>
-                        <td>jūrokusai</td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>十七才 (じゅうななさい)</td>
-                        <td>jūnanasai</td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td>十八才 (じゅうはっさい)</td>
-                        <td>jūhassai</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td>十九才 (じゅうきゅうさい)</td>
-                        <td>jūkyūsai</td>
-                    </tr>
-                    <tr>
-                        <td><strong>20</strong></td>
-                        <td>二十才 (にじゅっさい hoặc はたち)</td>
-                        <td>nijussai hoặc hatachi</td>
+                        <td>20</td>
+                        <td>二十歳 (はたち)</td>
+                        <td>hatachi</td>
+                        <td>Cách đọc đặc biệt</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <h5>Lưu ý quan trọng:</h5>
+        <ul>
+            <li>Từ 21 tuổi trở lên, sử dụng cách đếm thông thường: 二十一歳 (にじゅういっさい - nijūissai), 二十二歳 (にじゅうにさい -
+                nijūnisai), v.v.</li>
+            <li>Khi hỏi tuổi, sử dụng câu: 何歳ですか？(Nansai desu ka?)</li>
+            <li>Khi trả lời tuổi của mình, thêm です (desu) vào cuối: 二十歳です。(Hatachi desu.)</li>
+        </ul>
         <br>
-        <h5>VII/ Đếm
-            tầng:</h5>
-        <p>Note: Gom 1, 6, 8, 10 chung nhóm làm mất âm (ikkai, rokkai, hakkai, jukkai - nhớ tuổi là 1,8,10 còn tầng là
-            1,6,8,10) và số 3 thêm tenten (ngoặc kép) vào.</p>
+        <div id="dem-tang" class="section-anchor"></div>
+        <h2>VII/ Đếm tầng:</h2>
+        <p>Lưu ý: Có một số quy tắc đặc biệt khi đếm tầng trong tiếng Nhật:</p>
+        <ul>
+            <li>Các tầng 1, 6, 8, 10 có cách đọc đặc biệt: ikkai, rokkai, hakkai, jukkai (tương tự như cách đếm tuổi cho
+                1, 8, 10 tuổi)</li>
+            <li>Tầng 3 có âm đọc thay đổi từ "sankai" thành "sangai" (thêm dấu ten-ten vào か)</li>
+        </ul>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Floor</th>
-                        <th>Japanese</th>
-                        <th>Romanization</th>
+                        <th>Tầng</th>
+                        <th>Kanji</th>
+                        <th>Hiragana</th>
+                        <th>Romaji</th>
+                        <th>Ghi chú</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>1st floor</strong></td>
+                        <td><strong>Tầng 1</strong></td>
                         <td>一階</td>
+                        <td>いっかい</td>
                         <td>Ikkai</td>
+                        <td>Đọc đặc biệt</td>
                     </tr>
                     <tr>
-                        <td>2nd floor</td>
+                        <td>Tầng 2</td>
                         <td>二階</td>
+                        <td>にかい</td>
                         <td>Nikai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>3rd floor</strong></td>
+                        <td><strong>Tầng 3</strong></td>
                         <td>三階</td>
+                        <td>さんがい</td>
                         <td>Sangai</td>
+                        <td>Thay đổi âm</td>
                     </tr>
                     <tr>
-                        <td>4th floor</td>
+                        <td>Tầng 4</td>
                         <td>四階</td>
+                        <td>よんかい</td>
                         <td>Yonkai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>5th floor</td>
+                        <td>Tầng 5</td>
                         <td>五階</td>
+                        <td>ごかい</td>
                         <td>Gokai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>6th floor</strong></td>
+                        <td><strong>Tầng 6</strong></td>
                         <td>六階</td>
+                        <td>ろっかい</td>
                         <td>Rokkai</td>
+                        <td>Đọc đặc biệt</td>
                     </tr>
                     <tr>
-                        <td>7th floor</td>
+                        <td>Tầng 7</td>
                         <td>七階</td>
+                        <td>ななかい</td>
                         <td>Nanakai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>8th floor</strong></td>
+                        <td><strong>Tầng 8</strong></td>
                         <td>八階</td>
+                        <td>はっかい</td>
                         <td>Hakkai</td>
+                        <td>Đọc đặc biệt</td>
                     </tr>
                     <tr>
-                        <td>9th floor</td>
+                        <td>Tầng 9</td>
                         <td>九階</td>
+                        <td>きゅうかい</td>
                         <td>Kyūkai</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td><strong>10th floor</strong></td>
+                        <td><strong>Tầng 10</strong></td>
                         <td>十階</td>
+                        <td>じゅっかい</td>
                         <td>Jukkai</td>
+                        <td>Đọc đặc biệt</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p><span>Tầng
-                hầm: Thêm chữ chika ở sau.</span></p>
-        <p><span>V&iacute;
-                dụ: スーパーは地下一階です</span></p>
-        <p>Dịch: Siêu thị nằm ở tầng hầm.</p>
+        <h3>Tầng hầm:</h3>
+        <p>Để chỉ tầng hầm, thêm từ 地下 (ちか - chika) vào trước số tầng.</p>
+        <p>Ví dụ: スーパーは<strong>地下一階</strong>です。(Sūpā wa <strong>chika ikkai</strong> desu.)</p>
+        <p>Dịch: Siêu thị nằm ở tầng hầm thứ nhất.</p>
+        <p>Lưu ý: Khi hỏi về tầng, sử dụng câu: 何階ですか？(Nan-kai desu ka?)</p>
         <p><br></p>
-        <p><br></p>
-        <h5>VIII/ Đếm số:</h5>
-        <p><br></p>
+        <div id="dem-so" class="section-anchor"></div>
+        <h2>VIII/ Đếm số:</h2>
+        <p>Trong tiếng Nhật, hệ thống đếm số có một số đặc điểm riêng. Dưới đây là bảng tổng hợp cách đếm từ 100 đến 10
+            triệu, kèm theo một số lưu ý quan trọng.</p>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Number</th>
-                        <th>Japanese</th>
-                        <th>Romanization</th>
-                        <th>Note</th>
+                        <th>Số</th>
+                        <th>Kanji</th>
+                        <th>Hiragana</th>
+                        <th>Romaji</th>
+                        <th>Ghi chú</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>100</td>
                         <td>百</td>
+                        <td>ひゃく</td>
                         <td>hyaku</td>
-                        <td></td>
+                        <td>Số cơ bản</td>
                     </tr>
                     <tr>
                         <td>200</td>
                         <td>二百</td>
-                        <td>ni-hyaku</td>
+                        <td>にひゃく</td>
+                        <td>nihyaku</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>300</td>
                         <td>三百</td>
-                        <td>san-byaku</td>
-                        <td>Tenten</td>
+                        <td>さんびゃく</td>
+                        <td>sanbyaku</td>
+                        <td>Rendaku: "h" → "b"</td>
                     </tr>
                     <tr>
                         <td>400</td>
                         <td>四百</td>
-                        <td>yon-hyaku</td>
+                        <td>よんひゃく</td>
+                        <td>yonhyaku</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>500</td>
                         <td>五百</td>
-                        <td>go-hyaku</td>
+                        <td>ごひゃく</td>
+                        <td>gohyaku</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>600</td>
                         <td>六百</td>
+                        <td>ろっぴゃく</td>
                         <td>roppyaku</td>
-                        <td>Mất &acirc;m + maru</td>
+                        <td>Sokuon + Rendaku: "h" → "p"</td>
                     </tr>
                     <tr>
                         <td>700</td>
                         <td>七百</td>
-                        <td>nana-hyaku</td>
+                        <td>ななひゃく</td>
+                        <td>nanahyaku</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>800</td>
                         <td>八百</td>
+                        <td>はっぴゃく</td>
                         <td>happyaku</td>
-                        <td>Mất &acirc;m + maru</td>
+                        <td>Sokuon + Rendaku: "h" → "p"</td>
                     </tr>
                     <tr>
                         <td>900</td>
                         <td>九百</td>
-                        <td>kyuu-hyaku</td>
+                        <td>きゅうひゃく</td>
+                        <td>kyūhyaku</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>1000</td>
+                        <td>1,000</td>
                         <td>千</td>
+                        <td>せん</td>
                         <td>sen</td>
-                        <td></td>
+                        <td>Số cơ bản cho hàng nghìn</td>
                     </tr>
                     <tr>
-                        <td>2000</td>
-                        <td>二千</td>
-                        <td>ni-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3000</td>
+                        <td>3,000</td>
                         <td>三千</td>
-                        <td>san-zen</td>
-                        <td>Ten ten</td>
+                        <td>さんぜん</td>
+                        <td>sanzen</td>
+                        <td>Rendaku: "s" → "z"</td>
                     </tr>
                     <tr>
-                        <td>4000</td>
-                        <td>四千</td>
-                        <td>yon-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>5000</td>
-                        <td>五千</td>
-                        <td>go-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>6000</td>
-                        <td>六千</td>
-                        <td>roku-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>7000</td>
-                        <td>七千</td>
-                        <td>nana-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>8000</td>
+                        <td>8,000</td>
                         <td>八千</td>
+                        <td>はっせん</td>
                         <td>hassen</td>
-                        <td>Mất âm + maru</td>
+                        <td>Sokuon</td>
                     </tr>
                     <tr>
-                        <td>9000</td>
-                        <td>九千</td>
-                        <td>kyuu-sen</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>10000</td>
+                        <td>10,000</td>
                         <td>一万</td>
+                        <td>いちまん</td>
                         <td>ichiman</td>
-                        <td></td>
+                        <td>Số cơ bản cho hàng chục nghìn</td>
                     </tr>
                     <tr>
-                        <td>100000</td>
+                        <td>100,000</td>
                         <td>十万</td>
-                        <td>juuman</td>
+                        <td>じゅうまん</td>
+                        <td>jūman</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>1000000</td>
+                        <td>1,000,000</td>
                         <td>百万</td>
+                        <td>ひゃくまん</td>
                         <td>hyakuman</td>
-                        <td></td>
+                        <td>Một triệu</td>
                     </tr>
                     <tr>
-                        <td>10000000</td>
+                        <td>10,000,000</td>
                         <td>千万</td>
+                        <td>せんまん</td>
                         <td>senman</td>
-                        <td></td>
+                        <td>Mười triệu</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3><b>Ngữ pháp JPD113:</b></h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active set-height">
-                            <img src="textblog-1/1.jpg" class="d-block w-100" alt="1">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/2.jpg" class="d-block w-100" alt="2">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/3.jpg" class="d-block w-100" alt="3">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/4.jpg" class="d-block w-100" alt="4">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/5.jpg" class="d-block w-100" alt="5">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/6.jpg" class="d-block w-100" alt="6">
-                        </div>
-                        <div class="carousel-item set-height">
-                            <img src="textblog-1/7.jpg" class="d-block w-100" alt="7">
-                        </div>
+        <h3>Những điều cần lưu ý khi học đếm số lớn trong tiếng Nhật:</h3>
+        <ol>
+            <li><strong>Cách đếm khác với tiếng Anh:</strong>
+                <p>Tiếng Nhật đếm theo nhóm 10,000 (万 man), không phải 1,000 như tiếng Anh. Ví dụ:</p>
+                <ul>
+                    <li>10,000 = 一万 (いちまん ichiman)</li>
+                    <li>100,000 = 十万 (じゅうまん juuman)</li>
+                    <li>1,000,000 = 百万 (ひゃくまん hyakuman)</li>
+                </ul>
+            </li>
+            <li><strong>Một số cách đọc đặc biệt:</strong>
+                <p>Một vài số có cách đọc riêng, cần ghi nhớ:</p>
+                <ul>
+                    <li>300 = 三百 (さんびゃく sanbyaku)</li>
+                    <li>600 = 六百 (ろっぴゃく roppyaku)</li>
+                    <li>800 = 八百 (はっぴゃく happyaku)</li>
+                    <li>3000 = 三千 (さんぜん sanzen)</li>
+                    <li>8000 = 八千 (はっせん hassen)</li>
+                </ul>
+            </li>
+        </ol>
+        <p>Đừng lo lắng nếu bạn thấy khó nhớ hết một lúc. Hãy tập trung vào các số thường dùng trước, rồi dần dần học
+            thêm các số lớn hơn. Thực hành thường xuyên sẽ giúp bạn quen dần với cách đếm số trong tiếng Nhật.</p>
+
+        <div id="ngu-phap" class="section-anchor"></div>
+        <h2><b>Ngữ pháp JPD113:</b></h2>
+        <p>Note: Bấm vào chữ để hiển thị.</p>
+        <button id="toggleAll" class="btn btn-primary mb-3">Mở rộng tất cả</button>
+        <div class="accordion" id="accordionNguPhap">
+            <!-- Từ chỉ vị trí -->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            1. Từ chỉ vị trí
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <ul>
+                            <li>ここ (Koko): Nơi này</li>
+                            <li>そこ (Soko): Nơi đó</li>
+                            <li>あそこ (Asoko): Nơi kia</li>
+                            <li>こちら (Kochira): Nơi này (lịch sự hơn)</li>
+                            <li>そちら (Sochira): Nơi đó (lịch sự hơn)</li>
+                            <li>あちら (Achira): Nơi kia (lịch sự hơn)</li>
+                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Dùng để chỉ vị trí của người hoặc vật.</p>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" style="filter: invert(100%);"
-                            aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" style="filter: invert(100%);"
-                            aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
+
+            <!-- Hỏi tên trường, công ty, trường đại học, địa chỉ nhà -->
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2. Hỏi tên trường, công ty, trường đại học, địa chỉ nhà
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> (おくに・かいしゃ・だいがく・がっこう・いえ・いなか) は どちらですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về địa điểm của trường, công ty, trường đại học, nhà, quê...
+                        </p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>だいがくはどちらですか。 (Trường bạn ở đâu?)</li>
+                            <li>かいしゃはどちらですか。 (Công ty bạn ở đâu?)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Xuất xứ -->
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            3. Xuất xứ
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> これはどこの N ですか。 / くに のです。</p>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về nguồn gốc, xuất xứ của một vật.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これはどこのかみですか。 (Cái này là giấy của nước nào?)</li>
+                            <li>ベトナムのです。 (Của Việt Nam.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hỏi tiền -->
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            4. Hỏi tiền
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> これはいくらですか。 / ~ はいくらですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về giá cả của một món đồ.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これはいくらですか。 (Cái này bao nhiêu tiền?)</li>
+                            <li>750えんです。 (750 yên.)</li>
+                        </ul>
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>どちら (Dochira) có nghĩa là "ở đâu", dùng để hỏi về địa điểm.</li>
+                            <li>いくら (Ikura) có nghĩa là "bao nhiêu", dùng để hỏi về giá tiền.</li>
+                            <li>の (No) là trợ từ chỉ sở hữu.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cái này / Cái đó / Cái kia -->
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            5. Cái này / Cái đó / Cái kia
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong></p>
+                        <ul>
+                            <li>これ (Kore) + は: Cái này</li>
+                            <li>それ (Sore) + は: Cái đó</li>
+                            <li>あれ (Are) + は: Cái kia</li>
+                            <li>この + N: Cái này</li>
+                            <li>その + N: Cái đó</li>
+                            <li>あの + N: Cái kia</li>
+                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Dùng để chỉ các vật thể ở gần, xa hoặc rất xa người nói.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これはほん ですか。 (Cái này là sách phải không?)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Xác nhận cái này là...? -->
+            <div class="card">
+                <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            6. Xác nhận cái này là...?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> これは N1 ですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Dùng để xác nhận xem một vật có phải là N1 hay không.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これはほんですか。 (Cái này là sách phải không?)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Là N1 hay N2 -->
+            <div class="card">
+                <div class="card-header" id="headingSeven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            7. Là N1 hay N2
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> A ですか B ですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Dùng để hỏi lựa chọn giữa hai vật hoặc hai tính chất.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これはざっしですか ノートですか。 (Cái này là tạp chí hay là vở?)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sở hữu -->
+            <div class="card">
+                <div class="card-header" id="headingEight">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            8. Sở hữu
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> これは だれの N ですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Dùng để hỏi về chủ sở hữu của một vật.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これは だれの ペンですか。 (Cái này là bút của ai?)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thể loại, chủng loại -->
+            <div class="card">
+                <div class="card-header" id="headingNine">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            9. Thể loại, chủng loại
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> これは なんの N ですか。</p>
+                        <p><strong>Ý nghĩa:</strong> Dùng để hỏi về thể loại hoặc chủng loại của một vật.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>これは なんの ざっしですか。 (Cái này là tạp chí về cái gì?)</li>
+                        </ul>
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>は (Wa): Trợ từ đánh dấu chủ đề.</li>
+                            <li>ですか (Desu ka): Câu hỏi đuôi, mang nghĩa "phải không?".</li>
+                            <li>だれの (Dare no): Của ai.</li>
+                            <li>なんの (Nan no): Thể loại gì, cái gì.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thời gian hoạt động -->
+            <div class="card">
+                <div class="card-header" id="headingTen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            10. Thời gian hoạt động
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> ~ から ~ まで</p>
+                        <p><strong>Ý nghĩa:</strong> Chỉ khoảng thời gian một hoạt động diễn ra, từ lúc bắt đầu đến lúc
+                            kết thúc.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>がっこうは 9じから 3じまでです。 (Trường học từ 9 giờ sáng đến 3 giờ chiều.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Và -->
+            <div class="card">
+                <div class="card-header" id="headingEleven">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                            11. Và
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> A と B</p>
+                        <p><strong>Ý nghĩa:</strong> Nối hai danh từ hoặc cụm danh từ.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>やすみは どようび と にちようび です。 (Ngày nghỉ là thứ 7 và chủ nhật.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thực hiện hành động vào 1 mốc thời gian -->
+            <div class="card">
+                <div class="card-header" id="headingTwelve">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                            12. Thực hiện hành động vào 1 mốc thời gian
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> ~ じに ~ ます。</p>
+                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động được thực hiện vào một thời điểm cụ thể.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>9じに おきました。 (Tôi đã dậy lúc 9h.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thực hiện hành động từ ~ đến ~ -->
+            <div class="card">
+                <div class="card-header" id="headingThirteen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                            13. Thực hiện hành động từ ~ đến ~
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> ~ から ~ まで ~ ます。</p>
+                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động kéo dài liên tục từ thời điểm này đến thời
+                            điểm khác.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>8じから 6じまで はたらきます。 (Làm việc từ 8 giờ sáng đến 6 giờ.)</li>
+                        </ul>
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>から (Kara): Từ.</li>
+                            <li>まで (Made): Đến.</li>
+                            <li>と (To): Và.</li>
+                            <li>じ (Ji): Giờ.</li>
+                            <li>~ます (~masu): Thể lịch sự của động từ.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chia động từ -->
+            <div class="card">
+                <div class="card-header" id="headingFourteen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                            14. Chia động từ
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong></p>
+                        <ul>
+                            <li>~ ます / ~ ません: Thể hiện hành động ở hiện tại hoặc tương lai.</li>
+                            <ul>
+                                <li>~ ます: Làm / Sẽ làm.</li>
+                                <li>~ ません: Không làm / Sẽ không làm.</li>
+                            </ul>
+                            <li>~ ました / ~ ませんでした: Thể hiện hành động đã hoàn thành trong quá khứ.</li>
+                            <ul>
+                                <li>~ ました: Đã làm.</li>
+                                <li>~ ませんでした: Đã không làm.</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cách di chuyển -->
+            <div class="card">
+                <div class="card-header" id="headingFifteen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                            15. Cách di chuyển
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <h5>Đi đâu đó</h5>
+                        <p><strong>Công thức:</strong> Địa điểm へ 行きます (Địa điểm e ikimasu)</p>
+                        <p><strong>Ý nghĩa:</strong> Di chuyển đến một địa điểm nào đó.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>スーパーへ 行きます。 (Tôi đi siêu thị.)</li>
+                        </ul>
+
+                        <h5>Không đi đâu cả</h5>
+                        <p><strong>Công thức:</strong> どこも Vません / Vませんでした。</p>
+                        <p><strong>Ý nghĩa:</strong> Không đi đến bất kỳ nơi nào.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>どこも いきません。 (Tôi không đi đâu cả.)</li>
+                        </ul>
+
+                        <h5>Đi bằng phương tiện</h5>
+                        <p><strong>Công thức:</strong> Phương tiện で 行きます (Phương tiện de ikimasu)</p>
+                        <p><strong>Ý nghĩa:</strong> Sử dụng phương tiện gì để di chuyển.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>でんしゃ で がっこうへ 行きます。 (Đi đến trường bằng xe điện.)</li>
+                            <li>あるいて 行きます。 (Đi bộ.)</li>
+                        </ul>
+
+                        <h5>Đi cùng ai</h5>
+                        <p><strong>Công thức:</strong> Người と 行きます (Người to ikimasu)</p>
+                        <p><strong>Ý nghĩa:</strong> Đi cùng với ai đó.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>ともだちと こうえんへ 行きます。 (Đi với bạn tới công viên.)</li>
+                        </ul>
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>ひとりで (Hitori de) - Đi một mình.</li>
+                        </ul>
+
+                        <h5>Đi vào thời gian nào</h5>
+                        <p><strong>Công thức:</strong> いつ 行きますか。 (Itsu ikimasu ka?)</p>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về thời gian di chuyển.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>いつ にほんへ 行きますか。 (Khi nào đi Nhật vậy?)</li>
+                        </ul>
+
+                        <h5>Đi về</h5>
+                        <p><strong>Công thức:</strong> Địa điểm へ かえります (Địa điểm e kaerimasu)</p>
+                        <p><strong>Ý nghĩa:</strong> Quay trở về một địa điểm nào đó.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>くにへ かえります。 (Tôi về nước.)</li>
+                        </ul>
+
+                        <p><strong>Lưu ý:</strong></p>
+                        <ul>
+                            <li>へ (e): Trợ từ chỉ hướng.</li>
+                            <li>で (de): Trợ từ chỉ phương tiện.</li>
+                            <li>と (to): Cùng với.</li>
+                            <li>いつ (itsu): Khi nào.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nói một từ trong ngôn ngữ khác -->
+            <div class="card">
+                <div class="card-header" id="headingSixteen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                            16. Nói một từ trong ngôn ngữ khác
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSixteen" class="collapse" aria-labelledby="headingSixteen"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> はごで ~です。</p>
+                        <p><strong>Ý nghĩa:</strong> Dùng để nói "~ trong tiếng ... là ~".</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>「さようなら」はベトナムごで「Tạm biệt」です。 (Sayounara trong tiếng Việt là "Tạm biệt".)</li>
+                        </ul>
+                        <p><strong>Cách dùng:</strong></p>
+                        <ul>
+                            <li>~: Từ hoặc cụm từ cần dịch.</li>
+                            <li>~ご: Ngôn ngữ mà bạn muốn dịch sang.</li>
+                            <li>Ví dụ: ベトナムご (tiếng Việt), えいご (tiếng Anh), にほんご (tiếng Nhật)...</li>
+                            <li>~: Bản dịch của từ hoặc cụm từ đó trong ngôn ngữ đích.</li>
+                        </ul>
+                        <p><strong>Lưu ý:</strong> Cấu trúc này thường được dùng trong các tình huống giao tiếp hàng
+                            ngày, khi bạn muốn giải thích nghĩa của một từ hoặc cụm từ cho người khác.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liệt kê -->
+            <div class="card">
+                <div class="card-header" id="headingSeventeen">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
+                            17. Liệt kê
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSeventeen" class="collapse" aria-labelledby="headingSeventeen"
+                    data-parent="#accordionNguPhap">
+                    <div class="card-body">
+                        <p><strong>Công thức:</strong> ~や ~ など</p>
+                        <p><strong>Ý nghĩa:</strong> Liệt kê một vài ví dụ tiêu biểu. Ngụ ý rằng còn có những ví dụ khác
+                            tương tự mà không cần liệt kê hết ra.</p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>かばんの中にほんやノートなどがあります。 (Trong cặp có sách và vở, và những thứ khác.)</li>
+                        </ul>
+                        <p><strong>Cách dùng:</strong></p>
+                        <ul>
+                            <li>~: Danh từ đầu tiên trong danh sách liệt kê.</li>
+                            <li>~: Danh từ thứ hai trong danh sách liệt kê.</li>
+                            <li>など (Nado): Đặt ở cuối danh sách, mang nghĩa "vân vân", "và những thứ khác nữa".</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="height:50px;"></div>
+
+
+            <button id="back-to-top" class="btn btn-primary" title="Back to Top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <button id="back-to-top" class="btn btn-primary" title="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-
-    <footer class="footer mt-auto py-3 bg-dark">
-        <div class="text-center">
-            <span class="text-muted">Một người làm nên không có footer đâu =)))</span>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script>
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
@@ -1147,21 +1737,34 @@
                 return true;
             }
         };
-         // Back to top button
-    var btn = $('#back-to-top');
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 300) {
-            btn.addClass('show');
-        } else {
-            btn.removeClass('show');
-        }
-    });
+        // Back to top button
+        var btn = $('#back-to-top');
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
 
-    btn.on('click', function (e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: 0 }, '200');
-    });
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '200');
+        });
 
+        // accordion
+        $(document).ready(function () {
+            $('#toggleAll').click(function () {
+                var $this = $(this);
+                if ($this.text() === 'Mở rộng tất cả') {
+                    $('.collapse').collapse('show');
+                    $this.text('Thu gọn tất cả');
+                } else {
+                    $('.collapse').collapse('hide');
+                    $this.text('Mở rộng tất cả');
+                }
+            });
+        });
     </script>
 </body>
 
