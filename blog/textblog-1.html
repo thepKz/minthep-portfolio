@@ -1256,13 +1256,13 @@
 
         <div id="ngu-phap" class="section-anchor"></div>
         <h2><b>Ngữ pháp JPD113:</b></h2>
-        <button id="toggleAll" class="btn btn-primary mb-3">Mở rộng tất cả</button>
+        <button id="toggleAll" class="btn btn-success btn-lg mb-3" style="font-size: 1.2rem; padding: 10px 20px;">Mở rộng tất cả</button>
         <div class="accordion" id="accordionNguPhap">
             <!-- Từ chỉ vị trí -->
-            <div class="card">
-                <div class="card-header" id="headingOne">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingOne">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                             style="width:100%; text-align: left;">
                             1. Từ chỉ vị trí
@@ -1272,24 +1272,62 @@
 
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionNguPhap">
                     <div class="card-body">
-                        <ul>
-                            <li>ここ (Koko): Nơi này</li>
-                            <li>そこ (Soko): Nơi đó</li>
-                            <li>あそこ (Asoko): Nơi kia</li>
-                            <li>こちら (Kochira): Nơi này (lịch sự hơn)</li>
-                            <li>そちら (Sochira): Nơi đó (lịch sự hơn)</li>
-                            <li>あちら (Achira): Nơi kia (lịch sự hơn)</li>
-                        </ul>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Từ</th>
+                                        <th>Nghĩa</th>
+                                        <th>Mức độ lịch sự</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ここ (Koko)</td>
+                                        <td>Nơi này</td>
+                                        <td>Thông thường</td>
+                                    </tr>
+                                    <tr>
+                                        <td>そこ (Soko)</td>
+                                        <td>Nơi đó</td>
+                                        <td>Thông thường</td>
+                                    </tr>
+                                    <tr>
+                                        <td>あそこ (Asoko)</td>
+                                        <td>Nơi kia</td>
+                                        <td>Thông thường</td>
+                                    </tr>
+                                    <tr>
+                                        <td>こちら (Kochira)</td>
+                                        <td>Nơi này</td>
+                                        <td>Lịch sự</td>
+                                    </tr>
+                                    <tr>
+                                        <td>そちら (Sochira)</td>
+                                        <td>Nơi đó</td>
+                                        <td>Lịch sự</td>
+                                    </tr>
+                                    <tr>
+                                        <td>あちら (Achira)</td>
+                                        <td>Nơi kia</td>
+                                        <td>Lịch sự</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <p><strong>Ý nghĩa:</strong> Dùng để chỉ vị trí của người hoặc vật.</p>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Khi nói chuyện với người lớn tuổi hoặc trong môi trường công sở, nên sử dụng các từ lịch sự (こちら、そちら、あちら) để thể hiện sự tôn trọng.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Hỏi tên trường, công ty, trường đại học, địa chỉ nhà -->
-            <div class="card">
-                <div class="card-header" id="headingTwo">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingTwo">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
                             style="width:100%; text-align: left;">
                             2. Hỏi tên trường, công ty, trường đại học, địa chỉ nhà
@@ -1299,22 +1337,25 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> (おくに・かいしゃ・だいがく・がっこう・いえ・いなか) は どちらですか。</p>
-                        <p><strong>Ý nghĩa:</strong> Hỏi về địa điểm của trường, công ty, trường đại học, nhà, quê...
-                        </p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>だいがくはどちらですか。 (Trường bạn ở đâu?)</li>
-                            <li>かいしゃはどちらですか。 (Công ty bạn ở đâu?)</li>
-                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về địa điểm của trường, công ty, trường đại học, nhà, quê...</p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. だいがくはどちらですか。 (Trường đại học của bạn ở đâu?)</p>
+                            <p>2. かいしゃはどちらですか。 (Công ty bạn ở đâu?)</p>
+                            <p>3. おくにはどちらですか。 (Quê bạn ở đâu?)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Khi hỏi về địa điểm, sử dụng "どちら" thay vì "どこ" sẽ lịch sự hơn.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Xuất xứ -->
-            <div class="card">
-                <div class="card-header" id="headingThree">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingThree">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
                             style="width:100%; text-align: left;">
                             3. Xuất xứ
@@ -1325,20 +1366,25 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> これはどこの N ですか。 / くに のです。</p>
                         <p><strong>Ý nghĩa:</strong> Hỏi về nguồn gốc, xuất xứ của một vật.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これはどこのかみですか。 (Cái này là giấy của nước nào?)</li>
-                            <li>ベトナムのです。 (Của Việt Nam.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これはどこのかみですか。 (Cái này là giấy của nước nào?)</p>
+                            <p>   ベトナムのです。 (Của Việt Nam.)</p>
+                            <p>2. このくるまはどこのですか。 (Chiếc xe này là của nước nào?)</p>
+                            <p>   にほんのです。 (Của Nhật.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Khi trả lời, bạn có thể bỏ qua từ "くに" (nước) nếu đã rõ ràng từ ngữ cảnh.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Hỏi tiền -->
-            <div class="card">
-                <div class="card-header" id="headingFour">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingFour">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
                             style="width:100%; text-align: left;">
                             4. Hỏi tiền
@@ -1349,26 +1395,30 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> これはいくらですか。 / ~ はいくらですか。</p>
                         <p><strong>Ý nghĩa:</strong> Hỏi về giá cả của một món đồ.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これはいくらですか。 (Cái này bao nhiêu tiền?)</li>
-                            <li>750えんです。 (750 yên.)</li>
-                        </ul>
-                        <p><strong>Lưu ý:</strong></p>
-                        <ul>
-                            <li>どちら (Dochira) có nghĩa là "ở đâu", dùng để hỏi về địa điểm.</li>
-                            <li>いくら (Ikura) có nghĩa là "bao nhiêu", dùng để hỏi về giá tiền.</li>
-                            <li>の (No) là trợ từ chỉ sở hữu.</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これはいくらですか。 (Cái này bao nhiêu tiền?)</p>
+                            <p>   750えんです。 (750 yên.)</p>
+                            <p>2. このほんはいくらですか。 (Cuốn sách này giá bao nhiêu?)</p>
+                            <p>   1000えんです。 (1000 yên.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong>
+                            <ul>
+                                <li>どちら (Dochira) có nghĩa là "ở đâu", dùng để hỏi về địa điểm.</li>
+                                <li>いくら (Ikura) có nghĩa là "bao nhiêu", dùng để hỏi về giá tiền.</li>
+                                <li>の (No) là trợ từ chỉ sở hữu.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Cái này / Cái đó / Cái kia -->
-            <div class="card">
-                <div class="card-header" id="headingFive">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingFive">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"
                             style="width:100%; text-align: left;">
                             5. Cái này / Cái đó / Cái kia
@@ -1377,52 +1427,68 @@
                 </div>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionNguPhap">
                     <div class="card-body">
-                        <p><strong>Công thức:</strong></p>
-                        <ul>
-                            <li>これ (Kore) + は: Cái này</li>
-                            <li>それ (Sore) + は: Cái đó</li>
-                            <li>あれ (Are) + は: Cái kia</li>
-                            <li>この + N: Cái này</li>
-                            <li>その + N: Cái đó</li>
-                            <li>あの + N: Cái kia</li>
-                        </ul>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Từ</th>
+                                        <th>Nghĩa</th>
+                                        <th>Cách dùng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>これ (Kore)</td>
+                                        <td>Cái này</td>
+                                        <td>Dùng một mình</td>
+                                    </tr>
+                                    <tr>
+                                        <td>それ (Sore)</td>
+                                        <td>Cái đó</td>
+                                        <td>Dùng một mình</td>
+                                    </tr>
+                                    <tr>
+                                        <td>あれ (Are)</td>
+                                        <td>Cái kia</td>
+                                        <td>Dùng một mình</td>
+                                    </tr>
+                                    <tr>
+                                        <td>この (Kono)</td>
+                                        <td>Cái này</td>
+                                        <td>Đứng trước danh từ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>その (Sono)</td>
+                                        <td>Cái đó</td>
+                                        <td>Đứng trước danh từ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>あの (Ano)</td>
+                                        <td>Cái kia</td>
+                                        <td>Đứng trước danh từ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <p><strong>Ý nghĩa:</strong> Dùng để chỉ các vật thể ở gần, xa hoặc rất xa người nói.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これはほん ですか。 (Cái này là sách phải không?)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Xác nhận cái này là...? -->
-            <div class="card">
-                <div class="card-header" id="headingSix">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"
-                            style="width:100%; text-align: left;">
-                            6. Xác nhận cái này là...?
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionNguPhap">
-                    <div class="card-body">
-                        <p><strong>Công thức:</strong> これは N1 ですか。</p>
-                        <p><strong>Ý nghĩa:</strong> Dùng để xác nhận xem một vật có phải là N1 hay không.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これはほんですか。 (Cái này là sách phải không?)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これはほんですか。 (Cái này là sách phải không?)</p>
+                            <p>2. そのかばんはだれのですか。 (Cái túi đó là của ai vậy?)</p>
+                            <p>3. あのひとはだれですか。 (Người kia là ai vậy?)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Khi sử dụng これ、それ、あれ, chúng ta không cần thêm danh từ phía sau. Ngược lại, khi dùng この、その、あの, chúng ta phải có một danh từ theo sau.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Là N1 hay N2 -->
-            <div class="card">
-                <div class="card-header" id="headingSeven">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingSeven">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven"
                             style="width:100%; text-align: left;">
                             7. Là N1 hay N2
@@ -1433,19 +1499,23 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> A ですか B ですか。</p>
                         <p><strong>Ý nghĩa:</strong> Dùng để hỏi lựa chọn giữa hai vật hoặc hai tính chất.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これはざっしですか ノートですか。 (Cái này là tạp chí hay là vở?)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これはざっしですか ノートですか。 (Cái này là tạp chí hay là vở?)</p>
+                            <p>2. あのひとは せんせいですか がくせいですか。 (Người kia là giáo viên hay là học sinh?)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Có thể sử dụng cấu trúc này để hỏi về nhiều loại danh từ khác nhau, không chỉ giới hạn ở vật thể.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Sở hữu -->
-            <div class="card">
-                <div class="card-header" id="headingEight">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingEight">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight"
                             style="width:100%; text-align: left;">
                             8. Sở hữu
@@ -1456,19 +1526,23 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> これは だれの N ですか。</p>
                         <p><strong>Ý nghĩa:</strong> Dùng để hỏi về chủ sở hữu của một vật.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これは だれの ペンですか。 (Cái này là bút của ai?)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これは だれの ペンですか。 (Cái này là bút của ai?)</p>
+                            <p>2. その かばんは だれの ですか。 (Cái túi đó là của ai vậy?)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Khi trả lời, có thể sử dụng cấu trúc: [Người sở hữu] の です。 (Ví dụ: わたしの です。- Là của tôi.)
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Thể loại, chủng loại -->
-            <div class="card">
-                <div class="card-header" id="headingNine">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingNine">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine"
                             style="width:100%; text-align: left;">
                             9. Thể loại, chủng loại
@@ -1479,26 +1553,29 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> これは なんの N ですか。</p>
                         <p><strong>Ý nghĩa:</strong> Dùng để hỏi về thể loại hoặc chủng loại của một vật.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>これは なんの ざっしですか。 (Cái này là tạp chí về cái gì?)</li>
-                        </ul>
-                        <p><strong>Lưu ý:</strong></p>
-                        <ul>
-                            <li>は (Wa): Trợ từ đánh dấu chủ đề.</li>
-                            <li>ですか (Desu ka): Câu hỏi đuôi, mang nghĩa "phải không?".</li>
-                            <li>だれの (Dare no): Của ai.</li>
-                            <li>なんの (Nan no): Thể loại gì, cái gì.</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. これは なんの ざっしですか。 (Cái này là tạp chí về cái gì?)</p>
+                            <p>2. それは なんの くるまですか。 (Cái đó là xe hơi loại gì?)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong>
+                            <ul>
+                                <li>は (Wa): Trợ từ đánh dấu chủ đề.</li>
+                                <li>ですか (Desu ka): Câu hỏi đuôi, mang nghĩa "phải không?".</li>
+                                <li>だれの (Dare no): Của ai.</li>
+                                <li>なんの (Nan no): Thể loại gì, cái gì.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Thời gian hoạt động -->
-            <div class="card">
-                <div class="card-header" id="headingTen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingTen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen"
                             style="width:100%; text-align: left;">
                             10. Thời gian hoạt động
@@ -1508,21 +1585,24 @@
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~ から ~ まで</p>
-                        <p><strong>Ý nghĩa:</strong> Chỉ khoảng thời gian một hoạt động diễn ra, từ lúc bắt đầu đến lúc
-                            kết thúc.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>がっこうは 9じから 3じまでです。 (Trường học từ 9 giờ sáng đến 3 giờ chiều.)</li>
-                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Chỉ khoảng thời gian một hoạt động diễn ra, từ lúc bắt đầu đến lúc kết thúc.</p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. がっこうは 9じから 3じまでです。 (Trường học từ 9 giờ sáng đến 3 giờ chiều.)</p>
+                            <p>2. としょかんは 10じから 18じまでです。 (Thư viện mở cửa từ 10 giờ sáng đến 6 giờ tối.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong> Cấu trúc này có thể áp dụng cho nhiều loại thời gian khác nhau, không chỉ giới hạn ở giờ. Ví dụ: げつようびから きんようびまで はたらきます。(Làm việc từ thứ Hai đến thứ Sáu.)
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Và -->
-            <div class="card">
-                <div class="card-header" id="headingEleven">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingEleven">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven"
                             style="width:100%; text-align: left;">
                             11. Và
@@ -1534,19 +1614,23 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> A と B</p>
                         <p><strong>Ý nghĩa:</strong> Nối hai danh từ hoặc cụm danh từ.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>やすみは どようび と にちようび です。 (Ngày nghỉ là thứ 7 và chủ nhật.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. やすみは どようび と にちようび です。 (Ngày nghỉ là thứ 7 và chủ nhật.)</p>
+                            <p>2. わたしは コーヒー と ケーキを たべます。 (Tôi ăn bánh và uống cà phê.)</p>
+                        </div>
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Chú ý:</strong> Trợ từ と chỉ được sử dụng để nối danh từ. Để nối động từ hoặc tính từ, sử dụng て-form.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Thực hiện hành động vào 1 mốc thời gian -->
-            <div class="card">
-                <div class="card-header" id="headingTwelve">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingTwelve">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve"
                             style="width:100%; text-align: left;">
                             12. Thực hiện hành động vào 1 mốc thời gian
@@ -1558,19 +1642,23 @@
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~ じに ~ ます。</p>
                         <p><strong>Ý nghĩa:</strong> Diễn tả một hành động được thực hiện vào một thời điểm cụ thể.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>9じに おきました。 (Tôi đã dậy lúc 9h.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. 9じに おきました。 (Tôi đã dậy lúc 9h.)</p>
+                            <p>2. 7じに ばんごはんを たべます。 (Tôi ăn tối lúc 7 giờ.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Mở rộng:</strong> Có thể sử dụng với các từ chỉ thời gian khác như ごぜん (sáng), ごご (chiều), よる (tối), etc.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Thực hiện hành động từ ~ đến ~ -->
-            <div class="card">
-                <div class="card-header" id="headingThirteen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingThirteen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen"
                             style="width:100%; text-align: left;">
                             13. Thực hiện hành động từ ~ đến ~
@@ -1581,29 +1669,31 @@
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~ から ~ まで ~ ます。</p>
-                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động kéo dài liên tục từ thời điểm này đến thời
-                            điểm khác.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>8じから 6じまで はたらきます。 (Làm việc từ 8 giờ sáng đến 6 giờ.)</li>
-                        </ul>
-                        <p><strong>Lưu ý:</strong></p>
-                        <ul>
-                            <li>から (Kara): Từ.</li>
-                            <li>まで (Made): Đến.</li>
-                            <li>と (To): Và.</li>
-                            <li>じ (Ji): Giờ.</li>
-                            <li>~ます (~masu): Thể lịch sự của động từ.</li>
-                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động kéo dài liên tục từ thời điểm này đến thời điểm khác.</p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. 8じから 6じまで はたらきます。 (Làm việc từ 8 giờ sáng đến 6 giờ tối.)</p>
+                            <p>2. げつようびから きんようびまで がっこうに いきます。 (Đi học từ thứ Hai đến thứ Sáu.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong>
+                            <ul>
+                                <li>から (Kara): Từ.</li>
+                                <li>まで (Made): Đến.</li>
+                                <li>と (To): Và.</li>
+                                <li>じ (Ji): Giờ.</li>
+                                <li>~ます (~masu): Thể lịch sự của động từ.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Chia động từ -->
-            <div class="card">
-                <div class="card-header" id="headingFourteen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingFourteen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen"
                             style="width:100%; text-align: left;">
                             14. Chia động từ
@@ -1614,27 +1704,38 @@
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong></p>
-                        <ul>
-                            <li>~ ます / ~ ません: Thể hiện hành động ở hiện tại hoặc tương lai.</li>
-                            <ul>
-                                <li>~ ます: Làm / Sẽ làm.</li>
-                                <li>~ ません: Không làm / Sẽ không làm.</li>
-                            </ul>
-                            <li>~ ました / ~ ませんでした: Thể hiện hành động đã hoàn thành trong quá khứ.</li>
-                            <ul>
-                                <li>~ ました: Đã làm.</li>
-                                <li>~ ませんでした: Đã không làm.</li>
-                            </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5>Hiện tại / Tương lai:</h5>
+                                <ul>
+                                    <li>~ ます: Làm / Sẽ làm</li>
+                                    <li>~ ません: Không làm / Sẽ không làm</li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <h5>Quá khứ:</h5>
+                                <ul>
+                                    <li>~ ました: Đã làm</li>
+                                    <li>~ ませんでした: Đã không làm</li>
+                                </ul>
+                            </li>
                         </ul>
+                        <div class="alert alert-success mt-3" role="alert">
+                            <strong>Ví dụ:</strong>
+                            <ul>
+                                <li>たべます (ăn) → たべません (không ăn) → たべました (đã ăn) → たべませんでした (đã không ăn)</li>
+                                <li>のみます (uống) → のみません (không uống) → のみました (đã uống) → のみませんでした (đã không uống)</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Cách di chuyển -->
-            <div class="card">
-                <div class="card-header" id="headingFifteen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingFifteen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen"
                             style="width:100%; text-align: left;">
                             15. Cách di chuyển
@@ -1647,72 +1748,77 @@
                         <h5>Đi đâu đó</h5>
                         <p><strong>Công thức:</strong> Địa điểm へ 行きます (Địa điểm e ikimasu)</p>
                         <p><strong>Ý nghĩa:</strong> Di chuyển đến một địa điểm nào đó.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>スーパーへ 行きます。 (Tôi đi siêu thị.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. スーパーへ 行きます。 (Tôi đi siêu thị.)</p>
+                            <p>2. としょかんへ 行きます。 (Tôi đi thư viện.)</p>
+                        </div>
 
                         <h5>Không đi đâu cả</h5>
                         <p><strong>Công thức:</strong> どこも Vません / Vませんでした。</p>
                         <p><strong>Ý nghĩa:</strong> Không đi đến bất kỳ nơi nào.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>どこも いきません。 (Tôi không đi đâu cả.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. どこも いきません。 (Tôi không đi đâu cả.)</p>
+                            <p>2. きのう どこも いきませんでした。 (Hôm qua tôi đã không đi đâu cả.)</p>
+                        </div>
 
                         <h5>Đi bằng phương tiện</h5>
                         <p><strong>Công thức:</strong> Phương tiện で 行きます (Phương tiện de ikimasu)</p>
                         <p><strong>Ý nghĩa:</strong> Sử dụng phương tiện gì để di chuyển.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>でんしゃ で がっこうへ 行きます。 (Đi đến trường bằng xe điện.)</li>
-                            <li>あるいて 行きます。 (Đi bộ.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. でんしゃ で がっこうへ 行きます。 (Đi đến trường bằng xe điện.)</p>
+                            <p>2. あるいて 行きます。 (Đi bộ.)</p>
+                            <p>3. じてんしゃ で かいしゃへ 行きます。 (Đi đến công ty bằng xe đạp.)</p>
+                        </div>
 
                         <h5>Đi cùng ai</h5>
                         <p><strong>Công thức:</strong> Người と 行きます (Người to ikimasu)</p>
                         <p><strong>Ý nghĩa:</strong> Đi cùng với ai đó.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>ともだちと こうえんへ 行きます。 (Đi với bạn tới công viên.)</li>
-                        </ul>
-                        <p><strong>Lưu ý:</strong></p>
-                        <ul>
-                            <li>ひとりで (Hitori de) - Đi một mình.</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. ともだちと こうえんへ 行きます。 (Đi với bạn tới công viên.)</p>
+                            <p>2. かぞくと りょこうへ 行きます。 (Đi du lịch với gia đình.)</p>
+                        </div>
 
                         <h5>Đi vào thời gian nào</h5>
                         <p><strong>Công thức:</strong> いつ 行きますか。 (Itsu ikimasu ka?)</p>
                         <p><strong>Ý nghĩa:</strong> Hỏi về thời gian di chuyển.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>いつ にほんへ 行きますか。 (Khi nào đi Nhật vậy?)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. いつ にほんへ 行きますか。 (Khi nào đi Nhật vậy?)</p>
+                            <p>2. らいねん アメリカへ 行きます。 (Năm sau tôi sẽ đi Mỹ.)</p>
+                        </div>
 
                         <h5>Đi về</h5>
                         <p><strong>Công thức:</strong> Địa điểm へ かえります (Địa điểm e kaerimasu)</p>
                         <p><strong>Ý nghĩa:</strong> Quay trở về một địa điểm nào đó.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>くにへ かえります。 (Tôi về nước.)</li>
-                        </ul>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. くにへ かえります。 (Tôi về nước.)</p>
+                            <p>2. うちへ かえります。 (Tôi về nhà.)</p>
+                        </div>
 
-                        <p><strong>Lưu ý:</strong></p>
-                        <ul>
-                            <li>へ (e): Trợ từ chỉ hướng.</li>
-                            <li>で (de): Trợ từ chỉ phương tiện.</li>
-                            <li>と (to): Cùng với.</li>
-                            <li>いつ (itsu): Khi nào.</li>
-                        </ul>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Lưu ý:</strong>
+                            <ul>
+                                <li>へ (e): Trợ từ chỉ hướng.</li>
+                                <li>で (de): Trợ từ chỉ phương tiện.</li>
+                                <li>と (to): Cùng với.</li>
+                                <li>いつ (itsu): Khi nào.</li>
+                                <li>ひとりで (Hitori de): Đi một mình.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Nói một từ trong ngôn ngữ khác -->
-            <div class="card">
-                <div class="card-header" id="headingSixteen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingSixteen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen"
                             style="width:100%; text-align: left;">
                             16. Nói một từ trong ngôn ngữ khác
@@ -1722,30 +1828,34 @@
                 <div id="collapseSixteen" class="collapse" aria-labelledby="headingSixteen"
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
-                        <p><strong>Công thức:</strong> はごで ~です。</p>
+                        <p><strong>Công thức:</strong> 「~」は~ごで「~」です。</p>
                         <p><strong>Ý nghĩa:</strong> Dùng để nói "~ trong tiếng ... là ~".</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>「さようなら」はベトナムごで「Tạm biệt」です。 (Sayounara trong tiếng Việt là "Tạm biệt".)</li>
-                        </ul>
-                        <p><strong>Cách dùng:</strong></p>
-                        <ul>
-                            <li>~: Từ hoặc cụm từ cần dịch.</li>
-                            <li>~ご: Ngôn ngữ mà bạn muốn dịch sang.</li>
-                            <li>Ví dụ: ベトナムご (tiếng Việt), えいご (tiếng Anh), にほんご (tiếng Nhật)...</li>
-                            <li>~: Bản dịch của từ hoặc cụm từ đó trong ngôn ngữ đích.</li>
-                        </ul>
-                        <p><strong>Lưu ý:</strong> Cấu trúc này thường được dùng trong các tình huống giao tiếp hàng
-                            ngày, khi bạn muốn giải thích nghĩa của một từ hoặc cụm từ cho người khác.</p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. 「さようなら」はベトナムごで「Tạm biệt」です。 (Sayounara trong tiếng Việt là "Tạm biệt".)</p>
+                            <p>2. 「ありがとう」はえいごで「Thank you」です。 ("Arigatou" trong tiếng Anh là "Thank you".)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Cách dùng:</strong>
+                            <ul>
+                                <li>「~」: Từ hoặc cụm từ cần dịch.</li>
+                                <li>~ご: Ngôn ngữ mà bạn muốn dịch sang.</li>
+                                <li>Ví dụ: ベトナムご (tiếng Việt), えいご (tiếng Anh), にほんご (tiếng Nhật)...</li>
+                                <li>「~」: Bản dịch của từ hoặc cụm từ đó trong ngôn ngữ đích.</li>
+                            </ul>
+                        </div>
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Lưu ý:</strong> Cấu trúc này thường được dùng trong các tình huống giao tiếp hàng ngày, khi bạn muốn giải thích nghĩa của một từ hoặc cụm từ cho người khác.
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Liệt kê -->
-            <div class="card">
-                <div class="card-header" id="headingSeventeen">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white" id="headingSeventeen">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-link text-white collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen"
                             style="width:100%; text-align: left;">
                             17. Liệt kê
@@ -1756,18 +1866,23 @@
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~や ~ など</p>
-                        <p><strong>Ý nghĩa:</strong> Liệt kê một vài ví dụ tiêu biểu. Ngụ ý rằng còn có những ví dụ khác
-                            tương tự mà không cần liệt kê hết ra.</p>
-                        <p><strong>Ví dụ:</strong></p>
-                        <ul>
-                            <li>かばんの中にほんやノートなどがあります。 (Trong cặp có sách và vở, và những thứ khác.)</li>
-                        </ul>
-                        <p><strong>Cách dùng:</strong></p>
-                        <ul>
-                            <li>~: Danh từ đầu tiên trong danh sách liệt kê.</li>
-                            <li>~: Danh từ thứ hai trong danh sách liệt kê.</li>
-                            <li>など (Nado): Đặt ở cuối danh sách, mang nghĩa "vân vân", "và những thứ khác nữa".</li>
-                        </ul>
+                        <p><strong>Ý nghĩa:</strong> Liệt kê một vài ví dụ tiêu biểu. Ngụ ý rằng còn có những ví dụ khác tương tự mà không cần liệt kê hết ra.</p>
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Ví dụ:</h4>
+                            <p>1. かばんの中にほんやノートなどがあります。 (Trong cặp có sách và vở, và những thứ khác.)</p>
+                            <p>2. しゅみは おんがくや スポーツなどです。 (Sở thích của tôi là âm nhạc, thể thao và những thứ khác.)</p>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>Cách dùng:</strong>
+                            <ul>
+                                <li>~: Danh từ đầu tiên trong danh sách liệt kê.</li>
+                                <li>~: Danh từ thứ hai trong danh sách liệt kê.</li>
+                                <li>など (Nado): Đặt ở cuối danh sách, mang nghĩa "vân vân", "và những thứ khác nữa".</li>
+                            </ul>
+                        </div>
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Lưu ý:</strong> Cấu trúc này thường được sử dụng khi bạn muốn đưa ra một vài ví dụ mà không cần liệt kê tất cả. Nó tạo ra một cảm giác mở và linh hoạt trong câu nói.
+                        </div>
                     </div>
                 </div>
             </div>
