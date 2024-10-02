@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        .header {
+            transition: transform 0.5s ease-in-out;
+        }
+    
+        .header.hide {
+            transform: translateY(-100%);
+        }
+    
+        .header.fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+        }
+
         .toc-placeholder {
             display: none;
         }
@@ -24,11 +40,11 @@
         }
         .sticky-toc.fixed {
             position: fixed;
-            top: 150px;
-            left: 15px; /* Điều chỉnh khoảng cách từ bên phải */
-            width: 250px; /* Điều chỉnh chiều rộng phù hợp */
+            top: 120px;
+            right: 0px; /* Điều chỉnh khoảng cách từ bên phải */
+            width: 200px; /* Điều chỉnh chiều rộng phù hợp */
             border-radius: 5px; /* Bo góc nhẹ */
-            padding: 10px; /* Thêm padding */
+            padding: 5px; /* Thêm padding */
             box-shadow: 0 3px 5px rgba(0,0,0,0.1); /* Thêm bóng đổ nhẹ */
         }
         
@@ -41,7 +57,7 @@
             color: #007bff; /* Màu khi hover */
             text-decoration: none; /* Bỏ gạch chân khi hover */
         }
-        @media (max-width: 1600px){
+        @media (max-width: 1520px){
             .sticky-toc.fixed {
                 display: none;
             position: block !important;
@@ -149,7 +165,7 @@
 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="../index.html">Min Thep</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -224,8 +240,8 @@
 
                     <h2>Mục lục</h2>
                     <ul>
-                        <li><a href="#tai-nguyen">Tài nguyên học tập</a></li>
-                        <li><a href="#ngay-gio">Ngày và giờ trong JDP113</a>
+                        <li><a href="#tai-nguyen">Tài nguyên</a></li>
+                        <li><a href="#ngay-gio">Ngày và giờ</a>
                             <ul>
                                 <li><a href="#dem-thang">I. Đếm Tháng</a></li>
                                 <li><a href="#dem-ngay">II. Đếm Ngày</a></li>
@@ -237,8 +253,8 @@
                                 <li><a href="#dem-so">VIII. Đếm số</a></li>
                             </ul>
                         </li>
-                        <li><a href="#ngu-phap">Ngữ pháp JPD113</a></li>
-                        <li><strong><a href="#speaking">SPEAKING (Phần quan trọng! Update sau )</a></strong></li>
+                        <li><a href="#ngu-phap">Ngữ pháp</a></li>
+                        <li><strong><a href="#speaking">SPEAKING (Update sau )</a></strong></li>
                     </ul>
                 </div>
                 <div class="toc-placeholder"></div>
@@ -1772,6 +1788,37 @@
 
 
     <script>
+        $(document).ready(function() {
+            const $window = $(window);
+            const $header = $('#header');
+            let lastScrollTop = 0;
+            const delta = 5;
+            const headerHeight = $header.outerHeight();
+        
+            function hasScrolled() {
+                const st = $window.scrollTop();
+        
+                // Make sure they scroll more than delta
+                if (Math.abs(lastScrollTop - st) <= delta)
+                    return;
+        
+                // If they scrolled down and are past the header, add class .hide.
+                // This is necessary so you never see what is "behind" the header.
+                if (st > lastScrollTop && st > headerHeight) {
+                    // Scroll Down
+                    $header.removeClass('fixed-top').addClass('hide');
+                } else {
+                    // Scroll Up
+                    if (st + $window.height() < $(document).height()) {
+                        $header.removeClass('hide').addClass('fixed-top');
+                    }
+                }
+        
+                lastScrollTop = st;
+            }
+        
+            $window.on('scroll', throttle(hasScrolled, 250));
+        });
         $(document).ready(function () {
             $('#toggleAll').on('click', function () {
                 var $this = $(this);
