@@ -11,6 +11,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+
+        .toc-placeholder {
+            display: none;
+        }
+        #table-of-contents{
+            background-color: rgba(243, 241, 241, 0.219) !important; /* Màu nền nhẹ nhàng */
+            border: 1px solid #e9ecef !important; /* Viền mỏng */
+        }
+    
+        .sticky-toc.fixed + .toc-placeholder {
+            display: block;
+        }
+        .sticky-toc.fixed {
+            position: fixed;
+            top: 150px;
+            left: 15px; /* Điều chỉnh khoảng cách từ bên phải */
+            width: 250px; /* Điều chỉnh chiều rộng phù hợp */
+            border-radius: 5px; /* Bo góc nhẹ */
+            padding: 10px; /* Thêm padding */
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1); /* Thêm bóng đổ nhẹ */
+        }
+        
+        .sticky-toc.fixed a {
+            color: #495057; /* Màu chữ đậm hơn một chút */
+            transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+        }
+        
+        .sticky-toc.fixed a:hover {
+            color: #007bff; /* Màu khi hover */
+            text-decoration: none; /* Bỏ gạch chân khi hover */
+        }
+        @media (max-width: 1000px){
+            .sticky-toc.fixed {
+                display: none;
+            position: block !important;
+            width: 100%;
+            z-index: -9999;
+            }
+        }
+
+
+        .section-anchor {
+            scroll-margin-top: 80px;
+        }
+
         h2 {
             color: red;
         }
@@ -29,6 +74,8 @@
             background-position: center top;
             background-attachment: fixed;
             width: 100%;
+
+            
             overflow: hidden;
             z-index: -11;
         }
@@ -41,13 +88,13 @@
             right: 0;
             bottom: -50vh;
             background: inherit;
-            height: 30vh;
+            height: 80vh;
             z-index: -111;
             background-position: center bottom;
         }
 
         #myblog-1 {
-            background-color: rgba(255, 255, 255, 0.397);
+            background-color: rgb(255, 255, 255);
             margin-top: 40px !important;
         }
 
@@ -120,6 +167,7 @@
             </div>
         </nav>
     </header>
+    <div style="height: 200px;"></div>
 
     <div id="myblog-1" class="container">
         <div class="wrapper anime-svg box-top">
@@ -137,30 +185,34 @@
                     <span class="update-time">1:30 AM, October 3, 2024</span>
                 </p>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
+            <div>
+                <div>
+                    <div>
                         <div class="alert alert-info" role="alert">
                             <h4 class="alert-heading">Chào mừng bạn đến với blog ôn thi JPD113!</h4>
-                            <p>Đây là nơi mình tổng hợp kiến thức để chuẩn bị cho kỳ thi tương đương 1/4 trình độ N5. Nội
+                            <p>Đây là nơi mình tổng hợp kiến thức để chuẩn bị cho kỳ thi tương đương 1/4 trình độ N5.
+                                Nội
                                 dung được tham khảo từ nhiều nguồn đáng tin cậy, bao gồm <a
                                     href="https://www.tofugu.com/japanese-grammar/date-and-time/"
-                                    class="alert-link">Tofugu</a>. Mình rất mong nhận được phản hồi từ các bạn nếu phát hiện
+                                    class="alert-link">Tofugu</a>. Mình rất mong nhận được phản hồi từ các bạn nếu phát
+                                hiện
                                 bất kỳ sai sót nào.</p>
                             <hr>
-                            <p class="mb-0">Nếu bạn đang chuẩn bị học môn này, đừng quên ghé thăm <a href="textblog-0.html"
-                                    class="alert-link">bài viết giới thiệu</a> của mình nhé!</p>
+                            <p class="mb-0">Nếu bạn đang chuẩn bị học môn này, đừng quên ghé thăm <a
+                                    href="textblog-0.html" class="alert-link">bài viết giới thiệu</a> của mình nhé!</p>
                         </div>
                     </div>
                 </div>
-    
-                <div class="row">
-                    <div class="col-md-12">
+
+                <div>
+                    <div>
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Lưu ý quan trọng</h5>
-                                <p class="card-text">Blog này được thiết kế để hỗ trợ việc học tập hiệu quả, vì vậy mình đã
-                                    tắt chức năng sao chép để khuyến khích các bạn ghi chép và tiếp thu kiến thức một cách
+                                <p class="card-text">Blog này được thiết kế để hỗ trợ việc học tập hiệu quả, vì vậy mình
+                                    đã
+                                    tắt chức năng sao chép để khuyến khích các bạn ghi chép và tiếp thu kiến thức một
+                                    cách
                                     chủ động.<br><br><strong>ū có nghĩa là uu.</strong></p>
                             </div>
                         </div>
@@ -168,28 +220,32 @@
                 </div>
             </div>
             <br>
-            <div id="table-of-contents">
-                <h2>Mục lục</h2>
-                <ul>
-                    <li><a href="#tai-nguyen">Tài nguyên học tập</a></li>
-                    <li><a href="#ngay-gio">Ngày và giờ trong JDP113</a>
-                        <ul>
-                            <li><a href="#dem-thang">I. Đếm Tháng</a></li>
-                            <li><a href="#dem-ngay">II. Đếm Ngày</a></li>
-                            <li><a href="#ngay-trong-tuan">III. Ngày trong tuần</a></li>
-                            <li><a href="#dem-gio">IV. Số đếm giờ</a></li>
-                            <li><a href="#dem-phut">V. Số phút</a></li>
-                            <li><a href="#dem-tuoi">VI. Đếm tuổi</a></li>
-                            <li><a href="#dem-tang">VII. Đếm tầng</a></li>
-                            <li><a href="#dem-so">VIII. Đếm số</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#ngu-phap">Ngữ pháp JPD113</a></li>
-                    <li><strong><a href="#speaking">SPEAKING (Phần quan trọng! Update sau vì mình gấn chục cái project
-                                :) )</a></strong></li>
-                </ul>
+            <div id="sidebar">
+                <div id="table-of-contents" class="sticky-toc">
+
+                    <h2>Mục lục</h2>
+                    <ul>
+                        <li><a href="#tai-nguyen">Tài nguyên học tập</a></li>
+                        <li><a href="#ngay-gio">Ngày và giờ trong JDP113</a>
+                            <ul>
+                                <li><a href="#dem-thang">I. Đếm Tháng</a></li>
+                                <li><a href="#dem-ngay">II. Đếm Ngày</a></li>
+                                <li><a href="#ngay-trong-tuan">III. Ngày trong tuần</a></li>
+                                <li><a href="#dem-gio">IV. Số đếm giờ</a></li>
+                                <li><a href="#dem-phut">V. Số phút</a></li>
+                                <li><a href="#dem-tuoi">VI. Đếm tuổi</a></li>
+                                <li><a href="#dem-tang">VII. Đếm tầng</a></li>
+                                <li><a href="#dem-so">VIII. Đếm số</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#ngu-phap">Ngữ pháp JPD113</a></li>
+                        <li><strong><a href="#speaking">SPEAKING (Phần quan trọng! Update sau )</a></strong></li>
+                    </ul>
+                </div>
+                <div class="toc-placeholder"></div>
             </div>
         </div>
+        
         <div id="tai-nguyen" class="section-anchor"></div>
 
         <h3>Tài nguyên học tập:</h3>
@@ -218,16 +274,16 @@
             </ul>
         </div>
         <ol class="list-group">
-            <li class="list-group-item">Bảng chữ cái ở <a href="https://www.duolingo.com/learn"
+            <li class="list-group-item" style="width: 100%!important;">Bảng chữ cái ở <a href="https://www.duolingo.com/learn"
                     target="_blank">Duolingo</a> hoặc link này: <a href="https://www.realkana.com/hiragana"
                     target="_blank" rel="nofollow ugc noopener">Hiragana Learning</a>.</li>
-            <li class="list-group-item">Link quizlet học các loại verb: <a
+            <li class="list-group-item" style="width: 100%!important;">Link quizlet học các loại verb: <a
                     href="https://quizlet.com/vn/815088820/dekiru1_jpd113_v-flash-cards/" target="_blank"
                     rel="nofollow ugc noopener">Quizlet verb</a>.</li>
-            <li class="list-group-item">Link quizlet học từ vựng JPD113 đầy đủ: <a
+            <li class="list-group-item" style="width: 100%!important;">Link quizlet học từ vựng JPD113 đầy đủ: <a
                     href="https://quizlet.com/vn/683127375/jpd113-bai-123-flash-cards/" target="_blank"
                     rel="nofollow ugc noopener">Quizlet Words</a>.</li>
-            <li class="list-group-item">Link quizlet trợ từ: <a
+            <li class="list-group-item" style="width: 100%!important;">Link quizlet trợ từ: <a
                     href="https://quizlet.com/vn/815088142/dekiru1_jpd113_tro-tu-flash-cards/" target="_blank"
                     rel="nofollow ugc noopener">Quizlet Particles</a>.
             </li>
@@ -484,7 +540,9 @@
             </table>
         </div>
         <div class="alert alert-warning">
-        <p><strong>Lưu ý quan trọng:</strong> Các ngày từ 11 đến 31 (trừ 14, 20, 24) thường được đọc theo quy tắc thông thường: [số] + にち (nichi).<br> Ví dụ: 11日 (じゅういちにち - jūichinichi), 15日 (じゅうごにち - jūgonichi), v.v.</p>
+            <p><strong>Lưu ý quan trọng:</strong> Các ngày từ 11 đến 31 (trừ 14, 20, 24) thường được đọc theo quy tắc
+                thông thường: [số] + にち (nichi).<br> Ví dụ: 11日 (じゅういちにち - jūichinichi), 15日 (じゅうごにち - jūgonichi), v.v.
+            </p>
         </div>
         <p><br></p>
         <div id="ngay-trong-tuan" class="section-anchor"></div>
@@ -663,17 +721,132 @@
             </ul>
         </div>
         <br>
+        <div id="dem-phut" class="section-anchor"></div>
+        <h2>V/ Số phút:</h2>
+        <div class="alert alert-info">
+            <h5 class="alert-heading">Lưu ý quan trọng:</h5>
+            <ul class="mb-0">
+                <li>Để nói về phút, sử dụng số + 分 (ふん/ぷん).</li>
+                <li>Cách đọc 分 thay đổi tùy theo số đứng trước:</li>
+                <ul>
+                    <li>Các số kết thúc bằng 1, 3, 4, 6, 8, và 10: ぷん (pun)</li>
+                    <li>Các số kết thúc bằng 2, 5, 7, và 9: ふん (fun)</li>
+                </ul>
+                <li>Số 15 và 30 hay được sử dụng.</li>
+            </ul>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Số phút</th>
+                        <th>Kanji</th>
+                        <th>Hiragana</th>
+                        <th>Romaji</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td><strong>一分</strong></td>
+                        <td><strong>いっぷん</strong></td>
+                        <td><strong>ippun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>二分</td>
+                        <td>にふん</td>
+                        <td>nifun</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td><strong>三分</strong></td>
+                        <td><strong>さんぷん</strong></td>
+                        <td><strong>sanpun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td><strong>四分</strong></td>
+                        <td><strong>よんぷん</strong></td>
+                        <td><strong>yonpun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>五分</td>
+                        <td>ごふん</td>
+                        <td>gofun</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td><strong>六分</strong></td>
+                        <td><strong>ろっぷん</strong></td>
+                        <td><strong>roppun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>七分</td>
+                        <td>ななふん</td>
+                        <td>nanafun</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td><strong>八分</strong></td>
+                        <td><strong>はっぷん</strong></td>
+                        <td><strong>happun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>九分</td>
+                        <td>きゅうふん</td>
+                        <td>kyūfun</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>10</strong></td>
+                        <td><strong>十分</strong></td>
+                        <td><strong>じゅっぷん</strong></td>
+                        <td><strong>juppun</strong></td>
+                        <td><strong>Trường hợp đặc biệt</strong></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>十五分</td>
+                        <td>じゅうごふん</td>
+                        <td>jūgofun</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>三十分</td>
+                        <td>さんじゅっぷん</td>
+                        <td>sanjuppun</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div id="dem-tuoi" class="section-anchor"></div>
-        <h2>V/ Đếm tuổi:</h2>
+        <h2>VI/ Đếm tuổi:</h2>
         <div class="alert alert-info">
             <h5 class="alert-heading">Lưu ý quan trọng:</h5>
             <ul class="mb-0">
                 <li>Từ 1 đến 10 tuổi, sử dụng cách đếm đặc biệt với từ 歳 (さい - sai).</li>
                 <li>Từ 11 đến 19 tuổi, sử dụng cách đếm thông thường kết hợp với 歳 (さい - sai).</li>
-                <li>Từ 20 tuổi trở lên, sử dụng cách đếm thông thường: 二十歳 (はたち - hatachi), 二十一歳 (にじゅういっさい - nijūissai), 二十二歳 (にじゅうにさい - nijūnisai), v.v.</li>
+                <li>Từ 20 tuổi trở lên, sử dụng cách đếm thông thường: 二十歳 (はたち - hatachi), 二十一歳 (にじゅういっさい - nijūissai),
+                    二十二歳 (にじゅうにさい - nijūnisai), v.v.</li>
                 <li>Khi hỏi tuổi, sử dụng câu: 何歳ですか？(なんさいですか - Nansai desu ka?)</li>
                 <li>Khi trả lời tuổi của mình, thêm です (desu) vào cuối: 二十歳です。(はたちです - Hatachi desu.)</li>
-                <li>Trong tiếng Nhật, tuổi 20 được coi là tuổi trưởng thành và có cách đọc đặc biệt là はたち (hatachi).</li>
+                <li>Trong tiếng Nhật, tuổi 20 được coi là tuổi trưởng thành và có cách đọc đặc biệt là はたち (hatachi).
+                </li>
             </ul>
         </div>
         <div class="table-responsive">
@@ -782,7 +955,8 @@
             <h4 class="alert-heading">Lưu ý:</h4>
             <p>Có một số quy tắc đặc biệt khi đếm tầng trong tiếng Nhật:</p>
             <ul>
-                <li>Các tầng 1, 6, 8, 10 có cách đọc đặc biệt: ikkai, rokkai, hakkai, jukkai (tương tự như cách đếm tuổi cho 1, 8, 10 tuổi)</li>
+                <li>Các tầng 1, 6, 8, 10 có cách đọc đặc biệt: ikkai, rokkai, hakkai, jukkai (tương tự như cách đếm tuổi
+                    cho 1, 8, 10 tuổi)</li>
                 <li>Tầng 3 có âm đọc thay đổi từ "sankai" thành "sangai" (thêm dấu ten-ten vào か)</li>
             </ul>
         </div>
@@ -882,8 +1056,9 @@
         </div>
         <div id="dem-so" class="section-anchor"></div>
         <h2>VIII/ Đếm số:</h2>
-        <p>Trong tiếng Nhật, cách đếm số có một chút khác so với tiếng Việt. Hãy cùng học cách đếm từ 100 đến 10,000,000 nhé!</p>
-        
+        <p>Trong tiếng Nhật, cách đếm số có một chút khác so với tiếng Việt. Hãy cùng học cách đếm từ 100 đến 10,000,000
+            nhé!</p>
+
         <div class="alert alert-info" role="alert">
             <h4 class="alert-heading">Điều cần nhớ:</h4>
             <ul>
@@ -892,15 +1067,15 @@
             </ul>
         </div>
         <div class="alert alert-warning" role="alert">
-        <h3>1. Cách đếm cơ bản:</h3>
-        <ul>
-            <li>100 = 百 (ひゃく hyaku)</li>
-            <li>1,000 = 千 (せん sen)</li>
-            <li>10,000 = 一万 (いちまん ichiman)</li>
-        </ul>
+            <h3>1. Cách đếm cơ bản:</h3>
+            <ul>
+                <li>100 = 百 (ひゃく hyaku)</li>
+                <li>1,000 = 千 (せん sen)</li>
+                <li>10,000 = 一万 (いちまん ichiman)</li>
+            </ul>
 
-        <h3>2. Một số cách đọc đặc biệt:</h3>
-        
+            <h3>2. Một số cách đọc đặc biệt:</h3>
+
             <p>Lưu ý: Một số số có cách đọc khác biệt. Đây là những số thường gặp:</p>
             <ul>
                 <li>300 = 三百 (さんびゃく sanbyaku)</li>
@@ -1073,7 +1248,8 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                            style="width:100%; text-align: left;">
                             1. Từ chỉ vị trí
                         </button>
                     </h2>
@@ -1099,7 +1275,8 @@
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                            style="width:100%; text-align: left;">
                             2. Hỏi tên trường, công ty, trường đại học, địa chỉ nhà
                         </button>
                     </h2>
@@ -1123,7 +1300,8 @@
                 <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                            style="width:100%; text-align: left;">
                             3. Xuất xứ
                         </button>
                     </h2>
@@ -1146,7 +1324,8 @@
                 <div class="card-header" id="headingFour">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
+                            style="width:100%; text-align: left;">
                             4. Hỏi tiền
                         </button>
                     </h2>
@@ -1175,7 +1354,8 @@
                 <div class="card-header" id="headingFive">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"
+                            style="width:100%; text-align: left;">
                             5. Cái này / Cái đó / Cái kia
                         </button>
                     </h2>
@@ -1205,7 +1385,8 @@
                 <div class="card-header" id="headingSix">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"
+                            style="width:100%; text-align: left;">
                             6. Xác nhận cái này là...?
                         </button>
                     </h2>
@@ -1227,7 +1408,8 @@
                 <div class="card-header" id="headingSeven">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven"
+                            style="width:100%; text-align: left;">
                             7. Là N1 hay N2
                         </button>
                     </h2>
@@ -1249,7 +1431,8 @@
                 <div class="card-header" id="headingEight">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight"
+                            style="width:100%; text-align: left;">
                             8. Sở hữu
                         </button>
                     </h2>
@@ -1271,7 +1454,8 @@
                 <div class="card-header" id="headingNine">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine"
+                            style="width:100%; text-align: left;">
                             9. Thể loại, chủng loại
                         </button>
                     </h2>
@@ -1300,7 +1484,8 @@
                 <div class="card-header" id="headingTen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen"
+                            style="width:100%; text-align: left;">
                             10. Thời gian hoạt động
                         </button>
                     </h2>
@@ -1323,7 +1508,8 @@
                 <div class="card-header" id="headingEleven">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven"
+                            style="width:100%; text-align: left;">
                             11. Và
                         </button>
                     </h2>
@@ -1346,7 +1532,8 @@
                 <div class="card-header" id="headingTwelve">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve"
+                            style="width:100%; text-align: left;">
                             12. Thực hiện hành động vào 1 mốc thời gian
                         </button>
                     </h2>
@@ -1369,7 +1556,8 @@
                 <div class="card-header" id="headingThirteen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen"
+                            style="width:100%; text-align: left;">
                             13. Thực hiện hành động từ ~ đến ~
                         </button>
                     </h2>
@@ -1401,7 +1589,8 @@
                 <div class="card-header" id="headingFourteen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen"
+                            style="width:100%; text-align: left;">
                             14. Chia động từ
                         </button>
                     </h2>
@@ -1431,7 +1620,8 @@
                 <div class="card-header" id="headingFifteen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen"
+                            style="width:100%; text-align: left;">
                             15. Cách di chuyển
                         </button>
                     </h2>
@@ -1508,7 +1698,8 @@
                 <div class="card-header" id="headingSixteen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen"
+                            style="width:100%; text-align: left;">
                             16. Nói một từ trong ngôn ngữ khác
                         </button>
                     </h2>
@@ -1540,7 +1731,8 @@
                 <div class="card-header" id="headingSeventeen">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen" style="width:100%; text-align: left;">
+                            data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen"
+                            style="width:100%; text-align: left;">
                             17. Liệt kê
                         </button>
                     </h2>
@@ -1575,34 +1767,34 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
 
     <script>
-        $(document).ready(function() {
-            $('#toggleAll').on('click', function() {
+        $(document).ready(function () {
+            $('#toggleAll').on('click', function () {
                 var $this = $(this);
                 var $collapseElements = $('.collapse');
                 if ($this.text() === 'Mở rộng tất cả') {
-                    $collapseElements.each(function() {
-                        var bsCollapse = new bootstrap.Collapse(this, {toggle: false});
+                    $collapseElements.each(function () {
+                        var bsCollapse = new bootstrap.Collapse(this, { toggle: false });
                         bsCollapse.show();
                     });
                     $this.text('Thu gọn tất cả');
                 } else {
-                    $collapseElements.each(function() {
-                        var bsCollapse = new bootstrap.Collapse(this, {toggle: false});
+                    $collapseElements.each(function () {
+                        var bsCollapse = new bootstrap.Collapse(this, { toggle: false });
                         bsCollapse.hide();
                     });
                     $this.text('Mở rộng tất cả');
                 }
             });
-        
+
             // Đảm bảo tất cả các phần đều đóng khi trang được tải
-            $('.collapse').each(function() {
-                new bootstrap.Collapse(this, {toggle: false});
+            $('.collapse').each(function () {
+                new bootstrap.Collapse(this, { toggle: false });
             });
         });
         document.onkeydown = function (e) {
@@ -1633,9 +1825,52 @@
             $('html, body').animate({ scrollTop: 0 }, '200');
         });
 
-        // accordion
-        
+        // Thêm hàm throttle đơn giản
+        function throttle(func, limit) {
+            let inThrottle;
+            return function () {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
     </script>
+    <script>
+        $(document).ready(function() {
+            const $window = $(window);
+            const $toc = $('.sticky-toc');
+            const $sections = $('.section-anchor');
+            const $tocLinks = $('.sticky-toc a');
+            const $sidebar = $('#sidebar');
+            const $placeholder = $('.toc-placeholder');
+            const tocOffsetTop = $toc.offset().top;
+            const tocHeight = $toc.outerHeight();
+        
+            function updateTOC() {
+                let scrollPosition = $window.scrollTop();
+        
+                // Xử lý việc chuyển đổi vị trí của mục lục
+                if (scrollPosition > tocOffsetTop + tocHeight) {
+                    if (!$toc.hasClass('fixed')) {
+                        $toc.addClass('fixed');
+                        $placeholder.height(tocHeight);
+                    }
+                } else {
+                    $toc.removeClass('fixed');
+                    $placeholder.height(0);
+                }
+            }
+        
+            $window.on('scroll', throttle(updateTOC, 100));
+            updateTOC(); // Gọi một lần để thiết lập trạng thái ban đầu
+        });
+        </script>
+
 </body>
 
 </html>
