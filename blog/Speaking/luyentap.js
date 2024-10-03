@@ -87,7 +87,7 @@ function startListening() {
         setRecognitionLanguage();
         recognition.start();
         document.getElementById('result').innerHTML = '<p>Đang lắng nghe...</p>';
-    }, 1000); // Độ trễ 1 giây, có thể điều chỉnh
+    }, 2000); // Độ trễ 1 giây, có thể điều chỉnh
 }
 
 // Thêm hàm stopListening
@@ -135,39 +135,6 @@ Hãy trả lời theo định dạng sau:
 NHẬN XÉT: [Trả lời 2]
 ĐIỂM: [Trả lời 3]
 
-### 1. Tự giới thiệu bản thân
-
-- おなまえは。 (O-namae wa?) - Tên bạn là gì?
-    - **Trả lời**: わたしの なまえは [tên] です。 (Watashi no namae wa [tên] desu.) - Tên tôi là [tên].
-- なんさいですか？ (Nansai desu ka?) - Bạn bao nhiêu tuổi?
-    - **Trả lời**: わたしは [tuổi] さいです。 (Watashi wa [tuổi] sai desu.) - Tôi [tuổi] tuổi.
-
-### 2. Hỏi về quốc tịch (Kuni - 国)
-
-- **おくにはどちらですか？** (Okuni wa dochira desu ka?) - Bạn đến từ quốc gia nào?
-    - **Trả lời**: わたしは [quốc gia] からきました。 (Watashi wa [quốc gia] kara kimashita.) - Tôi đến từ [quốc gia].
-
-### 3. Hỏi về nghề nghiệp (Shigoto - 仕事)
-
-- おしごとは なんですか？ (Oshigoto wa nan desu ka?) - Công việc của bạn là gì?
-    - **Trả lời**: わたしは [nghề nghiệp] です。 (Watashi wa [nghề nghiệp] desu.) - Tôi là [nghề nghiệp].
-
-### 4. Hỏi về sở thích (Shumi - 趣味)
-
-- しゅみは なんですか？ (Shumi wa nan desu ka?) - Sở thích của bạn là gì?
-    - **Trả lời**: わたしのしゅみは [sở thích] です。 (Watashi no shumi wa [sở thích] desu.) - Sở thích của tôi là [sở thích].
-
-### 6. Hỏi về thời gian (Jikan - 時間)
-
-- いまなんじですか？ (Ima nanji desu ka?) - Bây giờ là mấy giờ?
-    - **Trả lời**: いま [giờ] じです。 (Ima [giờ] ji desu.) - Bây giờ là [giờ] giờ.
-
-### Một số câu bổ sung cho phần speaking:
-
-- あなたの たんじょうびは いつですか？ (Anata no tanjoubi wa itsu desu ka?) - Sinh nhật của bạn là khi nào?
-    - **Trả lời**: わたしの たんじょうびは [ngày tháng] です。 (Watashi no tanjoubi wa [ngày tháng] desu.) - Sinh nhật của tôi là [ngày tháng].
-- にほんごの クラスは なんじから なんじまでですか？ (Nihongo no kurasu wa nanji kara nanji made desu ka?) - Lớp tiếng Nhật của bạn từ mấy giờ đến mấy giờ?
-    - **Trả lời**: にほんごの クラスは [giờ bắt đầu] じから [giờ kết thúc] じまでです。 (Nihongo no kurasu wa [giờ bắt đầu] ji kara [giờ kết thúc] ji made desu.) - Lớp tiếng Nhật của tôi từ [giờ bắt đầu] đến [giờ kết thúc].
 `;
 
 
