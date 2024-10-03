@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học nói tiếng Nhật</title>
+    <link rel="stylesheet" href="Speaking/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Luyện nói tiếng Nhật cơ bản (Thử nghiệm)</h1>
+    </header>
+
+    <main>
+        <section id="practice">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="practice-container">
+                <div class="word-container">
+                    <div id="wordToSay"></div>
+                    <div class="button-group">
+                        <button id="listenButton" class="icon-button" title="Nghe phát âm"><i class="fas fa-volume-up"></i></button>
+                        <button id="changeWordButton" class="icon-button" title="Đổi câu hỏi"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+                <div class="speak-container">
+                    <button id="startListening" class="main-button">Bắt đầu trả lời</button>
+                    <button id="stopListening" class="secondary-button" style="display: none;">Dừng lắng nghe</button>
+                    <div id="countdown" style="margin-top: 10px; color: #666;"></div>
+                </div>
+                <div id="result" class="result-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="display: block;">
+        <p>&copy; 2024 Speaking Thử Nghiệm | Liên hệ: <a href="https://www.facebook.com/thepp.tan/">Tấn Thépp</a></p>
+    </footer>
+    <script src="Speaking/luyentap.js"></script>
+</body>
+
+</html>
