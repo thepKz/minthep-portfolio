@@ -158,11 +158,11 @@ async function checkPronunciation(spokenWord) {
 
         lines.forEach(line => {
             if (line.includes('ĐÁNH GIÁ ĐỘ CHÍNH XÁC:')) {
-                accuracy = line.split(':')[1]?.trim() || 'Không xác định';
+                accuracy = line.replace('ĐÁNH GIÁ ĐỘ CHÍNH XÁC:', '').trim();
             } else if (line.includes('NHẬN XÉT:')) {
-                comment = line.split(':')[1]?.trim() || 'Không có nhận xét';
+                comment = line.replace('NHẬN XÉT:', '').trim();
             } else if (line.includes('ĐIỂM:')) {
-                score = parseInt(line.split(':')[1]?.trim()) || 0;
+                score = parseInt(line.replace('ĐIỂM:', '').trim()) || 0;
             }
         });
 
