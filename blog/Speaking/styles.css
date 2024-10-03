@@ -249,3 +249,34 @@ footer a:hover {
         padding: 0.7rem 1.2rem;
     }
 }
+/* Thêm vào cuối file CSS */
+
+#instructions {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#instructions h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+#instructions ol {
+    padding-left: 1.5rem;
+}
+
+#instructions li {
+    margin-bottom: 0.5rem;
+}
+
+#instructions p {
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+#instructions .fas {
+    color: var(--primary-color);
+}
