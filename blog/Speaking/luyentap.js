@@ -48,17 +48,17 @@ function setupSpeechRecognition() {
     toggleLanguageButton.onclick = toggleLanguage;
     document.querySelector('.speak-container').appendChild(toggleLanguageButton);
 
-    recognition.onresult = function(event) {
+    recognition.onresult = function (event) {
         const speechResult = event.results[0][0].transcript;
         document.getElementById('result').innerHTML = `<p><strong>Bạn nói:</strong> ${speechResult}</p>`;
         checkPronunciation(speechResult);
     };
 
-    recognition.onerror = function(event) {
+    recognition.onerror = function (event) {
         console.error('Lỗi nhận diện giọng nói:', event.error);
     };
 
-    recognition.onend = function() {
+    recognition.onend = function () {
         document.getElementById('startListening').style.display = 'inline-block';
         document.getElementById('stopListening').style.display = 'none';
     };
@@ -78,11 +78,16 @@ function toggleLanguage() {
 }
 
 function startListening() {
-    setRecognitionLanguage(); // Đảm bảo ngôn ngữ được cập nhật trước khi bắt đầu
-    recognition.start();
-    document.getElementById('result').innerHTML = '<p>Đang lắng nghe...</p>';
+    document.getElementById('result').innerHTML = '<p>Chuẩn bị lắng nghe...</p>';
     document.getElementById('startListening').style.display = 'none';
     document.getElementById('stopListening').style.display = 'inline-block';
+
+    // Thêm độ trễ trước khi bắt đầu ghi âm
+    setTimeout(() => {
+        setRecognitionLanguage();
+        recognition.start();
+        document.getElementById('result').innerHTML = '<p>Đang lắng nghe...</p>';
+    }, 1000); // Độ trễ 1 giây, có thể điều chỉnh
 }
 
 // Thêm hàm stopListening
@@ -98,36 +103,73 @@ function stopListening() {
 // Hàm kiểm tra phát âm
 async function checkPronunciation(spokenWord) {
     const prompt = `
-    Hãy đóng vai trò là một giáo viên tiếng Nhật tên là Gemix đang đánh giá câu trả lời của học sinh. Xưng hô với học sinh là "bạn", nhận xét vui vẻ, dễ hiểu, dễ nghe. Nếu có lỗi, hãy chỉ ra lỗi và cách sửa.
+Hãy đóng vai trò là một giáo viên tiếng Nhật tên là Gemix, đang đánh giá câu trả lời của học sinh. Xưng hô với học sinh là "bạn", nhận xét vui vẻ, dễ hiểu và dễ nghe. Nếu có lỗi, hãy chỉ ra lỗi và cách sửa.
 
-    Câu hỏi tiếng Nhật: ${currentWord.japanese}
-    Nghĩa tiếng Việt: ${currentWord.vietnamese}
-    Phiên âm romaji: ${currentWord.romaji}
-    Câu trả lời của học sinh: ${spokenWord}
+Câu hỏi tiếng Nhật: ${currentWord.japanese}
+Nghĩa tiếng Việt: ${currentWord.vietnamese}
+Phiên âm romaji: ${currentWord.romaji}
+Câu trả lời của học sinh: ${spokenWord}
 
-    Lưu ý: 
-    - Vui lòng viết không in đậm
-    - Câu hỏi có thể liên quan đến thông tin cá nhân, thời gian, sở thích, nghề nghiệp, quốc tịch, v.v.
-    - Câu trả lời có thể bằng tiếng Nhật hoặc tiếng Việt.
-    - Nếu trả lời bằng tiếng Việt, hãy đánh giá nội dung và hướng dẫn cách nói bằng tiếng Nhật.
-    - Nếu trả lời bằng tiếng Nhật, đánh giá cả nội dung và phát âm.
-    - Chú ý đến cấu trúc câu, từ vựng và trợ từ trong câu trả lời tiếng Nhật.
-    - Lưu ý từ kanji hạn chế viết (trong khuôn khổ N5 thì viết bằng hiragana).
+Lưu ý: 
+- Nếu câu trả lời có số thì viết số bằng chữ hiragana (Không ghi trong nhận xét).
+- Câu trả lời phải đúng trọng tâm, không được lệch chủ đề.
+- Nếu câu trả lời bằng tiếng Việt, hãy ghi lại nội dung và hướng dẫn cách nói bằng tiếng Nhật (quan trọng).
+- Trả lời không in đậm, không sử dụng dấu *, và không xuống dòng, hãy viết liền mạch.
+- Câu hỏi có thể liên quan đến thông tin cá nhân, thời gian, sở thích, nghề nghiệp, quốc tịch, v.v.
+- Nếu trả lời bằng tiếng Việt, hãy đánh giá nội dung và hướng dẫn cách nói bằng tiếng Nhật, sau đó dịch nghĩa từ tiếng Nhật ra tiếng Việt.
+- Nếu trả lời bằng tiếng Nhật, hãy đánh giá cả nội dung và cách phát âm.
+- Chú ý đến cấu trúc câu, từ vựng và trợ từ trong câu trả lời tiếng Nhật.
+- Phần nhận xét hạn chế viết kanji, thay vào đó viết bằng hiragana. Nếu học sinh sử dụng kanji dễ thì chấp nhận, nhưng phần nhận xét chỉ nên dùng hiragana.
 
-    Câu hỏi 1: Câu trả lời của học sinh có đúng với câu hỏi không?
-    Trả lời 1: [Đúng/Gần đúng/Không đúng]
+Câu hỏi 1: Câu trả lời của học sinh có đúng với câu hỏi không?
+Trả lời 1: [Đúng/Gần đúng/Không đúng]
 
-    Câu hỏi 2: Nhận xét về câu trả lời của học sinh, cách phát âm, nếu lạc với đáp thì nhận xét như nào và cách sửa lỗi nếu có?
-    Trả lời 2: [Nhận xét mức chuẩn chỉ bằng tiếng Việt. Nếu có lỗi bao gồm lỗi phát âm, chỉ ra lỗi và cách sửa. Nếu trả lời bằng tiếng Việt, hướng dẫn cách nói bằng tiếng Nhật.(kanji được viết bằng hiragana)]
+Câu hỏi 2: Nhận xét về câu trả lời của học sinh, cách phát âm, nếu có sai sót thì nhận xét và hướng dẫn cách sửa lỗi. 
+Trả lời 2: [Nhận xét mức độ chính xác bằng tiếng Việt. Nếu có lỗi, bao gồm lỗi phát âm, hãy chỉ ra lỗi và cách sửa. Nếu trả lời bằng tiếng Việt, hãy hướng dẫn cách nói bằng tiếng Nhật và viết kanji bằng hiragana.]
 
-    Câu hỏi 3: Cho điểm từ 1 đến 10?
-    Trả lời 3: [Điểm số từ 1-10]
+Câu hỏi 3: Cho điểm từ 1 đến 10?
+Trả lời 3: [Điểm số từ 1-10]
 
-    Hãy trả lời theo định dạng sau:
-    ĐÁNH GIÁ ĐỘ CHÍNH XÁC: [Trả lời 1]
-    NHẬN XÉT: [Trả lời 2]
-    ĐIỂM: [Trả lời 3]
-    `;
+Hãy trả lời theo định dạng sau:
+ĐÁNH GIÁ ĐỘ CHÍNH XÁC: [Trả lời 1]
+NHẬN XÉT: [Trả lời 2]
+ĐIỂM: [Trả lời 3]
+
+### 1. Tự giới thiệu bản thân
+
+- おなまえは。 (O-namae wa?) - Tên bạn là gì?
+    - **Trả lời**: わたしの なまえは [tên] です。 (Watashi no namae wa [tên] desu.) - Tên tôi là [tên].
+- なんさいですか？ (Nansai desu ka?) - Bạn bao nhiêu tuổi?
+    - **Trả lời**: わたしは [tuổi] さいです。 (Watashi wa [tuổi] sai desu.) - Tôi [tuổi] tuổi.
+
+### 2. Hỏi về quốc tịch (Kuni - 国)
+
+- **おくにはどちらですか？** (Okuni wa dochira desu ka?) - Bạn đến từ quốc gia nào?
+    - **Trả lời**: わたしは [quốc gia] からきました。 (Watashi wa [quốc gia] kara kimashita.) - Tôi đến từ [quốc gia].
+
+### 3. Hỏi về nghề nghiệp (Shigoto - 仕事)
+
+- おしごとは なんですか？ (Oshigoto wa nan desu ka?) - Công việc của bạn là gì?
+    - **Trả lời**: わたしは [nghề nghiệp] です。 (Watashi wa [nghề nghiệp] desu.) - Tôi là [nghề nghiệp].
+
+### 4. Hỏi về sở thích (Shumi - 趣味)
+
+- しゅみは なんですか？ (Shumi wa nan desu ka?) - Sở thích của bạn là gì?
+    - **Trả lời**: わたしのしゅみは [sở thích] です。 (Watashi no shumi wa [sở thích] desu.) - Sở thích của tôi là [sở thích].
+
+### 6. Hỏi về thời gian (Jikan - 時間)
+
+- いまなんじですか？ (Ima nanji desu ka?) - Bây giờ là mấy giờ?
+    - **Trả lời**: いま [giờ] じです。 (Ima [giờ] ji desu.) - Bây giờ là [giờ] giờ.
+
+### Một số câu bổ sung cho phần speaking:
+
+- あなたの たんじょうびは いつですか？ (Anata no tanjoubi wa itsu desu ka?) - Sinh nhật của bạn là khi nào?
+    - **Trả lời**: わたしの たんじょうびは [ngày tháng] です。 (Watashi no tanjoubi wa [ngày tháng] desu.) - Sinh nhật của tôi là [ngày tháng].
+- にほんごの クラスは なんじから なんじまでですか？ (Nihongo no kurasu wa nanji kara nanji made desu ka?) - Lớp tiếng Nhật của bạn từ mấy giờ đến mấy giờ?
+    - **Trả lời**: にほんごの クラスは [giờ bắt đầu] じから [giờ kết thúc] じまでです。 (Nihongo no kurasu wa [giờ bắt đầu] ji kara [giờ kết thúc] ji made desu.) - Lớp tiếng Nhật của tôi từ [giờ bắt đầu] đến [giờ kết thúc].
+`;
+
 
     try {
         // Gọi API Gemini để đánh giá phát âm
@@ -153,16 +195,22 @@ async function checkPronunciation(spokenWord) {
         // Xử lý kết quả
         const lines = result.split('\n').filter(line => line.trim() !== '');
         let accuracy = 'Không xác định';
-        let comment = 'Không có nhận xét';
+        let comment = [];
         let score = 0;
+        let isComment = false;
 
         lines.forEach(line => {
-            if (line.includes('ĐÁNH GIÁ ĐỘ CHÍNH XÁC:')) {
-                accuracy = line.replace('ĐÁNH GIÁ ĐỘ CHÍNH XÁC:', '').trim();
-            } else if (line.includes('NHẬN XÉT:')) {
-                comment = line.replace('NHẬN XÉT:', '').trim();
-            } else if (line.includes('ĐIỂM:')) {
-                score = parseInt(line.replace('ĐIỂM:', '').trim()) || 0;
+            line = line.replace(/\*/g, '').trim(); // Loại bỏ dấu sao
+            if (line.toLowerCase().startsWith('đánh giá độ chính xác:')) {
+                accuracy = line.split(':')[1].trim();
+            } else if (line.toLowerCase().startsWith('nhận xét:')) {
+                isComment = true;
+                comment.push(line.split(':').slice(1).join(':').trim());
+            } else if (line.toLowerCase().startsWith('điểm:')) {
+                isComment = false;
+                score = parseInt(line.split(':')[1].trim()) || 0;
+            } else if (isComment) {
+                comment.push(line);
             }
         });
 
@@ -173,11 +221,11 @@ async function checkPronunciation(spokenWord) {
 
         // Xác định màu sắc và đánh giá dựa trên độ chính xác
         let scoreColor, accuracyText, resultClass;
-        if (accuracy.toLowerCase().includes('đúng')) {
+        if (accuracy.toLowerCase() === 'đúng') {
             scoreColor = 'green';
             accuracyText = 'Chính xác';
             resultClass = 'correct';
-        } else if (accuracy.toLowerCase().includes('gần đúng')) {
+        } else if (accuracy.toLowerCase() === 'gần đúng') {
             scoreColor = 'orange';
             accuracyText = 'Gần đúng';
             resultClass = 'near-correct';
@@ -192,7 +240,8 @@ async function checkPronunciation(spokenWord) {
             <p><strong>Bạn nói:</strong> ${spokenWord}</p>
             <p><strong style="color: #4a90e2;">ĐÁNH GIÁ ĐỘ CHÍNH XÁC:</strong> 
                <span style="color: ${scoreColor};">${accuracyText}</span></p>
-            <p><strong style="color: #4a90e2;">NHẬN XÉT:</strong> ${comment}</p>
+            <div><strong style="color: #4a90e2;">NHẬN XÉT:</strong> 
+               ${comment.map(line => `<p>${line}</p>`).join('')}</div>
             <p><strong style="color: #4a90e2;">ĐIỂM:</strong> 
                <span style="font-size: 1.2em; font-weight: bold; color: ${scoreColor};">
                ${score}/10
@@ -272,7 +321,7 @@ function updateProgressBar() {
     progressBar.style.width = `${progress}%`;
 }
 
-// Hàm kết th��c phiên luyện tập
+// Hàm kết thc phiên luyện tập
 function endSession() {
     document.getElementById('wordToSay').innerHTML = '<p>Bạn đã hoàn thành phiên luyện tập!</p>';
     document.getElementById('startListening').disabled = true;
