@@ -9,7 +9,7 @@ let isJapanese = true; // Biến để theo dõi ngôn ngữ hiện tại
 // Mảng chứa các bài học
 const lessons = [
     { japanese: "なんさいですか？", romaji: "Nansai desu ka?", vietnamese: "Bạn bao nhiêu tuổi?", type: "age" },
-    { japanese: "おくにはどちらですか？", romaji: "Okuni wa dochira desu ka?", vietnamese: "Bạn đến từ quốc gia nào?", type: "origin" },
+    { japanese: "おくにはどちらですか？", romaji: "Okuni wa dochira desu ka?", vietnamese: "Bạn đến từ quốc gia nào? (Có thể dùng Watashi no kuni wa ... desu)", type: "origin" },
     { japanese: "おしごとは なんですか？", romaji: "Oshigoto wa nan desu ka?", vietnamese: "Công việc của bạn là gì?", type: "job" },
     { japanese: "しゅみは なんですか？", romaji: "Shumi wa nan desu ka?", vietnamese: "Sở thích của bạn là gì?", type: "hobby" },
     { japanese: "いまなんじですか？", romaji: "Ima nanji desu ka?", vietnamese: "Bây giờ là mấy giờ?", type: "time" },
@@ -82,9 +82,9 @@ function startListening() {
     document.getElementById('stopListening').style.display = 'inline-block';
 
     // Thêm độ trễ trước khi bắt đầu ghi âm
+    setRecognitionLanguage();
+    recognition.start();
     setTimeout(() => {
-        setRecognitionLanguage();
-        recognition.start();
         document.getElementById('result').innerHTML = '<p>Đang lắng nghe...</p>';
     }, 2000); // Độ trễ 1 giây, có thể điều chỉnh
 }
@@ -103,6 +103,11 @@ function stopListening() {
 async function checkPronunciation(spokenWord) {
     const prompt = `
 Hãy đóng vai trò là một giáo viên tiếng Nhật tên là Gemix, đang đánh giá câu trả lời của học sinh. Xưng hô với học sinh là "bạn", nhận xét vui vẻ, dễ hiểu và dễ nghe. Nếu có lỗi, hãy chỉ ra lỗi và cách sửa.
+
+Hãy trả lời theo định dạng sau:
+ĐÁNH GIÁ ĐỘ CHÍNH XÁC: [Trả lời 1]
+NHẬN XÉT: [Trả lời 2]
+ĐIỂM: [Trả lời 3]
 
 Câu hỏi tiếng Nhật: ${currentWord.japanese}
 Nghĩa tiếng Việt: ${currentWord.vietnamese}
@@ -188,7 +193,7 @@ NHẬN XÉT: [Trả lời 2]
         // Xác định màu sắc và đánh giá dựa trên độ chính xác
         let scoreColor, accuracyText, resultClass;
         if (accuracy.toLowerCase() === 'đúng') {
-            scoreColor = 'green';
+            scoreColor = 'green'; 
             accuracyText = 'Chính xác';
             resultClass = 'correct';
         } else if (accuracy.toLowerCase() === 'gần đúng') {
