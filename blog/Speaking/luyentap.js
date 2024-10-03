@@ -8,7 +8,6 @@ let isJapanese = true; // Biến để theo dõi ngôn ngữ hiện tại
 
 // Mảng chứa các bài học
 const lessons = [
-    { japanese: "おなまえは。", romaji: "O-namae wa?", vietnamese: "Tên bạn là gì?", type: "introduction" },
     { japanese: "なんさいですか？", romaji: "Nansai desu ka?", vietnamese: "Bạn bao nhiêu tuổi?", type: "age" },
     { japanese: "おくにはどちらですか？", romaji: "Okuni wa dochira desu ka?", vietnamese: "Bạn đến từ quốc gia nào?", type: "origin" },
     { japanese: "おしごとは なんですか？", romaji: "Oshigoto wa nan desu ka?", vietnamese: "Công việc của bạn là gì?", type: "job" },
