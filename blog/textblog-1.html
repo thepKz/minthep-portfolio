@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        .navbar-collapse {
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .navbar-collapse.show {
+            max-height: 500px; /* Điều chỉnh giá trị này tùy theo nội dung của menu */
+        }
+        
+        @media screen and (max-width: 1090px) {
+            .navbar-collapse {
+                display: block;
+            }
+        }
         .header {
             transition: transform 0.5s ease-in-out;
         }
@@ -155,10 +170,23 @@
             }
 
             #header,
-            .menu {
-                height: 0px !important;
-                display: flex !important;
-            }
+    .menu {
+        height: auto !important; 
+        display: block !important; 
+    }
+    
+
+    .navbar-toggler {
+        display: block;
+    }
+    
+    .navbar-collapse {
+        display: none;
+    }
+    
+    .navbar-collapse.show {
+        display: block;
+    }
             #accordionNguPhap div{
                 width: 100% !important;
                 margin: 0 !important;
@@ -1905,7 +1933,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -2035,8 +2064,15 @@
             $window.on('scroll', throttle(updateTOC, 100));
             updateTOC(); // Gọi một lần để thiết lập trạng thái ban đầu
         });
+        
         </script>
-
+        <script>
+            $(document).ready(function() {
+                $('.navbar-toggler').on('click', function() {
+                    $('#navbarNav').toggleClass('show');
+                });
+            });
+        </script>
 </body>
 
 </html>

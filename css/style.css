@@ -860,3 +860,20 @@ p {
     li {
     font-size: 16px;
     }
+
+
+    .navbar-collapse {
+        transition: max-height 0.3s ease-out;
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    .navbar-collapse.show {
+        max-height: 500px; /* Điều chỉnh giá trị này tùy theo nội dung của menu */
+    }
+    
+    @media screen and (max-width: 1090px) {
+        .navbar-collapse {
+            display: block;
+        }
+    }
