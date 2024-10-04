@@ -10,30 +10,27 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
-        .navbar-collapse {
-            transition: max-height 0.3s ease-out;
-            max-height: 0;
-            overflow: hidden;
-        }
-        
-        .navbar-collapse.show {
-            max-height: 500px; /* Điều chỉnh giá trị này tùy theo nội dung của menu */
-        }
-        
+
+
         @media screen and (max-width: 1090px) {
             .navbar-collapse {
                 display: block;
             }
         }
+
         .header {
             transition: transform 0.5s ease-in-out;
         }
-    
+
         .header.hide {
             transform: translateY(-100%);
         }
-    
+
         .header.fixed-top {
             position: fixed;
             top: 0;
@@ -42,42 +39,54 @@
             z-index: 1030;
         }
 
-        .toc-placeholder {
-            display: none;
+
+
+        #table-of-contents {
+            background-color: rgba(243, 241, 241, 0.219) !important;
+            /* Màu nền nhẹ nhàng */
+            border: 1px solid #e9ecef !important;
+            /* Viền mỏng */
         }
-        #table-of-contents{
-            background-color: rgba(243, 241, 241, 0.219) !important; /* Màu nền nhẹ nhàng */
-            border: 1px solid #e9ecef !important; /* Viền mỏng */
-        }
-    
-        .sticky-toc.fixed + .toc-placeholder {
+
+        .sticky-toc.fixed+.toc-placeholder {
             display: block;
         }
+
         .sticky-toc.fixed {
             position: fixed;
             top: 120px;
-            right: 0px; /* Điều chỉnh khoảng cách từ bên phải */
-            width: 200px; /* Điều chỉnh chiều rộng phù hợp */
-            border-radius: 5px; /* Bo góc nhẹ */
-            padding: 5px; /* Thêm padding */
-            box-shadow: 0 3px 5px rgba(0,0,0,0.1); /* Thêm bóng đổ nhẹ */
+            right: 0px;
+            /* Điều chỉnh khoảng cách từ bên phải */
+            width: 200px;
+            /* Điều chỉnh chiều rộng phù hợp */
+            border-radius: 5px;
+            /* Bo góc nhẹ */
+            padding: 5px;
+            /* Thêm padding */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+            /* Thêm bóng đổ nhẹ */
         }
-        
+
         .sticky-toc.fixed a {
-            color: #495057; /* Màu chữ đậm hơn một chút */
-            transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+            color: #495057;
+            /* Màu chữ đậm hơn một chút */
+            transition: color 0.3s ease;
+            /* Hiệu ứng chuyển màu mượt mà */
         }
-        
+
         .sticky-toc.fixed a:hover {
-            color: #007bff; /* Màu khi hover */
-            text-decoration: none; /* Bỏ gạch chân khi hover */
+            color: #007bff;
+            /* Màu khi hover */
+            text-decoration: none;
+            /* Bỏ gạch chân khi hover */
         }
-        @media (max-width: 1520px){
+
+        @media (max-width: 1520px) {
             .sticky-toc.fixed {
                 display: none;
-            position: block !important;
-            width: 100%;
-            z-index: -9999;
+                position: block !important;
+                width: 100%;
+                z-index: -9999;
             }
         }
 
@@ -105,7 +114,7 @@
             background-attachment: fixed;
             width: 100%;
 
-            
+
             overflow: hidden;
             z-index: -11;
         }
@@ -170,28 +179,30 @@
             }
 
             #header,
-    .menu {
-        height: auto !important; 
-        display: block !important; 
-    }
-    
+            .menu {
+                height: auto !important;
+                display: block !important;
+            }
 
-    .navbar-toggler {
-        display: block;
-    }
-    
-    .navbar-collapse {
-        display: none;
-    }
-    
-    .navbar-collapse.show {
-        display: block;
-    }
-            #accordionNguPhap div{
+
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-collapse {
+                display: none;
+            }
+
+            .navbar-collapse.show {
+                display: block;
+            }
+
+            #accordionNguPhap div {
                 width: 100% !important;
                 margin: 0 !important;
             }
         }
+
     </style>
 </head>
 
@@ -293,7 +304,7 @@
                 <div class="toc-placeholder"></div>
             </div>
         </div>
-        
+
         <div id="tai-nguyen" class="section-anchor"></div>
 
         <h3>Tài nguyên học tập:</h3>
@@ -322,9 +333,10 @@
             </ul>
         </div>
         <ol class="list-group">
-            <li class="list-group-item" style="width: 100%!important;">Bảng chữ cái ở <a href="https://www.duolingo.com/learn"
-                    target="_blank">Duolingo</a> hoặc link này: <a href="https://www.realkana.com/hiragana"
-                    target="_blank" rel="nofollow ugc noopener">Hiragana Learning</a>.</li>
+            <li class="list-group-item" style="width: 100%!important;">Bảng chữ cái ở <a
+                    href="https://www.duolingo.com/learn" target="_blank">Duolingo</a> hoặc link này: <a
+                    href="https://www.realkana.com/hiragana" target="_blank" rel="nofollow ugc noopener">Hiragana
+                    Learning</a>.</li>
             <li class="list-group-item" style="width: 100%!important;">Link quizlet học các loại verb: <a
                     href="https://quizlet.com/vn/815088820/dekiru1_jpd113_v-flash-cards/" target="_blank"
                     rel="nofollow ugc noopener">Quizlet verb</a>.</li>
@@ -1289,7 +1301,8 @@
 
         <div id="ngu-phap" class="section-anchor"></div>
         <h2><b>Ngữ pháp JPD113:</b></h2>
-        <button id="toggleAll" class="btn btn-success btn-lg mb-3" style="font-size: 1.2rem; padding: 10px 20px;">Mở rộng tất cả</button>
+        <button id="toggleAll" class="btn btn-success btn-lg mb-3" style="font-size: 1.2rem; padding: 10px 20px;">Mở
+            rộng tất cả</button>
         <div class="accordion" id="accordionNguPhap">
             <!-- Từ chỉ vị trí -->
             <div class="card mb-3">
@@ -1350,7 +1363,8 @@
                         </div>
                         <p><strong>Ý nghĩa:</strong> Dùng để chỉ vị trí của người hoặc vật.</p>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Khi nói chuyện với người lớn tuổi hoặc trong môi trường công sở, nên sử dụng các từ lịch sự (こちら、そちら、あちら) để thể hiện sự tôn trọng.
+                            <strong>Lưu ý:</strong> Khi nói chuyện với người lớn tuổi hoặc trong môi trường công sở, nên
+                            sử dụng các từ lịch sự (こちら、そちら、あちら) để thể hiện sự tôn trọng.
                         </div>
                     </div>
                 </div>
@@ -1370,7 +1384,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> (おくに・かいしゃ・だいがく・がっこう・いえ・いなか) は どちらですか。</p>
-                        <p><strong>Ý nghĩa:</strong> Hỏi về địa điểm của trường, công ty, trường đại học, nhà, quê...</p>
+                        <p><strong>Ý nghĩa:</strong> Hỏi về địa điểm của trường, công ty, trường đại học, nhà, quê...
+                        </p>
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. だいがくはどちらですか。 (Trường đại học của bạn ở đâu?)</p>
@@ -1402,12 +1417,13 @@
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. これはどこのかみですか。 (Cái này là giấy của nước nào?)</p>
-                            <p>   ベトナムのです。 (Của Việt Nam.)</p>
+                            <p> ベトナムのです。 (Của Việt Nam.)</p>
                             <p>2. このくるまはどこのですか。 (Chiếc xe này là của nước nào?)</p>
-                            <p>   にほんのです。 (Của Nhật.)</p>
+                            <p> にほんのです。 (Của Nhật.)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Khi trả lời, bạn có thể bỏ qua từ "くに" (nước) nếu đã rõ ràng từ ngữ cảnh.
+                            <strong>Lưu ý:</strong> Khi trả lời, bạn có thể bỏ qua từ "くに" (nước) nếu đã rõ ràng từ ngữ
+                            cảnh.
                         </div>
                     </div>
                 </div>
@@ -1431,9 +1447,9 @@
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. これはいくらですか。 (Cái này bao nhiêu tiền?)</p>
-                            <p>   750えんです。 (750 yên.)</p>
+                            <p> 750えんです。 (750 yên.)</p>
                             <p>2. このほんはいくらですか。 (Cuốn sách này giá bao nhiêu?)</p>
-                            <p>   1000えんです。 (1000 yên.)</p>
+                            <p> 1000えんです。 (1000 yên.)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
                             <strong>Lưu ý:</strong>
@@ -1511,7 +1527,8 @@
                             <p>3. あのひとはだれですか。 (Người kia là ai vậy?)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Khi sử dụng これ、それ、あれ, chúng ta không cần thêm danh từ phía sau. Ngược lại, khi dùng この、その、あの, chúng ta phải có một danh từ theo sau.
+                            <strong>Lưu ý:</strong> Khi sử dụng これ、それ、あれ, chúng ta không cần thêm danh từ phía sau.
+                            Ngược lại, khi dùng この、その、あの, chúng ta phải có một danh từ theo sau.
                         </div>
                     </div>
                 </div>
@@ -1538,7 +1555,8 @@
                             <p>2. あのひとは せんせいですか がくせいですか。 (Người kia là giáo viên hay là học sinh?)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Có thể sử dụng cấu trúc này để hỏi về nhiều loại danh từ khác nhau, không chỉ giới hạn ở vật thể.
+                            <strong>Lưu ý:</strong> Có thể sử dụng cấu trúc này để hỏi về nhiều loại danh từ khác nhau,
+                            không chỉ giới hạn ở vật thể.
                         </div>
                     </div>
                 </div>
@@ -1565,7 +1583,8 @@
                             <p>2. その かばんは だれの ですか。 (Cái túi đó là của ai vậy?)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Khi trả lời, có thể sử dụng cấu trúc: [Người sở hữu] の です。 (Ví dụ: わたしの です。- Là của tôi.)
+                            <strong>Lưu ý:</strong> Khi trả lời, có thể sử dụng cấu trúc: [Người sở hữu] の です。 (Ví dụ:
+                            わたしの です。- Là của tôi.)
                         </div>
                     </div>
                 </div>
@@ -1618,14 +1637,16 @@
                 <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~ から ~ まで</p>
-                        <p><strong>Ý nghĩa:</strong> Chỉ khoảng thời gian một hoạt động diễn ra, từ lúc bắt đầu đến lúc kết thúc.</p>
+                        <p><strong>Ý nghĩa:</strong> Chỉ khoảng thời gian một hoạt động diễn ra, từ lúc bắt đầu đến lúc
+                            kết thúc.</p>
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. がっこうは 9じから 3じまでです。 (Trường học từ 9 giờ sáng đến 3 giờ chiều.)</p>
                             <p>2. としょかんは 10じから 18じまでです。 (Thư viện mở cửa từ 10 giờ sáng đến 6 giờ tối.)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Lưu ý:</strong> Cấu trúc này có thể áp dụng cho nhiều loại thời gian khác nhau, không chỉ giới hạn ở giờ. Ví dụ: げつようびから きんようびまで はたらきます。(Làm việc từ thứ Hai đến thứ Sáu.)
+                            <strong>Lưu ý:</strong> Cấu trúc này có thể áp dụng cho nhiều loại thời gian khác nhau,
+                            không chỉ giới hạn ở giờ. Ví dụ: げつようびから きんようびまで はたらきます。(Làm việc từ thứ Hai đến thứ Sáu.)
                         </div>
                     </div>
                 </div>
@@ -1653,7 +1674,8 @@
                             <p>2. わたしは コーヒー と ケーキを たべます。 (Tôi ăn bánh và uống cà phê.)</p>
                         </div>
                         <div class="alert alert-warning" role="alert">
-                            <strong>Chú ý:</strong> Trợ từ と chỉ được sử dụng để nối danh từ. Để nối động từ hoặc tính từ, sử dụng て-form.
+                            <strong>Chú ý:</strong> Trợ từ と chỉ được sử dụng để nối danh từ. Để nối động từ hoặc tính
+                            từ, sử dụng て-form.
                         </div>
                     </div>
                 </div>
@@ -1681,7 +1703,8 @@
                             <p>2. 7じに ばんごはんを たべます。 (Tôi ăn tối lúc 7 giờ.)</p>
                         </div>
                         <div class="alert alert-info" role="alert">
-                            <strong>Mở rộng:</strong> Có thể sử dụng với các từ chỉ thời gian khác như ごぜん (sáng), ごご (chiều), よる (tối), etc.
+                            <strong>Mở rộng:</strong> Có thể sử dụng với các từ chỉ thời gian khác như ごぜん (sáng), ごご
+                            (chiều), よる (tối), etc.
                         </div>
                     </div>
                 </div>
@@ -1702,7 +1725,8 @@
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~ から ~ まで ~ ます。</p>
-                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động kéo dài liên tục từ thời điểm này đến thời điểm khác.</p>
+                        <p><strong>Ý nghĩa:</strong> Diễn tả một hành động kéo dài liên tục từ thời điểm này đến thời
+                            điểm khác.</p>
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. 8じから 6じまで はたらきます。 (Làm việc từ 8 giờ sáng đến 6 giờ tối.)</p>
@@ -1878,7 +1902,8 @@
                             </ul>
                         </div>
                         <div class="alert alert-warning" role="alert">
-                            <strong>Lưu ý:</strong> Cấu trúc này thường được dùng trong các tình huống giao tiếp hàng ngày, khi bạn muốn giải thích nghĩa của một từ hoặc cụm từ cho người khác.
+                            <strong>Lưu ý:</strong> Cấu trúc này thường được dùng trong các tình huống giao tiếp hàng
+                            ngày, khi bạn muốn giải thích nghĩa của một từ hoặc cụm từ cho người khác.
                         </div>
                     </div>
                 </div>
@@ -1899,7 +1924,8 @@
                     data-parent="#accordionNguPhap">
                     <div class="card-body">
                         <p><strong>Công thức:</strong> ~や ~ など</p>
-                        <p><strong>Ý nghĩa:</strong> Liệt kê một vài ví dụ tiêu biểu. Ngụ ý rằng còn có những ví dụ khác tương tự mà không cần liệt kê hết ra.</p>
+                        <p><strong>Ý nghĩa:</strong> Liệt kê một vài ví dụ tiêu biểu. Ngụ ý rằng còn có những ví dụ khác
+                            tương tự mà không cần liệt kê hết ra.</p>
                         <div class="alert alert-success" role="alert">
                             <h4 class="alert-heading">Ví dụ:</h4>
                             <p>1. かばんの中にほんやノートなどがあります。 (Trong cặp có sách và vở, và những thứ khác.)</p>
@@ -1914,7 +1940,8 @@
                             </ul>
                         </div>
                         <div class="alert alert-warning" role="alert">
-                            <strong>Lưu ý:</strong> Cấu trúc này thường được sử dụng khi bạn muốn đưa ra một vài ví dụ mà không cần liệt kê tất cả. Nó tạo ra một cảm giác mở và linh hoạt trong câu nói.
+                            <strong>Lưu ý:</strong> Cấu trúc này thường được sử dụng khi bạn muốn đưa ra một vài ví dụ
+                            mà không cần liệt kê tất cả. Nó tạo ra một cảm giác mở và linh hoạt trong câu nói.
                         </div>
                     </div>
                 </div>
@@ -1933,24 +1960,24 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const $window = $(window);
             const $header = $('#header');
             let lastScrollTop = 0;
             const delta = 5;
             const headerHeight = $header.outerHeight();
-        
+
             function hasScrolled() {
                 const st = $window.scrollTop();
-        
+
                 // Make sure they scroll more than delta
                 if (Math.abs(lastScrollTop - st) <= delta)
                     return;
-        
+
                 // If they scrolled down and are past the header, add class .hide.
                 // This is necessary so you never see what is "behind" the header.
                 if (st > lastScrollTop && st > headerHeight) {
@@ -1962,10 +1989,10 @@
                         $header.removeClass('hide').addClass('fixed-top');
                     }
                 }
-        
+
                 lastScrollTop = st;
             }
-        
+
             $window.on('scroll', throttle(hasScrolled, 250));
         });
         $(document).ready(function () {
@@ -2036,7 +2063,7 @@
 
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const $window = $(window);
             const $toc = $('.sticky-toc');
             const $sections = $('.section-anchor');
@@ -2045,10 +2072,10 @@
             const $placeholder = $('.toc-placeholder');
             const tocOffsetTop = $toc.offset().top;
             const tocHeight = $toc.outerHeight();
-        
+
             function updateTOC() {
                 let scrollPosition = $window.scrollTop();
-        
+
                 // Xử lý việc chuyển đổi vị trí của mục lục
                 if (scrollPosition > tocOffsetTop + tocHeight) {
                     if (!$toc.hasClass('fixed')) {
@@ -2060,19 +2087,19 @@
                     $placeholder.height(0);
                 }
             }
-        
+
             $window.on('scroll', throttle(updateTOC, 100));
             updateTOC(); // Gọi một lần để thiết lập trạng thái ban đầu
         });
-        
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('.navbar-toggler').on('click', function() {
-                    $('#navbarNav').toggleClass('show');
-                });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.navbar-toggler').on('click', function () {
+                $('#navbarNav').toggleClass('show');
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>
