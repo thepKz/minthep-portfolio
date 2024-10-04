@@ -1,89 +1,96 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const table = document.getElementById('vocabularyTable');
-    const flashcardContainer = document.getElementById('flashcardContainer');
-    const shuffleButton = document.getElementById('shuffleButton');
-    shuffleButton.addEventListener('click', shuffleCards);
-    const vocabularyData = Array.from(table.querySelectorAll('tbody tr')).map(row => ({
-        word: row.cells[0].textContent,
-        meaning: row.cells[1].textContent
-    }));
-
-    // Tạo flashcards và thêm vào container
-    const cards = vocabularyData.map(item => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-        <div class="card-front">${item.word}</div>
-        <div class="card-back">${item.meaning}</div>
-      `;
-        flashcardContainer.appendChild(card);
-
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-            const shuffleButton = document.getElementById('shuffleButton');
-            if (!shuffleButton) {
-                createShuffleButton();
+document.addEventListener('DOMContentLoaded', function() {
+    // Progressive Disclosure
+    const sectionToggles = document.querySelectorAll('.section-toggle');
+    sectionToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                this.classList.add('active');
+                this.innerHTML += ' <span class="toggle-indicator">▲</span>';
+            } else {
+                content.style.display = 'none';
+                this.classList.remove('active');
+                this.innerHTML = this.innerHTML.replace(' <span class="toggle-indicator">▲</span>', '');
             }
         });
-
-        return card;
     });
-
-    // Hàm tạo nút shuffle (không thay đổi)
-    function createShuffleButton() { /* ... (giữ nguyên code) ... */ }
-
-    // Hàm xáo trộn flashcards (đã sửa)
-    function shuffleCards() {
-        const shuffledCards = cards.slice(); // Tạo một bản sao mới của mảng cards
-        for (let i = shuffledCards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]]; // Hoán đổi vị trí
+    document.querySelectorAll('.section-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+    // Back to top button
+    const backToTopButton = document.getElementById("back-to-top");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
         }
+    };
 
-        flashcardContainer.innerHTML = ''; // Xóa nội dung hiện tại của flashcardContainer
+    backToTopButton.onclick = function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    };
 
-        shuffledCards.forEach(card => {
-            flashcardContainer.appendChild(card); // Thêm lại các thẻ đã xáo trộn
-        });
-    }// Tạo flashcards và thêm vào container
-    vocabularyData.forEach(item => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-        <div class="card-front">${item.word}</div>
-        <div class="card-back">${item.meaning}</div>
-      `;
-        flashcardContainer.appendChild(card);
 
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 
-    // Xử lý nút "Chế độ Flashcard"
-    const flashcardModeButton = document.getElementById('flashcardModeButton');
-    flashcardModeButton.addEventListener('click', () => {
-        shuffleButton.style.display = 'flex';
-        flashcardContainer.style.display = 'flex';
-        table.style.display = 'none';
-
+    // Add hover effect to table rows
+    const tableRows = document.querySelectorAll('tr');
+    tableRows.forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            row.style.transform = 'scale(1.02)';
+            row.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        });
+        row.addEventListener('mouseleave', () => {
+            row.style.transform = 'scale(1)';
+            row.style.boxShadow = 'none';
+        });
     });
 
-    // Xử lý nút "Chế độ Bảng"
-    const tableModeButton = document.getElementById('tableModeButton');
-    tableModeButton.addEventListener('click', () => {
-        table.style.display = 'table';
-        flashcardContainer.style.display = 'none';
-        shuffleButton.style.display = 'none';
+    // Thêm hiệu ứng parallax cho header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        let scrollPosition = window.pageYOffset;
+        header.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
     });
 
-    // Xử lý nút "Tắt"
-    const offModeButton = document.getElementById('offModeButton');
-    offModeButton.addEventListener('click', () => {
-        table.style.display = 'none';
-        flashcardContainer.style.display = 'none';
-        shuffleButton.style.display = 'none';
+    // Thêm hiệu ứng typing cho tiêu đề
+    function typeWriter(element, text, i = 0) {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(() => typeWriter(element, text, i), 500);
+        }
+    }
+
+    const mainTitle = document.querySelector('h1');
+    typeWriter(mainTitle, mainTitle.textContent);
+    mainTitle.textContent = '';
+
+    // Thêm hiệu ứng cho các phần tử khi scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    });
+
+    fadeElements.forEach(element => {
+        observer.observe(element);
     });
 });
-
-
