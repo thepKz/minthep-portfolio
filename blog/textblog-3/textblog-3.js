@@ -53,7 +53,7 @@ $(document).ready(function () {
     toggleExample('#showExampleBtn21_3', '#exampleContent21_3');
 
     // Apply toggle functionality to chapter 3 and 4 examples
-    for (let chapter = 3; chapter <= 6; chapter++) {
+    for (let chapter = 3; chapter <= 7; chapter++) {
         for (let i = 1; i <= 10; i++) {
             toggleExample(`#showExampleBtn${chapter}_${i}`, `#exampleContent${chapter}_${i}`);
         }
@@ -85,6 +85,13 @@ MathJax = {
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
     },
     svg: {
-        scale: 1.5 // Tăng kích thước lên 150%
+        scale: 1.15, // Kích thước chung
+        minScale: 1.15, // Kích thước tối thiểu cho công thức inline
+        matchFontHeight: false,
+        mtextInheritFont: false
+    },
+    "HTML-CSS": {
+        scale: 120,
+        minScaleAdjust: 100
     }
 };

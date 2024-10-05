@@ -89,6 +89,17 @@ h3 {
 .card-header h3 {
     color: #ffffff;
 }
+@media (max-width: 1128px) {
+    .card{
+        width: 100% !important;
+    }
+    .card-header {
+        width: 100% !important;
+    }
+    .card-header h3 {
+        width: 100% !important;
+    }
+}
 .card-body {
     padding: 30px;
 }
@@ -179,9 +190,6 @@ tr:hover {
         font-size: 1.5rem;
     }
 
-    .MathJax {
-        font-size: 14px !important;
-    }
 
     .card-body {
         padding: 20px;
@@ -226,7 +234,7 @@ tr:hover {
 }
 
 .chapter h3:hover {
-    color: #007bff;
+    color: #fff4f4;
 }
 
 #back-to-top {
@@ -518,3 +526,110 @@ code {
     color: #007bff;
     font-weight: bold;
 }
+
+/* Thêm vào cuối file CSS */
+
+/* Nút Back to Top */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: #0056b3;
+}
+
+/* Cải thiện khả năng đọc */
+body {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Tăng khoảng cách giữa các phần */
+.card {
+    margin-bottom: 40px;
+}
+
+/* Hiệu ứng hover cho các liên kết */
+a {
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Cải thiện hiển thị trên thiết bị di động */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Cải thiện hiển thị code */
+pre {
+    background-color: #f8f9fa;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+}
+
+.MathJax {
+    font-size: 120% !important;
+    margin: 0 !important;
+}
+
+.MathJax_Display {
+    font-size: 140% !important;
+}
+
+@media (max-width: 768px) {
+    .MathJax {
+        font-size: 130% !important;
+    }
+
+    .MathJax_Display {
+        font-size: 120% !important;
+    }
+}
+
+.chapter li {
+    font-size: 1.1em;
+}
+
+.chapter li p {
+    font-size: 1.1em;
+}
+
