@@ -1,13 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
     color: #333;
+    background-color: #f8f9fa;
 }
 
 .container {
-    max-width: 1500px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
 }
 
 .wrapper {
@@ -43,29 +44,114 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-h2 {
-    color: #dc3545; /* Changed to red (Bootstrap's danger color) */
-    border-bottom: 2px solid #dc3545;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 3px solid #3498db;
     padding-bottom: 10px;
-    margin-top: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #34495e;
 }
 
 h3 {
-    color: #0056b3;
-    margin-top: 20px;
+    font-size: 1.75rem;
+    color: #2980b9;
 }
 
-ul {
-    padding-left: 20px;
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
 }
 
-li {
-    font-size: 20px;
-    margin-bottom: 5px;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.MathJax {
-    font-size: 26px !important;
+.card-header {
+    background-color: #3498db;
+    color: white;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+}
+.card-header h3 {
+    color: #ffffff;
+}
+.card-body {
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.example {
+    background-color: #e8f4f8;
+    border-left: 5px solid #3498db;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.math-formula {
+    background-color: #f9f2f4;
+    color: #c7254e;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Fira Code', monospace;
+    overflow-x: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -74,23 +160,31 @@ li {
     }
 
     .container {
-        padding: 10px;
+        padding: 15px;
     }
 
     .anime-svg text {
         font-size: 36px;
     }
 
+    h1 {
+        font-size: 2rem;
+    }
+
     h2 {
-        font-size: 24px;
+        font-size: 1.75rem;
     }
 
     h3 {
-        font-size: 20px;
+        font-size: 1.5rem;
     }
 
     .MathJax {
         font-size: 14px !important;
+    }
+
+    .card-body {
+        padding: 20px;
     }
 }
 .downloads {
@@ -203,15 +297,19 @@ li {
 }
 
 #table-of-contents {
-    background-color: #f8f9fa;
-    border-left: 4px solid #dc3545;
-    padding: 15px;
-    margin-bottom: 30px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 #table-of-contents h3 {
-    color: #dc3545;
-    margin-bottom: 10px;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 #table-of-contents ul {
@@ -219,39 +317,25 @@ li {
     padding-left: 0;
 }
 
+#table-of-contents ul ul {
+    padding-left: 20px;
+}
+
 #table-of-contents li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 #table-of-contents a {
-    color: #007bff;
+    color: #3498db;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 #table-of-contents a:hover {
+    color: #2980b9;
     text-decoration: underline;
 }
 
-.example {
-    background-color: #f0f8ff;
-    border-left: 4px solid #007bff;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.example p {
-    margin-bottom: 5px;
-}
-
-.card-body h4 {
-    color: #007bff;
-    margin-top: 20px;
-}
-
-.card-body h5 {
-    color: #0056b3;
-    margin-top: 15px;
-}
 .example {
     background-color: #f0f8ff;
     border-left: 4px solid #007bff;
@@ -376,4 +460,61 @@ li {
 /* Hiệu ứng hover cho tất cả các liên kết */
 #table-of-contents a:hover {
     color: #ffc107; /* Vàng */
+}
+
+.section-divider {
+    height: 3px;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    margin: 40px 0;
+    border-radius: 3px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+pre {
+    background-color: #f8f9fa;
+    border-left: 5px solid #3498db;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    color: #e74c3c;
+}
+
+#toc {
+    position: sticky;
+    top: 80px; /* Điều chỉnh khoảng cách từ đỉnh trang */
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 1px solid #dee2e6;
+}
+
+#toc ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#toc ul li {
+    margin-bottom: 10px;
+}
+
+#toc .nav-link {
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+#toc .nav-link:hover,
+#toc .nav-link.active {
+    color: #007bff;
+    font-weight: bold;
 }

@@ -30,113 +30,53 @@ $(document).ready(function () {
         $('html, body').animate({ scrollTop: 0 }, '200');
     });
 
-    // Example toggle functionality
-    $('#showExampleBtn').click(function () {
-        var $exampleContent = $('#exampleContent');
-        var $button = $(this);
-
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    // Example toggle functionality for 2.1
-    $('#showExampleBtn2_1').click(function () {
-        var $exampleContent = $('#exampleContent2_1');
-        var $button = $(this);
-
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    //showExampleBtn2_2
-    $('#showExampleBtn2_2').click(function () {
-        var $exampleContent = $('#exampleContent2_2');
-        var $button = $(this);
-
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    //showExampleBtn2_3
-    $('#showExampleBtn2_3').click(function () {
-        var $exampleContent = $('#exampleContent2_3');
-        var $button = $(this);
-
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-    $('#showExampleBtn22_2').click(function () {
-        var $exampleContent = $('#exampleContent22_2');
-        var $button = $(this);
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    $('#showExampleBtn21_3').click(function () {
-        var $exampleContent = $('#exampleContent21_3');
-        var $button = $(this);
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    $('#showExampleBtn2_4').click(function () {
-        var $exampleContent = $('#exampleContent2_4');
-        var $button = $(this);
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    $('#showExampleBtn2_5').click(function () {
-        var $exampleContent = $('#exampleContent2_5');
-        var $button = $(this);
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-
-    $('#showExampleBtn2_6').click(function () {
-        var $exampleContent = $('#exampleContent2_6');
-        var $button = $(this);
-        $exampleContent.slideToggle();
-        $button.text(function (i, text) {
-            return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
-        });
-    });
-    for (let i = 1; i <= 10; i++) {
-        $(`#showExampleBtn3_${i}`).click(function () {
-            var $exampleContent = $(`#exampleContent3_${i}`);
+    // Generic function for example toggle
+    function toggleExample(btnId, contentId) {
+        $(btnId).click(function () {
+            var $exampleContent = $(contentId);
             var $button = $(this);
             $exampleContent.slideToggle();
             $button.text(function (i, text) {
-                return text === "Hiển thị ví dụ" ? "Hiển thị ví dụ" : "Ẩn ví dụ";
+                return text === "Hiển thị ví dụ" ? "Ẩn ví dụ" : "Hiển thị ví dụ";
             });
         });
     }
-    for (let i = 1; i <= 10; i++) {
-        $(`#showExampleBtn4_${i}`).click(function () {
-            var $exampleContent = $(`#exampleContent4_${i}`);
-            var $button = $(this);
-            $exampleContent.slideToggle();
-            $button.text(function (i, text) {
-                return text === "Hiển thị ví dụ" ? "Hiển thị ví dụ" : "Ẩn ví dụ";
-            });
-        });
+
+
+
+    // Apply toggle functionality to all example buttons
+    toggleExample('#showExampleBtn', '#exampleContent');
+    for (let i = 1; i <= 6; i++) {
+        toggleExample(`#showExampleBtn2_${i}`, `#exampleContent2_${i}`);
     }
+    toggleExample('#showExampleBtn22_2', '#exampleContent22_2');
+    toggleExample('#showExampleBtn21_3', '#exampleContent21_3');
+
+    // Apply toggle functionality to chapter 3 and 4 examples
+    for (let chapter = 3; chapter <= 6; chapter++) {
+        for (let i = 1; i <= 10; i++) {
+            toggleExample(`#showExampleBtn${chapter}_${i}`, `#exampleContent${chapter}_${i}`);
+        }
+    }
+
+    $(window).on('scroll', function() {
+        $('.chapter').each(function() {
+            if ($(window).scrollTop() >= $(this).offset().top - 100) {
+                var id = $(this).attr('id');
+                $('#toc .nav-link').removeClass('active');
+                $('#toc .nav-link[href="#'+ id +'"]').addClass('active');
+            }
+        });
+    });
+
+    // Smooth scrolling for TOC links
+    $('#toc .nav-link').on('click', function(e) {
+        e.preventDefault();
+        var target = $($(this).attr('href'));
+        $('html, body').animate({
+            scrollTop: target.offset().top - 80
+        }, 500);
+    });
 });
 
 MathJax = {
@@ -148,18 +88,3 @@ MathJax = {
         scale: 1.5 // Tăng kích thước lên 150%
     }
 };
-
-
-function checkProbability() {
-    const answer = parseFloat(document.getElementById('probability-answer').value);
-    const correctAnswer = 5/8;
-    const feedback = document.getElementById('probability-feedback');
-    
-    if (Math.abs(answer - correctAnswer) < 0.01) {
-        feedback.textContent = 'Chính xác! Xác suất là 5/8 = 0.625';
-        feedback.style.color = 'green';
-    } else {
-        feedback.textContent = 'Chưa đúng. Hãy thử lại!';
-        feedback.style.color = 'red';
-    }
-}
