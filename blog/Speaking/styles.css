@@ -280,3 +280,50 @@ footer a:hover {
 #instructions .fas {
     color: var(--primary-color);
 }
+#instructions {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#instructions h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+.instruction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.instruction-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.instruction-step:hover {
+    transform: translateY(-5px);
+}
+
+
+
+.icon-circle i {
+    font-size: 24px;
+    color: white;
+}
+
+.instruction-step p {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 0;
+}

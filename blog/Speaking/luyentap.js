@@ -29,8 +29,9 @@ function shuffleArray(array) {
 function setupSpeechRecognition() {
     if (!('SpeechRecognition' in window) && !('webkitSpeechRecognition' in window)) {
         console.error('Trình duyệt không hỗ trợ nhận dạng giọng nói');
-        document.getElementById('startListening').disabled = true;
-        document.getElementById('startListening').innerText = 'Không hỗ trợ nhận dạng giọng nói';
+        const startButton = document.getElementById('startListening');
+        startButton.disabled = true;
+        startButton.innerText = 'Không hỗ trợ nhận dạng giọng nói';
         return;
     }
 
@@ -42,22 +43,22 @@ function setupSpeechRecognition() {
 
     // Thêm nút chuyển đổi ngôn ngữ
     const toggleLanguageButton = document.createElement('button');
-    toggleLanguageButton.innerText = 'Trả lời bằng tiếng việt để Gemix hướng dẫn';
+    toggleLanguageButton.innerText = 'Trả lời bằng tiếng Việt để Gemix hướng dẫn';
     toggleLanguageButton.className = 'language-toggle';
     toggleLanguageButton.onclick = toggleLanguage;
     document.querySelector('.speak-container').appendChild(toggleLanguageButton);
 
-    recognition.onresult = function (event) {
+    recognition.onresult = (event) => {
         const speechResult = event.results[0][0].transcript;
         document.getElementById('result').innerHTML = `<p><strong>Bạn nói:</strong> ${speechResult}</p>`;
         checkPronunciation(speechResult);
     };
 
-    recognition.onerror = function (event) {
+    recognition.onerror = (event) => {
         console.error('Lỗi nhận diện giọng nói:', event.error);
     };
 
-    recognition.onend = function () {
+    recognition.onend = () => {
         document.getElementById('startListening').style.display = 'inline-block';
         document.getElementById('stopListening').style.display = 'none';
     };
@@ -72,8 +73,8 @@ function setRecognitionLanguage() {
 function toggleLanguage() {
     isJapanese = !isJapanese;
     setRecognitionLanguage();
-    const toggleLanguageButton = document.querySelector('.speak-container button:last-child');
-    toggleLanguageButton.innerText = isJapanese ? 'Trả lời bằng tiếng việt để Gemix hướng dẫn' : 'Click để chuyển lại trả lời bằng tiếng Nhật';
+    const toggleLanguageButton = document.querySelector('.speak-container button.language-toggle');
+    toggleLanguageButton.innerText = isJapanese ? 'Trả lời bằng tiếng Việt để Gemix hướng dẫn' : 'Click để chuyển lại trả lời bằng tiếng Nhật';
 }
 
 function startListening() {
@@ -81,15 +82,13 @@ function startListening() {
     document.getElementById('startListening').style.display = 'none';
     document.getElementById('stopListening').style.display = 'inline-block';
 
-    // Thêm độ trễ trước khi bắt đầu ghi âm
     setRecognitionLanguage();
     recognition.start();
     setTimeout(() => {
         document.getElementById('result').innerHTML = '<p>Đang lắng nghe...</p>';
-    }, 2000); // Độ trễ 1 giây, có thể điều chỉnh
+    }, 1000); // Độ trễ 1 giây
 }
 
-// Thêm hàm stopListening
 function stopListening() {
     if (recognition) {
         recognition.stop();
@@ -124,6 +123,7 @@ Lưu ý:
 - Nếu trả lời bằng tiếng Nhật, hãy đánh giá cả nội dung và cách phát âm.
 - Chú ý đến cấu trúc câu, từ vựng và trợ từ trong câu trả lời tiếng Nhật.
 - Phần nhận xét hạn chế viết kanji, thay vào đó viết bằng hiragana. Nếu học sinh sử dụng kanji dễ thì chấp nhận, nhưng phần nhận xét chỉ nên dùng hiragana.
+- Cho dù học sinh trả lời bằng kanji, hãy luôn trả lời bằng hiragana trong phần nhận xét.
 
 Câu hỏi 1: Câu trả lời của học sinh có đúng với câu hỏi không?
 Trả lời 1: [Đúng/Gần đúng/Không đúng]
@@ -138,13 +138,11 @@ Hãy trả lời theo định dạng sau:
 ĐÁNH GIÁ ĐỘ CHÍNH XÁC: [Trả lời 1]
 NHẬN XÉT: [Trả lời 2]
 ĐIỂM: [Trả lời 3]
-
 `;
 
-
     try {
-        // Gọi API Gemini để đánh giá phát âm
-        const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyDp2aAZ6IiFFKDbddhPnHcrGYuSMvVPBGk', {
+        // Gọi API để đánh giá phát âm
+        const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=YOUR_API_KEY', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -161,7 +159,7 @@ NHẬN XÉT: [Trả lời 2]
             throw new Error('Không nhận được kết quả hợp lệ từ API');
         }
 
-        console.log("Kết quả từ API:", result); // Để debug
+        console.log("Kết quả từ API:", result);
 
         // Xử lý kết quả
         const lines = result.split('\n').filter(line => line.trim() !== '');
@@ -232,12 +230,10 @@ NHẬN XÉT: [Trả lời 2]
             endSession();
         } else {
             // Tải câu hỏi tiếp theo sau 3 giây
-            // DISABLE FOR TESTING
-            // setTimeout(loadPracticeWord, 3000);
+            setTimeout(loadPracticeWord, 3000);
         }
     } catch (error) {
-        console.error('Lỗi khi gọi API Gemini:', error);
-        console.error('Chi tiết lỗi:', error.message);
+        console.error('Lỗi khi gọi API:', error);
         document.getElementById('result').innerHTML = `<p class="error">Có lỗi xảy ra khi đánh giá phát âm: ${error.message}</p>`;
     }
 }
@@ -263,8 +259,9 @@ function loadPracticeWord() {
     document.getElementById('result').className = 'result-container';
 
     // Reset nút bắt đầu nói
-    document.getElementById('startListening').disabled = false;
-    document.getElementById('startListening').innerText = 'Bắt đầu trả lời';
+    const startButton = document.getElementById('startListening');
+    startButton.disabled = false;
+    startButton.innerText = 'Bắt đầu trả lời';
 }
 
 function speakWord() {
@@ -280,7 +277,6 @@ function speakWord() {
 
 // Hàm tải bài học
 function loadLesson() {
-    console.log("Đang tải bài học...");
     shuffledLessons = [...lessons];
     shuffleArray(shuffledLessons);
 }
@@ -292,16 +288,17 @@ function updateProgressBar() {
     progressBar.style.width = `${progress}%`;
 }
 
-// Hàm kết thc phiên luyện tập
+// Hàm kết thúc phiên luyện tập
 function endSession() {
     document.getElementById('wordToSay').innerHTML = '<p>Bạn đã hoàn thành phiên luyện tập!</p>';
-    document.getElementById('startListening').disabled = true;
-    document.getElementById('startListening').innerText = 'Đã hoàn thành';
+    const startButton = document.getElementById('startListening');
+    startButton.disabled = true;
+    startButton.innerText = 'Đã hoàn thành';
     // Có thể thêm logic để hiển thị tổng kết, điểm số, v.v.
 }
 
 // Khởi tạo khi trang web được tải
-window.onload = function () {
+window.onload = () => {
     loadLesson();
     setupSpeechRecognition();
     loadPracticeWord();

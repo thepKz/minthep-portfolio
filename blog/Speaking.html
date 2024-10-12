@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="Speaking/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Ứng dụng luyện nói tiếng Nhật cơ bản với các bài tập tương tác và phản hồi tức thì.">
+    <meta name="keywords" content="tiếng Nhật, luyện nói, học ngoại ngữ, phát âm, giao tiếp">
+    <meta name="author" content="Tấn Thépp">
 </head>
 
 <body>
@@ -15,22 +18,49 @@
         <h1>Luyện nói tiếng Nhật cơ bản (Thử nghiệm)</h1>
     </header>
 
+
     <main>
-        <!-- Phần hướng dẫn sử dụng cải tiến -->
         <section id="instructions">
-            <h2>Hướng dẫn sử dụng</h2>
-            <ol>
-                <li>Đọc câu hỏi tiếng Nhật hiển thị trên màn hình. Bạn sẽ thấy câu tiếng Nhật, phiên âm romaji và nghĩa tiếng Việt.</li>
-                <li>Nếu cần nghe phát âm mẫu, nhấn nút <i class="fas fa-volume-up"></i> bên cạnh câu hỏi.</li>
-                <li>Chuẩn bị câu trả lời của bạn trong đầu. Hãy cố gắng trả lời bằng tiếng Nhật.</li>
-                <li>Khi sẵn sàng, nhấn nút "Bắt đầu trả lời" màu xanh lá.</li>
-                <li>Nói câu trả lời của bạn vào microphone. Hãy nói to, rõ ràng và tự nhiên.</li>
-                <li>Sau khi nói xong, nhấn nút "Dừng lắng nghe" màu đỏ.</li>
-                <li>Đợi trong giây lát để hệ thống xử lý và đánh giá câu trả lời của bạn.</li>
-                <li>Để chuyển sang câu hỏi tiếp theo, nhấn nút <i class="fas fa-sync-alt"></i> bên cạnh câu hỏi.</li>
-                <li>Nếu muốn trả lời bằng tiếng Việt để được hướng dẫn, nhấn nút "Trả lời bằng tiếng Việt để Gemix hướng dẫn" ở dưới.</li>
-            </ol>
-        </section>
+    <h2>Hướng dẫn sử dụng</h2>
+    <div class="instruction-grid">
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-book"></i>
+            </div>
+            <p>Đọc câu hỏi tiếng Nhật hiển thị trên màn hình</p>
+        </div>
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <p>Nghe phát âm mẫu nếu cần</p>
+        </div>
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-brain"></i>
+            </div>
+            <p>Chuẩn bị câu trả lời trong đầu</p>
+        </div>
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <p>Bắt đầu trả lời và nói vào microphone</p>
+        </div>
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-stop-circle"></i>
+            </div>
+            <p>Dừng lắng nghe sau khi trả lời xong</p>
+        </div>
+        <div class="instruction-step">
+            <div class="icon-circle">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <p>Chuyển sang câu hỏi tiếp theo</p>
+        </div>
+    </div>
+</section>
 
         <section id="practice">
             <div class="progress-bar">
@@ -52,10 +82,18 @@
                 <div id="result" class="result-container"></div>
             </div>
         </section>
+
     </main>
 
-    <footer style="display: block;">
-        <p>&copy; 2024 Speaking Thử Nghiệm | Liên hệ: <a href="https://www.facebook.com/thepp.tan/">Tấn Thépp</a></p>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Speaking Thử Nghiệm | Phát triển bởi <a href="https://www.facebook.com/thepp.tan/">Tấn Thépp</a></p>
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </footer>
     <script src="Speaking/luyentap.js"></script>
 </body>
