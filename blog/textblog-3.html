@@ -2116,6 +2116,339 @@
                     </div>
                 </div>
             </section>
+
+            <section class="chapter mb-5" id="chapter11">
+                <h2 class="mb-4">Chương 11: Hồi quy Tuyến tính Đơn giản và Tương quan</h2>
+                <p class="lead">Trong chương này, chúng ta sẽ khám phá mối quan hệ giữa hai biến số bằng cách sử dụng hồi quy tuyến tính đơn giản và phân tích tương quan. Chúng ta sẽ học cách xây dựng mô hình dự đoán và đánh giá mức độ liên quan giữa các biến.</p>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.1 Mô hình Thực nghiệm</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Mô hình thực nghiệm được sử dụng để mô tả mối quan hệ giữa hai biến số thông qua dữ liệu thực tế. Chúng ta quan tâm đến việc xác định xem liệu một biến có thể được dự đoán từ biến khác hay không.</p>
+            
+                        <h4>Biến Độc lập và Biến Phụ thuộc</h4>
+                        <ul>
+                            <li><strong>Biến độc lập (Independent variable, \(X\)):</strong> Biến mà chúng ta sử dụng để dự đoán giá trị của biến khác.</li>
+                            <li><strong>Biến phụ thuộc (Dependent variable, \(Y\)):</strong> Biến mà chúng ta muốn dự đoán.</li>
+                        </ul>
+            
+                        <div class="alert alert-info">
+                            <strong>Ví dụ:</strong> Giả sử chúng ta có dữ liệu về nhiệt độ ban ngày ở Hà Nội và số lượng vết nứt trên mặt đường tương ứng. Mục tiêu là xác định xem nhiệt độ có ảnh hưởng đến số lượng vết nứt hay không. Trong trường hợp này:
+                            <ul>
+                                <li>Nhiệt độ (\(X\)) là biến độc lập.</li>
+                                <li>Số lượng vết nứt (\(Y\)) là biến phụ thuộc.</li>
+                            </ul>
+                            Bằng cách xây dựng mô hình hồi quy tuyến tính, chúng ta có thể dự đoán số lượng vết nứt dựa trên nhiệt độ.
+                        </div>
+            
+                        <h4>Mô hình Hồi quy Tuyến tính</h4>
+                        <p>Mô hình hồi quy tuyến tính đơn giản có dạng:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[Y = \beta_0 + \beta_1 X + \varepsilon\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(\beta_0\): Hệ số chặn (Intercept)</li>
+                            <li>\(\beta_1\): Hệ số góc (Slope)</li>
+                            <li>\(\varepsilon\): Sai số ngẫu nhiên (Random error)</li>
+                        </ul>
+                        <p>Mục tiêu của chúng ta là ước lượng các tham số \(\beta_0\) và \(\beta_1\) sao cho mô hình phù hợp nhất với dữ liệu quan sát.</p>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.2 Hồi quy Tuyến tính Đơn giản</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Chúng ta có một tập dữ liệu gồm \(n\) cặp quan sát \((x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)\). Mục tiêu là tìm đường thẳng tốt nhất (best-fit line) để mô tả mối quan hệ giữa \(X\) và \(Y\).</p>
+            
+                        <h4>Phương pháp Bình phương Nhỏ nhất (Least Squares Method)</h4>
+                        <p>Phương pháp bình phương nhỏ nhất được sử dụng để ước lượng các tham số \(\beta_0\) và \(\beta_1\) bằng cách tối thiểu hóa tổng bình phương sai số giữa giá trị thực tế và giá trị dự đoán:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[\text{SSE} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(y_i\): Giá trị thực tế của biến phụ thuộc.</li>
+                            <li>\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\): Giá trị dự đoán từ mô hình.</li>
+                            <li>\(\text{SSE}\): Tổng bình phương sai số (Sum of Squared Errors).</li>
+                        </ul>
+            
+                        <h4>Ước lượng các Tham số Hồi quy</h4>
+                        <p>Các ước lượng cho \(\beta_1\) và \(\beta_0\) được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[\hat{\beta}_1 = \dfrac{ \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{ \sum_{i=1}^{n} (x_i - \bar{x})^2 }\]
+                            \[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(\bar{x} = \dfrac{1}{n} \sum_{i=1}^{n} x_i\): Trung bình của biến độc lập.</li>
+                            <li>\(\bar{y} = \dfrac{1}{n} \sum_{i=1}^{n} y_i\): Trung bình của biến phụ thuộc.</li>
+                        </ul>
+            
+                        <h4>Đường Hồi quy Tuyến tính Ước lượng</h4>
+                        <p>Phương trình hồi quy tuyến tính ước lượng là:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i\]
+                        </div>
+            
+                        <h4>Sai số Dư (Residuals)</h4>
+                        <p>Sai số dư đại diện cho phần sai lệch giữa giá trị thực tế và giá trị dự đoán:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[e_i = y_i - \hat{y}_i\]
+                        </div>
+                        <p>Tổng bình phương sai số dư được tính bằng:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[\text{SSE} = \sum_{i=1}^{n} e_i^2\]
+                        </div>
+            
+                        <h4>Ước lượng Phương sai của Sai số</h4>
+                        <p>Ước lượng cho phương sai của sai số (\(\sigma^2\)) là:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[s^2 = \dfrac{\text{SSE}}{n - 2}\]
+                        </div>
+                        <p>Với \(n - 2\) là bậc tự do (degrees of freedom).</p>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Giả sử chúng ta có dữ liệu về số giờ học (\(X\)) và điểm thi (\(Y\)) của 5 sinh viên:
+                            <table class="table table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Sinh viên</th>
+                                        <th>Số giờ học (\(X\))</th>
+                                        <th>Điểm thi (\(Y\))</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>81</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>4</td>
+                                        <td>93</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>6</td>
+                                        <td>91</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>8</td>
+                                        <td>97</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>10</td>
+                                        <td>109</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Hãy tìm phương trình hồi quy tuyến tính và dự đoán điểm thi khi sinh viên học 7 giờ.</p>
+            
+                            <strong>Giải:</strong>
+                            <ol>
+                                <li>Tính \(\bar{x} = \dfrac{2 + 4 + 6 + 8 + 10}{5} = 6\)</li>
+                                <li>Tính \(\bar{y} = \dfrac{81 + 93 + 91 + 97 + 109}{5} = 94.2\)</li>
+                                <li>Tính \(\hat{\beta}_1\):
+                                    \[
+                                    \hat{\beta}_1 = \dfrac{ \sum (x_i - \bar{x})(y_i - \bar{y}) }{ \sum (x_i - \bar{x})^2 } = \dfrac{(2-6)(81-94.2) + (4-6)(93-94.2) + \dots}{(2-6)^2 + (4-6)^2 + \dots} = 2.8
+                                    \]
+                                </li>
+                                <li>Tính \(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = 94.2 - 2.8 \times 6 = 77.4\)</li>
+                                <li>Phương trình hồi quy: \(\hat{y} = 77.4 + 2.8x\)</li>
+                                <li>Dự đoán điểm thi khi \(x = 7\):
+                                    \[\hat{y} = 77.4 + 2.8 \times 7 = 77.4 + 19.6 = 97\]
+                                </li>
+                            </ol>
+                            <p><strong>Kết luận:</strong> Sinh viên học 7 giờ dự kiến sẽ đạt 97 điểm.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.3 Tính chất của các Ước lượng Bình phương Nhỏ nhất</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Các ước lượng \(\hat{\beta}_0\) và \(\hat{\beta}_1\) có các tính chất quan trọng, bao gồm tính không chệch và tính hiệu quả.</p>
+            
+                        <h4>Ước lượng Sai số Chuẩn của Hệ số Hồi quy</h4>
+                        <p>Ước lượng sai số chuẩn của \(\hat{\beta}_1\) và \(\hat{\beta}_0\) được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[s_{\hat{\beta}_1} = \dfrac{s}{\sqrt{ \sum_{i=1}^{n} (x_i - \bar{x})^2 }}\]
+                            \[s_{\hat{\beta}_0} = s \sqrt{ \dfrac{1}{n} + \dfrac{ \bar{x}^2 }{ \sum_{i=1}^{n} (x_i - \bar{x})^2 } }\]
+                        </div>
+                        <p>Trong đó \(s\) là ước lượng của độ lệch chuẩn của sai số (\(\varepsilon\)).</p>
+            
+                        <h4>Khoảng Tin cậy cho Hệ số Hồi quy</h4>
+                        <p>Có thể xây dựng khoảng tin cậy cho \(\beta_1\) và \(\beta_0\) như sau:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[\hat{\beta}_1 \pm t_{\alpha/2, n-2} \times s_{\hat{\beta}_1}\]
+                            \[\hat{\beta}_0 \pm t_{\alpha/2, n-2} \times s_{\hat{\beta}_0}\]
+                        </div>
+                        <p>Với \(t_{\alpha/2, n-2}\) là giá trị tới hạn từ phân phối t Student với \(n - 2\) bậc tự do.</p>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.4 Kiểm định Giả thuyết trong Hồi quy Tuyến tính Đơn giản</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Chúng ta có thể kiểm định giả thuyết về các tham số \(\beta_1\) và \(\beta_0\) để xác định xem biến độc lập \(X\) có ảnh hưởng đáng kể đến biến phụ thuộc \(Y\) hay không.</p>
+            
+                        <h4>Kiểm định trên Hệ số Góc (\(\beta_1\))</h4>
+                        <p><strong>Giả thuyết:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[H_0: \beta_1 = \beta_{1,0}\]
+                            \[H_1: \beta_1 \neq \beta_{1,0}\]
+                        </div>
+                        <p>Thường thì \(\beta_{1,0} = 0\), tức là kiểm tra xem có mối quan hệ tuyến tính giữa \(X\) và \(Y\) hay không.</p>
+            
+                        <p><strong>Thống kê kiểm định:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[t = \dfrac{ \hat{\beta}_1 - \beta_{1,0} }{ s_{\hat{\beta}_1} }\]
+                        </div>
+                        <p><strong>Quy tắc quyết định:</strong></p>
+                        <ul>
+                            <li>Bác bỏ \(H_0\) nếu \(|t| > t_{\alpha/2, n - 2}\)</li>
+                        </ul>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Sử dụng dữ liệu từ ví dụ trước, kiểm định xem hệ số góc \(\beta_1\) có khác 0 hay không với mức ý nghĩa \(\alpha = 0.05\).
+            
+                            <strong>Giải:</strong>
+                            <ol>
+                                <li>Giả thuyết:
+                                    \[H_0: \beta_1 = 0\]
+                                    \[H_1: \beta_1 \neq 0\]
+                                </li>
+                                <li>Tính \(s_{\hat{\beta}_1}\):
+                                    \[
+                                    s_{\hat{\beta}_1} = \dfrac{s}{\sqrt{ \sum (x_i - \bar{x})^2 }}
+                                    \]
+                                    (Tính \(s\) và \(\sum (x_i - \bar{x})^2\) từ dữ liệu)
+                                </li>
+                                <li>Tính thống kê kiểm định:
+                                    \[
+                                    t = \dfrac{ \hat{\beta}_1 - 0 }{ s_{\hat{\beta}_1} }
+                                    \]
+                                </li>
+                                <li>Tìm giá trị tới hạn \(t_{\alpha/2, n - 2} = t_{0.025, 3} \approx 3.182\)</li>
+                                <li>So sánh \(|t|\) với \(t_{\alpha/2, n - 2}\) để quyết định bác bỏ hay không bác bỏ \(H_0\).</li>
+                            </ol>
+                            <p><strong>Kết luận:</strong> Nếu \(|t| > 3.182\), bác bỏ \(H_0\); ngược lại, không đủ bằng chứng để bác bỏ \(H_0\).</p>
+                        </div>
+            
+                        <h4>Kiểm định trên Hệ số Chặn (\(\beta_0\))</h4>
+                        <p><strong>Giả thuyết:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[H_0: \beta_0 = \beta_{0,0}\]
+                            \[H_1: \beta_0 \neq \beta_{0,0}\]
+                        </div>
+            
+                        <p><strong>Thống kê kiểm định:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[t = \dfrac{ \hat{\beta}_0 - \beta_{0,0} }{ s_{\hat{\beta}_0} }\]
+                        </div>
+            
+                        <p><strong>Quy tắc quyết định:</strong></p>
+                        <ul>
+                            <li>Bác bỏ \(H_0\) nếu \(|t| > t_{\alpha/2, n - 2}\)</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.5 Hệ số Tương quan</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Hệ số tương quan đo lường mức độ và hướng của mối quan hệ tuyến tính giữa hai biến.</p>
+            
+                        <h4>Hệ số Tương quan Mẫu (\(r\))</h4>
+                        <p>Hệ số tương quan mẫu được tính bằng:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[r = \dfrac{ \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{ \sqrt{ \sum_{i=1}^{n} (x_i - \bar{x})^2 \sum_{i=1}^{n} (y_i - \bar{y})^2 } }\]
+                        </div>
+                        <p>Tính chất của \(r\):</p>
+                        <ul>
+                            <li>\(-1 \leq r \leq 1\)</li>
+                            <li>Nếu \(r > 0\): Mối quan hệ đồng biến (khi \(X\) tăng, \(Y\) tăng)</li>
+                            <li>Nếu \(r < 0\): Mối quan hệ nghịch biến (khi \(X\) tăng, \(Y\) giảm)</li>
+                            <li>Nếu \(r = 0\): Không có mối quan hệ tuyến tính</li>
+                        </ul>
+            
+                        <h4>Hệ số Xác định (\(r^2\))</h4>
+                        <p>Hệ số xác định đo lường tỷ lệ biến thiên của \(Y\) được giải thích bởi mô hình hồi quy:</p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[r^2 = \left( r \right)^2\]
+                        </div>
+                        <p>Giá trị \(r^2\) nằm trong khoảng từ 0 đến 1.</p>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Tính hệ số tương quan và hệ số xác định cho dữ liệu về số giờ học và điểm thi.
+            
+                            <strong>Giải:</strong>
+                            <ol>
+                                <li>Tính \(r\) theo công thức trên.</li>
+                                <li>Tính \(r^2\) bằng cách bình phương \(r\).</li>
+                            </ol>
+                            <p><strong>Kết luận:</strong> Nếu \(r\) gần 1 hoặc -1, có mối quan hệ tuyến tính mạnh giữa \(X\) và \(Y\).</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">11.6 Kiểm định Giả thuyết về Hệ số Tương quan</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Chúng ta có thể kiểm định giả thuyết về hệ số tương quan tổng thể \(\rho\) để xác định xem mối quan hệ tuyến tính quan sát được có ý nghĩa thống kê hay không.</p>
+            
+                        <h4>Kiểm định Giả thuyết</h4>
+                        <p><strong>Giả thuyết:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[H_0: \rho = 0\]
+                            \[H_1: \rho \neq 0\]
+                        </div>
+            
+                        <p><strong>Thống kê kiểm định:</strong></p>
+                        <div class="text-center" style="font-size: 1.1em;">
+                            \[t = \dfrac{ r \sqrt{n - 2} }{ \sqrt{1 - r^2} }\]
+                        </div>
+            
+                        <p><strong>Quy tắc quyết định:</strong></p>
+                        <ul>
+                            <li>Bác bỏ \(H_0\) nếu \(|t| > t_{\alpha/2, n - 2}\)</li>
+                        </ul>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Sử dụng dữ liệu trước đó, kiểm định xem hệ số tương quan tổng thể \(\rho\) có khác 0 hay không với mức ý nghĩa \(\alpha = 0.05\).
+            
+                            <strong>Giải:</strong>
+                            <ol>
+                                <li>Tính \(r\) và \(r^2\).</li>
+                                <li>Tính thống kê kiểm định:
+                                    \[
+                                    t = \dfrac{ r \sqrt{n - 2} }{ \sqrt{1 - r^2} }
+                                    \]
+                                </li>
+                                <li>Tìm giá trị tới hạn \(t_{\alpha/2, n - 2}\).</li>
+                                <li>So sánh \(|t|\) với giá trị tới hạn để quyết định bác bỏ hay không bác bỏ \(H_0\).</li>
+                            </ol>
+                            <p><strong>Kết luận:</strong> Nếu \(|t| > t_{\alpha/2, n - 2}\), bác bỏ \(H_0\); ngược lại, không đủ bằng chứng để bác bỏ \(H_0\).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </article>
     </main>
     <button id="back-to-top" class="btn btn-primary" title="Back to Top">
