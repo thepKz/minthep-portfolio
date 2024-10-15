@@ -122,7 +122,8 @@
             <div id="pt1"></div>
             <section class="chapter mb-5" id="chapter1">
                 <h2 class="mb-4">Chapter 1: Introduction and Role of Statistics in Engineering</h2>
-                <p class="lead">Xác suất thống kê ứng dụng trong kỹ thuật và công nghệ để phân tích dữ liệu, đưa ra kết luận và giải quyết vấn đề.</p>
+                <p class="lead">Xác suất thống kê ứng dụng trong kỹ thuật và công nghệ để phân tích dữ liệu, đưa ra kết
+                    luận và giải quyết vấn đề.</p>
 
                 <div class="card mb-4">
                     <div class="card-header">
@@ -149,7 +150,8 @@
                             <li class="list-group-item"><strong>Population:</strong> Tổng thể nghiên cứu.</li>
                             <li class="list-group-item"><strong>Parameter:</strong> Đặc trưng của Population.</li>
                             <li class="list-group-item"><strong>Sample:</strong> Tập con của Population.</li>
-                            <li class="list-group-item"><strong>Statistic:</strong> Đặc trưng của Sample, ước lượng Parameter.</li>
+                            <li class="list-group-item"><strong>Statistic:</strong> Đặc trưng của Sample, ước lượng
+                                Parameter.</li>
                         </ul>
                     </div>
                 </div>
@@ -454,7 +456,8 @@
                             <p><strong>Answer:</strong></p>
                             <p>Sau lần rút đầu tiên, hộp còn 7 bi, trong đó có 3 bi xanh. Xác suất có điều kiện là:</p>
                             <p class="text-center">\[P(xanh|đỏ) = \frac{3}{7}\]</p>
-                            <p>Lưu ý: Trong trường hợp này, các sự kiện không độc lập vì việc rút bi đỏ ở lần đầu ảnh hưởng đến xác suất rút bi xanh ở lần sau.</p>
+                            <p>Lưu ý: Trong trường hợp này, các sự kiện không độc lập vì việc rút bi đỏ ở lần đầu ảnh
+                                hưởng đến xác suất rút bi xanh ở lần sau.</p>
                         </div>
                     </div>
                 </div>
@@ -517,7 +520,8 @@
                         <h3 class="mb-0">3.1 Discrete Random Variables</h3>
                     </div>
                     <div class="card-body">
-                        <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận một số lượng giá trị đếm được hoặc hữu hạn trong một khoảng xác định.</p>
+                        <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận
+                            một số lượng giá trị đếm được hoặc hữu hạn trong một khoảng xác định.</p>
                         <p>Các công thức quan trọng:</p>
                         <ul>
                             <li>
@@ -529,7 +533,8 @@
                             <li>
                                 <strong>Variance (Phương sai):</strong>
                                 <div class="text-left" style="font-size: 1.2em;">
-                                    \[V(X) = E[(X - E(X))^2] = \sum_{i=1}^{n} (x_i - E(X))^2 \cdot P(X = x_i) = E(X^2) - [E(X)]^2\]
+                                    \[V(X) = E[(X - E(X))^2] = \sum_{i=1}^{n} (x_i - E(X))^2 \cdot P(X = x_i) = E(X^2) -
+                                    [E(X)]^2\]
                                 </div>
                             </li>
                             <li>
@@ -547,10 +552,12 @@
                         </ul>
                         <button id="showExampleBtn3_1" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
                         <div id="exampleContent3_1" style="display: none;">
-                            <p><strong>Ví dụ:</strong> Số mặt xuất hiện khi tung một con xúc xắc công bằng là một biến ngẫu nhiên rời rạc. Nó chỉ có thể nhận các giá trị nguyên từ 1 đến 6.</p>
+                            <p><strong>Ví dụ:</strong> Số mặt xuất hiện khi tung một con xúc xắc công bằng là một biến
+                                ngẫu nhiên rời rạc. Nó chỉ có thể nhận các giá trị nguyên từ 1 đến 6.</p>
                             <p><strong>Tính toán:</strong></p>
                             <p>Kỳ vọng: \(E(X) = \frac{1+2+3+4+5+6}{6} = 3.5\)</p>
-                            <p>Phương sai: \(V(X) = E(X^2) - [E(X)]^2 = \frac{1^2+2^2+3^2+4^2+5^2+6^2}{6} - 3.5^2 \approx 2.92\)</p>
+                            <p>Phương sai: \(V(X) = E(X^2) - [E(X)]^2 = \frac{1^2+2^2+3^2+4^2+5^2+6^2}{6} - 3.5^2
+                                \approx 2.92\)</p>
                         </div>
                     </div>
                 </div>
@@ -573,11 +580,12 @@
                             <li>\(0 \leq F(x) \leq 1\) với mọi x</li>
                             <li>\(F(-\infty) = 0\) và \(F(\infty) = 1\)</li>
                             <li>\(F(x)\) là hàm không giảm</li>
-                            <li>\(P(a < X \leq b) = F(b) - F(a)\)</li>
+                            <li>\(P(a < X \leq b)=F(b) - F(a)\)</li>
                         </ul>
                         <button id="showExampleBtn3_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
                         <div id="exampleContent3_2" style="display: none;">
-                            <p><strong>Ví dụ:</strong> Xét việc tung một đồng xu công bằng hai lần. Biến ngẫu nhiên X là số mặt ngửa xuất hiện.</p>
+                            <p><strong>Ví dụ:</strong> Xét việc tung một đồng xu công bằng hai lần. Biến ngẫu nhiên X là
+                                số mặt ngửa xuất hiện.</p>
                             <p><strong>PMF:</strong></p>
                             <ul>
                                 <li>P(X = 0) = 1/4 (không có mặt ngửa)</li>
@@ -628,7 +636,8 @@
                                 <div class="text-left" style="font-size: 1.2em;">
                                     \[P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, ..., n\]
                                 </div>
-                                <p><i>Note: n là số lần thử nghiệm, k là số lần thành công, p là xác suất thành công mỗi lần thử</i></p>
+                                <p><i>Note: n là số lần thử nghiệm, k là số lần thành công, p là xác suất thành công mỗi
+                                        lần thử</i></p>
                             </li>
                             <li>
                                 <strong>Mean:</strong>
@@ -670,9 +679,11 @@
                         <ul>
                             <li>
                                 <div class="text-left" style="font-size: 1.2em;">
-                                    \[P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}, \quad \max(0, n+K-N) \leq k \leq \min(n, K)\]
+                                    \[P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}, \quad \max(0,
+                                    n+K-N) \leq k \leq \min(n, K)\]
                                 </div>
-                                <p><i>Note: N là tổng số phần tử, K là số phần tử thành công, n là số phần tử được chọn, k là số phần tử thành công trong mẫu</i></p>
+                                <p><i>Note: N là tổng số phần tử, K là số phần tử thành công, n là số phần tử được chọn,
+                                        k là số phần tử thành công trong mẫu</i></p>
                             </li>
                             <li>
                                 <strong>Mean:</strong>
@@ -694,7 +705,8 @@
                                 <div class="text-left" style="font-size: 1.2em;">
                                     \[P(X = k) = (1-p)^{k-1} p, \quad k = 1, 2, 3, ...\]
                                 </div>
-                                <p><i>Note: p là xác suất thành công mỗi lần thử, k là số lần thử cho đến khi thành công lần đầu</i></p>
+                                <p><i>Note: p là xác suất thành công mỗi lần thử, k là số lần thử cho đến khi thành công
+                                        lần đầu</i></p>
                             </li>
                             <li>
                                 <strong>Mean:</strong>
@@ -716,7 +728,8 @@
                                 <div class="text-left" style="font-size: 1.2em;">
                                     \[P(X = k) = \binom{k-1}{r-1} p^r (1-p)^{k-r}, \quad k = r, r+1, r+2, ...\]
                                 </div>
-                                <p><i>Note: p là xác suất thành công mỗi lần thử, r là số lần thành công cần đạt được, k là tổng số lần thử</i></p>
+                                <p><i>Note: p là xác suất thành công mỗi lần thử, r là số lần thành công cần đạt được, k
+                                        là tổng số lần thử</i></p>
                             </li>
                             <li>
                                 <strong>Mean:</strong>
@@ -732,11 +745,13 @@
                             </li>
                         </ul>
 
-                        <button id="showExampleBtn3_3" class="btn btn-primary btn-example mb-3">Hiển thị so sánh các phân phối</button>
+                        <button id="showExampleBtn3_3" class="btn btn-primary btn-example mb-3">Hiển thị so sánh các
+                            phân phối</button>
                         <div id="exampleContent3_3" style="display: none;">
                             <h4>So sánh các phân phối xác suất rời rạc</h4>
-                            <p>Các phân phối xác suất rời rạc khác nhau về đặc điểm, ứng dụng và công thức tính toán. Dưới đây là bảng so sánh các phân phối chính:</p>
-                            
+                            <p>Các phân phối xác suất rời rạc khác nhau về đặc điểm, ứng dụng và công thức tính toán.
+                                Dưới đây là bảng so sánh các phân phối chính:</p>
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -785,8 +800,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            
-                            <p>Lưu ý: Mỗi phân phối có những đặc điểm riêng và phù hợp với các tình huống khác nhau. Việc chọn đúng phân phối để mô hình hóa một hiện tượng là rất quan trọng trong thống kê và xác suất.</p>
+
+                            <p>Lưu ý: Mỗi phân phối có những đặc điểm riêng và phù hợp với các tình huống khác nhau.
+                                Việc chọn đúng phân phối để mô hình hóa một hiện tượng là rất quan trọng trong thống kê
+                                và xác suất.</p>
                         </div>
                     </div>
                 </div>
@@ -811,38 +828,52 @@
                             như 40.00001, 25, 36.9999, ...</p>
                         <button id="showExampleBtn4_1" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_1" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Thời gian chờ đợi tại một trạm xăng có thể là bất kỳ giá trị nào từ 0 đến 30 phút. Đây là một biến ngẫu nhiên liên tục vì thời gian có thể là bất kỳ giá trị thực nào trong khoảng đó, như 2.5 phút, 7.89 phút, v.v.</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Thời gian chờ đợi tại một trạm xăng có thể là bất kỳ
+                                giá trị nào từ 0 đến 30 phút. Đây là một biến ngẫu nhiên liên tục vì thời gian có thể là
+                                bất kỳ giá trị thực nào trong khoảng đó, như 2.5 phút, 7.89 phút, v.v.</p>
                         </div>
                     </div>
                 </div>
                 <div class="card mb-4">
-    <div class="card-header">
-        <h3 class="mb-0">4.2 Probability Distributions and Probability Density Functions</h3>
-    </div>
-    <div class="card-body">
-        <p><strong>Định nghĩa:</strong> \(f(x)\) là hàm mật độ xác suất (probability density function - PDF) của biến ngẫu nhiên liên tục X nếu:</p>
-        <p>\(f(x) \geq 0\) với mọi x <br> \(\int_{-\infty}^{\infty} f(x)dx = 1\) <br> \(P(a \leq X \leq b) = \int_{a}^{b} f(x)dx\)</p>
+                    <div class="card-header">
+                        <h3 class="mb-0">4.2 Probability Distributions and Probability Density Functions</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Định nghĩa:</strong> \(f(x)\) là hàm mật độ xác suất (probability density function -
+                            PDF) của biến ngẫu nhiên liên tục X nếu:</p>
+                        <p>\(f(x) \geq 0\) với mọi x <br> \(\int_{-\infty}^{\infty} f(x)dx = 1\) <br> \(P(a \leq X \leq
+                            b) = \int_{a}^{b} f(x)dx\)</p>
 
-        <p><strong>Đặc điểm quan trọng:</strong></p>
-        <ul>
-            <li>Hàm mật độ xác suất là hàm liên tục, khác với hàm khối xác suất của biến rời rạc.</li>
-            <li>Xác suất để X nhận một giá trị cụ thể luôn bằng 0. Ví dụ: \(P(X = a) = 0\) với mọi a.</li>
-            <li>Xác suất thường được tính theo khoảng, bằng tích phân của hàm mật độ xác suất trong khoảng đó:</li>
-        </ul>
-        <p class="text-center">\(P(a \leq X \leq b) = \int_{a}^{b} f(x)dx\)</p>
-        <p>Điều này tương đương với diện tích dưới đường cong của f(x) từ a đến b.</p>
-        <img src="textblog-3/continuousDia.png" alt="Probability Density Function Graph" class="img-fluid">
-        <p class="mt-3"><strong>Lưu ý quan trọng:</strong> Trong biến ngẫu nhiên liên tục, dấu "<" và "≤" tương đương nhau. Ví dụ:</p>
-        <p class="text-center">\(P(a < X < b) = P(a \leq X \leq b) = P(a < X \leq b) = P(a \leq X < b)\)</p>
-        <p>Điều này là do xác suất tại một điểm cụ thể luôn bằng 0.</p>
-        <button id="showExampleBtn4_2" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
-        <div id="exampleContent4_2" style="display: none;">
-            <p class="mt-3"><strong>Ví dụ:</strong> Xét hàm mật độ xác suất \(f(x) = 2x\) cho \(0 \leq x \leq 1\). Tính xác suất X nằm trong khoảng [0.25, 0.5].</p>
-            <p><strong>Giải:</strong></p>
-            <p>\(P(0.25 \leq X \leq 0.5) = \int_{0.25}^{0.5} 2x dx\)</p>
-            <p>\(= [x^2]_{0.25}^{0.5} = 0.5^2 - 0.25^2 = 0.1875\)</p>
-            <p><strong>Giải thích:</strong> Xác suất này tương đương với diện tích dưới đường cong của \(f(x) = 2x\) từ x = 0.25 đến x = 0.5. Kết quả 0.1875 (hay 18.75%) cho thấy xác suất X nằm trong khoảng này.</p>
-        </div>
+                        <p><strong>Đặc điểm quan trọng:</strong></p>
+                        <ul>
+                            <li>Hàm mật độ xác suất là hàm liên tục, khác với hàm khối xác suất của biến rời rạc.</li>
+                            <li>Xác suất để X nhận một giá trị cụ thể luôn bằng 0. Ví dụ: \(P(X = a) = 0\) với mọi a.
+                            </li>
+                            <li>Xác suất thường được tính theo khoảng, bằng tích phân của hàm mật độ xác suất trong
+                                khoảng đó:</li>
+                        </ul>
+                        <p class="text-center">\(P(a \leq X \leq b) = \int_{a}^{b} f(x)dx\)</p>
+                        <p>Điều này tương đương với diện tích dưới đường cong của f(x) từ a đến b.</p>
+                        <img src="textblog-3/continuousDia.png" alt="Probability Density Function Graph"
+                            class="img-fluid">
+                        <p class="mt-3"><strong>Lưu ý quan trọng:</strong> Trong biến ngẫu nhiên liên tục, dấu "<"
+                                và "≤" tương đương nhau. Ví dụ:</p>
+                                <p class="text-center">\(P(a < X < b)=P(a \leq X \leq b)=P(a < X \leq b)=P(a \leq X <
+                                        b)\)</p>
+                                        <p>Điều này là do xác suất tại một điểm cụ thể luôn bằng 0.</p>
+                                        <button id="showExampleBtn4_2" class="btn btn-primary mt-2">Hiển thị ví
+                                            dụ</button>
+                                        <div id="exampleContent4_2" style="display: none;">
+                                            <p class="mt-3"><strong>Ví dụ:</strong> Xét hàm mật độ xác suất \(f(x) =
+                                                2x\) cho \(0 \leq x \leq 1\). Tính xác suất X nằm trong khoảng [0.25,
+                                                0.5].</p>
+                                            <p><strong>Giải:</strong></p>
+                                            <p>\(P(0.25 \leq X \leq 0.5) = \int_{0.25}^{0.5} 2x dx\)</p>
+                                            <p>\(= [x^2]_{0.25}^{0.5} = 0.5^2 - 0.25^2 = 0.1875\)</p>
+                                            <p><strong>Giải thích:</strong> Xác suất này tương đương với diện tích dưới
+                                                đường cong của \(f(x) = 2x\) từ x = 0.25 đến x = 0.5. Kết quả 0.1875
+                                                (hay 18.75%) cho thấy xác suất X nằm trong khoảng này.</p>
+                                        </div>
                     </div>
                 </div>
 
@@ -856,7 +887,8 @@
                         <p>Xác suất trong khoảng: \(P(a \leq X \leq b) = F(b) - F(a)\)</p>
                         <button id="showExampleBtn4_3" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_3" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho hàm mật độ xác suất \(f(x) = 2x\) cho \(0 \leq x \leq 1\). Hàm phân phối tích lũy là:</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho hàm mật độ xác suất \(f(x) = 2x\) cho \(0 \leq x
+                                \leq 1\). Hàm phân phối tích lũy là:</p>
                             <p>\(F(x) = \int_{0}^{x} 2t dt = [t^2]_{0}^{x} = x^2\) cho \(0 \leq x \leq 1\)</p>
                         </div>
                     </div>
@@ -868,11 +900,13 @@
                     </div>
                     <div class="card-body">
                         <p><strong>Mean (Kỳ vọng):</strong> \(E(X) = \int_{-\infty}^{\infty} xf(x)dx\)</p>
-                        <p><strong>Variance (Phương sai):</strong> \(Var(X) = E[(X - \mu)^2] = \int_{-\infty}^{\infty} (x - \mu)^2f(x)dx\)</p>
+                        <p><strong>Variance (Phương sai):</strong> \(Var(X) = E[(X - \mu)^2] = \int_{-\infty}^{\infty}
+                            (x - \mu)^2f(x)dx\)</p>
                         <p><strong>Standard deviation (Độ lệch chuẩn):</strong> \(\sigma = \sqrt{Var(X)}\)</p>
                         <button id="showExampleBtn4_4" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_4" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho \(f(x) = 2x\) cho \(0 \leq x \leq 1\). Tính E(X) và Var(X):</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho \(f(x) = 2x\) cho \(0 \leq x \leq 1\). Tính E(X)
+                                và Var(X):</p>
                             <p>\(E(X) = \int_{0}^{1} x(2x)dx = 2\int_{0}^{1} x^2dx = 2[x^3/3]_{0}^{1} = 2/3\)</p>
                             <p>\(Var(X) = E(X^2) - [E(X)]^2 = 2\int_{0}^{1} x^3dx - (2/3)^2 = 1/2 - 4/9 = 1/18\)</p>
                         </div>
@@ -903,7 +937,9 @@
                         <p>Chuyển đổi: \(Z = \frac{X - \mu}{\sigma}\)</p>
                         <button id="showExampleBtn4_6" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_6" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Chiều cao của người trưởng thành tuân theo phân phối chuẩn với \(\mu = 170cm\) và \(\sigma = 10cm\). Tính xác suất một người có chiều cao từ 160cm đến 180cm.</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Chiều cao của người trưởng thành tuân theo phân phối
+                                chuẩn với \(\mu = 170cm\) và \(\sigma = 10cm\). Tính xác suất một người có chiều cao từ
+                                160cm đến 180cm.</p>
                             <p>Chuyển đổi sang chuẩn hóa:</p>
                             <p>\(Z_1 = \frac{160 - 170}{10} = -1\)</p>
                             <p>\(Z_2 = \frac{180 - 170}{10} = 1\)</p>
@@ -926,7 +962,7 @@
                             <li>\(P(X_{Binomial} \leq a) = P(X_{Normal} \leq a + 0.5)\)</li>
                             <li>\(P(X_{Binomial} \geq a) = P(X_{Normal} \geq a - 0.5)\)</li>
                         </ul>
-                
+
                         <h4>b. Xấp xỉ chuẩn cho phân phối Poisson</h4>
                         <p>Áp dụng khi \(\lambda > 5\)</p>
                         <p><strong>Poisson:</strong> \(\mu = \lambda\), \(\sigma^2 = \lambda\)</p>
@@ -936,12 +972,14 @@
                             <li>\(P(X_{Poisson} \leq a) = P(X_{Normal} \leq a + 0.5)\)</li>
                             <li>\(P(X_{Poisson} \geq a) = P(X_{Normal} \geq a - 0.5)\)</li>
                         </ul>
-                
-                        <p><strong>Lưu ý:</strong> Hiệu chỉnh liên tục (+0.5 hoặc -0.5) được áp dụng để cải thiện độ chính xác của xấp xỉ.</p>
-                
+
+                        <p><strong>Lưu ý:</strong> Hiệu chỉnh liên tục (+0.5 hoặc -0.5) được áp dụng để cải thiện độ
+                            chính xác của xấp xỉ.</p>
+
                         <button id="showExampleBtn4_7" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_7" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ 1 (Nhị thức):</strong> Một nhà máy sản xuất bóng đèn có tỉ lệ lỗi 5%. Trong một lô 1000 bóng đèn, tính xác suất có từ 40 đến 60 bóng đèn lỗi.</p>
+                            <p class="mt-3"><strong>Ví dụ 1 (Nhị thức):</strong> Một nhà máy sản xuất bóng đèn có tỉ lệ
+                                lỗi 5%. Trong một lô 1000 bóng đèn, tính xác suất có từ 40 đến 60 bóng đèn lỗi.</p>
                             <p>Sử dụng xấp xỉ chuẩn cho phân phối nhị thức:</p>
                             <p>\(\mu = np = 1000 \times 0.05 = 50\)</p>
                             <p>\(\sigma^2 = np(1-p) = 1000 \times 0.05 \times 0.95 = 47.5\)</p>
@@ -949,8 +987,9 @@
                             <p>\(Z_1 = \frac{39.5 - 50}{6.89} \approx -1.52\)</p>
                             <p>\(Z_2 = \frac{60.5 - 50}{6.89} \approx 1.52\)</p>
                             <p>\(P(40 \leq X \leq 60) \approx P(-1.52 \leq Z \leq 1.52) \approx 0.8712\) (87.12%)</p>
-                
-                            <p class="mt-3"><strong>Ví dụ 2 (Poisson):</strong> Trung bình có 20 cuộc gọi đến tổng đài trong 1 giờ. Tính xác suất có ít nhất 25 cuộc gọi trong 1 giờ.</p>
+
+                            <p class="mt-3"><strong>Ví dụ 2 (Poisson):</strong> Trung bình có 20 cuộc gọi đến tổng đài
+                                trong 1 giờ. Tính xác suất có ít nhất 25 cuộc gọi trong 1 giờ.</p>
                             <p>Sử dụng xấp xỉ chuẩn cho phân phối Poisson:</p>
                             <p>\(\lambda = 20\)</p>
                             <p>\(Z = \frac{24.5 - 20}{\sqrt{20}} \approx 1.01\)</p>
@@ -969,7 +1008,9 @@
                         <p><strong>Variance:</strong> \(1/\lambda^2\)</p>
                         <button id="showExampleBtn4_8" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_8" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Thời gian giữa các cuộc gọi đến tổng đài tuân theo phân phối mũ với trung bình 5 phút. Tính xác suất thời gian chờ giữa hai cuộc gọi lớn hơn 10 phút.</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Thời gian giữa các cuộc gọi đến tổng đài tuân theo
+                                phân phối mũ với trung bình 5 phút. Tính xác suất thời gian chờ giữa hai cuộc gọi lớn
+                                hơn 10 phút.</p>
                             <p>\(\lambda = 1/5 = 0.2\) (cuộc gọi/phút)</p>
                             <p>\(P(X > 10) = 1 - P(X \leq 10) = 1 - (1 - e^{-\lambda x}) = e^{-\lambda x}\)</p>
                             <p>\(= e^{-0.2 \times 10} \approx 0.1353\) (13.53%)</p>
@@ -979,27 +1020,29 @@
             </section>
             <section class="chapter mb-5" id="chapter6">
                 <h2 class="mb-4">Chapter 6: Descriptive Statistics (Thống kê mô tả)</h2>
-                <p class="lead">Chương này giới thiệu về các phương pháp thống kê mô tả, giúp tóm tắt và trình bày dữ liệu một cách hiệu quả.</p>
+                <p class="lead">Chương này giới thiệu về các phương pháp thống kê mô tả, giúp tóm tắt và trình bày dữ
+                    liệu một cách hiệu quả.</p>
 
                 <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="mb-0">6.1 Numerical Summaries of Data</h3>
                     </div>
                     <div class="card-body">
-                        <p>Cho một mẫu gồm n quan sát: x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>n</sub>. Các đại lượng thống kê mô tả quan trọng bao gồm:</p>
-                        
+                        <p>Cho một mẫu gồm n quan sát: x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>n</sub>.
+                            Các đại lượng thống kê mô tả quan trọng bao gồm:</p>
+
                         <h4>1. Sample mean (Trung bình mẫu):</h4>
                         <p>\(\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \frac{x_1+x_2+x_3+...+x_n}{n}\)</p>
                         <p><em>Ý nghĩa:</em> Đại diện cho giá trị trung tâm của dữ liệu.</p>
-                        
+
                         <h4>2. Sample variance (Phương sai mẫu):</h4>
                         <p>\(s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2\)</p>
                         <p><em>Ý nghĩa:</em> Đo lường mức độ phân tán của dữ liệu xung quanh giá trị trung bình.</p>
-                        
+
                         <h4>3. Sample standard deviation (Độ lệch chuẩn mẫu):</h4>
                         <p>\(s = \sqrt{s^2}\)</p>
                         <p><em>Ý nghĩa:</em> Đo lường mức độ phân tán của dữ liệu, có cùng đơn vị với dữ liệu gốc.</p>
-                        
+
                         <h4>4. Sample range (Khoảng mẫu):</h4>
                         <p>Range = max(x<sub>i</sub>) - min(x<sub>i</sub>)</p>
                         <p><em>Ý nghĩa:</em> Đo lường khoảng cách giữa giá trị lớn nhất và nhỏ nhất trong mẫu.</p>
@@ -1010,18 +1053,21 @@
 
                         <button id="showExampleBtn6_1" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent6_1" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu chiều cao (cm) của 5 sinh viên: 165, 170, 168, 172, 175</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu chiều cao (cm) của 5 sinh viên: 165,
+                                170, 168, 172, 175</p>
                             <p><strong>Bước 1: Tính Sample mean</strong></p>
                             <p>\(\bar{x} = \frac{165 + 170 + 168 + 172 + 175}{5} = 170\) cm</p>
                             <p><strong>Bước 2: Tính Sample variance</strong></p>
-                            <p>\(s^2 = \frac{(165-170)^2 + (170-170)^2 + (168-170)^2 + (172-170)^2 + (175-170)^2}{5-1} = 14\) cm²</p>
+                            <p>\(s^2 = \frac{(165-170)^2 + (170-170)^2 + (168-170)^2 + (172-170)^2 + (175-170)^2}{5-1} =
+                                14\) cm²</p>
                             <p><strong>Bước 3: Tính Sample standard deviation</strong></p>
                             <p>\(s = \sqrt{14} \approx 3.74\) cm</p>
                             <p><strong>Bước 4: Tính Sample range</strong></p>
                             <p>Range = 175 - 165 = 10 cm</p>
                             <p><strong>Bước 5: Tính Coefficient of variation</strong></p>
                             <p>CV = \(\frac{3.74}{170} \times 100\% \approx 2.2\%\)</p>
-                            <p><strong>Kết luận:</strong> Chiều cao trung bình là 170 cm, với độ lệch chuẩn 3.74 cm. Hệ số biến thiên 2.2% cho thấy dữ liệu tương đối đồng nhất.</p>
+                            <p><strong>Kết luận:</strong> Chiều cao trung bình là 170 cm, với độ lệch chuẩn 3.74 cm. Hệ
+                                số biến thiên 2.2% cho thấy dữ liệu tương đối đồng nhất.</p>
                         </div>
                     </div>
                 </div>
@@ -1032,38 +1078,42 @@
                     </div>
                     <div class="card-body">
                         <h4>Stem-and-Leaf Diagrams:</h4>
-                        <p>Biểu đồ Stem-and-Leaf là một phương pháp trực quan hóa dữ liệu, chia thành phần "stem" (thân) và "leaf" (lá). Nó giúp hiển thị phân phối và cấu trúc của dữ liệu một cách hiệu quả.</p>
+                        <p>Biểu đồ Stem-and-Leaf là một phương pháp trực quan hóa dữ liệu, chia thành phần "stem" (thân)
+                            và "leaf" (lá). Nó giúp hiển thị phân phối và cấu trúc của dữ liệu một cách hiệu quả.</p>
                         <img src="textblog-3/stem-and-leaf.png" alt="Stem-and-Leaf Diagram" class="img-fluid mb-3">
-                        
+
                         <h4>Các Đại Lượng Thống Kê Quan Trọng:</h4>
-                        
+
                         <h5>1. Sample median (Trung vị mẫu):</h5>
                         <p>Giá trị nằm giữa của dữ liệu đã sắp xếp. Với n số:</p>
                         <ul>
                             <li>Nếu n lẻ: median là số thứ (n+1)/2</li>
                             <li>Nếu n chẵn: median là trung bình của hai số giữa</li>
                         </ul>
-                        
+
                         <h5>2. Sample mode (Mốt mẫu):</h5>
                         <p>Giá trị xuất hiện nhiều nhất trong dữ liệu. Một tập dữ liệu có thể có nhiều hơn một mốt.</p>
-                        
+
                         <h5>3. Quartiles (Tứ phân vị - Cái này Xài CASIO 580 chạy ngon nhé):</h5>
                         <ul>
                             <li>Q1 (25%): Giá trị chia dữ liệu sao cho 25% số liệu nhỏ hơn hoặc bằng nó</li>
                             <li>Q2 (50%): Chính là median</li>
                             <li>Q3 (75%): Giá trị chia dữ liệu sao cho 75% số liệu nhỏ hơn hoặc bằng nó</li>
                         </ul>
-                        
+
                         <h5>4. Interquartile range (IQR - Khoảng tứ phân vị):</h5>
                         <p>IQR = Q3 - Q1</p>
-                        <p>IQR là một thước đo về độ phân tán của dữ liệu và ít bị ảnh hưởng bởi các giá trị ngoại lai.</p>
+                        <p>IQR là một thước đo về độ phân tán của dữ liệu và ít bị ảnh hưởng bởi các giá trị ngoại lai.
+                        </p>
 
                         <h5>5. Percentiles (Phân vị):</h5>
-                        <p>Giá trị chia dữ liệu thành 100 phần bằng nhau. Ví dụ, phân vị thứ 90 là giá trị mà 90% số liệu nhỏ hơn hoặc bằng nó.</p>
+                        <p>Giá trị chia dữ liệu thành 100 phần bằng nhau. Ví dụ, phân vị thứ 90 là giá trị mà 90% số
+                            liệu nhỏ hơn hoặc bằng nó.</p>
 
                         <button id="showExampleBtn6_2" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent6_2" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu điểm thi của 15 sinh viên: 65, 70, 75, 80, 82, 83, 85, 85, 88, 90, 90, 92, 95, 98, 100</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu điểm thi của 15 sinh viên: 65, 70, 75,
+                                80, 82, 83, 85, 85, 88, 90, 90, 92, 95, 98, 100</p>
                             <p><strong>Stem-and-Leaf Diagram:</strong></p>
                             <pre>
                                 6 | 5
@@ -1077,7 +1127,8 @@
                             <p><strong>Quartiles:</strong> Q1 = 80, Q2 = 85, Q3 = 92</p>
                             <p><strong>IQR:</strong> 92 - 80 = 12</p>
                             <p><strong>90th percentile:</strong> 98 (90% điểm số nhỏ hơn hoặc bằng 98)</p>
-                            <p><strong>Ý nghĩa:</strong> IQR = 12 cho thấy 50% điểm số ở giữa phân bố nằm trong khoảng 12 điểm. Điều này cung cấp thông tin về độ phân tán của dữ liệu.</p>
+                            <p><strong>Ý nghĩa:</strong> IQR = 12 cho thấy 50% điểm số ở giữa phân bố nằm trong khoảng
+                                12 điểm. Điều này cung cấp thông tin về độ phân tán của dữ liệu.</p>
                         </div>
                     </div>
                 </div>
@@ -1088,31 +1139,40 @@
                     </div>
                     <div class="card-body">
                         <h4>Frequency Distribution:</h4>
-                        <p>Frequency distribution là cách tổ chức và tóm tắt dữ liệu bằng cách nhóm các giá trị thành các khoảng và đếm số lượng quan sát trong mỗi khoảng.</p>
-                        
+                        <p>Frequency distribution là cách tổ chức và tóm tắt dữ liệu bằng cách nhóm các giá trị thành
+                            các khoảng và đếm số lượng quan sát trong mỗi khoảng.</p>
+
                         <h4>Relative Frequency Distribution:</h4>
-                        <p>Relative frequency distribution cho biết tỷ lệ hoặc phần trăm của các quan sát trong mỗi khoảng.</p>
+                        <p>Relative frequency distribution cho biết tỷ lệ hoặc phần trăm của các quan sát trong mỗi
+                            khoảng.</p>
                         <p>Relative frequency = Frequency / Total number of observations</p>
-                        <img src="textblog-3/relative-frequency.png" alt="Relative Frequency Distribution" class="img-fluid mb-3">
-                        
+                        <img src="textblog-3/relative-frequency.png" alt="Relative Frequency Distribution"
+                            class="img-fluid mb-3">
+
                         <h4>Cumulative Frequency Distribution:</h4>
-                        <p>Cumulative frequency distribution hiển thị tổng tích lũy của các tần số hoặc tần số tương đối từ khoảng thấp nhất đến khoảng cao nhất.</p>
-                        <img src="textblog-3/cumulative-frequency.svg" alt="Cumulative Frequency Distribution" class="img-fluid mb-3">
-                        
+                        <p>Cumulative frequency distribution hiển thị tổng tích lũy của các tần số hoặc tần số tương đối
+                            từ khoảng thấp nhất đến khoảng cao nhất.</p>
+                        <img src="textblog-3/cumulative-frequency.svg" alt="Cumulative Frequency Distribution"
+                            class="img-fluid mb-3">
+
                         <h4>Histogram:</h4>
-                        <p>Histogram là biểu đồ cột thể hiện frequency distribution. Chiều cao của mỗi cột tương ứng với tần số hoặc tần số tương đối của khoảng đó.</p>
+                        <p>Histogram là biểu đồ cột thể hiện frequency distribution. Chiều cao của mỗi cột tương ứng với
+                            tần số hoặc tần số tương đối của khoảng đó.</p>
                         <img src="textblog-3/histogram.webp" alt="Histogram" class="img-fluid">
-                        
+
                         <h4>Lưu ý quan trọng:</h4>
                         <ul>
-                            <li>Số lượng khoảng (bins) ảnh hưởng đến hình dạng của histogram. Quá ít khoảng có thể che giấu chi tiết, quá nhiều khoảng có thể tạo ra nhiễu.</li>
-                            <li>Histogram giúp nhận biết hình dạng phân phối (đối xứng, lệch phải, lệch trái, đa phương thức).</li>
+                            <li>Số lượng khoảng (bins) ảnh hưởng đến hình dạng của histogram. Quá ít khoảng có thể che
+                                giấu chi tiết, quá nhiều khoảng có thể tạo ra nhiễu.</li>
+                            <li>Histogram giúp nhận biết hình dạng phân phối (đối xứng, lệch phải, lệch trái, đa phương
+                                thức).</li>
                             <li>So với box plot, histogram cung cấp thông tin chi tiết hơn về phân phối dữ liệu.</li>
                         </ul>
 
                         <button id="showExampleBtn6_3" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent6_3" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu về số giờ học mỗi tuần của 50 sinh viên:</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu về số giờ học mỗi tuần của 50 sinh viên:
+                            </p>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -1171,55 +1231,72 @@
                         <h3 class="mb-0">6.4 Box Plot</h3>
                     </div>
                     <div class="card-body">
-                        <p>Box plot là một công cụ trực quan hóa dữ liệu, giúp phân tích phân phối của tập dữ liệu và xác định các điểm ngoại lai (outliers). Nó thể hiện các quartiles của dữ liệu và giúp người dùng dễ dàng so sánh phân phối giữa các nhóm khác nhau.</p>
-                        <img src="textblog-3/box-plot.png" alt="Box Plot" class="img-fluid mb-3" style="width: 100%; max-width: 600px;">
+                        <p>Box plot là một công cụ trực quan hóa dữ liệu, giúp phân tích phân phối của tập dữ liệu và
+                            xác định các điểm ngoại lai (outliers). Nó thể hiện các quartiles của dữ liệu và giúp người
+                            dùng dễ dàng so sánh phân phối giữa các nhóm khác nhau.</p>
+                        <img src="textblog-3/box-plot.png" alt="Box Plot" class="img-fluid mb-3"
+                            style="width: 100%; max-width: 600px;">
                         <p>Công thức tổng quát để tính toán các giá trị tóm tắt trong box plot:</p>
                         <ul>
-                            <li><strong>Q1:</strong> Quartile thứ nhất (25th percentile) - giá trị tại vị trí 25% trong dữ liệu.</li>
-                            <li><strong>Q2:</strong> Quartile thứ hai (50th percentile hoặc median) - giá trị ở giữa của tập dữ liệu.</li>
-                            <li><strong>Q3:</strong> Quartile thứ ba (75th percentile) - giá trị tại vị trí 75% trong dữ liệu.</li>
+                            <li><strong>Q1:</strong> Quartile thứ nhất (25th percentile) - giá trị tại vị trí 25% trong
+                                dữ liệu.</li>
+                            <li><strong>Q2:</strong> Quartile thứ hai (50th percentile hoặc median) - giá trị ở giữa của
+                                tập dữ liệu.</li>
+                            <li><strong>Q3:</strong> Quartile thứ ba (75th percentile) - giá trị tại vị trí 75% trong dữ
+                                liệu.</li>
                             <li><strong>IQR (Interquartile Range):</strong> Q3 - Q1, đo độ phân tán giữa Q1 và Q3.</li>
-                            <li><strong>Đầu mút trên:</strong> min(max(data), Q3 + 1.5*IQR) - giới hạn tối đa cho dữ liệu.</li>
-                            <li><strong>Đầu mút dưới:</strong> max(min(data), Q1 - 1.5*IQR) - giới hạn tối thiểu cho dữ liệu.</li>
+                            <li><strong>Đầu mút trên:</strong> min(max(data), Q3 + 1.5*IQR) - giới hạn tối đa cho dữ
+                                liệu.</li>
+                            <li><strong>Đầu mút dưới:</strong> max(min(data), Q1 - 1.5*IQR) - giới hạn tối thiểu cho dữ
+                                liệu.</li>
                         </ul>
                         <p>Các điểm nằm ngoài khoảng (Đầu mút dưới, Đầu mút trên) được coi là outliers.</p>
-                
+
                         <button id="showExampleBtn6_4" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent6_4" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu về thời gian hoàn thành bài tập (phút) của 15 sinh viên: 10, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 30, 35</p>
-                            
+                            <p class="mt-3"><strong>Ví dụ:</strong> Cho dữ liệu về thời gian hoàn thành bài tập (phút)
+                                của 15 sinh viên: 10, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 30, 35</p>
+
                             <p><strong>Bước 1: Tính các quartiles</strong></p>
                             <p>Sắp xếp dữ liệu: 10, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 30, 35</p>
                             <p><strong>Cách tìm Q1, Q2, Q3:</strong></p>
                             <ul>
-                                <li><strong>Q2 (Median):</strong> Với 15 số, median là số ở vị trí thứ (15+1)/2 = 8. Vậy Q2 = 19 phút.</li>
-                                <li><strong>Q1:</strong> Median của nửa dưới dãy số (7 số đầu tiên). Vị trí của Q1 là (7+1)/2 = 4. Vậy Q1 = 15 phút.</li>
-                                <li><strong>Q3:</strong> Median của nửa trên dãy số (7 số cuối cùng). Vị trí của Q3 là 8 + (7+1)/2 = 12. Vậy Q3 = 23 phút.</li>
+                                <li><strong>Q2 (Median):</strong> Với 15 số, median là số ở vị trí thứ (15+1)/2 = 8. Vậy
+                                    Q2 = 19 phút.</li>
+                                <li><strong>Q1:</strong> Median của nửa dưới dãy số (7 số đầu tiên). Vị trí của Q1 là
+                                    (7+1)/2 = 4. Vậy Q1 = 15 phút.</li>
+                                <li><strong>Q3:</strong> Median của nửa trên dãy số (7 số cuối cùng). Vị trí của Q3 là 8
+                                    + (7+1)/2 = 12. Vậy Q3 = 23 phút.</li>
                             </ul>
-                            
+
                             <p><strong>Bước 2: Tính IQR (Interquartile Range)</strong></p>
                             <p><strong>IQR = Q3 - Q1 = 23 - 15 = 8 phút</strong></p>
-                            
+
                             <p><strong>Bước 3: Xác định đầu mút trên và dưới</strong></p>
                             <p><strong>Đầu mút trên:</strong> min(max(data), Q3 + 1.5*IQR)</p>
                             <p>= min(35, 23 + 1.5*8) = min(35, 35) = 35 phút</p>
                             <p><strong>Đầu mút dưới:</strong> max(min(data), Q1 - 1.5*IQR)</p>
                             <p>= max(10, 15 - 1.5*8) = max(10, 3) = 10 phút</p>
-                            
+
                             <p><strong>Bước 4: Xác định outliers</strong></p>
                             <p>Outliers là các điểm nằm ngoài khoảng (Đầu mút dưới, Đầu mút trên)</p>
-                            <p>Trong trường hợp này, không có outliers vì tất cả các điểm đều nằm trong khoảng từ 10 đến 35 phút.</p>
-                            
+                            <p>Trong trường hợp này, không có outliers vì tất cả các điểm đều nằm trong khoảng từ 10 đến
+                                35 phút.</p>
+
                             <p><strong>Bước 5: Vẽ box plot</strong></p>
                             <ul>
                                 <li>Hộp (box) được vẽ từ Q1 đến Q3, thể hiện 50% dữ liệu giữa.</li>
                                 <li>Đường ngang trong hộp biểu thị median (Q2), cho thấy giá trị giữa của dữ liệu.</li>
-                                <li>Các đầu mút (whiskers) kéo dài từ hộp đến giá trị min và max trong phạm vi cho phép.</li>
-                                <li>Nếu có, các outliers sẽ được biểu diễn bằng các điểm riêng biệt bên ngoài đầu mút.</li>
+                                <li>Các đầu mút (whiskers) kéo dài từ hộp đến giá trị min và max trong phạm vi cho phép.
+                                </li>
+                                <li>Nếu có, các outliers sẽ được biểu diễn bằng các điểm riêng biệt bên ngoài đầu mút.
+                                </li>
                             </ul>
-                            
-                            <p><strong>Kết luận:</strong> Box plot cho thấy phân phối thời gian hoàn thành bài tập của sinh viên. Không có outliers, thời gian tập trung chủ yếu từ 15 đến 23 phút, với median là 19 phút, giúp bạn hiểu được điểm trung bình và sự phân bố dữ liệu.</p>
-                            
+
+                            <p><strong>Kết luận:</strong> Box plot cho thấy phân phối thời gian hoàn thành bài tập của
+                                sinh viên. Không có outliers, thời gian tập trung chủ yếu từ 15 đến 23 phút, với median
+                                là 19 phút, giúp bạn hiểu được điểm trung bình và sự phân bố dữ liệu.</p>
+
                             <p><strong>Lưu ý về các giá trị tóm tắt:</strong></p>
                             <ul>
                                 <li><strong>Giá trị nhỏ nhất (Minimum):</strong> 10 phút (có trong dataset)</li>
@@ -1228,16 +1305,19 @@
                                 <li><strong>Q3:</strong> 23 phút (không nhất thiết phải có trong dataset)</li>
                                 <li><strong>Giá trị lớn nhất (Maximum):</strong> 35 phút (có trong dataset)</li>
                             </ul>
-                            <p>Chỉ có giá trị nhỏ nhất và giá trị lớn nhất bắt buộc phải có trong dataset. Các giá trị Q1, Median, và Q3 là kết quả của phép tính và không nhất thiết phải xuất hiện trong tập dữ liệu gốc, nhưng chúng rất quan trọng để hiểu rõ hơn về sự phân bố dữ liệu.</p>
+                            <p>Chỉ có giá trị nhỏ nhất và giá trị lớn nhất bắt buộc phải có trong dataset. Các giá trị
+                                Q1, Median, và Q3 là kết quả của phép tính và không nhất thiết phải xuất hiện trong tập
+                                dữ liệu gốc, nhưng chúng rất quan trọng để hiểu rõ hơn về sự phân bố dữ liệu.</p>
                         </div>
                     </div>
                 </div>
-                
+
             </section>
 
             <section class="chapter mb-5" id="chapter7">
                 <h2 class="mb-4">Chapter 7: Sampling Distribution (Phân phối mẫu)</h2>
-                <p class="lead">Chương này giới thiệu về phân phối mẫu, một khái niệm quan trọng trong thống kê suy luận.</p>
+                <p class="lead">Chương này giới thiệu về phân phối mẫu, một khái niệm quan trọng trong thống kê suy
+                    luận.</p>
 
                 <div class="card mb-4">
                     <div class="card-header">
@@ -1247,186 +1327,795 @@
                         <p>Cho quần thể có trung bình \(\mu\) và phương sai \(\sigma^2\). Kích thước mẫu n.</p>
                         <p>Nếu quần thể có phân phối chuẩn hoặc n > 30:</p>`
                         <p>Phân phối của \(\bar{X}\) có dạng: \(N(\mu, \frac{\sigma^2}{n})\)</p>
-                        
+
                         <h4>7.2 Sampling Distribution of the Difference in Means</h4>
-                        <p>Phân phối của \(\bar{X}_1 - \bar{X}_2\) có dạng: \(N(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2})\)</p>
-                        
+                        <p>Phân phối của \(\bar{X}_1 - \bar{X}_2\) có dạng: \(N(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1} +
+                            \frac{\sigma_2^2}{n_2})\)</p>
+
                         <h4>7.3 Sampling Distribution of the Proportion</h4>
                         <p>Cho tỷ lệ quần thể p, kích thước mẫu n. (np ≥ 5 hoặc n(1-p) ≥ 5):</p>
                         <p>Phân phối của \(\hat{P}\) có dạng: \(N(P, \frac{P(1-P)}{n})\)</p>
-                        
+
                         <h4>7.4 Sampling Distribution of the Difference in Proportions</h4>
-                        <p>Phân phối của \(\hat{P}_1 - \hat{P}_2\) có dạng: \(N(P_1 - P_2, \frac{P_1(1-P_1)}{n_1} + \frac{P_2(1-P_2)}{n_2})\)</p>
-                        
+                        <p>Phân phối của \(\hat{P}_1 - \hat{P}_2\) có dạng: \(N(P_1 - P_2, \frac{P_1(1-P_1)}{n_1} +
+                            \frac{P_2(1-P_2)}{n_2})\)</p>
+
                         <h4>7.5 Central Limit Theorem</h4>
-                        <p>Cho quần thể có trung bình \(\mu\) và phương sai \(\sigma^2\), và \(\bar{X}\) là trung bình mẫu. Ta có:</p>
-                        <p style="font-size: 1.5em; font-weight: bold;">\(Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\)</p>
+                        <p>Cho quần thể có trung bình \(\mu\) và phương sai \(\sigma^2\), và \(\bar{X}\) là trung bình
+                            mẫu. Ta có:</p>
+                        <p style="font-size: 1.5em; font-weight: bold;">\(Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\)
+                        </p>
                         <ul>
                             <li>Nếu quần thể có phân phối chuẩn, mẫu cũng có phân phối chuẩn.</li>
                             <li>Nếu quần thể không có phân phối chuẩn, mẫu sẽ xấp xỉ phân phối chuẩn nếu n ≥ 30.</li>
                         </ul>
-                        
+
                         <h4>7.6 Point Estimation</h4>
                         <p>Trung bình mẫu \(\bar{X}\) và phương sai mẫu \(S^2\) là các thống kê mẫu (statistics).</p>
                         <ul>
                             <li>\(\bar{X}\) là ước lượng điểm của trung bình quần thể \(\mu\)</li>
                             <li>\(S^2\) là ước lượng điểm của phương sai quần thể \(\sigma^2\)</li>
                         </ul>
-                        
+
                         <button id="showExampleBtn7_1" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent7_1" style="display: none;">
-                            <p class="mt-3"><strong>Ví dụ:</strong> Một nhà máy sản xuất bóng đèn có tuổi thọ trung bình 1000 giờ với độ lệch chuẩn 100 giờ. Nếu chọn ngẫu nhiên 64 bóng đèn, tính xác suất trung bình mẫu nằm trong khoảng từ 980 đến 1020 giờ.</p>
+                            <p class="mt-3"><strong>Ví dụ:</strong> Một nhà máy sản xuất bóng đèn có tuổi thọ trung bình
+                                1000 giờ với độ lệch chuẩn 100 giờ. Nếu chọn ngẫu nhiên 64 bóng đèn, tính xác suất trung
+                                bình mẫu nằm trong khoảng từ 980 đến 1020 giờ.</p>
                             <p><strong>Giải:</strong></p>
                             <p>\(\mu = 1000\), \(\sigma = 100\), \(n = 64\)</p>
                             <p>\(\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{100}{\sqrt{64}} = 12.5\)</p>
                             <p>\(Z_1 = \frac{980 - 1000}{12.5} = -1.6\)</p>
                             <p>\(Z_2 = \frac{1020 - 1000}{12.5} = 1.6\)</p>
-                            <p>\(P(980 < \bar{X} < 1020) = P(-1.6 < Z < 1.6) = 0.8904\)</p>
-                            <p><strong>Kết luận:</strong> Xác suất trung bình mẫu nằm trong khoảng từ 980 đến 1020 giờ là 89.04%.</p>
+                            <p>\(P(980 < \bar{X} < 1020)=P(-1.6 < Z < 1.6)=0.8904\)</p>
+                                    <p><strong>Kết luận:</strong> Xác suất trung bình mẫu nằm trong khoảng từ 980 đến
+                                        1020 giờ là 89.04%.</p>
                         </div>
                     </div>
                 </div>
             </section>
             <div id="pt3"></div>
             <section class="chapter mb-5" id="chapter8">
-                <h2 class="mb-4">Chapter 8: Statistical Intervals for a Single Sample</h2>
-                <p class="lead">Chương này giới thiệu về khoảng tin cậy, một công cụ quan trọng trong thống kê suy luận để ước lượng các tham số của tổng thể.</p>
-            
+                <h2 class="mb-4">Chương 8: Khoảng Tin Cậy cho Một Mẫu Số liệu</h2>
+                <p class="lead">Trong chương này, chúng ta sẽ tìm hiểu về khoảng tin cậy, một công cụ quan trọng trong
+                    thống kê suy luận, giúp ước lượng các tham số của tổng thể dựa trên dữ liệu mẫu.</p>
+
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">8.1 Introduction to Confidence Intervals</h3>
+                        <h3 class="mb-0">8.1 Giới thiệu về Khoảng Tin Cậy</h3>
                     </div>
                     <div class="card-body">
-                        <p>Khoảng tin cậy (confidence interval) là một khoảng giá trị được ước tính từ dữ liệu mẫu, nhằm dự đoán giá trị thực của một tham số tổng thể với một mức độ tin cậy nhất định.</p>
-                        
-                        <div class="text-center">
-                            <img src="textblog-3/confidence_interval_diagram.png" alt="Confidence Interval Diagram" class="img-fluid mb-3" style="max-width: 500px;">
+                        <p>Khoảng tin cậy (confidence interval) là một khoảng giá trị được tính toán từ dữ liệu mẫu,
+                            nhằm ước lượng giá trị thực của một tham số tổng thể với một mức độ tin cậy nhất định. Mức
+                            độ tin cậy thường được biểu thị bằng \(1 - \alpha\), trong đó \(\alpha\) là mức ý nghĩa.</p>
+
+                        <p>Cụ thể, khoảng tin cậy cho tham số \(\mu\) có dạng:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[L \leq \mu \leq U\]
                         </div>
-            
                         <p>Trong đó:</p>
                         <ul>
-                            <li><strong>L:</strong> Lower confidence limit (giới hạn dưới)</li>
-                            <li><strong>U:</strong> Upper confidence limit (giới hạn trên)</li>
-                            <li><strong>1-α:</strong> Mức độ tin cậy (thường là 95% hoặc 99%)</li>
+                            <li><strong>L</strong>: Giới hạn dưới của khoảng tin cậy (Lower confidence limit)</li>
+                            <li><strong>U</strong>: Giới hạn trên của khoảng tin cậy (Upper confidence limit)</li>
                         </ul>
-            
+
                         <div class="alert alert-info">
-                            <strong>Ví dụ:</strong> Khi nói về khoảng tin cậy 95% cho tuổi thọ trung bình của chó là [7.5, 12.5] năm, điều này có nghĩa là chúng ta có 95% độ tin cậy rằng tuổi thọ trung bình thực sự của tất cả các con chó nằm trong khoảng này.
+                            <strong>Ví dụ:</strong> Chúng ta muốn ước lượng tuổi thọ trung bình của tất cả các con chó.
+                            Bằng cách thu thập dữ liệu từ một mẫu gồm 100 con chó, chúng ta tính được tuổi thọ trung
+                            bình mẫu là 10 năm. Với mức tin cậy 95%, chúng ta tính được khoảng tin cậy cho \(\mu\) là
+                            [7.5, 12.5] năm. Điều này có nghĩa là chúng ta có 95% độ tin cậy rằng tuổi thọ trung bình
+                            thực sự của tất cả các con chó nằm trong khoảng từ 7.5 đến 12.5 năm.
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">8.2 Confidence Interval for a Population Mean</h3>
+                        <h3 class="mb-0">8.2 Khoảng Tin Cậy cho Trung Bình Tổng Thể</h3>
                     </div>
                     <div class="card-body">
-                        <p>Khoảng tin cậy cho trung bình tổng thể (μ) được chia thành ba trường hợp:</p>
-            
-                        <h4>Trường hợp 1: Phương sai tổng thể (σ²) đã biết</h4>
-                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
+                        <p>Để ước lượng trung bình tổng thể \(\mu\), chúng ta sẽ xem xét ba trường hợp sau:</p>
+                        <ol>
+                            <li>Phương sai tổng thể \(\sigma^2\) đã biết và phân phối chuẩn.</li>
+                            <li>Phân phối bất kỳ với kích thước mẫu lớn (\(n \geq 40\)).</li>
+                            <li>Phương sai tổng thể \(\sigma^2\) chưa biết nhưng phân phối chuẩn.</li>
+                        </ol>
+
+                        <h4>Trường hợp 1: Phương sai tổng thể \(\sigma^2\) đã biết</h4>
+                        <p>Khi tổng thể có phân phối chuẩn và phương sai \(\sigma^2\) đã biết, khoảng tin cậy mức \(1 -
+                            \alpha\) cho \(\mu\) được tính bằng công thức:</p>
                         <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\bar{x} \pm z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                            \[\bar{x} - z_{\alpha/2} \left( \dfrac{\sigma}{\sqrt{n}} \right) \leq \mu \leq \bar{x} +
+                            z_{\alpha/2} \left( \dfrac{\sigma}{\sqrt{n}} \right)\]
                         </div>
                         <p>Trong đó:</p>
                         <ul>
-                            <li><strong>x̄:</strong> Trung bình mẫu</li>
-                            <li><strong>σ:</strong> Độ lệch chuẩn tổng thể</li>
-                            <li><strong>n:</strong> Kích thước mẫu</li>
-                            <li><strong>z<sub>α/2</sub>:</strong> Giá trị z tương ứng với xác suất α/2 ở đuôi phân phối chuẩn</li>
+                            <li>\(\bar{x}\): Trung bình mẫu</li>
+                            <li>\(\sigma\): Độ lệch chuẩn tổng thể (đã biết)</li>
+                            <li>\(n\): Kích thước mẫu</li>
+                            <li>\(z_{\alpha/2}\): Giá trị tới hạn của phân phối chuẩn, sao cho \(P(Z > z_{\alpha/2}) =
+                                \alpha/2\)</li>
                         </ul>
-            
+
                         <div class="alert alert-success">
-                            <strong>Ví dụ:</strong> Tuổi thọ của bóng đèn có phân phối chuẩn với σ = 25 giờ. Một mẫu 20 bóng đèn có tuổi thọ trung bình 1014 giờ. Tính khoảng tin cậy 95% cho μ.
+                            <strong>Ví dụ:</strong> Tuổi thọ của bóng đèn có phân phối chuẩn với độ lệch chuẩn \(\sigma
+                            = 25\) giờ. Một mẫu gồm 20 bóng đèn có tuổi thọ trung bình là \(\bar{x} = 1014\) giờ. Hãy
+                            tính khoảng tin cậy 95% cho tuổi thọ trung bình \(\mu\) của loại bóng đèn này.
                             <br><br>
                             <strong>Giải:</strong>
                             <ul>
-                                <li>x̄ = 1014, n = 20, σ = 25, α = 0.05</li>
-                                <li>z<sub>0.025</sub> = 1.96 (từ bảng phân phối chuẩn)</li>
-                                <li>Khoảng tin cậy: 1014 ± 1.96 * (25 / √20)</li>
-                                <li>Kết quả: 1003.04 ≤ μ ≤ 1024.96</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(z_{\alpha/2} = z_{0.025} = 1.96\)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\dfrac{\sigma}{\sqrt{n}} = \dfrac{25}{\sqrt{20}} \approx 5.590\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(\mu\):
+                                    \[1014 - 1.96 \times 5.590 \leq \mu \leq 1014 + 1.96 \times 5.590\]
+                                    \[1014 - 10.942 \leq \mu \leq 1014 + 10.942\]
+                                    \[1003.058 \leq \mu \leq 1024.942\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, tuổi thọ trung bình của bóng đèn nằm
+                                    trong khoảng từ 1003.058 giờ đến 1024.942 giờ.</li>
                             </ul>
                         </div>
-            
-                        <h4>Trường hợp 2: Phân phối bất kỳ với kích thước mẫu lớn (n ≥ 40)</h4>
-                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
+
+                        <h5>Tính kích thước mẫu cần thiết</h5>
+                        <p>Để đạt được một sai số ước lượng tối đa \(E\) với mức tin cậy \(1 - \alpha\), kích thước mẫu
+                            cần thiết \(n\) được tính bằng:</p>
                         <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\bar{x} \pm z_{\alpha/2} \left( \frac{s}{\sqrt{n}} \right)\)</p>
+                            \[n = \left( \dfrac{z_{\alpha/2} \times \sigma}{E} \right)^2\]
                         </div>
-                        <p>Trong đó s là độ lệch chuẩn mẫu.</p>
-            
-                        <h4>Trường hợp 3: Phương sai tổng thể (σ²) chưa biết, phân phối chuẩn</h4>
-                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
-                        <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\bar{x} \pm t_{\alpha/2, n-1} \left( \frac{s}{\sqrt{n}} \right)\)</p>
+
+                        <div class="alert alert-info">
+                            <strong>Ví dụ:</strong> Tiếp tục ví dụ trên, để ước lượng \(\mu\) với sai số không quá 5 giờ
+                            và mức tin cậy 95%, cần lấy mẫu bao nhiêu bóng đèn?
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), \(z_{\alpha/2} = 1.96\)</li>
+                                <li>Sai số tối đa: \(E = 5\) giờ</li>
+                                <li>Kích thước mẫu cần thiết:
+                                    \[n = \left( \dfrac{1.96 \times 25}{5} \right)^2 = \left(9.8\right)^2 = 96.04\]
+                                </li>
+                                <li>Vì \(n\) phải là số nguyên, nên chúng ta lấy \(n = 97\)</li>
+                                <li><strong>Kết luận:</strong> Cần lấy mẫu ít nhất 97 bóng đèn để đạt được sai số không
+                                    quá 5 giờ với mức tin cậy 95%.</li>
+                            </ul>
                         </div>
-                        <p>Trong đó t<sub>α/2,n-1</sub> là giá trị từ phân phối t với n-1 bậc tự do.</p>
-                    </div>
-                </div>
-            
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3 class="mb-0">8.3 Large-Sample Confidence Interval for a Population Proportion</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>Công thức khoảng tin cậy 1-α cho tỷ lệ tổng thể p:</p>
+
+                        <h4>Trường hợp 2: Phân phối bất kỳ với kích thước mẫu lớn (\(n \geq 40\))</h4>
+                        <p>Khi phân phối tổng thể không biết hoặc không phải là phân phối chuẩn, nhưng kích thước mẫu đủ
+                            lớn (\(n \geq 40\)), chúng ta sử dụng định lý giới hạn trung tâm và công thức khoảng tin cậy
+                            sau:</p>
                         <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</p>
+                            \[\bar{x} - z_{\alpha/2} \left( \dfrac{s}{\sqrt{n}} \right) \leq \mu \leq \bar{x} +
+                            z_{\alpha/2} \left( \dfrac{s}{\sqrt{n}} \right)\]
                         </div>
                         <p>Trong đó:</p>
                         <ul>
-                            <li><strong>p̂:</strong> Tỷ lệ mẫu (x/n)</li>
-                            <li><strong>n:</strong> Kích thước mẫu</li>
+                            <li>\(s\): Độ lệch chuẩn mẫu</li>
                         </ul>
-            
+
+                        <h4>Trường hợp 3: Phương sai tổng thể \(\sigma^2\) chưa biết, phân phối chuẩn</h4>
+                        <p>Khi tổng thể có phân phối chuẩn nhưng \(\sigma^2\) chưa biết, chúng ta sử dụng phân phối t
+                            Student với \(n - 1\) bậc tự do. Công thức khoảng tin cậy mức \(1 - \alpha\) cho \(\mu\) là:
+                        </p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[\bar{x} - t_{\alpha/2, n-1} \left( \dfrac{s}{\sqrt{n}} \right) \leq \mu \leq \bar{x} +
+                            t_{\alpha/2, n-1} \left( \dfrac{s}{\sqrt{n}} \right)\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(t_{\alpha/2, n-1}\): Giá trị tới hạn từ phân phối t với \(n - 1\) bậc tự do</li>
+                        </ul>
+
                         <div class="alert alert-success">
-                            <strong>Ví dụ:</strong> Trong 1000 ca ung thư được chọn ngẫu nhiên, 823 ca chết sớm. Tính khoảng tin cậy 95% cho tỷ lệ chết sớm trong tổng thể.
+                            <strong>Ví dụ:</strong> Một nhà nghiên cứu muốn ước lượng nhiệt độ trung bình cơ thể người.
+                            Anh ta đo nhiệt độ của 16 người và thu được trung bình mẫu \(\bar{x} = 36.8^\circ C\) và độ
+                            lệch chuẩn mẫu \(s = 0.4^\circ C\). Hãy tính khoảng tin cậy 95% cho nhiệt độ trung bình
+                            \(\mu\) của cơ thể người.
                             <br><br>
                             <strong>Giải:</strong>
                             <ul>
-                                <li>p̂ = 823/1000 = 0.823, n = 1000, α = 0.05</li>
-                                <li>z<sub>0.025</sub> = 1.96</li>
-                                <li>Khoảng tin cậy: 0.823 ± 1.96 * √[(0.823 * 0.177) / 1000]</li>
-                                <li>Kết quả: 0.799 ≤ p ≤ 0.847</li>
+                                <li>Kích thước mẫu: \(n = 16\), bậc tự do: \(n - 1 = 15\)</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(t_{\alpha/2, 15} = t_{0.025, 15} \approx
+                                    2.131\) (tra bảng phân phối t)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\dfrac{s}{\sqrt{n}} = \dfrac{0.4}{\sqrt{16}} = 0.1\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(\mu\):
+                                    \[36.8 - 2.131 \times 0.1 \leq \mu \leq 36.8 + 2.131 \times 0.1\]
+                                    \[36.587 \leq \mu \leq 37.013\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, nhiệt độ trung bình cơ thể người nằm
+                                    trong khoảng từ \(36.587^\circ C\) đến \(37.013^\circ C\).</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">8.4 One-Sided Confidence Intervals</h3>
+                        <h3 class="mb-0">8.3 Khoảng Tin Cậy cho Tỷ Lệ Tổng Thể</h3>
                     </div>
                     <div class="card-body">
-                        <p>Trong một số trường hợp, chúng ta chỉ quan tâm đến giới hạn trên hoặc giới hạn dưới của khoảng tin cậy. Khi đó, ta sử dụng khoảng tin cậy một phía.</p>
-                        
-                        <h4>Khoảng tin cậy một phía trên:</h4>
+                        <p>Khi muốn ước lượng tỷ lệ (xác suất) tổng thể \(p\), đặc biệt trong các bài toán nhị phân
+                            (thành công/thất bại), chúng ta sử dụng khoảng tin cậy cho tỷ lệ tổng thể.</p>
+
+                        <p>Công thức khoảng tin cậy mức \(1 - \alpha\) cho \(p\) là:</p>
                         <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\bar{x} + z_{\alpha} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                            \[\hat{p} - z_{\alpha/2} \sqrt{\dfrac{\hat{p}(1 - \hat{p})}{n}} \leq p \leq \hat{p} +
+                            z_{\alpha/2} \sqrt{\dfrac{\hat{p}(1 - \hat{p})}{n}}\]
                         </div>
-            
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(\hat{p} = \dfrac{x}{n}\): Tỷ lệ mẫu (số trường hợp thành công chia cho kích thước mẫu)
+                            </li>
+                            <li>\(n\): Kích thước mẫu</li>
+                            <li>\(z_{\alpha/2}\): Giá trị tới hạn của phân phối chuẩn</li>
+                        </ul>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Trong một nghiên cứu về ung thư, trong số 1000 bệnh nhân được chọn
+                            ngẫu nhiên, có 823 người tử vong sớm. Hãy tính khoảng tin cậy 95% cho tỷ lệ tử vong sớm
+                            \(p\) trong tổng thể.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>Tỷ lệ mẫu:
+                                    \[\hat{p} = \dfrac{823}{1000} = 0.823\]
+                                </li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(z_{\alpha/2} = 1.96\)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\sqrt{\dfrac{\hat{p}(1 - \hat{p})}{n}} = \sqrt{\dfrac{0.823 \times 0.177}{1000}}
+                                    \approx 0.0126\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(p\):
+                                    \[0.823 - 1.96 \times 0.0126 \leq p \leq 0.823 + 1.96 \times 0.0126\]
+                                    \[0.798 \leq p \leq 0.848\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, tỷ lệ tử vong sớm nằm trong khoảng từ
+                                    79.8% đến 84.8%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">8.4 Khoảng Tin Cậy Một Phía</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Trong một số tình huống, chúng ta chỉ quan tâm đến giới hạn trên hoặc giới hạn dưới của tham
+                            số tổng thể. Khi đó, chúng ta sử dụng khoảng tin cậy một phía.</p>
+
                         <h4>Khoảng tin cậy một phía dưới:</h4>
                         <div class="text-center" style="font-size: 1.5em;">
-                            <p>\(\bar{x} - z_{\alpha} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                            \[\mu \geq \bar{x} - z_{\alpha} \left( \dfrac{\sigma}{\sqrt{n}} \right)\]
                         </div>
-            
-                        <p><strong>Lưu ý:</strong> Trong khoảng tin cậy một phía, z<sub>α/2</sub> được thay bằng z<sub>α</sub>.</p>
-            
+
+                        <h4>Khoảng tin cậy một phía trên:</h4>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[\mu \leq \bar{x} + z_{\alpha} \left( \dfrac{\sigma}{\sqrt{n}} \right)\]
+                        </div>
+
+                        <p><strong>Lưu ý:</strong> Trong khoảng tin cậy một phía, chúng ta sử dụng \(z_{\alpha}\) thay
+                            vì \(z_{\alpha/2}\) như trong khoảng tin cậy hai phía.</p>
+
                         <div class="alert alert-info">
-                            <strong>Ví dụ:</strong> Một nhà sản xuất muốn chứng minh rằng tuổi thọ trung bình của sản phẩm lớn hơn 1000 giờ với độ tin cậy 95%. Họ lấy mẫu 50 sản phẩm và tính được x̄ = 1050 giờ, s = 100 giờ. Tính khoảng tin cậy một phía dưới.
+                            <strong>Ví dụ:</strong> Một công ty muốn đảm bảo rằng thời gian trung bình sản xuất một sản
+                            phẩm không vượt quá 15 phút. Họ lấy mẫu 30 lần sản xuất và tính được thời gian trung bình là
+                            14.5 phút với độ lệch chuẩn \(\sigma = 1\) phút. Hãy tính khoảng tin cậy một phía trên với
+                            mức tin cậy 95%.
                             <br><br>
                             <strong>Giải:</strong>
                             <ul>
-                                <li>n = 50, x̄ = 1050, s = 100, α = 0.05</li>
-                                <li>z<sub>0.05</sub> = 1.645 (từ bảng phân phối chuẩn)</li>
-                                <li>Khoảng tin cậy một phía dưới: μ ≥ 1050 - 1.645 * (100 / √50) = 1026.7 giờ</li>
-                                <li>Kết luận: Với độ tin cậy 95%, tuổi thọ trung bình của sản phẩm lớn hơn hoặc bằng 1026.7 giờ.</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(z_{\alpha} = z_{0.05} = 1.645\)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\dfrac{\sigma}{\sqrt{n}} = \dfrac{1}{\sqrt{30}} \approx 0.183\]
+                                </li>
+                                <li>Khoảng tin cậy một phía trên:
+                                    \[\mu \leq 14.5 + 1.645 \times 0.183 \]
+                                    \[\mu \leq 14.5 + 0.301\]
+                                    \[\mu \leq 14.801\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, thời gian trung bình sản xuất không
+                                    vượt quá 14.801 phút.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
+            <section class="chapter mb-5" id="chapter9">
+                <h2 class="mb-4">Chương 9: Kiểm định Giả thuyết cho Một Mẫu Số liệu</h2>
+                <p class="lead">Trong chương này, chúng ta sẽ tìm hiểu về kiểm định giả thuyết thống kê, một công cụ
+                    quan trọng trong thống kê suy luận, cho phép chúng ta đưa ra quyết định về tham số của tổng thể dựa
+                    trên dữ liệu mẫu.</p>
 
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">9.1 Kiểm định Giả thuyết</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Kiểm định giả thuyết là quá trình sử dụng dữ liệu mẫu để đánh giá tính đúng đắn của một phát
+                            biểu cụ thể về tham số của tổng thể. Thông qua việc kiểm định giả thuyết, chúng ta có thể
+                            xác định xem dữ liệu thu thập được có cung cấp đủ bằng chứng để bác bỏ giả thuyết ban đầu
+                            hay không.</p>
+
+                        <h4>Các thành phần chính của kiểm định giả thuyết:</h4>
+                        <ul>
+                            <li><strong>Giả thuyết không (Null Hypothesis, H<sub>0</sub>):</strong> Đây là giả thuyết
+                                ban đầu mà chúng ta giả định là đúng. Thường thì H<sub>0</sub> biểu thị rằng không có sự
+                                khác biệt hoặc không có hiệu ứng nào đáng kể.</li>
+                            <li><strong>Giả thuyết thay thế (Alternative Hypothesis, H<sub>1</sub> hoặc
+                                    H<sub>a</sub>):</strong> Đây là giả thuyết đối lập với H<sub>0</sub>, biểu thị rằng
+                                có sự khác biệt hoặc có hiệu ứng đáng kể.</li>
+                        </ul>
+
+                        <p>Quá trình kiểm định giả thuyết bao gồm các bước sau:</p>
+                        <ol>
+                            <li><strong>Xác định giả thuyết:</strong> Đặt ra H<sub>0</sub> và H<sub>1</sub>.</li>
+                            <li><strong>Chọn mức ý nghĩa (α):</strong> Mức ý nghĩa thường được chọn là 0.05 hoặc 0.01,
+                                biểu thị xác suất mắc lỗi loại I chấp nhận được.</li>
+                            <li><strong>Tính toán thống kê kiểm định:</strong> Sử dụng dữ liệu mẫu để tính giá trị thống
+                                kê kiểm định.</li>
+                            <li><strong>Xác định vùng bác bỏ:</strong> Dựa trên mức ý nghĩa và phân phối của thống kê
+                                kiểm định.</li>
+                            <li><strong>Ra quyết định:</strong> So sánh giá trị thống kê kiểm định với vùng bác bỏ để
+                                quyết định bác bỏ hoặc không bác bỏ H<sub>0</sub>.</li>
+                        </ol>
+
+                        <h4>Lỗi trong kiểm định giả thuyết:</h4>
+                        <ul>
+                            <li><strong>Lỗi loại I (Type I Error):</strong> Bác bỏ H<sub>0</sub> khi nó đúng. Xác suất
+                                mắc lỗi loại I chính là mức ý nghĩa α.</li>
+                            <li><strong>Lỗi loại II (Type II Error):</strong> Không bác bỏ H<sub>0</sub> khi nó sai. Xác
+                                suất mắc lỗi loại II được ký hiệu là β.</li>
+                        </ul>
+
+                        <div class="alert alert-info">
+                            <strong>Ví dụ minh họa:</strong> Giả sử một công ty cho rằng thời gian trung bình làm việc
+                            mỗi ngày của nhân viên là 8 giờ. Để kiểm định giả thuyết này, chúng ta lấy mẫu ngẫu nhiên
+                            100 nhân viên và tính thời gian làm việc trung bình từ mẫu.
+                            <br><br>
+                            <strong>Giả thuyết:</strong>
+                            <ul>
+                                <li>H<sub>0</sub>: μ = 8 giờ</li>
+                                <li>H<sub>1</sub>: μ ≠ 8 giờ</li>
+                            </ul>
+                        </div>
+
+                        <p>Trong ví dụ này, chúng ta muốn kiểm tra xem thời gian làm việc trung bình thực tế có khác
+                            biệt so với 8 giờ hay không dựa trên dữ liệu mẫu thu thập được.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">9.2 Kiểm định Trung bình của Phân phối Chuẩn</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Trong phần này, chúng ta sẽ tập trung vào việc kiểm định giả thuyết về trung bình của tổng
+                            thể khi dữ liệu tuân theo phân phối chuẩn.</p>
+
+                        <h4>Trường hợp 1: Phương sai tổng thể (σ²) đã biết</h4>
+                        <p>Khi phương sai tổng thể được biết, chúng ta sử dụng thống kê kiểm định Z:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(\bar{X}\): Trung bình mẫu</li>
+                            <li>\(\mu_0\): Giá trị giả định của trung bình tổng thể theo H<sub>0</sub></li>
+                            <li>\(\sigma\): Độ lệch chuẩn của tổng thể (đã biết)</li>
+                            <li>n: Kích thước mẫu</li>
+                        </ul>
+
+                        <h5>Quy tắc quyết định:</h5>
+                        <ul>
+                            <li>Với kiểm định hai phía (H<sub>1</sub>: μ ≠ μ<sub>0</sub>): Bác bỏ H<sub>0</sub> nếu |Z|
+                                > Z<sub>α/2</sub></li>
+                            <li>Với kiểm định một phía:
+                                <ul>
+                                    <li>H<sub>1</sub>: μ > μ<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu Z > Z<sub>α</sub>
+                                    </li>
+                                    <li>H<sub>1</sub>: μ < μ<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu Z < -Z<sub>α</sub>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Một nhà sản xuất tuyên bố rằng độ bền trung bình của sợi dây là 50
+                            kg với độ lệch chuẩn 5 kg. Một mẫu ngẫu nhiên 64 sợi dây có độ bền trung bình là 48.5 kg.
+                            Với mức ý nghĩa α = 0.05, kiểm định xem tuyên bố của nhà sản xuất có đúng không.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>H<sub>0</sub>: μ = 50 kg</li>
+                                <li>H<sub>1</sub>: μ ≠ 50 kg</li>
+                                <li>n = 64, \(\bar{X}\) = 48.5 kg, \(\sigma\) = 5 kg, α = 0.05</li>
+                                <li>Tính thống kê kiểm định:
+                                    \[Z = \frac{48.5 - 50}{5 / \sqrt{64}} = \frac{-1.5}{0.625} = -2.4\]
+                                </li>
+                                <li>Z<sub>α/2</sub> = Z<sub>0.025</sub> ≈ 1.96</li>
+                                <li>Vì |Z| = 2.4 > 1.96, nên ta bác bỏ H<sub>0</sub>.</li>
+                                <li><strong>Kết luận:</strong> Có đủ bằng chứng để kết luận rằng độ bền trung bình khác
+                                    50 kg.</li>
+                            </ul>
+                        </div>
+
+                        <h4>Trường hợp 2: Phương sai tổng thể (σ²) chưa biết</h4>
+                        <p>Khi phương sai tổng thể chưa biết, chúng ta sử dụng thống kê kiểm định t với độ tự do df = n
+                            - 1:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}}\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>s: Độ lệch chuẩn mẫu</li>
+                        </ul>
+
+                        <h5>Quy tắc quyết định:</h5>
+                        <ul>
+                            <li>Với kiểm định hai phía: Bác bỏ H<sub>0</sub> nếu |t| > t<sub>α/2, n-1</sub></li>
+                            <li>Với kiểm định một phía:
+                                <ul>
+                                    <li>H<sub>1</sub>: μ > μ<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu t > t<sub>α,
+                                            n-1</sub></li>
+                                    <li>H<sub>1</sub>: μ < μ<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu t < -t<sub>α,
+                                                n-1</sub></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Một nhà nghiên cứu muốn kiểm định xem nhiệt độ trung bình của cơ thể
+                            người có phải là 37°C hay không. Anh ta đo nhiệt độ của 25 người và thu được nhiệt độ trung
+                            bình là 37.5°C với độ lệch chuẩn mẫu là 0.8°C. Với mức ý nghĩa α = 0.05, kiểm định giả
+                            thuyết này.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>H<sub>0</sub>: μ = 37°C</li>
+                                <li>H<sub>1</sub>: μ ≠ 37°C</li>
+                                <li>n = 25, \(\bar{X}\) = 37.5°C, s = 0.8°C, α = 0.05</li>
+                                <li>Tính thống kê kiểm định:
+                                    \[t = \frac{37.5 - 37}{0.8 / \sqrt{25}} = \frac{0.5}{0.16} = 3.125\]
+                                </li>
+                                <li>t<sub>α/2, n-1</sub> = t<sub>0.025, 24</sub> ≈ 2.064 (tra bảng t với df = 24)</li>
+                                <li>Vì |t| = 3.125 > 2.064, nên ta bác bỏ H<sub>0</sub>.</li>
+                                <li><strong>Kết luận:</strong> Có đủ bằng chứng để kết luận rằng nhiệt độ trung bình
+                                    khác 37°C.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">9.3 Kiểm định Tỷ lệ của Tổng thể</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Khi muốn kiểm định giả thuyết về tỷ lệ (proportion) của tổng thể, chúng ta sử dụng thống kê
+                            kiểm định Z như sau:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[Z = \frac{\hat{p} - p_0}{\sqrt{\dfrac{p_0 (1 - p_0)}{n}}}\]
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li>\(\hat{p}\): Tỷ lệ mẫu (số thành công trong mẫu chia cho kích thước mẫu)</li>
+                            <li>p<sub>0</sub>: Tỷ lệ giả định của tổng thể theo H<sub>0</sub></li>
+                            <li>n: Kích thước mẫu</li>
+                        </ul>
+
+                        <h5>Quy tắc quyết định:</h5>
+                        <ul>
+                            <li>Với kiểm định hai phía: Bác bỏ H<sub>0</sub> nếu |Z| > Z<sub>α/2</sub></li>
+                            <li>Với kiểm định một phía:
+                                <ul>
+                                    <li>H<sub>1</sub>: p > p<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu Z > Z<sub>α</sub>
+                                    </li>
+                                    <li>H<sub>1</sub>: p < p<sub>0</sub>: Bác bỏ H<sub>0</sub> nếu Z < -Z<sub>α</sub>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="alert alert-info">
+                            <strong>Ví dụ:</strong> Một tạp chí tuyên bố rằng 50% tiến sĩ sẽ tiếp tục học sau khi tốt
+                            nghiệp. Một khảo sát tại một trường đại học cho thấy trong số 484 tiến sĩ, chỉ có 117 người
+                            tiếp tục học. Với mức ý nghĩa α = 0.05, kiểm định phát biểu của tạp chí.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>H<sub>0</sub>: p = 0.5</li>
+                                <li>H<sub>1</sub>: p ≠ 0.5</li>
+                                <li>n = 484, \(\hat{p}\) = 117 / 484 ≈ 0.241, α = 0.05</li>
+                                <li>Tính thống kê kiểm định:
+                                    \[Z = \frac{0.241 - 0.5}{\sqrt{\dfrac{0.5 \times 0.5}{484}}} = \frac{-0.259}{0.0227}
+                                    ≈ -11.44\]
+                                </li>
+                                <li>Z<sub>α/2</sub> = Z<sub>0.025</sub> ≈ 1.96</li>
+                                <li>Vì |Z| = 11.44 > 1.96, nên ta bác bỏ H<sub>0</sub>.</li>
+                                <li><strong>Kết luận:</strong> Có đủ bằng chứng để kết luận rằng tỷ lệ tiến sĩ tiếp tục
+                                    học không phải là 50% như tạp chí đã tuyên bố.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="chapter mb-5" id="chapter10">
+                <h2 class="mb-4">Chương 10: Suy luận Thống kê cho Hai Mẫu Số liệu</h2>
+                <p class="lead">Trong chương này, chúng ta sẽ mở rộng các kỹ thuật thống kê từ một mẫu sang hai mẫu.
+                    Chúng ta sẽ xem xét cách so sánh hai tổng thể bằng cách phân tích sự khác biệt giữa hai trung bình
+                    và hai tỷ lệ.</p>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">10.1 Suy luận về Hiệu của Hai Trung bình của Phân phối Chuẩn</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Khi so sánh hai tổng thể, chúng ta quan tâm đến hiệu của hai trung bình \(\mu_1 - \mu_2\).
+                            Chúng ta sẽ xem xét hai trường hợp:</p>
+                        <ol>
+                            <li>Phương sai tổng thể \(\sigma^2_1\) và \(\sigma^2_2\) đã biết.</li>
+                            <li>Phương sai tổng thể chưa biết nhưng giả định là bằng nhau.</li>
+                        </ol>
+
+                        <h4>Trường hợp 1: Phương sai tổng thể đã biết</h4>
+                        <p>Khi phương sai tổng thể đã biết và các tổng thể có phân phối chuẩn, hiệu của hai trung bình
+                            mẫu \(\bar{x}_1 - \bar{x}_2\) tuân theo phân phối chuẩn với kỳ vọng và phương sai như sau:
+                        </p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[\text{E}(\bar{X}_1 - \bar{X}_2) = \mu_1 - \mu_2\]
+                            \[\text{Var}(\bar{X}_1 - \bar{X}_2) = \dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}\]
+                        </div>
+                        <p>Do đó, khoảng tin cậy mức \(1 - \alpha\) cho hiệu \(\mu_1 - \mu_2\) được tính bằng:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[\left( \bar{x}_1 - \bar{x}_2 \right) - z_{\alpha/2} \sqrt{ \dfrac{\sigma_1^2}{n_1} +
+                            \dfrac{\sigma_2^2}{n_2} } \leq \mu_1 - \mu_2 \leq \left( \bar{x}_1 - \bar{x}_2 \right) +
+                            z_{\alpha/2} \sqrt{ \dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2} }\]
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Giả sử chúng ta muốn so sánh điểm trung bình môn Toán của hai trường
+                            học. Trường A có 40 học sinh với điểm trung bình mẫu là 75 và độ lệch chuẩn tổng thể đã biết
+                            \(\sigma_1 = 10\). Trường B có 50 học sinh với điểm trung bình mẫu là 70 và độ lệch chuẩn
+                            tổng thể \(\sigma_2 = 12\). Hãy tính khoảng tin cậy 95% cho hiệu \(\mu_1 - \mu_2\).
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>\(\bar{x}_1 = 75\), \(n_1 = 40\), \(\sigma_1 = 10\)</li>
+                                <li>\(\bar{x}_2 = 70\), \(n_2 = 50\), \(\sigma_2 = 12\)</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(z_{\alpha/2} = z_{0.025} = 1.96\)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\sqrt{ \dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2} } = \sqrt{
+                                    \dfrac{10^2}{40} + \dfrac{12^2}{50} } = \sqrt{2.5 + 2.88} = \sqrt{5.38} \approx
+                                    2.32\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(\mu_1 - \mu_2\):
+                                    \[(75 - 70) - 1.96 \times 2.32 \leq \mu_1 - \mu_2 \leq (75 - 70) + 1.96 \times
+                                    2.32\]
+                                    \[5 - 4.54 \leq \mu_1 - \mu_2 \leq 5 + 4.54\]
+                                    \[0.46 \leq \mu_1 - \mu_2 \leq 9.54\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, hiệu điểm trung bình giữa hai trường
+                                    nằm trong khoảng từ 0.46 đến 9.54 điểm.</li>
+                            </ul>
+                        </div>
+
+                        <h4>Trường hợp 2: Phương sai tổng thể chưa biết nhưng bằng nhau</h4>
+                        <p>Khi phương sai tổng thể chưa biết nhưng có thể giả định là bằng nhau (\(\sigma_1^2 =
+                            \sigma_2^2\)), chúng ta sử dụng ước lượng phương sai gộp (pooled variance estimator) từ hai
+                            mẫu:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[s_p^2 = \dfrac{ (n_1 - 1)s_1^2 + (n_2 - 1)s_2^2 }{ n_1 + n_2 - 2 }\]
+                        </div>
+                        <p>Trong đó \(s_1^2\) và \(s_2^2\) là phương sai mẫu của hai mẫu. Khoảng tin cậy mức \(1 -
+                            \alpha\) cho \(\mu_1 - \mu_2\) là:</p>
+                        <div class="text-center" style="font-size: 1em;">
+                            \[\left( \bar{x}_1 - \bar{x}_2 \right) - t_{\alpha/2, n_1 + n_2 - 2} \times s_p \times
+                            \sqrt{ \dfrac{1}{n_1} + \dfrac{1}{n_2} } \leq \mu_1 - \mu_2 \leq \left( \bar{x}_1 -
+                            \bar{x}_2 \right) + t_{\alpha/2, n_1 + n_2 - 2} \times s_p \times \sqrt{ \dfrac{1}{n_1} +
+                            \dfrac{1}{n_2} }\]
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Hai nhóm học sinh được dạy bằng hai phương pháp khác nhau. Nhóm 1 có
+                            30 học sinh với điểm trung bình mẫu là 80 và độ lệch chuẩn mẫu \(s_1 = 5\). Nhóm 2 có 35 học
+                            sinh với điểm trung bình mẫu là 78 và độ lệch chuẩn mẫu \(s_2 = 6\). Giả định phương sai
+                            tổng thể bằng nhau, hãy tính khoảng tin cậy 95% cho hiệu \(\mu_1 - \mu_2\).
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>\(\bar{x}_1 = 80\), \(n_1 = 30\), \(s_1 = 5\)</li>
+                                <li>\(\bar{x}_2 = 78\), \(n_2 = 35\), \(s_2 = 6\)</li>
+                                <li>Bậc tự do: \(n_1 + n_2 - 2 = 63\)</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), do đó \(t_{\alpha/2,63} \approx 2.000\) (tra bảng t
+                                    Student)</li>
+                                <li>Tính phương sai gộp:
+                                    \[s_p^2 = \dfrac{ (30 - 1)(5^2) + (35 - 1)(6^2) }{30 + 35 - 2} = \dfrac{ (29 \times
+                                    25) + (34 \times 36) }{63} = \dfrac{725 + 1224}{63} = \dfrac{1949}{63} \approx
+                                    30.93\]
+                                    \[s_p = \sqrt{30.93} \approx 5.56\]
+                                </li>
+                                <li>Tính sai số chuẩn:
+                                    \[s_p \times \sqrt{ \dfrac{1}{n_1} + \dfrac{1}{n_2} } = 5.56 \times \sqrt{
+                                    \dfrac{1}{30} + \dfrac{1}{35} } = 5.56 \times \sqrt{0.0333 + 0.0286} = 5.56 \times
+                                    \sqrt{0.0619} \approx 5.56 \times 0.2488 \approx 1.385\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(\mu_1 - \mu_2\):
+                                    \[(80 - 78) - 2.000 \times 1.385 \leq \mu_1 - \mu_2 \leq (80 - 78) + 2.000 \times
+                                    1.385\]
+                                    \[2 - 2.77 \leq \mu_1 - \mu_2 \leq 2 + 2.77\]
+                                    \[-0.77 \leq \mu_1 - \mu_2 \leq 4.77\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, hiệu điểm trung bình giữa hai phương
+                                    pháp giảng dạy nằm trong khoảng từ -0.77 đến 4.77 điểm.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">10.2 Kiểm định Giả thuyết về Hiệu của Hai Trung bình</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Trong kiểm định giả thuyết về hiệu của hai trung bình, chúng ta muốn kiểm tra xem liệu có sự
+                            khác biệt đáng kể giữa hai trung bình tổng thể hay không. Giả thuyết được đặt ra như sau:
+                        </p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[H_0: \mu_1 - \mu_2 = \Delta_0\]
+                            \[H_1: \mu_1 - \mu_2 \neq \Delta_0\]
+                        </div>
+                        <p>Trong đó \(\Delta_0\) là giá trị giả định cho hiệu của hai trung bình (thường là 0).</p>
+
+                        <h4>Trường hợp 1: Phương sai tổng thể đã biết</h4>
+                        <p>Thống kê kiểm định Z được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[Z = \dfrac{ (\bar{x}_1 - \bar{x}_2) - \Delta_0 }{ \sqrt{ \dfrac{\sigma_1^2}{n_1} +
+                            \dfrac{\sigma_2^2}{n_2} } }\]
+                        </div>
+                        <p>Quy tắc quyết định:</p>
+                        <ul>
+                            <li>Kiểm định hai phía: Bác bỏ \(H_0\) nếu \(|Z| > Z_{\alpha/2}\)</li>
+                            <li>Kiểm định một phía:
+                                <ul>
+                                    <li>\(H_1: \mu_1 - \mu_2 > \Delta_0\): Bác bỏ \(H_0\) nếu \(Z > Z_{\alpha}\)</li>
+                                    <li>\(H_1: \mu_1 - \mu_2 < \Delta_0\): Bác bỏ \(H_0\) nếu \(Z < -Z_{\alpha}\)</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h4>Trường hợp 2: Phương sai tổng thể chưa biết nhưng bằng nhau</h4>
+                        <p>Thống kê kiểm định t được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[t = \dfrac{ (\bar{x}_1 - \bar{x}_2) - \Delta_0 }{ s_p \times \sqrt{ \dfrac{1}{n_1} +
+                            \dfrac{1}{n_2} } }\]
+                        </div>
+                        <p>Trong đó \(s_p\) là ước lượng phương sai gộp, bậc tự do \(df = n_1 + n_2 - 2\).</p>
+                        <p>Quy tắc quyết định tương tự như trên, sử dụng giá trị tới hạn từ phân phối t.</p>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Tiếp tục ví dụ về hai phương pháp giảng dạy ở trên, chúng ta muốn
+                            kiểm định xem liệu phương pháp mới (nhóm 1) có tốt hơn phương pháp cũ (nhóm 2) hay không với
+                            mức ý nghĩa \(\alpha = 0.05\).
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>Giả thuyết:
+                                    \[H_0: \mu_1 - \mu_2 = 0\]
+                                    \[H_1: \mu_1 - \mu_2 > 0\]
+                                </li>
+                                <li>Thống kê kiểm định:
+                                    \[t = \dfrac{ (80 - 78) - 0 }{ 5.56 \times \sqrt{ \dfrac{1}{30} + \dfrac{1}{35} } }
+                                    = \dfrac{2}{1.385} \approx 1.445\]
+                                </li>
+                                <li>Bậc tự do: \(df = 63\)</li>
+                                <li>Giá trị tới hạn: \(t_{\alpha,63} = t_{0.05,63} \approx 1.669\)</li>
+                                <li>Vì \(t = 1.445 < 1.669\), chúng ta không bác bỏ \(H_0\).</li>
+                                <li><strong>Kết luận:</strong> Không có đủ bằng chứng để kết luận rằng phương pháp mới
+                                    tốt hơn phương pháp cũ ở mức ý nghĩa 5%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">10.3 Suy luận về Hiệu của Hai Tỷ lệ</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Khi so sánh tỷ lệ (xác suất) giữa hai tổng thể, chúng ta quan tâm đến hiệu \(p_1 - p_2\).
+                            Khoảng tin cậy mức \(1 - \alpha\) cho hiệu của hai tỷ lệ được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.2em;">
+                            \[\left( \hat{p}_1 - \hat{p}_2 \right) \pm z_{\alpha/2} \times \sqrt{ \dfrac{ \hat{p}_1 (1 -
+                            \hat{p}_1) }{ n_1 } + \dfrac{ \hat{p}_2 (1 - \hat{p}_2) }{ n_2 } }\]
+                        </div>
+                        <p>Trong đó \(\hat{p}_1\) và \(\hat{p}_2\) là tỷ lệ mẫu của hai mẫu.</p>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Một công ty muốn so sánh tỷ lệ sản phẩm bị lỗi giữa hai nhà máy. Nhà
+                            máy A sản xuất 500 sản phẩm với 25 sản phẩm lỗi. Nhà máy B sản xuất 600 sản phẩm với 18 sản
+                            phẩm lỗi. Hãy tính khoảng tin cậy 95% cho hiệu tỷ lệ lỗi giữa hai nhà máy.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>\(\hat{p}_1 = \dfrac{25}{500} = 0.05\), \(n_1 = 500\)</li>
+                                <li>\(\hat{p}_2 = \dfrac{18}{600} = 0.03\), \(n_2 = 600\)</li>
+                                <li>Mức ý nghĩa: \(\alpha = 0.05\), \(z_{\alpha/2} = 1.96\)</li>
+                                <li>Tính sai số chuẩn:
+                                    \[\sqrt{ \dfrac{0.05 \times 0.95}{500} + \dfrac{0.03 \times 0.97}{600} } = \\
+                                    \sqrt{ \dfrac{0.0475}{500} + \dfrac{0.0291}{600} } = \\
+                                    \sqrt{9.5 \times 10^{-5} + 4.85 \times 10^{-5}} = \\
+                                    \sqrt{1.435 \times 10^{-4}} \approx 0.01198\]
+                                </li>
+                                <li>Khoảng tin cậy 95% cho \(p_1 - p_2\):
+                                    \[(0.05 - 0.03) \pm 1.96 \times 0.01198\]
+                                    \[0.02 \pm 0.0235\]
+                                    \[-0.0035 \leq p_1 - p_2 \leq 0.0435\]
+                                </li>
+                                <li><strong>Kết luận:</strong> Với độ tin cậy 95%, hiệu tỷ lệ sản phẩm lỗi giữa hai nhà
+                                    máy nằm trong khoảng từ -0.35% đến 4.35%.</li>
+                            </ul>
+                        </div>
+
+                        <h4>Kiểm định Giả thuyết về Hiệu của Hai Tỷ lệ</h4>
+                        <p>Giả thuyết kiểm định thường là:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            \[H_0: p_1 - p_2 = 0\]
+                            \[H_1: p_1 - p_2 \neq 0\]
+                        </div>
+                        <p>Thống kê kiểm định Z được tính như sau:</p>
+                        <div class="text-center" style="font-size: 1.2em;">
+                            \[Z = \dfrac{ (\hat{p}_1 - \hat{p}_2) - 0 }{ \sqrt{ \hat{p} (1 - \hat{p}) \left(
+                            \dfrac{1}{n_1} + \dfrac{1}{n_2} \right) } }\]
+                        </div>
+                        <p>Trong đó \(\hat{p}\) là tỷ lệ gộp:</p>
+                        \[\hat{p} = \dfrac{x_1 + x_2}{n_1 + n_2}\]
+                        <p>Với \(x_1\) và \(x_2\) là số trường hợp thành công trong hai mẫu.</p>
+                        <p>Quy tắc quyết định:</p>
+                        <ul>
+                            <li>Kiểm định hai phía: Bác bỏ \(H_0\) nếu \(|Z| > Z_{\alpha/2}\)</li>
+                            <li>Kiểm định một phía:
+                                <ul>
+                                    <li>\(H_1: p_1 - p_2 > 0\): Bác bỏ \(H_0\) nếu \(Z > Z_{\alpha}\)</li>
+                                    <li>\(H_1: p_1 - p_2 < 0\): Bác bỏ \(H_0\) nếu \(Z < -Z_{\alpha}\)</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Tiếp tục ví dụ trên, chúng ta muốn kiểm định xem tỷ lệ sản phẩm lỗi
+                            của nhà máy A có cao hơn nhà máy B hay không với mức ý nghĩa \(\alpha = 0.05\).
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>Giả thuyết:
+                                    \[H_0: p_1 - p_2 = 0\]
+                                    \[H_1: p_1 - p_2 > 0\]
+                                </li>
+                                <li>Tính tỷ lệ gộp:
+                                    \[\hat{p} = \dfrac{25 + 18}{500 + 600} = \dfrac{43}{1100} \approx 0.0391\]
+                                </li>
+                                <li style="text-align: left!important;font-size: 1.2em;">Thống kê kiểm định:
+                                    \[Z = \dfrac{0.05 - 0.03}{ \sqrt{ 0.0391 \times 0.9609 \left( \dfrac{1}{500} +
+                                    \dfrac{1}{600} \right) } } \]
+                                    \[= \dfrac{0.02}{ \sqrt{0.0376 \times (0.002 + 0.001667)} } \]
+                                    \[= \dfrac{0.02}{ \sqrt{0.0376 \times 0.003667} } \]
+                                    \[= \dfrac{0.02}{ \sqrt{0.000138} } \]
+                                    \[= \dfrac{0.02}{0.01174} \approx 1.704\]
+                                </li>
+                                <li>Giá trị tới hạn: \(Z_{\alpha} = Z_{0.05} = 1.645\)</li>
+                                <li>Vì \(Z = 1.704 > 1.645\), chúng ta bác bỏ \(H_0\).</li>
+                                <li><strong>Kết luận:</strong> Có đủ bằng chứng để kết luận rằng tỷ lệ sản phẩm lỗi của
+                                    nhà máy A cao hơn nhà máy B ở mức ý nghĩa 5%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </article>
     </main>
     <button id="back-to-top" class="btn btn-primary" title="Back to Top">
