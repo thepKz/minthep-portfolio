@@ -16,19 +16,24 @@
 
 <body>
     <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-
-            <a class="navbar-brand" href="../index.html">Min Thep</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
-                </ul>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+            <div class="container" style="padding:0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="#pt1">PT1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pt2">PT2</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pt3">PT3</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -73,7 +78,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#pt3">PT3:(Updatesau)</a></li>
+                    <li><a href="#pt3">PT3:</a>
+                        <ul>
+                            <li><a href="#chapter8">Chapter 8: Confidence Intervals (Khoảng tin cậy)</a>
+                            </li>
+                            <li><a href="#chapter9">Chapter 9: Hypothesis Testing (Kiểm định giả thuyết)</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
             <div class="section-divider"></div>
@@ -1275,7 +1287,145 @@
                     </div>
                 </div>
             </section>
-            <p>Update sau ngày 13/10/2024</p>
+            <div id="pt3"></div>
+            <section class="chapter mb-5" id="chapter8">
+                <h2 class="mb-4">Chapter 8: Statistical Intervals for a Single Sample</h2>
+                <p class="lead">Chương này giới thiệu về khoảng tin cậy, một công cụ quan trọng trong thống kê suy luận để ước lượng các tham số của tổng thể.</p>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">8.1 Introduction to Confidence Intervals</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Khoảng tin cậy (confidence interval) là một khoảng giá trị được ước tính từ dữ liệu mẫu, nhằm dự đoán giá trị thực của một tham số tổng thể với một mức độ tin cậy nhất định.</p>
+                        
+                        <div class="text-center">
+                            <img src="textblog-3/confidence_interval_diagram.png" alt="Confidence Interval Diagram" class="img-fluid mb-3" style="max-width: 500px;">
+                        </div>
+            
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li><strong>L:</strong> Lower confidence limit (giới hạn dưới)</li>
+                            <li><strong>U:</strong> Upper confidence limit (giới hạn trên)</li>
+                            <li><strong>1-α:</strong> Mức độ tin cậy (thường là 95% hoặc 99%)</li>
+                        </ul>
+            
+                        <div class="alert alert-info">
+                            <strong>Ví dụ:</strong> Khi nói về khoảng tin cậy 95% cho tuổi thọ trung bình của chó là [7.5, 12.5] năm, điều này có nghĩa là chúng ta có 95% độ tin cậy rằng tuổi thọ trung bình thực sự của tất cả các con chó nằm trong khoảng này.
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">8.2 Confidence Interval for a Population Mean</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Khoảng tin cậy cho trung bình tổng thể (μ) được chia thành ba trường hợp:</p>
+            
+                        <h4>Trường hợp 1: Phương sai tổng thể (σ²) đã biết</h4>
+                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\bar{x} \pm z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li><strong>x̄:</strong> Trung bình mẫu</li>
+                            <li><strong>σ:</strong> Độ lệch chuẩn tổng thể</li>
+                            <li><strong>n:</strong> Kích thước mẫu</li>
+                            <li><strong>z<sub>α/2</sub>:</strong> Giá trị z tương ứng với xác suất α/2 ở đuôi phân phối chuẩn</li>
+                        </ul>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Tuổi thọ của bóng đèn có phân phối chuẩn với σ = 25 giờ. Một mẫu 20 bóng đèn có tuổi thọ trung bình 1014 giờ. Tính khoảng tin cậy 95% cho μ.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>x̄ = 1014, n = 20, σ = 25, α = 0.05</li>
+                                <li>z<sub>0.025</sub> = 1.96 (từ bảng phân phối chuẩn)</li>
+                                <li>Khoảng tin cậy: 1014 ± 1.96 * (25 / √20)</li>
+                                <li>Kết quả: 1003.04 ≤ μ ≤ 1024.96</li>
+                            </ul>
+                        </div>
+            
+                        <h4>Trường hợp 2: Phân phối bất kỳ với kích thước mẫu lớn (n ≥ 40)</h4>
+                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\bar{x} \pm z_{\alpha/2} \left( \frac{s}{\sqrt{n}} \right)\)</p>
+                        </div>
+                        <p>Trong đó s là độ lệch chuẩn mẫu.</p>
+            
+                        <h4>Trường hợp 3: Phương sai tổng thể (σ²) chưa biết, phân phối chuẩn</h4>
+                        <p>Công thức khoảng tin cậy 1-α cho μ:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\bar{x} \pm t_{\alpha/2, n-1} \left( \frac{s}{\sqrt{n}} \right)\)</p>
+                        </div>
+                        <p>Trong đó t<sub>α/2,n-1</sub> là giá trị từ phân phối t với n-1 bậc tự do.</p>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">8.3 Large-Sample Confidence Interval for a Population Proportion</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Công thức khoảng tin cậy 1-α cho tỷ lệ tổng thể p:</p>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</p>
+                        </div>
+                        <p>Trong đó:</p>
+                        <ul>
+                            <li><strong>p̂:</strong> Tỷ lệ mẫu (x/n)</li>
+                            <li><strong>n:</strong> Kích thước mẫu</li>
+                        </ul>
+            
+                        <div class="alert alert-success">
+                            <strong>Ví dụ:</strong> Trong 1000 ca ung thư được chọn ngẫu nhiên, 823 ca chết sớm. Tính khoảng tin cậy 95% cho tỷ lệ chết sớm trong tổng thể.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>p̂ = 823/1000 = 0.823, n = 1000, α = 0.05</li>
+                                <li>z<sub>0.025</sub> = 1.96</li>
+                                <li>Khoảng tin cậy: 0.823 ± 1.96 * √[(0.823 * 0.177) / 1000]</li>
+                                <li>Kết quả: 0.799 ≤ p ≤ 0.847</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">8.4 One-Sided Confidence Intervals</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Trong một số trường hợp, chúng ta chỉ quan tâm đến giới hạn trên hoặc giới hạn dưới của khoảng tin cậy. Khi đó, ta sử dụng khoảng tin cậy một phía.</p>
+                        
+                        <h4>Khoảng tin cậy một phía trên:</h4>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\bar{x} + z_{\alpha} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                        </div>
+            
+                        <h4>Khoảng tin cậy một phía dưới:</h4>
+                        <div class="text-center" style="font-size: 1.5em;">
+                            <p>\(\bar{x} - z_{\alpha} \left( \frac{\sigma}{\sqrt{n}} \right)\)</p>
+                        </div>
+            
+                        <p><strong>Lưu ý:</strong> Trong khoảng tin cậy một phía, z<sub>α/2</sub> được thay bằng z<sub>α</sub>.</p>
+            
+                        <div class="alert alert-info">
+                            <strong>Ví dụ:</strong> Một nhà sản xuất muốn chứng minh rằng tuổi thọ trung bình của sản phẩm lớn hơn 1000 giờ với độ tin cậy 95%. Họ lấy mẫu 50 sản phẩm và tính được x̄ = 1050 giờ, s = 100 giờ. Tính khoảng tin cậy một phía dưới.
+                            <br><br>
+                            <strong>Giải:</strong>
+                            <ul>
+                                <li>n = 50, x̄ = 1050, s = 100, α = 0.05</li>
+                                <li>z<sub>0.05</sub> = 1.645 (từ bảng phân phối chuẩn)</li>
+                                <li>Khoảng tin cậy một phía dưới: μ ≥ 1050 - 1.645 * (100 / √50) = 1026.7 giờ</li>
+                                <li>Kết luận: Với độ tin cậy 95%, tuổi thọ trung bình của sản phẩm lớn hơn hoặc bằng 1026.7 giờ.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </article>
     </main>
