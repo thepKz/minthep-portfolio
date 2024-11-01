@@ -1,101 +1,519 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học nói tiếng Nhật</title>
-    <link rel="stylesheet" href="Speaking/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <meta name="description" content="Ứng dụng luyện nói tiếng Nhật cơ bản với các bài tập tương tác và phản hồi tức thì.">
-    <meta name="keywords" content="tiếng Nhật, luyện nói, học ngoại ngữ, phát âm, giao tiếp">
-    <meta name="author" content="Tấn Thépp">
+    <title>Luyện Thi Nói Tiếng Nhật</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Speaking/Speaking.css">
 </head>
-
 <body>
     <header>
-        <h1>Luyện nói tiếng Nhật cơ bản (Thử nghiệm)</h1>
+        <div class="container">
+            <h1 style="display: inline-block; margin-right: 20px;"><i class="fas fa-comments"></i> Luyện Thi Nói Tiếng Nhật</h1><a href="https://visitcount.itsvg.in"><img src="https://visitcount.itsvg.in/api?id=jpd113&label=JPD113&pretty=false" /></a>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
+                <i class="fas fa-clock"></i> Cập nhật lần cuối: 01/11/2024
+            </p>
+            <nav>
+                <a href="myblog.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Trở về trang chủ</span>
+                </a>
+            </nav>
+            
+        </div>
     </header>
 
+    <div class="container">
+        <div class="course-selector">
+            <button class="course-btn active" data-course="jpd113">JPD113</button>
+            <button class="course-btn" data-course="jpd123">JPD123</button>
+        </div>
 
-    <main>
-        <section id="instructions">
-    <h2>Hướng dẫn sử dụng</h2>
-    <div class="instruction-grid">
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-book"></i>
+        <div class="course-content">
+            <!-- Exam Structure Section -->
+            <div class="section-container" id="structure-section">
+                <div class="section-header">
+                    <h2>Cấu Trúc Đề Thi</h2>
+                </div>
+                <div class="section-content" id="structure-content">
+                    <!-- Content will be loaded dynamically -->
+                </div>
             </div>
-            <p>Đọc câu hỏi tiếng Nhật hiển thị trên màn hình</p>
-        </div>
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-volume-up"></i>
+
+            <!-- Reading Section -->
+            <div class="section-container" id="reading-section">
+                <div class="section-header">
+                    <h2>READING - Luyện Đọc</h2>
+                </div>
+                <div class="section-content" id="reading-content">
+                    <!-- Content will be loaded dynamically -->
+                </div>
             </div>
-            <p>Nghe phát âm mẫu nếu cần</p>
-        </div>
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-brain"></i>
+
+            <!-- Talking Section -->
+            <div class="section-container" id="talking-section">
+                <div class="section-header">
+                    <h2>TALKING - Hội Thoại</h2>
+                </div>
+                <div class="section-content" id="talking-content">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+                <div class="example-image">
+                    <img src="Speaking/0.jpg" alt="Example image format">
+    
+                </div>
             </div>
-            <p>Chuẩn bị câu trả lời trong đầu</p>
-        </div>
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-microphone"></i>
+
+            <!-- Tips Section -->
+            <div class="section-container" id="tips-section">
+                <div class="section-header">
+                    <h2>TIPS - Lời Khuyên</h2>
+                </div>
+                <div class="section-content" id="tips-content">
+                    <!-- Content will be loaded dynamically -->
+                </div>
             </div>
-            <p>Bắt đầu trả lời và nói vào microphone</p>
-        </div>
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-stop-circle"></i>
-            </div>
-            <p>Dừng lắng nghe sau khi trả lời xong</p>
-        </div>
-        <div class="instruction-step">
-            <div class="icon-circle">
-                <i class="fas fa-sync-alt"></i>
-            </div>
-            <p>Chuyển sang câu hỏi tiếp theo</p>
         </div>
     </div>
-</section>
 
-        <section id="practice">
-            <div class="progress-bar">
-                <div class="progress" id="progressBar"></div>
-            </div>
-            <div class="practice-container">
-                <div class="word-container">
-                    <div id="wordToSay"></div>
-                    <div class="button-group">
-                        <button id="listenButton" class="icon-button" title="Nghe phát âm"><i class="fas fa-volume-up"></i></button>
-                        <button id="changeWordButton" class="icon-button" title="Đổi câu hỏi"><i class="fas fa-sync-alt"></i></button>
+    <script>
+        const courseData = {
+            jpd113: {
+                structure: [
+    
+                    "Đề thi gồm 02 phần:",
+                    "1. READING: Đọc câu văn",
+                    "   Yêu cầu: chỉ cần đọc chính xác, không cần trả lời câu hỏi (30/100 điểm)",
+                    "2. TALKING: Trả lời 04 câu hỏi của giám thị (60/100 điểm)",
+                    "(*) PRESENTING: Đánh giá tác phong, thái độ, phát âm (10/100 điểm)",
+                    "======================",
+                    "Các bước tiến hành:",
+                    "Phần READING:",
+                    "1. Giám thị chọn bài đọc",
+                    "2. Sinh viên chuẩn bị bài đọc trong 30 giây",
+                    "3. Sinh viên đọc bài",
+                    "",
+                    "Phần TALKING:",
+                    "1. QUESTION WITHOUT PICTURES (Câu hỏi không tranh):",
+                    "   Giám thị chọn 1 trong 4 câu hỏi cho sẵn để hỏi sinh viên",
+                    "2. QUESTIONS WITH PICTURES (Câu hỏi có tranh):",
+                    "   Giám thị chọn 1 tranh và hỏi 03 câu hỏi liên quan để sinh viên trả lời dựa vào gợi ý"
+                ],
+                reading: [
+                    {
+                        text: "はじめまして、私はアンナです。オーストラリア人です。さくら日本語学校の学生です。ことし、二十歳です。私のしゅみはおんがくとどくしょです。よろしくおねがいします。",
+                        romaji: "Hajimemashite, watashi wa Anna desu. Oosutoraria-jin desu. Sakura nihongo gakkou no gakusei desu. Kotoshi, hatachi desu. Watashi no shumi wa ongaku to dokusho desu. Yoroshiku onegaishimasu.",
+                        hint: "Bài đọc 1 (Dễ)",
+                        translation: "Xin chào, tôi là Anna. Tôi là người Úc. Tôi là học sinh trường Nhật ngữ Sakura. Năm nay tôi 20 tuổi. Sở thích của tôi là âm nhạc và đọc sách. Rất vui được gặp bạn.",
+                        audio: "Speaking/jpd113/reading_1.mp3"
+                    },
+                    {
+                        text: "みなさん、おはようございます。こちらはキムさんです。キムさんはかんこく人です。キムさんのしゅみはすいえいとテニスです。いま、なごやたんきだいがくのがくせいです。学校で日本語をべんきょうしています。",
+                        romaji: "Minasan, ohayou gozaimasu. Kochira wa Kimu-san desu. Kimu-san wa kankoku-jin desu. Kimu-san no shumi wa suiei to tenisu desu. Ima, Nagoya tanki daigaku no gakusei desu. Gakkou de nihongo wo benkyou shiteimasu.",
+                        hint: "Bài đọc 2 (Dễ)",
+                        translation: "Chào mọi người. Đây là anh/chị Kim. Kim là người Hàn Quốc. Sở thích của Kim là bơi lội và tennis. Hiện tại, Kim là sinh viên trường cao đẳng Nagoya. Kim đang học tiếng Nhật ở trường.",
+                        audio: "Speaking/jpd113/reading_2.mp3"
+                    },
+                    {
+                        text: "ワットさんはアメリカ人です。おおさか大学の先生です。61才です。ワットさんのしゅみはおんがくとスポーツです。きむらさんのしゅみもスポーツです。学校で日本語をべんきょうしています。",
+                        romaji: "Watto-san wa amerika-jin desu. Oosaka daigaku no sensei desu. Rokujuu-ichi sai desu. Watto-san no shumi wa ongaku to supootsu desu. Kimura-san no shumi mo supootsu desu. Gakkou de nihongo wo benkyou shiteimasu.",
+                        hint: "Bài đọc 3 (Dễ)",
+                        translation: "Ông Watt là người Mỹ. Ông là giáo viên trường đại học Osaka. Ông 61 tuổi. Sở thích của ông Watt là âm nhạc và thể thao. Sở thích của ông Kimura cũng là thể thao. Ông đang học tiếng Nhật ở trường.",
+                        audio: "Speaking/jpd113/reading_3.mp3"
+                    },
+                    {
+                        text: "みなさん、こんばんは。こちらはエミーさんです。エミーさんはオーストラリア人です。エミーさんのしゅみはりょこうとサッカーです。いま、わかやまたんきだいがくの先生です。学校で日本語をおしえています。よろしくおねがいします。",
+                        romaji: "Minasan, konbanwa. Kochira wa Emii-san desu. Emii-san wa oosutoraria-jin desu. Emii-san no shumi wa ryokou to sakkaa desu. Ima, Wakayama tanki daigaku no sensei desu. Gakkou de nihongo wo oshieteimasu. Yoroshiku onegaishimasu.",
+                        hint: "Bài đọc 4 (Dễ)",
+                        translation: "Chào mọi người. Đây là cô Emmy. Cô Emmy là người Úc. Sở thích của cô Emmy là du lịch và bóng đá. Hiện tại, cô là giáo viên trường cao đẳng Wakayama. Cô đang dạy tiếng Nhật ở trường. Rất vui được gặp mọi người.",
+                        audio: "Speaking/jpd113/reading_4.mp3"
+                    },
+                    {
+                        text: "私はたなかです。日本人です。私はかいしゃいんです。月曜日から金曜日まで、会社へいきます。あさ、ごぜん9時からごご5時はんまで会社ではたらきます。土曜日のごぜん、しんぶんをよみます。ごご、うちでDVDをみます。日曜日、こうえんでテニスをします。",
+                        romaji: "Watashi wa Tanaka desu. Nihonjin desu. Watashi wa kaishain desu. Getsuyoubi kara kinyoubi made, kaisha e ikimasu. Asa, gozen ku-ji kara gogo go-ji han made kaisha de hatarakimasu. Doyoubi no gozen, shinbun wo yomimasu. Gogo, uchi de DVD wo mimasu. Nichiyoubi, kouen de tenisu wo shimasu.",
+                        hint: "Bài đọc 5 (Khó)",
+                        translation: "Tôi là Tanaka. Tôi là người Nhật. Tôi là nhân viên công ty. Từ thứ Hai đến thứ Sáu, tôi đi làm ở công ty. Buổi sáng, tôi làm việc ở công ty từ 9 giờ sáng đến 5 giờ rưỡi chiều. Sáng thứ Bảy, tôi đọc báo. Chiều, tôi xem DVD ở nhà. Chủ nhật, tôi chơi tennis ở công viên.",
+                        audio: "Speaking/jpd113/reading_5.mp3"
+                    },
+                    {
+                        text: "A: あれは なんですか。\nB: おやこどんです。\nA: おやこどん？ おやこどんはなにの りょうりですか。\nB: とりにくと たまごの りょうりです。\nA: 「たまご」は えいごで なんですか。\nB: 「egg」です。",
+                        romaji: "A: Are wa nan desu ka.\nB: Oyakodon desu.\nA: Oyakodon? Oyakodon wa nani no ryouri desu ka.\nB: Toriniku to tamago no ryouri desu.\nA: 'Tamago' wa eigo de nan desu ka.\nB: 'Egg' desu.",
+                        hint: "Bài đọc 6 (Trung bình)",
+                        translation: "A: Kia là gì vậy?\nB: Là cơm thịt gà trứng.\nA: Cơm thịt gà trứng? Cơm thịt gà trứng là món ăn làm từ gì?\nB: Là món ăn làm từ thịt gà và trứng.\nA: 'Trứng' trong tiếng Anh là gì?\nB: Là 'egg'.",
+                        audio: "Speaking/jpd113/reading_6.mp3"
+                    },
+                    {
+                        text: "てんいん：いらっしゃいませ。こんにちは。なんめいさまですか。\nだにえる：三人です。\nてんいん：きんえんせきと きつえんせき、どちらをごりようですか。\nだにえる：きんえんせきをおねがいします。\nてんいん：はい、こちらへどうぞ。\nぱく：すみません！ ちゅうもんをおねがいします。\nてんいん：はい、どうぞ。\nわん：私、はんばーぐと らいす。\nだにえる：私も はんばーぐと らいす。それから、ええと、この びーるはどこ の びーるですか。\nてんいん：ドイツの びーるです。\nだにえる：そうですか。じゃ、びーるを……。\nわん：あ、私も びーる。\nだにえる：じゃ、びーるを 2つください。\nぱく：あのう、これは なんの かれーですか。\nてんいん：とりにくと やさいの かれーです。\nぱく：そうですか。じゃ、かれーと びーるをください。\nてんいん：はい、はんばーぐを 2つと らいすを 2つと かれーを 1つと びーるを 3つですね。\nぱく：はい。\nてんいん：かしこまりました。しょうしょうおまちください。",
+                        romaji: "Tenin: Irasshaimase. Konnichiwa. Nan-mei-sama desu ka.\nDanieru: San-nin desu.\nTenin: Kin'en-seki to kitsuen-seki, dochira wo goryou desu ka.\nDanieru: Kin'en-seki wo onegaishimasu.\nTenin: Hai, kochira e douzo.\nPaku: Sumimasen! Chuumon wo onegaishimasu.\nTenin: Hai, douzo.\nWan: Watashi, hanbaagu to raisu.\nDanieru: Watashi mo hanbaagu to raisu. Sorekara, eeto, kono biiru wa doko no biiru desu ka.\nTenin: Doitsu no biiru desu.\nDanieru: Sou desu ka. Ja, biiru wo......\nWan: A, watashi mo biiru.\nDanieru: Ja, biiru wo futatsu kudasai.\nPaku: Anou, kore wa nan no karee desu ka.\nTenin: Toriniku to yasai no karee desu.\nPaku: Sou desu ka. Ja, karee to biiru wo kudasai.\nTenin: Hai, hanbaagu wo futatsu to raisu wo futatsu to karee wo hitotsu to biiru wo mittsu desu ne.\nPaku: Hai.\nTenin: Kashikomarimashita. Shoushou omachi kudasai.",
+                        hint: "Bài đọc 7 (Khó - Hội thoại tại nhà hàng)",
+                        translation: "Nhân viên: Xin chào quý khách. Xin hỏi mấy vị ạ?\nDaniel: 3 người ạ.\nNhân viên: Quý khách dùng khu vực không hút thuốc hay khu vực hút thuốc ạ?\nDaniel: Cho chúng tôi khu vực không hút thuốc.\nNhân viên: Vâng, mời quý khách đi lối này.\nPark: Xin lỗi! Cho chúng tôi gọi món.\nNhân viên: Vâng, xin mời.\nWan: Tôi gọi hamburger và cơm.\nDaniel: Tôi cũng hamburger và cơm. À, ừm, bia này là bia của đâu vậy?\nNhân viên: Là bia Đức ạ.\nDaniel: Vậy à. Vậy cho tôi bia...\nWan: À, tôi cũng bia.\nDaniel: Vậy cho 2 bia.\nPark: À, cà ri này là cà ri gì vậy?\nNhân viên: Là cà ri thịt gà và rau củ ạ.\nPark: Vậy à. Vậy cho tôi cà ri và bia.\nNhân viên: Vâng, 2 hamburger, 2 cơm, 1 cà ri và 3 bia phải không ạ?\nPark: Vâng.\nNhân viên: Vâng, xin quý khách đợi một lát.",
+                        audio: "Speaking/jpd113/reading_7.mp3"
+                    },
+                    {
+                        text: "A：Bさん、まいばん、何時にねますか。\nB：12時にねます。\nA：そうですか。よる、何をしますか。\nB：インターネットをします。本をよみます。Aさんは何をしますか。\nA：私はまいばん、べんきょうします。\nB：何時から何時までべんきょうしますか。\nA：8時から12時までべんきょうします。\nB：そうですか。",
+                        romaji: "A: B-san, maiban, nanji ni nemasu ka.\nB: Juuni-ji ni nemasu.\nA: Sou desu ka. Yoru, nani wo shimasu ka.\nB: Intaanetto wo shimasu. Hon wo yomimasu. A-san wa nani wo shimasu ka.\nA: Watashi wa maiban, benkyou shimasu.\nB: Nanji kara nanji made benkyou shimasu ka.\nA: Hachi-ji kara juuni-ji made benkyou shimasu.\nB: Sou desu ka.",
+                        hint: "Bài đọc 8 (Trung bình - Hội thoại về thói quen buổi tối)",
+                        translation: "A: B, tối nào bạn đi ngủ mấy giờ?\nB: Tôi đi ngủ 12 giờ.\nA: Vậy à. Buổi tối bạn làm gì?\nB: Tôi lướt internet. Tôi đọc sách. Còn A thì làm gì?\nA: Tối nào tôi cũng học bài.\nB: Bạn học từ mấy giờ đến mấy giờ?\nA: Tôi học từ 8 giờ đến 12 giờ.\nB: Vậy à.",
+                        audio: "Speaking/jpd113/reading_8.mp3"
+                    },
+                
+                ],
+                talking_without_pictures: [
+                    {
+                        question: "「コンピュータ」はベトナム語でなんですか。",
+                        questionAudio: "Speaking/audio/jpd113_q1.mp3",
+                        hint: "Máy tính trong tiếng Việt là gì?",
+                        example: "ベトナム語で「máy tính」です。",
+                        exampleAudio: "Speaking/audio/jpd113_a1.mp3",
+                        romaji: {
+                            question: "Konpyuuta wa betonamugo de nan desu ka.",
+                            example: "Betonamugo de 'máy tính' desu."
+                        }
+                    },
+                    {
+                        question: "まいにち、何をますか。",
+                        questionAudio: "Speaking/audio/jpd113_q2.mp3",
+                        hint: "Mỗi ngày bạn làm gì?",
+                        example: "まいにち、学校に行きます。",
+                        exampleAudio: "Speaking/audio/jpd113_a2.mp3",
+                        romaji: {
+                            question: "Mainichi, nani wo shimasu ka.",
+                            example: "Mainichi, gakkou ni ikimasu."
+                        }
+                    }
+                ],
+                talking_with_pictures: [
+                    {
+                        question: "この人のなまえは？",
+                        questionAudio: "Speaking/audio/jpd113_qp1.mp3",
+                        hint: "Tên của người này là gì?",
+                        example: "たなかさんです。",
+                        exampleAudio: "Speaking/audio/jpd113_ap1.mp3",
+                        image: "Speaking/images/person.jpg",
+                        romaji: {
+                            question: "Kono hito no namae wa?",
+                            example: "Tanaka-san desu."
+                        }
+                    },
+                    {
+                        question: "ここはどこですか。",
+                        questionAudio: "Speaking/audio/jpd113_qp2.mp3",
+                        hint: "Đây là đâu?",
+                        example: "図書館です。",
+                        exampleAudio: "Speaking/audio/jpd113_ap2.mp3",
+                        romaji: {
+                            question: "Koko wa doko desu ka.",
+                            example: "Toshokan desu."
+                        }
+                    }
+                ],
+                tips: [
+                    "Đọc to và rõ ràng, không cần đọc nhanh",
+                    "Khi ngập ngừng nên dùng 'eeeeeee' thay vì 'ờ ờ'",
+                    "Ngắt câu sau mỗi trợ từ (ví dụ: watashi wa... FPT no... shain desu)",
+                    "Chú ý ngữ điệu khi đọc câu (ví dụ: wa thì nên đọc âm sắc thay vì âm ngang hoặc nhẹ nhàng)",
+                    "Ghi âm và nghe lại giọng của mình để cải thiện",
+                    "Chuẩn bị bài đọc trong 30 giây trước khi bắt đầu",
+                    "Ôn kĩ phần Ngày Tháng Giờ Phút vì nó sẽ ra rất nhiều, đặc biệt là ngày rất là khó "
+                ]
+            },
+            jpd123: {
+                structure: [],
+                reading: [
+                    {
+                        text: "私は まいにち 日本語を べんきょうしています。日本語の じゅぎょうは たのしいです。",
+                        hint: "Bài đọc mẫu 1: Học tập",
+                        translation: "Tôi học tiếng Nhật mỗi ngày. Lớp học tiếng Nhật rất vui.",
+                        audio: "Speaking/audio/jpd123_reading_1.mp3"
+                    }
+                ],
+                talking_without_pictures: [],
+                talking_with_pictures: [],
+                tips: [
+                    "Tập trung vào phát âm rõ ràng",
+                    "Học thuộc các mẫu câu cơ bản",
+                    "Luyện tập với bạn bè thường xuyên"
+                ]
+            }
+        };
+
+        const speechSettings = {
+            rate: 0.8, // Tốc độ mặc định
+            pitch: 1
+        };
+
+        function createSettingsPanel() {
+            // Tạo toggle button
+            const toggleBtn = document.createElement('div');
+            toggleBtn.className = 'settings-toggle';
+            toggleBtn.innerHTML = '<i class="fas fa-sliders-h"></i>';
+            
+            // Tạo settings panel
+            const settingsPanel = document.createElement('div');
+            settingsPanel.className = 'settings-panel';
+            settingsPanel.innerHTML = `
+                <div class="settings-header">
+                    <i class="fas fa-cog"></i> Cài đặt đọc
+                </div>
+                <div class="settings-content">
+                    <div class="setting-item">
+                        <label>Tốc độ đọc:</label>
+                        <select id="speech-rate">
+                            <option value="0.5">Rất chậm 0.5</option>
+                            <option value="0.8">Chậm 0.8</option>
+                            <option value="1.0" selected>Bình thường 1.0</option>
+                            <option value="1.5">Nhanh 1.5</option>
+                            <option value="1.75">Bình Dương 1.75</option>
+                        </select>
                     </div>
                 </div>
-                <div class="speak-container">
-                    <button id="startListening" class="main-button">Bắt đầu trả lời</button>
-                    <button id="stopListening" class="secondary-button" style="display: none;">Dừng lắng nghe</button>
-                    <div id="countdown" style="margin-top: 10px; color: #666;"></div>
-                </div>
-                <div id="result" class="result-container"></div>
-            </div>
-        </section>
+            `;
 
-    </main>
+            // Thêm event listener cho toggle
+            toggleBtn.addEventListener('click', () => {
+                settingsPanel.classList.toggle('open');
+                toggleBtn.classList.toggle('open');
+            });
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Speaking Thử Nghiệm | Phát triển bởi <a href="https://www.facebook.com/thepp.tan/">Tấn Thépp</a></p>
-            <div class="social-links">
-                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
-    <script src="Speaking/luyentap.js"></script>
+            // Append cả hai element
+            document.body.appendChild(toggleBtn);
+            document.body.appendChild(settingsPanel);
+
+            // Thêm event listener cho select box
+            const rateSelect = settingsPanel.querySelector('#speech-rate');
+            rateSelect.addEventListener('change', (e) => {
+                speechSettings.rate = parseFloat(e.target.value);
+                console.log('Speech rate changed to:', speechSettings.rate); // Debug log
+            });
+        }
+
+        async function speakJapanese(text, audioPath) {
+            const button = event.target;
+            
+            if (button.disabled) {
+                return;
+            }
+
+            try {
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang phát...';
+
+                const audio = new Audio(audioPath);
+                
+                await new Promise((resolve, reject) => {
+                    audio.onended = () => {
+                        resolve();
+                    };
+
+                    audio.onloadeddata = () => {
+                        audio.playbackRate = parseFloat(speechSettings.rate);
+                        console.log('Playing audio at rate:', audio.playbackRate); // Debug log
+                        audio.play().catch(error => {
+                            console.error("Error playing audio:", error);
+                            reject(error);
+                        });
+                    };
+                    
+                    audio.onerror = () => {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        utterance.lang = 'ja-JP';
+                        utterance.rate = parseFloat(speechSettings.rate);
+                        console.log('Speaking at rate:', utterance.rate); // Debug log
+                        
+                        utterance.onend = () => {
+                            resolve();
+                        };
+                        
+                        utterance.onerror = (error) => {
+                            console.error("Speech synthesis error:", error);
+                            reject(error);
+                        };
+                        
+                        window.speechSynthesis.speak(utterance);
+                    };
+
+                    setTimeout(() => {
+                        reject(new Error("Audio playback timeout"));
+                    }, 10000);
+                });
+
+            } catch (error) {
+                console.error("Playback error:", error);
+            } finally {
+                if (button && !button.isDestroyed) {
+                    button.disabled = false;
+                    button.innerHTML = '<i class="fas fa-volume-up"></i> Nghe';
+                }
+            }
+        }
+
+        function createPracticeCard(item, type) {
+            const card = document.createElement('div');
+            card.className = 'practice-card';
+
+            // Question Section
+            const questionSection = document.createElement('div');
+            questionSection.className = 'question-section';
+
+            const questionLabel = document.createElement('div');
+            questionLabel.className = 'question-label';
+            questionLabel.innerHTML = '<i class="fas fa-question-circle"></i> ' + (type === 'reading' ? 'Bài đọc' : 'Câu hỏi');
+            questionSection.appendChild(questionLabel);
+
+            const japaneseText = document.createElement('div');
+            japaneseText.className = 'japanese-text';
+            japaneseText.textContent = type === 'reading' ? item.text : item.question;
+            questionSection.appendChild(japaneseText);
+
+            // Add image if it exists
+            if (item.image) {
+                const img = document.createElement('img');
+                img.className = 'question-image';
+                img.src = item.image;
+                img.alt = 'Question image';
+                questionSection.appendChild(img);
+            }
+
+            // Add audio button
+            const audioBtn = document.createElement('button');
+            audioBtn.className = 'speak-btn question-audio';
+            audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> ' + (type === 'reading' ? 'Nghe bài đọc' : 'Nghe câu hỏi');
+            audioBtn.onclick = () => speakJapanese(type === 'reading' ? item.text : item.question, item.audio || item.questionAudio);
+            questionSection.appendChild(audioBtn);
+
+            card.appendChild(questionSection);
+
+            // Romaji toggle
+            if (item.romaji) {
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'toggle-romaji-btn';
+                toggleBtn.innerHTML = '<i class="fas fa-language"></i> Hiện Romaji';
+                
+                const romajiText = document.createElement('div');
+                romajiText.className = 'romaji-text';
+                romajiText.textContent = typeof item.romaji === 'string' ? item.romaji : item.romaji.question;
+                
+                toggleBtn.addEventListener('click', () => {
+                    romajiText.classList.toggle('show-romaji');
+                    toggleBtn.innerHTML = romajiText.classList.contains('show-romaji') 
+                        ? '<i class="fas fa-language"></i> Ẩn Romaji'
+                        : '<i class="fas fa-language"></i> Hiện Romaji';
+                });
+
+                card.appendChild(toggleBtn);
+                card.appendChild(romajiText);
+            }
+
+            // Hint
+            const hint = document.createElement('div');
+            hint.className = 'hint-text';
+            hint.textContent = item.hint;
+            card.appendChild(hint);
+
+            // Answer/Translation Section
+            const answerSection = document.createElement('div');
+            answerSection.className = 'answer-section';
+
+            const answerLabel = document.createElement('div');
+            answerLabel.className = 'answer-label';
+            answerLabel.innerHTML = '<i class="fas fa-comment"></i> ' + (type === 'reading' ? 'Bản dịch' : 'Câu trả lời mẫu');
+            answerSection.appendChild(answerLabel);
+
+            const answerText = document.createElement('div');
+            answerText.className = 'translation-text';
+            answerText.textContent = type === 'reading' ? item.translation : item.example;
+            answerSection.appendChild(answerText);
+
+            // Add answer audio button for talking section
+            if (type !== 'reading' && item.exampleAudio) {
+                const answerAudioBtn = document.createElement('button');
+                answerAudioBtn.className = 'speak-btn answer-audio';
+                answerAudioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Nghe câu trả lời';
+                answerAudioBtn.onclick = () => speakJapanese(item.example, item.exampleAudio);
+                answerSection.appendChild(answerAudioBtn);
+            }
+
+            card.appendChild(answerSection);
+
+            return card;
+        }
+
+        function loadCourseContent(courseId) {
+            const course = courseData[courseId];
+
+            // Load structure content
+            const structureContent = document.getElementById('structure-content');
+            structureContent.innerHTML = '';
+            if (course.structure.length > 0) {
+                const structureList = document.createElement('ul');
+                structureList.className = 'tips-list';
+                course.structure.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    structureList.appendChild(li);
+                });
+                structureContent.appendChild(structureList);
+            }
+
+            // Load reading content
+            const readingContent = document.getElementById('reading-content');
+            readingContent.innerHTML = '';
+            course.reading.forEach(item => {
+                readingContent.appendChild(createPracticeCard(item, 'reading'));
+            });
+
+            // Load talking content
+            const talkingContent = document.getElementById('talking-content');
+            talkingContent.innerHTML = '';
+            
+            if (course.talking_without_pictures.length > 0) {
+                const withoutPicturesHeader = document.createElement('h3');
+                withoutPicturesHeader.textContent = 'Câu hỏi không có hình';
+                talkingContent.appendChild(withoutPicturesHeader);
+                
+                course.talking_without_pictures.forEach(item => {
+                    talkingContent.appendChild(createPracticeCard(item, 'talking'));
+                });
+            }
+
+            if (course.talking_with_pictures.length > 0) {
+                const withPicturesHeader = document.createElement('h3');
+                withPicturesHeader.textContent = 'Câu hỏi có hình';
+                talkingContent.appendChild(withPicturesHeader);
+                
+                course.talking_with_pictures.forEach(item => {
+                    talkingContent.appendChild(createPracticeCard(item, 'talking'));
+                });
+            }
+
+            // Load tips content
+            const tipsContent = document.getElementById('tips-content');
+            tipsContent.innerHTML = '';
+            const tipsList = document.createElement('ul');
+            tipsList.className = 'tips-list';
+            course.tips.forEach(tip => {
+                const li = document.createElement('li');
+                li.textContent = tip;
+                tipsList.appendChild(li);
+            });
+            tipsContent.appendChild(tipsList);
+        }
+
+        document.querySelectorAll('.course-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                document.querySelectorAll('.course-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                loadCourseContent(e.target.dataset.course);
+            });
+        });
+
+        loadCourseContent('jpd113');
+
+        // Cập nhật cách gọi hàm
+        document.addEventListener('DOMContentLoaded', () => {
+            createSettingsPanel();
+        });
+    </script>
 </body>
-
 </html>

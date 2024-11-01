@@ -1,0 +1,478 @@
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #F8F9FA;
+    --accent-color: #FF6B6B;
+    --text-color: #2C3E50;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f0f2f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.course-selector {
+    background: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.course-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.course-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.section-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    font-size: 1.2rem;
+}
+
+.section-content {
+    padding: 1rem;
+}
+
+.practice-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.practice-card:hover {
+    transform: translateY(-2px);
+}
+
+.japanese-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.romaji-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    color: #666;
+    font-style: italic;
+    border-left: 4px solid #ddd;
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.show-romaji {
+    display: block;
+}
+
+.toggle-romaji-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-romaji-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.toggle-romaji-btn i {
+    margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hint-text {
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.translation-text {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    padding: 1rem;
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.speak-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.speak-btn:hover {
+    background: #357ABD;
+    transform: translateY(-1px);
+}
+
+.speak-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.tips-list {
+    list-style-type: none;
+}
+
+.tips-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tips-list li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+a {
+    text-decoration: none;
+}
+
+.question-section, .answer-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background: var(--secondary-color);
+}
+
+.answer-section {
+    border-left: 4px solid var(--accent-color);
+}
+
+.speak-btn.question-audio {
+    background: var(--primary-color);
+}
+
+.speak-btn.answer-audio {
+    background: var(--accent-color);
+}
+
+.speak-btn {
+    margin-top: 0.5rem;
+}
+
+.speak-btn.question-audio:hover {
+    background: #357ABD;
+}
+
+.speak-btn.answer-audio:hover {
+    background: #FF5252;
+}
+
+/* Style cho section headers */
+.section-type-header {
+    background: #f0f4f8;
+    padding: 1rem;
+    margin: 2rem 0 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    color: #2d4a8c;
+    border-left: 4px solid #4a90e2;
+}
+
+/* Style cho practice card */
+.practice-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Question section */
+.question-section {
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.question-label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Answer section */
+.answer-section {
+    background: #fff5f5;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-left: 4px solid var(--accent-color);
+}
+
+.answer-label {
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Image style - cập nhật */
+.question-image {
+    width: 100%; /* Chiều rộng 100% của container cha */
+    max-width: 500px; /* Giới hạn chiều rộng tối đa */
+    height: auto; /* Chiều cao tự động theo tỉ lệ */
+    aspect-ratio: 4/3; /* Giữ tỉ lệ 4:3 */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+/* Example image cho phần mẫu */
+.example-image {
+    width: 100%;
+    max-width: 500px; /* Giới hạn chiều rộng tối đa */
+    margin: 1rem auto;
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 2px dashed #ccc;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.example-image img {
+    width: 100%;
+    aspect-ratio: 4/3; /* Giữ tỉ lệ 4:3 */
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.example-image p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .question-image,
+    .example-image {
+        max-width: 100%; /* Cho phép ảnh full width trên mobile */
+    }
+    
+    .image-container {
+        padding: 0 1rem; /* Thêm padding cho container trên mobile */
+    }
+}
+
+/* Container cho ảnh để căn giữa và giới hạn kích thước */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    max-width: 800px; /* Giới hạn chiều rộng tối đa của container */
+    margin: 1rem auto; /* Căn giữa container */
+}
+
+/* Settings Panel - Cập nhật */
+.settings-panel {
+    position: fixed;
+    bottom: 20px;
+    right: -250px; /* Ban đầu ẩn sang phải */
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+/* Nút toggle */
+.settings-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.settings-toggle i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Class khi panel được mở */
+.settings-panel.open {
+    right: 20px;
+}
+
+.settings-toggle.open {
+    right: 280px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .settings-panel {
+        width: calc(100% - 40px);
+    }
+    
+    .settings-panel.open {
+        right: 20px;
+    }
+    
+    .settings-toggle.open {
+        right: 20px;
+        bottom: calc(20px + 150px); /* Đẩy nút lên trên khi panel mở */
+    }
+}
+
+/* Thêm hover effect */
+.settings-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.settings-header {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.settings-content {
+    padding: 1rem;
+}
+
+.setting-item {
+    margin-bottom: 1rem;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.setting-item select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+@media (max-width: 768px) {
+    .settings-panel {
+        width: calc(100% - 40px);
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .settings-panel:hover {
+        transform: none; /* Tắt hover effect trên mobile */
+    }
+}
