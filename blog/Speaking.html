@@ -363,7 +363,8 @@
 
             const japaneseText = document.createElement('div');
             japaneseText.className = 'japanese-text';
-            japaneseText.textContent = type === 'reading' ? item.text : item.question;
+            const text = type === 'reading' ? item.text : item.question;
+            japaneseText.innerHTML = text.replace(/\n/g, '<br>');
             questionSection.appendChild(japaneseText);
 
             // Add image if it exists
@@ -435,6 +436,7 @@
             }
 
             card.appendChild(answerSection);
+
 
             return card;
         }

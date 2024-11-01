@@ -99,13 +99,9 @@ header {
 }
 
 .japanese-text {
-    font-size: 1.4rem;
+    white-space: pre-line;
     line-height: 1.8;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background: var(--secondary-color);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary-color);
+    margin: 1rem 0;
 }
 
 .romaji-text {
@@ -475,4 +471,30 @@ a {
     .settings-panel:hover {
         transform: none; /* Tắt hover effect trên mobile */
     }
+}
+
+.translation-section {
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-left: 4px solid #6c757d;
+}
+
+.translation-label {
+    font-weight: 500;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.translation-text {
+    color: var(--text-color);
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.translation-text p {
+    margin: 0.5rem 0;
 }
