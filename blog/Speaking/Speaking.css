@@ -363,17 +363,27 @@ a {
 /* Settings Panel - Cập nhật */
 .settings-panel {
     position: fixed;
-    bottom: 20px;
-    right: -250px; /* Ban đầu ẩn sang phải */
+    opacity: 0;
+    visibility: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 400px;
     background: white;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     z-index: 1000;
-    width: 250px;
     transition: all 0.3s ease;
 }
 
-/* Nút toggle */
+/* Class khi panel được mở */
+.settings-panel.open {
+    opacity: 1;
+    visibility: visible;
+    bottom: 80px;
+}
+
+/* Nút toggle luôn ở góc phải dưới */
 .settings-toggle {
     position: fixed;
     bottom: 20px;
@@ -396,35 +406,56 @@ a {
     font-size: 1.2rem;
 }
 
-/* Class khi panel được mở */
-.settings-panel.open {
-    right: 20px;
-}
-
-.settings-toggle.open {
-    right: 280px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive adjustments */
+@media (min-width: 769px) {
+    /* Desktop styles */
     .settings-panel {
-        width: calc(100% - 40px);
+        width: 250px;
+        bottom: 20px;
+        right: -250px;
+        left: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        border-radius: var(--border-radius);
     }
-    
+
     .settings-panel.open {
         right: 20px;
+        bottom: 20px;
+    }
+
+    .settings-toggle.open {
+        right: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile styles */
+    .settings-panel {
+        max-height: 80vh;
+        bottom: 80px;
+    }
+    
+    .settings-content {
+        max-height: calc(80vh - 60px);
+        overflow-y: auto;
     }
     
     .settings-toggle.open {
+        bottom: 20px;
         right: 20px;
-        bottom: calc(20px + 150px); /* Đẩy nút lên trên khi panel mở */
     }
 }
 
-/* Thêm hover effect */
-.settings-panel:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+/* Xóa bỏ các styles xung đột */
+@media (max-width: 768px) {
+    .settings-panel {
+        width: 100%;
+        right: auto;
+        transform: none;
+        margin: 0;
+    }
 }
 
 .settings-header {
