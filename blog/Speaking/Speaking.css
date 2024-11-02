@@ -332,19 +332,16 @@ a {
 
 /* Image style - cập nhật */
 .question-image {
-    width: 100%; /* Chiều rộng 100% của container cha */
-    max-width: 500px; /* Giới hạn chiều rộng tối đa */
-    height: auto; /* Chiều cao tự động theo tỉ lệ */
-    aspect-ratio: 4/3; /* Giữ tỉ lệ 4:3 */
-    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    width: 100%;
+    height: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    margin: 1rem 0;
 }
 
 /* Example image cho phần mẫu */
 .example-image {
     width: 100%;
-    max-width: 500px; /* Giới hạn chiều rộng tối đa */
     margin: 1rem auto;
     padding: 1rem;
     background: #f8f9fa;
@@ -355,8 +352,7 @@ a {
 
 .example-image img {
     width: 100%;
-    aspect-ratio: 4/3; /* Giữ tỉ lệ 4:3 */
-    object-fit: cover;
+    height: auto;
     border-radius: var(--border-radius);
     margin-bottom: 0.5rem;
 }
@@ -379,14 +375,13 @@ a {
     }
 }
 
-/* Container cho ảnh để căn giữa và giới hạn kích thư��c */
+/* Container cho ảnh để căn giữa và giới hạn kích thước */
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem 0;
-    max-width: 800px; /* Giới hạn chiều rộng tối đa của container */
-    margin: 1rem auto; /* Căn giữa container */
+    width: 100%;
 }
 
 /* Settings Panel - Cập nhật */
