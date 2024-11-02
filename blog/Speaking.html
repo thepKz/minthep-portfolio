@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Speaking/Speaking.css">
 </head>
+
 <body>
     <header>
         <div class="container">
-            <h1 style="display: inline-block; margin-right: 20px;"><i class="fas fa-comments"></i> Luyện Thi Nói Tiếng Nhật</h1><a href="https://visitcount.itsvg.in"><img src="https://visitcount.itsvg.in/api?id=jpd113&label=JPD113&pretty=false" /></a>
+            <h1 style="display: inline-block; margin-right: 20px;"><i class="fas fa-comments"></i> Luyện Thi Nói Tiếng
+                Nhật</h1><a href="https://visitcount.itsvg.in"><img
+                    src="https://visitcount.itsvg.in/api?id=jpd113&label=JPD113&pretty=false" /></a>
             <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">
                 <i class="fas fa-clock"></i> Cập nhật lần cuối: 01/11/2024
             </p>
@@ -20,7 +24,7 @@
                     <span>Trở về trang chủ</span>
                 </a>
             </nav>
-            
+
         </div>
     </header>
 
@@ -61,7 +65,7 @@
                 </div>
                 <div class="example-image">
                     <img src="Speaking/0.jpg" alt="Example image format">
-    
+
                 </div>
             </div>
 
@@ -81,11 +85,11 @@
         const courseData = {
             jpd113: {
                 structure: [
-    
+
                     "- Đề thi gồm 02 phần:",
                     "-- 1. READING: Đọc câu văn",
                     "----- Yêu cầu: chỉ cần đọc chính xác, không cần trả lời câu hỏi (30/100 điểm)",
-                    "-- 2. TALKING: Trả lời 04 câu hỏi của giám thị (60/100 điểm)", 
+                    "-- 2. TALKING: Trả lời 04 câu hỏi của giám thị (60/100 điểm)",
                     "-- (*) PRESENTING: Đánh giá tác phong, thái độ, phát âm (10/100 điểm)",
                     "- Các bước tiến hành:",
                     "-- Phần READING:",
@@ -170,7 +174,7 @@
                         translation: "Nếu bạn muốn đóng góp bài đọc thì hãy liên hệ https://www.facebook.com/thepp.tan/",
                         audio: "Speaking/jpd113/reading_10.mp3"
                     }
-                
+
                 ],
                 talking_without_pictures: [
                     {
@@ -186,7 +190,7 @@
                     },
                     {
                         question: "おくには どちらですか。",
-                        questionAudio: "Speaking/audio/jpd113_q2.mp3", 
+                        questionAudio: "Speaking/audio/jpd113_q2.mp3",
                         hint: "Bạn đến từ nước nào?",
                         example: "ベトナムです。",
                         exampleAudio: "Speaking/audio/jpd113_a2.mp3",
@@ -198,7 +202,7 @@
                     {
                         question: "おしごとは？",
                         questionAudio: "Speaking/audio/jpd113_q3.mp3",
-                        hint: "Công việc của bạn là gì?", 
+                        hint: "Công việc của bạn là gì?",
                         example: "わたしのしごとは________です。",
                         exampleAudio: "Speaking/audio/jpd113_a3.mp3",
                         romaji: {
@@ -286,27 +290,42 @@
                 ],
                 talking_with_pictures: [
                     {
-                        question: "この人のなまえは？",
-                        questionAudio: "Speaking/audio/jpd113_qp1.mp3",
-                        hint: "Tên của người này là gì?",
-                        example: "たなかさんです。",
-                        exampleAudio: "Speaking/audio/jpd113_ap1.mp3",
                         image: "Speaking/images/person.jpg",
-                        romaji: {
-                            question: "Kono hito no namae wa?",
-                            example: "Tanaka-san desu."
-                        }
-                    },
-                    {
-                        question: "ここはどこですか。",
-                        questionAudio: "Speaking/audio/jpd113_qp2.mp3",
-                        hint: "Đây là đâu?",
-                        example: "図書館です。",
-                        exampleAudio: "Speaking/audio/jpd113_ap2.mp3",
-                        romaji: {
-                            question: "Koko wa doko desu ka.",
-                            example: "Toshokan desu."
-                        }
+                        questions: [
+                            {
+                                question: "この人のなまえは？",
+                                questionAudio: "Speaking/audio/jpd113_qp1.mp3",
+                                hint: "Tên của người này là gì?",
+                                example: "たなかさんです。",
+                                exampleAudio: "Speaking/audio/jpd113_ap1.mp3",
+                                romaji: {
+                                    question: "Kono hito no namae wa?",
+                                    example: "Tanaka-san desu."
+                                }
+                            },
+                            {
+                                question: "この人のしごとは？",
+                                questionAudio: "Speaking/audio/jpd113_qp2.mp3",
+                                hint: "Nghề nghiệp của người này là gì?",
+                                example: "かいしゃいんです。",
+                                exampleAudio: "Speaking/audio/jpd113_ap2.mp3",
+                                romaji: {
+                                    question: "Kono hito no shigoto wa?",
+                                    example: "Kaishain desu."
+                                }
+                            },
+                            {
+                                question: "この人のしゅみは？",
+                                questionAudio: "Speaking/audio/jpd113_qp3.mp3",
+                                hint: "Sở thích của người này là gì?",
+                                example: "テニスです。",
+                                exampleAudio: "Speaking/audio/jpd113_ap3.mp3",
+                                romaji: {
+                                    question: "Kono hito no shumi wa?",
+                                    example: "Tenisu desu."
+                                }
+                            }
+                        ]
                     }
                 ],
                 tips: [
@@ -349,7 +368,7 @@
             const toggleBtn = document.createElement('div');
             toggleBtn.className = 'settings-toggle';
             toggleBtn.innerHTML = '<i class="fas fa-sliders-h"></i>';
-            
+
             // Tạo settings panel
             const settingsPanel = document.createElement('div');
             settingsPanel.className = 'settings-panel';
@@ -391,7 +410,7 @@
 
         async function speakJapanese(text, audioPath) {
             const button = event.target;
-            
+
             if (button.disabled) {
                 return;
             }
@@ -401,7 +420,7 @@
                 button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang phát...';
 
                 const audio = new Audio(audioPath);
-                
+
                 await new Promise((resolve, reject) => {
                     audio.onended = () => {
                         resolve();
@@ -415,22 +434,22 @@
                             reject(error);
                         });
                     };
-                    
+
                     audio.onerror = () => {
                         const utterance = new SpeechSynthesisUtterance(text);
                         utterance.lang = 'ja-JP';
                         utterance.rate = parseFloat(speechSettings.rate);
                         console.log('Speaking at rate:', utterance.rate); // Debug log
-                        
+
                         utterance.onend = () => {
                             resolve();
                         };
-                        
+
                         utterance.onerror = (error) => {
                             console.error("Speech synthesis error:", error);
                             reject(error);
                         };
-                        
+
                         window.speechSynthesis.speak(utterance);
                     };
 
@@ -453,6 +472,120 @@
             const card = document.createElement('div');
             card.className = 'practice-card';
 
+            // Nếu là câu hỏi có hình
+            if (item.questions) {
+                // Add image first
+                if (item.image) {
+                    const img = document.createElement('img');
+                    img.className = 'question-image';
+                    img.src = item.image;
+                    img.alt = 'Question image';
+                    card.appendChild(img);
+                }
+
+                // Create a card for each question
+                item.questions.forEach(question => {
+                    // Question Section
+                    const questionSection = document.createElement('div');
+                    questionSection.className = 'question-section';
+
+                    const questionLabel = document.createElement('div');
+                    questionLabel.className = 'question-label';
+                    questionLabel.innerHTML = '<i class="fas fa-question-circle"></i> Câu hỏi';
+                    questionSection.appendChild(questionLabel);
+
+                    const japaneseText = document.createElement('div');
+                    japaneseText.className = 'japanese-text';
+                    japaneseText.textContent = question.question;
+                    questionSection.appendChild(japaneseText);
+
+                    // Add audio button
+                    const audioBtn = document.createElement('button');
+                    audioBtn.className = 'speak-btn question-audio';
+                    audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Nghe câu hỏi';
+                    audioBtn.onclick = () => speakJapanese(question.question, question.questionAudio);
+                    questionSection.appendChild(audioBtn);
+
+                    card.appendChild(questionSection);
+
+                    // Romaji toggle
+                    if (question.romaji) {
+                        const toggleBtn = document.createElement('button');
+                        toggleBtn.className = 'toggle-romaji-btn';
+                        toggleBtn.innerHTML = '<i class="fas fa-language"></i> Hiện Romaji';
+
+                        const romajiText = document.createElement('div');
+                        romajiText.className = 'romaji-text';
+                        romajiText.textContent = typeof question.romaji === 'string' ? question.romaji : question.romaji.question;
+
+                        toggleBtn.addEventListener('click', () => {
+                            romajiText.classList.toggle('show-romaji');
+                            toggleBtn.innerHTML = romajiText.classList.contains('show-romaji')
+                                ? '<i class="fas fa-language"></i> Ẩn Romaji'
+                                : '<i class="fas fa-language"></i> Hiện Romaji';
+                        });
+
+                        card.appendChild(toggleBtn);
+                        card.appendChild(romajiText);
+                    }
+
+                    // Hint
+                    const hint = document.createElement('div');
+                    hint.className = 'hint-text';
+                    hint.textContent = question.hint;
+
+                    // Thêm sự kiện click để hiện/ẩn hint text
+                    const toggleHintBtn = document.createElement('button');
+                    toggleHintBtn.className = 'toggle-hint-btn';
+                    toggleHintBtn.innerHTML = '<i class="fas fa-lightbulb"></i> Hiện gợi ý';
+
+                    toggleHintBtn.addEventListener('click', () => {
+                        hint.classList.toggle('show-hint');
+                        toggleHintBtn.innerHTML = hint.classList.contains('show-hint')
+                            ? '<i class="fas fa-lightbulb"></i> Ẩn gợi ý'
+                            : '<i class="fas fa-lightbulb"></i> Hiện gợi ý';
+
+                        // Hiện/ẩn answerSection khi hiện/ẩn gợi ý
+                        if (hint.classList.contains('show-hint')) {
+                            answerSection.classList.remove('hidden');
+                        } else {
+                            answerSection.classList.add('hidden');
+                        }
+                    });
+
+                    card.appendChild(toggleHintBtn);
+                    card.appendChild(hint);
+
+                    // Answer Section
+                    const answerSection = document.createElement('div');
+                    answerSection.className = 'answer-section hidden';
+
+                    const answerLabel = document.createElement('div');
+                    answerLabel.className = 'answer-label';
+                    answerLabel.innerHTML = '<i class="fas fa-comment"></i> Câu trả lời mẫu';
+                    answerSection.appendChild(answerLabel);
+
+                    const answerText = document.createElement('div');
+                    answerText.className = 'translation-text';
+                    answerText.textContent = question.example;
+                    answerSection.appendChild(answerText);
+
+                    // Add answer audio button
+                    if (question.exampleAudio) {
+                        const answerAudioBtn = document.createElement('button');
+                        answerAudioBtn.className = 'speak-btn answer-audio';
+                        answerAudioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Nghe câu trả lời';
+                        answerAudioBtn.onclick = () => speakJapanese(question.example, question.exampleAudio);
+                        answerSection.appendChild(answerAudioBtn);
+                    }
+
+                    card.appendChild(answerSection);
+                });
+
+                return card;
+            }
+
+            // Original code for non-picture questions
             // Question Section
             const questionSection = document.createElement('div');
             questionSection.className = 'question-section';
@@ -491,14 +624,14 @@
                 const toggleBtn = document.createElement('button');
                 toggleBtn.className = 'toggle-romaji-btn';
                 toggleBtn.innerHTML = '<i class="fas fa-language"></i> Hiện Romaji';
-                
+
                 const romajiText = document.createElement('div');
                 romajiText.className = 'romaji-text';
                 romajiText.textContent = typeof item.romaji === 'string' ? item.romaji : item.romaji.question;
-                
+
                 toggleBtn.addEventListener('click', () => {
                     romajiText.classList.toggle('show-romaji');
-                    toggleBtn.innerHTML = romajiText.classList.contains('show-romaji') 
+                    toggleBtn.innerHTML = romajiText.classList.contains('show-romaji')
                         ? '<i class="fas fa-language"></i> Ẩn Romaji'
                         : '<i class="fas fa-language"></i> Hiện Romaji';
                 });
@@ -515,7 +648,7 @@
 
             // Answer/Translation Section
             const answerSection = document.createElement('div');
-            answerSection.className = 'answer-section';
+            answerSection.className = 'answer-section hidden';
 
             const answerLabel = document.createElement('div');
             answerLabel.className = 'answer-label';
@@ -538,6 +671,21 @@
 
             card.appendChild(answerSection);
 
+            // Tạo nút "Hiện câu trả lời"
+            const toggleAnswerBtn = document.createElement('button');
+            toggleAnswerBtn.className = 'toggle-answer-btn';
+            toggleAnswerBtn.innerHTML = '<i class="fas fa-eye"></i> Hiện câu trả lời';
+
+            // Thêm sự kiện click để hiện/ẩn answerSection
+            toggleAnswerBtn.addEventListener('click', () => {
+                answerSection.classList.toggle('hidden');
+                toggleAnswerBtn.innerHTML = answerSection.classList.contains('hidden')
+                    ? '<i class="fas fa-eye"></i> Hiện câu trả lời'
+                    : '<i class="fas fa-eye-slash"></i> Ẩn câu trả lời';
+            });
+
+            // Thêm nút vào card
+            card.appendChild(toggleAnswerBtn);
 
             return card;
         }
@@ -569,12 +717,12 @@
             // Load talking content
             const talkingContent = document.getElementById('talking-content');
             talkingContent.innerHTML = '';
-            
+
             if (course.talking_without_pictures.length > 0) {
                 const withoutPicturesHeader = document.createElement('h3');
                 withoutPicturesHeader.textContent = 'Câu hỏi không có hình';
                 talkingContent.appendChild(withoutPicturesHeader);
-                
+
                 course.talking_without_pictures.forEach(item => {
                     talkingContent.appendChild(createPracticeCard(item, 'talking'));
                 });
@@ -584,7 +732,7 @@
                 const withPicturesHeader = document.createElement('h3');
                 withPicturesHeader.textContent = 'Câu hỏi có hình';
                 talkingContent.appendChild(withPicturesHeader);
-                
+
                 course.talking_with_pictures.forEach(item => {
                     talkingContent.appendChild(createPracticeCard(item, 'talking'));
                 });
@@ -619,4 +767,5 @@
         });
     </script>
 </body>
+
 </html>

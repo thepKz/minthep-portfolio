@@ -56,21 +56,15 @@ header {
 
 .section-container {
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-    animation: fadeIn 0.5s ease-out;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+
+    overflow: hidden;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.section-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .section-header {
@@ -82,20 +76,56 @@ header {
 }
 
 .section-content {
-    padding: 1rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.section-content > * {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-content > *:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .practice-card {
-    background: white;
+    background: #f8f9fa;
     border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
     box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 5px solid var(--primary-color);
+    border-left: 6px solid var(--primary-color);
+    transition: all 0.3s ease;
 }
 
 .practice-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.practice-card > * {
+    position: relative;
+}
+
+.practice-card > *:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: -2rem;
+    right: -2rem;
+    height: 1px;
+    background: linear-gradient(
+        90deg, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.1) 50%, 
+        rgba(0, 0, 0, 0) 100%
+    );
 }
 
 .japanese-text {
@@ -264,7 +294,6 @@ a {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.1);
 }
 
 /* Question section */
@@ -350,7 +379,7 @@ a {
     }
 }
 
-/* Container cho ảnh để căn giữa và giới hạn kích thước */
+/* Container cho ảnh để căn giữa và giới hạn kích thư��c */
 .image-container {
     display: flex;
     justify-content: center;
@@ -528,4 +557,70 @@ a {
 
 .translation-text p {
     margin: 0.5rem 0;
+}
+
+/* Thêm style cho answer section khi ẩn */
+.answer-section {
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.answer-section.hidden {
+    display: none;
+}
+
+/* Style cho nút toggle answer */
+.toggle-answer-btn {
+    margin-left: 1rem !important;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.toggle-answer-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.toggle-answer-btn i {
+    margin-right: 0.5rem;
+}
+.answer-section.hidden {
+    display: none;
+}
+
+.hint-text {
+    display: none;
+}
+
+.hint-text.show-hint {
+    display: block;
+}
+
+.toggle-hint-btn {
+    margin-left: 1rem;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-hint-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.toggle-hint-btn i {
+    margin-right: 0.5rem;
 }
