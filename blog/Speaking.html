@@ -365,7 +365,7 @@
                         questions: [
                             {
                                 question: "[1] この人の名前は？",
-                                questionAudio: "Speaking/audio/jpd113_qp7.mp3", 
+                                questionAudio: "Speaking/audio/jpd113_qp7.mp3",
                                 hint: "Người này tên là gì?",
                                 example: "さとうです。",
                                 exampleAudio: "Speaking/audio/jpd113_ap7.mp3",
@@ -377,7 +377,7 @@
                             {
                                 question: "[2] これはだれですか。",
                                 questionAudio: "Speaking/audio/jpd113_qp8.mp3",
-                                hint: "Người này tên là gì?", 
+                                hint: "Người này tên là gì?",
                                 example: "やまださんです。",
                                 exampleAudio: "Speaking/audio/jpd113_ap8.mp3",
                                 romaji: {
@@ -447,7 +447,7 @@
                             },
                             {
                                 question: "サカイでんきはどこですか。",
-                                questionAudio: "Speaking/audio/jpd113_qp14.mp3", 
+                                questionAudio: "Speaking/audio/jpd113_qp14.mp3",
                                 hint: "Cửa hàng điện máy Sakai ở đâu?",
                                 example: "４かいです。",
                                 exampleAudio: "Speaking/audio/jpd113_ap14.mp3",
@@ -459,7 +459,7 @@
                             {
                                 question: "ほんやはどこですか。",
                                 questionAudio: "Speaking/audio/jpd113_qp15.mp3",
-                                hint: "Hiệu sách ở đâu?", 
+                                hint: "Hiệu sách ở đâu?",
                                 example: "２かいです。",
                                 exampleAudio: "Speaking/audio/jpd113_ap15.mp3",
                                 romaji: {
@@ -529,7 +529,7 @@
                             },
                             {
                                 question: "[1] このびょういんの なまえは なんですか。",
-                                questionAudio: "Speaking/audio/jpd113_qp21.mp3", 
+                                questionAudio: "Speaking/audio/jpd113_qp21.mp3",
                                 hint: "Tên của bệnh viện này là gì?",
                                 example: "さくらびょういんです。",
                                 exampleAudio: "Speaking/audio/jpd113_ap21.mp3",
@@ -652,16 +652,123 @@
                 ]
             },
             jpd123: {
-                structure: [],
+                structure: [
+                    "- Đề thi gồm 02 phần:",
+                    "-- 1. READING: Đọc trôi chảy một đoạn văn (45/100 điểm)",
+                    "-- 2. Q&A: Trả lời 3 câu hỏi của giám thị (gồm câu hỏi có tranh & không tranh) (45/100 điểm)",
+                    "-- (*) PRESENTING: Chào hỏi, tác phong, độ trôi chảy, phát âm (10/100 điểm)",
+                    "",
+                    "- Các bước tiến hành:",
+                    "-- SV BẮT BUỘC mang theo giấy tờ tuỳ thân có ảnh (CCCD, thẻ SV…) khi đi thi",
+                    "-- SV vào phòng thi theo thứ tự gọi tên từ giám thị, đưa giấy tờ để giám thị kiểm tra",
+                    "-- SV bốc thăm ngẫu nhiên mã đề đọc (A-1, A-2…). Chuẩn bị 20s sau đó đọc bài",
+                    "-- Trả lời 3 câu hỏi ngẫu nhiên từ mã đề Q&A (B-1, B-2,…)"
+                ],
                 reading: [
                     {
-                        text: "私は まいにち 日本語を べんきょうしています。日本語の じゅぎょうは たのしいです。",
-                        hint: "Bài đọc mẫu 1: Học tập",
-                        translation: "Tôi học tiếng Nhật mỗi ngày. Lớp học tiếng Nhật rất vui.",
-                        audio: "Speaking/audio/jpd123_reading_1.mp3"
+                        text: "こんにちは！私はさとうです。おおさか大学のせんせいです。私のたんじょうびは４がつ５日です。しゅみは・サッカーですから、まいにちサッカーをします。ときどきこうえんにいって、ともだちといっしょにサッカーをたのしみます。しごとはいそがしいですが、たのしいです。",
+                        hint: "Bài 1 (Cực kì dễ)",
+                        translation: "Xin chào! Tôi là Sato. Tôi là giáo viên trường đại học Osaka. Sinh nhật của tôi là ngày 5 tháng 4. Vì sở thích của tôi là bóng đá nên tôi chơi bóng đá mỗi ngày. Thỉnh thoảng tôi đi công viên và cùng chơi bóng đá với bạn. Công việc bận rộn nhưng vui.",
+                        audio: "Speaking/jpd123/reading_1.mp3"
+                    },
+                    {
+                        text: "おはようございます！こちらはリーさんです。リーさんはちゅうごく人です。かれのしゅみはうたうことです。いま、きょうとたんき大学の学生です。学校で日本語をべんきょうしていますが、ひまなときにはともだちとカラオケにいきます。",
+                        hint: "Bài 2 (Cực kì dễ)",
+                        translation: "Xin chào! Đây là anh Lý. Anh Lý là người Trung Quốc. Sở thích của anh ấy là hát. Hiện tại, anh ấy là sinh viên trường đại học ngắn hạn Kyoto. Anh ấy học tiếng Nhật ở trường, và khi rảnh rỗi thì đi karaoke với bạn.",
+                        audio: "Speaking/jpd123/reading_2.mp3"
+                    },
+                    {
+                        text: "日曜日、ともだちとちかくの山にのぼりました。てんきがよかったですから、とてもきもちがよかったです。山でおべんとうを食べました。山からのけしきはとてもきれいでした。それから、古いお寺を見に行きました　とてもおもしろかったです。とてもたのしい1日でした。また行きたいです。",
+                        hint: "Bài 3 (Khó)",
+                        translation: "Chủ nhật, tôi đã leo núi gần đây với bạn. Vì thời tiết đẹp nên cảm giác rất thoải mái. Tôi đã ăn cơm hộp trên núi. Phong cảnh từ trên núi rất đẹp. Sau đó, chúng tôi đã đi xem ngôi chùa cổ. Rất thú vị. Đó là một ngày rất vui. Tôi muốn đi lần nữa.",
+                        audio: "Speaking/jpd123/reading_3.mp3"
+                    },
+
+
+                ],
+                talking_without_pictures: [
+                    {
+                        question: "ハノイからダナンまでひこうきでどのくらいですか。",
+                        hint: "Từ Hà Nội đến Đà Nẵng đi máy bay mất bao lâu?",
+                        example: "やく 1じかん 20ふんです。",
+                        romaji: {
+                            question: "Hanoi kara Danang made hikouki de dono kurai desu ka.",
+                            example: "Yaku ichi-jikan nijuppun desu."
+                        }
+                    },
+                    {
+                        question: "ホーチミンはどんなまちですか。",
+                        hint: "TP. Hồ Chí Minh là thành phố như thế nào?",
+                        example: "とても にぎやかで、人がたくさんいます。あたたかくて、おいしいものがたくさんあります。おおきな まちで、たくさんのビルがあります。",
+                        romaji: {
+                            question: "Hochiminh wa donna machi desu ka.",
+                            example: "Totemo nigiyaka de, hito ga takusan imasu. Atakakute, oishii mono ga takusan arimasu. Ookina machi de, takusan no biru ga arimasu."
+                        }
+                    },
+                    {
+                        question: "タンさんのまちはどんなところですか。",
+                        hint: "Quê của bạn Tân là nơi như thế nào?",
+                        example: "しずかな ちいさな まちです。うみが きれいで、たくさんの人が あそびに きます。ゆうめいな おてらが あります。",
+                        romaji: {
+                            question: "Tan-san no machi wa donna tokoro desu ka.",
+                            example: "Shizuka na chiisana machi desu. Umi ga kirei de, takusan no hito ga asobi ni kimasu. Yuumei na otera ga arimasu."
+                        }
+                    },
+                    {
+                        question: "にほんのたべものは どうですか。",
+                        hint: "Món ăn Nhật Bản như thế nào?",
+                        example: "とても おいしいです。すしが だいすきです。ちょっと たかいです。",
+                        romaji: {
+                            question: "Nihon no tabemono wa dou desu ka.",
+                            example: "Totemo oishii desu. Sushi ga daisuki desu. Chotto takai desu."
+                        }
+                    },
+                    {
+                        question: "リーさんのまちは にぎやかですか。",
+                        hint: "Quê của bạn Lý có nhộn nhịp không?",
+                        example: "はい、にぎやかです。おおきな まちで、デパートや レストランが たくさんあります。\nいいえ、にぎやかではありません。しずかな むらで、たくさんの のうかが あります。",
+                        romaji: {
+                            question: "Rii-san no machi wa nigiyaka desu ka.",
+                            example: "Hai, nigiyaka desu. Ookina machi de, depaato ya resutoran ga takusan arimasu.\nIie, nigiyaka dewa arimasen. Shizuka na mura de, takusan no nouka ga arimasu."
+                        }
+                    },
+                    {
+                        question: "FPTだいがくは おおきいですか。",
+                        hint: "Trường đại học FPT có lớn không?",
+                        example: "はい、おおきいです。たくさんの がくせいが います。\nいいえ、あまり おおきくありません。でも、とても きれいです。",
+                        romaji: {
+                            question: "FPT daigaku wa ookii desu ka.",
+                            example: "Hai, ookii desu. Takusan no gakusei ga imasu.\nIie, amari ookiku arimasen. Demo, totemo kirei desu."
+                        }
+                    },
+                    {
+                        question: "ナムさんの まちに やまが ありますか。",
+                        hint: "Ở quê bạn Nam có núi không?",
+                        example: "はい、あります。バクソンやまが あります。\nいいえ、ありません。でも、きれいな かわが あります。",
+                        romaji: {
+                            question: "Namu-san no machi ni yama ga arimasu ka.",
+                            example: "Hai, arimasu. Bakuson yama ga arimasu.\nIie, arimasen. Demo, kirei na kawa ga arimasu."
+                        }
+                    },
+                    {
+                        question: "きのう、ミンさんは なにを しましたか。",
+                        hint: "Hôm qua bạn Minh đã làm gì?",
+                        example: "がっこうへ いきました。\nともだちと あそびました。\nほんを よみました。\nいえで べんきょうしました。",
+                        romaji: {
+                            question: "Kinou, Min-san wa nani wo shimashita ka.",
+                            example: "Gakkou e ikimashita.\nTomodachi to asobimashita.\nHon wo yomimashita.\nIe de benkyou shimashita."
+                        }
+                    },
+                    {
+                        question: "こんしゅうまつ、いっしょに えいがを みませんか。",
+                        hint: "Cuối tuần này, bạn có muốn đi xem phim cùng tôi không?",
+                        example: "ええ、いいですね。\nすみません。ちょっと。。。\nいいですね。なにを みますか。",
+                        romaji: {
+                            question: "Konshuumatsu, issho ni eiga wo mimasen ka.",
+                            example: "Ee, ii desu ne.\nSumimasen. Chotto...\nIi desu ne. Nani wo mimasu ka."
+                        }
                     }
                 ],
-                talking_without_pictures: [],
                 talking_with_pictures: [],
                 tips: [
                     "Tập trung vào phát âm rõ ràng",
