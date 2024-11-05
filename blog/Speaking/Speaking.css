@@ -619,3 +619,82 @@ a {
 .toggle-hint-btn i {
     margin-right: 0.5rem;
 }
+
+/* Notice Container Styles */
+.notice-container {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}   
+
+.notice-header {
+    background: #fff3cd;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid #ffeeba;
+}
+
+.notice-header i {
+    color: #856404;
+    font-size: 1.5rem;
+}
+
+.notice-header h2 {
+    color: #856404;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.notice-content {
+    padding: 1.5rem;
+    background: #fff8e6;
+}
+
+.notice-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notice-content li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #856404;
+    line-height: 1.6;
+}
+
+.notice-content li:last-child {
+    margin-bottom: 0;
+}
+
+.notice-content li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #856404;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.notice-container:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notice-header {
+        padding: 0.8rem;
+    }
+    
+    .notice-header h2 {
+        font-size: 1rem;
+    }
+}
