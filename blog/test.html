@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monito - Pet Shop</title>
+    <style>
+        /* Reset và các styles chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+/* Header Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background: #FFFFFF;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-bar input {
+    padding: 8px 16px;
+    border: 1px solid #CCD1D2;
+    border-radius: 20px;
+    width: 280px;
+}
+
+.join-btn {
+    background-color: #003459;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(90deg, #FCF0E4 50%, #003459 50%);
+    padding: 40px 80px;
+    position: relative;
+}
+
+.hero-content {
+    color: #FFFFFF;
+    max-width: 50%;
+    margin-left: 50%;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 32px;
+}
+
+.view-intro, .explore-now {
+    padding: 12px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.view-intro {
+    background-color: transparent;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.explore-now {
+    background-color: #FFFFFF;
+    border: none;
+    color: #003459;
+}
+
+/* Main Content */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 32px;
+    padding: 40px 80px;
+}
+
+/* Filter Styles */
+.filter {
+    background: #FDFDFD;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.filter-section {
+    margin-bottom: 24px;
+}
+
+.filter-section h4 {
+    margin-bottom: 16px;
+    color: #00171F;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 12px;
+    color: #667479;
+}
+
+.price-range {
+    display: flex;
+    gap: 12px;
+}
+
+.price-range input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #CCD1D2;
+    border-radius: 8px;
+}
+
+/* Products Section */
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    padding: 16px;
+    color: #00171F;
+}
+
+.product-info {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    color: #667479;
+    font-size: 14px;
+}
+
+.price {
+    padding: 16px;
+    color: #003459;
+    font-weight: bold;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 40px 0;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #667479;
+}
+
+.pagination a.active {
+    background-color: #003459;
+    color: #FFFFFF;
+}
+
+/* Newsletter Section */
+.newsletter {
+    background-color: #003459;
+    color: #FFFFFF;
+    padding: 40px 80px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 40px 80px;
+}
+
+.subscribe-form {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.subscribe-form input {
+    padding: 12px 24px;
+    border-radius: 40px;
+    border: none;
+    width: 400px;
+}
+
+.subscribe-form button {
+    background-color: #003459;
+    color: #FFFFFF;
+    padding: 12px 28px;
+    border: 2px solid #FFFFFF;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background-color: #FCF0E4;
+    padding: 40px 80px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #00171F;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.social-links a {
+    color: #003459;
+    font-size: 24px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid #CCD1D2;
+}
+
+.legal-links {
+    display: flex;
+    gap: 24px;
+}
+
+.legal-links a {
+    color: #667479;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="Monito">
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Category</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search something here!">
+                </div>
+                <button class="join-btn">Join the community</button>
+                <select class="language-select">
+                    <option value="vnd">VND</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>One More Friend</h1>
+            <h2>Thousands More Fun!</h2>
+            <p>Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!</p>
+            <div class="hero-buttons">
+                <button class="view-intro">View Intro</button>
+                <button class="explore-now">Explore Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content-wrapper">
+            <!-- Filter Section -->
+            <aside class="filter">
+                <h3>Filter</h3>
+                <div class="filter-section">
+                    <h4>Gender</h4>
+                    <label><input type="checkbox" name="gender" value="male"> Male</label>
+                    <label><input type="checkbox" name="gender" value="female"> Female</label>
+                </div>
+                <div class="filter-section">
+                    <h4>Color</h4>
+                    <label><input type="checkbox" name="color" value="red"> Red</label>
+                    <label><input type="checkbox" name="color" value="apricot"> Apricot</label>
+                    <label><input type="checkbox" name="color" value="black"> Black</label>
+                    <label><input type="checkbox" name="color" value="black-white"> Black & White</label>
+                    <label><input type="checkbox" name="color" value="silver"> Silver</label>
+                    <label><input type="checkbox" name="color" value="tan"> Tan</label>
+                </div>
+                <div class="filter-section">
+                    <h4>Price</h4>
+                    <div class="price-range">
+                        <input type="number" placeholder="Min">
+                        <input type="number" placeholder="Max">
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Products Grid -->
+            <section class="products">
+                <div class="products-header">
+                    <h2>Small Dog <span>52 puppies</span></h2>
+                    <select class="sort-by">
+                        <option>Sort by: Popular</option>
+                    </select>
+                </div>
+                <div class="products-grid">
+                    <!-- Product Card Example -->
+                    <div class="product-card">
+                        <img src="dog1.jpg" alt="Poodle Tiny Yellow">
+                        <h3>MO502 - Poodle Tiny Yellow</h3>
+                        <div class="product-info">
+                            <span>Gene: Female</span>
+                            <span>Age: 02 months</span>
+                        </div>
+                        <div class="price">3,900,000 VND</div>
+                    </div>
+                    <!-- More product cards... -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="prev">←</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <span>...</span>
+            <a href="#">28</a>
+            <a href="#" class="next">→</a>
+        </div>
+    </main>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Register Now So You Don't Miss Our Programs</h2>
+        <div class="subscribe-form">
+            <input type="email" placeholder="Enter your Email">
+            <button>Subscribe Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Category</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2022 Monito. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
