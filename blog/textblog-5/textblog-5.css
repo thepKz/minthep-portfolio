@@ -1,0 +1,441 @@
+:root {
+    --primary-color: #6200ea;
+    --secondary-color: #00c853;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --header-height: 70px;
+    --accent-color: #ff4081;
+    --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: var(--gradient-bg);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+main {
+    padding-top: calc(var(--header-height) + 2rem);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #424242;
+}
+
+.list-group-item {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.list-group-item:hover {
+    background-color: #e8eaf6;
+    border-left: 4px solid var(--primary-color);
+    transform: translateX(5px);
+}
+
+.grammar-point {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.grammar-point:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.example {
+    background-color: #e8f5e9;
+    border-left: 4px solid var(--accent-color);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 0 12px 12px 0;
+    transition: all 0.3s ease;
+}
+
+.example:hover {
+    background-color: #c8e6c9;
+    transform: scale(1.02);
+}
+
+.alert-info {
+    background-color: #e1f5fe;
+    border-color: #4fc3f7;
+    color: #01579b;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.alert-info:hover {
+    background-color: #b3e5fc;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    text-align: left;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+}
+
+td {
+    padding: 15px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+tr {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+#back-to-top:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.section-toggle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-toggle:hover {
+    background-color: #c5cae9;
+}
+
+.section-toggle::after {
+    content: '\25BC';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.section-toggle.active::after {
+    transform: rotate(180deg);
+}
+
+.section-content {
+    display: none;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .lesson-section {
+        padding: 15px;
+    }
+    
+    .table {
+        font-size: 0.9em;
+    }
+    
+    .grammar-point {
+        padding: 15px;
+    }
+    
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+
+/* New animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Thêm hiệu ứng hover cho các phần tử */
+.grammar-point, .example, .alert-info {
+    transition: all 0.3s ease;
+}
+
+.grammar-point:hover, .example:hover, .alert-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Thêm hiệu ứng gradient cho header */
+header {
+    background: var(--gradient-bg);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Thêm hiệu ứng cho các nút */
+.btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:hover:after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Thêm hiệu ứng cho bảng */
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Thêm hiệu ứng cho các phần tử danh sách */
+.list-group-item {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.list-group-item:hover {
+    background-color: #e8eaf6;
+    border-left: 4px solid var(--primary-color);
+    transform: translateX(5px);
+}
+
+.timeline-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  
+  .timeline-container h3 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+  
+  .timeline {
+    position: relative;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #007bff;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .timeline-item {
+    position: relative;
+    width: 18%;
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border: 4px solid #007bff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-item.active::before {
+    background: #007bff;
+    box-shadow: 0 0 0 6px rgba(0,123,255,0.3);
+  }
+  
+  .timeline-date {
+    display: block;
+    font-size: 16px;
+    margin-top: 35px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .timeline-item::after {
+    content: attr(data-text);
+    position: absolute;
+    width: 120%;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #6c757d;
+    opacity: 1;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .timeline-item:hover::before {
+    background: #007bff;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  
+  .timeline-item:hover::after {
+    opacity: 1;
+    bottom: calc(100% + 10px);
+  }
+  
+  .timeline-item:hover .timeline-date {
+    color: #007bff;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline {
+      flex-wrap: wrap;
+    }
+    .timeline-item {
+      width: 30%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .timeline-item {
+      width: 45%;
+    }
+  }

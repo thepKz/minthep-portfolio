@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Min Thep - Blog SWE201c</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="textblog-5/textblog-5.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+    <header id="header" class="animate__animated animate__fadeIn" style="z-index: 1000;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Min Thep</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section id="intro" class="mb-5 animate__animated animate__fadeInUp">
+            <h1 class="text-center mb-4">SWE201c</h1>
+            <div class="author-info text-center mb-3">
+                <p><strong>Tác giả:</strong> Min Thep</p>
+                <a href="https://visitcount.itsvg.in">
+                    <img src="https://visitcount.itsvg.in/api?id=minthep5&label=Views&pretty=true" />
+                </a>
+                <p><strong>Cập nhật lần cuối:</strong> 15:00, ngày 12 tháng 10 năm 2024</p>
+            </div>
+            <div class="intro-content">
+                <p class="lead">Chào mừng bạn đến với blog về Phương pháp phát triển phần mềm! Đây là nơi tổng hợp kiến thức về các phương pháp phát triển phần mềm phổ biến và cách áp dụng chúng.</p>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle"></i> Nội dung được biên soạn 100% bởi Min Thep</li>
+                    <li><i class="fas fa-book-open"></i> Bao gồm toàn bộ kiến thức trong môn SWE201c</li>
+                    <li><i class="fas fa-exclamation-circle"></i> Nếu phát hiện sai sót, vui lòng liên hệ tác giả</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="table-of-contents" class="mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+            <h2 class="mb-4">Mục lục:</h2>
+            <div class="list-group">
+                <a href="#phuongphap" class="list-group-item list-group-item-action">1. Các phương pháp phát triển phần mềm</a>
+                <a href="#luachon" class="list-group-item list-group-item-action">2. Tiêu chí lựa chọn phương pháp</a>
+                <a href="#kiemthu" class="list-group-item list-group-item-action">3. Các loại kiểm thử</a>
+                <a href="#yeucau" class="list-group-item list-group-item-action">4. Yêu cầu chức năng và phi chức năng</a>
+            </div>
+        </section>
+
+        <section id="phuongphap" class="mb-5 lesson-section animate__animated fade-in">
+            <h2 class="text-center mb-4">1. Các phương pháp phát triển phần mềm</h2>
+            
+            <div class="methodology-section">
+                <h3>Waterfall</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>Đặc điểm:</h4>
+                        <ul>
+                            <li>Mô hình tuần tự, từng giai đoạn một</li>
+                            <li>Yêu cầu được xác định rõ ràng từ đầu</li>
+                            <li>Ít thay đổi trong quá trình phát triển</li>
+                        </ul>
+                        <h4>Ưu điểm:</h4>
+                        <ul>
+                            <li>Dễ quản lý và kiểm soát</li>
+                            <li>Tài liệu đầy đủ và chi tiết</li>
+                            <li>Phù hợp với dự án nhỏ, yêu cầu ổn định</li>
+                        </ul>
+                        <h4>Nhược điểm:</h4>
+                        <ul>
+                            <li>Khó thích ứng với thay đổi</li>
+                            <li>Khách hàng phải đợi lâu mới thấy sản phẩm</li>
+                            <li>Rủi ro cao nếu yêu cầu ban đầu không chính xác</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Agile</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>Đặc điểm:</h4>
+                        <ul>
+                            <li>Phát triển lặp và tăng dần</li>
+                            <li>Linh hoạt với thay đổi</li>
+                            <li>Tương tác thường xuyên với khách hàng</li>
+                        </ul>
+                        <h4>Ưu điểm:</h4>
+                        <ul>
+                            <li>Thích ứng nhanh với thay đổi</li>
+                            <li>Khách hàng thấy được sản phẩm sớm</li>
+                            <li>Giảm thiểu rủi ro</li>
+                        </ul>
+                        <h4>Nhược điểm:</h4>
+                        <ul>
+                            <li>Khó ước tính thời gian và chi phí chính xác</li>
+                            <li>Yêu cầu đội ngũ có kinh nghiệm</li>
+                            <li>Tài liệu có thể không đầy đủ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>RUP (Rational Unified Process)</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>Đặc điểm:</h4>
+                        <ul>
+                            <li>Kết hợp giữa lặp và tuần tự</li>
+                            <li>Tập trung vào kiến trúc</li>
+                            <li>Quản lý rủi ro chặt chẽ</li>
+                        </ul>
+                        <h4>Ưu điểm:</h4>
+                        <ul>
+                            <li>Phù hợp với dự án lớn, phức tạp</li>
+                            <li>Tài liệu chi tiết</li>
+                            <li>Kiểm soát chất lượng tốt</li>
+                        </ul>
+                        <h4>Nhược điểm:</h4>
+                        <ul>
+                            <li>Phức tạp, khó áp dụng</li>
+                            <li>Chi phí cao</li>
+                            <li>Cần nhiều nguồn lực</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="luachon" class="mb-5 animate__animated fade-in">
+            <h2 class="text-center mb-4">2. Tiêu chí lựa chọn phương pháp</h2>
+            
+            <div class="criteria-section">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Đặc điểm dự án</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu chí</th>
+                                    <th>Waterfall</th>
+                                    <th>Agile</th>
+                                    <th>RUP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Quy mô dự án</td>
+                                    <td>Nhỏ-Trung bình</td>
+                                    <td>Mọi quy mô</td>
+                                    <td>Lớn</td>
+                                </tr>
+                                <tr>
+                                    <td>Độ phức tạp</td>
+                                    <td>Thấp-Trung bình</td>
+                                    <td>Mọi mức độ</td>
+                                    <td>Cao</td>
+                                </tr>
+                                <tr>
+                                    <td>Thời gian</td>
+                                    <td>Dài hạn</td>
+                                    <td>Ngắn-Trung hạn</td>
+                                    <td>Dài hạn</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Đặc điểm đội ngũ</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu chí</th>
+                                    <th>Waterfall</th>
+                                    <th>Agile</th>
+                                    <th>RUP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kinh nghiệm</td>
+                                    <td>Trung bình</td>
+                                    <td>Cao</td>
+                                    <td>Cao</td>
+                                </tr>
+                                <tr>
+                                    <td>Kỹ năng giao tiếp</td>
+                                    <td>Trung bình</td>
+                                    <td>Cao</td>
+                                    <td>Cao</td>
+                                </tr>
+                                <tr>
+                                    <td>Quy mô đội</td>
+                                    <td>Linh hoạt</td>
+                                    <td>Nhỏ-Trung bình</td>
+                                    <td>Lớn</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Sự tham gia của khách hàng</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu chí</th>
+                                    <th>Waterfall</th>
+                                    <th>Agile</th>
+                                    <th>RUP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mức độ tham gia</td>
+                                    <td>Thấp</td>
+                                    <td>Cao</td>
+                                    <td>Trung bình</td>
+                                </tr>
+                                <tr>
+                                    <td>Tần suất feedback</td>
+                                    <td>Thấp</td>
+                                    <td>Cao</td>
+                                    <td>Trung bình</td>
+                                </tr>
+                                <tr>
+                                    <td>Yêu cầu thay đổi</td>
+                                    <td>Ít</td>
+                                    <td>Nhiều</td>
+                                    <td>Trung bình</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kiemthu" class="mb-5 animate__animated fade-in">
+            <h2 class="text-center mb-4">3. Các loại kiểm thử</h2>
+            
+            <div class="testing-section">
+                <h3>Kiểm thử chức năng</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Unit Testing:</strong> Kiểm thử từng đơn vị code</li>
+                            <li><strong>Integration Testing:</strong> Kiểm thử tích hợp giữa các module</li>
+                            <li><strong>System Testing:</strong> Kiểm thử toàn bộ hệ thống</li>
+                            <li><strong>Acceptance Testing:</strong> Kiểm thử chấp nhận</li>
+                            <li><strong>Regression Testing:</strong> Kiểm thử hồi quy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Kiểm thử phi chức năng</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Performance Testing:</strong> Kiểm thử hiệu năng</li>
+                            <li><strong>Security Testing:</strong> Kiểm thử bảo mật</li>
+                            <li><strong>Usability Testing:</strong> Kiểm thử sử dụng</li>
+                            <li><strong>Compatibility Testing:</strong> Kiểm thử tương thích</li>
+                            <li><strong>Load Testing:</strong> Kiểm thử tải</li>
+                            <li><strong>Stress Testing:</strong> Kiểm thử áp lực</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="yeucau" class="mb-5 animate__animated fade-in">
+            <h2 class="text-center mb-4">4. Yêu cầu chức năng và phi chức năng</h2>
+            
+            <div class="requirements-section">
+                <h3>Yêu cầu chức năng</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul>
+                            <li>Các tính năng cụ thể của hệ thống</li>
+                            <li>Luồng xử lý nghiệp vụ</li>
+                            <li>Tương tác người dùng</li>
+                            <li>Xử lý dữ liệu</li>
+                            <li>Báo cáo và thống kê</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Yêu cầu phi chức năng</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Loại yêu cầu</th>
+                                    <th>Mô tả</th>
+                                    <th>Ví dụ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hiệu năng</td>
+                                    <td>Tốc độ, thời gian phản hồi</td>
+                                    <td>Thời gian phản hồi < 3 giây</td>
+                                </tr>
+                                <tr>
+                                    <td>Bảo mật</td>
+                                    <td>An toàn thông tin</td>
+                                    <td>Mã hóa dữ liệu, xác thực 2 lớp</td>
+                                </tr>
+                                <tr>
+                                    <td>Khả năng sử dụng</td>
+                                    <td>Dễ sử dụng, thân thiện</td>
+                                    <td>Giao diện trực quan, dễ thao tác</td>
+                                </tr>
+                                <tr>
+                                    <td>Độ tin cậy</td>
+                                    <td>Ổn định, sẵn sàng</td>
+                                    <td>Uptime 99.9%</td>
+                                </tr>
+                                <tr>
+                                    <td>Khả năng mở rộng</td>
+                                    <td>Dễ nâng cấp, mở rộng</td>
+                                    <td>Kiến trúc module, microservices</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5 animate__animated animate__fadeIn animate__delay-2s">
+        <p>&copy; 2024 Min Thep. All rights reserved.</p>
+    </footer>
+
+    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="textblog-5/textblog-5.js"></script>
+</body>
+
+</html>
