@@ -1,17 +1,21 @@
 :root {
-    --primary-color: #6200ea;
-    --secondary-color: #00c853;
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
     --background-color: #ffffff;
     --text-color: #333333;
     --header-height: 70px;
-    --accent-color: #ff4081;
+    --accent-color: #e74c3c;
     --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --text-light: #ecf0f1;
+    --text-dark: #2c3e50;
+    --gradient-primary: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: 'Roboto', 'Noto Sans', sans-serif;
+    line-height: 1.8;
+    color: var(--text-dark);
     background-color: var(--background-color);
     transition: all 0.3s ease;
 }
@@ -45,6 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: var(--primary-color);
     transition: color 0.3s ease;
+    margin-bottom: 1rem;
 }
 
 .lead {
@@ -439,3 +444,30 @@ tr:hover {
       width: 45%;
     }
   }
+
+.card-header {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.5) 0%, rgba(0, 98, 204, 0.2) 100%);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.3) 0%, rgba(0, 98, 204, 0.3) 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.7) 0%, rgba(46, 204, 113, 0.7) 100%) !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.7) 0%, rgba(41, 128, 185, 0.7) 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.7) 0%, rgba(243, 156, 18, 0.7) 100%) !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.7) 0%, rgba(192, 57, 43, 0.7) 100%) !important;
+}
