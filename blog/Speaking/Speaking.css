@@ -5,6 +5,8 @@
     --text-color: #2C3E50;
     --border-radius: 12px;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --spacing-unit: clamp(0.5rem, 2vw, 1rem);
+    --container-padding: clamp(1rem, 5vw, 3rem);
 }
 
 * {
@@ -13,6 +15,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -20,10 +23,10 @@ body {
     background-color: #f0f2f5;
 }
 
-.container {
+.container-fluid {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+
 }
 
 header {
@@ -332,11 +335,40 @@ a {
 
 /* Image style - cập nhật */
 .question-image {
-    width: 100%;
+    position: sticky;
+    top: 20px;
+    width: 80%;
     height: auto;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin: 1rem 0;
+    z-index: 10;
+    background: white;
+    padding: 10px;
+}
+
+/* Container cho image để control sticky behavior */
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 1rem 0;
+    width: 100%;
+    min-height: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .question-image {
+        width: 100%;
+        position: sticky;
+        top: 0;
+    }
+    
+    .image-container {
+        padding: 0;
+    }
 }
 
 /* Example image cho phần mẫu */
@@ -697,4 +729,40 @@ a {
     .notice-header h2 {
         font-size: 1rem;
     }
+}
+
+/* Fluid typography và spacing */
+:root {
+  --spacing-unit: clamp(0.5rem, 2vw, 1rem);
+  --container-padding: clamp(1rem, 5vw, 3rem);
+}
+
+/* Cải thiện mobile experience */
+@media (max-width: 768px) {
+  .practice-card {
+    padding: var(--spacing-unit);
+  }
+  
+  .section-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+  
+  .settings-panel {
+    width: 100%;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+  #talking-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .practice-card{
+
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+
 }
