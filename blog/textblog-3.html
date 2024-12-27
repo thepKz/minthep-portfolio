@@ -160,6 +160,8 @@
                             <li class="list-group-item"><strong>Sample:</strong> Tập con của Population.</li>
                             <li class="list-group-item"><strong>Statistic:</strong> Đặc trưng của Sample, ước lượng
                                 Parameter.</li>
+                            <li class="list-group-item">=> Chúng ta sử dụng <strong> Statistic (Sample)</strong>  để suy luận <strong>Parameter (Population)</strong>.</li>
+                            <li class="list-group-item">VD: Xác định tỉ lệ lỗi <strong>các sản phẩm (Population) </strong> trong quá trình sản xuất, ta lấy <strong>300 sản phẩm (Sample)</strong> để kiểm tra.</li>
                         </ul>
                     </div>
                 </div>
@@ -189,13 +191,29 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Observational study:</strong> Nghiên cứu quan sát không
-                                can thiệp vào đối tượng.</li>
+                                can thiệp vào đối tượng.
+                                <ul>
+                                    <li class="list-group-item" ><strong>VD:</strong> Quan sát hành vi ăn uống của học sinh trong căng tin mà không thay đổi thực đơn hoặc môi trường.</li>
+                                </ul>
+                            </li>
                             <li class="list-group-item"><strong>Experiment:</strong> Nghiên cứu có can thiệp và kiểm
-                                soát các yếu tố.</li>
+                                soát các yếu tố.
+                                <ul>
+                                    <li class="list-group-item"><strong>VD:</strong> Thử nghiệm tác động của một loại thuốc mới bằng cách chia ngẫu nhiên bệnh nhân thành hai nhóm, một nhóm dùng thuốc và một nhóm dùng giả dược.</li>
+                                </ul>
+                            </li>
                             <li class="list-group-item"><strong>Retrospective study:</strong> Nghiên cứu dựa trên dữ
-                                liệu trong quá khứ.</li>
+                                liệu trong quá khứ.
+                                <ul>
+                                    <li class="list-group-item"><strong>VD:</strong> Nghiên cứu mối liên hệ giữa hút thuốc và ung thư phổi bằng cách phân tích hồ sơ y tế của bệnh nhân đã được chẩn đoán trong quá khứ.</li>
+                                </ul>
+                            </li>
                             <li class="list-group-item"><strong>Prospective study:</strong> Nghiên cứu theo dõi đối
-                                tượng trong tương lai.</li>
+                                tượng trong tương lai.
+                                <ul>
+                                    <li class="list-group-item"><strong>VD:</strong> Theo dõi một nhóm người không hút thuốc trong 20 năm để xem liệu họ có phát triển bệnh tim hay không.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -291,22 +309,13 @@
                                 <button id="showExampleBtn2_1" class="btn btn-primary btn-example mb-3">Hiển thị ví
                                     dụ</button>
                                 <div id="exampleContent2_1" style="display: none;">
-                                    <p><strong>Question:</strong> Mã sản phẩm có thể gồm 2, 3, 4, hoặc 5 chữ cái với xác
-                                        suất như nhau. Để tính tổng số mã sản phẩm có thể có, ta cần xem xét số lựa chọn
-                                        ở mỗi bước (số lượng chữ cái trong mã).</p>
+                                    <p><strong>Question:</strong> Ta có 4 cái áo khác nhau và 3 cái quần khác nhau trong tủ đồ. Có bao nhiêu cách để tạo ra 1 bộ đồ đủ áo và quần.</p>
+                                    <img src="textblog-3/VD_Nhan.png" alt="Multiplication example" class="img-fluid img-fix">
                                     <p><strong>Answer:</strong></p>
-                                    <ul>
-                                        <li>Trường hợp 1 (2 chữ cái): 4 * 26 * 26 = 2.704 mã</li>
-                                        <li>Trường hợp 2 (3 chữ cái): 4 * 26 * 26 * 26 = 70.304 mã</li>
-                                        <li>Trường hợp 3 (4 chữ cái): 4 * 26 * 26 * 26 * 26 = 1.827.904 mã</li>
-                                        <li>Trường hợp 4 (5 chữ cái): 4 * 26 * 26 * 26 * 26 * 26 = 47.525.504 mã</li>
-                                    </ul>
                                     <p>Tổng số mã sản phẩm có thể có là:</p>
-                                    <p>2.704 + 70.304 + 1.827.904 + 47.525.504 = 49.426.416 mã</p>
-                                    <p><strong>Giải thích:</strong> Chúng ta sử dụng quy tắc nhân
-                                        (<strong>Multiplication Rule</strong>) để tính số lượng mã cho mỗi trường hợp.
-                                        Sau đó, áp dụng quy tắc cộng để tính tổng số mã có thể có từ tất cả các trường
-                                        hợp.</p>
+                                    <p>4 x 3 = 12 bộ</p>
+                                    <p><strong>Giải thích:</strong> Mỗi cách chọn 1 cái áo đều có 3 cách chọn quần. Ta có thể hiểu quy tắc nhân là phép nhân các bước chọn để đạt được kết quả.</p>
+                                    <img src="textblog-3/ans.png" alt="ans">
                                 </div>
                             </div>
                             <h5>Permutations (Hoán vị)</h5>
@@ -357,14 +366,12 @@
                                     <button id="showExampleBtn2_3" class="btn btn-primary btn-example mb-3">Hiển thị ví
                                         dụ</button>
                                     <div id="exampleContent2_3" style="display: none;">
-                                        <p><strong>Question:</strong> Một lô hàng có 350 mẫu, trong đó có 8 mẫu bị lỗi.
-                                            Chúng ta chọn ngẫu nhiên 2 mẫu không hoàn lại. Tính xác suất cả hai mẫu đều
-                                            bị lỗi.</p>
+                                        <p><strong>Question:</strong> Một lớp học có 30 học sinh, trong đó có 10 học sinh giỏi. Chúng ta chọn ngẫu nhiên 3 học sinh để tham gia cuộc thi. Tính xác suất cả 3 học sinh được chọn đều là học sinh giỏi.</p>
                                         <p><strong>Answer:</strong></p>
                                         <p>Để giải quyết bài toán này, ta sử dụng tổ hợp để tính:</p>
                                         <ul>
-                                            <li>Số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị lỗi</li>
-                                            <li>Số cách chọn bất kỳ 2 mẫu từ 350 mẫu</li>
+                                            <li>Số cách chọn 3 học sinh giỏi từ 10 học sinh giỏi</li>
+                                            <li>Số cách chọn bất kỳ 3 học sinh từ 30 học sinh</li>
                                         </ul>
                                         <p>Công thức tính tổ hợp:</p>
                                         <p class="text-center">
@@ -376,14 +383,13 @@
                                             <li>r là số phần tử cần chọn</li>
                                         </ul>
                                         <br>
-                                        <p><strong>Bước 1:</strong> Tính số cách chọn 2 mẫu bị lỗi từ 8 mẫu bị lỗi</p>
-                                        <p>8C2 = 8! / (2! * 6!) = 28</p>
-                                        <p><strong>Bước 2:</strong> Tính số cách chọn bất kỳ 2 mẫu từ 350 mẫu</p>
-                                        <p>350C2 = 350! / (2! * 348!) = 61075</p>
-                                        <p><strong>Bước 3:</strong> Tính xác suất cả hai mẫu đều bị lỗi</p>
-                                        <p>P(cả hai mẫu đều bị lỗi) = 28 / 61075 ≈ 0.000458</p>
-                                        <p><strong>Kết luận:</strong> Xác suất cả hai mẫu đều bị lỗi là khoảng 0.0458%.
-                                        </p>
+                                        <p><strong>Bước 1:</strong> Tính số cách chọn 3 học sinh giỏi từ 10 học sinh giỏi</p>
+                                        <p>10C3 = 10! / (3! * 7!) = 120</p>
+                                        <p><strong>Bước 2:</strong> Tính số cách chọn bất kỳ 3 học sinh từ 30 học sinh</p>
+                                        <p>30C3 = 30! / (3! * 27!) = 4060</p>
+                                        <p><strong>Bước 3:</strong> Tính xác suất cả 3 học sinh được chọn đều là học sinh giỏi</p>
+                                        <p>P(cả 3 học sinh đều là học sinh giỏi) = 120 / 4060 ≈ 0.0296</p>
+                                        <p><strong>Kết luận:</strong> Xác suất cả 3 học sinh được chọn đều là học sinh giỏi là khoảng 2.96%.</p>
                                     </div>
                                 </div>
                             </div>
@@ -460,7 +466,7 @@
                         </div>
                         <div id="exampleContent2_4" style="display: none;">
                             <p><strong>Question:</strong> Một hộp có 5 bi đỏ và 3 bi xanh. Nếu lấy ngẫu nhiên 1 bi và nó
-                                là bi đỏ, tính xác suất rút được bi xanh ở lần rút thứ hai (không hoàn lại).</p>
+                                là bi đỏ, tính xác suất rút được bi xanh ở lần rút thứ hai (hoàn lại - with replacement).</p>
                             <p><strong>Answer:</strong></p>
                             <p>Sau lần rút đầu tiên, hộp còn 7 bi, trong đó có 3 bi xanh. Xác suất có điều kiện là:</p>
                             <p class="text-center">\[P(xanh|đỏ) = \frac{3}{7}\]</p>
@@ -472,7 +478,32 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">2.5 Multiplication and Total Probability Rules</h3>
+                        <h3 class="mb-0">2.5 Independence & Multually Exclusive</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="textblog-3/independent_mutually.png" alt="independent_mutually">
+
+                        <p class="text-left">Nếu A và B là hai sự kiện độc lập:</p>
+                        <p class="text-center">
+                            \[P(A \cap B) = P(A) \cdot P(B)\]
+                        </p>
+                        <p class="text-center">
+                            \[P(A|B) = P(A) \]
+                        </p>
+                        <p class="text-center">
+                            \[P(B|A) = P(B) \]
+                        </p>
+                        <p class="text-left">Nếu A và B là hai sự kiện xung khắc:</p>
+                        <p class="text-center">
+                            \[P(A \cap B) = 0\]
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">2.6 Multiplication and Total Probability Rules</h3>
                     </div>
                     <div class="card-body">
                         <p class="text-left">Quy tắc nhân xác suất:</p>
@@ -484,19 +515,37 @@
                                 dụ</button>
                         </div>
                         <div id="exampleContent2_5" style="display: none;">
-                            <p><strong>Question:</strong> Một hộp có 3 bi đỏ và 2 bi xanh. Nếu lấy ngẫu nhiên 2 bi không
-                                hoàn lại, tính xác suất cả hai bi đều là đỏ.</p>
+                            <p><strong>Câu hỏi:</strong> Một hộp chứa 4 viên bi màu xanh dương và 2 viên bi màu xanh lá cây. Một viên bi được rút ngẫu nhiên từ hộp <strong> không hoàn lại (without replacement) </strong> và màu của nó được ghi lại. Sau đó, một viên bi thứ hai được rút ra. </br>
+                                Tìm xác suất rằng viên bi đầu tiên là màu xanh lá cây <strong>và (and)</strong> viên bi thứ hai là màu xanh dương?
+                                </p>
                             <p><strong>Answer:</strong></p>
-                            <p>Xác suất rút được bi đỏ đầu tiên là 3/5, và sau đó rút được bi đỏ thứ hai là 2/4:</p>
-                            <p class="text-center">\[P(đỏ \cap đỏ) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} =
-                                \frac{3}{10}\]</p>
+                            <p>Gọi A là sự kiện bốc ra viên đầu tiên là xanh lá.</p>
+                            <p>Gọi B là sự kiện bốc ra viên đầu tiên là xanh dương.</p>
+
+                            <p>Xác suất rút được bi xanh lá đầu tiên là 2/6, và sau đó rút được bi dương thứ hai là 4/5:</p>
+                            <p class="text-center">\[P(A) \cdot P(B |A) = \frac{2}{6} \times \frac{4}{5} = \frac{4}{15} \]</p>
+                                
                         </div>
+                        <p class="text-left">Total Probability Rules: </p>
+                        <img src="textblog-3/Total.png" alt="Total">
+                        <p>Phân chia sự kiện thành các phần xung khắc nhau (Tức là A và A' ko thể diễn ra đồng thời) </p>
+                        <p class="text-center"> Với mọi sự kiện A và B </p>
+
+                        <p class="text-center">\[P(B) = P(B |A) \cdot P(A)  + P(B |A') \cdot P(A')\]</p>
+
+                        <p><strong>Câu hỏi: </strong>Tương tự ở trên. </br>
+                            Tìm xác suất viên bi thứ hai là màu xanh dương?
+                            </p>
+                            <p><strong>Answer:</strong></p>
+                            <p>Sẽ bằng tổng xác suất lần đầu bốc được bi xanh dương và sau đó bốc được bi xanh dương cộng với lần đầu bốc được bi xanh lá và lần sau bốc được bi xanh dương.</p>
+                            
+                            <p class="text-center">\[P(second là xanh dương) = P(B) = P(A) \cdot P(B |A) + P(A') \cdot P(B |A') = \frac{2}{6} \times \frac{4}{5} + \frac{4}{6} \times \frac{3}{5} = \frac{2}{3} \]</p>
                     </div>
                 </div>
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">2.6 Bayes' Theorem</h3>
+                        <h3 class="mb-0">2.7 Bayes' Theorem</h3>
                     </div>
                     <div class="card-body">
                         <p class="text-left">Công thức Bayes:</p>
