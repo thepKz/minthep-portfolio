@@ -466,12 +466,16 @@
                         </div>
                         <div id="exampleContent2_4" style="display: none;">
                             <p><strong>Question:</strong> Một hộp có 5 bi đỏ và 3 bi xanh. Nếu lấy ngẫu nhiên 1 bi và nó
-                                là bi đỏ, tính xác suất rút được bi xanh ở lần rút thứ hai (hoàn lại - with replacement).</p>
-                            <p><strong>Answer:</strong></p>
+                                là bi đỏ, tính xác suất rút được bi xanh ở lần rút thứ hai.</p>
+                                <p>a/ không hoàn lại - without replacement (tức là bốc ra luôn)</p>
+                                <p>b/ hoàn lại - with replacement (tức là bốc ra xong để vào lại hộp).</p>
+                                <p><strong>Answer:</strong></p>
+                                <p>a/</p>
                             <p>Sau lần rút đầu tiên, hộp còn 7 bi, trong đó có 3 bi xanh. Xác suất có điều kiện là:</p>
                             <p class="text-center">\[P(xanh|đỏ) = \frac{3}{7}\]</p>
-                            <p>Lưu ý: Trong trường hợp này, các sự kiện không độc lập vì việc rút bi đỏ ở lần đầu ảnh
-                                hưởng đến xác suất rút bi xanh ở lần sau.</p>
+                            <p>b/</p>
+                            <p>Sau lần rút đầu tiên, hộp còn 7 bi, trong đó có 3 bi xanh. Tuy nhiên có hoàn lại bi nên việc rút bi đỏ lần đầu ko ảnh hưởng tới lần rút sau. => Tức là trong hộp vẫn còn 8 viên bi. Xác suất có điều kiện là:</p>
+                            <p class="text-center">\[P(xanh|đỏ) = \frac{3}{8}\]</p>
                         </div>
                     </div>
                 </div>
@@ -574,34 +578,97 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">3.1 Discrete Random Variables</h3>
+                        <h3 class="mb-0">3.1 Discrete Random Variables & Probability distributions and Probability Mass Functions</h3>
                     </div>
                     <div class="card-body">
                         <p>Biến ngẫu nhiên rời rạc (Discrete Random Variables) là một loại biến ngẫu nhiên có thể nhận
                             một số lượng giá trị đếm được hoặc hữu hạn trong một khoảng xác định.</p>
+                            <div class="card-body">
+                                <p><strong>Phân bố xác suất (Probability distributions):</strong></p>
+                                <p>Probability distributions (phân bố xác suất) là bảng, công thức hay biểu đồ, nó biểu diễn xác xuất theo các giá trị của biến cố.</p>
+                                <img src="textblog-3/probabilitydis.png" alt="probabilitydis">
+                                <p><strong>Hàm khối xác suất (Probability Mass Function - PMF):</strong></p>
+                                <div class="text-left" style="font-size: 1.2em;">
+                                    \[f(x_i) = P(X=x_i) \text{ với mọi } i = 1, 2, ..., n\]
+                                </div>
+                                <ul>
+                                    <li>\(0 <= f(x_i) <= 1\)</li>
+                                    <li>\(\sum_{i=1}^{n} f(x_i) = 1\)</li>
+                                    <li>\(P(a \leq X \leq b)=\sum_{xi=a}^{b} f(x_i)\)</li>
+                                </ul>
+                                <div class="text-left" style="font-size: 1.2em;">
+                                    
+                                </div>
+                                <p><strong>Hàm phân phối tích lũy (Cumulative Distribution Function - CDF):</strong></p>
+                                <div class="text-left" style="font-size: 1.2em;">
+                                    \[F(x) = P(X \leq x) = \sum_{x_i \leq x} f(x_i)\]
+                                </div>
+                                <p>Các tính chất quan trọng của CDF:</p>
+                                <ul>
+                                    <li>\(0 \leq F(x) \leq 1\) với mọi x</li>
+                                    <li>\(F(-\infty) = 0\) và \(F(\infty) = 1\)</li>
+                                    <li>\(F(x)\) là hàm không giảm</li>
+                                    <li>\(P(a < X \leq b)=F(b) - F(a)\)</li>
+                                </ul>
+                                <button id="showExampleBtn3_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
+                                <div id="exampleContent3_2" style="display: none;">
+                                    <p><strong>Ví dụ:</strong> Xét việc tung một đồng xu công bằng hai lần. Biến ngẫu nhiên X là
+                                        số mặt ngửa xuất hiện.</p>
+                                    <p><strong>PMF:</strong></p>
+                                    <ul>
+                                        <li>P(X = 0) = 1/4 (không có mặt ngửa)</li>
+                                        <li>P(X = 1) = 1/2 (có một mặt ngửa)</li>
+                                        <li>P(X = 2) = 1/4 (hai mặt ngửa)</li>
+                                    </ul>
+                                    <p><strong>CDF:</strong></p>
+                                    <ul>
+                                        <li>F(0) = P(X ≤ 0) = 1/4</li>
+                                        <li>F(1) = P(X ≤ 1) = 3/4</li>
+                                        <li>F(2) = P(X ≤ 2) = 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">3.2  Mean and Variance of a Discrete Random Variable</h3>
+                    </div>
+                    <div class="card-body">
+
                         <p>Các công thức quan trọng:</p>
                         <ul>
                             <li>
-                                <strong>Mean (Kỳ vọng):</strong>
+                                
+                                <p><strong>Mean (Kỳ vọng):</strong> Còn gọi là Expected value, là giá trị kỳ vọng của dữ liệu. Ký hiệu là μ hoặc E(X) :</p>
                                 <div class="text-left" style="font-size: 1.2em;">
-                                    \[E(X) = \sum_{i=1}^{n} x_i \cdot P(X = x_i)\]
+                                    \[E(X) = \sum_{i=1}^{n} x_i \cdot f(x_i)\]
                                 </div>
                             </li>
                             <li>
-                                <strong>Variance (Phương sai):</strong>
+                                <p><strong>Variance (Phương sai):</strong> gọi là phương sai, chúng ta có thể ngầm hiều đó là giá trị trung bình của tổng bình phương sai số của dữ liệu. Ký hiệu là σ² hoặc V(X) :</p>
                                 <div class="text-left" style="font-size: 1.2em;">
-                                    \[V(X) = E[(X - E(X))^2] = \sum_{i=1}^{n} (x_i - E(X))^2 \cdot P(X = x_i) = E(X^2) -
-                                    [E(X)]^2\]
+                                    \[σ² = V(X) = \sum_{i=1}^{n} (x_i - \mu)^2 \cdot f(x_i) = \sum_{i=1}^{n} x_i^2 \cdot f(x_i) - \mu^2\]
+                                    
+                                </div>
+                                <p><strong>Standard deviation:</strong> gọi là độ lệch chuẩn, lệch tức là sai số, cái này sẽ là căn của cái trên kia</p>
+                                <div class="text-left" style="font-size: 1.2em;">
+                                    
+                                    \[σ = \sqrt{σ²}\]
+                                    
                                 </div>
                             </li>
                             <li>
-                                <strong>Tính chất tuyến tính của kỳ vọng:</strong>
+                                <strong>Tính chất tuyến tính của kỳ vọng :</strong>
                                 <div class="text-left" style="font-size: 1.2em;">
-                                    \[E(aX + bY) = a \cdot E(X) + b \cdot E(Y)\]
+                                    \[E(aX + bY + c) = a \cdot E(X) + b \cdot E(Y) + c\]
                                 </div>
                             </li>
                             <li>
-                                <strong>Tính chất của phương sai:</strong>
+                                <strong>Tính chất của phương sai (A và B độc lập (independence)):</strong>
+                                
                                 <div class="text-left" style="font-size: 1.2em;">
                                     \[V(aX + b) = a^2 \cdot V(X)\]
                                 </div>
@@ -615,48 +682,8 @@
                             <p>Kỳ vọng: \(E(X) = \frac{1+2+3+4+5+6}{6} = 3.5\)</p>
                             <p>Phương sai: \(V(X) = E(X^2) - [E(X)]^2 = \frac{1^2+2^2+3^2+4^2+5^2+6^2}{6} - 3.5^2
                                 \approx 2.92\)</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3 class="mb-0">3.2 Probability Distributions and Probability Mass Functions</h3>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Hàm khối xác suất (Probability Mass Function - PMF):</strong></p>
-                        <div class="text-left" style="font-size: 1.2em;">
-                            \[f(x_i) = P(X=x_i) \text{ với mọi } i = 1, 2, ..., n\]
-                        </div>
-                        <p><strong>Hàm phân phối tích lũy (Cumulative Distribution Function - CDF):</strong></p>
-                        <div class="text-left" style="font-size: 1.2em;">
-                            \[F(x) = P(X \leq x) = \sum_{x_i \leq x} f(x_i)\]
-                        </div>
-                        <p>Các tính chất quan trọng của CDF:</p>
-                        <ul>
-                            <li>\(0 \leq F(x) \leq 1\) với mọi x</li>
-                            <li>\(F(-\infty) = 0\) và \(F(\infty) = 1\)</li>
-                            <li>\(F(x)\) là hàm không giảm</li>
-                            <li>\(P(a < X \leq b)=F(b) - F(a)\)</li>
-                        </ul>
-                        <button id="showExampleBtn3_2" class="btn btn-primary btn-example mb-3">Hiển thị ví dụ</button>
-                        <div id="exampleContent3_2" style="display: none;">
-                            <p><strong>Ví dụ:</strong> Xét việc tung một đồng xu công bằng hai lần. Biến ngẫu nhiên X là
-                                số mặt ngửa xuất hiện.</p>
-                            <p><strong>PMF:</strong></p>
-                            <ul>
-                                <li>P(X = 0) = 1/4 (không có mặt ngửa)</li>
-                                <li>P(X = 1) = 1/2 (có một mặt ngửa)</li>
-                                <li>P(X = 2) = 1/4 (hai mặt ngửa)</li>
-                            </ul>
-                            <p><strong>CDF:</strong></p>
-                            <ul>
-                                <li>F(0) = P(X ≤ 0) = 1/4</li>
-                                <li>F(1) = P(X ≤ 1) = 3/4</li>
-                                <li>F(2) = P(X ≤ 2) = 1</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="card mb-4">
@@ -987,11 +1014,34 @@
                         <h3 class="mb-0">4.6 Normal Distribution</h3>
                     </div>
                     <div class="card-body">
-                        <p>Phân bố chuẩn: \(X \sim N(\mu, \sigma^2)\)</p>
-                        <p><strong>Mean:</strong> \(\mu\)</p>
-                        <p><strong>Variance:</strong> \(\sigma^2\)</p>
-                        <p>Standard Normal Distribution: \(Z \sim N(0, 1)\)</p>
-                        <p>Chuyển đổi: \(Z = \frac{X - \mu}{\sigma}\)</p>
+                        <p><strong>Normal Distribution:</strong> \(X \sim N(\mu, \sigma^2)\)</p>
+                        <p><strong>Hàm phân bố xác suất của nó là:</strong></p>
+                        <img src="/blog/textblog-3/normalDisFunc.png" alt="">
+                        <p>Note: Ta hong cần nhớ công thức này.</p>
+                        <img src="/blog/textblog-3/exampleNormalDis.png" alt="">
+
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">4.7 Standard Normal Distribution</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Note: Ta sẽ dùng dạng phân phối chuẩn tắc này cho mọi bài toán liên quan, mọi phân phối chuẩn X sẽ được quy về phân phối chuẩn tắc Z với các tham số μ = 0, σ = 1. Với đồ thị như dưới: </p>
+                        <img src="/blog/textblog-3/diagramOfZ.png" alt="diagramOfZ">
+                        <p><strong>Standard Normal Distribution:</strong> \(Z \sim N(0, 1)\)</p>
+                        <p><strong>Hàm tích lũy (Cumulative): </strong></p>
+                        <img src="/blog/textblog-3/cumulativeZ.png" alt="cumulativeZ">
+                        <p>Nó là phần diện tích từ Z trở về trước hay là xác suất để Z <= z</p>
+                        <img src="/blog/textblog-3/exampleOfPZ.png" alt="exampleOfPZ">
+                        <br>
+                        <br>
+                        <p><strong>Chuyển đổi chuẩn về chuẩn tắc:</strong> \(Z = \frac{X - \mu}{\sigma}\)</p>
+                        <img src="/blog/textblog-3/standardizeToZ.png" alt="standardizeToZ">
+                        <br>
+                        <img src="/blog/textblog-3/pOfZ.png" alt="pOfZ" style="height: 21vh;">
+                        <br>
+                        <br>
                         <button id="showExampleBtn4_6" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_6" style="display: none;">
                             <p class="mt-3"><strong>Ví dụ:</strong> Chiều cao của người trưởng thành tuân theo phân phối
@@ -1007,7 +1057,7 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">4.7 Normal Approximation to the Binomial and Poisson Distributions</h3>
+                        <h3 class="mb-0">4.8 Normal Approximation to the Binomial and Poisson Distributions</h3>
                     </div>
                     <div class="card-body">
                         <h4>a. Xấp xỉ chuẩn cho phân phối nhị thức</h4>
@@ -1032,7 +1082,10 @@
 
                         <p><strong>Lưu ý:</strong> Hiệu chỉnh liên tục (+0.5 hoặc -0.5) được áp dụng để cải thiện độ
                             chính xác của xấp xỉ.</p>
-
+                            <p><strong>Công thức dùng chung cho 2 phân phối trên: </strong></p>
+                            <img src="/blog/textblog-3/approximateBinomial.png" alt="approximateBinomial">
+                            <br>
+                            <br>
                         <button id="showExampleBtn4_7" class="btn btn-primary mt-2">Hiển thị ví dụ</button>
                         <div id="exampleContent4_7" style="display: none;">
                             <p class="mt-3"><strong>Ví dụ 1 (Nhị thức):</strong> Một nhà máy sản xuất bóng đèn có tỉ lệ
@@ -1057,7 +1110,7 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="mb-0">4.8 Exponential Distribution</h3>
+                        <h3 class="mb-0">4.9 Exponential Distribution</h3>
                     </div>
                     <div class="card-body">
                         <p>Hàm phân bố xác suất: \(f(x) = \lambda e^{-\lambda x}\) for \(x \geq 0\)</p>
