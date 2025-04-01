@@ -22,7 +22,7 @@
   }
   
   .content .section.hero {
-    background-image: url(../img/4.jpg);
+    background-image: url(https://res.cloudinary.com/dacbvhtgz/image/upload/v1743494282/2024-01-09_09-32-17_UTC_10_qxyuux.jpg);
     -webkit-filter: brightness(80%) contrast(110%) saturate(130%);
     filter: brightness(90%) contrast(110%) saturate(120%);
     background-repeat: no-repeat;

@@ -1,8 +1,8 @@
 var itemsImg = document.querySelectorAll(".item img")
 
-itemsImg.forEach(function(item, i) {
-  item.src = "img/taisaolailawonyoung/" + (i + 12) + ".jpg";
-});
+// itemsImg.forEach(function(item, i) {
+//   item.src = "img/taisaolailawonyoung/" + (i + 12) + ".jpg";
+// });
 
 var TL = gsap.timeline({scrollTrigger: {
   trigger: "main",
