@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREENWEAVE - 360° Product Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Thêm Three.js và các loader cần thiết -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <style>
+        .product-container {
+            perspective: 1000px;
+        }
+        .product-viewer {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        .spin-control {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .color-option {
+            transition: all 0.3s ease;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            border: 2px solid #000;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+        .zoomable-image {
+            transition: transform 0.3s ease;
+        }
+        .zoomable-image:hover {
+            transform: scale(1.05);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-leaf text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-green-800">GREENWEAVE</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-green-600 transition">Home</a>
+                <a href="#" class="text-gray-700 hover:text-green-600 transition">Shop</a>
+                <a href="#" class="text-gray-700 hover:text-green-600 transition">Collections</a>
+                <a href="#" class="text-gray-700 hover:text-green-600 transition">About</a>
+                <a href="#" class="text-gray-700 hover:text-green-600 transition">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="p-2 text-gray-600 hover:text-green-600 transition">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="p-2 text-gray-600 hover:text-green-600 transition">
+                    <i class="fas fa-user text-lg"></i>
+                </button>
+                <button class="p-2 text-gray-600 hover:text-green-600 transition relative">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </button>
+                <button class="md:hidden p-2 text-gray-600">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Product Viewer Section -->
+            <div class="lg:w-1/2">
+                <div class="product-container relative h-96 md:h-[500px] bg-gray-100 rounded-xl overflow-hidden shadow-lg">
+                    <div class="product-viewer w-full h-full flex items-center justify-center">
+                        <!-- Thay thẻ img bằng thẻ div cho Three.js canvas -->
+                        <div id="product-model-container" class="w-full h-full"></div>
+                        <!-- Ẩn hình ảnh cũ -->
+                        <img id="current-product-view" src="" alt="Product" class="hidden w-full h-full object-contain">
+                    </div>
+                    
+                    <!-- Spin Controls -->
+                    <div class="spin-control absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center bg-white rounded-full px-4 py-2 shadow-md">
+                        <button id="spin-left" class="p-2 text-gray-600 hover:text-green-600">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="mx-4 text-sm font-medium">Drag or click arrows to rotate</span>
+                        <button id="spin-right" class="p-2 text-gray-600 hover:text-green-600">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Zoom Controls -->
+                    <div class="absolute top-4 right-4 flex flex-col space-y-2">
+                        <button id="zoom-in" class="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-gray-600 hover:text-green-600">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button id="zoom-out" class="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-gray-600 hover:text-green-600">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- 360° Icon -->
+                    <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+                        <i class="fas fa-rotate mr-1"></i>
+                        <span>360° VIEW</span>
+                    </div>
+                </div>
+                
+                <!-- Thumbnail Gallery -->
+                <div class="mt-4 grid grid-cols-4 gap-2">
+                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
+                        <span class="text-xs font-medium">Front</span>
+                    </button>
+                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
+                        <span class="text-xs font-medium">Side</span>
+                    </button>
+                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
+                        <span class="text-xs font-medium">Back</span>
+                    </button>
+                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
+                        <i class="fas fa-search-plus text-green-600 text-xl mb-1"></i>
+                        <span class="text-xs font-medium">Detail</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product Info Section -->
+            <div class="lg:w-1/2 py-4">
+                <div class="mb-6">
+                    <span class="text-green-600 font-medium">Eco-Friendly Collection</span>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">Organic Cotton T-Shirt</h1>
+                    <div class="flex items-center mt-3">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 ml-2">(142 reviews)</span>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <span class="text-3xl font-bold text-gray-900">$29.99</span>
+                    <span class="ml-2 text-lg text-gray-500 line-through">$39.99</span>
+                    <span class="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">25% OFF</span>
+                </div>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-4">
+                        Crafted from 100% organic cotton, this premium t-shirt offers exceptional comfort and breathability. 
+                        Our eco-friendly dye process ensures minimal environmental impact while delivering vibrant, long-lasting colors.
+                    </p>
+                    <div class="flex items-center text-green-600">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span class="font-medium">In stock (Ready to ship)</span>
+                    </div>
+                </div>
+                
+                <!-- Color Options -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-3">Color: <span id="selected-color" class="font-bold">Forest Green</span></h3>
+                    <div class="flex space-x-3">
+                        <div class="color-option selected" data-color="Forest Green">
+                            <div class="w-10 h-10 rounded-full bg-green-800 border-2 border-white shadow-md"></div>
+                        </div>
+                        <div class="color-option" data-color="Ocean Blue">
+                            <div class="w-10 h-10 rounded-full bg-blue-700 border-2 border-white shadow-md"></div>
+                        </div>
+                        <div class="color-option" data-color="Earth Brown">
+                            <div class="w-10 h-10 rounded-full bg-amber-800 border-2 border-white shadow-md"></div>
+                        </div>
+                        <div class="color-option" data-color="Sky Gray">
+                            <div class="w-10 h-10 rounded-full bg-gray-500 border-2 border-white shadow-md"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Size Options -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-900">Size</h3>
+                        <a href="#" class="text-sm text-green-600 hover:underline">Size Guide</a>
+                    </div>
+                    <div class="grid grid-cols-5 gap-2">
+                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">XS</button>
+                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">S</button>
+                        <button class="py-2 px-3 border rounded-md text-center font-medium bg-green-600 text-white">M</button>
+                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">L</button>
+                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">XL</button>
+                    </div>
+                </div>
+                
+                <!-- Quantity & Add to Cart -->
+                <div class="mb-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center border rounded-md overflow-hidden">
+                            <button class="px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200">-</button>
+                            <span class="px-4 py-2 w-12 text-center">1</span>
+                            <button class="px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200">+</button>
+                        </div>
+                        <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md font-medium transition flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                        </button>
+                        <button class="p-3 border rounded-md text-gray-600 hover:bg-gray-100">
+                            <i class="far fa-heart text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Details Accordion -->
+                <div class="border-t border-b border-gray-200 divide-y divide-gray-200">
+                    <div class="py-4">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <span class="font-medium text-gray-900">Product Details</span>
+                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden">
+                            <p>• 100% Organic Cotton</p>
+                            <p>• Eco-friendly dyes</p>
+                            <p>• Reinforced stitching</p>
+                            <p>• Pre-shrunk fabric</p>
+                            <p>• Machine wash cold</p>
+                        </div>
+                    </div>
+                    <div class="py-4">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <span class="font-medium text-gray-900">Shipping & Returns</span>
+                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden">
+                            <p>• Free shipping on orders over $50</p>
+                            <p>• Carbon-neutral shipping options</p>
+                            <p>• Easy 30-day returns</p>
+                        </div>
+                    </div>
+                    <div class="py-4">
+                        <button class="flex justify-between items-center w-full text-left">
+                            <span class="font-medium text-gray-900">Sustainability</span>
+                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
+                        </button>
+                        <div class="mt-2 text-gray-600 hidden">
+                            <p>• Made in a Fair Trade certified facility</p>
+                            <p>• 100% renewable energy used in production</p>
+                            <p>• 1% of profits donated to reforestation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Products -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">You May Also Like</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+1" alt="Product 1" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-bold">
+                            NEW
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-1">Organic Linen Shirt</h3>
+                        <div class="flex items-center text-yellow-400 text-sm mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-900">$34.99</span>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+2" alt="Product 2" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                            SALE
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-1">Bamboo Fiber Pants</h3>
+                        <div class="flex items-center text-yellow-400 text-sm mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-gray-900">$49.99</span>
+                                <span class="ml-2 text-sm text-gray-500 line-through">$59.99</span>
+                            </div>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+3" alt="Product 3" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-1">Hemp Canvas Jacket</h3>
+                        <div class="flex items-center text-yellow-400 text-sm mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-900">$79.99</span>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+4" alt="Product 4" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900 mb-1">Recycled Polyester Hoodie</h3>
+                        <div class="flex items-center text-yellow-400 text-sm mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-900">$54.99</span>
+                            <button class="text-green-600 hover:text-green-800">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sustainability Promise -->
+        <div class="mt-16 bg-green-50 rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">Our Sustainability Promise</h2>
+                <p class="text-gray-700 mb-4">
+                    At GREENWEAVE, we're committed to creating fashion that doesn't cost the earth. 
+                    Every product is designed with sustainability at its core, from material sourcing 
+                    to ethical manufacturing.
+                </p>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                        <span>100% Organic & Recycled Materials</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                        <span>Carbon Neutral Shipping</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                        <span>Fair Trade Certified</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="floating-icon absolute -top-8 -left-8 z-10 bg-white p-4 rounded-full shadow-lg">
+                    <i class="fas fa-leaf text-green-600 text-3xl"></i>
+                </div>
+                <img src="https://via.placeholder.com/500x300/EDF2F7/64748B?text=Sustainable+Fashion" alt="Sustainable Fashion" class="w-full rounded-lg shadow-md">
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        GREENWEAVE
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Sustainable fashion for a better tomorrow. Ethically made, environmentally conscious clothing.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Shop</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Best Sellers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Men's Collection</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Women's Collection</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sustainability</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-medium mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Return Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Size Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Track Order</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 GREENWEAVE. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=VISA" alt="Visa" class="h-8">
+                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=MC" alt="Mastercard" class="h-8">
+                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=AMEX" alt="Amex" class="h-8">
+                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=PP" alt="PayPal" class="h-8">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Code để hiển thị mô hình 3D KazakLowPoly.obj và KazakLowPoly.mtl
+        // Sử dụng thư viện Three.js
+        
+        // Khai báo các biến toàn cục cho Three.js
+        let scene, camera, renderer, controls, model;
+        let container = document.getElementById('product-model-container');
+        
+        // Hàm khởi tạo Three.js scene
+        function initThreeJS() {
+            // Tạo scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf1f5f9); // Màu xám nhạt giống background hiện tại
+            
+            // Tạo camera
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 0, 5);
+            
+            // Tạo renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // Thêm ánh sáng
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(1, 1, 1);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+            directionalLight2.position.set(-1, 0.5, -1);
+            scene.add(directionalLight2);
+            
+            // Thêm controls để người dùng có thể xoay mô hình
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 3;
+            controls.maxDistance = 10;
+            controls.maxPolarAngle = Math.PI / 1.5;
+            
+            // Tải mô hình 3D
+            loadModel();
+            
+            // Thêm sự kiện resize
+            window.addEventListener('resize', onWindowResize);
+            
+            // Bắt đầu animation loop
+            animate();
+        }
+        
+        // Hàm tải mô hình
+        function loadModel() {
+            // Tải MTL (materials)
+            const mtlLoader = new THREE.MTLLoader();
+            mtlLoader.load('KazakLowPoly.mtl', function(materials) {
+                materials.preload();
+                
+                // Sử dụng vật liệu đã tải để tải OBJ
+                const objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load('KazakLowPoly.obj', function(object) {
+                    model = object;
+                    
+                    // Điều chỉnh kích thước và vị trí của mô hình
+                    const box = new THREE.Box3().setFromObject(model);
+                    const size = box.getSize(new THREE.Vector3()).length();
+                    const center = box.getCenter(new THREE.Vector3());
+                    
+                    model.position.x = -center.x;
+                    model.position.y = -center.y;
+                    model.position.z = -center.z;
+                    
+                    // Tính toán scale phù hợp
+                    const scale = 3 / size;
+                    model.scale.set(scale, scale, scale);
+                    
+                    // Thêm mô hình vào scene
+                    scene.add(model);
+                    
+                    // Tự động xoay nhẹ mô hình ban đầu
+                    model.rotation.y = Math.PI / 4;
+                    
+                }, onProgress, onError);
+            }, onProgress, onError);
+        }
+        
+        // Hàm xử lý tiến trình tải
+        function onProgress(xhr) {
+            if (xhr.lengthComputable) {
+                const percentComplete = xhr.loaded / xhr.total * 100;
+                console.log('Model ' + Math.round(percentComplete, 2) + '% downloaded');
+            }
+        }
+        
+        // Hàm xử lý lỗi
+        function onError(error) {
+            console.error('Không thể tải mô hình 3D: ' + error);
+        }
+        
+        // Hàm xử lý thay đổi kích thước cửa sổ
+        function onWindowResize() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+        
+        // Hàm animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        // Gọi hàm khởi tạo khi trang đã tải xong
+        window.addEventListener('load', initThreeJS);
+        
+        // Thêm xử lý sự kiện cho các nút spin và zoom
+        document.getElementById('spin-left').addEventListener('click', function() {
+            if (model) {
+                model.rotation.y -= Math.PI / 8;
+            }
+        });
+        
+        document.getElementById('spin-right').addEventListener('click', function() {
+            if (model) {
+                model.rotation.y += Math.PI / 8;
+            }
+        });
+        
+        document.getElementById('zoom-in').addEventListener('click', function() {
+            if (camera.position.z > 3.5) {
+                camera.position.z -= 0.5;
+            }
+        });
+        
+        document.getElementById('zoom-out').addEventListener('click', function() {
+            if (camera.position.z < 10) {
+                camera.position.z += 0.5;
+            }
+        });
+        
+        // 360° Product Viewer Functionality (giữ lại code cũ cho phần thumbnails)
+        const productImages = [
+            "product.png",
+            "product.png",
+            "product.png",
+            "product.png",
+            "product.png",
+            "product.png",
+            "product.png",
+            "product.png"
+        ];
+        
+        // Color selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        const selectedColorText = document.getElementById('selected-color');
+        
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                colorOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedColorText.textContent = option.dataset.color;
+                
+                // Trong trường hợp thực tế, bạn có thể muốn thay đổi màu sắc của mô hình tại đây
+            });
+        });
+        
+        // Thumbnail click - cập nhật để xoay mô hình thay vì thay đổi ảnh
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                if (model) {
+                    // Tất cả nút thumbnails trở về trạng thái thường
+                    thumbnails.forEach(t => t.classList.remove('border-green-500'));
+                    // Nút được nhấp vào sẽ có viền xanh
+                    thumb.classList.add('border-green-500');
+                    
+                    // Xoay mô hình dựa trên index của nút được click
+                    if (index === 0) {
+                        // Front view
+                        model.rotation.y = 0;
+                    } else if (index === 1) {
+                        // Side view
+                        model.rotation.y = Math.PI / 2; // 90 độ
+                    } else if (index === 2) {
+                        // Back view
+                        model.rotation.y = Math.PI; // 180 độ
+                    } else if (index === 3) {
+                        // Detail view - zoom in gần hơn
+                        model.rotation.y = Math.PI * 1.25; // 225 độ
+                        // Zoom in cho chế độ detail
+                        camera.position.z = 3.5;
+                    }
+                }
+            });
+        });
+        
+        // Accordion functionality
+        const accordionButtons = document.querySelectorAll('footer button, main button');
+        
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                if(content && content.style) {
+                if(content.style.display === 'block') {
+                    content.style.display = 'none';
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    }
+                }
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

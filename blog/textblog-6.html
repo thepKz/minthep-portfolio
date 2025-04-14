@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Tiếng Hàn Cơ Bản</title>
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @media screen and (max-width: 1090px) {
+            .navbar-collapse {
+                display: block;
+            }
+        }
+
+        .header {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .header.hide {
+            transform: translateY(-100%);
+        }
+
+        .header.fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+        }
+
+        #table-of-contents {
+            background-color: rgba(243, 241, 241, 0.219) !important;
+            border: 1px solid #e9ecef !important;
+        }
+
+        .sticky-toc.fixed+.toc-placeholder {
+            display: block;
+        }
+
+        .sticky-toc.fixed {
+            position: fixed;
+            top: 120px;
+            right: 0px;
+            width: 200px;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sticky-toc.fixed a {
+            color: #495057;
+            transition: color 0.3s ease;
+        }
+
+        .sticky-toc.fixed a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 1520px) {
+            .sticky-toc.fixed {
+                display: none;
+                position: block !important;
+                width: 100%;
+                z-index: -9999;
+            }
+        }
+
+        .section-anchor {
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            color: #e91e63;
+            margin-top: 30px;
+        }
+
+        .section-anchor {
+            display: block;
+            position: relative;
+            top: -80px;
+            visibility: hidden;
+        }
+
+        #korean-header {
+            background-image: url(https://i.imgur.com/Z9kBud9.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            width: 100%;
+            height: 50vh;
+            position: relative;
+        }
+
+        #korean-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        #korean-header h1 {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding-top: 20vh;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #korean-content {
+            background-color: rgb(255, 255, 255);
+            margin-top: 40px !important;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .korean-letter {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            background-color: #f1f1f1;
+            border-radius: 50%;
+        }
+
+        .korean-example {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1.2rem;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .pronunciation {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .letter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .letter-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .letter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-card .korean-letter {
+            margin: 0 auto 10px;
+        }
+
+        .table {
+            font-size: 14px;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .patchim-example {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+                Min Thep
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="korean-header">
+        <h1>Tiếng Hàn Cơ Bản</h1>
+    </div>
+
+    <div class="container" id="korean-content">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="mb-4">
+                    <h2>Giới thiệu về Tiếng Hàn</h2>
+                    <p>
+                        Tiếng Hàn (한국어, Hangugeo) là ngôn ngữ chính thức của Hàn Quốc và Triều Tiên. Hệ thống chữ viết
+                        của tiếng Hàn được gọi là Hangul (한글), được vua Sejong Đại đế sáng tạo vào năm 1443 và được
+                        chính thức ban hành vào năm 1446.
+                    </p>
+                    <p>
+                        Điểm đặc biệt của Hangul là nó được thiết kế một cách khoa học, với hình dạng của các chữ cái
+                        phản ánh hình dạng miệng khi phát âm. Đây là một trong những hệ thống chữ viết dễ học nhất thế
+                        giới!
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="alphabet">Bảng chữ cái Hangul</h2>
+                    <p>
+                        Bảng chữ cái Hangul gồm 40 ký tự, chia thành 2 nhóm: nguyên âm và phụ âm. Các ký tự này kết hợp
+                        với nhau tạo thành các khối âm tiết.
+                    </p>
+
+                    <h3>Phụ âm cơ bản (자음, jaeum)</h3>
+                    <div class="letter-grid">
+                        <div class="letter-card">
+                            <div class="korean-letter">ㄱ</div>
+                            <div class="pronunciation">[g/k]</div>
+                            <div>Giống "g" trong "ga"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㄴ</div>
+                            <div class="pronunciation">[n]</div>
+                            <div>Giống "n" trong "na"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㄷ</div>
+                            <div class="pronunciation">[d/t]</div>
+                            <div>Giống "đ" trong "đi"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㄹ</div>
+                            <div class="pronunciation">[r/l]</div>
+                            <div>Giữa "r" và "l"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅁ</div>
+                            <div class="pronunciation">[m]</div>
+                            <div>Giống "m" trong "ma"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅂ</div>
+                            <div class="pronunciation">[b/p]</div>
+                            <div>Giống "b" trong "ba"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅅ</div>
+                            <div class="pronunciation">[s]</div>
+                            <div>Giống "x" trong "xa"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅇ</div>
+                            <div class="pronunciation">[ng/-]</div>
+                            <div>Đầu: im lặng, cuối: "ng"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅈ</div>
+                            <div class="pronunciation">[j]</div>
+                            <div>Giống "ch" trong "cha"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅊ</div>
+                            <div class="pronunciation">[ch]</div>
+                            <div>Giống "ch" nhưng mạnh hơn</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅋ</div>
+                            <div class="pronunciation">[k]</div>
+                            <div>Giống "k" trong "kẹo"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅌ</div>
+                            <div class="pronunciation">[t]</div>
+                            <div>Giống "t" trong "to"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅍ</div>
+                            <div class="pronunciation">[p]</div>
+                            <div>Giống "p" trong "pháo"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅎ</div>
+                            <div class="pronunciation">[h]</div>
+                            <div>Giống "h" trong "hát"</div>
+                        </div>
+                    </div>
+
+                    <h3>Nguyên âm cơ bản (모음, moeum)</h3>
+                    <div class="letter-grid">
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅏ</div>
+                            <div class="pronunciation">[a]</div>
+                            <div>Giống "a" trong "ta"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅑ</div>
+                            <div class="pronunciation">[ya]</div>
+                            <div>Giống "ya" trong "ya"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅓ</div>
+                            <div class="pronunciation">[eo]</div>
+                            <div>Giống "ơ" trong "mơ"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅕ</div>
+                            <div class="pronunciation">[yeo]</div>
+                            <div>Giống "yơ"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅗ</div>
+                            <div class="pronunciation">[o]</div>
+                            <div>Giống "ô" trong "tô"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅛ</div>
+                            <div class="pronunciation">[yo]</div>
+                            <div>Giống "yo"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅜ</div>
+                            <div class="pronunciation">[u]</div>
+                            <div>Giống "u" trong "tu"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅠ</div>
+                            <div class="pronunciation">[yu]</div>
+                            <div>Giống "yu"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅡ</div>
+                            <div class="pronunciation">[eu]</div>
+                            <div>Giống "ư" trong "tư"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅣ</div>
+                            <div class="pronunciation">[i]</div>
+                            <div>Giống "i" trong "ti"</div>
+                        </div>
+                    </div>
+
+                    <h3>Nguyên âm kép (thường gặp)</h3>
+                    <div class="letter-grid">
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅐ</div>
+                            <div class="pronunciation">[ae]</div>
+                            <div>Giống "e" trong "xe"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅒ</div>
+                            <div class="pronunciation">[yae]</div>
+                            <div>Giống "ye"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅔ</div>
+                            <div class="pronunciation">[e]</div>
+                            <div>Giống "ê" trong "mê"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅖ</div>
+                            <div class="pronunciation">[ye]</div>
+                            <div>Giống "yê"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅘ</div>
+                            <div class="pronunciation">[wa]</div>
+                            <div>Giống "oa" trong "hoa"</div>
+                        </div>
+                        <div class="letter-card">
+                            <div class="korean-letter">ㅙ</div>
+                            <div class="pronunciation">[wae]</div>
+                            <div>Giống "oe"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="syllables">Cấu trúc âm tiết trong tiếng Hàn</h2>
+                    <p>
+                        Các chữ cái trong tiếng Hàn không được viết theo hàng ngang như tiếng Việt, mà được tổ chức
+                        thành các khối. Mỗi khối đại diện cho một âm tiết và thường có cấu trúc: phụ âm đầu + nguyên âm
+                        + phụ âm cuối (tùy chọn).
+                    </p>
+
+                    <div class="korean-example">
+                        <p><span class="korean-letter">가</span> = ㄱ (g) + ㅏ (a) = ga</p>
+                        <p><span class="korean-letter">한</span> = ㅎ (h) + ㅏ (a) + ㄴ (n) = han</p>
+                        <p><span class="korean-letter">글</span> = ㄱ (g) + ㅡ (eu) + ㄹ (l) = geul</p>
+                    </div>
+
+                    <p>
+                        <strong>Lưu ý quan trọng:</strong> Mọi âm tiết trong tiếng Hàn phải bắt đầu bằng một phụ âm.
+                        Nếu âm tiết bắt đầu bằng nguyên âm, ta sẽ sử dụng phụ âm "ㅇ" - đây là một phụ âm đặc biệt
+                        không phát âm khi đứng ở vị trí đầu, nhưng phát âm như "ng" khi đứng ở vị trí cuối.
+                    </p>
+
+                    <div class="korean-example">
+                        <p><span class="korean-letter">아</span> = ㅇ (im lặng) + ㅏ (a) = a</p>
+                        <p><span class="korean-letter">안</span> = ㅇ (im lặng) + ㅏ (a) + ㄴ (n) = an</p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="patchim">Patchim (받침) - Phụ âm cuối</h2>
+                    <p>
+                        Patchim là phụ âm cuối trong một âm tiết tiếng Hàn. Nó có thể thay đổi cách phát âm của phụ âm
+                        đó và ảnh hưởng đến âm tiết tiếp theo. Đây là một trong những khía cạnh phức tạp nhất khi học
+                        tiếng Hàn.
+                    </p>
+
+                    <h3>Quy tắc phát âm Patchim:</h3>
+                    <p>
+                        Không phải tất cả các phụ âm đều được phát âm giống nhau khi ở vị trí cuối âm tiết. Một số quy
+                        tắc quan trọng:
+                    </p>
+
+                    <div class="patchim-example">
+                        <h4>1. Quy tắc phát âm 7 âm cuối</h4>
+                        <p>
+                            Trong tiếng Hàn, mặc dù có 14 phụ âm, nhưng khi ở vị trí cuối (patchim), chúng chỉ được
+                            phát âm theo 7 cách:
+                        </p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Phụ âm</th>
+                                    <th>Phát âm như</th>
+                                    <th>Ví dụ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ㄱ, ㄲ, ㅋ</td>
+                                    <td>[k]</td>
+                                    <td>먹다 (meokda) - ăn</td>
+                                </tr>
+                                <tr>
+                                    <td>ㄴ</td>
+                                    <td>[n]</td>
+                                    <td>안녕 (annyeong) - xin chào</td>
+                                </tr>
+                                <tr>
+                                    <td>ㄷ, ㄸ, ㅌ, ㅅ, ㅆ, ㅈ, ㅊ, ㅎ</td>
+                                    <td>[t]</td>
+                                    <td>있다 (itda) - có</td>
+                                </tr>
+                                <tr>
+                                    <td>ㄹ</td>
+                                    <td>[l]</td>
+                                    <td>말 (mal) - ngựa</td>
+                                </tr>
+                                <tr>
+                                    <td>ㅁ</td>
+                                    <td>[m]</td>
+                                    <td>감사 (gamsa) - cảm ơn</td>
+                                </tr>
+                                <tr>
+                                    <td>ㅂ, ㅍ</td>
+                                    <td>[p]</td>
+                                    <td>밥 (bap) - cơm</td>
+                                </tr>
+                                <tr>
+                                    <td>ㅇ</td>
+                                    <td>[ng]</td>
+                                    <td>방 (bang) - phòng</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="patchim-example">
+                        <h4>2. Patchim và liên kết âm</h4>
+                        <p>
+                            Khi một từ có patchim được theo sau bởi một từ bắt đầu bằng nguyên âm, patchim sẽ được
+                            chuyển sang âm tiết sau như phụ âm đầu. Đây gọi là hiện tượng "nối âm" (linking).
+                        </p>
+                        <div class="korean-example">
+                            <p>
+                                <span class="korean-letter">있</span> + <span class="korean-letter">어</span> =
+                                <span class="korean-letter">이</span> + <span class="korean-letter">써</span>
+                            </p>
+                            <p><strong>it</strong> + <strong>eo</strong> = <strong>i</strong> + <strong>sseo</strong></p>
+                            <p><strong>있어</strong> (isseo) - có</p>
+                        </div>
+                    </div>
+
+                    <div class="patchim-example">
+                        <h4>3. Patchim và biến âm</h4>
+                        <p>
+                            Patchim còn gây ra hiện tượng biến âm khi gặp các phụ âm khác. Ví dụ khi ㄱ, ㄷ, ㅂ (âm
+                            không bật hơi) theo sau một patchim, chúng sẽ chuyển thành ㅋ, ㅌ, ㅍ (âm bật hơi).
+                        </p>
+                        <div class="korean-example">
+                            <p>
+                                <span class="korean-letter">학</span> + <span class="korean-letter">교</span> =
+                                <span class="korean-letter">학</span> + <span class="korean-letter">꾜</span>
+                            </p>
+                            <p><strong>hak</strong> + <strong>gyo</strong> = <strong>hak</strong> + <strong>kyo</strong></p>
+                            <p><strong>학교</strong> (hakgyo → hakkyo) - trường học</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="pronunciation">Tại sao đọc đôi khi lại khác?</h2>
+                    <p>
+                        Có nhiều lý do khiến cách đọc tiếng Hàn đôi khi khác với cách viết:
+                    </p>
+
+                    <h3>1. Assimilation (Đồng hóa âm)</h3>
+                    <p>
+                        Đây là hiện tượng khi hai âm gần nhau ảnh hưởng lẫn nhau, làm cho một âm trở nên giống âm kia hơn.
+                    </p>
+                    <div class="korean-example">
+                        <p>
+                            <strong>신라</strong> (Silla) - được viết là "Sinla" nhưng đọc là "Silla" do hiện tượng đồng hóa
+                            của ㄴ với ㄹ
+                        </p>
+                    </div>
+
+                    <h3>2. Tensification (Căng âm)</h3>
+                    <p>
+                        Khi một phụ âm thường gặp một phụ âm khác, nó có thể biến thành phụ âm căng (ㄲ, ㄸ, ㅃ, ㅆ, ㅉ).
+                    </p>
+                    <div class="korean-example">
+                        <p>
+                            <strong>한국</strong> (Hanguk → Hanguk) - "Hàn Quốc", ㄱ không biến thành ㅋ do quy tắc phát âm
+                        </p>
+                    </div>
+
+                    <h3>3. Palatalization (Vòm hóa)</h3>
+                    <p>
+                        Hiện tượng này xảy ra khi ㄷ hoặc ㅌ gặp ㅣ, chúng sẽ biến thành ㅈ hoặc ㅊ.
+                    </p>
+                    <div class="korean-example">
+                        <p>
+                            <strong>같이</strong> (gachi) - "cùng nhau", được viết là "gat-i" nhưng đọc là "gachi"
+                        </p>
+                    </div>
+
+                    <h3>4. Final consonant neutralization (Trung hòa phụ âm cuối)</h3>
+                    <p>
+                        Như đã đề cập ở phần patchim, các phụ âm cuối được phát âm theo 7 cách cơ bản, dù có 14 phụ âm.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="example">Ví dụ thực tế</h2>
+                    <p>
+                        Hãy xem một số ví dụ thực tế để hiểu rõ hơn về cách đọc và viết tiếng Hàn:
+                    </p>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Chữ Hàn</th>
+                                <th>Phiên âm</th>
+                                <th>Phát âm thực tế</th>
+                                <th>Ý nghĩa</th>
+                                <th>Giải thích</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>안녕하세요</td>
+                                <td>annyeong-haseyo</td>
+                                <td>an-nyeong-ha-se-yo</td>
+                                <td>Xin chào</td>
+                                <td>ㄴ + ㄴ = ㄴㄴ (nn)</td>
+                            </tr>
+                            <tr>
+                                <td>감사합니다</td>
+                                <td>gamsahamnida</td>
+                                <td>gam-sa-ham-ni-da</td>
+                                <td>Cảm ơn</td>
+                                <td>ㅂ + ㄴ = ㅁㄴ (mn)</td>
+                            </tr>
+                            <tr>
+                                <td>학교</td>
+                                <td>hakgyo</td>
+                                <td>hak-kyo</td>
+                                <td>Trường học</td>
+                                <td>ㄱ sau patchim phát âm như ㅋ (k)</td>
+                            </tr>
+                            <tr>
+                                <td>좋아요</td>
+                                <td>johayo</td>
+                                <td>jo-a-yo</td>
+                                <td>Tốt, thích</td>
+                                <td>ㅎ giữa nguyên âm thường không phát âm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mb-4">
+                    <h2 id="practice">Bài tập luyện tập</h2>
+                    <p>
+                        Hãy thử đọc và viết các từ sau đây:
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Đọc các từ sau:</h3>
+                            <ol>
+                                <li>한국 (Hàn Quốc)</li>
+                                <li>서울 (Seoul)</li>
+                                <li>김치 (Kim chi)</li>
+                                <li>사랑해요 (Tôi yêu bạn)</li>
+                                <li>친구 (Bạn bè)</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Viết các từ sau bằng Hangul:</h3>
+                            <ol>
+                                <li>annyeong (Xin chào)</li>
+                                <li>kamsahamnida (Cảm ơn)</li>
+                                <li>saranghae (Yêu)</li>
+                                <li>hangugeo (Tiếng Hàn)</li>
+                                <li>ajikdo (Vẫn còn)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="sticky-toc fixed" id="table-of-contents">
+                    <h4>Mục lục</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#alphabet">Bảng chữ cái Hangul</a></li>
+                        <li class="list-group-item"><a href="#syllables">Cấu trúc âm tiết</a></li>
+                        <li class="list-group-item"><a href="#patchim">Patchim (받침)</a></li>
+                        <li class="list-group-item"><a href="#pronunciation">Tại sao đọc đôi khi lại khác?</a></li>
+                        <li class="list-group-item"><a href="#example">Ví dụ thực tế</a></li>
+                        <li class="list-group-item"><a href="#practice">Bài tập luyện tập</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Tiếng Hàn Cơ Bản</h5>
+                    <p>Học tiếng Hàn từ căn bản đến nâng cao một cách dễ dàng và hiệu quả.</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <h5>Liên hệ</h5>
+                    <p>Email: contact@example.com</p>
+                    <p>© 2023 Tiếng Hàn Cơ Bản. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Xử lý menu trượt
+        let prevScrollPos = window.pageYOffset;
+        window.onscroll = function() {
+            const currentScrollPos = window.pageYOffset;
+            if (prevScrollPos > currentScrollPos) {
+                document.querySelector('.navbar').style.top = "0";
+            } else {
+                document.querySelector('.navbar').style.top = "-60px";
+            }
+            prevScrollPos = currentScrollPos;
+        }
+
+        // Xử lý bảng mục lục cố định
+        window.addEventListener('scroll', function() {
+            const toc = document.querySelector('.sticky-toc');
+            const koreanContent = document.getElementById('korean-content');
+            
+            if (window.scrollY > 350 && window.innerWidth > 1520) {
+                toc.classList.add('fixed');
+            } else {
+                toc.classList.remove('fixed');
+            }
+        });
+    </script>
+</body>
+
+</html>
