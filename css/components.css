@@ -122,8 +122,12 @@
   min-block-size: var(--c-tap);
   padding-inline: var(--s-5);
   border-radius: var(--r-sm);
-  background-color: var(--accent-500);
-  color: var(--on-accent);         /* 5.00:1 */
+  /* Was --accent-500: 5.00:1 but APCA Lc 37.4 at 15px/500. This is the first
+     thing a keyboard user ever focuses and it was the weakest fill on the page.
+     --accent-fill is the same token the primary button now uses, so the two
+     agree: 6.86:1 / Lc 48.7. */
+  background-color: var(--accent-fill);
+  color: var(--on-accent);         /* 6.86:1 · APCA Lc 48.7 */
   font-weight: 500;
   font-size: var(--fs-body-sm);
   letter-spacing: var(--ls-nav);
@@ -629,14 +633,14 @@
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-label);
 }
 
 [data-eyebrow]::before {
   content: '';
   flex: 0 0 var(--c-eyebrow-rule);
   block-size: var(--bw-hair);
-  background-color: var(--accent-500);
+  background-color: var(--accent-edge);
 }
 
 [data-eyebrow][data-rule='none']::before {
@@ -692,13 +696,19 @@
 /* --- primary ------------------------------------------------------------- */
 
 .btn[data-variant='primary'] {
-  background-color: var(--accent-500);
-  color: var(--on-accent);              /* 5.00:1 */
+  /* Was --accent-500. That pair is 5.00:1, a WCAG pass, but APCA Lc 37.4 at
+     this button's 15px/500 where fluent text wants ~60 — and an in-gamut sweep
+     showed near-black labels cap near Lc 52 anywhere in the rose family, so it
+     could not be tuned in place. One step up the ramp reaches 6.86:1 / Lc 48.7:
+     better on both models, and brighter rather than darker, which matters on a
+     page whose measured problem is that saturated paint covers 0.128% of it. */
+  background-color: var(--accent-fill);
+  color: var(--on-accent);              /* 6.86:1 · APCA Lc 48.7 */
 }
 
 .btn[data-variant='primary']:hover,
 .btn[data-variant='primary']:focus-visible {
-  background-color: var(--accent-fill-hover);  /* 6.87:1 against --on-accent */
+  background-color: var(--accent-fill-hover);  /* 10.61:1 · APCA Lc 67.9 */
 }
 
 .btn[data-variant='primary']:active:not([disabled]) {
@@ -1105,6 +1115,23 @@ svg[data-icon][data-size='lg'] { --c-icon: 1.5em; }
 
    Round up, never down: over-reserving settles by shrinking once, which
    scroll anchoring absorbs; under-reserving grows under the cursor.
+
+   THE HOME PAGE'S NUMBERS ARE MEASURED, NOT ESTIMATED — do not "tidy" them
+   back to round guesses. Every [data-cv] section was rendered and measured at
+   390x844, 768x1024, 1280x800, 1440x900 and 1920x1080, and the inline value is
+   the tallest of the five rounded up to the next 100px:
+
+     skills 3877 -> 3900   portfolio 6183 -> 6200   experience 2482 -> 2500
+     service/testimonials/faq 1362 -> 1400          contact 1482 -> 1500
+
+   Six of the seven previously under-reserved — portfolio held 5900 for 6183,
+   and the four that fell through to the 100dvh default held 900 for ~1360 —
+   so the document grew ~1900px under the cursor on the first pass down the
+   page, which is the "fighting the wheel" feel this comment already warns
+   about. These sections are TALLER at 768px than at 1440px because the text
+   wraps more, so the widest viewport is not the worst case and measuring only
+   the desktop width is how the old numbers ended up short.
+   Re-measure with scratchpad/cvsize.mjs after any content change.
    ========================================================================== */
 
 [data-cv] {

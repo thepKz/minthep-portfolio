@@ -52,6 +52,38 @@
    and so the first thing to cut if the perf gate fails. */
 @property --a-spine  { syntax: '<number>'; inherits: true;  initial-value: 0; }
 
+/* SECTION SIGNATURES (§10). Every one of these is inherits: true on purpose and
+   for the same reason as --a-spine: each drives pseudo-elements, and a pseudo
+   inherits from its originating element, so at inherits: false it would read
+   initial-value forever and nothing would ever move. The cost is a subtree style
+   invalidation per frame, which is why each is declared on the tightest possible
+   container (.services, not :root) and why the counts are written down beside
+   each rule.
+
+   READ THE INITIAL-VALUES. Every one is the FINISHED state, not the starting
+   state — 1, 4, 1, 6, 1, not 0. That is the whole no-JS and reduced-motion
+   contract in one line: with nothing running, `clamp(0, 4 - 3, 1)` is 1 for
+   every row, so the page renders complete. JS animates FROM 0, which is only
+   ever reachable while JS is live. Invert any of these and the page ships blank
+   to every reader without motion. */
+/* INTEGRATION FIX — this was inherits: false, which is the one value it cannot
+   have. JS writes --a-read on .ledger-skills; the only rule that READS it is
+   .ledger-skills::after (10.1). A pseudo-element inherits from its originating
+   element, so a NON-inheriting registered property never reaches it: the pseudo
+   computes the initial-value instead. Measured on a full-page crawl, the element
+   swept 1 -> 0.0337 -> 0.9999 exactly as animated while the pseudo's translate
+   held one single value, 0px 100%, for every frame — the read-head sat parked at
+   the foot of a 3044px ledger and never travelled. Same shape as the bug
+   --a-spine already documents two blocks down, which is why that one is
+   inherits: true. initial-value stays 1 so the finished-state contract above is
+   untouched, and nothing else in the file or the page reads this name, so
+   inheriting it into .ledger-skills' descendants collides with nothing. */
+@property --a-read   { syntax: '<number>'; inherits: true;  initial-value: 1; }
+@property --a-svc    { syntax: '<number>'; inherits: true;  initial-value: 4; }
+@property --a-quote  { syntax: '<number>'; inherits: true;  initial-value: 1; }
+@property --a-faq    { syntax: '<number>'; inherits: true;  initial-value: 6; }
+@property --a-close  { syntax: '<number>'; inherits: true;  initial-value: 1; }
+
 /* SPEC GAP — --a-mark is deliberately NOT registered, though MOTION-SPEC §1.1
    says it should be. Registering it breaks 34 skill rows.
    The name is already taken: surface-a.css:139 declares --a-mark on :root as
@@ -296,6 +328,271 @@
 .no-js .plate__media { clip-path: none; }
 
 
+/* 10. SECTION SIGNATURES =====================================================
+   WHY THIS EXISTS. Measured before writing any of it: the page had 7
+   ScrollTriggers and 5 of them served the hero, the experience ledger and the
+   footer. #skills, #service and #testimonials had exactly ONE effect each and it
+   was the SAME effect — the shared 18px [data-reveal] fade. #faq and #contact
+   had none at all: 0 reveals, 0 triggers, 0 CSS animations, so a reader who
+   scrolled past without clicking saw literally nothing move. Five of eight
+   sections read as one beat repeated and the last two read as silence.
+
+   Each block below gives one section a grammar that appears nowhere else:
+     skills        a rule TRAVELS the list         (translate, vertical)
+     service       hairlines LIGHT one by one      (scaleX, horizontal)
+     testimonials  quote marks BLOOM               (scale + rotate)
+     faq           markers SNAP into place         (rotate, repeated glyph)
+     contact       a rule EXTENDS, buttons SETTLE  (scaleX + rotate on controls)
+   Different axis, different property, different object — so no two adjacent
+   sections can read as the same thing.
+
+   THE SEQUENCING TRICK, used by service / testimonials / faq. One tween ramps a
+   single number across the whole group (0→4, 0→3, 0→6); each child subtracts its
+   own index and clamps to 0..1. Child n therefore has its full ramp while the
+   number crosses n→n+1, so they fire strictly one after another off ONE
+   ScrollTrigger. That is what "từng cái một" costs here: one trigger, not four.
+
+   SCRUB ONLY, NEVER toggleActions, for anything inside a content-visibility:auto
+   section. Measured: probe one-shots on #faq and #contact both fired onEnter at
+   the SAME scrollY — the document maximum at that instant — because the document
+   collapsed under them as sections realised. A scrub recomputes progress from
+   corrected start/end on the next frame, so the worst case is one wrong frame
+   instead of a fire that is missed or duplicated. The correction path is §5.4's
+   contentvisibilityautostatechange refresh, which already exists.
+
+   NO PINS, so C6 holds and no pin-spacer can be injected into a section whose
+   height is reserved by --cv-size. Everything here is transform, opacity or
+   colour: nothing below can change any section's height. */
+
+/* 10.1 SKILLS — the read-head.
+   3044px of ledger used to get one 350ms fade and then ~2400px of nothing. A
+   single accent rule now travels the full length of the list as you scroll.
+   A percentage in `translate` resolves against the element's OWN border box, so
+   a ::after at block-size: 100% travels its own full height with no pixel
+   constant from JS — JS still writes only a unitless 0..1, per RULE A. */
+.has-motion .ledger-skills {
+  position: relative;
+  --a-read: 1;
+}
+
+.has-motion .ledger-skills::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 100%;
+  border-block-start: var(--bw-rule) solid var(--accent-500);
+  pointer-events: none;
+  /* The only visible part is that 2px top border; the rest of the box is
+     transparent and inert. One node restyled, one composited transform. */
+  translate: 0 calc(var(--a-read, 1) * 100%);
+}
+
+/* 10.2 SERVICE — four hairlines, one after another.
+   Each row already has an --ink-700 bottom hairline (surface-a.css:1299). This
+   LIGHTS it rather than replacing it — the same "draw over what is already
+   there" move the ledger spine makes, but horizontal and sequential, so the two
+   never read as the same effect. --sr comes from :nth-child(), so no markup
+   changes and no new attribute anywhere: C3 additive-only, index.html untouched. */
+.has-motion .services { --a-svc: 4; }
+
+.has-motion .service-row {
+  position: relative;
+  --sr: 0;
+  --a-lit: clamp(0, calc(var(--a-svc, 4) - var(--sr, 0)), 1);
+}
+.has-motion .service-row:nth-child(2) { --sr: 1; }
+.has-motion .service-row:nth-child(3) { --sr: 2; }
+.has-motion .service-row:nth-child(4) { --sr: 3; }
+
+.has-motion .service-row::after {
+  content: '';
+  position: absolute;
+  /* NOT inset-inline: 0. An absolutely positioned box resolves its insets
+     against the ancestor's PADDING box, and every .service-row carries
+     `border-inline-start: var(--bw-slab) solid transparent`
+     (surface-a.css:1401) — 4px that only becomes visible --accent-500 on the
+     featured row. So a 0 start inset put this lit hairline 4px inside the
+     --ink-700 border-box hairline it is supposed to be drawing over: measured
+     1236px against 1240px, a 4px stub of unlit rule left at the head of every
+     row, right where the featured row's slab makes it most obvious. Pulling
+     the start edge out by exactly the border width lands the two on the same
+     left edge. The end inset stays 0: there is no inline-end border. */
+  inset-inline-start: calc(var(--bw-slab) * -1);
+  inset-inline-end: 0;
+  inset-block-end: calc(var(--bw-hair) * -1);
+  block-size: var(--bw-hair);
+  background-color: var(--accent-500);
+  transform-origin: left;
+  scale: var(--a-lit, 1) 1;
+  pointer-events: none;
+}
+
+/* Rides the same --a-lit, so the arrow arrives exactly as its row's rule
+   finishes drawing.
+
+   SCOPED TO <=768px, AND THE SCOPE IS THE WHOLE POINT. Unscoped, this was work
+   nobody could see: above 768px .service-row__arrow is opacity: 0 until hover
+   (surface-a.css:1479), and the hover rule at :1486 (0,3,0) outranks this one
+   (0,2,0) the instant it does become visible — so the scrub wrote a fresh
+   translate onto four nodes every frame to move zero visible pixels. Probed at
+   1440: all four arrows report opacity 0 at every scroll position across the
+   whole window, while translate dutifully ramps -24px -> 0.
+
+   THE WORK ORDER SAID DELETE IT. That would have been wrong, and the probe is
+   why: at 390 the same four arrows report opacity 1 at every scroll position,
+   because surface-a.css:1503-1508 makes the arrow permanently visible below
+   768px — there is no hover on touch, so the affordance has to be. This is not
+   dead code; it is desktop-dead code with a live phone half. The half that
+   reads ships, the half that cannot be seen stops running.
+
+   transition-property, for the same reason as the FAQ marker in §10.4 below:
+   surface-a.css:1481 puts a 260ms transition on `translate`, and a transition
+   cannot share a property with a per-frame scrub. The probe caught that too —
+   at --a-svc 3.94, rows whose --a-lit had already reached 1 still computed
+   -24px, so the arrow snapped at the end instead of riding in with its rule.
+   opacity keeps its transition; below 768px opacity never changes, so nothing
+   is lost and the declared intent stays legible to the next reader. */
+@media (max-width: 768px) {
+  .has-motion .service-row__arrow {
+    transition-property: opacity;
+    translate: calc((1 - var(--a-lit, 1)) * -24px) 0;
+  }
+}
+
+/* 10.3 TESTIMONIALS — the quote marks bloom.
+   The three .quote::before opening marks are already an 80px serif glyph at
+   --ink-800 (surface-a.css:1447) — the largest unused graphic on the page.
+   Scale + rotate is a grammar used in no other section. The mark is decorative
+   pseudo-content sitting BEHIND the text at --z-base, never body copy, so the
+   animated opacity floor of 0.25 is not a contrast question (C8); the quote text
+   itself is never touched. */
+.has-motion .quotes { --a-quote: 1; }
+
+.has-motion .quote {
+  --qi: 0;
+  /* ×3 gives each of the three marks its own full 0→1 ramp inside one tween. */
+  --a-lit: clamp(0, calc(var(--a-quote, 1) * 3 - var(--qi, 0)), 1);
+}
+.has-motion .quote:nth-child(2) { --qi: 1; }
+.has-motion .quote:nth-child(3) { --qi: 2; }
+
+.has-motion .quote::before {
+  scale: calc(0.62 + var(--a-lit, 1) * 0.38);
+  rotate: calc((1 - var(--a-lit, 1)) * -14deg);
+  opacity: calc(0.25 + var(--a-lit, 1) * 0.75);
+  /* The one paint-class declaration in this whole section. If a profile ever
+     shows it hot, delete this line and the scale/rotate/opacity still carry the
+     effect intact.
+
+     THE MIX TARGET IS --accent-ink, NOT --accent-700. The bloom used to end on
+     --accent-700 #8E2B37, which measures 2.38:1 against this section's ground —
+     a mark that scales up, rotates in, reaches full opacity, and lands on a
+     colour the eye cannot separate from the field behind it. An effect whose
+     final frame is invisible is not an effect, and it is a literal instance of
+     the complaint that started this pass. --accent-ink resolves to --accent-400
+     here (#testimonials is a cold section) at 6.57:1, so the mark now actually
+     arrives. Alias rather than literal, so the mark follows its section's
+     temperature if #testimonials ever moves onto the warm ground.
+     The opacity floor argument above is unchanged and still holds: this is
+     decorative pseudo-content behind the text at --z-base, never body copy. */
+  color: color-mix(in oklab, var(--accent-ink) calc(var(--a-lit, 1) * 100%), var(--ink-800));
+}
+
+/* 10.4 FAQ — six markers snap into place.
+   The six .faq__q::after '+' markers already rotate 45deg on open
+   (surface-a.css:1600). Reusing that exact object for a scroll cascade teaches
+   the marker's language before the reader ever clicks one.
+
+   :not([open]) IS MANDATORY, NOT DEFENSIVE. Without it this rule fights the
+   open-state rotate and an expanded panel shows a '+' where its '×' should be. */
+.has-motion .faq { --a-faq: 6; }
+
+.has-motion .faq__item {
+  --fi: 0;
+  --a-lit: clamp(0, calc(var(--a-faq, 6) - var(--fi, 0)), 1);
+}
+.has-motion .faq__item:nth-child(2) { --fi: 1; }
+.has-motion .faq__item:nth-child(3) { --fi: 2; }
+.has-motion .faq__item:nth-child(4) { --fi: 3; }
+.has-motion .faq__item:nth-child(5) { --fi: 4; }
+.has-motion .faq__item:nth-child(6) { --fi: 5; }
+
+.has-motion .faq__item:not([open]) > .faq__q::after {
+  /* THE SCRUB HAS TO OWN `rotate`, OR NOTHING MOVES. surface-a.css:1690 puts a
+     260ms --dur-3 transition on this pseudo's `rotate` so the '+' eases into
+     its '×' on open. A transition and a scrub cannot share one property: every
+     frame the scrub writes a new target, the 260ms transition restarts from
+     wherever it had crawled to, and the value Zenoes instead of arriving.
+     Measured before this line existed, the marker sat at 0.87deg across the
+     whole window, creeping -89.3655 -> -88.4971 and never reaching 0 — the
+     cascade was fighting the tween, so the section's whole signature was
+     invisible on a page whose owner had just said the effects don't read.
+
+     transition-property here REPLACES the shorthand's property list only; the
+     durations and easings in that shorthand still apply to what survives, so
+     background-color keeps its --dur-2 fade. And the moment the item opens this
+     selector stops matching, the full shorthand is back, and the 0->45deg open
+     rotation eases exactly as it always has: transitions read the AFTER-change
+     style's transition-property, so the open animation is not lost. */
+  transition-property: background-color;
+  rotate: calc((1 - var(--a-lit, 1)) * -90deg);
+  scale: calc(0.2 + var(--a-lit, 1) * 0.8);
+  opacity: var(--a-lit, 1);
+}
+
+/* .faq__q is a real <summary> — a focusable control. translate never removes it
+   from the hit test or the a11y tree, and its resting value is 0 because
+   --a-faq's initial-value is its finished 6. */
+.has-motion .faq__q {
+  translate: calc((1 - var(--a-lit, 1)) * 20px) 0;
+}
+
+/* 10.5 CONTACT — the rule extends, the buttons settle.
+   The close of the page, and previously its deadest section. The head rule is
+   64px × 2px (--a-sec-rule, surface-a.css:291); ×9 is 576px against a 760px
+   .shell--narrow, i.e. 76% of the column — an underline that sweeps most of the
+   way across and stops, which reads as deliberate rather than as a full-bleed
+   line. scale never affects layout, so #contact's --cv-size reservation is
+   untouched.
+   The buttons are interactive and must be square and legible at rest: --a-close
+   rests at 1, so rotate is 0deg and translate is 0 in every non-JS state. */
+.has-motion #contact .shell--narrow { --a-close: 1; }
+
+.has-motion #contact .section-a__head::before {
+  transform-origin: left center;
+  scale: calc(1 + var(--a-close, 1) * 8) 1;
+}
+
+.has-motion #contact .form-a__actions .btn {
+  --bi: 1;
+  translate: 0 calc((1 - var(--a-close, 1)) * 26px);
+  rotate: calc((1 - var(--a-close, 1)) * (var(--bi, 1) - 1) * 3deg);
+}
+.has-motion #contact .form-a__actions a.btn:nth-of-type(1) { --bi: 0; }
+.has-motion #contact .form-a__actions a.btn:nth-of-type(3) { --bi: 2; }
+
+/* 10.6 PORTFOLIO — zero-trigger upgrade, CSS only.
+   #portfolio is NOT inert (it has the media curtain plus the fade), so spending
+   a ScrollTrigger on the best-served section would be wrong. But the nine
+   .plate__index numbers are 56px display type doing nothing. Curtaining them
+   reuses the clip-path grammar of the hero name and the footer wordmark, at zero
+   JS cost, riding the .is-in class core.js already sets.
+
+   THE INSETS ARE LOAD-BEARING AND COPIED VERBATIM from surface-a.css:458 —
+   never re-derived. An authored 0 top inset clips the stacked marks on
+   Ấ Ầ Ẫ Ế Ộ Ữ; -26% / -16% is the measured headroom that does not. */
+.js .plate[data-reveal] .plate__index {
+  clip-path: inset(-26% 0 100% 0);
+  transition: clip-path var(--dur-6) var(--ease-mask);
+  transition-delay: var(--dur-3);
+}
+
+.js .plate[data-reveal].is-in .plate__index {
+  clip-path: inset(-26% 0 -16% 0);
+}
+
+
 /* 9. REDUCED MOTION — KILL SWITCH. LAST BLOCK IN THE FILE, BY CONTRACT. ======
    Neutralises every effect this file introduces, landing each in its readable
    final state.
@@ -348,4 +645,45 @@
     clip-path: none;
     translate: none;
   }
+
+  /* --- §10 section signatures ---------------------------------------------
+     None of these rest states is blank, and that is the point: every §10
+     property's @property initial-value IS its finished value (--a-read 1,
+     --a-svc 4, --a-quote 1, --a-faq 6, --a-close 1), so the no-JS page and the
+     cold reduced-motion page already render complete without a single rule
+     here. This block exists only for the live case §9 describes — a reader
+     flipping the OS setting mid-session, when .has-motion is already on the
+     element and JS may have left a number mid-ramp. */
+
+  /* content: none rather than opacity: 0 — removing the pseudo releases its
+     layer and leaves the section exactly as it shipped before §10 existed. */
+  .has-motion .ledger-skills::after { content: none; }
+  .has-motion .service-row::after   { content: none; }
+
+  .has-motion .service-row__arrow { translate: none; }
+
+  .has-motion .quote::before {
+    scale: none;
+    rotate: none;
+    opacity: 1;
+    color: var(--ink-800);      /* surface-a.css:1457, the shipped value */
+  }
+
+  .has-motion .faq__item:not([open]) > .faq__q::after {
+    rotate: 0deg;               /* not `none`: the open-state rule sets 45deg */
+    scale: none;
+    opacity: 1;
+  }
+  .has-motion .faq__q { translate: none; }
+
+  .has-motion #contact .section-a__head::before { scale: none; }
+  .has-motion #contact .form-a__actions .btn {
+    translate: none;
+    rotate: none;
+  }
+
+  /* Both ends, so no plate index is caught mid-curtain if the preference flips
+     while a transition is in flight — same reasoning as .plate__media above. */
+  .js .plate[data-reveal] .plate__index,
+  .js .plate[data-reveal].is-in .plate__index { clip-path: none; }
 }

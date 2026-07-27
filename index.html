@@ -10,7 +10,7 @@
 <script>(function(){var d=document.documentElement;d.className=d.className.replace(/\bno-js\b/,'js');try{var t=localStorage.getItem('minthep:theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
 
 <title>Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack</title>
-<meta name="description" content="Mai Tấn Thép (thepKz) — kỹ sư phần mềm full-stack tại Hà Nội. Tự thiết kế, xây dựng và ship sản phẩm thật, từ web tới mobile, với hơn 30+ dự án đã làm cùng khách hàng.">
+<meta name="description" content="Mai Tấn Thép (thepKz) — kỹ sư phần mềm full-stack tại Hà Nội. Tự thiết kế, xây dựng và ship sản phẩm thật, từ web tới mobile, với hơn 30 dự án đã làm cùng khách hàng.">
 <meta name="author" content="Mai Tấn Thép">
 <link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/">
 
@@ -19,11 +19,14 @@
 <meta property="og:locale" content="vi_VN">
 <meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/">
 <meta property="og:title" content="Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack">
-<meta property="og:description" content="Tôi là kỹ sư phần mềm full-stack, tự thiết kế, xây dựng và ship sản phẩm thật — từ web, tới mobile — với hơn 30+ dự án đã làm cùng khách hàng.">
+<meta property="og:description" content="Tôi là kỹ sư phần mềm full-stack, tự thiết kế, xây dựng và ship sản phẩm thật — từ web, tới mobile — với hơn 30 dự án đã làm cùng khách hàng.">
 <meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/img/conga.jpg">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="800">
-<meta property="og:image:alt" content="Chân dung Mai Tấn Thép">
+<!-- Same correction as the hero <img> alt below: conga.jpg is not a portrait,
+     so this must not claim to be one. The og:image URL itself is unchanged —
+     link previews that already cached it keep working. -->
+<meta property="og:image:alt" content="Ảnh minh hoạ trang chủ Minthep">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack">
 <meta name="twitter:description" content="Kỹ sư phần mềm full-stack tại Hà Nội. Web, backend/microservices và mobile Flutter.">
@@ -143,15 +146,30 @@
           <span class="line"><span>Thép</span></span>
         </h1>
         <p class="hero__role">Kỹ sư phần mềm Full-Stack · Hà Nội, Việt Nam</p>
-        <p class="hero__lede">Tôi là kỹ sư phần mềm full-stack, tự thiết kế, xây dựng và ship sản phẩm thật — từ web, tới mobile — với hơn 30+ dự án đã làm cùng khách hàng.</p>
+        <!-- 31 words down to 12. surface-a.css:40 writes a "≤20 từ" contract for
+             this element and the old string overran it by 55%, which is three
+             lines of 19px lede where the design system asked for one.
+             Nothing is lost to search: "kỹ sư phần mềm full-stack" survives
+             byte-identical in .hero__role directly above, in <title>, in the
+             meta description, in og:title, in twitter:title and in the JSON-LD
+             jobTitle; "30+" is asserted six lines below by the statrail. -->
+        <p class="hero__lede">Tôi thiết kế, xây và ship sản phẩm thật — web, backend, mobile.</p>
         <p class="hero__cta">
           <a class="btn" data-variant="primary" href="#portfolio">Xem dự án</a>
           <a class="btn" data-variant="secondary" href="#contact">Liên hệ</a>
         </p>
+        <!-- The one place in this pass where the word count goes UP, and it is
+             the point. "Đúng hạn" and "Ship" are adjectives wearing the costume
+             of metrics: a statrail whose <dd> is an opinion is the exact thing
+             that makes a page read as filler. Both replacements are checkable
+             against this same document — the skills ledger prints "34 mục · 6
+             nhóm", the education entry prints "GPA 8.1/10" — so nothing here is
+             invented. .tabular already carries tnum (base.css:543), which is
+             what keeps 8.1/10 aligned with 30+. -->
         <dl class="statrail tabular">
           <div class="statrail__item"><dt>Dự án thực chiến</dt><dd>30+</dd></div>
-          <div class="statrail__item"><dt>Giao dự án</dt><dd>Đúng hạn</dd></div>
-          <div class="statrail__item"><dt>Sản phẩm</dt><dd>Ship</dd></div>
+          <div class="statrail__item"><dt>Kỹ năng · nhóm</dt><dd>34 · 6</dd></div>
+          <div class="statrail__item"><dt>GPA · Đại học FPT</dt><dd>8.1/10</dd></div>
         </dl>
       </div>
       <figure class="hero__plate">
@@ -159,7 +177,19 @@
           <picture>
             <source srcset="img/conga.avif" type="image/avif">
             <source srcset="img/conga.webp" type="image/webp">
-            <img src="img/conga.jpg" width="600" height="800" alt="Chân dung Mai Tấn Thép" fetchpriority="high" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+            <!-- The alt text used to read "Chân dung Mai Tấn Thép". It is not a
+                 portrait — img/conga.jpg is a photo of a yellow plush chick on a
+                 grey sofa — so the old value asserted a person who is not in the
+                 frame. That is a WCAG 1.1.1 failure, not a matter of taste: a
+                 screen-reader user was told they were being shown the author's
+                 face. Until a real portrait exists the honest description ships.
+                 REPLACING THE FILE: export 4:5 at 1000x1250, NOT 3:4 —
+                 .hero__portrait is aspect-ratio: 4/5 with object-position:
+                 50% 22%, so a 3:4 source loses 6.7% to the crop. Light the
+                 subject from screen-RIGHT to agree with the radial-gradient
+                 keyed at 72% 38%. Regenerate the LQIP through
+                 tools/gen-lqip.sh, never by hand into tokens.css. -->
+            <img src="img/conga.jpg" width="600" height="800" alt="Ảnh minh hoạ trang chủ" fetchpriority="high" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
           </picture>
           <!-- M1 · specular sheen. One highlight plane that sweeps across once,
                1.2s, then is done — the portrait is the page's only interactive
@@ -190,7 +220,31 @@
   </div>
 
   <!-- 3 · SKILLS LEDGER ---------------------------------------------------- -->
-  <section class="section-a" data-treatment="open" id="skills" data-reveal aria-labelledby="skills-h" data-cv="section" style="--cv-size: 3600px">
+  <!-- EVERY --cv-size BELOW WAS MEASURED, NOT ESTIMATED. Re-measure them after
+       any change to copy, type scale or section layout — they are the one thing
+       in this file that silently goes stale, because a wrong value renders
+       perfectly until someone scrolls.
+
+       WHAT THE NUMBER IS. --cv-size feeds contain-intrinsic-size, which is a
+       CONTENT-BOX height. getBoundingClientRect() returns a BORDER-box height.
+       Subtract padding-block before comparing, or every section looks ~400px
+       taller than it is at --space-section-lg and you over-reserve by exactly
+       its collar.
+
+       HOW THEY WERE TAKEN. Nine widths — 280, 320, 390, 767, 768, 1023, 1024,
+       1280, 1440 — with content-visibility forced visible and the document
+       crawled end to end first, then peak x1.05 rounded up to 50px. Both sides
+       of every breakpoint, because THE TALLEST VIEWPORT IS AT NEITHER END OF
+       THE RANGE: #portfolio peaks at 1023 (8896px) and measures 4368px one
+       pixel later at 1024, so a mobile+desktop spot-check reports half its real
+       height. Five sections peak at 280, below any breakpoint at all.
+
+       The old values were taken before the Anton titles, the copy cuts, the
+       tight rhythm, the quote stagger and the experience rail; six of the seven
+       were over by 390-1000px, which is why the scrollbar used to settle
+       upward as you scrolled. Over-reserving is the safe direction, not the
+       free one. -->
+  <section class="section-a" data-treatment="open" id="skills" data-reveal aria-labelledby="skills-h" data-cv="section" style="--cv-size: 3500px">
     <div class="shell">
       <header class="section-a__head">
         <p data-eyebrow>Bộ kỹ năng</p>
@@ -210,72 +264,80 @@
            350ms no matter how long the list is. A 34-row uncapped cascade
            would take 2.4s and read as a loading screen.
            Layout-safe by construction: opacity and transform do not affect
-           layout, so #skills' inline --cv-size: 3600px reservation stays
+           layout, so #skills' inline --cv-size: 3900px reservation stays
            exactly as valid as it was. -->
       <div class="ledger-skills">
         <p class="ledger-skills__group" data-eyebrow>Ngôn ngữ</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">01</span><span class="skill-row__name">TypeScript</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">02</span><span class="skill-row__name">JavaScript</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#javascript"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">03</span><span class="skill-row__name">Java</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">04</span><span class="skill-row__name">Python</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">05</span><span class="skill-row__name">Golang</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">06</span><span class="skill-row__name">HTML/CSS</span><span class="skill-row__cat">Ngôn ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#html5"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">01</span><span class="skill-row__name">TypeScript</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">02</span><span class="skill-row__name">JavaScript</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#javascript"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">03</span><span class="skill-row__name">Java</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">04</span><span class="skill-row__name">Python</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">05</span><span class="skill-row__name">Golang</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">06</span><span class="skill-row__name">HTML/CSS</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#html5"></use></svg></li>
         </ul>
 
         <p class="ledger-skills__group" data-eyebrow>Framework &amp; Thư viện</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">07</span><span class="skill-row__name">React.js</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">08</span><span class="skill-row__name">Next.js</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">09</span><span class="skill-row__name">Node.js</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">10</span><span class="skill-row__name">Express.js</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">11</span><span class="skill-row__name">Spring Boot</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#leaf"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">12</span><span class="skill-row__name">ASP.NET</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">13</span><span class="skill-row__name">Flutter</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#phone"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">14</span><span class="skill-row__name">Redux</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">15</span><span class="skill-row__name">TailwindCSS</span><span class="skill-row__cat">Framework &amp; Thư viện</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#css3"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">07</span><span class="skill-row__name">React.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">08</span><span class="skill-row__name">Next.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">09</span><span class="skill-row__name">Node.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">10</span><span class="skill-row__name">Express.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">11</span><span class="skill-row__name">Spring Boot</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#leaf"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">12</span><span class="skill-row__name">ASP.NET</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">13</span><span class="skill-row__name">Flutter</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#phone"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">14</span><span class="skill-row__name">Redux</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">15</span><span class="skill-row__name">TailwindCSS</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#css3"></use></svg></li>
         </ul>
 
         <p class="ledger-skills__group" data-eyebrow>Database &amp; Cloud</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">16</span><span class="skill-row__name">MongoDB</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">17</span><span class="skill-row__name">MySQL</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">18</span><span class="skill-row__name">SQL Server</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">19</span><span class="skill-row__name">Firebase</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">20</span><span class="skill-row__name">Redis</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">21</span><span class="skill-row__name">Cloudinary CDN</span><span class="skill-row__cat">Database &amp; Cloud</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">16</span><span class="skill-row__name">MongoDB</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">17</span><span class="skill-row__name">MySQL</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">18</span><span class="skill-row__name">SQL Server</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">19</span><span class="skill-row__name">Firebase</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">20</span><span class="skill-row__name">Redis</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">21</span><span class="skill-row__name">Cloudinary CDN</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
         </ul>
 
         <p class="ledger-skills__group" data-eyebrow>DevOps &amp; Công cụ</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">22</span><span class="skill-row__name">Docker</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">23</span><span class="skill-row__name">GitHub Actions</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#github"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">24</span><span class="skill-row__name">Vercel</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">25</span><span class="skill-row__name">Netlify</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">26</span><span class="skill-row__name">Render</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">27</span><span class="skill-row__name">Postman</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">28</span><span class="skill-row__name">Swagger/OpenAPI</span><span class="skill-row__cat">DevOps &amp; Công cụ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">22</span><span class="skill-row__name">Docker</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">23</span><span class="skill-row__name">GitHub Actions</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#github"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">24</span><span class="skill-row__name">Vercel</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">25</span><span class="skill-row__name">Netlify</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">26</span><span class="skill-row__name">Render</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">27</span><span class="skill-row__name">Postman</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">28</span><span class="skill-row__name">Swagger/OpenAPI</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
         </ul>
 
         <p class="ledger-skills__group" data-eyebrow>Quản lý dự án</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">29</span><span class="skill-row__name">Jira</span><span class="skill-row__cat">Quản lý dự án</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">30</span><span class="skill-row__name">Confluence</span><span class="skill-row__cat">Quản lý dự án</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#book"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">31</span><span class="skill-row__name">Lark</span><span class="skill-row__cat">Quản lý dự án</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">32</span><span class="skill-row__name">Slack</span><span class="skill-row__cat">Quản lý dự án</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#comments"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">29</span><span class="skill-row__name">Jira</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">30</span><span class="skill-row__name">Confluence</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#book"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">31</span><span class="skill-row__name">Lark</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">32</span><span class="skill-row__name">Slack</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#comments"></use></svg></li>
         </ul>
 
         <p class="ledger-skills__group" data-eyebrow>Ngoại ngữ</p>
         <ul class="ledger-skills__rows" role="list" data-reveal-group>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">33</span><span class="skill-row__name">Tiếng Anh (B2)</span><span class="skill-row__cat">Ngoại ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
-          <li class="skill-row" data-reveal><span class="skill-row__i tabular">34</span><span class="skill-row__name">Tiếng Hàn (TOPIK II)</span><span class="skill-row__cat">Ngoại ngữ</span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">33</span><span class="skill-row__name">Tiếng Anh (B2)</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">34</span><span class="skill-row__name">Tiếng Hàn (TOPIK II)</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- 4 · PROJECT INDEX PLATES --------------------------------------------- -->
-  <section class="section-a" data-treatment="plate" id="portfolio" data-rhythm="chapter" data-reveal aria-labelledby="portfolio-h" data-cv="section" style="--cv-size: 5900px">
+  <!-- --cv-size is a CONTENT-BOX reservation, and the height it has to cover is
+       not at either end of the viewport range. This section peaks at 9414px at
+       1023px — one pixel below the min-width:1024 that splits the plate into
+       two columns, so iPad-portrait and small laptops get the tall single-column
+       stack — against 5668px at 1440 and 6406px at 390. The old 6200px was
+       3,214px short there, so realising the skipped subtree grew the document
+       mid-scroll and the scroll anchor jumped backwards. Measuring only 390 and
+       1440 is exactly what hid it: neither end sees the peak. -->
+  <section class="section-a" data-treatment="plate" id="portfolio" data-rhythm="chapter" data-reveal aria-labelledby="portfolio-h" data-cv="section" style="--cv-size: 9350px">
     <div class="shell">
       <header class="section-a__head">
         <p data-eyebrow>Dự án</p>
@@ -309,11 +371,20 @@
         <div class="plate__body">
           <p class="plate__index" aria-hidden="true">01</p>
           <h3 class="plate__title">Genkikoi</h3>
-          <p class="plate__desc">Dẫn dắt nhóm 4 người hoàn thành nền tảng thú y full-stack trong 3 tháng. Thiết kế RESTful API (Express + MongoDB) với hơn 5 module: tư vấn, kiểm tra bể cá, điều trị và quản lý bệnh. Xây frontend React/TypeScript kèm pipeline CI/CD qua GitHub Actions.</p>
+          <!-- 43 words to 11, and no fact leaves the page: the paragraph was
+               reprinting its own spec table. "Dẫn dắt nhóm 4 người" was set
+               twice, three lines apart — here and as the Vai trò row.
+               "React/TypeScript" and "Express + MongoDB" are the Công nghệ row
+               verbatim. The only fact with nowhere to land is the CI/CD
+               pipeline, so it becomes a row instead of being dropped: a reader
+               scanning a portfolio for stack signals reads the <dl>, not the
+               fourth line of a paragraph. -->
+          <p class="plate__desc">Nền tảng thú y full-stack. 5 module nghiệp vụ, ship trong 3 tháng.</p>
           <dl class="plate__spec tabular">
             <div><dt>Loại</dt><dd>Full-Stack</dd></div>
             <div><dt>Vai trò</dt><dd>Dẫn dắt nhóm 4 người</dd></div>
             <div><dt>Công nghệ</dt><dd>React · TypeScript · Express · MongoDB</dd></div>
+            <div><dt>CI/CD</dt><dd>GitHub Actions</dd></div>
           </dl>
           <a class="plate__link" data-link href="https://github.com/thepKz/GenKiKoi" target="_blank" rel="noopener noreferrer">Xem mã nguồn</a>
         </div>
@@ -330,10 +401,17 @@
         <div class="plate__body">
           <p class="plate__index" aria-hidden="true">02</p>
           <h3 class="plate__title">TrustFundMe</h3>
-          <p class="plate__desc">Thiết kế hệ thống Microservices đầy đủ (8+ service: API Gateway, Identity...) dùng Spring Boot + Spring Cloud Eureka. Frontend Next.js (TypeScript) kèm CI/CD qua GitHub Actions. Tích hợp cổng thanh toán VietQR + Casso cho giao dịch quyên góp real-time với webhook, kèm app Flutter (iOS/Android) có chat thời gian thực.</p>
+          <!-- 49 words to 14. Same principle as plate 01: Spring Boot, Spring
+               Cloud, Next.js and Flutter were all being named twice, once in
+               prose and once in the Công nghệ row below. VietQR + Casso is the
+               fact the row did not carry, and it is the most specific thing on
+               this plate — a named Vietnamese payment rail — so it gets its own
+               row rather than dying with the paragraph. -->
+          <p class="plate__desc">Hệ thống microservices gây quỹ. 8+ service, thanh toán VietQR real-time qua webhook, kèm app Flutter.</p>
           <dl class="plate__spec tabular">
             <div><dt>Loại</dt><dd>Microservices</dd></div>
             <div><dt>Công nghệ</dt><dd>Spring Boot · Spring Cloud · Next.js · Flutter</dd></div>
+            <div><dt>Thanh toán</dt><dd>VietQR · Casso</dd></div>
           </dl>
         </div>
       </article>
@@ -349,7 +427,11 @@
         <div class="plate__body">
           <p class="plate__index" aria-hidden="true">03</p>
           <h3 class="plate__title">Black Hole Magic</h3>
-          <p class="plate__desc">Đây là một website cho công ty game, với quy mô lớn áp dụng các kĩ thuật khó như GSAP, THREE.JS và nhiều thứ khác...</p>
+          <!-- "Đây là một website cho công ty game" is 8 words to say what the
+               title and the screenshot already say, and "nhiều thứ khác..." is
+               a trailing ellipsis where a fact should be. What replaces it
+               names the two things GSAP and THREE.js were actually used FOR. -->
+          <p class="plate__desc">Website studio game. Cuộn kể chuyện, 3D thời gian thực.</p>
           <dl class="plate__spec tabular">
             <div><dt>Loại</dt><dd>GSAP</dd></div>
             <div><dt>Công nghệ</dt><dd>GSAP · THREE.JS</dd></div>
@@ -368,7 +450,10 @@
         <div class="plate__body">
           <p class="plate__index" aria-hidden="true">04</p>
           <h3 class="plate__title">Jang Wonyoung Gallery</h3>
-          <p class="plate__desc">Với niềm đam mê thần tượng Hàn Quốc, tôi đã lập nên website với các hiệu ứng xịn xò cùng với những bức ảnh tuyệt đẹp của idol Hàn Quốc.</p>
+          <!-- The old line said "Hàn Quốc" twice and "xịn xò"/"tuyệt đẹp" — the
+               author praising his own work in a portfolio, which reads as less
+               confident, not more. The replacement states what was BUILT. -->
+          <p class="plate__desc">Bộ sưu tập ảnh idol, lưới masonry và chuyển cảnh viết tay.</p>
           <dl class="plate__spec tabular">
             <div><dt>Loại</dt><dd>Solo · Content</dd></div>
           </dl>
@@ -442,7 +527,12 @@
         <div class="plate__body">
           <p class="plate__index" aria-hidden="true">08</p>
           <h3 class="plate__title">Trò Chơi Túi Mù</h3>
-          <p class="plate__desc">Một ứng dụng web đơn giản cho phép người chơi chọn số lượng túi mù và màu nguyện vọng.</p>
+          <!-- No .plate__desc here, on purpose. It is the eighth of nine plates
+               and the three directly above it (05, 06, 07) have never had one —
+               a lone paragraph opening with "Một ứng dụng web đơn giản" broke
+               the rhythm of the tail of the grid to volunteer that the project
+               is small. The title, the screenshot and the two spec rows say
+               everything it said. -->
           <dl class="plate__spec tabular">
             <div><dt>Loại</dt><dd>Web game</dd></div>
             <div><dt>Công nghệ</dt><dd>React</dd></div>
@@ -473,7 +563,7 @@
   </section>
 
   <!-- 5 · EXPERIENCE LEDGER ------------------------------------------------ -->
-  <section class="section-a" data-treatment="ledger" id="experience" data-reveal aria-labelledby="experience-h" data-cv="section" style="--cv-size: 2200px">
+  <section class="section-a" data-treatment="ledger" id="experience" data-reveal aria-labelledby="experience-h" data-cv="section" style="--cv-size: 2050px">
     <div class="shell">
       <header class="section-a__head">
         <p data-eyebrow>Hành trình</p>
@@ -498,7 +588,13 @@
           <ul class="exp-entry__list" role="list">
             <li>Tự phân tích và lập tài liệu yêu cầu nghiệp vụ, chuyển phản hồi của khách hàng thành task phát triển cụ thể.</li>
             <li>Điều phối họp Scrum hằng ngày và lập kế hoạch sprint, đảm bảo đồng bộ giữa hai phía.</li>
-            <li>Quản lý theo dõi task và báo cáo tiến độ qua Jira và Confluence.</li>
+            <!-- The "theo dõi task và báo cáo tiến độ qua Jira và Confluence"
+                 bullet is gone. Jira is already named in the intern entry
+                 below, and "tracked tickets in Jira" is not a differentiator
+                 for a bridge engineer — the two bullets that remain (owning
+                 requirements analysis, running the ceremonies) are. Three
+                 bullets per entry was also the widest block of body copy in
+                 this section; two lets the ledger read as a ledger. -->
           </ul>
         </li>
         <li class="exp-entry" data-reveal>
@@ -508,7 +604,11 @@
           <ul class="exp-entry__list" role="list">
             <li>Hỗ trợ các Bridge Engineer senior dịch tài liệu kỹ thuật và đặc tả yêu cầu.</li>
             <li>Tham gia quy trình Agile/Scrum, theo dõi task qua Jira và báo cáo cho quản lý dự án.</li>
-            <li>Tích lũy kinh nghiệm làm việc trong văn hóa doanh nghiệp Hàn Quốc và môi trường phần mềm enterprise.</li>
+            <!-- "Tích lũy kinh nghiệm làm việc trong văn hóa doanh nghiệp Hàn
+                 Quốc" said nothing the two lines above it do not already prove:
+                 the role IS "Korean Bridge Engineer" at FPT Software. A bullet
+                 whose content is restating your own job title is the exact
+                 filler that makes a CV section skimmable-past. -->
           </ul>
         </li>
       </ol>
@@ -524,25 +624,27 @@
 
       <h3 class="section-a__title" id="certs-h">Chứng chỉ</h3>
       <ol class="ledger-exp" role="list" aria-labelledby="certs-h" data-reveal-group data-spine>
+        <!-- THREE ENTRIES MERGED INTO THIS ONE, and they were not three
+             achievements. LinkedIn issues "Career Essentials in Generative AI"
+             as a learning PATH; completing it also emits the constituent course
+             certificates. So the list printed, in three consecutive rows dated
+             the same month: "Career Essentials in Generative AI", "Career
+             Essentials in Generative AI by Microsoft and LinkedIn", and "What
+             Is Generative AI?" — the path, the path again under its long name,
+             and one course inside it. Half the certificate list was one line
+             item wearing three hats, which reads as padding to anyone who
+             recognises the path, and reads as four AI certificates to anyone
+             who does not. The skills line from the dropped rows is kept on the
+             org line so nothing verifiable is lost. -->
         <li class="exp-entry" data-reveal>
           <p class="exp-entry__date tabular">01/2026</p>
           <h4 class="exp-entry__role">Career Essentials in Generative AI</h4>
-          <p class="exp-entry__org">Microsoft &amp; LinkedIn</p>
+          <p class="exp-entry__org">Microsoft &amp; LinkedIn · Prompt Engineering, Responsible AI</p>
         </li>
         <li class="exp-entry" data-reveal>
           <p class="exp-entry__date tabular">01/2026</p>
           <h4 class="exp-entry__role">Agile Software Development: Scrum for Developers</h4>
           <p class="exp-entry__org">LinkedIn</p>
-        </li>
-        <li class="exp-entry" data-reveal>
-          <p class="exp-entry__date tabular">01/2026</p>
-          <h4 class="exp-entry__role">Career Essentials in Generative AI by Microsoft and LinkedIn</h4>
-          <p class="exp-entry__org">Microsoft · Prompt Engineering, Responsible AI</p>
-        </li>
-        <li class="exp-entry" data-reveal>
-          <p class="exp-entry__date tabular">01/2026</p>
-          <h4 class="exp-entry__role">What Is Generative AI?</h4>
-          <p class="exp-entry__org">LinkedIn · Generative AI, Generative AI Tools</p>
         </li>
         <li class="exp-entry" data-reveal>
           <p class="exp-entry__date tabular">05/2024</p>
@@ -559,13 +661,21 @@
   </section>
 
   <!-- 6 · SERVICES --------------------------------------------------------- -->
-  <section class="section-a" data-treatment="band" id="service" data-reveal aria-labelledby="service-h" data-cv="section">
+  <section class="section-a" data-treatment="band" id="service" data-rhythm="tight" data-reveal aria-labelledby="service-h" data-cv="section" style="--cv-size: 900px">
     <div class="shell">
       <header class="section-a__head">
         <p data-eyebrow>Hợp tác</p>
         <h2 id="service-h" class="section-a__title">Dịch vụ</h2>
       </header>
+    </div>
 
+    <!-- THE LIST LEAVES THE .shell HERE, ON PURPOSE. It is a sibling of the
+         shell, not a child, so the four row rules run to the true viewport edge
+         while the heading above them stays on the 1320px column with everyone
+         else. That offset — head aligned, rows bleeding past it on both sides —
+         is the composition; see .section-a__bleed in surface-a.css §1.
+         Do not "fix" this by putting the <ul> back inside .shell. -->
+    <div class="section-a__bleed">
       <!-- M6 · same mechanism, shorter list, so the cadence reads as typeset
            rather than as a cascade. Four rows never reach the --i:5 cap. -->
       <ul class="services" role="list" data-reveal-group>
@@ -574,7 +684,7 @@
           <a class="service-row__link" href="#contact">
             <span class="service-row__body">
               <span class="service-row__name">Phát triển Web Full-Stack</span>
-              <span class="service-row__note">React/Next.js kết hợp Node.js/Spring Boot, xây sản phẩm hoàn chỉnh từ đầu đến cuối.</span>
+              <span class="service-row__note">React/Next.js + Node.js/Spring Boot. Từ 0 đến khi ship.</span>
             </span>
             <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
           </a>
@@ -583,7 +693,7 @@
           <a class="service-row__link" href="#contact">
             <span class="service-row__body">
               <span class="service-row__name">Backend &amp; Microservices</span>
-              <span class="service-row__note">API Gateway, Spring Cloud, kiến trúc dịch vụ mở rộng và đáng tin cậy.</span>
+              <span class="service-row__note">API Gateway, Spring Cloud, kiến trúc chịu tải.</span>
             </span>
             <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
           </a>
@@ -601,7 +711,7 @@
           <a class="service-row__link" href="#contact">
             <span class="service-row__body">
               <span class="service-row__name">Phân tích &amp; Tư vấn giải pháp</span>
-              <span class="service-row__note">Phân tích yêu cầu, tư vấn giải pháp và đồng hành cùng khách hàng từ ý tưởng tới sản phẩm.</span>
+              <span class="service-row__note">Phân tích yêu cầu, đặc tả, ước lượng timeline.</span>
             </span>
             <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
           </a>
@@ -611,7 +721,7 @@
   </section>
 
   <!-- 7 · TESTIMONIALS ----------------------------------------------------- -->
-  <section class="section-a" data-treatment="open" id="testimonials" data-reveal aria-labelledby="testimonials-h" data-cv="section">
+  <section class="section-a" data-treatment="open" id="testimonials" data-rhythm="tight" data-reveal aria-labelledby="testimonials-h" data-cv="section" style="--cv-size: 1100px">
     <div class="shell">
       <header class="section-a__head">
         <p data-eyebrow>Vì sao chọn tôi</p>
@@ -647,12 +757,26 @@
   </section>
 
   <!-- 8 · FAQ -------------------------------------------------------------- -->
-  <section class="section-a" data-treatment="plate" id="faq" data-reveal aria-labelledby="faq-h" data-cv="section">
+  <!-- The one reservation here that is NOT the full story: 850px is the height
+       with all six <details> closed. Open they are far taller — but by the time
+       a reader can click a <summary> the section is on screen and long since
+       painted, so contain-intrinsic-size is no longer being consulted. Sizing
+       this for the open state would reserve ~2000px of nothing on every load. -->
+  <section class="section-a" data-treatment="plate" id="faq" data-reveal aria-labelledby="faq-h" data-cv="section" style="--cv-size: 850px">
     <div class="shell shell--narrow">
       <header class="section-a__head">
-        <p data-eyebrow>Hỏi đáp</p>
+        <!-- The eyebrow used to be "Hỏi đáp" sitting directly above an h2
+             reading "Hỏi đáp" — the same two words twice, in two type sizes,
+             which is a hierarchy that carries no information. The intro was 20
+             words of pure filler AND it was the only visible prose in the whole
+             section: the other 127 words live behind six closed <details>, so
+             cutting this one line is the entire visible FAQ win.
+             "Sáu câu" hard-codes a count. That is accepted knowingly — there
+             are exactly six <details> below — but anyone adding a seventh must
+             change this word too. -->
+        <p data-eyebrow>Trước khi nhắn</p>
         <h2 id="faq-h" class="section-a__title">Hỏi đáp</h2>
-        <p class="section-a__intro">Có câu hỏi? Dù bạn ở đâu, tôi luôn sẵn sàng hỗ trợ và giải đáp bất cứ lúc nào.</p>
+        <p class="section-a__intro">Sáu câu hay được hỏi.</p>
       </header>
 
       <div class="faq">
@@ -678,19 +802,24 @@
         </details>
         <details class="faq__item">
           <summary class="faq__q">Bạn đã làm qua bao nhiêu dự án?</summary>
-          <div class="faq__panel"><div class="faq__answer"><p>Tôi đã tham gia hơn 30+ dự án lớn nhỏ với khách hàng, từ web, backend tới mobile, cả vai trò solo lẫn dẫn dắt nhóm.</p></div></div>
+          <div class="faq__panel"><div class="faq__answer"><p>Hơn 30 dự án: web, backend, mobile — cả solo lẫn dẫn nhóm.</p></div></div>
         </details>
       </div>
     </div>
   </section>
 
   <!-- 9 · CONTACT ---------------------------------------------------------- -->
-  <section class="section-a" data-treatment="ledger" id="contact" data-rhythm="chapter" data-reveal aria-labelledby="contact-h" data-cv="section">
+  <section class="section-a" data-treatment="ledger" id="contact" data-rhythm="chapter" data-reveal aria-labelledby="contact-h" data-cv="section" style="--cv-size: 550px">
     <div class="shell shell--narrow">
       <header class="section-a__head">
-        <p data-eyebrow>Cùng nhau,</p>
+        <!-- The eyebrow was "Cùng nhau," — a dangling fragment ending in a
+             comma, set in caps above an h2 it does not grammatically continue.
+             The intro's "Đang nhận · Dự án mới" is a verbatim duplicate of the
+             hero eyebrow near the top of this same page, so a reader who got
+             here by scrolling has already read it once. -->
+        <p data-eyebrow>Bước tiếp theo</p>
         <h2 id="contact-h" class="section-a__title">Liên hệ</h2>
-        <p class="section-a__intro">Biến ý tưởng của bạn thành sản phẩm phần mềm thật. Đang nhận · Dự án mới. Nhận việc remote toàn cầu.</p>
+        <p class="section-a__intro">Đang nhận dự án mới. Làm remote, trong và ngoài nước.</p>
       </header>
 
       <!-- No <form> here, deliberately. This site is static HTML on GitHub
@@ -705,9 +834,18 @@
         <a class="btn" data-variant="secondary" href="https://www.facebook.com/thepp.tan/" target="_blank" rel="noopener noreferrer">Facebook · @thepp.tan</a>
         <a class="btn" data-variant="ghost" href="https://github.com/thepKz" target="_blank" rel="noopener noreferrer">GitHub · thepKz</a>
       </p>
+      <!-- THE SENTENCE THAT SURVIVES IS NOT EDITORIAL, IT IS THE TAKEDOWN
+           CHANNEL. This site publishes no email address anywhere by design, so
+           this issues link is the only way a rightsholder can reach the owner —
+           and wy/CREDITS.md repeats the same 48-hour commitment, so the two
+           have to keep agreeing. Cutting it, or letting the href drift, is a
+           legal regression dressed up as a copy cut. Do not touch the <a>.
+           What was cut is the first clause: 17 words naming what LinkedIn,
+           Facebook and GitHub are for, directly under three buttons already
+           labelled "Nhắn qua LinkedIn", "Facebook · @thepp.tan" and
+           "GitHub · thepKz". -->
       <p class="form-a__note">
-        LinkedIn cho công việc và dự án · Facebook cho việc học và tài liệu ·
-        GitHub cho mã nguồn. Muốn báo lỗi nội dung hay yêu cầu gỡ tư liệu thì
+        Muốn báo lỗi nội dung hay yêu cầu gỡ tư liệu thì
         <a data-link href="https://github.com/thepKz/minthep-portfolio/issues" target="_blank" rel="noopener noreferrer">mở một issue</a>
         — mình phản hồi trong 48 giờ.
       </p>

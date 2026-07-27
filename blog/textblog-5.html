@@ -178,8 +178,9 @@
                     <li>Thứ 2: Nên hiểu bản chất từng khái niệm vì nếu không bạn sẽ không biết mình viết gì ở trong bài
                         viết</li>
                     <li>Thứ 3: Người ra đề chọn mô hình abcxyz ở trong đề thi PE SWE201c câu 1 chỉ là mang tính chất
-                        tượng trưng, mình có quyền từ chối và chấp nhận miễn là đúng tính chất và không nên lệch tiêu chuẩn của đề quad nhiều. Bản thân mình cũng đạt điểm không cao PE của môn này mặc dù total mình 9.0 nhưng mình có thể chỉ cho bạn những điểm mình từng mắc phải và
-                        giúp các bạn giải quyết môn này mà không phải bị đúp kì <3 </li>
+                        tượng trưng. Bạn có quyền chọn mô hình khác, miễn là lập luận đúng bản chất và không lệch tiêu
+                        chuẩn của đề quá nhiều. Bản thân mình điểm PE môn này không cao dù tổng kết 9.0 — nên phần dưới
+                        đây là những chỗ mình từng mắc, viết ra để bạn không mắc lại &lt;3 </li>
                     <li>Thứ 4: Các bạn nếu có thể thì <strong>Paraphrase</strong> lại
                         cái mẫu của mình vì nếu không sẽ đánh chéo bài (cụ thể SWT301 PE 1300 views cho cái đáp án
                         sample của mình nên gần như câu 1 với 3 ai cũng gần y chang nhau nhưng đa số mọi người đạt 8+ PE
@@ -252,7 +253,7 @@
                                     <li>Thiết kế giao diện người dùng</li>
                                 </ul>
 
-                                <h6>3. Giai đoạn triển khai</h6>
+                                <h6>3. Giai đoạn lập trình (Implementation)</h6>
                                 <hr>
                                 <br>
                                 <br>
@@ -272,16 +273,29 @@
                                     <li>Kiểm thử chấp nhận</li>
                                 </ul>
 
-                                <h6>5. Giai đoạn bảo trì</h6>
+                                <h6>5. Giai đoạn triển khai và bảo trì (Deployment &amp; Maintenance)</h6>
                                 <hr>
                                 <br>
                                 <br>
                                 <ul>
-                                    <li>Triển khai hệ thống</li>
+                                    <li>Đưa hệ thống lên môi trường thật, chuyển dữ liệu, đào tạo người dùng</li>
                                     <li>Bảo trì và nâng cấp</li>
                                     <li>Hỗ trợ người dùng</li>
                                 </ul>
 
+                        <aside class="b-callout" data-callout="warn">
+                            <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> "Triển khai" trong tiếng Việt là hai thứ khác nhau</p>
+                            <p>Tiếng Việt dịch cả <em>implementation</em> và <em>deployment</em> thành "triển khai", nên
+                                đề thi rất dễ gài. Phân biệt bằng câu hỏi "lúc đó code đang ở đâu":</p>
+                            <ul>
+                                <li><strong>Implementation</strong> (giai đoạn 3) — viết code. Code còn ở máy lập trình
+                                    viên. Sản phẩm ra: các module đã chạy được unit test.</li>
+                                <li><strong>Deployment</strong> (giai đoạn 5) — mang bản đã kiểm thử xong lên môi trường
+                                    thật của người dùng. Không viết thêm chức năng nào ở đây.</li>
+                            </ul>
+                            <p>Nhiều giáo trình tách giai đoạn 5 thành hai giai đoạn riêng, thành mô hình 6 giai đoạn.
+                                Cả hai cách chia đều đúng — chỉ cần đừng đặt deployment vào trước kiểm thử.</p>
+                        </aside>
 
 
                         <h5>Đặc điểm nổi bật</h5>
@@ -289,7 +303,10 @@
                             <li>Quy trình tuần tự chặt chẽ</li>
                             <li>Yêu cầu phải được xác định rõ ràng từ đầu</li>
                             <li>Tài liệu đầy đủ cho mỗi giai đoạn</li>
-                            <li>Không có sự chồng chéo giữa các giai đoạn</li>
+                            <li>Về nguyên tắc các giai đoạn không chồng chéo: giai đoạn sau chỉ bắt đầu khi giai đoạn
+                                trước đã ký nghiệm thu. (Bản thân Royce — người vẽ sơ đồ này năm 1970 — đã nói mô hình
+                                thuần tuần tự là "rủi ro và mời gọi thất bại", và đề nghị thêm vòng lặp quay lại giai
+                                đoạn trước. Cái được dạy dưới tên Waterfall là phiên bản đã bỏ mất các vòng lặp đó.)</li>
                         </ul>
 
 
@@ -363,13 +380,88 @@
                                     <li>Acceptance Testing</li>
                                 </ul>
 
+                        <h5>Cặp đối xứng — điểm cốt lõi của V-Model</h5>
+                        <p>Liệt kê hai cột như trên là chưa đủ, vì cái làm nên chữ V không phải là "có
+                            8 giai đoạn" mà là <strong>từng giai đoạn bên trái được ghép với đúng một mức
+                            kiểm thử bên phải</strong>. Kế hoạch kiểm thử của mỗi mức được viết <em>ngay khi</em>
+                            làm giai đoạn tương ứng bên trái, chứ không đợi đến lúc code xong.</p>
 
+                        <div data-table role="region" aria-label="Bốn cặp đối xứng của V-Model" tabindex="0">
+<table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Giai đoạn (nhánh trái)</th>
+                                    <th scope="col">Mức kiểm thử (nhánh phải)</th>
+                                    <th scope="col">Câu hỏi mà mức đó trả lời</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Phân tích yêu cầu</td>
+                                    <td>Acceptance Testing</td>
+                                    <td>Hệ thống có làm được việc mà khách hàng cần?</td>
+                                </tr>
+                                <tr>
+                                    <td>Thiết kế hệ thống</td>
+                                    <td>System Testing</td>
+                                    <td>Toàn hệ thống có chạy đúng như đặc tả?</td>
+                                </tr>
+                                <tr>
+                                    <td>Thiết kế kiến trúc</td>
+                                    <td>Integration Testing</td>
+                                    <td>Các module có nối với nhau đúng cách?</td>
+                                </tr>
+                                <tr>
+                                    <td>Thiết kế module</td>
+                                    <td>Unit Testing</td>
+                                    <td>Từng module có làm đúng phần việc của nó?</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p>Để ý thứ tự <strong>ngược nhau</strong>: giai đoạn cao nhất bên trái (yêu cầu)
+                            ghép với mức kiểm thử cuối cùng bên phải (acceptance), còn giai đoạn thấp nhất
+                            bên trái (thiết kế module) ghép với mức kiểm thử đầu tiên (unit). Đó là lý do
+                            hình vẽ có dạng chữ V chứ không phải hai cột song song.</p>
+
+                        <aside class="b-callout" data-callout="warn">
+<p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Verification và Validation không phải trái/phải</p>
+<p>Hai nhãn "Verification Phases" và "Validation Phases" ở trên là cách gọi quy ước của hình vẽ V-Model,
+    và đề thi có thể dùng đúng cách gọi đó. Nhưng đừng hiểu thành "bên trái là verification, bên phải là
+    validation" — hiểu vậy sẽ trả lời sai nếu đề hỏi thẳng về V&amp;V:</p>
+<ul>
+    <li><strong>Verification</strong> — "Are we building the product <em>right</em>?" Đối chiếu sản phẩm
+        với <em>đặc tả</em>. Unit, integration và system testing đều chủ yếu là verification, dù chúng
+        nằm ở nhánh phải.</li>
+    <li><strong>Validation</strong> — "Are we building the <em>right</em> product?" Đối chiếu sản phẩm
+        với <em>nhu cầu thật</em> của người dùng. Trong bốn mức trên, chỉ acceptance testing mới thực sự
+        là validation.</li>
+</ul>
+<p>Cách nhớ: verification hỏi "đúng tài liệu chưa", validation hỏi "đúng thứ khách cần chưa". Một hệ thống
+    có thể pass hết verification mà vẫn fail validation — khi đặc tả được viết sai từ đầu.</p>
+</aside>
 
                         <h5>Khi nào sử dụng</h5>
                         <ul>
                             <li>Yêu cầu rõ ràng và cố định</li>
                             <li>Có sẵn nguồn lực kỹ thuật</li>
                             <li>Dự án nhỏ hoặc trung bình</li>
+                            <li>Lỗi phát hiện muộn có chi phí rất cao (y tế, hàng không, ngân hàng lõi)
+                                — V-Model bắt viết kế hoạch kiểm thử sớm nên bắt lỗi đặc tả sớm hơn Waterfall</li>
+                        </ul>
+
+                        <h5>Ưu điểm</h5>
+                        <ul>
+                            <li>Kiểm thử được lập kế hoạch song song với thiết kế, không dồn về cuối</li>
+                            <li>Mỗi giai đoạn có tiêu chí ra rõ ràng nên dễ theo dõi tiến độ</li>
+                            <li>Bắt lỗi đặc tả sớm hơn Waterfall vì phải nghĩ "test cái này thế nào" ngay lúc viết đặc tả</li>
+                        </ul>
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Vẫn cứng như Waterfall: yêu cầu đổi giữa dự án thì phải sửa cả hai nhánh của chữ V</li>
+                            <li>Không có prototype hay bản chạy được nào cho khách xem cho đến giai đoạn muộn</li>
+                            <li>Cần nhiều tài liệu, tốn công với dự án nhỏ</li>
                         </ul>
 
 
@@ -390,23 +482,84 @@
 </figure>
 
 
-                    <h5>Các giai đoạn chính</h5>
-                    <ul>
-                        <li><strong>Giai đoạn Khởi tạo:</strong> Xác định phạm vi, yêu cầu và rủi ro tiềm ẩn</li>
-                        <li><strong>Giai đoạn Chi tiết:</strong> Thiết lập kiến trúc để giảm thiểu rủi ro và đáp ứng
-                            tiêu chí phi chức năng</li>
-                        <li><strong>Giai đoạn Xây dựng:</strong> Phát triển từng thành phần với code sẵn sàng cho sản
-                            xuất</li>
-                        <li><strong>Giai đoạn Chuyển giao:</strong> Đưa hệ thống vào môi trường hoạt động</li>
-                    </ul>
+                    <h5>Incremental và Iterative khác nhau thế nào</h5>
+                    <p>Hai chữ này hay bị dùng lẫn, nhưng chúng trả lời hai câu hỏi khác nhau, và đề thi
+                        thích hỏi đúng chỗ khác nhau đó:</p>
 
+                    <div data-table role="region" aria-label="Phân biệt Incremental và Iterative" tabindex="0">
+<table>
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Incremental (tăng dần)</th>
+                                <th scope="col">Iterative (lặp lại)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mỗi vòng cho ra</td>
+                                <td>Thêm <em>tính năng mới</em>, phần đã xong thì để nguyên</td>
+                                <td><em>Cải thiện</em> cái đã có, làm cho nó tốt hơn</td>
+                            </tr>
+                            <tr>
+                                <td>Ví dụ dễ hình dung</td>
+                                <td>Xây nhà: xong móng, rồi tường, rồi mái</td>
+                                <td>Vẽ tranh: phác toàn bộ bố cục, rồi tô đi tô lại cho rõ dần</td>
+                            </tr>
+                            <tr>
+                                <td>Sau vòng 1 bạn có</td>
+                                <td>Một phần hệ thống, dùng được, nhưng thiếu tính năng</td>
+                                <td>Toàn bộ hệ thống, nhưng còn thô</td>
+                            </tr>
+                            <tr>
+                                <td>Rủi ro nó xử lý</td>
+                                <td>"Không kịp deadline" — giao được phần quan trọng trước</td>
+                                <td>"Làm sai thứ khách cần" — có phản hồi sớm trên toàn cảnh</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <p>Thực tế các dự án dùng cả hai cùng lúc, và đó chính là lý do mô hình này được gọi
+                        bằng cả hai chữ: mỗi vòng vừa thêm tính năng mới (incremental) vừa tinh chỉnh
+                        những gì đã làm dựa trên phản hồi (iterative).</p>
+
+                    <h5>Các giai đoạn chính</h5>
+                    <p>Khác với Waterfall, mô hình này không có một dãy giai đoạn chạy một lần. Nó có
+                        <strong>một vòng lặp được chạy lại nhiều lần</strong>, mỗi vòng là một mini-project
+                        đầy đủ:</p>
+                    <ul>
+                        <li><strong>Lập kế hoạch ban đầu (chỉ một lần):</strong> xác định tầm nhìn sản phẩm và
+                            chia công việc thành danh sách các increment, sắp theo mức độ quan trọng</li>
+                        <li><strong>Mỗi vòng lặp:</strong> phân tích yêu cầu của increment này → thiết kế →
+                            lập trình → kiểm thử → tích hợp vào bản đang có → giao cho khách xem</li>
+                        <li><strong>Đánh giá cuối mỗi vòng:</strong> lấy phản hồi, cập nhật lại danh sách
+                            increment còn lại — thứ tự ưu tiên có thể đổi</li>
+                        <li><strong>Lặp lại</strong> cho đến khi hết increment hoặc hết ngân sách</li>
+                    </ul>
+                    <p>Điểm quan trọng: sau vòng lặp <em>đầu tiên</em> đã có một sản phẩm chạy được và giao
+                        được, dù còn thiếu tính năng. Đây là khác biệt lớn nhất so với Waterfall và V-Model,
+                        nơi không có gì chạy được cho đến gần cuối.</p>
 
                     <h5>Khi nào nên sử dụng</h5>
                     <ul>
-                        <li>Cần nhanh chóng cung cấp chức năng thiết yếu</li>
-                        <li>Xuất hiện công nghệ mới có thể cải thiện quá trình thực hiện</li>
-                        <li>Team chưa quen với lĩnh vực hoặc chủ đề cụ thể</li>
-                        <li>Tổ chức có mục tiêu cải tiến và nâng cấp đáng kể</li>
+                        <li>Cần nhanh chóng cung cấp chức năng thiết yếu, phần còn lại giao sau</li>
+                        <li>Yêu cầu tổng thể đã rõ, nhưng chi tiết còn có thể thay đổi</li>
+                        <li>Team chưa quen với lĩnh vực, cần học dần qua từng vòng</li>
+                        <li>Cần phản hồi thật từ người dùng trước khi làm tiếp phần lớn hệ thống</li>
+                    </ul>
+
+                    <h5>Ưu điểm</h5>
+                    <ul>
+                        <li>Có sản phẩm chạy được sớm, thấy được tiến độ thật thay vì tin vào tài liệu</li>
+                        <li>Yêu cầu đổi ở vòng sau không phá vỡ những gì đã làm</li>
+                        <li>Rủi ro được chia nhỏ theo vòng thay vì dồn hết vào cuối dự án</li>
+                    </ul>
+
+                    <h5>Nhược điểm</h5>
+                    <ul>
+                        <li>Cần một kiến trúc tốt từ đầu, nếu không thì đến vòng thứ năm phải viết lại từ gốc</li>
+                        <li>Tổng chi phí thường cao hơn Waterfall vì tích hợp và kiểm thử bị lặp lại nhiều lần</li>
+                        <li>Khó ước lượng ngày kết thúc và tổng chi phí ngay từ đầu</li>
                     </ul>
 
             <!-- 4. Spiral Model -->
@@ -455,14 +608,48 @@
                         </ul>
 
 
+                        <p>Bốn giai đoạn trên là <strong>bốn góc phần tư</strong> của hình xoắn ốc, và
+                            mỗi vòng xoắn đi qua đủ cả bốn. Vòng càng ra xa tâm thì càng tốn chi phí —
+                            trục bán kính trong hình chính là chi phí tích luỹ.</p>
+
                         <h5>Khi nào nên sử dụng</h5>
+                        <p>Spiral được chọn vì một lý do và chỉ một lý do: <strong>rủi ro</strong>. Nếu đề
+                            thi không có dấu hiệu rủi ro nào thì gần như chắc chắn không phải Spiral.</p>
                         <ul>
-                            <li>Cần phát hành phần mềm thường xuyên</li>
-                            <li>Prototype đóng vai trò quan trọng</li>
-                            <li>Quản lý rủi ro và chi phí là ưu tiên hàng đầu</li>
-                            <li>Dự án có rủi ro cao hoặc phức tạp</li>
-                            <li>Yêu cầu khó nắm bắt rõ ràng</li>
-                            <li>Môi trường thay đổi liên tục</li>
+                            <li>Dự án lớn, đắt, rủi ro cao — thất bại thì mất rất nhiều tiền</li>
+                            <li>Có rủi ro <em>kỹ thuật</em> chưa biết trả lời được không: công nghệ mới chưa
+                                ai dùng, yêu cầu hiệu năng cực đoan, tích hợp với hệ thống lạ</li>
+                            <li>Yêu cầu khó nắm bắt và cần làm prototype qua nhiều vòng mới rõ</li>
+                            <li>Khách hàng sẵn sàng tham gia đánh giá cuối mỗi vòng</li>
+                            <li>Cần một điểm dừng có kiểm soát: sau mỗi vòng có thể quyết định "đi tiếp
+                                hay huỷ dự án" dựa trên rủi ro còn lại</li>
+                        </ul>
+
+                        <aside class="b-callout" data-callout="tip">
+<p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Phân biệt Spiral với Incremental và Prototype</p>
+<p>Ba mô hình này đều lặp, nên rất dễ chọn sai trong bài thi. Khác biệt nằm ở <em>lý do</em> lặp:</p>
+<ul>
+    <li><strong>Incremental</strong> lặp để <em>giao thêm tính năng</em> — mỗi vòng thêm giá trị cho người dùng.</li>
+    <li><strong>Prototype</strong> lặp để <em>chốt yêu cầu</em> — mẫu thường bị bỏ đi sau khi đã hiểu rõ khách cần gì.</li>
+    <li><strong>Spiral</strong> lặp để <em>hạ rủi ro</em> — mỗi vòng bắt đầu bằng câu hỏi "rủi ro lớn nhất còn lại
+        là gì" và cả vòng đó dùng để trả lời nó.</li>
+</ul>
+<p>Nếu đề nói "cần phát hành thường xuyên cho người dùng" thì đó là Incremental hoặc Scrum, <strong>không</strong>
+    phải Spiral — Spiral có thể chạy nhiều vòng mà chưa phát hành gì cho ai.</p>
+</aside>
+
+                        <h5>Ưu điểm</h5>
+                        <ul>
+                            <li>Rủi ro lớn được phát hiện và xử lý sớm, không nổ ra ở cuối dự án</li>
+                            <li>Có điểm quyết định huỷ/tiếp sau mỗi vòng, giới hạn được thiệt hại</li>
+                            <li>Linh hoạt: mỗi vòng có thể chọn mô hình con phù hợp (Waterfall hay prototype)</li>
+                        </ul>
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Phức tạp và đắt để quản lý — cần người thật sự biết phân tích rủi ro</li>
+                            <li>Số vòng không biết trước nên rất khó ước lượng ngày kết thúc và chi phí</li>
+                            <li>Quá nặng cho dự án nhỏ hoặc rủi ro thấp</li>
                         </ul>
 
 
@@ -491,11 +678,46 @@
                         </ul>
 
 
+                        <aside class="b-callout" data-callout="key">
+<p class="b-callout__label"><svg data-icon="star" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#star"></use></svg> Bốn pha không phải bốn giai đoạn tuần tự</p>
+<p>Chỗ dễ hiểu sai nhất về RUP: Inception → Elaboration → Construction → Transition trông giống bốn
+    giai đoạn Waterfall, nhưng không phải. <strong>Mỗi pha chứa nhiều vòng lặp bên trong</strong>, và mỗi
+    vòng lặp đó lại đi qua đủ các luồng công việc (yêu cầu, thiết kế, lập trình, kiểm thử). Đó là ý nghĩa
+    của hình vẽ: trục ngang là bốn pha, trục dọc là các luồng công việc, và các đường cong cho thấy luồng
+    nào <em>nặng</em> ở pha nào.</p>
+<p>Ví dụ: lập trình không phải "chỉ làm ở pha Construction". Nó có mặt từ Elaboration (để dựng kiến trúc
+    chạy được) và vẫn còn ở Transition (sửa lỗi). Cái thay đổi là <em>tỷ trọng</em>, không phải có/không.</p>
+</aside>
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
-                            <li>Yêu cầu thay đổi liên tục</li>
-                            <li>Có thông tin và dữ liệu chính xác</li>
-                            <li>Cần tích hợp ở nhiều giai đoạn khác nhau</li>
+                            <li>Dự án lớn, phức tạp, đội ngũ đông hoặc phân tán nhiều nơi — cần vai trò và
+                                sản phẩm đầu ra được định nghĩa rõ để phối hợp</li>
+                            <li>Cần tài liệu và khả năng truy vết đầy đủ (ngành có quy định pháp lý, hợp đồng
+                                yêu cầu bàn giao tài liệu)</li>
+                            <li>Yêu cầu chi tiết còn có thể thay đổi, nhưng <em>kiến trúc</em> phải được chốt
+                                sớm và giữ ổn định</li>
+                            <li>Muốn phát triển lặp mà vẫn giữ được kỷ luật quy trình — RUP thường được coi là
+                                cầu nối giữa Waterfall và Agile</li>
+                            <li>Dự án hướng đối tượng, dùng UML và use case làm trung tâm</li>
+                        </ul>
+                        <p>Ngược lại, RUP là lựa chọn <em>sai</em> khi dự án nhỏ, team dưới mười người, hoặc
+                            khi yêu cầu đổi quá nhanh đến mức làm tài liệu không kịp có giá trị — lúc đó
+                            Scrum phù hợp hơn.</p>
+
+                        <h5>Ưu điểm</h5>
+                        <ul>
+                            <li>Kết hợp được tính lặp của Agile với tài liệu và kỷ luật của Waterfall</li>
+                            <li>Kiến trúc được chốt sớm ở pha Elaboration nên giảm rủi ro phải viết lại</li>
+                            <li>Vai trò, quy trình và sản phẩm đầu ra được định nghĩa rõ, dễ mở rộng cho team lớn</li>
+                        </ul>
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Nặng và phức tạp: cần chuyên gia quy trình, khối lượng tài liệu lớn</li>
+                            <li>Quá tốn kém cho dự án nhỏ</li>
+                            <li>Dễ bị áp dụng nửa vời — làm đủ tài liệu nhưng không thực sự lặp, thành ra
+                                Waterfall đắt tiền</li>
                         </ul>
 
 
@@ -525,12 +747,43 @@
                         </ul>
 
 
+                        <h5>Hai loại prototype</h5>
+                        <p>Đề thi FE hay hỏi phân loại này, và nó cũng quyết định bạn viết code prototype
+                            cẩn thận đến đâu:</p>
+                        <ul>
+                            <li><strong>Throwaway / Rapid Prototyping</strong> — dựng mẫu thật nhanh, chỉ để
+                                làm rõ yêu cầu, rồi <em>bỏ đi</em> và xây lại sản phẩm thật từ đầu. Code mẫu
+                                cố tình làm sơ sài vì biết trước là sẽ xoá.</li>
+                            <li><strong>Evolutionary Prototyping</strong> — mẫu đầu tiên được tinh chỉnh dần
+                                qua từng vòng và <em>trở thành</em> sản phẩm cuối. Vì vậy phải viết tử tế
+                                ngay từ mẫu đầu.</li>
+                        </ul>
+                        <p>Rủi ro kinh điển của loại thứ hai: một prototype được dựng để "chỉ demo cho khách"
+                            rồi bị đẩy lên production vì trông đã chạy được — mang theo toàn bộ nợ kỹ thuật
+                            của một bản dựng tạm.</p>
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
-                            <li>Yêu cầu của hệ thống không rõ ràng</li>
+                            <li>Yêu cầu của hệ thống không rõ ràng, khách hàng chưa diễn tả được mình muốn gì</li>
+                            <li>Hệ thống có nhiều tương tác người dùng — giao diện cần thấy mới góp ý được</li>
                             <li>Cần đánh giá tính khả thi của giải pháp</li>
                             <li>Cần thu thập phản hồi sớm từ người dùng</li>
                             <li>Muốn giảm thiểu rủi ro trong phát triển</li>
+                        </ul>
+
+                        <h5>Ưu điểm</h5>
+                        <ul>
+                            <li>Phát hiện sai lệch về yêu cầu rất sớm, khi sửa còn rẻ</li>
+                            <li>Khách hàng tham gia được ngay vì có thứ nhìn thấy để góp ý</li>
+                            <li>Giảm rủi ro làm xong cả hệ thống rồi mới biết là làm sai</li>
+                        </ul>
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Khách hàng dễ tưởng prototype là sản phẩm gần xong và đòi bàn giao sớm</li>
+                            <li>Dễ sa vào vòng lặp vô hạn nếu không chốt được yêu cầu — mỗi lần xem lại
+                                khách lại nghĩ ra thứ mới</li>
+                            <li>Prototype dựng tạm nếu bị đem lên production sẽ để lại nợ kỹ thuật lâu dài</li>
                         </ul>
 
 
@@ -566,11 +819,17 @@
                             </li>
                             <li><strong>Sự kiện:</strong>
                                 <ul>
-                                    <li>Sprint Planning: Lập kế hoạch sprint (2-4 tuần), chọn các item từ Product
-                                        Backlog</li>
-                                    <li>Daily Scrum: Họp ngắn 15 phút hàng ngày, cập nhật tiến độ và khó khăn</li>
-                                    <li>Sprint Review: Đánh giá kết quả sprint với stakeholders</li>
-                                    <li>Sprint Retrospective: Rút kinh nghiệm và cải thiện quy trình</li>
+                                    <li><strong>Sprint</strong>: bản thân sprint là một sự kiện — nó là cái
+                                        <em>chứa</em> bốn sự kiện còn lại. Dài <strong>1–4 tuần</strong>, và độ dài
+                                        được giữ cố định giữa các sprint để team ước lượng được.</li>
+                                    <li>Sprint Planning: chọn các item từ Product Backlog và lập Sprint Backlog.
+                                        Tối đa <strong>8 giờ</strong> cho một sprint dài một tháng.</li>
+                                    <li>Daily Scrum: Họp ngắn <strong>tối đa 15 phút</strong> hàng ngày, cập nhật
+                                        tiến độ và khó khăn</li>
+                                    <li>Sprint Review: Đánh giá kết quả sprint với stakeholders. Tối đa
+                                        <strong>4 giờ</strong> cho sprint một tháng.</li>
+                                    <li>Sprint Retrospective: Rút kinh nghiệm và cải thiện quy trình. Tối đa
+                                        <strong>3 giờ</strong> cho sprint một tháng.</li>
                                 </ul>
                             </li>
                             <li><strong>Artifacts:</strong>
@@ -581,6 +840,19 @@
                                 </ul>
                             </li>
                         </ul>
+
+                        <aside class="b-callout" data-callout="warn">
+<p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Ba con số hay bị gán sai chỗ</p>
+<ul>
+    <li><strong>2–4 tuần</strong> là độ dài của <em>Sprint</em>, không phải của buổi Sprint Planning. Sprint
+        Planning là một buổi họp, tối đa 8 giờ.</li>
+    <li><strong>15 phút</strong> là timebox của Daily Scrum. Nếu có vấn đề cần bàn sâu thì ghi lại và bàn
+        sau buổi họp, không kéo dài buổi họp.</li>
+    <li><strong>5–9 người</strong> là con số của Scrum Guide cũ; bản 2020 nói "thường 10 người hoặc ít hơn"
+        và gọi nhóm này là <em>Developers</em> thay vì Development Team. Nếu đề thi dùng cách gọi nào thì
+        bạn trả lời theo cách gọi đó.</li>
+</ul>
+</aside>
 
 
                         <h5>Khi nào nên sử dụng</h5>
@@ -659,14 +931,47 @@
                         </ul>
 
 
-                        <h5>Lợi ích chính</h5>
+                        <h5>Ưu điểm</h5>
                         <ul>
                             <li>Tăng tính minh bạch và khả năng theo dõi công việc</li>
                             <li>Giảm thời gian chờ đợi và tăng hiệu suất</li>
                             <li>Cải thiện chất lượng sản phẩm/dịch vụ</li>
                             <li>Tăng sự hài lòng của khách hàng</li>
                             <li>Giảm stress cho team và tăng sự hợp tác</li>
+                            <li>Áp lên quy trình <em>đang có</em> mà không cần đổi vai trò hay cấu trúc team — chi phí
+                                bắt đầu gần bằng không</li>
+                            <li>Việc gấp có thể vào bảng bất cứ lúc nào, không phải đợi hết sprint</li>
                         </ul>
+
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Không có mốc thời gian nào bắt buộc, nên rất khó trả lời "bao giờ xong?" nếu team không
+                                đo và dùng số liệu (lead time, cycle time, throughput)</li>
+                            <li>Ít nghi thức cũng nghĩa là ít điểm bắt buộc phải cải tiến: nếu không tự tổ chức review
+                                thì bảng Kanban chỉ còn là chỗ để việc, không cải thiện gì</li>
+                            <li>Không phù hợp cho dự án cần một bản phát hành lớn theo hạn cố định</li>
+                            <li>Giới hạn WIP đặt sai (quá lỏng) thì mất hết tác dụng; đặt đúng cần vài tuần thử và
+                                điều chỉnh</li>
+                            <li>Không quy định vai trò nào, nên với team mới hoặc chưa tự chủ, việc dễ bị bỏ lửng giữa
+                                các cột</li>
+                        </ul>
+
+                        <aside class="b-callout" data-callout="tip">
+                            <p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Scrum và Kanban khác nhau ở đâu</p>
+                            <ul>
+                                <li><strong>Nhịp:</strong> Scrum chia thời gian thành sprint dài cố định. Kanban chảy
+                                    liên tục, không có sprint.</li>
+                                <li><strong>Cam kết:</strong> Scrum cam kết một lô việc cho cả sprint và không thêm vào
+                                    giữa sprint. Kanban <em>kéo</em> việc tiếp theo mỗi khi có chỗ trống.</li>
+                                <li><strong>Cái bị giới hạn:</strong> Scrum giới hạn theo <em>thời gian</em> (sprint).
+                                    Kanban giới hạn theo <em>số việc đang làm</em> (WIP).</li>
+                                <li><strong>Vai trò:</strong> Scrum bắt buộc Product Owner, Scrum Master, Developers.
+                                    Kanban không quy định vai trò nào.</li>
+                                <li><strong>Cách bắt đầu:</strong> Scrum là một khung mới, team phải đổi cách làm.
+                                    Kanban bắt đầu từ đúng quy trình hiện tại rồi cải tiến dần.</li>
+                            </ul>
+                        </aside>
 
 
             <!-- 9. Extreme Programming (XP) -->
@@ -691,13 +996,17 @@
                             <li><strong>Code Standard:</strong> Tuân thủ các tiêu chuẩn code thống nhất trong team</li>
                             <li><strong>Refactoring:</strong> Cải thiện cấu trúc code thường xuyên mà không thay đổi
                                 hành vi</li>
-                            <li><strong>Pair Programming:</strong> Hai lập trình viên làm việc cùng nhau (pilot và
-                                navigator), thường xuyên đổi vai trò</li>
+                            <li><strong>Pair Programming:</strong> Hai lập trình viên dùng chung một máy.
+                                <strong>Driver</strong> gõ code, lo phần chi tiết đang làm;
+                                <strong>Navigator</strong> quan sát, nghĩ trước một bước, chỉ ra lỗi và hướng đi.
+                                Hai người đổi vai thường xuyên. (Vai trò là <em>driver</em> — không phải "pilot")</li>
                             <li><strong>Collective Code Ownership:</strong> Code thuộc về cả team, ai cũng có thể sửa
                                 bất kỳ phần nào</li>
                             <li><strong>Continuous Integration:</strong> Tích hợp code thường xuyên, tự động hóa kiểm
                                 thử</li>
-                            <li><strong>Small Release:</strong> Phát hành MVP (Minimum Viable Product) thường xuyên</li>
+                            <li><strong>Small Release:</strong> Phát hành bản chạy được ra production theo chu kỳ ngắn
+                                (vài tuần), mỗi bản thêm một lượng nhỏ chức năng. <em>Bản đầu tiên</em> có thể là MVP,
+                                nhưng các bản sau thì không — chúng là các lần bồi thêm lên sản phẩm đã có</li>
                             <li><strong>System Metaphor:</strong> Sử dụng ngôn ngữ chung dễ hiểu giữa developer và user
                             </li>
                             <li><strong>Onsite Customer:</strong> Khách hàng làm việc trực tiếp với team, tương tự
@@ -717,6 +1026,28 @@
                         </ul>
 
 
+                        <h5>Ưu điểm</h5>
+                        <ul>
+                            <li>Chất lượng code cao nhất trong các phương pháp Agile: TDD cho bộ test tự động, pair
+                                programming cho review ngay lúc viết, refactoring liên tục chống nợ kỹ thuật</li>
+                            <li>Sửa yêu cầu rất rẻ — thiết kế đơn giản cộng bộ test dày đặc nghĩa là đổi code không sợ
+                                vỡ chỗ khác</li>
+                            <li>Kiến thức lan trong team, không có "người duy nhất hiểu module này"</li>
+                        </ul>
+
+
+                        <h5>Nhược điểm</h5>
+                        <ul>
+                            <li>Đòi hỏi kỷ luật rất cao. Bỏ một practice thường làm sập các practice khác — bỏ test thì
+                                refactoring và collective ownership thành nguy hiểm</li>
+                            <li>Pair programming làm chi phí nhân sự trên mỗi dòng code tăng, khó thuyết phục quản lý,
+                                và không phải ai cũng làm việc được theo cặp cả ngày</li>
+                            <li>Cần khách hàng ngồi cùng (onsite customer) — điều kiện rất ít dự án thực tế đáp ứng</li>
+                            <li>Không có tài liệu thiết kế dày, khó dùng cho hợp đồng cố định phạm vi hoặc ngành bị
+                                quản lý chặt (nơi RUP mạnh hơn)</li>
+                            <li>Khó mở rộng cho team lớn hoặc phân tán: nhiều practice giả định cả team ngồi cùng
+                                phòng</li>
+                        </ul>
 
 
             <h2 id="luachon">2. Tiêu chí lựa chọn phương pháp</h2>
@@ -745,6 +1076,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td><strong>Yêu cầu cần rõ tới mức nào<br>khi bắt đầu</strong></td>
+                                    <td>Rõ và ổn định 100%</td>
+                                    <td>Rõ và ổn định 100%</td>
+                                    <td>Khung rõ, chi tiết bồi dần</td>
+                                    <td>Có thể chưa rõ; làm rõ dần qua từng vòng</td>
+                                    <td>Kiến trúc chốt sớm, chi tiết còn đổi được</td>
+                                    <td>Chưa rõ — mục đích chính là làm cho rõ</td>
+                                    <td>Đổi liên tục là chuyện bình thường</td>
+                                    <td>Không cần biết trước; việc vào theo dòng</td>
+                                    <td>Đổi liên tục, kể cả rất muộn</td>
+                                </tr>
                                 <tr>
                                     <td>Quy mô dự án</td>
                                     <td>Nhỏ-Trung bình</td>
@@ -838,7 +1181,7 @@
                                     <td>Lớn</td>
                                     <td>Lớn</td>
                                     <td>Nhỏ</td>
-                                    <td>5-9 người</td>
+                                    <td>≤ 10 người<br><em>(bản 2020; sách cũ ghi 5–9)</em></td>
                                     <td>Linh hoạt</td>
                                     <td>Nhỏ</td>
                                 </tr>
@@ -949,8 +1292,100 @@
                     </ol>
 
 
+                    <h4>Ba trục để phân loại kiểm thử</h4>
+                    <p>Chỗ hay mất điểm nhất của phần này là gộp ba câu hỏi khác nhau vào một danh sách. Trước khi học
+                        tên từng loại, hãy nắm ba trục độc lập sau — một phép kiểm thử luôn có vị trí trên <em>cả ba</em>
+                        trục cùng lúc.</p>
 
-                        <h3>1. Kiểm thử chức năng (Functional Testing)</h3>
+                    <div data-table role="region" aria-label="Ba trục phân loại kiểm thử: mức, loại và kỹ thuật" tabindex="0">
+<table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Trục</th>
+                                <th scope="col">Câu hỏi nó trả lời</th>
+                                <th scope="col">Các giá trị</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Mức (Level)</strong></td>
+                                <td>Kiểm thử <em>khối lớn cỡ nào</em>, và ở giai đoạn nào của dự án?</td>
+                                <td>Unit → Integration → System → Acceptance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Loại (Type)</strong></td>
+                                <td>Kiểm thử <em>thuộc tính gì</em> của hệ thống?</td>
+                                <td>Functional; Non-functional (performance, security, usability…); Regression; Smoke;
+                                    Sanity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kỹ thuật (Technique)</strong></td>
+                                <td>Người kiểm thử có <em>thấy code</em> hay không?</td>
+                                <td>Black-box, White-box, Grey-box</td>
+                            </tr>
+                        </tbody>
+                    </table>
+</div>
+
+                    <p>Ví dụ: một test case "đăng nhập sai mật khẩu 5 lần thì bị khóa tài khoản" là <strong>mức
+                        System</strong>, <strong>loại Functional</strong>, <strong>kỹ thuật Black-box</strong>. Cùng
+                        chức năng đó, nếu người viết test đọc code để chọn đầu vào phủ hết các nhánh <code>if</code>
+                        thì nó thành <strong>White-box</strong> — mức và loại không đổi.</p>
+
+                    <aside class="b-callout" data-callout="key">
+                        <p class="b-callout__label"><svg data-icon="target" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#target"></use></svg> Verification và Validation</p>
+                        <ul>
+                            <li><strong>Verification</strong> — "Are we building the product <em>right</em>?" So sản
+                                phẩm với <em>bản đặc tả</em>. Bao gồm review tài liệu, và các mức Unit, Integration,
+                                System.</li>
+                            <li><strong>Validation</strong> — "Are we building the <em>right</em> product?" So sản phẩm
+                                với <em>nhu cầu thật</em> của người dùng. Chủ yếu là Acceptance Testing.</li>
+                        </ul>
+                        <p>Hệ quả đáng nhớ: một hệ thống có thể <em>pass verification</em> mà vẫn <em>fail
+                            validation</em> — code đúng y bản đặc tả, nhưng bản đặc tả đó viết sai nhu cầu.
+                            Verification không bao giờ bắt được lỗi loại này.</p>
+                    </aside>
+
+                    <h5>Black-box, White-box, Grey-box</h5>
+                    <div data-table role="region" aria-label="So sánh kỹ thuật black-box, white-box và grey-box" tabindex="0">
+<table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Kỹ thuật</th>
+                                <th scope="col">Người test biết gì</th>
+                                <th scope="col">Dựa vào đâu để thiết kế test</th>
+                                <th scope="col">Thường dùng ở mức</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Black-box</strong></td>
+                                <td>Chỉ đầu vào và đầu ra mong đợi</td>
+                                <td>Đặc tả yêu cầu: phân vùng tương đương, giá trị biên, bảng quyết định</td>
+                                <td>System, Acceptance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>White-box</strong></td>
+                                <td>Thấy toàn bộ code và luồng điều khiển</td>
+                                <td>Độ phủ: phủ câu lệnh, phủ nhánh, phủ đường đi</td>
+                                <td>Unit, Integration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Grey-box</strong></td>
+                                <td>Biết kiến trúc, schema database, API — nhưng không đọc từng dòng code</td>
+                                <td>Kết hợp: test qua giao diện nhưng kiểm tra cả dữ liệu trong DB</td>
+                                <td>Integration, System</td>
+                            </tr>
+                        </tbody>
+                    </table>
+</div>
+
+
+                        <h3>1. Bốn mức kiểm thử (Test Levels)</h3>
+
+                        <p>Bốn mức dưới đây xếp theo <em>kích thước của thứ đang được kiểm thử</em>, từ một hàm đơn lẻ
+                            tới cả hệ thống trong tay người dùng. Đây là trục <strong>mức</strong>, không phải trục
+                            loại — vì vậy Regression không nằm trong bảng này (xem mục 3 bên dưới).</p>
 
 
                             <div data-table role="region" aria-label="Bốn mức kiểm thử: unit, integration, system và acceptance" tabindex="0">
@@ -1000,24 +1435,44 @@
                                         <td>Trước khi bàn giao</td>
                                         <td>End Users/Client</td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Regression Testing</strong></td>
-                                        <td>
-                                            - Kiểm thử lại sau khi có thay đổi<br>
-                                            - Đảm bảo tính năng cũ vẫn hoạt động tốt
-                                        </td>
-                                        <td>Sau mỗi lần cập nhật</td>
-                                        <td>QA Team</td>
-                                    </tr>
                                 </tbody>
                             </table>
 </div>
 
+                        <aside class="b-callout" data-callout="warn">
+                            <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Regression không phải là mức thứ năm</p>
+                            <p>Rất nhiều tài liệu (kể cả bản trước của bài này) xếp Regression Testing thành dòng thứ
+                                năm của bảng trên. Sai, vì bốn mức trả lời câu hỏi "kiểm thử khối lớn cỡ nào", còn
+                                Regression trả lời câu hỏi "kiểm thử <em>khi nào</em> và <em>để phòng cái gì</em>".
+                                Regression là một <strong>loại</strong>, và nó chạy <em>ở</em> mọi mức — có regression
+                                suite ở mức unit, ở mức integration và ở mức system.</p>
+                        </aside>
+
+                        <h4>Hai mức tích hợp hay bị hỏi thêm</h4>
+                        <ul>
+                            <li><strong>Component/Module Testing</strong> — nằm giữa Unit và Integration: kiểm thử một
+                                component hoàn chỉnh (nhiều class hợp lại) một cách độc lập, thường phải dùng
+                                <em>stub</em> (thay thế cho module bị gọi) và <em>driver</em> (thay thế cho module gọi
+                                đến).</li>
+                            <li><strong>Acceptance Testing chia hai</strong>: <em>Alpha</em> làm tại nơi phát triển với
+                                người dùng nội bộ; <em>Beta</em> làm tại chỗ người dùng thật, ngoài tầm kiểm soát của
+                                team. Cả hai đều là validation.</li>
+                        </ul>
 
 
+                        <h3>2. Kiểm thử phi chức năng (Non-functional Testing)</h3>
 
-                        <h3>2. Kiểm thử phi chức năng (Non-functional Testing) - KHÔNG CẦN NHỚ CÔNG CỤ PHỔ BIẾN ĐỂ TEST
-                            ĐÂU NHA</h3>
+                        <p>Kiểm thử chức năng hỏi "hệ thống có <em>làm</em> đúng việc không". Kiểm thử phi chức năng hỏi
+                            "hệ thống làm việc đó <em>tốt đến mức nào</em>" — nhanh, an toàn, dễ dùng, chạy được ở đâu.
+                            Một hệ thống pass hết functional test vẫn có thể không dùng được nếu mỗi thao tác mất
+                            30 giây.</p>
+
+                        <aside class="b-callout" data-callout="note">
+                            <p class="b-callout__label"><svg data-icon="info-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#info-circle"></use></svg> Về cột "Công cụ phổ biến"</p>
+                            <p>Cột công cụ trong bảng dưới để tra cứu, <strong>không cần học thuộc</strong> — đề thi
+                                SWE201c hỏi bạn <em>loại kiểm thử nào phù hợp với tình huống</em>, không hỏi tên công
+                                cụ. Cứ đọc qua cho biết mặt rồi bỏ.</p>
+                        </aside>
 
 
                             <div data-table role="region" aria-label="Các loại kiểm thử phi chức năng và mục tiêu của từng loại" tabindex="0">
@@ -1032,7 +1487,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Performance Testing</strong></td>
+                                        <td><strong>Performance Testing</strong><br>
+                                            <em>(nhóm bao gồm Load, Stress, Spike, Endurance)</em>
+                                        </td>
                                         <td>Kiểm tra hiệu năng hệ thống</td>
                                         <td>
                                             - Đánh giá tốc độ phản hồi<br>
@@ -1072,22 +1529,26 @@
                                         <td>BrowserStack, Sauce Labs</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Load Testing</strong></td>
-                                        <td>Kiểm tra khả năng chịu tải</td>
+                                        <td>↳ <strong>Load Testing</strong><br>
+                                            <em>(một nhánh của Performance)</em>
+                                        </td>
+                                        <td>Kiểm tra khả năng chịu tải ở mức <strong>dự kiến</strong></td>
                                         <td>
-                                            - Đánh giá hiệu suất dưới tải bình thường<br>
+                                            - Đánh giá hiệu suất dưới tải bình thường và tải đỉnh đã dự tính<br>
                                             - Kiểm tra số lượng user đồng thời<br>
-                                            - Xác định giới hạn hệ thống
+                                            - Trả lời: "hệ thống có đáp ứng được lượng user đã cam kết không?"
                                         </td>
                                         <td>Apache JMeter, Gatling</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Stress Testing</strong></td>
-                                        <td>Kiểm tra khả năng chịu áp lực</td>
+                                        <td>↳ <strong>Stress Testing</strong><br>
+                                            <em>(một nhánh của Performance)</em>
+                                        </td>
+                                        <td>Đẩy <strong>vượt</strong> mức dự kiến cho tới khi hệ thống gãy</td>
                                         <td>
-                                            - Kiểm tra dưới tải cao<br>
-                                            - Đánh giá khả năng phục hồi<br>
-                                            - Xác định điểm gãy của hệ thống
+                                            - Tìm điểm gãy (breaking point)<br>
+                                            - Xem hệ thống gãy <em>có đẹp</em> không: báo lỗi tử tế hay mất dữ liệu<br>
+                                            - Đánh giá khả năng phục hồi sau khi hết tải
                                         </td>
                                         <td>WebLoad, LoadUI Pro</td>
                                     </tr>
@@ -1095,7 +1556,89 @@
                             </table>
 </div>
 
+                        <aside class="b-callout" data-callout="tip">
+                            <p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Load hay Stress? Hỏi một câu duy nhất</p>
+                            <p>Bài toán đặt tải <em>trong</em> mức đã cam kết hay <em>vượt</em> mức đó?</p>
+                            <ul>
+                                <li>"Hệ thống phải đỡ được 10.000 user đồng thời — hãy kiểm tra" → <strong>Load</strong>
+                                    (đúng mức dự kiến).</li>
+                                <li>"Tăng dần user tới khi server sập, xem sập ở đâu" → <strong>Stress</strong>
+                                    (vượt mức dự kiến).</li>
+                                <li>"Bắn 10.000 user vào trong 5 giây rồi rút xuống ngay" → <strong>Spike</strong>
+                                    (tải tăng vọt đột ngột).</li>
+                                <li>"Chạy tải bình thường liên tục 72 giờ xem có rò bộ nhớ" →
+                                    <strong>Endurance/Soak</strong> (tải bình thường, thời gian dài).</li>
+                            </ul>
+                            <p>Cả bốn đều là Performance Testing. Load và Stress không phải hai loại ngang hàng với
+                                Performance — chúng nằm <em>trong</em> Performance.</p>
+                        </aside>
 
+
+                        <h3>3. Kiểm thử liên quan đến thay đổi (Change-related Testing)</h3>
+
+                        <p>Nhóm này không thuộc functional hay non-functional — nó được định nghĩa bởi <em>lý do
+                            chạy</em>: có một thay đổi vừa vào code. Bốn tên dưới đây bị lẫn nhau nhiều nhất trong đề
+                            thi.</p>
+
+                        <div data-table role="region" aria-label="Phân biệt retest, regression, smoke và sanity testing" tabindex="0">
+<table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Loại</th>
+                                    <th scope="col">Chạy cái gì</th>
+                                    <th scope="col">Trả lời câu hỏi</th>
+                                    <th scope="col">Khi nào</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Retest</strong><br>(Confirmation Testing)</td>
+                                    <td>Đúng những test case đã <em>fail</em> lần trước, trên cùng dữ liệu đó</td>
+                                    <td>Lỗi đã báo <em>đã được sửa</em> chưa?</td>
+                                    <td>Ngay sau khi dev nói "fixed"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Regression</strong></td>
+                                    <td>Các test case đã <em>pass</em> từ trước, ở vùng có thể bị ảnh hưởng</td>
+                                    <td>Bản sửa đó có làm <em>vỡ chỗ khác</em> không?</td>
+                                    <td>Sau khi retest pass; và sau mọi thay đổi code</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Smoke</strong></td>
+                                    <td>Một tập rất nhỏ, rộng-mà-nông, phủ các chức năng sống-còn</td>
+                                    <td>Bản build này có <em>đáng test tiếp</em> không?</td>
+                                    <td>Ngay khi nhận build mới, trước mọi việc khác</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sanity</strong></td>
+                                    <td>Hẹp-mà-sâu: chỉ đúng chức năng vừa sửa/vừa thêm</td>
+                                    <td>Phần vừa đổi có hoạt động ở mức cơ bản không?</td>
+                                    <td>Khi cần kết luận nhanh, không đủ thời gian regression đầy đủ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+</div>
+
+                        <aside class="b-callout" data-callout="key">
+                            <p class="b-callout__label"><svg data-icon="target" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#target"></use></svg> Retest và Regression: hai câu hỏi khác nhau về cùng một bản sửa</p>
+                            <p>Đây là cặp bị nhầm nhiều nhất, và mẹo phân biệt gọn nhất là nhìn vào <em>kết quả cũ</em>
+                                của các test case bạn đang chạy:</p>
+                            <ul>
+                                <li>Chạy lại test <strong>từng fail</strong> → Retest. Mong đợi: giờ nó pass.</li>
+                                <li>Chạy lại test <strong>từng pass</strong> → Regression. Mong đợi: nó vẫn pass.</li>
+                            </ul>
+                            <p>Hai việc này <em>không thay thế nhau</em>. Retest pass chỉ chứng minh lỗi đã hết; nó
+                                không nói gì về việc bản sửa có phá chức năng khác. Thứ tự đúng là retest trước,
+                                regression sau — vì nếu chính lỗi cũ vẫn còn thì chạy regression là vô nghĩa.</p>
+                            <p>Khác biệt thực hành: Retest <strong>không thể tự động hóa trước</strong> (phải biết lỗi
+                                gì rồi mới chạy lại được), còn Regression là ứng viên tự động hóa số một — nó lặp lại y
+                                hệt sau mỗi lần build, đúng loại việc mà con người làm vừa chậm vừa dễ bỏ sót.</p>
+                        </aside>
+
+                        <p>Liên hệ ngược lên 7 nguyên tắc ở đầu mục: bộ regression suite chạy y nguyên mãi mãi chính là
+                            ví dụ điển hình của <strong>nghịch lý thuốc trừ sâu</strong> — nó sẽ ngừng tìm ra lỗi mới.
+                            Vì vậy regression suite cần được rà và bổ sung test case định kỳ, không phải viết một lần
+                            rồi để đó.</p>
 
 
 
@@ -1107,7 +1650,8 @@
                         <li><strong>Chuẩn bị môi trường:</strong> Cài đặt và cấu hình môi trường test</li>
                         <li><strong>Thực thi kiểm thử:</strong> Chạy các test case đã thiết kế</li>
                         <li><strong>Báo cáo lỗi:</strong> Ghi nhận và theo dõi các lỗi phát hiện</li>
-                        <li><strong>Kiểm thử lại:</strong> Verify lỗi sau khi đã được sửa</li>
+                        <li><strong>Retest và regression:</strong> Chạy lại đúng test đã fail để xác nhận lỗi đã hết
+                            (retest), rồi chạy lại các test đã pass để chắc bản sửa không phá chỗ khác (regression)</li>
                         <li><strong>Báo cáo kết quả:</strong> Tổng hợp và đánh giá kết quả kiểm thử</li>
                     </ol>
 
@@ -1354,34 +1898,98 @@
 
                                 <h5>Bước 2: Đánh dấu từ khóa quan trọng</h5>
 
-                                    <div data-table role="region" aria-label="Tiêu chí chấm câu 1 đề PE: lựa chọn mô hình phát triển" tabindex="0">
+                                    <p>Đây là bảng đáng học nhất của cả phần PE: đề bao giờ cũng gài <em>tín hiệu</em>
+                                        trong đoạn mô tả bối cảnh, và câu 1 chấm chủ yếu vào việc bạn có đọc ra được
+                                        không. Dòng đầu tiên là dòng quan trọng nhất.</p>
+
+                                    <div data-table role="region" aria-label="Từ khóa trong đề và mô hình mà mỗi từ khóa gợi tới" tabindex="0">
 <table>
                                         <thead>
                                             <tr>
                                                 <th scope="col">Loại từ khóa</th>
-                                                <th scope="col">Ví dụ</th>
-                                                <th scope="col">Ý nghĩa</th>
+                                                <th scope="col">Ví dụ trong đề</th>
+                                                <th scope="col">Gợi tới mô hình</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Thời gian</td>
+                                                <td><strong>Độ rõ của yêu cầu</strong><br><em>(tín hiệu mạnh nhất)</em>
+                                                </td>
+                                                <td>"requirements are clear, complete and stable"<br>
+                                                    ↔ "requirements are not fully known" / "may change"</td>
+                                                <td>Rõ và ổn định → <strong>Waterfall</strong> hoặc
+                                                    <strong>V-Model</strong><br>
+                                                    Chưa rõ hoặc sẽ đổi → <strong>Scrum</strong>,
+                                                    <strong>Incremental</strong>, <strong>Prototype</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thời gian và phạm vi</td>
                                                 <td>"must be completed within 12 months"</td>
-                                                <td>Deadline cố định → Waterfall?</td>
+                                                <td>Một mình deadline <em>không</em> quyết định gì. Phải xem phạm vi:
+                                                    deadline cố định + phạm vi cố định → Waterfall; deadline cố định +
+                                                    phạm vi thương lượng được → <strong>Incremental/Scrum</strong> (giao
+                                                    phần giá trị nhất trước hạn)</td>
                                             </tr>
                                             <tr>
-                                                <td>Yêu cầu</td>
-                                                <td>"requirements may change"</td>
-                                                <td>Yêu cầu linh hoạt → Agile?</td>
+                                                <td>Rủi ro và tính an toàn</td>
+                                                <td>"safety-critical", "failure could cause injury", "high technical
+                                                    risk"</td>
+                                                <td><strong>Spiral</strong> (nếu đề nhấn vào phân tích rủi ro từng vòng)
+                                                    hoặc <strong>V-Model</strong> (nếu đề nhấn vào kiểm thử và truy vết)
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td>Team</td>
-                                                <td>"experienced in development"</td>
-                                                <td>Khả năng team</td>
+                                                <td>Giao hàng sớm và thường xuyên</td>
+                                                <td>"deliver a working version every few weeks", "first release in 3
+                                                    months"</td>
+                                                <td><strong>Incremental</strong> hoặc <strong>Scrum</strong>. Không phải
+                                                    Spiral — Spiral lặp để <em>giảm rủi ro</em>, không để phát hành</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Khách hàng tham gia</td>
+                                                <td>"customer is available throughout"<br>
+                                                    ↔ "customer signs off once at the start"</td>
+                                                <td>Tham gia liên tục → <strong>Scrum</strong>, <strong>XP</strong><br>
+                                                    Ký một lần rồi biến mất → <strong>Waterfall</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Yêu cầu tài liệu và truy vết</td>
+                                                <td>"must comply with regulations", "full documentation required",
+                                                    "audit"</td>
+                                                <td><strong>Waterfall</strong>, <strong>V-Model</strong>, hoặc
+                                                    <strong>RUP</strong> nếu đề đồng thời muốn lặp</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Giao diện chưa ai hình dung được</td>
+                                                <td>"users cannot describe what they want until they see it"</td>
+                                                <td><strong>Prototype</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quy mô và phân bố team</td>
+                                                <td>"large distributed team", "specialised roles"<br>
+                                                    ↔ "small co-located team"</td>
+                                                <td>Lớn và phân tán → <strong>RUP</strong>, Waterfall<br>
+                                                    Nhỏ và ngồi cùng chỗ → <strong>XP</strong>, Scrum</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Loại công việc</td>
+                                                <td>"continuous stream of support tickets", "maintenance work"</td>
+                                                <td><strong>Kanban</strong> — luồng liên tục, không chia sprint</td>
                                             </tr>
                                         </tbody>
                                     </table>
 </div>
+
+                                    <aside class="b-callout" data-callout="key">
+                                        <p class="b-callout__label"><svg data-icon="target" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#target"></use></svg> Nếu chỉ nhớ được một dòng</p>
+                                        <p>Nhớ dòng đầu: <strong>yêu cầu có rõ và ổn định hay không</strong>. Đó là câu
+                                            hỏi chia đôi toàn bộ 9 mô hình thành hai nửa predictive và adaptive, và gần
+                                            như mọi đề PE đều nói rõ tín hiệu này ở đoạn đầu.</p>
+                                        <p>Hai lỗi lập luận hay gặp: (1) thấy "deadline gấp" là kết luận Waterfall —
+                                            sai, deadline không nói gì về độ rõ của yêu cầu; (2) chọn đúng mô hình nhưng
+                                            viện lý do của mô hình khác, ví dụ chọn RUP rồi giải thích "vì yêu cầu đã rõ
+                                            ràng từ đầu" — đó là lý do của Waterfall.</p>
+                                    </aside>
 
                                 <h5>Bước 3: Phân tích ràng buộc</h5>
                                 <ul>
@@ -1476,7 +2084,10 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
 
                                             <h5>Tiêu chí chấm điểm</h5>
 
-                                                <div data-table role="region" aria-label="Ví dụ test case cho câu hỏi kiểm thử" tabindex="0">
+                                                <p>Đây là cách chia điểm <em>ước lượng</em> cho câu 2 điểm — dùng để
+                                                    biết nên dồn chữ vào đâu, không phải barem chính thức.</p>
+
+                                                <div data-table role="region" aria-label="Cách chia điểm ước lượng cho câu 1: lựa chọn mô hình phát triển" tabindex="0">
 <table>
                                                     <thead>
                                                         <tr>
@@ -1488,34 +2099,44 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
                                                     <tbody>
                                                         <tr>
                                                             <td>Lựa chọn mô hình</td>
-                                                            <td>0.5</td>
+                                                            <td>0.25</td>
                                                             <td>Chọn mô hình phù hợp với context</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Phân tích yêu cầu</td>
-                                                            <td>1.0</td>
+                                                            <td>0.5</td>
                                                             <td>Phân tích chi tiết các yêu cầu dự án
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Đánh giá team</td>
-                                                            <td>1.0</td>
+                                                            <td>0.5</td>
                                                             <td>Phân tích khả năng và cấu trúc team</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Lập luận</td>
-                                                            <td>1.0</td>
+                                                            <td>0.5</td>
                                                             <td>Giải thích rõ ràng lý do chọn mô hình
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Kết luận</td>
-                                                            <td>0.5</td>
+                                                            <td>0.25</td>
                                                             <td>Tổng hợp và kết luận logic</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Tổng</strong></td>
+                                                            <td><strong>2.0</strong></td>
+                                                            <td>Khớp với số điểm của câu hỏi</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
 </div>
+
+                                                <p>Đọc bảng theo tỷ lệ thì rõ hơn đọc theo số: <strong>ba phần tư số
+                                                    điểm nằm ở phần phân tích và lập luận</strong>, chỉ một phần tám ở
+                                                    chỗ nêu tên mô hình. Viết "Chọn Waterfall" rồi hết là mất gần hết
+                                                    điểm, dù chọn đúng.</p>
 
 
 
@@ -1561,21 +2182,31 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
    - Business requirement validation
    - User workflow verification
 
-5. Regression Testing
-   Tester: Dedicated testing team/Automated tools
-   Focus:
-   - Impact of changes on existing features
-   - System stability after updates
-   - Automated test suites execution
+In addition to the four levels above, the following test types
+will be applied across those levels:
 
-6. Performance & Load Testing
-   Tester: Specialized testing engineers
-   Focus:
-   - System performance under load
-   - Stress testing and reliability
-   - Peak usage simulation
+- Regression Testing
+  Tester: Testing team, supported by automated test suites
+  Purpose: ensure that each change does not break features
+  that already worked. Runs after every build, at unit,
+  integration and system level.
+
+- Performance Testing (including load and stress testing)
+  Tester: Specialised performance engineers
+  Purpose: verify response time and throughput at the
+  expected user volume (load), and locate the breaking
+  point beyond it (stress).
                                             </code></pre>
 </figure>
+
+                                <aside class="b-callout" data-callout="warn">
+                                    <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Đừng đánh số Regression thành "level 5"</p>
+                                    <p>Câu hỏi này hỏi <em>testing levels</em>. Chỉ có bốn: Unit → Integration → System
+                                        → Acceptance/UAT. Nếu bạn viết "5. Regression Testing" thành mức thứ năm, người
+                                        chấm thấy ngay là bạn chưa phân biệt được <em>level</em> với <em>type</em> — mất
+                                        điểm ở đúng chỗ câu hỏi muốn kiểm tra. Cứ liệt kê bốn mức, rồi tách một đoạn
+                                        riêng cho các <em>type</em> chạy xuyên qua các mức đó, như template trên.</p>
+                                </aside>
 
 
 
@@ -1972,6 +2603,76 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
 </figure>
 
 
+                        <h4 id="invest">INVEST — sáu tiêu chí của một user story tốt</h4>
+
+                        <p>Viết đúng khuôn "As a / I want / So that" chỉ đảm bảo <em>hình thức</em>. INVEST là bộ sáu
+                            tiêu chí để kiểm tra <em>nội dung</em>. Đề bài không bắt liệt kê INVEST, nhưng người chấm
+                            dùng chính sáu tiêu chí này để trừ điểm — và câu 6 (story mapping) thì trừ điểm thẳng vào
+                            chữ <em>Small</em>.</p>
+
+                        <div data-table role="region" aria-label="Sáu tiêu chí INVEST của user story" tabindex="0">
+<table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Chữ</th>
+                                    <th scope="col">Nghĩa</th>
+                                    <th scope="col">Kiểm tra bằng câu hỏi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>I</strong> — Independent</td>
+                                    <td>Độc lập với story khác</td>
+                                    <td>Có làm story này trước story kia được không? Nếu buộc phải theo thứ tự thì nên
+                                        gộp hoặc chia lại.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>N</strong> — Negotiable</td>
+                                    <td>Còn thương lượng được</td>
+                                    <td>Story nói <em>cần gì</em> hay đã chỉ định luôn <em>làm thế nào</em>? Nếu đã ghi
+                                        rõ dùng dropdown hay radio button thì hết chỗ thương lượng.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>V</strong> — Valuable</td>
+                                    <td>Có giá trị cho người dùng</td>
+                                    <td>Phần "So that" có nói được lợi ích thật không? "So that the data is saved to the
+                                        database" là giá trị cho hệ thống, không phải cho người dùng.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>E</strong> — Estimable</td>
+                                    <td>Ước lượng được</td>
+                                    <td>Team có đủ thông tin để đoán công sức chưa? Nếu chưa thì story còn thiếu chi
+                                        tiết, hoặc cần một spike để tìm hiểu trước.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>S</strong> — Small</td>
+                                    <td>Nhỏ, vừa một sprint</td>
+                                    <td>Làm xong trong một sprint được không? Nếu không thì đó là <em>epic</em>, phải
+                                        chia nhỏ.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>T</strong> — Testable</td>
+                                    <td>Kiểm thử được</td>
+                                    <td>Viết được acceptance criteria pass/fail rõ ràng chưa? "The system should be
+                                        user-friendly" không kiểm thử được; "a new user completes registration in under
+                                        3 steps" thì được.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+</div>
+
+                        <aside class="b-callout" data-callout="tip">
+                            <p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Hai chữ đáng để mắt nhất khi thi</p>
+                            <p><strong>Valuable</strong> và <strong>Testable</strong> là hai chữ bị vi phạm nhiều nhất
+                                trong bài thi, và đều lộ ra ở đúng một chỗ: mệnh đề <em>So that</em>.</p>
+                            <ul>
+                                <li>Nếu "So that" nói về lợi ích của <em>hệ thống</em> ("so that the data is stored")
+                                    → mất chữ V. Sửa thành lợi ích của người dùng ("so that I don't have to re-enter my
+                                    details next time").</li>
+                                <li>Nếu "I want" chứa tính từ mơ hồ (fast, easy, user-friendly, secure) mà không có số
+                                    → mất chữ T. Gắn một con số vào là xong.</li>
+                            </ul>
+                        </aside>
 
 
                             <h4>Tips làm bài</h4>
@@ -2042,8 +2743,18 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
 
             <!-- Phần hướng dẫn cho Câu 5: Quality Metrics -->
 
-                    <h3>Câu 5: Quality Metrics (1.0đ) - Câu này khuyến khích bỏ vì khó làm và cũng là lần đầu ra thi
-                    </h3>
+                    <h3>Câu 5: Quality Metrics (1.0đ)</h3>
+
+                    <aside class="b-callout" data-callout="tip">
+                        <p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Câu này đáng làm, đừng bỏ</p>
+                        <p>Bản trước của bài này khuyên bỏ câu 5 vì "khó và mới ra thi". Rút lại lời khuyên đó: yêu cầu
+                            của nó là <em>liệt kê 5 metric kèm giải thích</em> — dạng câu học thuộc được, và template
+                            đầy đủ nằm ngay dưới đây. Chỉ cần nhớ 5 cái tên (LCOM, CBO, Cyclomatic Complexity, Code
+                            Coverage, DIT) cộng một dòng "áp dụng vào dự án" cho mỗi cái là gần đủ điểm. 1.0đ đổi lấy
+                            khoảng 10 phút học thuộc là tỷ lệ tốt nhất trong cả đề.</p>
+                        <p>Nếu hết giờ và buộc phải bỏ một câu, hãy bỏ câu <em>tốn nhiều chữ nhất trên mỗi điểm</em> —
+                            không phải câu ít điểm nhất.</p>
+                    </aside>
 
                     <aside class="b-callout" data-callout="warn">
 <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Yêu cầu của câu hỏi</p>
@@ -2061,9 +2772,11 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
 <pre><code>To measure code and design quality in this project, I propose these metrics:
 
 1. LCOM (Lack of Cohesion of Methods) - Measuring Cohesion
-   • Description: Measures how well methods of a class are related to each other
-   • Formula: LCOM = (Number of method pairs not sharing attributes - Number of method pairs sharing attributes) / 2
-   • Good Value: < 0.5 (Lower is better)
+   • Description: Measures how weakly the methods of a class are related to each other
+   • Formula: LCOM = P - Q, where P = number of method pairs sharing
+     no attribute, Q = number of method pairs sharing at least one
+     attribute. If P - Q is negative, LCOM is taken as 0.
+   • Good Value: 0 (lower is better; the value is a count, not a ratio)
    • Application in Project: Use to identify classes that may need to be split into smaller, more focused classes
 
 2. CBO (Coupling Between Objects) - Measuring Coupling
@@ -2091,6 +2804,29 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
    • Application in Project: Keep inheritance hierarchies manageable and avoid deep nesting</code></pre>
 </figure>
 
+                        <aside class="b-callout" data-callout="tip">
+                            <p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> LCOM tính thử một lần cho hiểu</p>
+                            <p>LCOM đếm <em>cặp method</em>, không chia cho gì cả. Một class có 3 method và 2 attribute
+                                <code>a</code>, <code>b</code>:</p>
+                            <ul>
+                                <li><code>m1</code> dùng <code>a</code>, <code>m2</code> dùng <code>a</code>,
+                                    <code>m3</code> dùng <code>b</code>.</li>
+                                <li>Ba cặp: (m1,m2) dùng chung <code>a</code> → tính vào <em>Q</em>. (m1,m3) và (m2,m3)
+                                    không dùng chung gì → tính vào <em>P</em>.</li>
+                                <li>P = 2, Q = 1 → LCOM = 2 − 1 = <strong>1</strong>. Dương, tức là class này đang gánh
+                                    hai việc rời nhau: nên tách <code>m3</code> ra.</li>
+                            </ul>
+                            <p>Nếu cả ba method đều dùng <code>a</code> thì Q = 3, P = 0, LCOM = max(0, −3) =
+                                <strong>0</strong> — cohesion tốt. Số cặp tối đa luôn là
+                                <em>n</em>(<em>n</em>−1)/2, nên với n = 3 thì P + Q = 3 trong cả hai trường hợp; đó là
+                                cách kiểm tra nhanh xem mình đếm có sót cặp nào không.</p>
+                            <p><strong>Hai chỗ hay viết sai:</strong> (1) không có phép "chia 2" trong công thức — số 2
+                                bạn thấy trong <em>n</em>(<em>n</em>−1)/2 là để đếm tổng số cặp, không phải để chia kết
+                                quả; (2) ngưỡng "&lt; 0.5" thuộc về các biến thể đã chuẩn hóa về đoạn [0, 1] như
+                                LCOM* (Henderson-Sellers), không phải LCOM gốc của Chidamber &amp; Kemerer — LCOM gốc là
+                                một số đếm, mục tiêu là 0.</p>
+                        </aside>
+
 
 
 
@@ -2112,8 +2848,10 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
                                     <tr>
                                         <td rowspan="2">Cohesion</td>
                                         <td>LCOM (Lack of Cohesion of Methods)</td>
-                                        <td>Đo mức độ liên kết giữa các methods trong class</td>
-                                        <td>Càng thấp càng tốt (< 0.5)</td>
+                                        <td>Đếm số cặp method <em>không</em> dùng chung attribute, trừ đi số cặp có
+                                            dùng chung</td>
+                                        <td>Càng thấp càng tốt, tốt nhất là <strong>0</strong><br>
+                                            <em>(ngưỡng &lt; 0.5 là của LCOM* đã chuẩn hóa)</em></td>
                                     </tr>
                                     <tr>
                                         <td>TCC (Tight Class Cohesion)</td>
@@ -2384,7 +3122,9 @@ Release 2 (Advanced Features)
                                         <ul>
                                             <li>Thiếu cấu trúc As a/I want/So that</li>
                                             <li>Stories không cụ thể</li>
-                                            <li>Không đáp ứng INVEST</li>
+                                            <li>Không đáp ứng <a href="#invest">INVEST</a> — hay gặp nhất ở đây là
+                                                vi phạm chữ <em>Small</em>: story to bằng cả một epic, không xong trong
+                                                một sprint</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -2454,8 +3194,8 @@ Release 2 (Advanced Features)
                                     <ul>
                                         <li>Đọc kỹ coi đề là agile hay waterfall</li>
                                         <li>Học thuộc sẵn template của chính mình</li>
-                                        <li>Làm theo thứ tự câu 1 tới 6 và cẩn thận câu 5 có thể bỏ</li>
-
+                                        <li>Làm theo thứ tự câu 1 tới 6. Câu 5 (Quality Metrics) chỉ tốn khoảng 10 phút
+                                            học thuộc mà được 1.0đ — nên làm, đừng bỏ</li>
                                     </ul>
 
 
@@ -2465,7 +3205,9 @@ Release 2 (Advanced Features)
                                     <ul>
                                         <li>Đọc kỹ yêu cầu từng câu</li>
                                         <li>Trình bày rõ ràng, có cấu trúc</li>
-                                        <li>Dừng để sai tiếng anh nhiều người chấm trừ đỉm đóa</li>
+                                        <li>Viết tiếng Anh cẩn thận. Bài viết sai ngữ pháp nhiều thì người chấm sẽ trừ
+                                            điểm, kể cả khi nội dung đúng — nên dùng câu ngắn, đúng, thay vì câu dài mà
+                                            sai</li>
                                     </ul>
 
 
@@ -2474,9 +3216,17 @@ Release 2 (Advanced Features)
 
                     <h3>Đề mẫu:</h3>
 
-                    <p>
+                    <p>Đề PE kỳ FA24 dưới đây là đề mình đã làm. Bối cảnh: một <strong>Cruise Control System
+                        (CCS)</strong> cho xe hơi — hệ thống an toàn quan trọng, yêu cầu đã khá rõ, thời hạn 7 tháng cho
+                        bản đầu và 12 tháng cho bản cuối, team có kỹ năng kỹ thuật tốt và phân vai rõ. Sáu câu hỏi lần
+                        lượt là: chọn mô hình phát triển (2đ), testing levels và ai chịu trách nhiệm (1đ), yêu cầu chức
+                        năng và phi chức năng (2đ), viết user story (1.5đ), quality metrics (1đ), story mapping (2.5đ) —
+                        tổng 10đ.</p>
 
-                    </p>
+                    <p>Đề mỗi kỳ đổi <em>bối cảnh</em> (đổi hệ thống, đổi thời hạn, đổi đặc điểm team) nhưng giữ nguyên
+                        <em>dạng câu hỏi</em>. Vì vậy đừng học thuộc đáp án cho CCS — hãy học cách đọc bối cảnh rồi lắp
+                        vào template.</p>
+
                     <details id="examContent">
 <summary>Xem đề thi</summary>
 
@@ -2494,17 +3244,30 @@ Release 2 (Advanced Features)
                                 <p>I agree with the suggestion to use the Unified Process (UP) for this project for the following reasons:</p>
                                 <p><strong>a) Requirements:</strong></p>
                                 <ul>
-                                    <li><strong>Clear Requirements:</strong> The project has well-defined and detailed requirements, which fits perfectly with UP's focus on having clear and upfront requirements. For a safety-critical system like the Cruise Control System (CCS), this clarity is essential to ensure functionality and safety.</li>
-                                    <li><strong>Risk Management:</strong> UP emphasizes managing risks early, which is critical in safety-critical systems like CCS, where failure could lead to severe consequences.</li>
-                                    <li><strong>Use Case-Driven:</strong> UP's use case approach effectively models driver-system interactions, ensuring the system aligns with user needs.</li>
+                                    <li><strong>Stable core, evolving detail:</strong> The safety rules of a Cruise Control System (CCS) are fixed and known from the start, but the detailed behaviour at the edges — how the system reacts when the driver brakes, when the road is steep, when a sensor fails — is refined as the team learns. UP fits this shape: it locks the architecture early in the Elaboration phase, then develops the details across iterations.</li>
+                                    <li><strong>Risk management:</strong> UP is risk-driven. It requires the highest-risk items to be addressed in the earliest iterations. In a safety-critical system, where a failure can injure the driver, this ordering matters more than delivery speed.</li>
+                                    <li><strong>Use case-driven:</strong> UP builds the system around use cases, which models the driver–system interaction directly. Each use case also becomes a traceable link from requirement to design to test — necessary evidence for an automotive safety audit.</li>
                                 </ul>
                                 <p><strong>b) Development Team:</strong></p>
                                 <ul>
-                                    <li><strong>Team Specialization:</strong> The team is specialized in development work, and the team has strong technical skills.</li>
-                                    <li><strong>Phased Development:</strong> UP's four-phase structure—Inception, Elaboration, Construction, and Transition—aligns with the project's timeline. This phased approach allows incremental progress, making it possible to meet the 7-month deadline for the first version and the 12-month deadline for the final release.</li>
-                                    <li><strong>Architecture-Centric:</strong> The project requires a solid system architecture for the cruise control software.</li>
+                                    <li><strong>Team specialisation:</strong> The team has specialised technical roles. UP defines explicit roles and work products, so specialised members know exactly what they own.</li>
+                                    <li><strong>Phased development:</strong> UP's four phases — Inception, Elaboration, Construction and Transition — map onto the project timeline. Because each phase contains several iterations, the team can deliver a working first version at month 7 and continue to the final release at month 12 without restarting the process.</li>
+                                    <li><strong>Architecture-centric:</strong> The CCS needs a solid, verified architecture before feature work begins, because an architectural mistake in a safety-critical system is very expensive to correct later. UP produces an executable architecture baseline at the end of Elaboration, exactly for this reason.</li>
                                 </ul>
-                                <p><strong>Conclusion:</strong> The Unified Process is the best model to this development, with clear requirements, risk managements, and etc.</p>
+                                <p><strong>Conclusion:</strong> The Unified Process is the most suitable model for this project because it is risk-driven, architecture-centric and use-case-driven, while its iterations still allow the detailed requirements to be refined as the team learns more about the system.</p>
+
+                                <aside class="b-callout" data-callout="warn">
+                                    <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Lý do đáp án này từng bị viết sai</p>
+                                    <p>Bản trước của đáp án trên lập luận rằng chọn UP vì "UP tập trung vào yêu cầu rõ
+                                        ràng và đầy đủ ngay từ đầu". Đó là lý do của <strong>Waterfall</strong>, không
+                                        phải của UP — nếu yêu cầu đã đầy đủ và cố định thì chẳng cần lặp, và cũng chẳng
+                                        cần UP. Viết như vậy là tự phản bác lựa chọn của mình, và người chấm biết môn sẽ
+                                        thấy ngay.</p>
+                                    <p>Ba lý do <em>đúng</em> để chọn UP, nhớ theo ba từ: <strong>risk-driven</strong>
+                                        (làm việc rủi ro nhất trước), <strong>architecture-centric</strong> (chốt kiến
+                                        trúc sớm, ở cuối pha Elaboration), <strong>use-case-driven</strong> (dựng hệ
+                                        thống quanh use case, đồng thời có traceability để đi audit).</p>
+                                </aside>
 
 
 
@@ -2589,20 +3352,39 @@ Release 2 (Advanced Features)
 
 
 
-                            <p><strong>Câu 5: Các mô hình phát triển phần mềm</strong></p>
+                            <p><strong>Câu 5: Phân loại mô hình — Predictive và Adaptive</strong></p>
 
-                                <h5>Predictive Models:</h5>
+                            <aside class="b-callout" data-callout="note">
+                                <p class="b-callout__label"><svg data-icon="info-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#info-circle"></use></svg> Câu 5 ở đây khác câu 5 trong phần hướng dẫn</p>
+                                <p>Phần hướng dẫn phía trên có "Câu 5: Quality Metrics (1.0đ)", còn đề kỳ này hỏi phân
+                                    loại mô hình. Không phải lỗi đánh máy — <strong>câu 5 là câu đổi nội dung giữa các
+                                    kỳ</strong>, còn câu 1, 2, 3, 4, 6 thì giữ nguyên dạng. Vì vậy nên chuẩn bị
+                                    <em>cả hai</em>: template quality metrics ở
+                                    <a href="#pe-guide">phần hướng dẫn câu 5</a>, và bảng phân loại dưới đây.</p>
+                            </aside>
+
+                                <h5>Predictive Models (kế hoạch cố định trước):</h5>
                                 <ul>
                                     <li><strong>Waterfall Model:</strong> This is a step-by-step approach where each phase (planning, design, development, etc.) must be completed before moving to the next. It works best when the project's requirements are clear and unlikely to change.</li>
-                                    <li><strong>V-Model:</strong> This model is like the Waterfall, but it focuses more on testing. Testing happens at each stage of development, so the product is checked for issues right away.</li>
+                                    <li><strong>V-Model:</strong> This model follows the same sequence as Waterfall, but every development phase is paired with the test level that verifies it, and the test plans are written during that development phase instead of at the end.</li>
                                 </ul>
 
-                                <h5>Adaptive Models:</h5>
+                                <h5>Adaptive Models (kế hoạch điều chỉnh theo phản hồi):</h5>
                                 <ul>
-                                    <li><strong>Agile Model:</strong> This approach is flexible and allows changes during development based on feedback. The team works in short cycles, called iterations, to deliver small parts of the project.</li>
-                                    <li><strong>Scrum:</strong> Scrum is a specific way of applying Agile. The team works in sprints (short periods, usually 2-4 weeks) to complete small tasks, and the customer gives feedback at the end of each sprint.</li>
-                                    <li><strong>Lean Software Development:</strong> This model focuses on delivering value to the customer by cutting out waste and making small, regular improvements to the product. It aims to work faster and more efficiently.</li>
+                                    <li><strong>Scrum:</strong> The team works in sprints (fixed periods of 1–4 weeks, usually 2 weeks) to deliver a usable increment, and the customer gives feedback at the end of each sprint through the Sprint Review.</li>
+                                    <li><strong>Extreme Programming (XP):</strong> An adaptive model built around engineering practices — test-driven development, pair programming, continuous integration and refactoring — so that changing the code late in the project stays cheap and safe.</li>
+                                    <li><strong>Lean Software Development:</strong> This model focuses on delivering value to the customer by eliminating waste and making small, continuous improvements to the process. Kanban is the most common way of applying it.</li>
                                 </ul>
+
+                            <aside class="b-callout" data-callout="warn">
+                                <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Đừng viết "Agile Model" thành một mô hình</p>
+                                <p>Bản trước của đáp án này liệt kê "Agile Model" ngang hàng với Scrum và Lean. Agile
+                                    không phải một mô hình — nó là <em>nhóm</em> (một tập giá trị trong Agile Manifesto)
+                                    mà Scrum, XP, Kanban, Lean là các cách thực hiện cụ thể. Viết "Agile, Scrum và Lean
+                                    là ba mô hình adaptive" giống như viết "động vật, mèo và chó là ba loài".</p>
+                                <p>Cách viết an toàn: gọi Agile là <em>the adaptive family</em> hoặc <em>an
+                                    approach</em>, rồi liệt kê Scrum / XP / Kanban / Lean là các mô hình bên trong nó.</p>
+                            </aside>
 
 
 
@@ -2665,32 +3447,62 @@ Release 2 (Advanced Features)
 
 
 
+                            <aside class="b-callout" data-callout="tip">
+                                <p class="b-callout__label"><svg data-icon="language" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#language"></use></svg> Học nghĩa trong ngành, không học nghĩa từ điển</p>
+                                <p>Phần lớn từ dưới đây có một nghĩa từ điển và một nghĩa khác trong ngành phần mềm — đề
+                                    FE luôn dùng nghĩa thứ hai. <em>Decomposability</em> không phải "phân hủy",
+                                    <em>capacity</em> không phải "công suất", <em>coincidental</em> trong SWE là tên một
+                                    mức cohesion chứ không phải "sự trùng hợp". Cột nghĩa dưới đây đã sửa theo nghĩa
+                                    ngành.</p>
+                            </aside>
+
                             <h4>Thuật ngữ cơ bản</h4>
                             <ul>
-                                <li><strong>Cohesion:</strong> Tính gắn kết</li>
-                                <li><strong>Decomposability:</strong> Khả năng phân hủy</li>
-                                <li><strong>Loose coupling:</strong> Liên kết lỏng lẻo</li>
-                                <li><strong>Confidentiality:</strong> Tính bảo mật</li>
-                                <li><strong>Integrity:</strong> Tính toàn vẹn</li>
-                                <li><strong>Cutover strategy:</strong> Chiến lược chuyển đổi</li>
-                                <li><strong>Failover:</strong> Chuyển đổi dự phòng</li>
-                                <li><strong>Standby:</strong> Chờ dự phòng</li>
-                                <li><strong>Capacity:</strong> Công suất</li>
-                                <li><strong>Truncated:</strong> Rút ngắn</li>
+                                <li><strong>Cohesion:</strong> mức độ các phần <em>bên trong</em> một module cùng phục
+                                    vụ một việc. Cao là tốt.</li>
+                                <li><strong>Decomposability:</strong> khả năng chia hệ thống thành các module nhỏ độc
+                                    lập — <em>phân rã</em>, không phải "phân hủy".</li>
+                                <li><strong>Loose coupling:</strong> các module ít phụ thuộc vào nhau. Tiếng Việt "lỏng
+                                    lẻo" nghe như khuyết điểm, nhưng đây là <em>điều tốt</em>: sửa module này không phải
+                                    sửa module kia.</li>
+                                <li><strong>Confidentiality:</strong> chỉ người có quyền mới đọc được dữ liệu (một trong
+                                    ba trụ C-I-A).</li>
+                                <li><strong>Integrity:</strong> dữ liệu không bị sửa đổi trái phép hoặc sai lệch.</li>
+                                <li><strong>Cutover strategy:</strong> cách chuyển từ hệ thống cũ sang hệ thống mới
+                                    (chuyển một lần, chạy song song, hay chuyển từng phần).</li>
+                                <li><strong>Failover:</strong> tự động chuyển sang hệ thống dự phòng khi hệ thống chính
+                                    chết.</li>
+                                <li><strong>Standby:</strong> hệ thống dự phòng đang ở trạng thái chờ, sẵn sàng nhận
+                                    việc khi failover xảy ra.</li>
+                                <li><strong>Capacity:</strong> lượng tải mà hệ thống phục vụ được (số user, số giao dịch
+                                    mỗi giây) — <em>không</em> phải "công suất" theo nghĩa điện.</li>
+                                <li><strong>Truncated:</strong> bị cắt bớt phần cuối — thường nói về dữ liệu dài hơn ô
+                                    chứa nên mất phần dư.</li>
                             </ul>
 
                             <h4>Thuật ngữ nâng cao</h4>
                             <ul>
-                                <li><strong>Agile mindset:</strong> Tư duy nhanh nhẹn</li>
-                                <li><strong>Specification:</strong> Thông số kĩ thuật</li>
-                                <li><strong>Implement:</strong> Thực hiện</li>
-                                <li><strong>Coincidental:</strong> Trùng hợp ngẫu nhiên</li>
-                                <li><strong>Iterative:</strong> Lặp đi lặp lại</li>
-                                <li><strong>Incremental:</strong> Tăng dần</li>
-                                <li><strong>Fidelity:</strong> Độ trung thực</li>
-                                <li><strong>Sprint:</strong> Vòng lặp ngắn</li>
-                                <li><strong>Estimate:</strong> Ước lượng</li>
-                                <li><strong>Refactoring:</strong> Cải tiến thiết kế</li>
+                                <li><strong>Agile mindset:</strong> tư duy Agile — ưu tiên phản hồi sớm và thích ứng với
+                                    thay đổi. <em>Agile</em> là tên riêng, đừng dịch thành "nhanh nhẹn".</li>
+                                <li><strong>Specification:</strong> bản đặc tả — mô tả hệ thống <em>phải làm gì</em>,
+                                    không chỉ là thông số kỹ thuật.</li>
+                                <li><strong>Implement:</strong> hiện thực hóa bằng code (giai đoạn viết code), phân biệt
+                                    với <em>deploy</em> = đưa lên môi trường thật.</li>
+                                <li><strong>Coincidental (cohesion):</strong> mức cohesion <em>thấp nhất</em> — các
+                                    phần bị nhét chung một module mà không có liên hệ gì, kiểu file
+                                    <code>Utils.java</code>.</li>
+                                <li><strong>Iterative:</strong> làm nhiều vòng, mỗi vòng <em>làm tốt hơn</em> cái đã
+                                    có.</li>
+                                <li><strong>Incremental:</strong> làm nhiều vòng, mỗi vòng <em>thêm phần mới</em> vào
+                                    cái đã có.</li>
+                                <li><strong>Fidelity:</strong> mức giống-thật của prototype. Low-fidelity là bản vẽ tay
+                                    hoặc wireframe; high-fidelity là bản gần như sản phẩm thật.</li>
+                                <li><strong>Sprint:</strong> khoảng thời gian có độ dài <em>cố định</em> (1–4 tuần) mà
+                                    Scrum team hoàn thành một increment. Điểm cốt lõi là độ dài không đổi.</li>
+                                <li><strong>Estimate:</strong> ước lượng công sức, thường bằng story point chứ không
+                                    bằng giờ.</li>
+                                <li><strong>Refactoring:</strong> sửa cấu trúc code cho gọn hơn <em>mà không thay đổi
+                                    hành vi</em> bên ngoài. Nếu hành vi đổi thì đó không còn là refactoring.</li>
                             </ul>
 
 
@@ -2752,30 +3564,76 @@ Release 2 (Advanced Features)
 
                                 <p><strong>Các loại lỗi</strong></p>
 
+                                    <p>Chuỗi nhân quả đầy đủ có <strong>bốn</strong> mắt, và đề FE hay hỏi đúng mắt đầu
+                                        tiên — cái thường bị bỏ sót:</p>
+
                                     <ul>
-                                        <li><strong>Fault/Bug:</strong> Lỗi trong mã nguồn</li>
-                                        <li><strong>Latent Error:</strong> Lỗi tồn tại chưa kích hoạt</li>
-                                        <li><strong>Effective Error:</strong> Lỗi đã kích hoạt</li>
-                                        <li><strong>Failure:</strong> Hành vi sai lệch quan sát được</li>
+                                        <li><strong>Error (mistake):</strong> hành động sai của <em>con người</em> —
+                                            lập trình viên hiểu sai yêu cầu, hoặc gõ sai. Đây là <em>nguyên nhân</em>,
+                                            nằm trong đầu người, không nằm trong code.</li>
+                                        <li><strong>Fault / Defect / Bug:</strong> kết quả của error nằm lại trong mã
+                                            nguồn hoặc tài liệu. Tồn tại kể cả khi chương trình không chạy.</li>
+                                        <li><strong>Failure:</strong> hành vi sai lệch <em>quan sát được</em> khi chạy —
+                                            chỉ xảy ra khi luồng thực thi đi qua đúng chỗ có fault, với đúng dữ liệu
+                                            làm nó bộc lộ.</li>
+                                        <li><strong>Latent</strong> và <strong>Effective error:</strong> hai trạng thái
+                                            của cùng một fault — <em>latent</em> là fault chưa được kích hoạt lần nào,
+                                            <em>effective</em> là fault đã bị kích hoạt và gây failure.</li>
                                     </ul>
+
+                                    <p>Nhớ theo một câu: <strong>người gây error → error để lại fault trong code →
+                                        fault khi bị chạy tới thì gây failure</strong>. Hệ quả trực tiếp: một fault có
+                                        thể tồn tại nhiều năm mà không có failure nào, nên "chưa thấy lỗi" không đồng
+                                        nghĩa "không có lỗi" — đúng nguyên tắc <em>Absence of Error fallacy</em> ở
+                                        <a href="#kiemthu">mục 3</a>.</p>
 
 
                                 <p><strong>Agile Manifesto</strong></p>
 
+                                    <p>Bốn giá trị, mỗi giá trị có dạng "A <em>hơn</em> B":</p>
+
                                     <ul>
-                                        <li>Individuals and interactions > processes and tools</li>
-                                        <li>Working software > comprehensive documentation</li>
-                                        <li>Customer collaboration > contract negotiation</li>
-                                        <li>Responding to change > following a plan</li>
+                                        <li>Individuals and interactions <em>over</em> processes and tools</li>
+                                        <li>Working software <em>over</em> comprehensive documentation</li>
+                                        <li>Customer collaboration <em>over</em> contract negotiation</li>
+                                        <li>Responding to change <em>over</em> following a plan</li>
                                     </ul>
+
+                                    <aside class="b-callout" data-callout="key">
+                                        <p class="b-callout__label"><svg data-icon="quote" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#quote"></use></svg> Câu kết bị bỏ mất — và nó là câu quan trọng nhất</p>
+                                        <p>Ngay sau bốn dòng trên, bản Manifesto gốc viết:</p>
+                                        <blockquote>
+                                            <p>"That is, while there is value in the items on the right, we value the
+                                                items on the left more."</p>
+                                        </blockquote>
+                                        <p>Nghĩa là: <strong>bên phải vẫn có giá trị</strong>. Agile không bảo bỏ tài
+                                            liệu, bỏ quy trình, bỏ hợp đồng hay bỏ kế hoạch — nó chỉ nói khi phải chọn
+                                            thì ưu tiên bên trái. Câu hỏi FE rất hay gài ở đúng chỗ này, kiểu "Agile
+                                            teams do not write documentation — true or false?" Đáp án là
+                                            <strong>false</strong>.</p>
+                                    </aside>
 
 
                                 <p><strong>Prototyping Methods</strong></p>
 
                                     <ul>
-                                        <li><strong>Throwaway:</strong> Tạo mẫu nhanh để khám phá yêu cầu</li>
-                                        <li><strong>Exploratory:</strong> Xây dựng để thử nghiệm công nghệ mới</li>
+                                        <li><strong>Throwaway (Rapid) Prototyping:</strong> dựng mẫu thật nhanh chỉ để
+                                            chốt yêu cầu, rồi <em>bỏ đi</em> và viết lại sản phẩm thật cho tử tế. Mẫu
+                                            này không cần code sạch vì nó không sống sót.</li>
+                                        <li><strong>Evolutionary Prototyping:</strong> mẫu ban đầu được <em>giữ lại và
+                                            bồi dần</em> thành sản phẩm cuối. Vì vậy phải viết cẩn thận ngay từ bản mock
+                                            đầu tiên.</li>
                                     </ul>
+
+                                    <aside class="b-callout" data-callout="warn">
+                                        <p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> "Exploratory" không phải cặp đôi của Throwaway</p>
+                                        <p>Bản trước của phần này ghép <em>Throwaway</em> với <em>Exploratory</em>. Cặp
+                                            đúng là <strong>Throwaway ↔ Evolutionary</strong>, và trục phân biệt là
+                                            <em>có giữ lại mẫu hay không</em>. "Exploratory prototype" là cách gọi theo
+                                            <em>mục đích</em> (dò yêu cầu hay thử công nghệ) — một exploratory prototype
+                                            gần như luôn là throwaway, nên đặt hai từ này cạnh nhau như hai loại ngang
+                                            hàng là sai trục.</p>
+                                    </aside>
 
       <p><a href="myblog.html">← Quay lại danh sách bài viết</a></p>
     </article>
@@ -2799,7 +3657,7 @@ Release 2 (Advanced Features)
       <div class="b-note">
         <p class="b-note__title">Học tiếp</p>
         <ul role="list">
-          <li><a href="textblog-4.html">Bảng giá khóa học</a></li>
+          <li><a href="textblog-4.html">Bảng giá kèm 1-1</a></li>
           <li><a href="textblog-6.html">Tiếng Hàn cơ bản</a></li>
         </ul>
       </div>
@@ -2813,7 +3671,7 @@ Release 2 (Advanced Features)
   <nav class="b-twins" aria-label="Bài trước và bài sau">
     <a class="b-twins__item" data-dir="prev" href="textblog-4.html">
       <span class="b-twins__kicker">Bài trước</span>
-      <span class="b-twins__title">Bảng giá khóa học — CSD201, PRJ301, MAS291</span>
+      <span class="b-twins__title">Bảng giá kèm 1-1 và tài liệu ôn thi</span>
     </a>
     <a class="b-twins__item" data-dir="next" href="textblog-6.html">
       <span class="b-twins__kicker">Bài sau</span>

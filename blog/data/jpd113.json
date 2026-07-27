@@ -1,822 +1,822 @@
 {
- "$comment": "Trích xuất tự động từ đối tượng courseData nội tuyến trong blog/Speaking.html (T13, 2026-07-26). Mọi chuỗi được sao chép nguyên văn, không gõ lại. Đường dẫn tài nguyên là tương đối so với blog/Speaking.html. Mọi tham chiếu tới tệp không tồn tại trên đĩa đã được loại bỏ sau khi kiểm tra bằng readdir phân biệt hoa thường.",
- "generated": "2026-07-26",
- "source": "blog/Speaking.html lines 101-3600 (const courseData)",
- "id": "jpd113",
- "code": "JPD113",
- "structure": [
-  "- Đề thi gồm 02 phần:",
-  "-- 1. READING: Đọc câu văn",
-  "----- Yêu cầu: chỉ cần đọc chính xác, không cần trả lời câu hỏi (30/100 điểm)",
-  "-- 2. TALKING: Trả lời 04 câu hỏi của giám thị (60/100 điểm)",
-  "-- (*) PRESENTING: Đánh giá tác phong, thái độ, phát âm (10/100 điểm)",
-  "- Các bước tiến hành:",
-  "-- Phần READING:",
-  "----- 1. Giám thị chọn bài đọc",
-  "----- 2. Sinh viên chuẩn bị bài đọc trong 30 giây",
-  "----- 3. Sinh viên đọc bài",
-  "",
-  "-- Phần TALKING:",
-  "----- 1. QUESTION WITHOUT PICTURES (Câu hỏi không tranh):",
-  "---------- Giám thị chọn 1 trong 4 câu hỏi cho sẵn để hỏi sinh viên",
-  "----- 2. QUESTIONS WITH PICTURES (Câu hỏi có tranh):",
-  "---------- Giám thị chọn 1 tranh và hỏi 03 câu hỏi liên quan để sinh viên trả lời dựa vào gợi ý"
- ],
- "tips": [
-  "Đọc to và rõ ràng, không cần đọc nhanh",
-  "Khi ngập ngừng nên dùng 'eeeeeee' thay vì 'ờ ờ'",
-  "Ngắt câu sau mỗi trợ từ (ví dụ: watashi wa... FPT no... shain desu)",
-  "Chú ý ngữ điệu khi đọc câu (ví dụ: wa thì nên đọc âm sắc thay vì âm ngang hoặc nhẹ nhàng)",
-  "Ghi âm và nghe lại giọng của mình để cải thiện",
-  "Chuẩn bị bài đọc trong 30 giây trước khi bắt đầu",
-  "Ôn kĩ phần Ngày Tháng Giờ Phút vì nó sẽ ra rất nhiều, đặc biệt là Ngày rất là khó "
- ],
- "reading": [
-  {
-   "no": 1,
-   "text": "はじめまして、私はアンナです。オーストラリア人です。さくら日本語学校の学生です。ことし、二十歳です。私のしゅみはおんがくとどくしょです。よろしくおねがいします。",
-   "romaji": "Hajimemashite, watashi wa Anna desu. Oosutoraria-jin desu. Sakura nihongo gakkou no gakusei desu. Kotoshi, hatachi desu. Watashi no shumi wa ongaku to dokusho desu. Yoroshiku onegaishimasu.",
-   "hint": "Bài đọc 1 (Dễ)",
-   "translation": "Xin chào, tôi là Anna. Tôi là người Úc. Tôi là học sinh trường Nhật ngữ Sakura. Năm nay tôi 20 tuổi. Sở thích của tôi là âm nhạc và đọc sách. Rất vui được gặp bạn.",
-   "audio": "Speaking/jpd113/reading_1.mp3"
-  },
-  {
-   "no": 2,
-   "text": "みなさん、おはようございます。こちらはキムさんです。キムさんはかんこく人です。キムさんのしゅみはすいえいとテニスです。いま、なごやたんきだいがくのがくせいです。学校で日本語をべんきょうしています。",
-   "romaji": "Minasan, ohayou gozaimasu. Kochira wa Kimu-san desu. Kimu-san wa kankoku-jin desu. Kimu-san no shumi wa suiei to tenisu desu. Ima, Nagoya tanki daigaku no gakusei desu. Gakkou de nihongo wo benkyou shiteimasu.",
-   "hint": "Bài đọc 2 (Dễ)",
-   "translation": "Chào mọi người. Đây là anh/chị Kim. Kim là người Hàn Quốc. Sở thích của Kim là bơi lội và tennis. Hiện tại, Kim là sinh viên trường cao đẳng Nagoya. Kim đang học tiếng Nhật ở trường.",
-   "audio": "Speaking/jpd113/reading_2.mp3"
-  },
-  {
-   "no": 3,
-   "text": "ワットさんはアメリカ人です。おおさか大学の先生です。61才です。ワットさんのしゅみはおんがくとスポーツです。きむらさんのしゅみもスポーツです。学校で日本語をべんきょうしています。",
-   "romaji": "Watto-san wa amerika-jin desu. Oosaka daigaku no sensei desu. Rokujuu-ichi sai desu. Watto-san no shumi wa ongaku to supootsu desu. Kimura-san no shumi mo supootsu desu. Gakkou de nihongo wo benkyou shiteimasu.",
-   "hint": "Bài đọc 3 (Dễ)",
-   "translation": "Ông Watt là người Mỹ. Ông là giáo viên trường đại học Osaka. Ông 61 tuổi. Sở thích của ông Watt là âm nhạc và thể thao. Sở thích của ông Kimura cũng là thể thao. Ông đang học tiếng Nhật ở trường.",
-   "audio": "Speaking/jpd113/reading_3.mp3"
-  },
-  {
-   "no": 4,
-   "text": "みなさん、こんばんは。こちらはエミーさんです。エミーさんはオーストラリア人です。エミーさんのしゅみはりょこうとサッカーです。いま、わかやまたんきだいがくの先生です。学校で日本語をおしえています。よろしくおねがいします。",
-   "romaji": "Minasan, konbanwa. Kochira wa Emii-san desu. Emii-san wa oosutoraria-jin desu. Emii-san no shumi wa ryokou to sakkaa desu. Ima, Wakayama tanki daigaku no sensei desu. Gakkou de nihongo wo oshieteimasu. Yoroshiku onegaishimasu.",
-   "hint": "Bài đọc 4 (Dễ)",
-   "translation": "Chào mọi người. Đây là cô Emmy. Cô Emmy là người Úc. Sở thích của cô Emmy là du lịch và bóng đá. Hiện tại, cô là giáo viên trường cao đẳng Wakayama. Cô đang dạy tiếng Nhật ở trường. Rất vui được gặp mọi người.",
-   "audio": "Speaking/jpd113/reading_4.mp3"
-  },
-  {
-   "no": 5,
-   "text": "私はたなかです。日本人です。私はかいしゃいんです。月曜日から金曜日まで、会社へいきます。あさ、ごぜん9時からごご5時はんまで会社ではたらきます。土曜日のごぜん、しんぶんをよみます。ごご、うちでDVDをみます。日曜日、こうえんでテニスをします。",
-   "romaji": "Watashi wa Tanaka desu. Nihonjin desu. Watashi wa kaishain desu. Getsuyoubi kara kinyoubi made, kaisha e ikimasu. Asa, gozen ku-ji kara gogo go-ji han made kaisha de hatarakimasu. Doyoubi no gozen, shinbun wo yomimasu. Gogo, uchi de DVD wo mimasu. Nichiyoubi, kouen de tenisu wo shimasu.",
-   "hint": "Bài đọc 5 (Khó)",
-   "translation": "Tôi là Tanaka. Tôi là người Nhật. Tôi là nhân viên công ty. Từ thứ Hai đến thứ Sáu, tôi đi làm ở công ty. Buổi sáng, tôi làm việc ở công ty từ 9 giờ sáng đến 5 giờ rưỡi chiều. Sáng thứ Bảy, tôi đọc báo. Chiều, tôi xem DVD ở nhà. Chủ nhật, tôi chơi tennis ở công viên.",
-   "audio": "Speaking/jpd113/reading_5.mp3"
-  },
-  {
-   "no": 6,
-   "text": "A: あれは なんですか。\nB: おやこどんです。\nA: おやこどん？ おやこどんはなにの りょうりですか。\nB: とりにくと たまごの りょうりです。\nA: 「たまご」は えいごで なんですか。\nB: 「egg」です。",
-   "romaji": "A: Are wa nan desu ka.\nB: Oyakodon desu.\nA: Oyakodon? Oyakodon wa nani no ryouri desu ka.\nB: Toriniku to tamago no ryouri desu.\nA: 'Tamago' wa eigo de nan desu ka.\nB: 'Egg' desu.",
-   "hint": "Bài đọc 6 (Trung bình)",
-   "translation": "A: Kia là gì vậy?\nB: Là cơm thịt gà trứng.\nA: Cơm thịt gà trứng? Cơm thịt gà trứng là món ăn làm từ gì?\nB: Là món ăn làm từ thịt gà và trứng.\nA: 'Trứng' trong tiếng Anh là gì?\nB: Là 'egg'.",
-   "audio": "Speaking/jpd113/reading_6.mp3"
-  },
-  {
-   "no": 7,
-   "text": "てんいん：いらっしゃいませ。こんにちは。なんめいさまですか。\nだにえる：三人です。\nてんいん：きんえんせきと きつえんせき、どちらをごりようですか。\nだにえる：きんえんせきをおねがいします。\nてんいん：はい、こちらへどうぞ。\nぱく：すみません！ ちゅうもんをおねがいします。\nてんいん：はい、どうぞ。\nわん：私、はんばーぐと らいす。\nだにえる：私も はんばーぐと らいす。それから、ええと、この びーるはどこ の びーるですか。\nてんいん：ドイツの びーるです。\nだにえる：そうですか。じゃ、びーるを……。\nわん：あ、私も びーる。\nだにえる：じゃ、びーるを 2つください。\nぱく：あのう、これは なんの かれーですか。\nてんいん：とりにくと やさいの かれーです。\nぱく：そうですか。じゃ、かれーと びーるをください。\nてんいん：はい、はんばーぐを 2つと らいすを 2つと かれーを 1つと びーるを 3つですね。\nぱく：はい。\nてんいん：かしこまりました。しょうしょうおまちください。",
-   "romaji": "Tenin: Irasshaimase. Konnichiwa. Nan-mei-sama desu ka.\nDanieru: San-nin desu.\nTenin: Kin'en-seki to kitsuen-seki, dochira wo goryou desu ka.\nDanieru: Kin'en-seki wo onegaishimasu.\nTenin: Hai, kochira e douzo.\nPaku: Sumimasen! Chuumon wo onegaishimasu.\nTenin: Hai, douzo.\nWan: Watashi, hanbaagu to raisu.\nDanieru: Watashi mo hanbaagu to raisu. Sorekara, eeto, kono biiru wa doko no biiru desu ka.\nTenin: Doitsu no biiru desu.\nDanieru: Sou desu ka. Ja, biiru wo......\nWan: A, watashi mo biiru.\nDanieru: Ja, biiru wo futatsu kudasai.\nPaku: Anou, kore wa nan no karee desu ka.\nTenin: Toriniku to yasai no karee desu.\nPaku: Sou desu ka. Ja, karee to biiru wo kudasai.\nTenin: Hai, hanbaagu wo futatsu to raisu wo futatsu to karee wo hitotsu to biiru wo mittsu desu ne.\nPaku: Hai.\nTenin: Kashikomarimashita. Shoushou omachi kudasai.",
-   "hint": "Bài đọc 7 (Khó - Hội thoại tại nhà hàng)",
-   "translation": "Nhân viên: Xin chào quý khách. Xin hỏi mấy vị ạ?\nDaniel: 3 người ạ.\nNhân viên: Quý khách dùng khu vực không hút thuốc hay khu vực hút thuốc ạ?\nDaniel: Cho chúng tôi khu vực không hút thuốc.\nNhân viên: Vâng, mời quý khách đi lối này.\nPark: Xin lỗi! Cho chúng tôi gọi món.\nNhân viên: Vâng, xin mời.\nWan: Tôi gọi hamburger và cơm.\nDaniel: Tôi cũng hamburger và cơm. À, ừm, bia này là bia của đâu vậy?\nNhân viên: Là bia Đức ạ.\nDaniel: Vậy à. Vậy cho tôi bia...\nWan: À, tôi cũng bia.\nDaniel: Vậy cho 2 bia.\nPark: À, cà ri này là cà ri gì vậy?\nNhân viên: Là cà ri thịt gà và rau củ ạ.\nPark: Vậy à. Vậy cho tôi cà ri và bia.\nNhân viên: Vâng, 2 hamburger, 2 cơm, 1 cà ri và 3 bia phải không ạ?\nPark: Vâng.\nNhân viên: Vâng, xin quý khách đợi một lát.",
-   "audio": "Speaking/jpd113/reading_7.mp3"
-  },
-  {
-   "no": 8,
-   "text": "A：Bさん、まいばん、何時にねますか。\nB：12時にねます。\nA：そうですか。よる、何をしますか。\nB：インターネットをします。本をよみます。Aさんは何をしますか。\nA：私はまいばん、べんきょうします。\nB：何時から何時までべんきょうしますか。\nA：8時から12時までべんきょうします。\nB：そうですか。",
-   "romaji": "A: B-san, maiban, nanji ni nemasu ka.\nB: Juuni-ji ni nemasu.\nA: Sou desu ka. Yoru, nani wo shimasu ka.\nB: Intaanetto wo shimasu. Hon wo yomimasu. A-san wa nani wo shimasu ka.\nA: Watashi wa maiban, benkyou shimasu.\nB: Nanji kara nanji made benkyou shimasu ka.\nA: Hachi-ji kara juuni-ji made benkyou shimasu.\nB: Sou desu ka.",
-   "hint": "Bài đọc 8 (Trung bình - Hội thoại về thói quen buổi tối)",
-   "translation": "A: B, tối nào bạn đi ngủ mấy giờ?\nB: Tôi đi ngủ 12 giờ.\nA: Vậy à. Buổi tối bạn làm gì?\nB: Tôi lướt internet. Tôi đọc sách. Còn A thì làm gì?\nA: Tối nào tôi cũng học bài.\nB: Bạn học từ mấy giờ đến mấy giờ?\nA: Tôi học từ 8 giờ đến 12 giờ.\nB: Vậy à.",
-   "audio": "Speaking/jpd113/reading_8.mp3"
-  },
-  {
-   "no": 9,
-   "text": "私は日本語学校の学生です。日本人でありません。ともだちと私はベトナム人や中国人などです。\n月曜日から金曜日まで、まいにち九時から四時まで日本語を勉強します。土曜日と日曜日は学校に行きません。\n私は「はたち」です。日本語の本が三つあります。まいにち三時間日本語をべんきょうします。\nこれは私の一日です。あさ七時におきます。学校で日本語をべんきょうします。うちで本をよみます。よる十一時にねます。",
-   "romaji": "Watashi wa nihongo gakkou no gakusei desu. Nihonjin de arimasen. Tomodachi to watashi wa betonamujin ya chuugokujin nado desu.\nGetsuyoubi kara kinyoubi made, mainichi kuji kara yoji made nihongo wo benkyou shimasu. Doyoubi to nichiyoubi wa gakkou ni ikimasen.\nWatashi wa 'hatachi' desu. Nihongo no hon ga mittsu arimasu. Mainichi san-jikan nihongo wo benkyou shimasu.\nKore wa watashi no ichinichi desu. Asa shichiji ni okimasu. Gakkou de nihongo wo benkyou shimasu. Uchi de hon wo yomimasu. Yoru juuichiji ni nemasu.",
-   "hint": "Bài đọc 9 (Siêu khó - Cảnh giới của Trúc Cơ)",
-   "translation": "Tôi là học sinh trường tiếng Nhật. Tôi không phải là người Nhật. Bạn bè và tôi là người Việt Nam, người Trung Quốc,...\nTừ thứ Hai đến thứ Sáu, mỗi ngày tôi học tiếng Nhật từ 9 giờ đến 4 giờ. Thứ Bảy và Chủ nhật tôi không đi học.\nTôi 20 tuổi. Tôi có 3 quyển sách tiếng Nhật. Mỗi ngày tôi học tiếng Nhật 3 tiếng.\nĐây là một ngày của tôi. Tôi thức dậy lúc 7 giờ sáng. Tôi học tiếng Nhật ở trường. Tôi đọc sách ở nhà. Tôi đi ngủ lúc 11 giờ tối.",
-   "audio": "Speaking/jpd113/reading_9.mp3"
-  },
-  {
-   "no": 10,
-   "text": "たなかさんは毎日会社にいきます。たなかさんは会社ではたらきます。会社でたなかさんは日本語をおしえます。たなかさんは日本語の先生です。せいとはベトナム人です。せいとは毎日日本語をべんきょうします。",
-   "romaji": "Tanaka-san wa mainichi kaisha ni ikimasu. Tanaka-san wa kaisha de hatarakimasu. Kaisha de Tanaka-san wa nihongo o oshiemasu. Tanaka-san wa nihongo no sensei desu. Seito wa Betonamujin desu. Seito wa mainichi nihongo o benkyou shimasu.",
-   "hint": "Bài đọc 10 (Trung bình)",
-   "translation": "Anh Tanaka mỗi ngày đều đến công ty. Anh Tanaka làm việc ở công ty. Ở công ty, anh Tanaka dạy tiếng Nhật. Anh Tanaka là giáo viên tiếng Nhật. Học sinh là người Việt Nam. Học sinh mỗi ngày đều học tiếng Nhật.",
-   "audio": "Speaking/jpd113/reading_10.mp3"
-  },
-  {
-   "no": 11,
-   "text": "私 は たなか です。日本人です。私 は かいしゃいん です。月曜日から金曜日まで、かいしゃ へ いきます。あさ、ごぜん9時 から ごご5時半まで かいしゃではたらきます。土曜日のごぜん、しんぶんをよみます。ごご、うちでDVDをみます。日曜日、こうえんでテニスをします。",
-   "romaji": "Watashi wa Tanaka desu. Nihonjin desu. Watashi wa kaishain desu. Getsuyoubi kara kinyoubi made, kaisha e ikimasu. Asa, gozen ku-ji kara gogo go-ji han made kaisha de hatarakimasu. Doyoubi no gozen, shinbun wo yomimasu. Gogo, uchi de DVD wo mimasu. Nichiyoubi, kouen de tenisu wo shimasu.",
-   "hint": "Bài đọc 11 (Dễ)",
-   "translation": "Tôi là Tanaka. Tôi là người Nhật. Tôi là nhân viên công ty. Từ thứ Hai đến thứ Sáu, tôi đi làm ở công ty. Buổi sáng, tôi làm việc ở công ty từ 9 giờ sáng đến 5 giờ rưỡi chiều. Sáng thứ Bảy, tôi đọc báo. Chiều, tôi xem DVD ở nhà. Chủ nhật, tôi chơi tennis ở công viên.",
-   "audio": "Speaking/jpd113/reading_11.mp3"
-  },
-  {
-   "no": 12,
-   "text": "私はワンです。私は日本語学校の学生です。月曜日から金曜日まで、学校へいきます。あさ、9時から12時半まで日本語を勉強します。しゅうまつ、としょかんへいきます。としょかんで、ほんをよみます。水曜日と土曜日、コンビニでアルバイトをします。4時から8時まで働きます。",
-   "romaji": "Watashi wa Wan desu. Watashi wa nihongo gakkou no gakusei desu. Getsuyoubi kara kinyoubi made, gakkou e ikimasu. Asa, ku-ji kara juuni-ji han made nihongo wo benkyou shimasu. Shuumatsu, toshokan e ikimasu. Toshokan de, hon wo yomimasu. Suiyoubi to doyoubi, konbini de arubaito wo shimasu. Yo-ji kara hachi-ji made hatarakimasu.",
-   "hint": "Bài đọc 12 (Trung bình)",
-   "translation": "Tôi là Wan. Tôi là học sinh trường tiếng Nhật. Từ thứ Hai đến thứ Sáu, tôi đi học ở trường. Buổi sáng, tôi học tiếng Nhật từ 9 giờ đến 12 giờ rưỡi. Cuối tuần, tôi đi thư viện. Ở thư viện, tôi đọc sách. Vào thứ Tư và thứ Bảy, tôi làm thêm ở cửa hàng tiện lợi. Tôi làm việc từ 4 giờ đến 8 giờ.",
-   "audio": "Speaking/jpd113/reading_12.mp3"
-  },
-  {
-   "no": 13,
-   "text": "私はグプタです。アメリカ人です。私は日本の大学でおんがくをべんきょうします。月曜日から木曜日まで、大学でべんきょうします。金曜日と土曜日に「カラオケのみせ」でアルバイトをします。日曜日、こうえんでサッカーをします。",
-   "romaji": "Watashi wa Gupta desu. Amerika-jin desu. Watashi wa Nihon no daigaku de ongaku o benkyou shimasu. Getsuyoubi kara Mokuyoubi made, daigaku de benkyou shimasu. Kinyoubi to Doyoubi ni 'karaoke no mise' de arubaito o shimasu. Nichiyoubi, kouen de sakkaa o shimasu.",
-   "hint": "Bài đọc 13 (Dễ)",
-   "translation": "Tôi là Gupta. Tôi là người Mỹ. Tôi học âm nhạc tại một trường đại học ở Nhật Bản. Từ thứ Hai đến thứ Năm, tôi học ở trường đại học. Vào thứ Sáu và thứ Bảy, tôi làm thêm ở quán karaoke. Chủ Nhật, tôi chơi bóng đá ở công viên.",
-   "audio": "Speaking/jpd113/reading_13.mp3"
+  "$comment": "Trích xuất tự động từ đối tượng courseData nội tuyến trong blog/Speaking.html (T13, 2026-07-26). Mọi chuỗi được sao chép nguyên văn, không gõ lại. Đường dẫn tài nguyên là tương đối so với blog/Speaking.html. Mọi tham chiếu tới tệp không tồn tại trên đĩa đã được loại bỏ sau khi kiểm tra bằng readdir phân biệt hoa thường.",
+  "generated": "2026-07-26",
+  "source": "blog/Speaking.html lines 101-3600 (const courseData)",
+  "id": "jpd113",
+  "code": "JPD113",
+  "structure": [
+    "- Đề thi gồm 02 phần:",
+    "-- 1. READING: Đọc câu văn",
+    "----- Yêu cầu: chỉ cần đọc chính xác, không cần trả lời câu hỏi (30/100 điểm)",
+    "-- 2. TALKING: Trả lời 04 câu hỏi của giám thị (60/100 điểm)",
+    "-- (*) PRESENTING: Đánh giá tác phong, thái độ, phát âm (10/100 điểm)",
+    "- Các bước tiến hành:",
+    "-- Phần READING:",
+    "----- 1. Giám thị chọn bài đọc",
+    "----- 2. Sinh viên chuẩn bị bài đọc trong 30 giây",
+    "----- 3. Sinh viên đọc bài",
+    "",
+    "-- Phần TALKING:",
+    "----- 1. QUESTION WITHOUT PICTURES (Câu hỏi không tranh):",
+    "---------- Giám thị chọn 1 trong 4 câu hỏi cho sẵn để hỏi sinh viên",
+    "----- 2. QUESTIONS WITH PICTURES (Câu hỏi có tranh):",
+    "---------- Giám thị chọn 1 tranh và hỏi 03 câu hỏi liên quan để sinh viên trả lời dựa vào gợi ý"
+  ],
+  "tips": [
+    "Đọc to và rõ ràng, không cần đọc nhanh",
+    "Khi ngập ngừng nên dùng 'eeeeeee' thay vì 'ờ ờ'",
+    "Ngắt câu sau mỗi trợ từ (ví dụ: watashi wa... FPT no... shain desu)",
+    "Chú ý ngữ điệu khi đọc câu (ví dụ: wa thì nên đọc âm sắc thay vì âm ngang hoặc nhẹ nhàng)",
+    "Ghi âm và nghe lại giọng của mình để cải thiện",
+    "Chuẩn bị bài đọc trong 30 giây trước khi bắt đầu",
+    "Ôn kĩ phần Ngày Tháng Giờ Phút vì nó sẽ ra rất nhiều, đặc biệt là Ngày rất là khó "
+  ],
+  "reading": [
+    {
+      "no": 1,
+      "text": "はじめまして、私はアンナです。オーストラリア人です。さくら日本語学校の学生です。ことし、二十歳です。私のしゅみはおんがくとどくしょです。よろしくおねがいします。",
+      "romaji": "Hajimemashite, watashi wa Anna desu. Oosutoraria-jin desu. Sakura nihongo gakkou no gakusei desu. Kotoshi, hatachi desu. Watashi no shumi wa ongaku to dokusho desu. Yoroshiku onegaishimasu.",
+      "hint": "Bài đọc 1 (Dễ)",
+      "translation": "Xin chào, tôi là Anna. Tôi là người Úc. Tôi là học sinh trường Nhật ngữ Sakura. Năm nay tôi 20 tuổi. Sở thích của tôi là âm nhạc và đọc sách. Rất vui được gặp bạn.",
+      "audio": "Speaking/jpd113/reading_1.mp3"
+    },
+    {
+      "no": 2,
+      "text": "みなさん、おはようございます。こちらはキムさんです。キムさんはかんこく人です。キムさんのしゅみはすいえいとテニスです。いま、なごやたんきだいがくのがくせいです。学校で日本語をべんきょうしています。",
+      "romaji": "Minasan, ohayou gozaimasu. Kochira wa Kimu-san desu. Kimu-san wa kankoku-jin desu. Kimu-san no shumi wa suiei to tenisu desu. Ima, Nagoya tanki daigaku no gakusei desu. Gakkou de nihongo o benkyou shite imasu.",
+      "hint": "Bài đọc 2 (Dễ)",
+      "translation": "Chào mọi người. Đây là anh/chị Kim. Kim là người Hàn Quốc. Sở thích của Kim là bơi lội và tennis. Hiện tại, Kim là sinh viên trường cao đẳng Nagoya. Kim đang học tiếng Nhật ở trường.",
+      "audio": "Speaking/jpd113/reading_2.mp3"
+    },
+    {
+      "no": 3,
+      "text": "ワットさんはアメリカ人です。おおさか大学の先生です。61才です。ワットさんのしゅみはおんがくとスポーツです。きむらさんのしゅみもスポーツです。学校で日本語をべんきょうしています。",
+      "romaji": "Watto-san wa amerika-jin desu. Oosaka daigaku no sensei desu. Rokujuu-issai desu. Watto-san no shumi wa ongaku to supootsu desu. Kimura-san no shumi mo supootsu desu. Gakkou de nihongo o benkyou shite imasu.",
+      "hint": "Bài đọc 3 (Dễ)",
+      "translation": "Ông Watt là người Mỹ. Ông là giáo viên trường đại học Osaka. Ông 61 tuổi. Sở thích của ông Watt là âm nhạc và thể thao. Sở thích của ông Kimura cũng là thể thao. Ông đang học tiếng Nhật ở trường.",
+      "audio": "Speaking/jpd113/reading_3.mp3"
+    },
+    {
+      "no": 4,
+      "text": "みなさん、こんばんは。こちらはエミーさんです。エミーさんはオーストラリア人です。エミーさんのしゅみはりょこうとサッカーです。いま、わかやまたんきだいがくの先生です。学校で日本語をおしえています。よろしくおねがいします。",
+      "romaji": "Minasan, konbanwa. Kochira wa Emii-san desu. Emii-san wa oosutoraria-jin desu. Emii-san no shumi wa ryokou to sakkaa desu. Ima, Wakayama tanki daigaku no sensei desu. Gakkou de nihongo o oshieteimasu. Yoroshiku onegaishimasu.",
+      "hint": "Bài đọc 4 (Dễ)",
+      "translation": "Chào mọi người. Đây là cô Emmy. Cô Emmy là người Úc. Sở thích của cô Emmy là du lịch và bóng đá. Hiện tại, cô là giáo viên trường cao đẳng Wakayama. Cô đang dạy tiếng Nhật ở trường. Rất vui được gặp mọi người.",
+      "audio": "Speaking/jpd113/reading_4.mp3"
+    },
+    {
+      "no": 5,
+      "text": "私はたなかです。日本人です。私はかいしゃいんです。月曜日から金曜日まで、会社へいきます。あさ、ごぜん9時からごご5時はんまで会社ではたらきます。土曜日のごぜん、しんぶんをよみます。ごご、うちでDVDをみます。日曜日、こうえんでテニスをします。",
+      "romaji": "Watashi wa Tanaka desu. Nihonjin desu. Watashi wa kaishain desu. Getsuyoubi kara kinyoubi made, kaisha e ikimasu. Asa, gozen ku-ji kara gogo go-ji han made kaisha de hatarakimasu. Doyoubi no gozen, shinbun o yomimasu. Gogo, uchi de DVD o mimasu. Nichiyoubi, kouen de tenisu o shimasu.",
+      "hint": "Bài đọc 5 (Khó)",
+      "translation": "Tôi là Tanaka. Tôi là người Nhật. Tôi là nhân viên công ty. Từ thứ Hai đến thứ Sáu, tôi đi làm ở công ty. Buổi sáng, tôi làm việc ở công ty từ 9 giờ sáng đến 5 giờ rưỡi chiều. Sáng thứ Bảy, tôi đọc báo. Chiều, tôi xem DVD ở nhà. Chủ nhật, tôi chơi tennis ở công viên.",
+      "audio": "Speaking/jpd113/reading_5.mp3"
+    },
+    {
+      "no": 6,
+      "text": "A: あれは なんですか。 B: おやこどんです。 A: おやこどん？ おやこどんはなにの りょうりですか。 B: とりにくと たまごの りょうりです。 A: 「たまご」は えいごで なんですか。 B: 「egg」です。",
+      "romaji": "A: Are wa nan desu ka. B: Oyakodon desu. A: Oyakodon? Oyakodon wa nani no ryouri desu ka. B: Toriniku to tamago no ryouri desu. A: 'Tamago' wa eigo de nan desu ka. B: 'Egg' desu.",
+      "hint": "Bài đọc 6 (Trung bình)",
+      "translation": "A: Kia là gì vậy? B: Là cơm thịt gà trứng. A: Cơm thịt gà trứng? Cơm thịt gà trứng là món ăn làm từ gì? B: Là món ăn làm từ thịt gà và trứng. A: 'Trứng' trong tiếng Anh là gì? B: Là 'egg'.",
+      "audio": "Speaking/jpd113/reading_6.mp3"
+    },
+    {
+      "no": 7,
+      "text": "てんいん：いらっしゃいませ。こんにちは。なんめいさまですか。 ダニエル：三人です。 てんいん：きんえんせきと きつえんせき、どちらを ごりようですか。 ダニエル：きんえんせきをおねがいします。 てんいん：はい、こちらへどうぞ。 パク：すみません！ ちゅうもんをおねがいします。 てんいん：はい、どうぞ。 ワン：私、ハンバーグと ライス。 ダニエル：私も ハンバーグと ライス。それから、ええと、このビールは どこの ビールですか。 てんいん：ドイツの ビールです。 ダニエル：そうですか。じゃ、ビールを……。 ワン：あ、私も ビール。 ダニエル：じゃ、ビールを 2つください。 パク：あのう、これは なんの カレーですか。 てんいん：とりにくと やさいの カレーです。 パク：そうですか。じゃ、カレーと ビールをください。 てんいん：はい、ハンバーグを 2つと ライスを 2つと カレーを 1つと ビールを 3つですね。 パク：はい。 てんいん：かしこまりました。しょうしょうおまちください。",
+      "romaji": "Ten'in: Irasshaimase. Konnichiwa. Nan-mei-sama desu ka. Danieru: San-nin desu. Ten'in: Kin'en-seki to kitsuen-seki, dochira o goriyou desu ka. Danieru: Kin'en-seki o onegaishimasu. Ten'in: Hai, kochira e douzo. Paku: Sumimasen! Chuumon o onegaishimasu. Ten'in: Hai, douzo. Wan: Watashi, hanbaagu to raisu. Danieru: Watashi mo hanbaagu to raisu. Sorekara, eeto, kono biiru wa doko no biiru desu ka. Ten'in: Doitsu no biiru desu. Danieru: Sou desu ka. Ja, biiru o...... Wan: A, watashi mo biiru. Danieru: Ja, biiru o futatsu kudasai. Paku: Anou, kore wa nan no karee desu ka. Ten'in: Toriniku to yasai no karee desu. Paku: Sou desu ka. Ja, karee to biiru o kudasai. Ten'in: Hai, hanbaagu o futatsu to raisu o futatsu to karee o hitotsu to biiru o mittsu desu ne. Paku: Hai. Ten'in: Kashikomarimashita. Shoushou omachi kudasai.",
+      "hint": "Bài đọc 7 (Khó - Hội thoại tại nhà hàng)",
+      "translation": "Nhân viên: Xin chào quý khách. Xin hỏi mấy vị ạ? Daniel: 3 người ạ. Nhân viên: Quý khách dùng khu vực không hút thuốc hay khu vực hút thuốc ạ? Daniel: Cho chúng tôi khu vực không hút thuốc. Nhân viên: Vâng, mời quý khách đi lối này. Park: Xin lỗi! Cho chúng tôi gọi món. Nhân viên: Vâng, xin mời. Wan: Tôi gọi hamburger và cơm. Daniel: Tôi cũng hamburger và cơm. À, ừm, bia này là bia của đâu vậy? Nhân viên: Là bia Đức ạ. Daniel: Vậy à. Vậy cho tôi bia... Wan: À, tôi cũng bia. Daniel: Vậy cho 2 bia. Park: À, cà ri này là cà ri gì vậy? Nhân viên: Là cà ri thịt gà và rau củ ạ. Park: Vậy à. Vậy cho tôi cà ri và bia. Nhân viên: Vâng, 2 hamburger, 2 cơm, 1 cà ri và 3 bia phải không ạ? Park: Vâng. Nhân viên: Vâng, xin quý khách đợi một lát.",
+      "audio": "Speaking/jpd113/reading_7.mp3"
+    },
+    {
+      "no": 8,
+      "text": "A：Bさん、まいばん、何時にねますか。 B：12時にねます。 A：そうですか。よる、何をしますか。 B：インターネットをします。本をよみます。Aさんは何をしますか。 A：私はまいばん、べんきょうします。 B：何時から何時までべんきょうしますか。 A：8時から12時までべんきょうします。 B：そうですか。",
+      "romaji": "A: B-san, maiban, nanji ni nemasu ka. B: Juuni-ji ni nemasu. A: Sou desu ka. Yoru, nani o shimasu ka. B: Intaanetto o shimasu. Hon o yomimasu. A-san wa nani o shimasu ka. A: Watashi wa maiban, benkyou shimasu. B: Nanji kara nanji made benkyou shimasu ka. A: Hachi-ji kara juuni-ji made benkyou shimasu. B: Sou desu ka.",
+      "hint": "Bài đọc 8 (Trung bình - Hội thoại về thói quen buổi tối)",
+      "translation": "A: B, tối nào bạn đi ngủ mấy giờ? B: Tôi đi ngủ 12 giờ. A: Vậy à. Buổi tối bạn làm gì? B: Tôi lướt internet. Tôi đọc sách. Còn A thì làm gì? A: Tối nào tôi cũng học bài. B: Bạn học từ mấy giờ đến mấy giờ? A: Tôi học từ 8 giờ đến 12 giờ. B: Vậy à.",
+      "audio": "Speaking/jpd113/reading_8.mp3"
+    },
+    {
+      "no": 9,
+      "text": "私は日本語学校の学生です。日本人ではありません。ともだちと私はベトナム人や中国人などです。 月曜日から金曜日まで、まいにち九時から四時まで日本語を勉強します。土曜日と日曜日は学校に行きません。 私は「はたち」です。日本語の本が三つあります。まいにち三時間日本語をべんきょうします。 これは私の一日です。あさ七時におきます。学校で日本語をべんきょうします。うちで本をよみます。よる十一時にねます。",
+      "romaji": "Watashi wa nihongo gakkou no gakusei desu. Nihonjin de wa arimasen. Tomodachi to watashi wa betonamujin ya chuugokujin nado desu. Getsuyoubi kara kinyoubi made, mainichi kuji kara yoji made nihongo o benkyou shimasu. Doyoubi to nichiyoubi wa gakkou ni ikimasen. Watashi wa 'hatachi' desu. Nihongo no hon ga mittsu arimasu. Mainichi san-jikan nihongo o benkyou shimasu. Kore wa watashi no ichinichi desu. Asa shichiji ni okimasu. Gakkou de nihongo o benkyou shimasu. Uchi de hon o yomimasu. Yoru juuichiji ni nemasu.",
+      "hint": "Bài đọc 9 (Siêu khó - Cảnh giới của Trúc Cơ)",
+      "translation": "Tôi là học sinh trường tiếng Nhật. Tôi không phải là người Nhật. Bạn bè và tôi là người Việt Nam, người Trung Quốc,... Từ thứ Hai đến thứ Sáu, mỗi ngày tôi học tiếng Nhật từ 9 giờ đến 4 giờ. Thứ Bảy và Chủ nhật tôi không đi học. Tôi 20 tuổi. Tôi có 3 quyển sách tiếng Nhật. Mỗi ngày tôi học tiếng Nhật 3 tiếng. Đây là một ngày của tôi. Tôi thức dậy lúc 7 giờ sáng. Tôi học tiếng Nhật ở trường. Tôi đọc sách ở nhà. Tôi đi ngủ lúc 11 giờ tối.",
+      "audio": "Speaking/jpd113/reading_9.mp3"
+    },
+    {
+      "no": 10,
+      "text": "たなかさんは毎日会社にいきます。たなかさんは会社ではたらきます。会社でたなかさんは日本語をおしえます。たなかさんは日本語の先生です。せいとはベトナム人です。せいとは毎日日本語をべんきょうします。",
+      "romaji": "Tanaka-san wa mainichi kaisha ni ikimasu. Tanaka-san wa kaisha de hatarakimasu. Kaisha de Tanaka-san wa nihongo o oshiemasu. Tanaka-san wa nihongo no sensei desu. Seito wa Betonamujin desu. Seito wa mainichi nihongo o benkyou shimasu.",
+      "hint": "Bài đọc 10 (Trung bình)",
+      "translation": "Anh Tanaka mỗi ngày đều đến công ty. Anh Tanaka làm việc ở công ty. Ở công ty, anh Tanaka dạy tiếng Nhật. Anh Tanaka là giáo viên tiếng Nhật. Học sinh là người Việt Nam. Học sinh mỗi ngày đều học tiếng Nhật.",
+      "audio": "Speaking/jpd113/reading_10.mp3"
+    },
+    {
+      "no": 11,
+      "text": "私 は たなか です。日本人です。私 は かいしゃいん です。月曜日から金曜日まで、かいしゃ へ いきます。あさ、ごぜん9時 から ごご5時半まで かいしゃではたらきます。土曜日のごぜん、しんぶんをよみます。ごご、うちでDVDをみます。日曜日、こうえんでテニスをします。",
+      "romaji": "Watashi wa Tanaka desu. Nihonjin desu. Watashi wa kaishain desu. Getsuyoubi kara kinyoubi made, kaisha e ikimasu. Asa, gozen ku-ji kara gogo go-ji han made kaisha de hatarakimasu. Doyoubi no gozen, shinbun o yomimasu. Gogo, uchi de DVD o mimasu. Nichiyoubi, kouen de tenisu o shimasu.",
+      "hint": "Bài đọc 11 (Dễ)",
+      "translation": "Tôi là Tanaka. Tôi là người Nhật. Tôi là nhân viên công ty. Từ thứ Hai đến thứ Sáu, tôi đi làm ở công ty. Buổi sáng, tôi làm việc ở công ty từ 9 giờ sáng đến 5 giờ rưỡi chiều. Sáng thứ Bảy, tôi đọc báo. Chiều, tôi xem DVD ở nhà. Chủ nhật, tôi chơi tennis ở công viên.",
+      "audio": "Speaking/jpd113/reading_11.mp3"
+    },
+    {
+      "no": 12,
+      "text": "私はワンです。私は日本語学校の学生です。月曜日から金曜日まで、学校へいきます。あさ、9時から12時半まで日本語を勉強します。しゅうまつ、としょかんへいきます。としょかんで、ほんをよみます。水曜日と土曜日、コンビニでアルバイトをします。4時から8時まで働きます。",
+      "romaji": "Watashi wa Wan desu. Watashi wa nihongo gakkou no gakusei desu. Getsuyoubi kara kinyoubi made, gakkou e ikimasu. Asa, ku-ji kara juuni-ji han made nihongo o benkyou shimasu. Shuumatsu, toshokan e ikimasu. Toshokan de, hon o yomimasu. Suiyoubi to doyoubi, konbini de arubaito o shimasu. Yo-ji kara hachi-ji made hatarakimasu.",
+      "hint": "Bài đọc 12 (Trung bình)",
+      "translation": "Tôi là Wan. Tôi là học sinh trường tiếng Nhật. Từ thứ Hai đến thứ Sáu, tôi đi học ở trường. Buổi sáng, tôi học tiếng Nhật từ 9 giờ đến 12 giờ rưỡi. Cuối tuần, tôi đi thư viện. Ở thư viện, tôi đọc sách. Vào thứ Tư và thứ Bảy, tôi làm thêm ở cửa hàng tiện lợi. Tôi làm việc từ 4 giờ đến 8 giờ.",
+      "audio": "Speaking/jpd113/reading_12.mp3"
+    },
+    {
+      "no": 13,
+      "text": "私はグプタです。アメリカ人です。私は日本の大学でおんがくをべんきょうします。月曜日から木曜日まで、大学でべんきょうします。金曜日と土曜日に「カラオケのみせ」でアルバイトをします。日曜日、こうえんでサッカーをします。",
+      "romaji": "Watashi wa Gupta desu. Amerika-jin desu. Watashi wa Nihon no daigaku de ongaku o benkyou shimasu. Getsuyoubi kara Mokuyoubi made, daigaku de benkyou shimasu. Kinyoubi to Doyoubi ni 'karaoke no mise' de arubaito o shimasu. Nichiyoubi, kouen de sakkaa o shimasu.",
+      "hint": "Bài đọc 13 (Dễ)",
+      "translation": "Tôi là Gupta. Tôi là người Mỹ. Tôi học âm nhạc tại một trường đại học ở Nhật Bản. Từ thứ Hai đến thứ Năm, tôi học ở trường đại học. Vào thứ Sáu và thứ Bảy, tôi làm thêm ở quán karaoke. Chủ Nhật, tôi chơi bóng đá ở công viên.",
+      "audio": "Speaking/jpd113/reading_13.mp3"
+    }
+  ],
+  "talking_without_pictures": [
+    {
+      "question": "おなまえは？",
+      "hint": "Tên bạn là gì?",
+      "example": "わたしのなまえは________です。",
+      "romaji": {
+        "question": "Onamae wa?",
+        "example": "Watashi no namae wa ________ desu."
+      },
+      "no": 1
+    },
+    {
+      "question": "おくには どちらですか。",
+      "hint": "Bạn đến từ nước nào?",
+      "example": "ベトナムです。",
+      "romaji": {
+        "question": "Okuni wa dochira desu ka.",
+        "example": "Betonamu desu."
+      },
+      "no": 2
+    },
+    {
+      "question": "おしごとは？",
+      "hint": "Công việc của bạn là gì?",
+      "example": "わたしのしごとは________です。",
+      "romaji": {
+        "question": "Oshigoto wa?",
+        "example": "Watashi no shigoto wa ________ desu."
+      },
+      "no": 3
+    },
+    {
+      "question": "たんじょうびは いつですか。",
+      "hint": "Sinh nhật của bạn là khi nào?",
+      "example": "わたしのたんじょうびは _______です。",
+      "romaji": {
+        "question": "Tanjoubi wa itsu desu ka.",
+        "example": "Watashi no tanjoubi wa _______ desu."
+      },
+      "no": 4
+    },
+    {
+      "question": "しゅみは なんですか。",
+      "hint": "Sở thích của bạn là gì?",
+      "example": "わたしのしゅみは________です。",
+      "romaji": {
+        "question": "Shumi wa nan desu ka.",
+        "example": "Watashi no shumi wa ________ desu."
+      },
+      "no": 5
+    },
+    {
+      "question": "にほんの りょうりは どうですか。",
+      "hint": "Bạn thấy món ăn Nhật Bản như thế nào?",
+      "example": "とても おいしいです。",
+      "romaji": {
+        "question": "Nihon no ryouri wa dou desu ka.",
+        "example": "Totemo oishii desu."
+      },
+      "no": 6
+    },
+    {
+      "question": "ぶたにく は えいごで なんですか。",
+      "hint": "Thịt lợn tiếng Anh là gì?",
+      "example": "ポークです。",
+      "romaji": {
+        "question": "Butaniku wa eigo de nan desu ka.",
+        "example": "Pork desu."
+      },
+      "no": 7
+    },
+    {
+      "question": "まいにち、なんじに おきますか。",
+      "hint": "Hàng ngày, bạn thức dậy lúc mấy giờ?",
+      "example": "わたしは まいにち、はちじに おきます。",
+      "romaji": {
+        "question": "Mainichi, nanji ni okimasu ka.",
+        "example": "Watashi wa mainichi, hachi-ji ni okimasu."
+      },
+      "no": 8
+    },
+    {
+      "question": "なんじから なんじまで はたらきますか。",
+      "hint": "Bạn làm việc từ mấy giờ đến mấy giờ?",
+      "example": "ごぜん9じから ごご6じまで はたらきます。",
+      "romaji": {
+        "question": "Nanji kara nanji made hatarakimasu ka.",
+        "example": "Gozen ku-ji kara gogo roku-ji made hatarakimasu."
+      },
+      "no": 9
+    },
+    {
+      "question": "あなたの ひるやすみは なんじから なんじまでですか。",
+      "hint": "Giờ nghỉ trưa của bạn từ mấy giờ đến mấy giờ?",
+      "example": "ひるやすみは じゅうにじから じゅうにじよんじゅうごふんまでです。",
+      "romaji": {
+        "question": "Anata no hiruyasumi wa nanji kara nanji made desu ka.",
+        "example": "Hiruyasumi wa juuni-ji kara juuni-ji yonjuu-go fun made desu."
+      },
+      "no": 10
+    },
+    {
+      "question": "「コンピュータ」は ベトナム語で なんですか。",
+      "hint": "Máy tính tiếng Việt là gì?",
+      "example": "「コンピュータ」はベトナム語で「máy tính」です。",
+      "romaji": {
+        "question": "Konpyuuta wa Betonamu-go de nan desu ka.",
+        "example": "Konpyuuta wa Betonamu-go de 'máy tính' desu."
+      },
+      "no": 11
+    },
+    {
+      "question": "まいにち、何をしますか。／ 何時に おきますか／ 何時に ねますか。",
+      "hint": "Bạn làm gì mỗi ngày? Bạn dậy lúc mấy giờ? Bạn đi ngủ lúc mấy giờ?",
+      "example": "まいにち、わたしは学校に行きます。まいあさ、わたしは ごぜん7時に おきます。わたしは よる11時に ねます。",
+      "romaji": {
+        "question": "Mainichi, nani o shimasu ka? Nanji ni okimasu ka? Nanji ni nemasu ka?",
+        "example": "Mainichi, watashi wa gakkou ni ikimasu. Maiasa, watashi wa gozen shichi-ji ni okimasu. Watashi wa yoru juuichi-ji ni nemasu."
+      },
+      "no": 12
+    },
+    {
+      "question": "まいあさ、何を たべますか。",
+      "hint": "Bạn ăn gì mỗi sáng?",
+      "example": "まいあさ、わたしは パンを たべます。まいあさ、パンを たべて、コーヒーを のみます。",
+      "romaji": {
+        "question": "Maiasa, nani o tabemasu ka?",
+        "example": "Maiasa, watashi wa pan o tabemasu. Maiasa, pan o tabete, koohii o nomimasu."
+      },
+      "no": 13
+    },
+    {
+      "question": "まいにち、コーヒーを飲みますか。／ 日本語を べんきょうしますか。",
+      "hint": "Bạn có uống cà phê mỗi ngày không? Bạn có học tiếng Nhật không?",
+      "example": "まいにち、わたしは コーヒーを のみません。まいにち、わたしは 日本語を べんきょうします。",
+      "romaji": {
+        "question": "Mainichi, koohii o nomimasu ka? Nihongo o benkyou shimasu ka?",
+        "example": "Mainichi, watashi wa koohii o nomimasen. Mainichi, watashi wa Nihongo o benkyou shimasu."
+      },
+      "no": 14
+    },
+    {
+      "question": "休みの日、何をしますか。",
+      "hint": "Bạn làm gì vào ngày nghỉ?",
+      "example": "休みの日、わたしは えいがを みます。休みの日、わたしは えいがを みて、本を よみます。",
+      "romaji": {
+        "question": "Yasumi no hi, nani o shimasu ka?",
+        "example": "Yasumi no hi, watashi wa eiga o mimasu. Yasumi no hi, watashi wa eiga o mite, hon o yomimasu."
+      },
+      "no": 15
+    },
+    {
+      "question": "今は何時ですか？",
+      "hint": "Hỏi bây giờ là mấy giờ?",
+      "example": "今は三時です。",
+      "romaji": {
+        "question": "Ima wa nanji desu ka?",
+        "example": "Ima wa san-ji desu."
+      },
+      "no": 16
+    },
+    {
+      "question": "日曜日はどこに行きますか。",
+      "hint": "Chủ nhật bạn đi đâu?",
+      "example": "スポーツをしに行きます。",
+      "romaji": {
+        "question": "Nichiyoubi wa doko ni ikimasu ka?",
+        "example": "Supootsu o shi ni ikimasu."
+      },
+      "no": 17
+    },
+    {
+      "question": "やすみの日はどこに行きますか。",
+      "hint": "Ngày nghỉ bạn đi đâu?",
+      "example": "スポーツをしに行きます。",
+      "romaji": {
+        "question": "Yasumi no hi wa doko ni ikimasu ka?",
+        "example": "Supootsu o shi ni ikimasu."
+      },
+      "no": 18
+    },
+    {
+      "question": "やすみの日はなにをしますか。",
+      "hint": "Ngày nghỉ bạn làm gì?",
+      "example": "スポーツをします。",
+      "romaji": {
+        "question": "Yasumi no hi wa nani o shimasu ka?",
+        "example": "Supootsu o shimasu."
+      },
+      "no": 19
+    },
+    {
+      "question": "あさごはんに何をたべますか。",
+      "hint": "Buổi sáng bạn ăn gì?",
+      "example": "パンをたべます。",
+      "romaji": {
+        "question": "Asagohan ni nani o tabemasu ka?",
+        "example": "Pan o tabemasu."
+      },
+      "no": 20
+    },
+    {
+      "question": "ばんごはんに何をのみますか。",
+      "hint": "Buổi tối bạn uống gì?",
+      "example": "おちゃをのみます。",
+      "romaji": {
+        "question": "Bangohan ni nani o nomimasu ka?",
+        "example": "Ocha o nomimasu."
+      },
+      "no": 21
+    },
+    {
+      "question": "学校へはなんで行きますか。",
+      "hint": "Bạn đi đến trường bằng gì?",
+      "example": "バスで行きます。",
+      "romaji": {
+        "question": "Gakkou e wa nande ikimasu ka?",
+        "example": "Basu de ikimasu."
+      },
+      "no": 22
+    }
+  ],
+  "talking_with_pictures": [
+    {
+      "no": 1,
+      "questions": [
+        {
+          "question": "この人のなまえは？",
+          "hint": "Tên của người này là gì?",
+          "example": "マリヤムさんです。",
+          "romaji": {
+            "question": "Kono hito no namae wa?",
+            "example": "Mariamu-san desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "マリヤムさんはなんさいですか？",
+          "hint": "Mariamu-san bao nhiêu tuổi?",
+          "example": "マリヤムさんは26さいです。",
+          "romaji": {
+            "question": "Mariamu-san wa nansai desu ka?",
+            "example": "Mariamu-san wa 26-sai desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "マリヤムさんの おしごとはなんですか？",
+          "hint": "Mariamu-san nghề nghiệp là gì?",
+          "example": "マリヤムさんの おしごとはがくせいです。",
+          "romaji": {
+            "question": "Mariamu-san no oshigoto wa nan desu ka?",
+            "example": "Mariamu-san no oshigoto wa gakusei desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "マリヤムさんは学生ですか？",
+          "hint": "Mariamu-san có phải là sinh viên không?",
+          "example": "はい、マリヤムさんは学生です。",
+          "romaji": {
+            "question": "Mariamu-san wa gakusei desu ka?",
+            "example": "Hai, Mariamu-san wa gakusei desu."
+          },
+          "no": 4
+        },
+        {
+          "question": "マリヤムさんの お国はどちらですか？",
+          "hint": "Mariamu-san đến từ nước nào?",
+          "example": "マリヤムさんの お国はイタリアです。",
+          "romaji": {
+            "question": "Mariamu-san no okuni wa dochira desu ka?",
+            "example": "Mariamu-san no okuni wa Itaria desu."
+          },
+          "no": 5
+        },
+        {
+          "question": "マリヤムさんはイタリアじんですか？",
+          "hint": "Mariamu-san có phải là người Ý không?",
+          "example": "はい、マリヤムさんはイタリアじんです。",
+          "romaji": {
+            "question": "Mariamu-san wa Itaria-jin desu ka?",
+            "example": "Hai, Mariamu-san wa Itaria-jin desu."
+          },
+          "no": 6
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_1.png",
+        "webp": "Speaking/jpd113/image_1.webp",
+        "w": 472,
+        "h": 259,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 1: Tên của người này là gì?",
+        "avif": "Speaking/jpd113/image_1.avif"
+      }
+    },
+    {
+      "no": 2,
+      "questions": [
+        {
+          "question": "[1] これはなんですか？",
+          "hint": "Đây là gì?",
+          "example": "これはノキア（NOKIA）のけいたいでんわです。",
+          "romaji": {
+            "question": "Kore wa nan desu ka?",
+            "example": "Kore wa Nokia (NOKIA) no keitai denwa desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "[2] そのけいたいでんわはだれのですか？",
+          "hint": "Chiếc điện thoại này của ai?",
+          "example": "それはカルロスさんのものです。",
+          "romaji": {
+            "question": "Sono keitai denwa wa dare no desu ka?",
+            "example": "Sore wa Karurosu-san no mono desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "[3] そのけいたいでんわはなんのですか？",
+          "hint": "Chiếc điện thoại này là của hãng nào?",
+          "example": "それはノキアのけいたいでんわです。",
+          "romaji": {
+            "question": "Sono keitai denwa wa nan no desu ka?",
+            "example": "Sore wa Nokia no keitai denwa desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "[4] このノキアのけいたいでんわはいくらですか？",
+          "hint": "Chiếc điện thoại Nokia này giá bao nhiêu?",
+          "example": "それはごじゅうごまんドンです。",
+          "romaji": {
+            "question": "Kono Nokia no keitai denwa wa ikura desu ka?",
+            "example": "Sore wa gojuugo-man don desu."
+          },
+          "no": 4
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_2.png",
+        "webp": "Speaking/jpd113/image_2.webp",
+        "w": 1140,
+        "h": 673,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 2: Đây là gì?",
+        "avif": "Speaking/jpd113/image_2.avif"
+      }
+    },
+    {
+      "no": 3,
+      "questions": [
+        {
+          "question": "100円ショップはどこですか。",
+          "hint": "Cửa hàng 100 yên ở đâu?",
+          "example": "さんがいです。",
+          "romaji": {
+            "question": "Hyaku en shoppu wa doko desu ka?",
+            "example": "Sangai desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "サカイでんきはどこですか。",
+          "hint": "Cửa hàng điện máy Sakai ở đâu?",
+          "example": "よんかいです。",
+          "romaji": {
+            "question": "Sakai denki wa doko desu ka?",
+            "example": "Yonkai desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "ほんやはどこですか。",
+          "hint": "Hiệu sách ở đâu?",
+          "example": "にかいです。",
+          "romaji": {
+            "question": "Honya wa doko desu ka?",
+            "example": "Nikai desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "ケーキやはどこですか。",
+          "hint": "Tiệm bánh ngọt ở đâu?",
+          "example": "いっかいです。",
+          "romaji": {
+            "question": "Keeki ya wa doko desu ka?",
+            "example": "Ikkai desu."
+          },
+          "no": 4
+        },
+        {
+          "question": "きつえんじょはどこですか。",
+          "hint": "Chỗ hút thuốc ở đâu?",
+          "example": "さんがいです。",
+          "romaji": {
+            "question": "Kitsuenjo wa doko desu ka?",
+            "example": "Sangai desu."
+          },
+          "no": 5
+        },
+        {
+          "question": "トイレはどこですか。",
+          "hint": "Nhà vệ sinh ở đâu?",
+          "example": "いっかい、さんがい、ごかいに あります。",
+          "romaji": {
+            "question": "Toire wa doko desu ka?",
+            "example": "Ikkai, sangai, gokai ni arimasu."
+          },
+          "no": 6
+        },
+        {
+          "question": "スーパーはどこですか。",
+          "hint": "Siêu thị ở đâu?",
+          "example": "ちかいっかいです。",
+          "romaji": {
+            "question": "Suupaa wa doko desu ka?",
+            "example": "Chika ikkai desu."
+          },
+          "no": 7
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_3.png",
+        "webp": "Speaking/jpd113/image_3.webp",
+        "w": 634,
+        "h": 503,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 3: Cửa hàng 100 yên ở đâu?",
+        "avif": "Speaking/jpd113/image_3.avif"
+      }
+    },
+    {
+      "no": 4,
+      "questions": [
+        {
+          "question": "[1] これはなんですか。",
+          "hint": "Đây là gì? [Hình 1 - Bệnh viện]",
+          "example": "びょういんです。",
+          "romaji": {
+            "question": "Kore wa nan desu ka?",
+            "example": "Byouin desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "[1] このびょういんの なまえは なんですか。",
+          "hint": "Tên của bệnh viện này là gì?",
+          "example": "さくらびょういんです。",
+          "romaji": {
+            "question": "Kono byouin no namae wa nan desu ka?",
+            "example": "Sakura byouin desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "[1] さくらびょういんは なんじから なんじまでですか。",
+          "hint": "Bệnh viện Sakura mở cửa từ mấy giờ đến mấy giờ?",
+          "example": "くじはんから ごごさんじまでです。",
+          "romaji": {
+            "question": "Sakura byouin wa nanji kara nanji made desu ka?",
+            "example": "Kuji han kara gogo sanji made desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "[2] これはなんですか。",
+          "hint": "Đây là gì? [Hình 2 - Thư viện]",
+          "example": "としょかんです。",
+          "romaji": {
+            "question": "Kore wa nan desu ka?",
+            "example": "Toshokan desu."
+          },
+          "no": 4
+        },
+        {
+          "question": "[2] このとしょかんの なまえは なんですか。",
+          "hint": "Tên của thư viện này là gì?",
+          "example": "さくらとしょかんです。",
+          "romaji": {
+            "question": "Kono toshokan no namae wa nan desu ka?",
+            "example": "Sakura toshokan desu."
+          },
+          "no": 5
+        },
+        {
+          "question": "[2] さくらとしょかんは なんじから なんじまでですか。",
+          "hint": "Thư viện Sakura mở cửa từ mấy giờ đến mấy giờ?",
+          "example": "くじから しちじまでです。",
+          "romaji": {
+            "question": "Sakura toshokan wa nanji kara nanji made desu ka?",
+            "example": "Kuji kara shichiji made desu."
+          },
+          "no": 6
+        },
+        {
+          "question": "[2] としょかんは いつ やすみですか。",
+          "hint": "Thư viện đóng cửa khi nào?",
+          "example": "げつようびです。",
+          "romaji": {
+            "question": "Toshokan wa itsu yasumi desu ka?",
+            "example": "Getsuyoubi desu."
+          },
+          "no": 7
+        },
+        {
+          "question": "[3] これはなんですか。",
+          "hint": "Đây là gì? [Hình 3 - Nhà thi đấu]",
+          "example": "たいいくかんです。",
+          "romaji": {
+            "question": "Kore wa nan desu ka?",
+            "example": "Taiikukan desu."
+          },
+          "no": 8
+        },
+        {
+          "question": "[3] この たいいくかんの なまえは なんですか。",
+          "hint": "Tên của nhà thi đấu này là gì?",
+          "example": "わかば たいいくかんです。",
+          "romaji": {
+            "question": "Kono taiikukan no namae wa nan desu ka?",
+            "example": "Wakaba taiikukan desu."
+          },
+          "no": 9
+        },
+        {
+          "question": "[3] わかば たいいくかんは なんじから なんじまでですか。",
+          "hint": "Nhà thi đấu Wakaba mở cửa từ mấy giờ đến mấy giờ?",
+          "example": "ごぜんはちじはんから ごごじゅうじまでです。",
+          "romaji": {
+            "question": "Wakaba taiikukan wa nanji kara nanji made desu ka?",
+            "example": "Gozen hachiji han kara gogo juuji made desu."
+          },
+          "no": 10
+        },
+        {
+          "question": "[3] わかば たいいくかんは いつ やすみですか。",
+          "hint": "Nhà thi đấu Wakaba đóng cửa khi nào?",
+          "example": "すいようびです。",
+          "romaji": {
+            "question": "Wakaba taiikukan wa itsu yasumi desu ka?",
+            "example": "Suiyoubi desu."
+          },
+          "no": 11
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_4.png",
+        "webp": "Speaking/jpd113/image_4.webp",
+        "w": 1387,
+        "h": 557,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 4: Đây là gì? [Hình 1 - Bệnh viện]",
+        "avif": "Speaking/jpd113/image_4.avif"
+      }
+    },
+    {
+      "no": 5,
+      "questions": [
+        {
+          "question": "これはなんですか。",
+          "hint": "Đây là gì? [Hình 3 - Máy ảnh]",
+          "example": "これはキヤノン（Canon）のカメラです。",
+          "romaji": {
+            "question": "Kore wa nan desu ka?",
+            "example": "Kore wa Kyanon (Canon) no kamera desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "そのカメラはだれのですか。",
+          "hint": "Cái máy ảnh đó là của ai?",
+          "example": "それはフランクさんのものです。",
+          "romaji": {
+            "question": "Sono kamera wa dare no desu ka?",
+            "example": "Sore wa Furanku-san no mono desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "そのカメラはなんのですか。",
+          "hint": "Cái máy ảnh đó là của loại nào?",
+          "example": "それはキヤノンのカメラです。",
+          "romaji": {
+            "question": "Sono kamera wa nan no desu ka?",
+            "example": "Sore wa Kyanon no kamera desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "このキヤノンのカメラはいくらですか。",
+          "hint": "Cái máy ảnh Canon này giá bao nhiêu?",
+          "example": "それはろっぴゃくはちじゅうドルです。",
+          "romaji": {
+            "question": "Kono Kyanon no kamera wa ikura desu ka?",
+            "example": "Sore wa roppyaku hachijuu doru desu."
+          },
+          "no": 4
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_5.png",
+        "webp": "Speaking/jpd113/image_5.webp",
+        "w": 486,
+        "h": 284,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 5: Đây là gì? [Hình 3 - Máy ảnh]",
+        "avif": "Speaking/jpd113/image_5.avif"
+      }
+    },
+    {
+      "no": 6,
+      "questions": [
+        {
+          "question": "ここは どこですか。",
+          "hint": "Đây là đâu?",
+          "example": "ここは たいいくかんです。",
+          "romaji": {
+            "question": "Koko wa doko desu ka?",
+            "example": "Koko wa taiikukan desu."
+          },
+          "no": 1
+        },
+        {
+          "question": "～は なんじから なんじまでですか。",
+          "hint": "Thời gian từ mấy giờ đến mấy giờ?",
+          "example": "たいいくかんは ごぜんごじから ごごじゅういちじはんまでです。",
+          "romaji": {
+            "question": "～ wa nanji kara nanji made desu ka?",
+            "example": "Taiikukan wa gozen goji kara gogo juuichiji han made desu."
+          },
+          "no": 2
+        },
+        {
+          "question": "～は なんようびから なんようびまでですか。",
+          "hint": "Từ thứ mấy đến thứ mấy?",
+          "example": "たいいくかんは げつようびから もくようびまでと、どようび・にちようびです。きんようびは やすみです。",
+          "romaji": {
+            "question": "～ wa nanyoubi kara nanyoubi made desu ka?",
+            "example": "Taiikukan wa getsuyoubi kara mokuyoubi made to, doyoubi・nichiyoubi desu. Kinyoubi wa yasumi desu."
+          },
+          "no": 3
+        },
+        {
+          "question": "やすみは いつですか。",
+          "hint": "Ngày nghỉ là ngày nào?",
+          "example": "やすみは きんようびです。",
+          "romaji": {
+            "question": "Yasumi wa itsu desu ka?",
+            "example": "Yasumi wa kinyoubi desu."
+          },
+          "no": 4
+        },
+        {
+          "question": "ここで なにを しますか。",
+          "hint": "Ở đây bạn làm gì?",
+          "example": "ここで スポーツを したり、トレーニングを したりします。",
+          "romaji": {
+            "question": "Koko de nani o shimasu ka?",
+            "example": "Koko de supootsu o shitari, toreeningu o shitari shimasu."
+          },
+          "no": 5
+        }
+      ],
+      "image": {
+        "src": "Speaking/jpd113/image_6.png",
+        "webp": "Speaking/jpd113/image_6.webp",
+        "w": 487,
+        "h": 273,
+        "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 6: Đây là đâu?",
+        "avif": "Speaking/jpd113/image_6.avif"
+      }
+    }
+  ],
+  "counts": {
+    "structure": 16,
+    "tips": 7,
+    "reading": 13,
+    "readingWithAudio": 13,
+    "talkingWithoutPictures": 22,
+    "pictureGroups": 6,
+    "pictureGroupsWithImage": 6,
+    "talkingWithPicturesQuestions": 37
   }
- ],
- "talking_without_pictures": [
-  {
-   "question": "おなまえは？",
-   "hint": "Tên bạn là gì?",
-   "example": "わたしのなまえは________です。",
-   "romaji": {
-    "question": "Onamae wa?",
-    "example": "Watashi no namae wa ________ desu."
-   },
-   "no": 1
-  },
-  {
-   "question": "おくには どちらですか。",
-   "hint": "Bạn đến từ nước nào?",
-   "example": "ベトナムです。",
-   "romaji": {
-    "question": "Okuni wa dochira desu ka.",
-    "example": "Betonamu desu."
-   },
-   "no": 2
-  },
-  {
-   "question": "おしごとは？",
-   "hint": "Công việc của bạn là gì?",
-   "example": "わたしのしごとは________です。",
-   "romaji": {
-    "question": "Oshigoto wa?",
-    "example": "Watashi no shigoto wa ________ desu."
-   },
-   "no": 3
-  },
-  {
-   "question": "たんじょうびは いつですか。",
-   "hint": "Sinh nhật của bạn là khi nào?",
-   "example": "わたしのたんじょうびは _______です。",
-   "romaji": {
-    "question": "Tanjoubi wa itsu desu ka.",
-    "example": "Watashi no tanjoubi wa _______ desu."
-   },
-   "no": 4
-  },
-  {
-   "question": "しゅみは なんですか。",
-   "hint": "Sở thích của bạn là gì?",
-   "example": "わたしのしゅみは________です。",
-   "romaji": {
-    "question": "Shumi wa nan desu ka.",
-    "example": "Watashi no shumi wa ________ desu."
-   },
-   "no": 5
-  },
-  {
-   "question": "にほんの りょうりは どうですか。",
-   "hint": "Bạn thấy món ăn Nhật Bản như thế nào?",
-   "example": "とても おいしいです。",
-   "romaji": {
-    "question": "Nihon no ryouri wa dou desu ka.",
-    "example": "Totemo oishii desu."
-   },
-   "no": 6
-  },
-  {
-   "question": "ぶたにく は えいごで なんですか。",
-   "hint": "Thịt lợn tiếng Anh là gì?",
-   "example": "ポークです。",
-   "romaji": {
-    "question": "Butaniku wa eigo de nan desu ka.",
-    "example": "Pork desu."
-   },
-   "no": 7
-  },
-  {
-   "question": "まいにち、なんじに おきますか。",
-   "hint": "Hàng ngày, bạn thức dậy lúc mấy giờ?",
-   "example": "わたしは まいにち、はちじに おきます。",
-   "romaji": {
-    "question": "Mainichi, nanji ni okimasu ka.",
-    "example": "Watashi wa mainichi, hachi-ji ni okimasu."
-   },
-   "no": 8
-  },
-  {
-   "question": "なんじから なんじまで はたらきますか。",
-   "hint": "Bạn làm việc từ mấy giờ đến mấy giờ?",
-   "example": "ごぜん9じから ごご6じまで はたらきます。",
-   "romaji": {
-    "question": "Nanji kara nanji made hatarakimasu ka.",
-    "example": "Gozen ku-ji kara gogo roku-ji made hatarakimasu."
-   },
-   "no": 9
-  },
-  {
-   "question": "あなたの ひるやすみは なんじから なんじまでですか。",
-   "hint": "Giờ nghỉ trưa của bạn từ mấy giờ đến mấy giờ?",
-   "example": "ひるやすみは じゅうにじから じゅうにじよんじゅうごふんまでです。",
-   "romaji": {
-    "question": "Anata no hiruyasumi wa nanji kara nanji made desu ka.",
-    "example": "Hiruyasumi wa juuni-ji kara juuni-ji yonjuu-go fun made desu."
-   },
-   "no": 10
-  },
-  {
-   "question": "「コンピュータ」は ベトナム語で なんですか。",
-   "hint": "Máy tính tiếng Việt là gì?",
-   "example": "「コンピュータ」はベトナム語で「máy tính」です。",
-   "romaji": {
-    "question": "Konpyūta wa Betonamu-go de nan desu ka.",
-    "example": "Konpyūta wa Betonamu-go de 'máy tính' desu."
-   },
-   "no": 11
-  },
-  {
-   "question": "まいにち、何をしますか。／ 何時に おきますか／ 何時に ねますか。",
-   "hint": "Bạn làm gì mỗi ngày? Bạn dậy lúc mấy giờ? Bạn đi ngủ lúc mấy giờ?",
-   "example": "Mainichi watashi wa gakkō ni ikimasu. Maiasa Watashi wa gozen shichi-ji ni okimasu. Watashi wa gogo juni-ji ni nemasu.",
-   "romaji": {
-    "question": "Mainichi, nani o shimasu ka? Nanji ni okimasu ka? Nanji ni nemasu ka?",
-    "example": "Mainichi watashi wa gakkō ni ikimasu. Maiasa watashi wa gozen shichi-ji ni okimasu. Watashi wa gogo juni-ji ni nemasu."
-   },
-   "no": 12
-  },
-  {
-   "question": "まいあさ、何を たべますか。",
-   "hint": "Bạn ăn gì mỗi sáng?",
-   "example": "Maiasa watashi wa pan o tabemasu. Maiasa, pan o tabete, kōhī o nomimasu.",
-   "romaji": {
-    "question": "Maiasa, nani o tabemasu ka?",
-    "example": "Maiasa watashi wa pan o tabemasu. Maiasa, pan o tabete, kōhī o nomimasu."
-   },
-   "no": 13
-  },
-  {
-   "question": "まいにち、コーヒーを飲みますか。／ 日本語を べんきょうしますか。",
-   "hint": "Bạn có uống cà phê mỗi ngày không? Bạn có học tiếng Nhật không?",
-   "example": "Mainichi watashi wa kōhī o nomimasen. Mainichi watashi wa Nihongo o benkyō shimasu.",
-   "romaji": {
-    "question": "Mainichi, kōhī o nomimasu ka? Nihongo o benkyō shimasu ka?",
-    "example": "Mainichi watashi wa kōhī o nomimasen. Mainichi watashi wa Nihongo o benkyō shimasu."
-   },
-   "no": 14
-  },
-  {
-   "question": "休みの日、何をしますか。",
-   "hint": "Bạn làm gì vào ngày nghỉ?",
-   "example": "Yasumi no hi watashi wa eiga o mimasu. Yasumi no hi, watashi wa eiga o mite, hon o yomimasu.",
-   "romaji": {
-    "question": "Yasumi no hi, nani o shimasu ka?",
-    "example": "Yasumi no hi watashi wa eiga o mimasu. Yasumi no hi, watashi wa eiga o mite, hon o yomimasu."
-   },
-   "no": 15
-  },
-  {
-   "question": "今は何時ですか？",
-   "hint": "Hỏi bây giờ là mấy giờ?",
-   "example": "今は三時です。",
-   "romaji": {
-    "question": "Ima wa nanji desu ka?",
-    "example": "Ima wa san-ji desu."
-   },
-   "no": 16
-  },
-  {
-   "question": "日曜日はどこに行きますか。",
-   "hint": "Chủ nhật bạn đi đâu?",
-   "example": "スポーツをしに行きます。",
-   "romaji": {
-    "question": "Nichiyōbi wa doko ni ikimasu ka?",
-    "example": "Supōtsu o shi ni ikimasu."
-   },
-   "no": 17
-  },
-  {
-   "question": "やすみの日はどこに行きますか。",
-   "hint": "Ngày nghỉ bạn đi đâu?",
-   "example": "スポーツをしに行きます。",
-   "romaji": {
-    "question": "Yasumi no hi wa doko ni ikimasu ka?",
-    "example": "Supōtsu o shi ni ikimasu."
-   },
-   "no": 18
-  },
-  {
-   "question": "やすみの日はなにをしますか。",
-   "hint": "Ngày nghỉ bạn làm gì?",
-   "example": "スポーツをします。",
-   "romaji": {
-    "question": "Yasumi no hi wa nani o shimasu ka?",
-    "example": "Supōtsu o shimasu."
-   },
-   "no": 19
-  },
-  {
-   "question": "あさごはんに何をたべますか。",
-   "hint": "Buổi sáng bạn ăn gì?",
-   "example": "パンをたべます。",
-   "romaji": {
-    "question": "Asagohan ni nani o tabemasu ka?",
-    "example": "Pan o tabemasu."
-   },
-   "no": 20
-  },
-  {
-   "question": "ばんごはんに何をのみますか。",
-   "hint": "Buổi tối bạn uống gì?",
-   "example": "おちゃをのみます。",
-   "romaji": {
-    "question": "Bangohan ni nani o nomimasu ka?",
-    "example": "Ocha o nomimasu."
-   },
-   "no": 21
-  },
-  {
-   "question": "学校へはなんで行きますか。",
-   "hint": "Bạn đi đến trường bằng gì?",
-   "example": "バスで行きます。",
-   "romaji": {
-    "question": "Gakkō e wa nande ikimasu ka?",
-    "example": "Basu de ikimasu."
-   },
-   "no": 22
-  }
- ],
- "talking_with_pictures": [
-  {
-   "no": 1,
-   "questions": [
-    {
-     "question": "この人のなまえは？",
-     "hint": "Tên của người này là gì?",
-     "example": "マリヤムさんです。",
-     "romaji": {
-      "question": "Kono hito no namae wa?",
-      "example": "Mariamu-san desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "マリヤムさんはなんさいですか？",
-     "hint": "Mariamu-san bao nhiêu tuổi?",
-     "example": "マリヤムさんは26さいです。",
-     "romaji": {
-      "question": "Mariamu-san wa nansai desu ka?",
-      "example": "Mariamu-san wa 26-sai desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "マリヤムさんの おしごとはなんですか？",
-     "hint": "Mariamu-san nghề nghiệp là gì?",
-     "example": "マリヤムさんの おしごとはがくせいです。",
-     "romaji": {
-      "question": "Mariamu-san no oshigoto wa nan desu ka?",
-      "example": "Mariamu-san no oshigoto wa gakusei desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "マリヤムさんは学生ですか？",
-     "hint": "Mariamu-san có phải là sinh viên không?",
-     "example": "はい、マリヤムさんは学生です。",
-     "romaji": {
-      "question": "Hai, Mariamu-san wa gakusei desu ka?",
-      "example": "Hai, Mariamu-san wa gakusei desu."
-     },
-     "no": 4
-    },
-    {
-     "question": "マリヤムさんの お国はどちらですか？",
-     "hint": "Mariamu-san đến từ nước nào?",
-     "example": "マリヤムさんの お国はイタリアです。",
-     "romaji": {
-      "question": "Mariamu-san no okuni wa dochira desu ka?",
-      "example": "Mariamu-san no okuni wa Itaria desu."
-     },
-     "no": 5
-    },
-    {
-     "question": "マリヤムさんはイタリアじんですか？",
-     "hint": "Mariamu-san có phải là người Ý không?",
-     "example": "はい、マリヤムさんはイタリアじんです。",
-     "romaji": {
-      "question": "Hai, Mariamu-san wa Itaria-jin desu ka?",
-      "example": "Hai, Mariamu-san wa Itaria-jin desu."
-     },
-     "no": 6
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_1.png",
-    "webp": "Speaking/jpd113/image_1.webp",
-    "w": 472,
-    "h": 259,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 1: Tên của người này là gì?",
-    "avif": "Speaking/jpd113/image_1.avif"
-   }
-  },
-  {
-   "no": 2,
-   "questions": [
-    {
-     "question": "[1] これはなんですか？",
-     "hint": "Đây là gì?",
-     "example": "これはノキア（NOKIA）のけいたいでんわです。",
-     "romaji": {
-      "question": "Kore wa nan desu ka?",
-      "example": "Kore wa Nokia (NOKIA) no keitai denwa desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "[2] そのけいたいでんわはだれのですか？",
-     "hint": "Chiếc điện thoại này của ai?",
-     "example": "それはカルロスさんのものです。",
-     "romaji": {
-      "question": "Sono keitai denwa wa dare no desu ka?",
-      "example": "Sore wa Karurosu-san no mono desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "[3] そのけいたいでんわはなんのですか？",
-     "hint": "Chiếc điện thoại này là của hãng nào?",
-     "example": "それはノキアのけいたいでんわです。",
-     "romaji": {
-      "question": "Sono keitai denwa wa nan no desu ka?",
-      "example": "Sore wa Nokia no keitai denwa desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "[4] このノキアのけいたいでんわはいくらですか？",
-     "hint": "Chiếc điện thoại Nokia này giá bao nhiêu?",
-     "example": "それはごじゅうごまんドンです。",
-     "romaji": {
-      "question": "Kono Nokia no keitai denwa wa ikura desu ka?",
-      "example": "Sore wa gojuugoman don desu."
-     },
-     "no": 4
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_2.png",
-    "webp": "Speaking/jpd113/image_2.webp",
-    "w": 1140,
-    "h": 673,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 2: Đây là gì?",
-    "avif": "Speaking/jpd113/image_2.avif"
-   }
-  },
-  {
-   "no": 3,
-   "questions": [
-    {
-     "question": "１００円ショップはどこですか。",
-     "hint": "Cửa hàng 100 yên ở đâu?",
-     "example": "３かいです。",
-     "romaji": {
-      "question": "Hyaku en shoppu wa doko desu ka?",
-      "example": "San kai desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "サカイでんきはどこですか。",
-     "hint": "Cửa hàng điện máy Sakai ở đâu?",
-     "example": "４かいです。",
-     "romaji": {
-      "question": "Sakai denki wa doko desu ka?",
-      "example": "Yon kai desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "ほんやはどこですか。",
-     "hint": "Hiệu sách ở đâu?",
-     "example": "２かいです。",
-     "romaji": {
-      "question": "Honya wa doko desu ka?",
-      "example": "Ni kai desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "ケーキやはどこですか。",
-     "hint": "Tiệm bánh ngọt ở đâu?",
-     "example": "１かいです。",
-     "romaji": {
-      "question": "Kēki ya wa doko desu ka?",
-      "example": "Ikkai desu."
-     },
-     "no": 4
-    },
-    {
-     "question": "きつえんしょはどこですか。",
-     "hint": "Chỗ hút thuốc ở đâu?",
-     "example": "さんがいです。",
-     "romaji": {
-      "question": "Kitsuensho wa doko desu ka?",
-      "example": "San gai desu."
-     },
-     "no": 5
-    },
-    {
-     "question": "トイレはどこですか。",
-     "hint": "Nhà vệ sinh ở đâu?",
-     "example": "１かい、３かい、５かいにあります。",
-     "romaji": {
-      "question": "Toire wa doko desu ka?",
-      "example": "Ikkai, san kai, go kai ni arimasu."
-     },
-     "no": 6
-    },
-    {
-     "question": "スーパーはどこですか。",
-     "hint": "Siêu thị ở đâu?",
-     "example": "ちかいちです。",
-     "romaji": {
-      "question": "Sūpā wa doko desu ka?",
-      "example": "Chika ikkai desu."
-     },
-     "no": 7
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_3.png",
-    "webp": "Speaking/jpd113/image_3.webp",
-    "w": 634,
-    "h": 503,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 3: Cửa hàng 100 yên ở đâu?",
-    "avif": "Speaking/jpd113/image_3.avif"
-   }
-  },
-  {
-   "no": 4,
-   "questions": [
-    {
-     "question": "[1] これはなんですか。",
-     "hint": "Đây là gì? [Hình 1 - Bệnh viện]",
-     "example": "びょういんです。",
-     "romaji": {
-      "question": "Kore wa nan desu ka?",
-      "example": "Byouin desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "[1] このびょういんの なまえは なんですか。",
-     "hint": "Tên của bệnh viện này là gì?",
-     "example": "さくらびょういんです。",
-     "romaji": {
-      "question": "Kono byouin no namae wa nan desu ka?",
-      "example": "Sakura byouin desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "[1] さくらびょういんは なんじから なんじまでですか。",
-     "hint": "Bệnh viện Sakura mở cửa từ mấy giờ đến mấy giờ?",
-     "example": "くじはんから ごごさんじまでです。",
-     "romaji": {
-      "question": "Sakura byouin wa nanji kara nanji made desu ka?",
-      "example": "Kuji han kara gogo sanji made desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "[2] これはなんですか。",
-     "hint": "Đây là gì? [Hình 2 - Thư viện]",
-     "example": "としょかんです。",
-     "romaji": {
-      "question": "Kore wa nan desu ka?",
-      "example": "Toshokan desu."
-     },
-     "no": 4
-    },
-    {
-     "question": "[2] このとしょかんの なまえは なんですか。",
-     "hint": "Tên của thư viện này là gì?",
-     "example": "さくとしょかんです。",
-     "romaji": {
-      "question": "Kono toshokan no namae wa nan desu ka?",
-      "example": "Sakura toshokan desu."
-     },
-     "no": 5
-    },
-    {
-     "question": "[2] さくとしょかんは なんじから なんじまでですか。",
-     "hint": "Thư viện Sakura mở cửa từ mấy giờ đến mấy giờ?",
-     "example": "くじから しちじまでです。",
-     "romaji": {
-      "question": "Sakura toshokan wa nanji kara nanji made desu ka?",
-      "example": "Kuji kara shichiji made desu."
-     },
-     "no": 6
-    },
-    {
-     "question": "[2] としょかんは いつ やすみですか。",
-     "hint": "Thư viện đóng cửa khi nào?",
-     "example": "げつようびです。",
-     "romaji": {
-      "question": "Toshokan wa itsu yasumi desu ka?",
-      "example": "Getsuyoubi desu."
-     },
-     "no": 7
-    },
-    {
-     "question": "[3] これはなんですか。",
-     "hint": "Đây là gì? [Hình 3 - Nhà thi đấu]",
-     "example": "たいいくかんです。",
-     "romaji": {
-      "question": "Kore wa nan desu ka?",
-      "example": "Taiikukan desu."
-     },
-     "no": 8
-    },
-    {
-     "question": "[3] この たいいくかんの なまえは なんですか。",
-     "hint": "Tên của nhà thi đấu này là gì?",
-     "example": "わかば たいいくかんです。",
-     "romaji": {
-      "question": "Kono taiikukan no namae wa nan desu ka?",
-      "example": "Wakaba taiikukan desu."
-     },
-     "no": 9
-    },
-    {
-     "question": "[3] わかば たいいくかんは なんじから なんじまでですか。",
-     "hint": "Nhà thi đấu Wakaba mở cửa từ mấy giờ đến mấy giờ?",
-     "example": "ごぜんはちじはんから ごごじゅうじまでです。",
-     "romaji": {
-      "question": "Wakaba taiikukan wa nanji kara nanji made desu ka?",
-      "example": "Gozen hachiji han kara gogo juuji made desu."
-     },
-     "no": 10
-    },
-    {
-     "question": "[3] わかば たいいくかんは いつ やすみですか。",
-     "hint": "Nhà thi đấu Wakaba đóng cửa khi nào?",
-     "example": "すいようびです。",
-     "romaji": {
-      "question": "Wakaba taiikukan wa itsu yasumi desu ka?",
-      "example": "Suiyoubi desu."
-     },
-     "no": 11
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_4.png",
-    "webp": "Speaking/jpd113/image_4.webp",
-    "w": 1387,
-    "h": 557,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 4: Đây là gì? [Hình 1 - Bệnh viện]",
-    "avif": "Speaking/jpd113/image_4.avif"
-   }
-  },
-  {
-   "no": 5,
-   "questions": [
-    {
-     "question": "これはなんですか。",
-     "hint": "Đây là gì? [Hình 3 - Máy ảnh]",
-     "example": "これはキヤノン（Canon）のカメラです。",
-     "romaji": {
-      "question": "Kore wa nan desu ka?",
-      "example": "Kore wa Kyanon (Canon) no kamera desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "そのカメラはだれのですか。",
-     "hint": "Cái máy ảnh đó là của ai?",
-     "example": "それはフランクさんのものです。",
-     "romaji": {
-      "question": "Sore wa dare no desu ka?",
-      "example": "Sore wa Furanku-san no mono desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "そのカメラはなんのですか。",
-     "hint": "Cái máy ảnh đó là của loại nào?",
-     "example": "それはキヤノンのカメラです。",
-     "romaji": {
-      "question": "Sore wa nan no desu ka?",
-      "example": "Sore wa Kyanon no kamera desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "このキヤノンのカメラはいくらですか。",
-     "hint": "Cái máy ảnh Canon này giá bao nhiêu?",
-     "example": "それはろっぴゃくはちじゅうドルです。",
-     "romaji": {
-      "question": "Kono Kyanon no kamera wa ikura desu ka?",
-      "example": "Sore wa roppyaku hachijuu doru desu."
-     },
-     "no": 4
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_5.png",
-    "webp": "Speaking/jpd113/image_5.webp",
-    "w": 486,
-    "h": 284,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 5: Đây là gì? [Hình 3 - Máy ảnh]",
-    "avif": "Speaking/jpd113/image_5.avif"
-   }
-  },
-  {
-   "no": 6,
-   "questions": [
-    {
-     "question": "ここは どこですか。",
-     "hint": "Đây là đâu?",
-     "example": "ここは たいくかん です。",
-     "romaji": {
-      "question": "Koko wa doko desu ka?",
-      "example": "Koko wa taikukan desu."
-     },
-     "no": 1
-    },
-    {
-     "question": "～は なんじから なんじまでですか。",
-     "hint": "Thời gian từ mấy giờ đến mấy giờ?",
-     "example": "たいくかんは ごぜんごじから ごごじゅういちじはんまでです。",
-     "romaji": {
-      "question": "～ wa nanji kara nanji made desu ka?",
-      "example": "Taikukan wa gozen goji kara gogo juuichiji han made desu."
-     },
-     "no": 2
-    },
-    {
-     "question": "～は なんようびから なんようびまでですか。",
-     "hint": "Từ thứ mấy đến thứ mấy?",
-     "example": "たいくかんは げつようび から もくようび と どようび、 にちようび まで です。ただし、きんようび は やすみ です。",
-     "romaji": {
-      "question": "～ wa nanyoubi kara nanyoubi made desu ka?",
-      "example": "Taikukan wa getsuyoubi kara mokuyoubi to doyoubi, nichiyoubi made desu. Tadashi, kinyoubi wa yasumi desu."
-     },
-     "no": 3
-    },
-    {
-     "question": "やすみは いつですか。",
-     "hint": "Ngày nghỉ là ngày nào?",
-     "example": "やすみは きんようびです。",
-     "romaji": {
-      "question": "Yasumi wa itsu desu ka?",
-      "example": "Yasumi wa kinyoubi desu."
-     },
-     "no": 4
-    },
-    {
-     "question": "ここで なにを しますか。",
-     "hint": "Ở đây bạn làm gì?",
-     "example": "ここで スポーツを したり、トレーニングを したりします。",
-     "romaji": {
-      "question": "Koko de nani o shimasu ka?",
-      "example": "Koko de supootsu o shitari, toreeningu o shitari shimasu."
-     },
-     "no": 5
-    }
-   ],
-   "image": {
-    "src": "Speaking/jpd113/image_6.png",
-    "webp": "Speaking/jpd113/image_6.webp",
-    "w": 487,
-    "h": 273,
-    "alt": "Tranh gợi ý JPD113 — bộ câu hỏi 6: Đây là đâu?",
-    "avif": "Speaking/jpd113/image_6.avif"
-   }
-  }
- ],
- "counts": {
-  "structure": 16,
-  "tips": 7,
-  "reading": 13,
-  "readingWithAudio": 13,
-  "talkingWithoutPictures": 22,
-  "pictureGroups": 6,
-  "pictureGroupsWithImage": 6,
-  "talkingWithPicturesQuestions": 37
- }
 }

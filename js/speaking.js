@@ -6,7 +6,7 @@
    WHAT THIS FILE IS AND IS NOT
    ----------------------------------------------------------------------------
    It is NOT the page. blog/Speaking.html ships every prose section, the full
-   exam structure and scoring for both courses, all ten tips, and a static
+   exam structure and scoring for both courses, all eighteen tips, and a static
    sample of every drill type — roughly 1,900 crawlable words — before this
    module is even requested. If this file 404s, throws, or the reader has
    scripting off, the page stays a complete, readable, navigable document with

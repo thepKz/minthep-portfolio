@@ -857,6 +857,14 @@
   box-shadow: none;
 }
 
+/* Zeroing the margin above kills the gap *between* stacked equations too, so a
+   tall numerator ends up touching the denominator on the line above it. Restore
+   the air between siblings only — the well's own padding still owns the top and
+   bottom edges. */
+.b-article [data-math] mjx-container[display='true'] + mjx-container[display='true'] {
+  margin-block-start: var(--s-5);
+}
+
 .b-article [data-math]::-webkit-scrollbar,
 .b-article mjx-container[display='true']::-webkit-scrollbar {
   block-size: var(--c-scrollbar);
