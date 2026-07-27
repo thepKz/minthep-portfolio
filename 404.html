@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  404.html — trang không tìm thấy (Vietnamese not-found page), Surface A shell
+  ============================================================================
+
+  ⚠️  THIS FILE DELIBERATELY BREAKS THE REPO-WIDE "RELATIVE PATHS ONLY" RULE.
+      DO NOT "FIX" IT. Read this before touching a single href.
+
+  Everywhere else in this repository a root-absolute path (href="/css/x.css")
+  is a sitewide 404, because the site is a GitHub Pages *project page* served
+  from https://thepkz.github.io/minthep-portfolio/ — so every other page uses
+  RELATIVE paths (css/x.css, ../css/x.css).
+
+  A 404 page is the one document where relative paths are WRONG.
+
+  GitHub Pages serves this file, in place, for any missing path under the
+  project subpath. "In place" means the browser's address bar still shows the
+  URL that failed, and therefore the document's base URL is the *directory of
+  the failed request*, which can be at any depth:
+
+      requested                                     base URL becomes
+      ------------------------------------------    ---------------------------------------
+      /minthep-portfolio/nope.html                  /minthep-portfolio/
+      /minthep-portfolio/blog/typoo.html            /minthep-portfolio/blog/
+      /minthep-portfolio/blog/textblog-3/x/y.html   /minthep-portfolio/blog/textblog-3/x/
+
+  A relative href="css/tokens.css" in this document would resolve against that
+  base — /minthep-portfolio/blog/css/tokens.css — and 404 as well. The visitor
+  would then get an unstyled wall of text on top of an already-bad moment.
+
+  So every stylesheet, script, icon, sprite and recovery link below is a
+  FULLY-QUALIFIED absolute URL. That is depth-independent and always correct.
+
+  Why not <base href="…">? Because <base> also rewrites fragment-only links:
+  href="#main" would become a navigation to the homepage's #main instead of
+  scrolling this document, silently breaking the skip link. Explicit absolute
+  URLs cost a few bytes and have no such side effect.
+
+  If the base URL ever changes (it must not — see README.md, "never add a
+  CNAME"), every URL in this file has to change with it.
+  ============================================================================
+-->
+<html lang="vi" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>404 — Không tìm thấy trang | MINTHEP</title>
+<meta name="description" content="Đường dẫn bạn vừa mở không tồn tại trên minthep-portfolio. Quay lại trang chủ, blog học tập hoặc bộ sưu tập ảnh để tìm nội dung bạn cần.">
+
+<!-- A 404 must never be indexed, but its links must still be followed so the
+     crawler can rediscover the three canonical hubs below. -->
+<meta name="robots" content="noindex, follow">
+
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
+
+<!-- Absolute — see the comment block above. -->
+<link rel="icon" href="https://thepkz.github.io/minthep-portfolio/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="https://thepkz.github.io/minthep-portfolio/img/favicon-32.ico" sizes="32x32">
+<link rel="manifest" href="https://thepkz.github.io/minthep-portfolio/manifest.webmanifest">
+
+<link rel="stylesheet" href="https://thepkz.github.io/minthep-portfolio/css/tokens.css">
+<link rel="stylesheet" href="https://thepkz.github.io/minthep-portfolio/css/base.css">
+<link rel="stylesheet" href="https://thepkz.github.io/minthep-portfolio/css/components.css">
+<link rel="stylesheet" href="https://thepkz.github.io/minthep-portfolio/css/surface-a.css">
+
+<!--
+  Page-local styling for the one component that exists nowhere else on the
+  site: the 404 numeral and the recovery-link list. Kept inline rather than
+  added to surface-a.css because another surface would never use it, and
+  because a 404 that depends on one extra request is a 404 that can render
+  naked. Every value below is a var() into tokens.css — no colour, size,
+  radius, duration or z-index literal, same rule the surface sheets follow.
+-->
+<style>
+  .nf {
+    min-block-size: calc(100dvh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nf__code {
+    font-family: var(--font-display);
+    font-size: var(--fs-display-2xl);
+    line-height: var(--lh-display);
+    letter-spacing: var(--ls-display);
+    color: var(--ink-800);
+    margin-block-end: var(--s-6);
+    /* texture, not information — the copy below carries the meaning */
+  }
+
+  .nf__title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-tight);
+    color: var(--ink-100);
+    max-inline-size: var(--w-read-max);
+  }
+
+  .nf__lede {
+    margin-block-start: var(--s-4);
+    max-inline-size: var(--w-read-max);
+    color: var(--ink-300);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body);
+  }
+
+  .nf__routes {
+    margin-block-start: var(--s-9);
+    display: grid;
+    gap: var(--s-4);
+    max-inline-size: var(--w-content);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .nf__route {
+    display: block;
+    padding: var(--s-5);
+    border: var(--bw-hair) solid var(--border-faint);
+    border-radius: var(--r-md);
+    background-color: var(--ink-900);
+    color: var(--ink-150);
+    text-decoration: none;
+    transition:
+      border-color var(--dur-2) var(--ease-standard),
+      background-color var(--dur-2) var(--ease-standard),
+      transform var(--dur-2) var(--ease-out-quiet);
+  }
+
+  .nf__route:hover,
+  .nf__route:focus-visible {
+    border-color: var(--accent-500);
+    background-color: var(--ink-850);
+    transform: translateY(calc(var(--s-1) * -0.5));
+  }
+
+  .nf__route-name {
+    display: block;
+    font-weight: 700;
+    font-size: var(--fs-title);
+    color: var(--ink-50);
+  }
+
+  .nf__route-desc {
+    display: block;
+    margin-block-start: var(--s-2);
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body);
+    color: var(--ink-300);
+  }
+
+  .nf__url {
+    margin-block-start: var(--s-8);
+    font-family: var(--font-mono);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+    max-inline-size: var(--w-read-max);
+    overflow-wrap: anywhere;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nf__route { transition: none; }
+    .nf__route:hover,
+    .nf__route:focus-visible { transform: none; }
+  }
+</style>
+
+<!-- Swap no-js -> js and adopt the stored theme before first paint. Must stay
+     inline and must stay here: an external file would flash, and so would a
+     deferred module. Contract at js/core.js initTheme(). -->
+<script>(function(){var d=document.documentElement;d.className=d.className.replace(/\bno-js\b/,'js');try{var t=localStorage.getItem('minthep:theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+
+<body class="surface-a">
+
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="https://thepkz.github.io/minthep-portfolio/">MINTHEP</a>
+
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="https://thepkz.github.io/minthep-portfolio/">Trang chủ</a></li>
+        <li><a data-nav-link href="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">Blog học tập</a></li>
+        <li><a data-nav-link href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">Bộ sưu tập</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="js-only" data-theme-toggle aria-pressed="false">
+      <svg data-icon="sun" aria-hidden="true" focusable="false" width="24" height="24"><use href="https://thepkz.github.io/minthep-portfolio/img/sprite.svg#sun"></use></svg>
+      <svg data-icon="moon" aria-hidden="true" focusable="false" width="24" height="24"><use href="https://thepkz.github.io/minthep-portfolio/img/sprite.svg#moon"></use></svg>
+      <span class="visually-hidden">Chế độ sáng</span>
+    </button>
+
+    <button type="button" data-nav-toggle aria-expanded="false"
+            aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true" focusable="false" width="24" height="24"><use href="https://thepkz.github.io/minthep-portfolio/img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true" focusable="false" width="24" height="24"><use href="https://thepkz.github.io/minthep-portfolio/img/sprite.svg#close"></use></svg>
+    </button>
+  </div>
+</header>
+
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="https://thepkz.github.io/minthep-portfolio/">Trang chủ</a></li>
+      <li><a href="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">Blog học tập</a></li>
+      <li><a href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">Bộ sưu tập</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="main">
+  <section class="section-a nf" data-treatment="open" aria-labelledby="nf-title">
+    <div class="shell">
+
+      <p class="nf__code display-safe tabular" aria-hidden="true">404</p>
+
+      <p data-eyebrow>Không tìm thấy trang</p>
+
+      <h1 class="nf__title" id="nf-title">Đường dẫn này không tồn tại.</h1>
+
+      <p class="nf__lede">
+        Có thể liên kết đã cũ, địa chỉ bị gõ sai, hoặc trang đã được đổi tên.
+        Không có nội dung nào bị xoá khỏi trang này — mọi bài viết và tài liệu
+        cũ đều vẫn còn nguyên ở địa chỉ ban đầu. Hãy thử một trong ba lối vào
+        chính bên dưới.
+      </p>
+
+      <nav class="nf__routes" aria-label="Lối vào chính">
+        <a class="nf__route" href="https://thepkz.github.io/minthep-portfolio/">
+          <span class="nf__route-name">Trang chủ</span>
+          <span class="nf__route-desc">Giới thiệu, kỹ năng và các dự án phần mềm của Mai Tấn Thép.</span>
+        </a>
+
+        <a class="nf__route" href="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">
+          <span class="nf__route-name">Blog học tập</span>
+          <span class="nf__route-desc">Tiếng Nhật JPD113 &amp; JPD123, Xác suất Thống kê MAS291, Kỹ nghệ phần mềm SWE201c, bảng chữ Hangul — kèm tài liệu PDF tải về.</span>
+        </a>
+
+        <a class="nf__route" href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">
+          <span class="nf__route-name">Bộ sưu tập</span>
+          <span class="nf__route-desc">Trang trưng bày ảnh, một dự án cá nhân về bố cục và chuyển động.</span>
+        </a>
+      </nav>
+
+      <p class="nf__url">
+        Địa chỉ bạn vừa mở:
+        <span id="nf-attempted">không xác định</span>
+      </p>
+
+    </div>
+  </section>
+</main>
+
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="https://thepkz.github.io/minthep-portfolio/">Trang chủ</a></li>
+        <li><a href="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">Blog học tập</a></li>
+        <li><a href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">Bộ sưu tập</a></li>
+        <li><a href="https://thepkz.github.io/minthep-portfolio/sitemap.xml">Sơ đồ trang</a></li>
+      </ul>
+    </nav>
+    <p data-colophon>Static HTML · GitHub Pages · Việt Nam</p>
+  </div>
+</footer>
+
+<!--
+  Progressive enhancement: everything above is already complete and readable
+  with JavaScript disabled. The two scripts below only add the shared nav
+  behaviour and echo back the URL that failed, which is genuinely useful when
+  the visitor is about to report a broken link.
+-->
+<script type="module">
+  // Absolute for the same reason as the stylesheets: a relative specifier
+  // would resolve against the FAILED url's directory and 404.
+  import boot from 'https://thepkz.github.io/minthep-portfolio/js/core.js';
+  boot({ reveal: false });
+</script>
+
+<script>
+  (function () {
+    var el = document.getElementById('nf-attempted');
+    if (!el) return;
+    // textContent, never innerHTML — location.pathname is attacker-controlled.
+    el.textContent = location.pathname + location.search;
+  })();
+</script>
+
+</body>
+</html>

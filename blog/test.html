@@ -1,444 +1,1130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="no-js">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monito - Pet Shop</title>
-    <style>
-        /* Reset và các styles chung */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement;d.className=d.className.replace(/\bno-js\b/,'js');try{var t=localStorage.getItem('minthep:theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
 
-        body {
-            background-color: #FFFFFF;
-        }
+<title>Bài tập dựng giao diện: Monito Pet Shop — Mai Tấn Thép</title>
+<meta name="description" content="Bài tập front-end: dựng lại giao diện trang danh mục của mẫu thiết kế Monito Pet Shop bằng HTML và CSS thuần, không framework. Trang này là bài tập luyện tập, không phải một cửa hàng thật.">
+<meta name="author" content="Mai Tấn Thép">
+<link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/blog/test.html">
 
-        /* Header Styles */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 80px;
-            background: #FFFFFF;
-        }
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mai Tấn Thép">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Bài tập dựng giao diện: Monito Pet Shop">
+<meta property="og:description" content="Dựng lại giao diện trang danh mục của mẫu thiết kế Monito Pet Shop bằng HTML và CSS thuần. Bài tập luyện tập, không phải cửa hàng thật.">
+<meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/blog/test.html">
+<meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Chữ ký hình MINTHEP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bài tập dựng giao diện: Monito Pet Shop">
+<meta name="twitter:description" content="Dựng lại giao diện trang danh mục của mẫu thiết kế Monito Pet Shop bằng HTML và CSS thuần.">
+<meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
 
-        .logo img {
-            height: 40px;
-        }
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../img/favicon-32.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="../img/logo.png">
+<link rel="manifest" href="../manifest.webmanifest">
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
+<link rel="preload" href="../fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/anton-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
 
-        .nav-links a {
-            text-decoration: none;
-            color: #000000;
-            font-weight: 500;
-        }
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/surface-a.css">
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+<style>
+/* ---------------------------------------------------------------------------
+   Page-local styles for blog/test.html.
 
-        .search-bar input {
-            padding: 8px 16px;
-            border: 1px solid #CCD1D2;
-            border-radius: 20px;
-            width: 280px;
-        }
+   Two zones with two different rules:
 
-        .join-btn {
-            background-color: #003459;
-            color: white;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 40px;
-            cursor: pointer;
-        }
+   1. THE PAGE CHROME (.ex-*) is pure design system. Every value below is a
+      var() into css/tokens.css — no literals, same rule the surface files obey.
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(90deg, #FCF0E4 50%, #003459 50%);
-            padding: 40px 80px;
-            position: relative;
-        }
+   2. THE EXHIBIT (.demo-*) reproduces a third-party design study. Its palette
+      IS the subject of the exercise, so the six source colours are kept exact
+      and are declared once, scoped to .demo-shop, as named custom properties.
+      They are never used anywhere outside that subtree. Everything structural
+      inside the exhibit — spacing, radii, motion, focus — still comes from
+      tokens, so the exhibit sits inside the system rather than beside it.
+   --------------------------------------------------------------------------- */
 
-        .hero-content {
-            color: #FFFFFF;
-            max-width: 50%;
-            margin-left: 50%;
-        }
+/* --- 1. page chrome ------------------------------------------------------- */
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
+.ex-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--ink-50);
+  margin-block: var(--s-4) var(--s-0);
+  text-wrap: balance;
+}
 
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 24px;
-        }
+.ex-lede {
+  margin-block-start: var(--s-5);
+  max-inline-size: var(--w-read-max);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-200);
+}
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            margin-top: 32px;
-        }
+.ex-intro {
+  padding-block-start: calc(var(--nav-h) + var(--space-section-sm));
+}
 
-        .view-intro,
-        .explore-now {
-            padding: 12px 28px;
-            border-radius: 40px;
-            cursor: pointer;
-        }
+/* the fact ledger under the intro — ruled rows, no cards */
+.ex-facts {
+  margin-block-start: var(--s-8);
+  max-inline-size: var(--w-narrow);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+}
 
-        .view-intro {
-            background-color: transparent;
-            border: 2px solid #FFFFFF;
-            color: #FFFFFF;
-        }
+.ex-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-1);
+  padding-block: var(--s-4);
+  border-block-end: var(--bw-hair) solid var(--ink-800);
+}
 
-        .explore-now {
-            background-color: #FFFFFF;
-            border: none;
-            color: #003459;
-        }
+@media (min-width: 641px) {
+  .ex-facts > div {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--s-5);
+    align-items: baseline;
+  }
+}
 
-        /* Main Content */
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 32px;
-            padding: 40px 80px;
-        }
+.ex-facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-350);
+}
 
-        /* Filter Styles */
-        .filter {
-            background: #FDFDFD;
-            padding: 24px;
-            border-radius: 12px;
-        }
+.ex-facts dd {
+  margin: var(--s-0);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-snug);
+  color: var(--ink-150);
+}
 
-        .filter-section {
-            margin-bottom: 24px;
-        }
+/* a bordered aside used for the honest disclaimers */
+.ex-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+  max-inline-size: var(--w-read-max);
+  margin-block-start: var(--s-7);
+  padding: var(--s-5);
+  border-inline-start: var(--bw-slab) solid var(--accent-500);
+  background-color: var(--ink-900);
+  border-radius: var(--r-0) var(--r-sm) var(--r-sm) var(--r-0);
+  color: var(--ink-200);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
 
-        .filter-section h4 {
-            margin-bottom: 16px;
-            color: #00171F;
-        }
+.ex-note > svg {
+  color: var(--accent-400);
+  --c-icon: 1.25em;
+}
 
-        .filter-section label {
-            display: block;
-            margin-bottom: 12px;
-            color: #667479;
-        }
+.ex-note p {
+  margin: var(--s-0);
+}
 
-        .price-range {
-            display: flex;
-            gap: 12px;
-        }
+.ex-note p + p {
+  margin-block-start: var(--s-3);
+}
 
-        .price-range input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #CCD1D2;
-            border-radius: 8px;
-        }
+/* two-column checklists: what the exercise covers / what it deliberately omits */
+.ex-cols {
+  display: grid;
+  gap: var(--s-8);
+  grid-template-columns: minmax(0, 1fr);
+}
 
-        /* Products Section */
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
+@media (min-width: 861px) {
+  .ex-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-10);
+  }
+}
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+.ex-list {
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
 
-        .product-card {
-            background: #FFFFFF;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+.ex-list > li {
+  position: relative;
+  padding-inline-start: var(--s-6);
+  padding-block: var(--s-3);
+  border-block-end: var(--bw-hair) solid var(--ink-850);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--ink-200);
+}
 
-        .product-card img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-        }
+.ex-list > li > svg {
+  position: absolute;
+  inset-block-start: var(--s-4);
+  inset-inline-start: var(--s-0);
+  --c-icon: 1em;
+}
 
-        .product-card h3 {
-            padding: 16px;
-            color: #00171F;
-        }
+.ex-list[data-tone='has'] > li > svg { color: var(--success); }
+.ex-list[data-tone='hasnt'] > li > svg { color: var(--ink-400); }
 
-        .product-info {
-            padding: 0 16px;
-            display: flex;
-            justify-content: space-between;
-            color: #667479;
-            font-size: 14px;
-        }
+.ex-list b {
+  color: var(--ink-100);
+  font-weight: 500;
+}
 
-        .price {
-            padding: 16px;
-            color: #003459;
-            font-weight: bold;
-        }
+.ex-colhead {
+  font-family: var(--font-body);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  font-weight: 500;
+  color: var(--ink-100);
+  margin-block: var(--s-0) var(--s-4);
+}
 
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 40px 0;
-        }
+/* the ruled "read next" rows */
+.ex-next {
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+  max-inline-size: var(--w-narrow);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+}
 
-        .pagination a {
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #667479;
-        }
+.ex-next > li {
+  border-block-end: var(--bw-hair) solid var(--ink-800);
+}
 
-        .pagination a.active {
-            background-color: #003459;
-            color: #FFFFFF;
-        }
+.ex-next a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-4);
+  align-items: center;
+  padding-block: var(--s-5);
+  color: var(--ink-150);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-standard);
+}
 
-        /* Newsletter Section */
-        .newsletter {
-            background-color: #003459;
-            color: #FFFFFF;
-            padding: 40px 80px;
-            text-align: center;
-            border-radius: 20px;
-            margin: 40px 80px;
-        }
+.ex-next a:hover,
+.ex-next a:focus-visible {
+  color: var(--ink-50);
+}
 
-        .subscribe-form {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 24px;
-        }
+.ex-next a > svg {
+  color: var(--accent-400);
+  transition: translate var(--dur-3) var(--ease-out-quiet);
+}
 
-        .subscribe-form input {
-            padding: 12px 24px;
-            border-radius: 40px;
-            border: none;
-            width: 400px;
-        }
+.ex-next a:hover > svg {
+  translate: var(--s-1) 0;
+}
 
-        .subscribe-form button {
-            background-color: #003459;
-            color: #FFFFFF;
-            padding: 12px 28px;
-            border: 2px solid #FFFFFF;
-            border-radius: 40px;
-            cursor: pointer;
-        }
+.ex-next small {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-350);
+  margin-block-start: var(--s-1);
+}
 
-        /* Footer */
-        footer {
-            background-color: #FCF0E4;
-            padding: 40px 80px;
-        }
+@media (prefers-reduced-motion: reduce) {
+  .ex-next a > svg { transition: none; }
+  .ex-next a:hover > svg { translate: none; }
+}
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 24px;
-        }
+/* --- 2. the exhibit ------------------------------------------------------- */
 
-        .footer-links a {
-            text-decoration: none;
-            color: #00171F;
-        }
+/* The frame: a labelled plate so the study never pretends to be the page. */
+.demo-frame {
+  margin-block-start: var(--s-8);
+  border: var(--bw-hair) solid var(--ink-700);
+  border-radius: var(--r-md);
+  overflow: clip;
+  box-shadow: var(--shadow-float);
+}
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
+.demo-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background-color: var(--ink-850);
+  border-block-end: var(--bw-hair) solid var(--ink-700);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-350);
+}
 
-        .social-links a {
-            color: #003459;
-            font-size: 24px;
-        }
+.demo-frame__dots {
+  display: flex;
+  gap: var(--s-2);
+}
 
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 24px;
-            border-top: 1px solid #CCD1D2;
-        }
+.demo-frame__dots i {
+  inline-size: var(--s-2);
+  block-size: var(--s-2);
+  border-radius: var(--r-pill);
+  background-color: var(--ink-600);
+}
 
-        .legal-links {
-            display: flex;
-            gap: 24px;
-        }
+.demo-frame__scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
 
-        .legal-links a {
-            color: #667479;
-            text-decoration: none;
-        }
-    </style>
+.demo-shop {
+  /* --- the source design's palette, reproduced exactly. Scoped here only. --- */
+  --d-page:   #FFFFFF;
+  --d-navy:   #003459;
+  --d-cream:  #FCF0E4;
+  --d-ink:    #00171F;
+  --d-muted:  #667479;
+  --d-line:   #CCD1D2;
+  --d-card:   #FDFDFD;
+
+  min-inline-size: 62rem;         /* the study is a desktop layout; the frame scrolls */
+  background-color: var(--d-page);
+  color: var(--d-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
+
+.demo-shop :where(h3, h4, h5) {
+  color: var(--d-ink);
+  line-height: var(--lh-snug);
+  margin: var(--s-0);
+}
+
+.demo-shop p { margin: var(--s-0); }
+
+/* navbar */
+.demo-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-6);
+  padding: var(--s-5) var(--s-9);
+  background-color: var(--d-page);
+}
+
+.demo-logo {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-display);
+  padding-block: 0.08em;
+  color: var(--d-navy);
+  letter-spacing: var(--ls-display);
+}
+
+.demo-navlinks {
+  display: flex;
+  gap: var(--s-7);
+  font-weight: 500;
+  color: var(--d-ink);
+}
+
+.demo-navlinks span[aria-current] {
+  box-shadow: inset 0 -0.125em var(--d-navy);
+}
+
+.demo-navright {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.demo-shop input,
+.demo-shop select {
+  font: inherit;
+  color: var(--d-ink);
+  background-color: var(--d-page);
+  border: var(--bw-hair) solid var(--d-line);
+}
+
+.demo-shop input[type='search'] {
+  inline-size: 17.5rem;
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-pill);
+}
+
+.demo-shop select {
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+}
+
+.demo-shop input:disabled,
+.demo-shop select:disabled,
+.demo-shop button:disabled {
+  opacity: 1;                      /* the mock must stay legible, not greyed out */
+  cursor: not-allowed;
+}
+
+.demo-pill {
+  padding: var(--s-3) var(--s-6);
+  border: var(--bw-rule) solid transparent;
+  border-radius: var(--r-pill);
+  font: inherit;
+  font-weight: 500;
+  background-color: var(--d-navy);
+  color: var(--d-page);
+}
+
+.demo-pill[data-outline] {
+  background-color: transparent;
+  border-color: currentColor;
+  color: var(--d-page);
+}
+
+.demo-pill[data-invert] {
+  background-color: var(--d-page);
+  color: var(--d-navy);
+}
+
+/* hero: the 50/50 split gradient that is the whole point of the study */
+.demo-hero {
+  background-image: linear-gradient(90deg, var(--d-cream) 50%, var(--d-navy) 50%);
+  padding: var(--s-9);
+}
+
+.demo-hero__inner {
+  max-inline-size: 50%;
+  margin-inline-start: 50%;
+  color: var(--d-page);
+}
+
+.demo-hero__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-display);
+  padding-block: 0.08em;
+  letter-spacing: var(--ls-display);
+  color: var(--d-page);
+}
+
+.demo-hero__sub {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-display);
+  padding-block: 0.08em;
+  letter-spacing: var(--ls-display);
+  color: var(--d-page);
+  margin-block: var(--s-2) var(--s-5);
+}
+
+.demo-hero__cta {
+  display: flex;
+  gap: var(--s-5);
+  margin-block-start: var(--s-7);
+}
+
+/* body: 250px filter rail + product grid */
+.demo-body {
+  display: grid;
+  grid-template-columns: 15.625rem minmax(0, 1fr);
+  gap: var(--s-7);
+  padding: var(--s-9);
+  align-items: start;
+}
+
+.demo-filter {
+  background-color: var(--d-card);
+  border: var(--bw-hair) solid var(--d-line);
+  border-radius: var(--r-md);
+  padding: var(--s-6);
+}
+
+.demo-filter fieldset {
+  border: 0;
+  margin: var(--s-0) var(--s-0) var(--s-6);
+  padding: var(--s-0);
+}
+
+.demo-filter legend {
+  padding: var(--s-0);
+  margin-block-end: var(--s-4);
+  font-weight: 700;
+  color: var(--d-ink);
+}
+
+.demo-filter label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-block-end: var(--s-3);
+  color: var(--d-muted);
+}
+
+.demo-price {
+  display: flex;
+  gap: var(--s-3);
+}
+
+.demo-price input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: var(--s-2);
+  border-radius: var(--r-sm);
+}
+
+.demo-products__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-5);
+  margin-block-end: var(--s-6);
+}
+
+.demo-products__head h3 {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+}
+
+.demo-products__head span {
+  color: var(--d-muted);
+  font-weight: 400;
+  font-size: var(--fs-body-sm);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-6);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+.demo-card {
+  background-color: var(--d-page);
+  border: var(--bw-hair) solid var(--d-line);
+  border-radius: var(--r-md);
+  overflow: clip;
+}
+
+/* No photograph shipped with the exercise, so the slot is an honest placeholder
+   rather than a stock photo or an image tag pointing at a file that 404s. */
+.demo-card__slot {
+  aspect-ratio: 5 / 4;
+  display: grid;
+  place-items: center;
+  gap: var(--s-2);
+  background-color: var(--d-cream);
+  background-image:
+    repeating-linear-gradient(45deg,
+      rgb(0 23 31 / 0.05) 0 var(--s-2),
+      transparent var(--s-2) var(--s-4));
+  color: var(--d-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  text-align: center;
+  padding: var(--s-4);
+}
+
+.demo-card h4 {
+  padding: var(--s-4);
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+}
+
+.demo-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-inline: var(--s-4);
+  color: var(--d-muted);
+  font-size: var(--fs-caption);
+}
+
+.demo-card__price {
+  padding: var(--s-4);
+  color: var(--d-navy);
+  font-weight: 700;
+}
+
+.demo-pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-2);
+  margin-block: var(--s-9);
+  color: var(--d-muted);
+}
+
+.demo-pager span {
+  min-inline-size: var(--s-7);
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-xs);
+  text-align: center;
+}
+
+.demo-pager span[aria-current] {
+  background-color: var(--d-navy);
+  color: var(--d-page);
+  font-weight: 700;
+}
+
+.demo-news {
+  background-color: var(--d-navy);
+  color: var(--d-page);
+  padding: var(--s-9);
+  text-align: center;
+  border-radius: var(--r-lg);
+  margin: var(--s-9);
+}
+
+.demo-news h3 {
+  color: var(--d-page);
+  font-size: var(--fs-h4);
+  max-inline-size: 34ch;
+  margin-inline: auto;
+}
+
+.demo-news__form {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-4);
+  margin-block-start: var(--s-6);
+}
+
+.demo-news__form input {
+  inline-size: 25rem;
+  max-inline-size: 100%;
+  padding: var(--s-3) var(--s-6);
+  border-radius: var(--r-pill);
+  border-color: transparent;
+}
+
+.demo-foot {
+  background-color: var(--d-cream);
+  padding: var(--s-9);
+}
+
+.demo-foot__links,
+.demo-foot__social {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-7);
+  margin-block-end: var(--s-6);
+  color: var(--d-ink);
+}
+
+.demo-foot__social {
+  gap: var(--s-6);
+  color: var(--d-navy);
+}
+
+.demo-foot__social svg { --c-icon: 1.375em; }
+
+.demo-foot__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-5);
+  padding-block-start: var(--s-6);
+  border-block-start: var(--bw-hair) solid var(--d-line);
+  color: var(--d-muted);
+  font-size: var(--fs-caption);
+}
+
+.demo-foot__legal {
+  display: flex;
+  gap: var(--s-6);
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://thepkz.github.io/minthep-portfolio/blog/test.html",
+      "url": "https://thepkz.github.io/minthep-portfolio/blog/test.html",
+      "name": "Bài tập dựng giao diện: Monito Pet Shop",
+      "inLanguage": "vi",
+      "description": "Bài tập front-end dựng lại giao diện trang danh mục của mẫu thiết kế Monito Pet Shop bằng HTML và CSS thuần.",
+      "isPartOf": { "@id": "https://thepkz.github.io/minthep-portfolio/" },
+      "author": { "@type": "Person", "name": "Mai Tấn Thép", "url": "https://thepkz.github.io/minthep-portfolio/" },
+      "mainEntity": {
+        "@type": "CreativeWork",
+        "name": "Monito Pet Shop — bài tập tái dựng giao diện",
+        "learningResourceType": "Bài tập thực hành",
+        "genre": "Front-end",
+        "inLanguage": "vi",
+        "author": { "@type": "Person", "name": "Mai Tấn Thép" }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thepkz.github.io/minthep-portfolio/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://thepkz.github.io/minthep-portfolio/blog/myblog.html" },
+        { "@type": "ListItem", "position": 3, "name": "Bài tập dựng giao diện: Monito Pet Shop" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 
-<body>
-    <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="logo.png" alt="Monito">
-            </div>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Category</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </div>
-            <div class="nav-right">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search something here!">
-                </div>
-                <button class="join-btn">Join the community</button>
-                <select class="language-select">
-                    <option value="vnd">VND</option>
+<body class="surface-a">
+
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="../index.html">MINTHEP</a>
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="../index.html">Trang chủ</a></li>
+        <li><a data-nav-link href="myblog.html">Blog</a></li>
+        <li><a data-nav-link href="test.html" aria-current="page">Bài tập</a></li>
+        <li><a data-nav-link href="../wy/wy.html">Wonyoung</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="js-only" data-theme-toggle aria-pressed="false">
+      <svg data-icon="sun" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#sun"></use></svg>
+      <svg data-icon="moon" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#moon"></use></svg>
+      <span class="visually-hidden">Chế độ sáng</span>
+    </button>
+    <button type="button" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true"><use href="../img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true"><use href="../img/sprite.svg#close"></use></svg>
+    </button>
+  </div>
+</header>
+
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="../index.html">Trang chủ</a></li>
+      <li><a href="myblog.html">Blog</a></li>
+      <li><a href="test.html" aria-current="page">Bài tập</a></li>
+      <li><a href="../wy/wy.html">Wonyoung</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- 1 · intro ---------------------------------------------------------- -->
+  <section class="section-a ex-intro" data-treatment="open" aria-labelledby="ex-h1" data-reveal>
+    <div class="shell">
+      <p data-eyebrow>Bài tập front-end · 2024</p>
+      <h1 class="ex-title display-safe" id="ex-h1">Dựng lại giao diện Monito Pet Shop</h1>
+      <p class="ex-lede">
+        Đây là một bài tập luyện tay, không phải một cửa hàng thật. Mình lấy mẫu thiết kế
+        <b>Monito — Pet Shop</b> (một bộ giao diện mẫu phổ biến dành cho người mới học dựng
+        trang) rồi dựng lại trang danh mục sản phẩm của nó bằng HTML và CSS thuần, không dùng
+        thư viện giao diện nào. Mục tiêu duy nhất là luyện mắt và luyện tay: đọc một bản
+        thiết kế rồi dịch nó ra đúng khoảng cách, đúng lưới, đúng tỉ lệ.
+      </p>
+
+      <div class="ex-note">
+        <svg data-icon="info-circle" aria-hidden="true"><use href="../img/sprite.svg#info-circle"></use></svg>
+        <div>
+          <p>
+            <b>Trang này không bán gì cả.</b> Mọi ô nhập liệu, nút bấm và số giá bên dưới đều
+            là nội dung minh hoạ của bản thiết kế gốc; chúng bị vô hiệu hoá và không gửi dữ
+            liệu đi đâu.
+          </p>
+          <p>
+            Tên <i>Monito</i>, bảng màu và bố cục thuộc về tác giả của mẫu thiết kế gốc. Ở đây
+            chúng chỉ được dựng lại để học, không nhằm mục đích thương mại. Nếu bạn là tác giả
+            và muốn mình gỡ bản dựng này xuống, hãy
+            <a data-link href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">mở một issue trên GitHub</a> — mình phản hồi trong 48 giờ.
+          </p>
+        </div>
+      </div>
+
+      <dl class="ex-facts">
+        <div>
+          <dt>Loại</dt>
+          <dd>Bài tập tái dựng giao diện (UI recreation study)</dd>
+        </div>
+        <div>
+          <dt>Phạm vi</dt>
+          <dd>Một trang tĩnh: thanh điều hướng, hero chia đôi, bộ lọc, lưới sản phẩm, phân trang, khối đăng ký, chân trang</dd>
+        </div>
+        <div>
+          <dt>Công nghệ</dt>
+          <dd>HTML ngữ nghĩa, CSS Grid, Flexbox, <span class="tabular">linear-gradient</span> — không framework, không JavaScript</dd>
+        </div>
+        <div>
+          <dt>Trạng thái</dt>
+          <dd>Hoàn tất phần bố cục · không có backend · không có dữ liệu thật</dd>
+        </div>
+        <div>
+          <dt>Vì sao vẫn giữ</dt>
+          <dd>Đường dẫn này đã tồn tại từ lâu và vẫn có người ghé; xoá đi là tạo ra một liên kết hỏng. Thay vì giấu, mình dán nhãn cho nó đúng với bản chất.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 2 · the exhibit ----------------------------------------------------- -->
+  <section class="section-a" data-treatment="plate" id="ban-dung" aria-labelledby="ex-h-demo" data-reveal data-cv="section">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Bản dựng</p>
+        <h2 id="ex-h-demo" class="section-a__title">Kết quả</h2>
+        <p class="section-a__intro">
+          Bản dựng nguyên trạng, đặt trong một khung có nhãn để nó không bị nhầm là trang thật.
+          Bố cục gốc được thiết kế cho màn hình rộng, nên trên điện thoại khung này cuộn ngang
+          thay vì bị bóp méo — đó cũng là một phần của sự trung thực với bản gốc.
+        </p>
+      </header>
+
+      <figure class="demo-frame">
+        <figcaption class="demo-frame__bar">
+          <span class="demo-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>Bản dựng tĩnh — mọi điều khiển đều đã bị vô hiệu hoá</span>
+        </figcaption>
+
+        <div class="demo-frame__scroll" tabindex="0" role="group" aria-label="Khung xem bản dựng, có thể cuộn ngang">
+          <div class="demo-shop" lang="en">
+
+            <!-- navbar -->
+            <div class="demo-nav">
+              <p class="demo-logo">Monito</p>
+              <p class="demo-navlinks">
+                <span aria-current="true">Home</span>
+                <span>Category</span>
+                <span>About</span>
+                <span>Contact</span>
+              </p>
+              <div class="demo-navright">
+                <label class="visually-hidden" for="demo-search">Search (demo)</label>
+                <input id="demo-search" type="search" placeholder="Search something here!" disabled>
+                <button type="button" class="demo-pill" disabled>Join the community</button>
+                <label class="visually-hidden" for="demo-currency">Currency (demo)</label>
+                <select id="demo-currency" disabled>
+                  <option>VND</option>
                 </select>
+              </div>
             </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>One More Friend</h1>
-            <h2>Thousands More Fun!</h2>
-            <p>Having a pet means you have more joy, a new friend, a happy person who will always be with you to have
-                fun. We have 200+ different pets that can meet your needs!</p>
-            <div class="hero-buttons">
-                <button class="view-intro">View Intro</button>
-                <button class="explore-now">Explore Now</button>
+            <!-- hero -->
+            <div class="demo-hero">
+              <div class="demo-hero__inner">
+                <h3 class="demo-hero__title">One More Friend</h3>
+                <p class="demo-hero__sub">Thousands More Fun!</p>
+                <p>
+                  Having a pet means you have more joy, a new friend, a happy person who will
+                  always be with you to have fun. We have 200+ different pets that can meet
+                  your needs!
+                </p>
+                <p class="demo-hero__cta">
+                  <button type="button" class="demo-pill" data-outline disabled>View Intro</button>
+                  <button type="button" class="demo-pill" data-invert disabled>Explore Now</button>
+                </p>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Main Content -->
-    <main>
-        <div class="content-wrapper">
-            <!-- Filter Section -->
-            <aside class="filter">
-                <h3>Filter</h3>
-                <div class="filter-section">
-                    <h4>Gender</h4>
-                    <label><input type="checkbox" name="gender" value="male"> Male</label>
-                    <label><input type="checkbox" name="gender" value="female"> Female</label>
-                </div>
-                <div class="filter-section">
-                    <h4>Color</h4>
-                    <label><input type="checkbox" name="color" value="red"> Red</label>
-                    <label><input type="checkbox" name="color" value="apricot"> Apricot</label>
-                    <label><input type="checkbox" name="color" value="black"> Black</label>
-                    <label><input type="checkbox" name="color" value="black-white"> Black & White</label>
-                    <label><input type="checkbox" name="color" value="silver"> Silver</label>
-                    <label><input type="checkbox" name="color" value="tan"> Tan</label>
-                </div>
-                <div class="filter-section">
-                    <h4>Price</h4>
-                    <div class="price-range">
-                        <input type="number" placeholder="Min">
-                        <input type="number" placeholder="Max">
-                    </div>
-                </div>
-            </aside>
+            <!-- filter + grid -->
+            <div class="demo-body">
+              <div class="demo-filter">
+                <h4>Filter</h4>
+                <fieldset disabled>
+                  <legend>Gender</legend>
+                  <label><input type="checkbox"> Male</label>
+                  <label><input type="checkbox"> Female</label>
+                </fieldset>
+                <fieldset disabled>
+                  <legend>Color</legend>
+                  <label><input type="checkbox"> Red</label>
+                  <label><input type="checkbox"> Apricot</label>
+                  <label><input type="checkbox"> Black</label>
+                  <label><input type="checkbox"> Black &amp; White</label>
+                  <label><input type="checkbox"> Silver</label>
+                  <label><input type="checkbox"> Tan</label>
+                </fieldset>
+                <fieldset disabled>
+                  <legend>Price</legend>
+                  <div class="demo-price">
+                    <label class="visually-hidden" for="demo-min">Minimum price</label>
+                    <input id="demo-min" type="number" placeholder="Min">
+                    <label class="visually-hidden" for="demo-max">Maximum price</label>
+                    <input id="demo-max" type="number" placeholder="Max">
+                  </div>
+                </fieldset>
+              </div>
 
-            <!-- Products Grid -->
-            <section class="products">
-                <div class="products-header">
-                    <h2>Small Dog <span>52 puppies</span></h2>
-                    <select class="sort-by">
-                        <option>Sort by: Popular</option>
-                    </select>
+              <div>
+                <div class="demo-products__head">
+                  <h3>Small Dog <span>52 puppies</span></h3>
+                  <label class="visually-hidden" for="demo-sort">Sort by (demo)</label>
+                  <select id="demo-sort" disabled>
+                    <option>Sort by: Popular</option>
+                  </select>
                 </div>
-                <div class="products-grid">
-                    <!-- Product Card Example -->
-                    <div class="product-card">
-                        <img src="dog1.jpg" alt="Poodle Tiny Yellow">
-                        <h3>MO502 - Poodle Tiny Yellow</h3>
-                        <div class="product-info">
-                            <span>Gene: Female</span>
-                            <span>Age: 02 months</span>
-                        </div>
-                        <div class="price">3,900,000 VND</div>
-                    </div>
-                    <!-- More product cards... -->
-                </div>
-            </section>
-        </div>
 
-        <!-- Pagination -->
-        <div class="pagination">
-            <a href="#" class="prev">←</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <span>...</span>
-            <a href="#">28</a>
-            <a href="#" class="next">→</a>
-        </div>
-    </main>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <h2>Register Now So You Don't Miss Our Programs</h2>
-        <div class="subscribe-form">
-            <input type="email" placeholder="Enter your Email">
-            <button>Subscribe Now</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">Category</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2022 Monito. All rights reserved.</p>
-            <div class="legal-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
+                <ul class="demo-grid" role="list">
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO502 &mdash; Poodle Tiny Yellow</h4>
+                    <p class="demo-card__meta"><span>Gene: Female</span><span>Age: 02 months</span></p>
+                    <p class="demo-card__price">3,900,000 VND</p>
+                  </li>
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO504 &mdash; Poodle Tiny Sepia</h4>
+                    <p class="demo-card__meta"><span>Gene: Male</span><span>Age: 02 months</span></p>
+                    <p class="demo-card__price">4,000,000 VND</p>
+                  </li>
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO231 &mdash; Alaskan Malamute Grey</h4>
+                    <p class="demo-card__meta"><span>Gene: Male</span><span>Age: 02 months</span></p>
+                    <p class="demo-card__price">8,900,000 VND</p>
+                  </li>
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO102 &mdash; Pembroke Corgi Anniv</h4>
+                    <p class="demo-card__meta"><span>Gene: Female</span><span>Age: 03 months</span></p>
+                    <p class="demo-card__price">6,900,000 VND</p>
+                  </li>
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO212 &mdash; Pomeranian White</h4>
+                    <p class="demo-card__meta"><span>Gene: Female</span><span>Age: 02 months</span></p>
+                    <p class="demo-card__price">6,900,000 VND</p>
+                  </li>
+                  <li class="demo-card">
+                    <div class="demo-card__slot">Ảnh sản phẩm<br>không kèm theo bài tập</div>
+                    <h4>MO051 &mdash; Golden Retriever</h4>
+                    <p class="demo-card__meta"><span>Gene: Male</span><span>Age: 03 months</span></p>
+                    <p class="demo-card__price">3,900,000 VND</p>
+                  </li>
+                </ul>
+              </div>
             </div>
+
+            <!-- pagination -->
+            <p class="demo-pager">
+              <span aria-hidden="true">&larr;</span>
+              <span aria-current="true">1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>&hellip;</span>
+              <span>28</span>
+              <span aria-hidden="true">&rarr;</span>
+            </p>
+
+            <!-- newsletter -->
+            <div class="demo-news">
+              <h3>Register Now So You Don't Miss Our Programs</h3>
+              <div class="demo-news__form">
+                <label class="visually-hidden" for="demo-email">Email (demo)</label>
+                <input id="demo-email" type="email" placeholder="Enter your Email" disabled>
+                <button type="button" class="demo-pill" data-outline disabled>Subscribe Now</button>
+              </div>
+            </div>
+
+            <!-- footer -->
+            <div class="demo-foot">
+              <p class="demo-foot__links">
+                <span>Home</span><span>Category</span><span>About</span><span>Contact</span>
+              </p>
+              <p class="demo-foot__social">
+                <svg data-icon="facebook" aria-hidden="true"><use href="../img/sprite.svg#facebook"></use></svg>
+                <svg data-icon="twitter" aria-hidden="true"><use href="../img/sprite.svg#twitter"></use></svg>
+                <svg data-icon="instagram" aria-hidden="true"><use href="../img/sprite.svg#instagram"></use></svg>
+                <svg data-icon="youtube" aria-hidden="true"><use href="../img/sprite.svg#youtube"></use></svg>
+              </p>
+              <div class="demo-foot__bottom">
+                <span>&copy; 2022 Monito. All rights reserved.</span>
+                <span class="demo-foot__legal"><span>Terms of Service</span><span>Privacy Policy</span></span>
+              </div>
+            </div>
+
+          </div>
         </div>
-    </footer>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3 · notes ----------------------------------------------------------- -->
+  <section class="section-a" data-treatment="ledger" id="ghi-chu" aria-labelledby="ex-h-notes" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Ghi chú kỹ thuật</p>
+        <h2 id="ex-h-notes" class="section-a__title">Bài tập này luyện cái gì</h2>
+        <p class="section-a__intro">
+          Một bản dựng chỉ có giá trị khi nói rõ nó làm được gì và cố tình bỏ qua điều gì.
+          Dưới đây là cả hai vế.
+        </p>
+      </header>
+
+      <div class="ex-cols">
+        <div>
+          <h3 class="ex-colhead">Có trong bản dựng</h3>
+          <ul class="ex-list" data-tone="has" role="list">
+            <li>
+              <svg data-icon="check" aria-hidden="true"><use href="../img/sprite.svg#check"></use></svg>
+              <b>Hero chia đôi bằng một gradient.</b> Nền kem và nền xanh đậm gặp nhau đúng
+              vạch 50% bằng <span class="tabular">linear-gradient(90deg, … 50%, … 50%)</span> —
+              một nền, không phải hai khối chồng nhau.
+            </li>
+            <li>
+              <svg data-icon="check" aria-hidden="true"><use href="../img/sprite.svg#check"></use></svg>
+              <b>Lưới hai cột bất đối xứng.</b> Cột lọc cố định 250px, cột sản phẩm co giãn —
+              đúng một dòng <span class="tabular">grid-template-columns</span>.
+            </li>
+            <li>
+              <svg data-icon="check" aria-hidden="true"><use href="../img/sprite.svg#check"></use></svg>
+              <b>Lưới sản phẩm ba cột</b> với thẻ bo góc, ảnh tràn viền và hàng thông tin
+              hai đầu bằng <span class="tabular">justify-content: space-between</span>.
+            </li>
+            <li>
+              <svg data-icon="check" aria-hidden="true"><use href="../img/sprite.svg#check"></use></svg>
+              <b>HTML ngữ nghĩa.</b> Bộ lọc là <span class="tabular">fieldset</span> +
+              <span class="tabular">legend</span>, lưới sản phẩm là danh sách, mọi ô nhập đều
+              có nhãn — kể cả khi nhãn bị ẩn về mặt thị giác.
+            </li>
+            <li>
+              <svg data-icon="check" aria-hidden="true"><use href="../img/sprite.svg#check"></use></svg>
+              <b>Không một dòng JavaScript.</b> Bản gốc của bài tập cũng vậy, và đó là chủ ý.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="ex-colhead">Cố ý không có</h3>
+          <ul class="ex-list" data-tone="hasnt" role="list">
+            <li>
+              <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              <b>Ảnh sản phẩm.</b> Bài tập không đi kèm bộ ảnh, và mình không muốn chèn ảnh
+              tải ở đâu đó về. Mỗi ô ảnh vì thế là một khối giữ chỗ có ghi rõ lý do.
+            </li>
+            <li>
+              <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              <b>Logo của thương hiệu gốc.</b> Thay bằng chữ, vì đó là tài sản của người khác.
+            </li>
+            <li>
+              <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              <b>Backend, giỏ hàng, đăng nhập, tìm kiếm.</b> Không có gì chạy phía sau. Các
+              nút được đánh dấu <span class="tabular">disabled</span> để không ai bấm vào một
+              thứ không phản hồi.
+            </li>
+            <li>
+              <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              <b>Bố cục cho điện thoại.</b> Bản thiết kế gốc chỉ có bản desktop, nên bản dựng
+              cũng chỉ có desktop. Khung chứa cuộn ngang thay vì tự bịa ra một bố cục mobile
+              không tồn tại trong thiết kế.
+            </li>
+            <li>
+              <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              <b>Sửa lỗi của bản gốc.</b> Nhãn <span class="tabular">Gene:</span> trong thẻ
+              sản phẩm là lỗi đánh máy có sẵn trong thiết kế — dựng lại thì giữ nguyên, sửa đi
+              là dựng một thứ khác.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · onward ---------------------------------------------------------- -->
+  <section class="section-a" data-treatment="open" id="doc-tiep" aria-labelledby="ex-h-next" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Đi tiếp</p>
+        <h2 id="ex-h-next" class="section-a__title">Những trang khác</h2>
+      </header>
+
+      <ul class="ex-next" role="list">
+        <li>
+          <a href="myblog.html">
+            <span>Blog học tập
+              <small>Tám bài viết về JPD113, JPD123, MAS291, SWE201c và tiếng Hàn nhập môn</small>
+            </span>
+            <svg data-icon="arrow-right" aria-hidden="true"><use href="../img/sprite.svg#arrow-right"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="../test_html/vc.html">
+            <span>Trình xem sản phẩm 360°
+              <small>Một bài tập khác, lần này là WebGL: xoay mô hình 3D ngay trong trình duyệt</small>
+            </span>
+            <svg data-icon="arrow-right" aria-hidden="true"><use href="../img/sprite.svg#arrow-right"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="../index.html">
+            <span>Trang giới thiệu
+              <small>Dự án, kỹ năng và cách liên hệ</small>
+            </span>
+            <svg data-icon="arrow-right" aria-hidden="true"><use href="../img/sprite.svg#arrow-right"></use></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="myblog.html">Blog</a></li>
+        <li><a href="test.html">Bài tập giao diện</a></li>
+        <li><a href="../test_html/vc.html">Trình xem 360°</a></li>
+        <li><a href="../wy/wy.html">Wonyoung</a></li>
+      </ul>
+    </nav>
+    <ul data-social role="list">
+      <li>
+        <a href="https://github.com/thepKz" rel="noopener noreferrer" target="_blank" aria-label="GitHub của Mai Tấn Thép">
+          <svg data-icon="github" aria-hidden="true"><use href="../img/sprite.svg#github"></use></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/thepmaitan26/" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn của Mai Tấn Thép">
+          <svg data-icon="linkedin" aria-hidden="true"><use href="../img/sprite.svg#linkedin"></use></svg>
+        </a>
+      </li>
+    </ul>
+    <p data-colophon>Static HTML · GitHub Pages · Hà Nội</p>
+  </div>
+</footer>
+
+<script type="module">
+  import boot from '../js/core.js';
+  boot();
+</script>
+
 </body>
-
 </html>

@@ -1,0 +1,57 @@
+GSAP — self-hosted vendor copy for Surface C (/wy/)
+====================================================
+
+version: 3.15.0
+source:  https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/<file>
+fetched: 2026-07-26
+license: GreenSock Standard License — https://gsap.com/standard-license
+         (free for the use made here: a non-commercial personal site with no
+         paid-membership plugins. Only the three no-charge files below are
+         vendored. Club plugins — DrawSVG, SplitText, ScrollSmoother,
+         MorphSVG, CustomEase — are NOT present and are NOT used.)
+
+files:
+  gsap.min.js            72927 B raw   28314 B gzip -9
+  ScrollTrigger.min.js   44575 B raw   17982 B gzip -9
+  Flip.min.js            25534 B raw    9706 B gzip -9
+
+availability probe run before pinning (task requirement):
+  3.15.0 200
+  3.14.0 200
+  3.13.0 200
+-> 3.15.0 is the newest confirmed-200 3.x and is the version shipped.
+
+loading contract
+----------------
+All three files are UMD. Their wrapper is:
+
+    !function(t,e){ "object"==typeof exports && "undefined"!=typeof module ? e(exports)
+                  : "function"==typeof define && define.amd ? define(["exports"],e)
+                  : e((t=t||self).window = t.window || {}) }(this, function(e){ … })
+
+Inside an ES module `this` is undefined and neither `exports` nor `define`
+exists, so the third branch runs: `t = self`, and the factory writes onto
+`window`. Therefore `import '../vendor/gsap/gsap.min.js'` is a legal
+side-effect import that publishes `window.gsap`; ScrollTrigger and Flip then
+self-register (`La() && Fe.registerPlugin(ne)` / `window.gsap &&
+window.gsap.registerPlugin(pt)` — see the tail of each file). Static import
+order is specified by the language, so gsap.min.js always evaluates first.
+`e.default` is deleted when the export object IS `window`, so a default
+import would be `undefined` — always use the side-effect form plus the
+global, exactly as js/surface-c.js does.
+
+Flip.min.js is loaded with a DYNAMIC import from js/surface-c.js, not a
+static one. It is only needed when the lightbox is first opened, and moving
+its 9,706 gzip bytes out of the first view is what keeps Surface C inside the
+52 KB gzip JS budget (28314 + 17982 = 46,296 B for gsap + ScrollTrigger).
+
+NOT vendored on purpose: ScrollSmoother. It creates a transformed ancestor,
+which breaks position:fixed and content-visibility — the exact bug class this
+refactor exists to remove.
+
+do not hotlink
+--------------
+The live page previously loaded GSAP 3.9.1 from cdnjs in the parent document
+AND gsap@3 from unpkg.co / unpkg.com inside two iframes: three runtimes, two
+versions, zero cache sharing, ~206 KB doing the work of one 109 KB copy.
+These three files replace all of that.

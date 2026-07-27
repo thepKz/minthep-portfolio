@@ -1,0 +1,650 @@
+/* ============================================================================
+   base.css — MINTHEP design system, base layer
+   ----------------------------------------------------------------------------
+   Loaded second, on all 17 pages:
+     tokens.css -> base.css -> components.css -> surface-{a|b|c}.css
+
+   Contains: modern reset · the six @font-face blocks + three metric-matched
+   fallback faces · global type rules · the single global focus ring · the
+   prefers-reduced-motion collapse · the .js / .no-js branch · .visually-hidden.
+
+   Explicitly NOT here: any component, any layout, any colour literal.
+   Every colour below is a var() reference into tokens.css.
+   ========================================================================== */
+
+
+/* ============================================================================
+   1. WEBFONTS — self-hosted, Google Fonts CSS2 subsets (latin / latin-ext / vietnamese)
+   ----------------------------------------------------------------------------
+   url() in CSS resolves relative to THIS FILE, so ../fonts/ is correct from
+   css/. Never a root-absolute path: the site is served from the project-page
+   subpath /minthep-portfolio/ and /fonts/... would 404 sitewide.
+
+   Six faces x three subsets = 18 files, all present in fonts/ and verified to
+   start with the wOF2 magic number. Filenames and unicode-range values come
+   from fonts/README.md (T02), which captured them verbatim from the Google
+   Fonts CSS2 endpoint. Every range is byte-identical across the six faces.
+
+   Vietnamese needs BOTH latin and vietnamese on every page (ASCII plus the
+   U+1EA0-1EF9 tone-mark block), so a Vietnamese page fetches two files per
+   face; latin-ext is fetched only if the page actually contains a codepoint
+   in it. Blocks are ordered vietnamese -> latin-ext -> latin, matching
+   Google's own emission order, because later rules win on an overlapping
+   codepoint.
+
+   Poppins is deliberately absent — it has no Vietnamese subset, so every
+   tone-marked vowel silently falls back mid-word.
+
+   Be Vietnam Pro ships 400 / 500 / 700 only. NEVER ask for 600: the browser
+   synthesises it, and synthetic bolding smears stacked Vietnamese diacritics.
+   ========================================================================== */
+
+/* Anton 400 */
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/anton-400-vietnamese.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/anton-400-latin-ext.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/anton-400-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Be Vietnam Pro 400 */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-400-vietnamese.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-400-latin-ext.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-400-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Be Vietnam Pro 500 */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-500-vietnamese.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-500-latin-ext.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-500-latin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Be Vietnam Pro 700 */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-700-vietnamese.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-700-latin-ext.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('../fonts/bvp-700-latin.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Newsreader 200 800 */
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-vf-vietnamese.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-vf-latin-ext.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-vf-latin.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Newsreader 200 800 italic */
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-italic-vf-vietnamese.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0,
+    U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-italic-vf-latin-ext.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  /* Google ships latin-ext as U+0100-02BA … which SWALLOWS every Vietnamese
+     codepoint (ă đ ĩ ũ ơ ư, U+1EA0-1EF9) and the shared combining marks. A
+     codepoint covered by two faces of the same family makes Chrome fetch BOTH
+     subsets, so a page of plain Vietnamese was pulling latin-ext it never drew
+     a glyph from — 254 KB across the four families. The vietnamese and latin
+     codepoints are carved out below; latin-ext now only loads for what is
+     genuinely exclusive to it, i.e. the Japanese romanisation macrons
+     (ā ō ū) on textblog-1 and Speaking.html. Measured: -254 KB on pages
+     without macrons, byte-identical rendering. */
+  unicode-range:
+    U+0100-0101, U+0104-010F, U+0112-0127, U+012A-0130, U+0132-0151, U+0154-0167,
+    U+016A-019F, U+01A2-01AE, U+01B1-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EFA-1EFF, U+2020, U+20A0-20AA,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/newsreader-italic-vf-latin.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================================
+   2. METRIC-MATCHED FALLBACK FACES
+   ----------------------------------------------------------------------------
+   font-display: swap reflows unless the fallback occupies the same space as
+   the real face. These three synthetic families make the swap cost 0 CLS.
+
+   Derivation (measured, not estimated — head/hhea/OS2/hmtx parsed directly
+   from the upstream Google Fonts TTFs and from the macOS system fallbacks;
+   avgW is the mean advance of a-z plus space, normalised to the em):
+
+     face             upem  hheaAsc  hheaDesc  gap    avgW
+     Anton            2048   1.1763    0.3291  0.0000  0.4471
+     Be Vietnam Pro   1000   1.0000    0.2650  0.0000  0.5461
+     Newsreader       2000   0.7350    0.2650  0.0000  0.4536
+     Arial            2048   0.9053    0.2119  0.0327  0.4817
+     Arial Narrow     2048   0.9355    0.2119  0.0000  0.3950
+     Georgia          2048   0.9170    0.2192  0.0000  0.4896
+
+     size-adjust      = avgW(target) / avgW(fallback)
+     ascent-override  = hheaAsc(target)  / size-adjust
+     descent-override = hheaDesc(target) / size-adjust
+     line-gap-override= 0% (all three targets have a zero line gap)
+   ========================================================================== */
+
+/* Anton -> Arial Narrow.  0.4471/0.3950 = 1.1319 */
+@font-face {
+  font-family: 'Anton Fallback';
+  src: local('Arial Narrow'), local('ArialNarrow'), local('Liberation Sans Narrow'), local('Nimbus Sans Narrow');
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 113.19%;
+  ascent-override: 103.92%;
+  descent-override: 29.08%;
+  line-gap-override: 0%;
+}
+
+/* Be Vietnam Pro -> Arial / Helvetica.  0.5461/0.4817 = 1.1337 */
+@font-face {
+  font-family: 'BVP Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica'), local('Liberation Sans');
+  font-weight: 100 900;
+  font-style: normal;
+  size-adjust: 113.37%;
+  ascent-override: 88.21%;
+  descent-override: 23.37%;
+  line-gap-override: 0%;
+}
+
+/* Newsreader -> Georgia.  0.4536/0.4896 = 0.9265 */
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Liberation Serif'), local('Nimbus Roman');
+  font-weight: 200 800;
+  font-style: normal;
+  size-adjust: 92.65%;
+  ascent-override: 79.33%;
+  descent-override: 28.60%;
+  line-gap-override: 0%;
+}
+
+
+/* ============================================================================
+   3. RESET
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:where(html) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  /* the site header is fixed at --nav-h; anchors must clear it */
+  scroll-padding-top: calc(var(--nav-h) + var(--s-5));
+  /* one page-level scrollbar treatment; component wells restyle their own */
+  scrollbar-color: var(--ink-600) transparent;
+  scrollbar-width: thin;
+}
+
+/* The header toggle writes data-theme="light" on <html> (js/core.js initTheme).
+   color-scheme has to be flipped here rather than in tokens.css because it is a
+   real CSS property, not a custom property, and tokens.css declares nothing but
+   tokens. The UA needs it: form-control chrome, the canvas behind an
+   over-scroll, and the default scrollbar under `scrollbar-color` all follow
+   color-scheme, not our ramps. Not wrapped in :where() — it must out-rank the
+   0-0-0 default above. */
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+:where(body) {
+  min-height: 100dvh;
+  background-color: var(--page);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-normal);
+}
+
+/* Media defaults. max-width without height:auto distorts any image carrying
+   explicit width/height attributes — and every image on this site carries
+   them, because that is how CLS is held under 0.02. */
+:where(img, picture, video, canvas, svg, iframe) {
+  display: block;
+  max-width: 100%;
+}
+
+:where(img, video) {
+  height: auto;
+}
+
+/* Forms inherit type. Browsers otherwise drop to 13px system sans, which on
+   iOS also triggers the focus-zoom. */
+:where(input, button, textarea, select, optgroup) {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+:where(textarea) {
+  resize: vertical;
+}
+
+:where(button) {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:where(ul[role='list'], ol[role='list']) {
+  list-style: none;
+  padding: 0;
+}
+
+:where(table) {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:where(fieldset) {
+  border: 0;
+  padding: 0;
+  min-inline-size: 0;
+}
+
+:where(hr) {
+  border: 0;
+  border-block-start: var(--bw-hair) solid var(--rule);
+}
+
+:where(a) {
+  color: inherit;
+}
+
+:where(dialog) {
+  border: 0;
+  padding: 0;
+  color: inherit;
+  max-width: none;
+  max-height: none;
+}
+
+
+/* ============================================================================
+   4. GLOBAL TYPE RULES
+   ----------------------------------------------------------------------------
+   The antialiasing overrides exist BECAUSE the page is light-on-dark: default
+   subpixel rendering makes off-white text on near-black render one to two
+   weights heavier than drawn. This is a dark-mode correction, not a habit.
+   ========================================================================== */
+
+:where(body) {
+  font-kerning: normal;
+  font-optical-sizing: auto;   /* Newsreader carries a live opsz axis */
+  font-synthesis-weight: none; /* never fake a Be Vietnam Pro 600 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings: reset the margin, hold the diacritic-safe leading, kill orphans.
+   Sizes and families are a surface concern and are NOT set here. */
+:where(h1, h2, h3, h4, h5, h6) {
+  line-height: var(--lh-heading);
+}
+
+:where(h1, h2, h3, .display) {
+  text-wrap: balance;   /* no orphan last words in a headline */
+}
+
+:where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+:where(p, li) {
+  hanging-punctuation: first last;
+}
+
+/* Long unbroken tokens (URLs, file names) must not blow out the measure. */
+:where(h1, h2, h3, h4, h5, h6, p, li, dd, dt, figcaption) {
+  overflow-wrap: break-word;
+}
+
+/* Vietnamese is monosyllabic; browser hyphenation dictionaries break it in
+   the wrong places. hyphens:none is required, not preferred. */
+:lang(vi) {
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+/* Anton is set at --lh-display: 0.94. Any clipped/masked wrapper around
+   display text must also carry padding-block: 0.08em or the reveal crops the
+   tone marks on E O U. Utility provided here so every surface uses the same
+   number. */
+.display-safe {
+  padding-block: 0.08em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--accent-500) 38%, transparent);
+  color: var(--ink-50);
+}
+
+::marker {
+  color: var(--text-muted);
+}
+
+
+/* ============================================================================
+   5. FOCUS — one ring, every surface, never removed
+   ----------------------------------------------------------------------------
+   --focus measures 8.99:1 on --ink-950 and >= 7.81:1 on every ink surface.
+   ========================================================================== */
+
+:where(a, button, input, textarea, select, summary, details, dialog, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+/* Never leave a keyboard user without a ring, even where a component removes
+   the default outline for its own treatment. */
+:focus-visible {
+  outline-color: var(--focus);
+}
+
+
+/* ============================================================================
+   6. .js / .no-js BRANCH
+   ----------------------------------------------------------------------------
+   Contract: an inline <head> script swaps class="no-js" for class="js" on
+   <html> before first paint. Static CSS must therefore NEVER leave an element
+   at opacity: 0 — every reveal initial state is scoped under html.js, so a
+   404'd core.js or a JS-off browser still renders a complete, readable page.
+   ========================================================================== */
+
+.no-js .js-only {
+  display: none !important;
+}
+
+.js .no-js-only {
+  display: none !important;
+}
+
+
+/* ============================================================================
+   7. UTILITIES
+   ========================================================================== */
+
+/* Visually hidden but still announced. Not display:none, not width:0. */
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link and anything else that must become visible on keyboard focus:
+   mark it .visually-hidden and it reappears at :focus by the rule above. */
+
+
+/* ============================================================================
+   8. REDUCED MOTION
+   ----------------------------------------------------------------------------
+   Collapses every duration token to 1ms so component rules that reference
+   --dur-* need no media query of their own, then hard-stops anything that
+   declared a raw duration anyway.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 1ms;
+    --dur-2: 1ms;
+    --dur-3: 1ms;
+    --dur-4: 1ms;
+    --dur-5: 1ms;
+    --dur-6: 1ms;
+    --dur-7: 1ms;
+    --stagger: 0ms;
+  }
+
+  :where(html) {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

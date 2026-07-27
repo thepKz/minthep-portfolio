@@ -1,98 +1,896 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonyoung's Fashion Universe</title>
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/wy.css">
-    <link rel="stylesheet" href="css/wy-responsive.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Jang Wonyoung — Bộ sưu tập ảnh | MINTHEP</title>
+<meta name="description" content="Trang trưng bày ảnh Jang Wonyoung: thư viện 13 khung hình, vòng xoay ba chiều 11 ảnh và một cảnh cửa cuộn. Một tài liệu HTML tĩnh, không khung nhúng. Trang fan phi thương mại.">
+
+<link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">
+
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MINTHEP">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Jang Wonyoung — Bộ sưu tập ảnh | MINTHEP">
+<meta property="og:description" content="Trang trưng bày ảnh Jang Wonyoung: thư viện 13 khung hình, vòng xoay ba chiều 11 ảnh và một cảnh cửa cuộn. Một tài liệu HTML tĩnh, không khung nhúng. Trang fan phi thương mại.">
+<meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/wy/wy.html">
+<meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Logo MINTHEP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jang Wonyoung — Bộ sưu tập ảnh | MINTHEP">
+<meta name="twitter:description" content="Trang trưng bày ảnh Jang Wonyoung: thư viện 13 khung hình, vòng xoay ba chiều 11 ảnh và một cảnh cửa cuộn. Một tài liệu HTML tĩnh, không khung nhúng. Trang fan phi thương mại.">
+<meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
+
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../img/favicon-32.ico" sizes="32x32">
+<link rel="manifest" href="../manifest.webmanifest">
+
+<!-- Every photograph on this surface is served by one third-party origin.
+     One connection opened early pays for all of them. -->
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+
+<!-- EXACTLY TWO font preloads. The LCP element is the Anton wordmark and
+     nothing else on this surface paints before it. See fonts/README.md §5:
+     "Do not add a third preload." -->
+<link rel="preload" href="../fonts/anton-400-latin.woff2"      as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/anton-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Fixed order: tokens -> base -> components -> surface. Never reorder. -->
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/surface-c.css">
+
+<!--
+  Page-local, and page-local only. surface-c.css belongs to every document on
+  this surface and is not this task's to edit; these four rules exist solely to
+  give a scripting-disabled visitor a working way out of a <button> that needs
+  JavaScript. Every value is a var() into tokens.css — no literals.
+-->
+<style>
+  .sc-slat__nojs {
+    position: absolute;
+    inset-block-end: var(--s-2);
+    inset-inline-start: var(--s-2);
+    z-index: var(--z-raised);
+    padding: var(--s-1) var(--s-3);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--ink-50);
+    background-color: color-mix(in oklab, var(--ink-1000) 72%, transparent);
+    border: var(--bw-hair) solid var(--border-interactive);
+    border-radius: var(--r-pill);
+    text-decoration: none;
+  }
+
+  .no-js .sc-slat__btn { cursor: default; }
+
+  .sc-note {
+    margin-block-start: var(--s-6);
+    max-inline-size: var(--w-read-max);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+  }
+
+  .sc-backlink { margin-block-start: var(--s-8); font-size: var(--fs-body-sm); }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jang Wonyoung — Bộ sưu tập ảnh",
+  "description": "Trang trưng bày ảnh Jang Wonyoung: thư viện 13 khung hình, vòng xoay ba chiều 11 ảnh và một cảnh cửa cuộn. Một tài liệu HTML tĩnh, không khung nhúng. Trang fan phi thương mại.",
+  "url": "https://thepkz.github.io/minthep-portfolio/wy/wy.html",
+  "inLanguage": "vi",
+  "isPartOf": { "@type": "WebSite", "name": "MINTHEP", "url": "https://thepkz.github.io/minthep-portfolio/" },
+  "author": { "@type": "Person", "name": "Mai Tấn Thép" },
+  "isAccessibleForFree": true,
+  "creativeWorkStatus": "Published"
+}
+</script>
+
+<!-- Swap no-js -> js before first paint. Inline and here on purpose: an
+     external file would flash. js/surface-c.js repeats it, harmlessly. -->
+<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
 </head>
 
-<body data-scroll-container>
-    <div id="header">
+<body class="sc-page">
+
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="../">MINTHEP</a>
+
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="../">Trang chủ</a></li>
+        <li><a data-nav-link href="../blog/myblog.html">Blog học tập</a></li>
+        <li><a data-nav-link href="wy.html" aria-current="page">Bộ sưu tập</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" data-nav-toggle aria-expanded="false"
+            aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true" focusable="false" width="24" height="24"><use href="../img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true" focusable="false" width="24" height="24"><use href="../img/sprite.svg#close"></use></svg>
+    </button>
+  </div>
+</header>
+
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="../">Trang chủ</a></li>
+      <li><a href="../blog/myblog.html">Blog học tập</a></li>
+      <li><a href="wy.html">Bộ sưu tập</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="main">
+  <!--
+    S1 · ENTRY. Above the fold, so NO [data-cv] — content-visibility on the
+    first stage would skip exactly the pixels the LCP is measured from.
+    The mosaic is decoration: it is aria-hidden and its tiles carry alt="",
+    because all thirteen photographs are announced properly, once, with
+    captions, in the gallery below. Sixteen near-identical announcements ahead
+    of the <h1> would be noise, not access.
+  -->
+  <section class="sc-stage sc-entry" aria-labelledby="sc-entry-title">
+    <div class="sc-entry__viewport">
+
+      <div class="sc-entry__cols" aria-hidden="true">
+      <div class="sc-col">
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493797/2024-07-02_03-03-31_UTC_5_hbx0wh.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493797/2024-07-02_03-03-31_UTC_5_hbx0wh.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493797/2024-07-02_03-03-31_UTC_5_hbx0wh.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493797/2024-07-02_03-03-31_UTC_5_hbx0wh.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493808/2024-08-25_11-01-05_UTC_6_inrtxx.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493808/2024-08-25_11-01-05_UTC_6_inrtxx.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493808/2024-08-25_11-01-05_UTC_6_inrtxx.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493808/2024-08-25_11-01-05_UTC_6_inrtxx.jpg 500w"
+               sizes="25vw"
+               width="400" height="499" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493758/2023-12-04_11-00-23_UTC_9_ludvvs.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493758/2023-12-04_11-00-23_UTC_9_ludvvs.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493758/2023-12-04_11-00-23_UTC_9_ludvvs.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493758/2023-12-04_11-00-23_UTC_9_ludvvs.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <div class="sc-col">
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493713/2024-08-28_11-45-19_UTC_8_shocsy.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493713/2024-08-28_11-45-19_UTC_8_shocsy.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493713/2024-08-28_11-45-19_UTC_8_shocsy.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493713/2024-08-28_11-45-19_UTC_8_shocsy.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493765/2023-11-09_09-00-23_UTC_2_bt10tj.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493765/2023-11-09_09-00-23_UTC_2_bt10tj.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493765/2023-11-09_09-00-23_UTC_2_bt10tj.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493765/2023-11-09_09-00-23_UTC_2_bt10tj.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493759/2023-12-09_12-03-05_UTC_3_cf8qfj.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493759/2023-12-09_12-03-05_UTC_3_cf8qfj.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493759/2023-12-09_12-03-05_UTC_3_cf8qfj.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743493759/2023-12-09_12-03-05_UTC_3_cf8qfj.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <div class="sc-col">
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494496/2024-03-08_04-05-24_UTC_1_voxv8i.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494496/2024-03-08_04-05-24_UTC_1_voxv8i.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494496/2024-03-08_04-05-24_UTC_1_voxv8i.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494496/2024-03-08_04-05-24_UTC_1_voxv8i.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494500/2023-12-22_11-00-05_UTC_5_dzeefj.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494500/2023-12-22_11-00-05_UTC_5_dzeefj.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494500/2023-12-22_11-00-05_UTC_5_dzeefj.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494500/2023-12-22_11-00-05_UTC_5_dzeefj.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494516/2024-02-19_09-00-04_UTC_6_tkowsp.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494516/2024-02-19_09-00-04_UTC_6_tkowsp.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494516/2024-02-19_09-00-04_UTC_6_tkowsp.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494516/2024-02-19_09-00-04_UTC_6_tkowsp.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494603/2024-02-08_09-00-03_UTC_6_cnaqxe.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494603/2024-02-08_09-00-03_UTC_6_cnaqxe.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494603/2024-02-08_09-00-03_UTC_6_cnaqxe.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494603/2024-02-08_09-00-03_UTC_6_cnaqxe.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <div class="sc-col">
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494640/2024-02-19_09-00-04_UTC_4_rl37ne.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494640/2024-02-19_09-00-04_UTC_4_rl37ne.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494640/2024-02-19_09-00-04_UTC_4_rl37ne.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494640/2024-02-19_09-00-04_UTC_4_rl37ne.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494665/2024-02-19_09-00-04_UTC_3_e1zzoh.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494665/2024-02-19_09-00-04_UTC_3_e1zzoh.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494665/2024-02-19_09-00-04_UTC_3_e1zzoh.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494665/2024-02-19_09-00-04_UTC_3_e1zzoh.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494677/2024-01-09_09-32-17_UTC_6_hlrjch.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494677/2024-01-09_09-32-17_UTC_6_hlrjch.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494677/2024-01-09_09-32-17_UTC_6_hlrjch.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494677/2024-01-09_09-32-17_UTC_6_hlrjch.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sc-tile sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743494591/2024-03-08_04-05-24_UTC_5_uy7uax.jpg')">
+          <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494591/2024-03-08_04-05-24_UTC_5_uy7uax.jpg"
+               srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743494591/2024-03-08_04-05-24_UTC_5_uy7uax.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_500/v1743494591/2024-03-08_04-05-24_UTC_5_uy7uax.jpg 500w"
+               sizes="25vw"
+               width="400" height="500" alt="" loading="lazy" decoding="async">
+        </figure>
+      </div>
+      </div>
+
+      <div class="sc-entry__veil" aria-hidden="true"></div>
+
+      <div class="sc-entry__panel">
+        <p data-eyebrow>Trang người hâm mộ · phi thương mại</p>
+        <h1 class="sc-wordmark" id="sc-entry-title">Jang Wonyoung</h1>
+        <p class="sc-dek">Một trang trưng bày ảnh dựng bằng HTML tĩnh — bài tập về bố cục, nhịp cuộn và tốc độ. Cuộn xuống để đi hết bốn cảnh.</p>
+      </div>
+
     </div>
-    
-    <!-- <div class="hero-section">
-        <canvas id="canvas"></canvas>
-        <div class="hero-content">
-            <h1 class="glitch" data-text="Wonyoung's Fashion Universe">Wonyoung's Fashion Universe</h1>
-            <p class="subtitle">Redefining K-pop Fashion, One Look at a Time</p>
-            <div class="scroll-down" id="scroll-down-button">
-                <span>Click Here</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+  </section>
+
+  <!--
+    S2 · SLAT GALLERY. The thirteen tabindex="0" divs are now thirteen real
+    <button>s: a role, an accessible name, Enter/Space, and a focus ring that
+    matches the hover state one-for-one. A scripting-disabled visitor still
+    gets every photograph plus a plain <a href> to the full-size file.
+  -->
+  <section class="sc-stage sc-stage--pad" id="gallery" data-cv="section" aria-labelledby="sc-gallery-title">
+    <h2 class="sc-h2" id="sc-gallery-title">Thư viện</h2>
+    <p class="sc-lede">Mười ba khung hình xếp thành hai hàng đặc, không có ô thừa. Đưa chuột hoặc lia tiêu điểm bàn phím vào một tấm để nó nở ra; bấm để mở ảnh lớn.</p>
+
+    <ul class="sc-gallery" role="list">
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg"
+                data-caption="Jang Wonyoung · 26/11/2024 · khung 4"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 26/11/2024, khung 4" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg"
+                data-caption="Jang Wonyoung · 25/11/2024 · khung 3"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 25/11/2024, khung 3" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg"
+                data-caption="Jang Wonyoung · 27/10/2024 · khung 8"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="499"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 27/10/2024, khung 8" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg"
+                data-caption="Jang Wonyoung · 12/10/2024 · khung 8"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 12/10/2024, khung 8" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg"
+                data-caption="Jang Wonyoung · 23/10/2024 · khung 9"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 23/10/2024, khung 9" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg"
+                data-caption="Jang Wonyoung · 30/09/2024 · khung 6"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 30/09/2024, khung 6" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg"
+                data-caption="Jang Wonyoung · 20/09/2024 · khung 1"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="499"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 20/09/2024, khung 1" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg"
+                data-caption="Jang Wonyoung · 12/09/2024 · khung 11"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 12/09/2024, khung 11" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg"
+                data-caption="Jang Wonyoung · 30/08/2024 · khung 13"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 30/08/2024, khung 13" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg"
+                data-caption="Jang Wonyoung · 28/08/2024 · khung 7"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 28/08/2024, khung 7" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg"
+                data-caption="Jang Wonyoung · 07/08/2024 · khung 7"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 07/08/2024, khung 7" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg"
+                data-caption="Jang Wonyoung · 06/07/2024 · khung 5"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 06/07/2024, khung 5" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg">Ảnh gốc</a></noscript>
+      </li>
+      <li class="sc-slat">
+        <button type="button" class="sc-slat__btn"
+                data-lightbox-open
+                data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg"
+                data-caption="Jang Wonyoung · 29/05/2024 · khung 1"
+                aria-haspopup="dialog">
+          <span class="sc-slat__frame sc-frame" style="--sc-lqip:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_32,e_blur:800/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg')">
+            <img src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg"
+                 srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg 400w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_800/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg 800w"
+                 sizes="(max-width: 48rem) 46vw, 30vw"
+                 width="400" height="500"
+                 alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 29/05/2024, khung 1" loading="lazy" decoding="async">
+          </span>
+        </button>
+        <noscript><a class="sc-slat__nojs" href="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg">Ảnh gốc</a></noscript>
+      </li>
+    </ul>
+  </section>
+
+  <!--
+    S3 · CAROUSEL. Both rotations carry [data-anim] (paused by the CSS default,
+    so no-JS never spins) and [data-anim-local] (so core.js's gate leaves them
+    to the play/pause button below — one writer per element, never two).
+    WCAG 2.2.2: the old build's only pause was :has(:hover), which does not
+    exist on touch. This one is a real, visible, keyboard-reachable button.
+  -->
+  <section class="sc-stage sc-stage--pad" id="carousel" data-cv="section" aria-labelledby="sc-carousel-title">
+    <h2 class="sc-h2" id="sc-carousel-title">Vòng xoay</h2>
+    <p class="sc-lede">Mười một tấm ảnh dựng thành một vòng tròn ba chiều. Vòng quay tự dừng khi rời khỏi màn hình hoặc khi bạn chuyển sang tab khác, và bạn có thể tạm dừng hoặc đổi chiều bằng các nút bên dưới.</p>
+
+    <div class="sc-carousel" style="--sc-car-count:11">
+      <div class="sc-carousel__stage">
+        <div class="sc-carousel__dir" data-anim data-anim-local>
+          <ul class="sc-carousel__ring" role="list" data-anim data-anim-local>
+        <li class="sc-carousel__item" style="--sc-i:1;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743494452/2023-12-19_09-00-03_UTC_9_lusnaf.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494452/2023-12-19_09-00-03_UTC_9_lusnaf.jpg"
+                    data-caption="Jang Wonyoung · 19/12/2023 · khung 9"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 19/12/2023, khung 9 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:2;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg"
+                    data-caption="Jang Wonyoung · 12/10/2024 · khung 8"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 12/10/2024, khung 8 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:3;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg"
+                    data-caption="Jang Wonyoung · 19/12/2023 · khung 3"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 19/12/2023, khung 3 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:4;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg"
+                    data-caption="Jang Wonyoung · 05/03/2024 · khung 4"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 05/03/2024, khung 4 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:5;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493736/2024-05-29_09-00-13_UTC_6_wpoqx0.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493736/2024-05-29_09-00-13_UTC_6_wpoqx0.jpg"
+                    data-caption="Jang Wonyoung · 29/05/2024 · khung 6"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 29/05/2024, khung 6 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:6;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493716/2024-08-26_11-11-36_UTC_11_l2klxz.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493716/2024-08-26_11-11-36_UTC_11_l2klxz.jpg"
+                    data-caption="Jang Wonyoung · 26/08/2024 · khung 11"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 26/08/2024, khung 11 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:7;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493715/2024-08-26_11-11-36_UTC_8_shnjcc.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493715/2024-08-26_11-11-36_UTC_8_shnjcc.jpg"
+                    data-caption="Jang Wonyoung · 26/08/2024 · khung 8"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 26/08/2024, khung 8 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:8;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493711/2024-08-28_11-45-19_UTC_6_d5arqn.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493711/2024-08-28_11-45-19_UTC_6_d5arqn.jpg"
+                    data-caption="Jang Wonyoung · 28/08/2024 · khung 6"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 28/08/2024, khung 6 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:9;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg"
+                    data-caption="Jang Wonyoung · 30/09/2024 · khung 6"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 30/09/2024, khung 6 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:10;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743494503/2024-03-05_23-41-58_UTC_4_fkhy9m.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494503/2024-03-05_23-41-58_UTC_4_fkhy9m.jpg"
+                    data-caption="Jang Wonyoung · 05/03/2024 · khung 4"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 05/03/2024, khung 4 — mở ảnh phóng to"></button>
+          </li>
+        <li class="sc-carousel__item" style="--sc-i:11;--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_450/v1743494508/2024-01-17_09-00-20_UTC_2_fmbktx.jpg')">
+            <button type="button" class="sc-carousel__face"
+                    data-lightbox-open
+                    data-full="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494508/2024-01-17_09-00-20_UTC_2_fmbktx.jpg"
+                    data-caption="Jang Wonyoung · 17/01/2024 · khung 2"
+                    aria-haspopup="dialog"
+                    aria-label="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 17/01/2024, khung 2 — mở ảnh phóng to"></button>
+          </li>
+            <li class="sc-carousel__ground" aria-hidden="true"></li>
+          </ul>
         </div>
-    </div> -->
-    <div style="background: #141414;" id="main-game">
-        <iframe src="header.html" frameborder="0" style="width: 100%; height: 110vh; overflow: hidden"></iframe>
+      </div>
+
+      <div class="sc-carousel__controls">
+        <button type="button" class="sc-carousel__toggle" data-carousel-toggle aria-pressed="false">
+          <span class="sc-carousel__toggle-on">Tạm dừng vòng xoay</span>
+          <span class="sc-carousel__toggle-off">Chạy tiếp vòng xoay</span>
+        </button>
+
+        <span class="sc-carousel__dirgroup" role="radiogroup" aria-label="Chiều quay">
+          <label class="sc-carousel__radio">
+            <input type="radio" name="sc-dir" value="right" checked aria-label="Quay sang phải">
+            <svg aria-hidden="true" focusable="false" width="20" height="20"><use href="../img/sprite.svg#arrow-right"></use></svg>
+          </label>
+          <label class="sc-carousel__radio">
+            <input type="radio" name="sc-dir" value="left" aria-label="Quay sang trái">
+            <svg aria-hidden="true" focusable="false" width="20" height="20"><use href="../img/sprite.svg#arrow-left"></use></svg>
+          </label>
+        </span>
+      </div>
     </div>
-    <div>
-        <svg>
-            <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                Jang Wonyoung
-            </text>
-        </svg>
+  </section>
+
+  <!--
+    S4 · DOOR. PINNED. It must never carry [data-cv]: a height change while the
+    element is skipped invalidates the pin's cached measurements. surface-c.css
+    force-resets content-visibility inside .sc-door and surface-c.js warns at
+    idle if one ever appears — this comment is the third leg of that contract.
+    The gate is loaded eagerly on purpose: surface-c.js counts it as one of the
+    two images whose decode releases ScrollTrigger.refresh(), and a lazy image
+    would hold that refresh open until the visitor scrolled to it.
+  -->
+  <section class="sc-stage sc-door" id="door" aria-labelledby="sc-door-title">
+    <h2 class="visually-hidden" id="sc-door-title">Cảnh cửa</h2>
+
+    <div class="sc-door__wrap">
+      <div class="sc-door__hero" style="--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494282/2024-01-09_09-32-17_UTC_10_qxyuux.jpg')" aria-hidden="true"></div>
+
+      <div class="sc-door__port">
+        <img class="sc-door__gate"
+             src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1200/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg"
+             srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1000/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1000w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1200/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1200w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1600w"
+             sizes="100vw"
+             width="1200" height="1500"
+             alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 08/03/2024, khung 2"
+             decoding="async" fetchpriority="low">
+      </div>
     </div>
-    <div style="background: #141414">
-        <iframe src="home.html" frameborder="0" style="width: 100%; height: 100vh; overflow: hidden"></iframe>
-    </div>
-    <div style="background: #141414;" class="container">
-        <div id="about-wy">
-            <p> <span class="wy-important">Jang Wonyoung</span> is a radiant beacon of talent, elegance, and grace. Her
-                beauty is stunning, and her charm is as
-                vivacious as her youthful energy. Her passion is inspiring, and her dedication and ambition are
-                evident in her confident demeanor. Her resilience is admirable, and her versatility is a testament to
-                her artistic and expressive nature. Her innovative and adaptable spirit is courageous and determined,
-                reflecting her empathetic and generous heart. Her humility is a sign of her intelligence, and her
-                joyful nature is a testament to her kindness. Her loyalty is unwavering, and her motivation is
-                infectious. Her optimism is refreshing, and Her patience is commendable. Her reliability is
-                unquestionable, and her sincerity is touching. Her thoughtfulness is appreciated, and her
-                understanding nature is comforting. Her visionary mindset is inspiring, and her wisdom is profound.
-                Her zealous nature is adventurous, bold, and creative. Her dynamic personality is fearless, genuine,
-                and harmonious. Her influential presence is jubilant, making you a truly remarkable individual.</p>
-        </div>
-    </div>
-    <div style="background: #141414;">
-        <iframe src="lib.html" frameborder="0" style="width: 100%; height: 120vh; overflow: hidden"></iframe>
+  </section>
+
+  <!--
+    S5 · BRAND LEDGER. Replaces a twelve-item marquee that pulled every logo
+    from logo.clearbit.com — an API retired in December 2024, so all twelve
+    requests were guaranteed 404s — duplicated its items in JS so a screen
+    reader heard each name twice, and hid the names at opacity:0 until :hover,
+    which touch and assistive tech never reach. Four rows of real text, no
+    network requests, no animation, and the names are readable by everyone.
+    Set in Anton, which is itself a wordmark face; redrawing the trademarks as
+    SVG would put back the third-party IP this rebuild exists to take out.
+  -->
+  <section class="sc-stage sc-stage--pad" id="brands" data-cv="section" aria-labelledby="sc-brands-title" data-reveal>
+    <h2 class="sc-h2" id="sc-brands-title">Hợp tác thương hiệu</h2>
+    <p class="sc-lede">Những cái tên xuất hiện thường xuyên nhất bên cạnh Jang Wonyoung trong các thông cáo công khai.</p>
+
+    <ol class="sc-ledger">
+      <li class="sc-ledger__row">
+        <span class="sc-ledger__name">Miu Miu</span>
+        <span class="sc-ledger__role">Đại sứ toàn cầu · thời trang</span>
+        <span class="sc-ledger__year">2023 →</span>
+      </li>
+      <li class="sc-ledger__row">
+        <span class="sc-ledger__name">Innisfree</span>
+        <span class="sc-ledger__role">Đại sứ thương hiệu · mỹ phẩm</span>
+        <span class="sc-ledger__year">2022 →</span>
+      </li>
+      <li class="sc-ledger__row">
+        <span class="sc-ledger__name">Fromm</span>
+        <span class="sc-ledger__role">Đại sứ thương hiệu · chăm sóc tóc</span>
+        <span class="sc-ledger__year">2022 →</span>
+      </li>
+      <li class="sc-ledger__row">
+        <span class="sc-ledger__name">IVE · Starship Entertainment</span>
+        <span class="sc-ledger__role">Thành viên nhóm nhạc · công ty quản lý</span>
+        <span class="sc-ledger__year">2021 →</span>
+      </li>
+    </ol>
+
+    <p class="sc-note">
+      Danh sách được tổng hợp từ thông cáo công khai của chính các thương hiệu.
+      Mốc thời gian chỉ mang tính tham khảo và chưa được đối chiếu lại tại thời
+      điểm xuất bản trang này — vui lòng xem thông cáo gốc của từng thương hiệu
+      để có thông tin chính xác. Trang này không đại diện cho bất kỳ thương hiệu
+      nào trong danh sách.
+    </p>
+  </section>
+
+  <!--
+    S6 · QUOTE PLATE. The rest beat between the Door and the credits: no
+    motion, nothing observed, nothing fetched. The line is the site owner's own
+    and is attributed as such — no sentence is put in anyone else's mouth here.
+  -->
+  <section class="sc-stage sc-quote" aria-label="Ghi chú của tác giả trang">
+    <blockquote class="sc-quote__text">
+      <p>Một trang đẹp không phải là trang có nhiều thứ chuyển động nhất, mà là trang biết chọn thứ duy nhất đáng để chuyển động.</p>
+      <cite class="sc-quote__cite">Minthep · ghi chú khi dựng lại trang này</cite>
+    </blockquote>
+  </section>
+
+  <!--
+    S8 · CREDITS. The disclaimer that reports/design-imagery.md §3 specifies,
+    minus one sentence. The original copy ends the second paragraph with "No
+    third-party copyrighted files are re-hosted on this site." That sentence is
+    false for as long as these photographs are served from a Cloudinary account
+    under the site owner's control, and a false disclaimer is worse than none —
+    so it is omitted here, deliberately, and this comment records why.
+  -->
+  <section class="sc-stage sc-stage--pad sc-credits" id="credits" data-cv="section" aria-labelledby="sc-credits-title">
+    <h2 class="sc-h2" id="sc-credits-title">Ghi công &amp; miễn trừ trách nhiệm</h2>
+
+    <div class="sc-credits__body" lang="vi">
+      <p><strong>Trang người hâm mộ — phi thương mại.</strong> Đây là trang fan phi lợi nhuận,
+        được tạo bởi một người hâm mộ, hoàn toàn không có liên kết, tài trợ hay xác nhận từ
+        Jang Wonyoung, nhóm IVE, Starship Entertainment hoặc bất kỳ đối tác nào của họ.</p>
+
+      <p>Toàn bộ hình ảnh, video và nhãn hiệu thuộc quyền sở hữu của các chủ sở hữu tương ứng.
+        Hình ảnh trên trang là ảnh lưu trữ từ các bài đăng công khai trước đây, hiện được phục vụ
+        từ một tài khoản Cloudinary do chủ trang quản lý, và được dùng cho mục đích bình luận,
+        giới thiệu phi thương mại. Chủ trang không sở hữu bản quyền các bức ảnh này và không
+        yêu cầu bất kỳ quyền nào đối với chúng.</p>
+
+      <p>Nếu bạn là chủ sở hữu quyền và muốn nội dung được gỡ bỏ hoặc chỉnh sửa phần ghi nguồn,
+        vui lòng <a data-link href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">mở một issue
+        trên GitHub</a> — tôi sẽ xử lý trong vòng 48 giờ.</p>
     </div>
 
+    <div class="sc-credits__body" lang="en">
+      <p><strong>Unofficial fan page — non-commercial.</strong> This is a non-commercial
+        fan-made page. It is not affiliated with, sponsored by, or endorsed by Jang Wonyoung,
+        IVE, Starship Entertainment, or any of their partners.</p>
 
- 
+      <p>All images, video, and trademarks remain the property of their respective owners.
+        The photographs here are archived copies of previously public posts, currently served
+        from a Cloudinary account controlled by the site owner, and are used for non-commercial
+        commentary and editorial purposes. The site owner claims no copyright in them.</p>
 
-    <section class="brand-collabs">
-        <h2 class="section-title">Luxury Partnerships</h2>
-        <div class="brand-carousel">
-            <div class="brand-item"><img src="https://logo.clearbit.com/gucci.com" alt="Gucci"><span>Gucci</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/chanel.com" alt="Chanel"><span>Chanel</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/dior.com" alt="Dior"><span>Dior</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/louisvuitton.com" alt="Louis Vuitton"><span>Louis Vuitton</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/gucci.com" alt="Gucci"><span>Gucci</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/chanel.com" alt="Chanel"><span>Chanel</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/dior.com" alt="Dior"><span>Dior</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/louisvuitton.com" alt="Louis Vuitton"><span>Louis Vuitton</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/gucci.com" alt="Gucci"><span>Gucci</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/chanel.com" alt="Chanel"><span>Chanel</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/dior.com" alt="Dior"><span>Dior</span></div>
-            <div class="brand-item"><img src="https://logo.clearbit.com/louisvuitton.com" alt="Louis Vuitton"><span>Louis Vuitton</span></div>
-        </div>
-    </section>
-
-   
-    <div style="background: #141414; margin-top: 60px;">
-        <iframe src="Door.html" frameborder="0" style="width: 100%; height: 100vh; overflow: hidden"></iframe>
+      <p>If you are a rights holder and would like material removed or credited differently,
+        <a data-link href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">open an issue on
+        GitHub</a> — I will action it within 48 hours.</p>
     </div>
-   
-    <!-- Bootstrap JS -->  
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script src="app.js"></script>
+    <h3 class="visually-hidden">Nguồn từng ảnh</h3>
+    <dl class="sc-credits__ledger">
+      <dt>26/11/2024 · khung 4</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493845/2024-11-26_11-40-10_UTC_4_rbudtz.jpg</code></dd>
+      <dt>25/11/2024 · khung 3</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493842/2024-11-25_05-00-10_UTC_3_gostsl.jpg</code></dd>
+      <dt>27/10/2024 · khung 8</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493837/2024-10-27_13-30-29_UTC_8_itdahr.jpg</code></dd>
+      <dt>23/10/2024 · khung 9</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493688/2024-10-23_13-04-08_UTC_9_zqewwl.jpg</code></dd>
+      <dt>12/10/2024 · khung 8</dt>
+      <dd>Thư viện · Vòng xoay — <code>dacbvhtgz/v1743493827/2024-10-12_03-00-08_UTC_8_f0n4cb.jpg</code></dd>
+      <dt>30/09/2024 · khung 6</dt>
+      <dd>Thư viện · Vòng xoay — <code>dacbvhtgz/v1743493690/2024-09-30_02-10-02_UTC_6_dhxvtj.jpg</code></dd>
+      <dt>20/09/2024 · khung 1</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493694/2024-09-20_09-30-14_UTC_1_xubfne.jpg</code></dd>
+      <dt>12/09/2024 · khung 11</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493703/2024-09-12_09-30-05_UTC_11_euekuf.jpg</code></dd>
+      <dt>30/08/2024 · khung 13</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493706/2024-08-30_11-00-08_UTC_13_s1fcbi.jpg</code></dd>
+      <dt>28/08/2024 · khung 6</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743493711/2024-08-28_11-45-19_UTC_6_d5arqn.jpg</code></dd>
+      <dt>28/08/2024 · khung 7</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493709/2024-08-28_11-45-19_UTC_7_ek42ph.jpg</code></dd>
+      <dt>28/08/2024 · khung 8</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493713/2024-08-28_11-45-19_UTC_8_shocsy.jpg</code></dd>
+      <dt>26/08/2024 · khung 8</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743493715/2024-08-26_11-11-36_UTC_8_shnjcc.jpg</code></dd>
+      <dt>26/08/2024 · khung 11</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743493716/2024-08-26_11-11-36_UTC_11_l2klxz.jpg</code></dd>
+      <dt>25/08/2024 · khung 6</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493808/2024-08-25_11-01-05_UTC_6_inrtxx.jpg</code></dd>
+      <dt>07/08/2024 · khung 7</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493718/2024-08-07_09-12-09_UTC_7_huqiv2.jpg</code></dd>
+      <dt>06/07/2024 · khung 5</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493727/2024-07-06_08-00-34_UTC_5_h37yko.jpg</code></dd>
+      <dt>02/07/2024 · khung 5</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493797/2024-07-02_03-03-31_UTC_5_hbx0wh.jpg</code></dd>
+      <dt>29/05/2024 · khung 1</dt>
+      <dd>Thư viện — <code>dacbvhtgz/v1743493733/2024-05-29_09-00-13_UTC_1_jlapef.jpg</code></dd>
+      <dt>29/05/2024 · khung 6</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743493736/2024-05-29_09-00-13_UTC_6_wpoqx0.jpg</code></dd>
+      <dt>08/03/2024 · khung 1</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494496/2024-03-08_04-05-24_UTC_1_voxv8i.jpg</code></dd>
+      <dt>08/03/2024 · khung 2</dt>
+      <dd>Cảnh cửa (lớp trước) — <code>dacbvhtgz/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg</code></dd>
+      <dt>08/03/2024 · khung 5</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494591/2024-03-08_04-05-24_UTC_5_uy7uax.jpg</code></dd>
+      <dt>05/03/2024 · khung 4</dt>
+      <dd>Nền mở đầu · Vòng xoay — <code>dacbvhtgz/v1743493746/2024-03-05_23-41-58_UTC_4_iu3bt6.jpg</code></dd>
+      <dt>05/03/2024 · khung 4</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743494503/2024-03-05_23-41-58_UTC_4_fkhy9m.jpg</code></dd>
+      <dt>19/02/2024 · khung 3</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494665/2024-02-19_09-00-04_UTC_3_e1zzoh.jpg</code></dd>
+      <dt>19/02/2024 · khung 4</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494640/2024-02-19_09-00-04_UTC_4_rl37ne.jpg</code></dd>
+      <dt>19/02/2024 · khung 6</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494516/2024-02-19_09-00-04_UTC_6_tkowsp.jpg</code></dd>
+      <dt>08/02/2024 · khung 6</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494603/2024-02-08_09-00-03_UTC_6_cnaqxe.jpg</code></dd>
+      <dt>17/01/2024 · khung 2</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743494508/2024-01-17_09-00-20_UTC_2_fmbktx.jpg</code></dd>
+      <dt>09/01/2024 · khung 6</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494677/2024-01-09_09-32-17_UTC_6_hlrjch.jpg</code></dd>
+      <dt>09/01/2024 · khung 10</dt>
+      <dd>Cảnh cửa (nền) — <code>dacbvhtgz/v1743494282/2024-01-09_09-32-17_UTC_10_qxyuux.jpg</code></dd>
+      <dt>22/12/2023 · khung 5</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743494500/2023-12-22_11-00-05_UTC_5_dzeefj.jpg</code></dd>
+      <dt>19/12/2023 · khung 3</dt>
+      <dd>Nền mở đầu · Vòng xoay — <code>dacbvhtgz/v1743493751/2023-12-19_09-00-03_UTC_3_behj19.jpg</code></dd>
+      <dt>19/12/2023 · khung 9</dt>
+      <dd>Vòng xoay — <code>dacbvhtgz/v1743494452/2023-12-19_09-00-03_UTC_9_lusnaf.jpg</code></dd>
+      <dt>09/12/2023 · khung 3</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493759/2023-12-09_12-03-05_UTC_3_cf8qfj.jpg</code></dd>
+      <dt>04/12/2023 · khung 9</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493758/2023-12-04_11-00-23_UTC_9_ludvvs.jpg</code></dd>
+      <dt>09/11/2023 · khung 2</dt>
+      <dd>Nền mở đầu — <code>dacbvhtgz/v1743493765/2023-11-09_09-00-23_UTC_2_bt10tj.jpg</code></dd>
+    </dl>
+
+    <p class="sc-note">
+      Ngày tháng lấy trực tiếp từ tên tệp gốc, vốn giữ nguyên dấu thời gian của bài đăng.
+      Tác giả từng bức ảnh chưa xác định được ở cấp độ từng tấm; nếu bạn nhận ra ảnh của mình,
+      xin liên hệ để tôi ghi nguồn đúng hoặc gỡ xuống.
+      Bản đầy đủ: <a data-link href="CREDITS.md">CREDITS.md</a>.
+    </p>
+  </section>
+</main>
+
+<!--
+  S7 · LIGHTBOX. A direct child of <body>, outside <main>, so the drawer's
+  inert-<main> trick and the dialog's own inert background never fight.
+  <dialog>.showModal() supplies the focus trap, Esc, the inert backdrop and
+  focus restoration in the platform — no JS to get wrong.
+-->
+<dialog class="sc-lightbox" data-lightbox aria-label="Ảnh phóng to">
+  <figure class="sc-lightbox__figure">
+    <img class="sc-lightbox__img" data-lightbox-img alt="" width="1440" height="1800" decoding="async">
+    <figcaption class="sc-lightbox__cap" data-lightbox-cap></figcaption>
+  </figure>
+
+  <button type="button" class="sc-lightbox__close" data-lightbox-close aria-label="Đóng ảnh phóng to">
+    <svg aria-hidden="true" focusable="false" width="20" height="20"><use href="../img/sprite.svg#close"></use></svg>
+  </button>
+
+  <button type="button" class="sc-lightbox__nav sc-lightbox__nav--prev" data-lightbox-prev aria-label="Ảnh trước">
+    <svg aria-hidden="true" focusable="false" width="20" height="20"><use href="../img/sprite.svg#arrow-left"></use></svg>
+  </button>
+
+  <button type="button" class="sc-lightbox__nav sc-lightbox__nav--next" data-lightbox-next aria-label="Ảnh kế tiếp">
+    <svg aria-hidden="true" focusable="false" width="20" height="20"><use href="../img/sprite.svg#arrow-right"></use></svg>
+  </button>
+</dialog>
+
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="../">Trang chủ</a></li>
+        <li><a href="../blog/myblog.html">Blog học tập</a></li>
+        <li><a href="wy.html">Bộ sưu tập</a></li>
+        <li><a href="../sitemap.xml">Sơ đồ trang</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Từng cảnh riêng">
+      <p><strong>Xem từng cảnh riêng</strong></p>
+      <ul role="list">
+        <li><a href="header.html">Cảnh mở đầu</a></li>
+        <li><a href="home.html">Thư viện</a></li>
+        <li><a href="lib.html">Vòng xoay</a></li>
+        <li><a href="Door.html">Cảnh cửa</a></li>
+      </ul>
+    </nav>
+    <p data-colophon>Static HTML · GitHub Pages · Việt Nam</p>
+  </div>
+  <p data-colophon>Trang người hâm mộ phi thương mại. Không có liên kết với Jang Wonyoung, IVE hay Starship Entertainment. Chủ sở hữu quyền muốn gỡ nội dung xin <a href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">mở một issue trên GitHub</a> — xử lý trong 48 giờ. Xem <a href="CREDITS.md">CREDITS.md</a>.</p>
+</footer>
+
+<!-- GSAP as CLASSIC scripts, deliberately. These are UMD bundles: an ES
+     `import` of one throws "Cannot set property window of #<Window> which has
+     only a getter" and takes js/surface-c.js down with it. A classic,
+     non-async script always runs before a deferred module script, so
+     window.gsap and window.ScrollTrigger are set before surface-c.js starts.
+     surface-c.js only reads the globals; it imports nothing from vendor/. -->
+<script src="../vendor/gsap/gsap.min.js"></script>
+<script src="../vendor/gsap/ScrollTrigger.min.js"></script>
+<script type="module" src="../js/surface-c.js"></script>
+
 </body>
-
 </html>

@@ -1,165 +1,639 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Thep</title>
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="myblog/myblog.css">
-    <link rel="stylesheet" href="seeding.css">
-    <style>
-        @media screen and (max-width: 768px) {
-            .menu {
-                margin-bottom: 25px;
-            }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            .author {
-                margin: 0 !important;
-                text-align: center !important;
-            }
+  <title>Study Blog — Tài liệu học tập miễn phí | Min Thep</title>
+  <meta name="description" content="Tám trang tài liệu học tập miễn phí, khoảng 61.000 từ tiếng Việt: tiếng Nhật JPD113/JPD123 kèm ngân hàng đề nói, Xác suất Thống kê MAS291, Kỹ nghệ phần mềm SWE201c, tiếng Hàn nhập môn. Biên soạn bởi Min Thep.">
+  <meta name="author" content="Mai Tấn Thép">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#040C18">
 
-            p {
-                text-align: justify;
-            }
+  <link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">
 
-            .list-group-item a {
-                word-break: break-word;
-                overflow-wrap: break-word;
-            }
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Min Thep">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/blog/myblog.html">
+  <meta property="og:title" content="Study Blog — Tài liệu học tập miễn phí | Min Thep">
+  <meta property="og:description" content="Tám trang tài liệu học tập miễn phí, khoảng 61.000 từ tiếng Việt: tiếng Nhật JPD113/JPD123 kèm ngân hàng đề nói, Xác suất Thống kê MAS291, Kỹ nghệ phần mềm SWE201c, tiếng Hàn nhập môn.">
+  <meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/blog/Speaking/jpd.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="628">
+  <meta property="og:image:alt" content="Study Blog của Min Thep">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Study Blog — Tài liệu học tập miễn phí | Min Thep">
+  <meta name="twitter:description" content="Tám trang tài liệu học tập miễn phí: tiếng Nhật JPD113/JPD123 kèm ngân hàng đề nói, Xác suất Thống kê MAS291, Kỹ nghệ phần mềm SWE201c, tiếng Hàn nhập môn.">
+  <meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/blog/Speaking/jpd.jpg">
 
-            #header form {
-                width: 100%;
-                justify-content: center;
-                text-align: center;
-            }
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../img/favicon-32.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../img/logo.png">
 
-            #search-check {
-                display: none !important;
-            }
+  <link rel="preload" href="../fonts/bvp-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/bvp-700-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
 
-            li {
-                font-size: 14px !important;
-            }
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/surface-b.css">
 
-            #header,
-            .menu {
-                height: auto !important;
-            }
-        }
-    </style>
+  <!-- Pre-paint: swap .no-js -> .js and restore the reading mode before the
+       first paint, so a paper-mode reader never sees a dark flash.
+       Copied verbatim from the header comment of js/surface-b.js. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      d.classList.add('js');
+      try {
+        var m = localStorage.getItem('minthep:reading');
+        if (m === 'paper' || m === 'dark') d.setAttribute('data-reading', m);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Page-local hub styles. Every value is a var() from tokens.css /
+       components.css / surface-b.css, or a calc() of them. surface-b.css has
+       no index/hub component, so the ruled 8-row table lives here. -->
+  <style>
+    .hub {
+      inline-size: 100%;
+      max-inline-size: var(--w-shell);
+      margin-inline: auto;
+      padding-inline: var(--space-gutter);
+      padding-block: var(--space-section-sm) var(--space-section);
+    }
+    /* The header is fixed only when JS runs (components.css §4). */
+    .js .hub { padding-block-start: calc(var(--nav-h) + var(--space-section-sm)); }
+
+    .hub__head { max-inline-size: var(--w-read-max); }
+
+    .hub__head h1 {
+      margin-block: var(--s-3) var(--s-0);
+      font-family: var(--font-body);
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      color: var(--b-display);
+      text-wrap: balance;
+    }
+
+    .hub__head .b-lead { margin-block-start: var(--s-4); }
+    /* The "where to start" paragraph under the lead — body font, not serif. */
+    .hub__start {
+      margin-block: var(--s-5) var(--s-0);
+      max-inline-size: var(--w-read);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+      color: var(--b-muted);
+    }
+    .hub__head .b-meta { margin-block-start: var(--s-5); }
+    .hub__toolbar { margin-block-start: var(--s-6); }
+
+    /* --- the ruled index: 72px numeral / 1fr title+dek / 160px subject code --- */
+    .hub__index {
+      list-style: none;
+      margin-block: var(--s-9) var(--s-0);
+      margin-inline: var(--s-0);
+      padding: var(--s-0);
+      border-block-start: var(--bw-rule) solid var(--b-rule-color);
+    }
+
+    .hub__row { border-block-end: var(--bw-hair) solid var(--b-rule-color); }
+    .hub__row:last-child { border-block-end: var(--bw-rule) solid var(--b-rule-color); }
+
+    .hub__link {
+      display: grid;
+      grid-template-columns:
+        calc(var(--s-9) + var(--s-2))   /* 64 + 8 = 72px — Anton numeral    */
+        minmax(0, 1fr)                  /*          title + dek             */
+        var(--s-13);                    /*          160px — subject code    */
+      column-gap: var(--s-5);
+      align-items: start;
+      padding-block: var(--s-5);
+      padding-inline: var(--s-3);
+      color: inherit;
+      text-decoration: none;
+      transition:
+        background-color var(--dur-2) var(--ease-standard),
+        color var(--dur-2) var(--ease-standard);
+    }
+
+    .hub__link:hover,
+    .hub__link:focus-visible { background-color: var(--b-well); }
+
+    .hub__num {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 400;
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-display);
+      font-variant-numeric: tabular-nums;
+      color: var(--b-fill);
+    }
+
+    .hub__title {
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--fs-title);
+      font-weight: 600;
+      line-height: var(--lh-snug);
+      letter-spacing: var(--ls-tight);
+      color: var(--b-heading);
+      text-wrap: balance;
+    }
+
+    .hub__link:hover .hub__title,
+    .hub__link:focus-visible .hub__title { color: var(--b-link-hover); }
+
+    .hub__dek {
+      display: block;
+      margin-block-start: var(--s-2);
+      max-inline-size: var(--w-read);
+      font-family: var(--font-serif);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+      color: var(--b-body);
+    }
+
+    .hub__stat {
+      display: block;
+      margin-block-start: var(--s-2);
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      font-variant-numeric: tabular-nums;
+      color: var(--b-muted);
+    }
+
+    .hub__code {
+      font-family: var(--font-mono);
+      font-size: var(--fs-caption);
+      letter-spacing: var(--ls-label);
+      text-transform: uppercase;
+      text-align: end;
+      overflow-wrap: anywhere;
+      color: var(--b-muted);
+    }
+
+    /* ≤720px: the code drops under the title and the numeral narrows. */
+    @media (max-width: 720px) {
+      .hub__link {
+        grid-template-columns: var(--s-7) minmax(0, 1fr);
+        column-gap: var(--s-4);
+        row-gap: var(--s-2);
+      }
+      .hub__num { font-size: var(--fs-body-lg); }
+      .hub__code { grid-column: 2; text-align: start; }
+    }
+
+    /* --- author + licence notes ------------------------------------------- */
+    .hub__notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--w-narrow)), 1fr));
+      gap: var(--s-5);
+      margin-block-start: var(--s-9);
+    }
+    .hub__notes .b-note__title { margin-block: var(--s-0); }
+
+    /* --- cursor-following thumbnail plate ---------------------------------
+         Desktop (≥1024px) + fine pointer + motion allowed only. The plate is
+         position:fixed at the viewport origin, so clientX/clientY ARE its own
+         coordinate space: the pointer handler never measures anything and the
+         rAF loop only writes a transform. No layout is read at any point. */
+    .hub__plate {
+      position: fixed;
+      inset-block-start: var(--s-0);
+      inset-inline-start: var(--s-0);
+      z-index: var(--z-sticky);
+      inline-size: calc(var(--s-13) + var(--s-7));               /* 160 + 40      = 200px */
+      block-size: calc(var(--s-14) + var(--s-8) + var(--s-1));   /* 208 + 48 + 4  = 260px */
+      display: none;
+      overflow: hidden;
+      border: var(--bw-hair) solid var(--border-strong);
+      border-radius: var(--r-sm);
+      background-color: var(--b-well-2);
+      box-shadow: var(--shadow-over);
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition: opacity var(--dur-2) var(--ease-standard);
+    }
+    .hub__plate img {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+    .hub__plate.is-on { opacity: 1; }
+
+    @media (min-width: 1024px) and (pointer: fine) {
+      .js .hub__plate { display: block; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js .hub__plate { display: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://thepkz.github.io/minthep-portfolio/blog/myblog.html",
+    "name": "Study Blog — Min Thep",
+    "description": "Tài liệu học tập miễn phí: tiếng Nhật JPD113/JPD123 kèm ngân hàng đề nói, Xác suất Thống kê MAS291, Kỹ nghệ phần mềm SWE201c, tiếng Hàn nhập môn.",
+    "inLanguage": "vi",
+    "url": "https://thepkz.github.io/minthep-portfolio/blog/myblog.html",
+    "author": {
+      "@type": "Person",
+      "name": "Mai Tấn Thép",
+      "alternateName": "thepKz",
+      "url": "https://thepkz.github.io/minthep-portfolio/"
+    },
+    "blogPost": [
+      { "@type": "BlogPosting", "headline": "Học tiếng Nhật từ đầu: Hiragana, Katakana và Kanji", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-0.html", "wordCount": 3003 },
+      { "@type": "BlogPosting", "headline": "JPD113: Trọn bộ ngữ pháp và số đếm tiếng Nhật sơ cấp", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-1.html", "wordCount": 6082 },
+      { "@type": "BlogPosting", "headline": "JPD123: Tính từ い/な, thể て và so sánh trong tiếng Nhật", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-2.html", "wordCount": 7668 },
+      { "@type": "BlogPosting", "headline": "Luyện thi nói tiếng Nhật JPD113 & JPD123: Reading, Talking và Tips", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/Speaking.html", "wordCount": 4884 },
+      { "@type": "BlogPosting", "headline": "MAS291: Trọn bộ Xác suất Thống kê chương 1–11", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-3.html", "wordCount": 19068 },
+      { "@type": "BlogPosting", "headline": "SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-5.html", "wordCount": 15374 },
+      { "@type": "BlogPosting", "headline": "Tiếng Hàn cơ bản: Bảng chữ Hangul, cấu trúc âm tiết và Patchim", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-6.html", "wordCount": 3978 },
+      { "@type": "BlogPosting", "headline": "Bài tập dựng giao diện: Monito Pet Shop", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/test.html", "wordCount": 933 },
+      { "@type": "BlogPosting", "headline": "Bảng giá kèm 1-1 và tài liệu ôn thi: CSD201, PRJ301, MAS291, WED201C, DBI202", "inLanguage": "vi", "url": "https://thepkz.github.io/minthep-portfolio/blog/textblog-4.html", "wordCount": 1531 }
+    ]
+  }
+  </script>
 </head>
 
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#home">Min Thep</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+  <header class="site-header" data-nav>
+    <div data-nav-bar>
+      <a class="wordmark" href="../index.html">MINTHEP</a>
+      <nav aria-label="Điều hướng chính">
+        <ul role="list">
+          <li><a data-nav-link href="../index.html">Trang chủ</a></li>
+          <li><a data-nav-link href="myblog.html" aria-current="page">Study Blog</a></li>
+          <li><a data-nav-link href="textblog-4.html">Bảng giá</a></li>
+          <li><a data-nav-link href="../wy/wy.html">WonYoung</a></li>
+        </ul>
+      </nav>
+      <button type="button" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="Mở menu">
+        <svg data-icon="menu" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#menu"></use></svg>
+        <svg data-icon="close" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#close"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="site-drawer" data-drawer tabindex="-1">
+    <nav aria-label="Điều hướng di động">
+      <ul role="list">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="myblog.html" aria-current="page">Study Blog</a></li>
+        <li><a href="textblog-4.html">Bảng giá</a></li>
+        <li><a href="../wy/wy.html">WonYoung</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="main" class="hub">
+    <header class="hub__head">
+      <p data-eyebrow>Study Blog</p>
+      <h1>Tài liệu học tập miễn phí</h1>
+      <p class="b-lead">
+        Sáu bài viết dài, một ngân hàng đề nói tra được ngay trên trang và một bài tập
+        dựng giao diện — tất cả bằng tiếng Việt, dành cho sinh viên Đại học FPT và bất kỳ
+        ai đang tự học. Không quảng cáo, không tường phí, không cần đăng nhập, không
+        theo dõi người đọc.
+      </p>
+      <p class="hub__start">
+        Nếu bạn học tiếng Nhật thì đọc theo thứ tự 01 → 04: bảng chữ trước, rồi JPD113,
+        JPD123, rồi luyện nói. Ba mục còn lại (05 MAS291, 06 SWE201c, 07 tiếng Hàn) độc
+        lập với nhau, vào thẳng mục nào cũng được. Mục 08 là bài tập front-end, không
+        liên quan tới môn nào.
+      </p>
+      <dl class="b-meta">
+        <dt>Trang miễn phí</dt><dd>8</dd>
+        <dt>Tổng độ dài</dt><dd>khoảng 61.000 từ · hơn 5 tiếng đọc</dd>
+        <dt>Ngôn ngữ</dt><dd>Tiếng Việt</dd>
+        <dt>Cập nhật</dt><dd><time datetime="2026-07-26">26/07/2026</time></dd>
+      </dl>
+      <p class="hub__toolbar">
+        <button type="button" class="b-modetoggle js-only" data-reading-toggle aria-pressed="false">
+          <svg data-icon="sun" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#sun"></use></svg>
+          <span class="b-modetoggle__on">Chế độ giấy</span>
+          <span class="b-modetoggle__off">Chế độ tối</span>
+        </button>
+      </p>
     </header>
-    <div style="height: 50px;">
+
+    <div data-plate-scope>
+      <h2 class="visually-hidden" id="danh-sach-bai-viet">Danh sách tài liệu miễn phí</h2>
+
+      <ol class="hub__index" role="list" aria-labelledby="danh-sach-bai-viet">
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-0.html"
+             data-cover-avif="myblog/welcome.avif" data-cover-webp="myblog/welcome.webp"
+             data-cover-src="myblog/welcome.png" data-cover-w="640" data-cover-h="640">
+            <span class="hub__num" aria-hidden="true">01</span>
+            <span class="hub__main">
+              <span class="hub__title">Học tiếng Nhật từ đầu: Hiragana, Katakana và Kanji</span>
+              <span class="hub__dek">Bài mở đầu của cả series — ba bảng chữ, thứ tự nên học, cách nhớ mặt chữ, và ba lỗi phát âm người Việt gần như ai cũng mắc.</span>
+              <span class="hub__stat">3.000 từ · 15 phút đọc</span>
+            </span>
+            <span class="hub__code">Nhập môn</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-1.html"
+             data-cover-avif="myblog/jpd113.avif" data-cover-webp="myblog/jpd113.webp"
+             data-cover-src="myblog/jpd113.png" data-cover-w="640" data-cover-h="640">
+            <span class="hub__num" aria-hidden="true">02</span>
+            <span class="hub__main">
+              <span class="hub__title">JPD113: Trọn bộ ngữ pháp và số đếm tiếng Nhật sơ cấp</span>
+              <span class="hub__dek">Bài 1–3 sách Dekiru Nihongo, kèm tám hệ số đếm tách riêng thành bảng: tháng, ngày, thứ, giờ, phút, tuổi, tầng và số đơn vị.</span>
+              <span class="hub__stat">6.100 từ · 30 phút đọc</span>
+            </span>
+            <span class="hub__code">JPD113</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-2.html"
+             data-cover-avif="myblog/jpd123.avif" data-cover-webp="myblog/jpd123.webp"
+             data-cover-src="myblog/jpd123.png" data-cover-w="640" data-cover-h="640">
+            <span class="hub__num" aria-hidden="true">03</span>
+            <span class="hub__main">
+              <span class="hub__title">JPD123: Tính từ い/な, thể て và so sánh trong tiếng Nhật</span>
+              <span class="hub__dek">Bài 4–7: chia tính từ, mẫu câu mong muốn và mục đích, ba kiểu so sánh, rồi cách chia thể て theo nhóm động từ. Cuối bài có phần kanji và từ vựng.</span>
+              <span class="hub__stat">7.700 từ · 38 phút đọc</span>
+            </span>
+            <span class="hub__code">JPD123</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="Speaking.html"
+             data-cover-avif="Speaking/jpd.avif" data-cover-webp="Speaking/jpd.webp"
+             data-cover-src="Speaking/jpd.png" data-cover-w="640" data-cover-h="640">
+            <span class="hub__num" aria-hidden="true">04</span>
+            <span class="hub__main">
+              <span class="hub__title">Luyện thi nói tiếng Nhật JPD113 &amp; JPD123: Reading, Talking và Tips</span>
+              <span class="hub__dek">Ngân hàng đề nói tra ngay trên trang, có romaji và bản dịch cho từng câu: 48 bài đọc, 85 câu hội thoại không tranh và 68 bộ tranh (162 câu). 23 bài đọc có bản thu thật, phần còn lại đọc bằng giọng máy.</span>
+              <span class="hub__stat">Công cụ tra cứu · 162 câu hỏi có tranh</span>
+            </span>
+            <span class="hub__code">JPD113 / JPD123</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-3.html"
+             data-cover-avif="textblog-3/mas291.avif" data-cover-webp="textblog-3/mas291.webp"
+             data-cover-src="textblog-3/mas291.png" data-cover-w="640" data-cover-h="640">
+            <span class="hub__num" aria-hidden="true">05</span>
+            <span class="hub__main">
+              <span class="hub__title">MAS291: Trọn bộ Xác suất Thống kê chương 1–11</span>
+              <span class="hub__dek">Bài dài nhất của blog. Toàn bộ chương trình theo ba đợt kiểm tra PT1, PT2, PT3, kèm công thức và ví dụ giải từng bước. Cuối bài có 9 câu tự kiểm tra, mỗi câu kèm đáp án và lời giải.</span>
+              <span class="hub__stat">19.100 từ · 95 phút đọc</span>
+            </span>
+            <span class="hub__code">MAS291</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-5.html"
+             data-cover-avif="textblog-5/swe201c.avif" data-cover-webp="textblog-5/swe201c.webp"
+             data-cover-src="textblog-5/swe201c.png" data-cover-w="722" data-cover-h="726">
+            <span class="hub__num" aria-hidden="true">06</span>
+            <span class="hub__main">
+              <span class="hub__title">SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE</span>
+              <span class="hub__dek">Waterfall, V-Model, Spiral, Agile và những mô hình còn lại — so sánh từng cặp, kèm hướng dẫn trình bày bài thi thực hành và cuối kỳ.</span>
+              <span class="hub__stat">15.400 từ · 77 phút đọc</span>
+            </span>
+            <span class="hub__code">SWE201c</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-6.html"
+             data-cover-avif="myblog/meo.avif" data-cover-webp="myblog/meo.webp"
+             data-cover-src="myblog/meo.png" data-cover-w="623" data-cover-h="568">
+            <span class="hub__num" aria-hidden="true">07</span>
+            <span class="hub__main">
+              <span class="hub__title">Tiếng Hàn cơ bản: Bảng chữ Hangul, cấu trúc âm tiết và Patchim</span>
+              <span class="hub__dek">Bảng chữ Hangul, cách ghép âm tiết, quy tắc Patchim và lý do cùng một chữ đôi khi đọc khác đi. Có phần bài tập ở cuối. Đây là bài nhập môn tự học, không phải giáo trình một môn ở trường.</span>
+              <span class="hub__stat">4.000 từ · 20 phút đọc</span>
+            </span>
+            <span class="hub__code">Tiếng Hàn</span>
+          </a>
+        </li>
+
+        <li class="hub__row">
+          <a class="hub__link" href="test.html">
+            <span class="hub__num" aria-hidden="true">08</span>
+            <span class="hub__main">
+              <span class="hub__title">Bài tập dựng giao diện: Monito Pet Shop</span>
+              <span class="hub__dek">Dựng lại trang danh mục của một mẫu thiết kế bằng HTML và CSS thuần, không framework, kèm ghi chú kỹ thuật về những chỗ khó. Bài tập luyện tay, không phải cửa hàng thật.</span>
+              <span class="hub__stat">930 từ · 5 phút đọc</span>
+            </span>
+            <span class="hub__code">Front-end</span>
+          </a>
+        </li>
+      </ol>
+
+      <p data-eyebrow>Mục trả phí</p>
+      <h2 class="visually-hidden" id="muc-tra-phi">Mục trả phí</h2>
+
+      <ul class="hub__index" role="list" aria-labelledby="muc-tra-phi">
+        <li class="hub__row">
+          <a class="hub__link" href="textblog-4.html"
+             data-cover-avif="textblog-4/tuban.avif" data-cover-webp="textblog-4/tuban.webp"
+             data-cover-src="textblog-4/tuban.png" data-cover-w="360" data-cover-h="301">
+            <span class="hub__num" aria-hidden="true">09</span>
+            <span class="hub__main">
+              <span class="hub__title">Bảng giá kèm 1-1 và tài liệu ôn thi: CSD201, PRJ301, MAS291, WED201C, DBI202</span>
+              <span class="hub__dek">Trang này không miễn phí và không thuộc tám mục trên: đây là bảng giá các buổi kèm riêng và bộ tài liệu ôn thi mình tự soạn. Riêng lý thuyết MAS291 thì mục 05 đã có đầy đủ, đọc trước rồi hãy quyết định.</span>
+              <span class="hub__stat">1.530 từ · 8 phút đọc</span>
+            </span>
+            <span class="hub__code">Trả phí</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="container">
-        <div class="anime-svg box-top">
-            <svg>
-                <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                    Study Blog
-                </text>
-            </svg>
-            <p class="text-muted author" style="text-align:right; margin-right: 200px;">Author: Min Thep</p>
-        </div>
-        <div class="card-3">
-            <div class="wrapper">
-                <div class="card">
-                    <img src="myblog/welcome.png">
-                    <div class="info">
-                        <h2>Welcome to Japanese</h2>
-                        <p>Hướng dẫn học tiếng Nhật cho những bạn học JPD113 và những bạn muốn học tiếng Nhật.</p>
-                        <button onclick="window.open('textblog-0.html', '_self')">Read More</button>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <img src="myblog/jpd113.png">
-                    <div class="info">
-                        <h1>JPD113</h1>
-                        <p>Dành cho những bạn đang học môn JPD113, và đây là bước mở đầu để học tiếng Nhật.</p>
-                        <button onclick="window.open('textblog-1.html', '_self')">Read More</button>
-                    </div>
-                </div>
+    <aside class="hub__notes" aria-label="Thông tin thêm">
+      <div class="b-note">
+        <h2 class="b-note__title">Tác giả</h2>
+        <p>
+          Mai Tấn Thép (thepKz) — kỹ sư phần mềm full-stack, sinh viên Kỹ thuật phần mềm
+          Đại học FPT. Toàn bộ tài liệu ở đây được biên soạn lại từ ghi chép cá nhân
+          trong quá trình học và đi dạy kèm, nên có thể còn sai sót. Nếu bạn thấy chỗ nào
+          sai, mở một issue trên
+          <a href="https://github.com/thepKz/minthep-portfolio/issues" rel="noopener noreferrer" target="_blank">GitHub</a>
+          giúp mình.
+        </p>
+        <p><a href="../index.html">Xem hồ sơ và dự án</a></p>
+      </div>
 
-                <div class="card">
-                    <img src="myblog/jpd123.png">
-                    <div class="info">
-                        <h1>JPD123</h1>
-                        <p>Dành cho những bạn đang học môn JPD123, đây là phần tiếp theo của môn JPD113. Từ vựng và ngữ
-                            pháp khá nhiều nên lưu ý!</p>
-                        <button onclick="window.open('textblog-2.html', '_self')">Read More</button>
-                    </div>
-                </div>
+      <div class="b-note">
+        <h2 class="b-note__title">Giấy phép sử dụng</h2>
+        <p>
+          Tám mục đầu miễn phí: đọc, tải, in ra và gửi cho bạn bè thoải mái, chỉ cần
+          ghi nguồn. Cái mình không muốn là ai đó lấy nguyên văn rồi bán lại hoặc đóng
+          gói thành khóa học thu tiền mà không hỏi — nếu bạn muốn dùng trong lớp có thu
+          phí, nhắn cho mình một tiếng.
+        </p>
+        <p>
+          Nội dung nào bạn cho là vi phạm bản quyền của bạn thì mở issue ở
+          <a href="https://github.com/thepKz/minthep-portfolio/issues" rel="noopener noreferrer" target="_blank">kho mã nguồn</a>,
+          mình gỡ.
+        </p>
+      </div>
+    </aside>
 
-                <div class="card">
-                    <img src="textblog-3/mas291.png">
-                    <div class="info">
-                        <h2>Welcome to Mas291</h2>
-                        <p>Hướng dẫn học Xác Suất Thống Kê cho người đam mê 10 điểm.</p>
-                        <button onclick="window.open('textblog-3.html', '_self')">Read More </button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="Speaking/jpd.png">
-                    <div class="info">
-                        <h2>Speaking JAPANESE 113 123</h2>
-                        <p>Hướng dẫn học môn Speaking JAPANESE 113 123 cho những bạn sắp khóc vì môn nhật.</p>
-                        <button onclick="window.open('Speaking.html', '_self')">Let's Learnn
-                        </button>
-                    </div>
-                </div>
+    <div class="hub__plate" data-plate aria-hidden="true"></div>
+  </main>
 
-
-                <div class="card">
-                    <img src="textblog-5/swe201c.png">
-                    <div class="info">
-                        <h2>Welcome to SWE201c</h2>
-                        <p>Hướng dẫn học môn SWE201c cho những bạn đang học môn này.</p>
-                        <button onclick="window.open('textblog-5.html', '_self')">Read More </button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="textblog-4/tuban.png">
-                    <div class="info">
-                        <h2>Gói Tư Bản</h2>
-                        <p>Đây là những gói trả phí ở trang mình nếu bạn muốn mua thì tham khảo.</p>
-                        <button onclick="window.open('textblog-4.html', '_self')">Những Gói Cao Cấp</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <footer data-footer>
+    <p data-footer-mark aria-hidden="true">MINTHEP</p>
+    <div data-footer-grid>
+      <nav aria-label="Liên kết chân trang">
+        <ul role="list">
+          <li><a href="../index.html">Trang chủ</a></li>
+          <li><a href="myblog.html">Study Blog</a></li>
+          <li><a href="textblog-4.html">Bảng giá</a></li>
+          <li><a href="../wy/wy.html">WonYoung</a></li>
+        </ul>
+      </nav>
+      <ul data-social role="list">
+        <li>
+          <a href="https://github.com/thepKz" rel="noopener noreferrer" target="_blank" aria-label="GitHub">
+            <svg data-icon="github" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#github"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/thepp.tan" rel="noopener noreferrer" target="_blank" aria-label="Facebook">
+            <svg data-icon="facebook" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#facebook"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@minthep2611" rel="noopener noreferrer" target="_blank" aria-label="YouTube">
+            <svg data-icon="youtube" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#youtube"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/thepmaitan26/" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn">
+            <svg data-icon="linkedin" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#linkedin"></use></svg>
+          </a>
+        </li>
+      </ul>
+      <p data-colophon>Static HTML · GitHub Pages · Hà Nội</p>
     </div>
+  </footer>
 
+  <script type="module" src="../js/surface-b.js"></script>
 
+  <!-- Cursor-following thumbnail plate. Desktop ≥1024px, fine pointer, motion
+       allowed. core.js is already in the module cache (surface-b.js imported
+       it) so this is a free re-import and boot() is NOT called a second time.
+       Cover images are created on first hover, so a phone, a coarse pointer or
+       a no-JS visitor downloads zero cover bytes. -->
+  <script type="module">
+    import { REDUCED, FINE_POINTER } from '../js/core.js';
 
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-    </script>
+    const plate = document.querySelector('[data-plate]');
+    const scope = document.querySelector('[data-plate-scope]');
+
+    if (plate && scope && !REDUCED && FINE_POINTER &&
+        window.matchMedia('(min-width: 1024px)').matches) {
+
+      /* Cached viewport box — refreshed on resize only, never inside the
+         pointer handler. The plate is position:fixed at the viewport origin,
+         so clientX/clientY are already its coordinate space and nothing is
+         ever read back from layout. */
+      let vw = window.innerWidth;
+      let vh = window.innerHeight;
+
+      const PW = 200;   /* plate inline size, mirrors .hub__plate */
+      const PH = 260;   /* plate block size                       */
+      const PAD = 24;   /* keep-out margin from the viewport edge */
+
+      let tx = 0, ty = 0;   /* target   */
+      let cx = 0, cy = 0;   /* rendered */
+      let raf = 0, on = false, primed = false;
+
+      const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
+      function frame() {
+        cx += (tx - cx) * 0.16;
+        cy += (ty - cy) * 0.16;
+        plate.style.transform =
+          'translate3d(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px,0)' +
+          ' translate(-50%,-50%) rotate(-3deg)';
+        raf = (on && (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4))
+          ? requestAnimationFrame(frame)
+          : 0;
+      }
+
+      function pump() { if (!raf && on) raf = requestAnimationFrame(frame); }
+
+      function hide() {
+        on = false;
+        plate.classList.remove('is-on');
+      }
+
+      function showFor(link) {
+        const avif = link.getAttribute('data-cover-avif');
+        if (!avif) { hide(); return; }
+
+        if (plate.dataset.key !== avif) {
+          plate.dataset.key = avif;
+          const pic = document.createElement('picture');
+          const sA = document.createElement('source');
+          sA.srcset = avif;
+          sA.type = 'image/avif';
+          const sW = document.createElement('source');
+          sW.srcset = link.getAttribute('data-cover-webp');
+          sW.type = 'image/webp';
+          const img = document.createElement('img');
+          img.src = link.getAttribute('data-cover-src');
+          img.width = Number(link.getAttribute('data-cover-w'));
+          img.height = Number(link.getAttribute('data-cover-h'));
+          img.alt = '';
+          img.decoding = 'async';
+          img.loading = 'lazy';
+          pic.append(sA, sW, img);
+          plate.replaceChildren(pic);
+        }
+
+        on = true;
+        plate.classList.add('is-on');
+        pump();
+      }
+
+      scope.addEventListener('pointerover', (e) => {
+        const link = e.target.closest('.hub__link');
+        if (link) showFor(link); else hide();
+      }, { passive: true });
+
+      scope.addEventListener('pointerleave', hide, { passive: true });
+
+      scope.addEventListener('pointermove', (e) => {
+        tx = clamp(e.clientX + PAD * 3, PW / 2 + PAD, vw - PW / 2 - PAD);
+        ty = clamp(e.clientY, PH / 2 + PAD, vh - PH / 2 - PAD);
+        if (!primed) { primed = true; cx = tx; cy = ty; }
+        pump();
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        vw = window.innerWidth;
+        vh = window.innerHeight;
+      }, { passive: true });
+    }
+  </script>
 </body>
-
-
 </html>

@@ -1,0 +1,722 @@
+/* ============================================================================
+   tokens.css — MINTHEP design system, public API
+   ----------------------------------------------------------------------------
+   Custom properties ONLY. The only selectors permitted in this file are
+   :root, [data-theme="light"] and [data-reading="paper"]. Zero component
+   rules, zero layout.
+
+   Load order (fixed, all 17 pages):
+     tokens.css -> base.css -> components.css -> surface-{a|b|c}.css
+
+   No surface file may declare a colour, size, radius, duration or z-index
+   literal. Everything below is the vocabulary those files consume.
+
+   Contrast figures in the comments are WCAG 2.1 relative-luminance ratios,
+   measured, not estimated. AA body text >= 4.5:1 · AA large >= 3:1 · UI >= 3:1.
+   ========================================================================== */
+
+:root {
+
+  /* ==========================================================================
+     1. NEUTRAL — midnight ink-blue off-black (hue ~248-255)
+     --------------------------------------------------------------------------
+     2026 relaunch: the ramp was a warm rose-black (hue 17.5). It is now a deep
+     Prussian / midnight navy. The LIGHTNESS of every step is byte-identical to
+     the ramp it replaces — only hue and chroma moved — so every elevation step,
+     every tonal relationship and every "is this darker than that" assumption in
+     the surface files still holds. The contrast numbers below are re-measured,
+     not carried over: blue carries less luminance than rose at equal OKLCH L,
+     so every pair came out MORE contrasty, never less.
+
+     This is deliberately NOT the indigo-SaaS blue. Chroma tops out at 0.041 and
+     hue sits at 248-255 (navy leaning cyan), which reads as ink with a
+     temperature, not as a glow. The luminous accent stays the rose family:
+     warm-on-cold is the whole point, and it is the one saturated thing on the
+     page.
+
+     HARD RULE: --ink-400 is a BORDER colour and is never text
+                (4.02 / 3.86 / 3.61 on ink-900/850/800 — passes 1.4.11, fails text).
+     HARD RULE: --ink-350 is the muted-text FLOOR (>= 5.36:1 on every surface).
+                Raised L66.4 -> L68.1 after measuring the live page: 104 strings
+                at 12-15px sat between APCA Lc -42.8 and -44.3, under the 45
+                floor, which is the "disappearance" half of the colour critic's
+                complaint. WCAG never saw it — every one of those already passed
+                AA at 5.7-6.7:1. It now clears |Lc| 45 on all eight grounds that
+                actually carry muted text; the two "raised +1" steps
+                (--night-850, --oxblood-850) sit at 44.0 and carry none.
+     ========================================================================== */
+  --ink-1000: #020811;  /* oklch(13.1% 0.025 249)  Surface C stage only         */
+  --ink-950:  #040C18;  /* oklch(15.3% 0.030 255)  page background A / B        */
+  --ink-900:  #06111F;  /* oklch(17.5% 0.034 254)  surface                      */
+  --ink-850:  #091626;  /* oklch(19.8% 0.037 254)  raised surface               */
+  --ink-800:  #0E1D2E;  /* oklch(22.7% 0.039 253)  raised +1 / inputs           */
+  --ink-750:  #152536;  /* oklch(25.9% 0.039 251)  highest surface              */
+  --ink-700:  #1E2F42;  /* oklch(30.0% 0.041 252)  hairline, decorative         */
+  --ink-600:  #2F4053;  /* oklch(36.5% 0.040 252)  hairline, emphasised         */
+  --ink-500:  #455668;  /* oklch(44.6% 0.036 250)  disabled fill                */
+  --ink-400:  #667586;  /* oklch(55.6% 0.032 252)  INTERACTIVE BORDER — not text */
+  --ink-350:  #8A9BA9;  /* oklch(68.1% 0.028 243)  muted text FLOOR  >=5.36:1   */
+  --ink-300:  #9DA8B3;  /* oklch(72.6% 0.020 248)  secondary text   >=6.43:1    */
+  --ink-200:  #C1C9D0;  /* oklch(83.2% 0.013 244)  body text (B)    >=9.29:1    */
+  --ink-150:  #D5DBE0;  /* oklch(88.8% 0.009 243)  body text (A)    >=11.14:1   */
+  --ink-100:  #E5E9ED;  /* oklch(93.2% 0.007 248)  headings                     */
+  --ink-50:   #F2F4F7;  /* oklch(96.6% 0.005 258)  display / max   >=14.12:1    */
+
+  /* ==========================================================================
+     1b. GROUND — the ramp the SECTION BACKGROUNDS use. Additive: nothing above
+         moved, every --ink name still resolves for every current consumer.
+     --------------------------------------------------------------------------
+     WHY A SECOND RAMP EXISTS. The --ink ramp above is tuned for TEXT, where
+     neighbouring steps should be close. Used as grounds its steps are far too
+     small to see: --ink-950 -> --ink-900 measures 1.034:1, which is 2.27pp of
+     OKLCH lightness, and the six surface steps together span 12.79pp at a
+     2.56pp mean — all under the ~4pp needed for a confident read across a large
+     area. The consequence was measured, not guessed: over 19 full-page captures
+     at 1440x900, 83.90% of rendered pixels fell inside a single 6pp lightness
+     band, three integer lightness values alone held 82.16%, and four separate
+     viewports returned a p95-p5 lightness spread of exactly 0 — a whole screen
+     with no tonal event anywhere on it. That is the mechanical cause of the
+     owner's complaint that the site is "chán": not a wrong colour, a missing
+     difference. These steps are ~5pp, roughly double, so plate, band and ledger
+     finally read as different grounds instead of the same navy.
+
+     TWO RAMPS AT THE SAME LIGHTNESSES, ONE COLD AND ONE WARM. tokens.css has
+     said since the relaunch that "warm-on-cold is the whole point"; measurement
+     showed it was being under-used by about 30x, with the accent painting 0.128%
+     of the document and 85.1% of pixels inside hue 240-260. --oxblood-* is the
+     answer: identical lightness to its --night-* partner, opposite temperature.
+     A ground that changes hue WITHOUT changing lightness reads as deliberate art
+     direction; one that changes lightness too reads as a box. Hue 20 puts it in
+     the brand's own family (--accent-500 is hue 18.3), so the warm sections are
+     a 20%-lightness whisper of the brand rather than a third unrelated colour.
+
+     HARD RULE: --night-800 is a BORDER/hairline ground and never carries muted
+                text. --ink-350, the documented text floor, measures 4.52:1 on it
+                — it scrapes AA body on the number alone, but at APCA Lc -41.5 it
+                is under the 45 floor the rest of this file is now held to, so
+                the rule stands. Every other step below is safe for --ink-350.
+                It IS used as a decorative FILL by .plate__index, where it is the
+                aria-hidden mark rather than the ground beneath text; that is the
+                one carve-out and it is deliberate.
+
+     Ratios are WCAG 2.1, measured with the same tool that reproduces every
+     figure already in this file to the decimal.
+     ========================================================================== */
+  /* cold — hue 252-253, the page's native temperature */
+  --night-1000: #01050F; /* oklch(11.4% 0.030 253)  band, deepest    ink-150 14.60:1 */
+  --night-950:  #020F20; /* oklch(16.6% 0.042 252)  page ground      ink-150 13.77:1 */
+  --night-900:  #061A30; /* oklch(21.5% 0.051 253)  plate, raised    ink-150 12.55:1 */
+  --night-850:  #10263E; /* oklch(26.4% 0.053 252)  raised +1        ink-150 10.99:1 */
+  --night-800:  #1C334B; /* oklch(31.4% 0.052 251)  BORDER ONLY — not a text ground */
+
+  /* warm — hue 20, iso-lightness with the cold ramp above */
+  --oxblood-950: #220205; /* oklch(16.6% 0.058 20)  pairs --night-950  ink-150 13.94:1 */
+  --oxblood-900: #33070B; /* oklch(21.4% 0.070 20)  pairs --night-900  ink-150 12.79:1 */
+  --oxblood-850: #441115; /* oklch(26.5% 0.078 20)  pairs --night-850  ink-150 11.25:1 */
+
+  /* Muted text and links stay legal on the warm ground, so a section can change
+     temperature without any of its type needing a second set of tokens:
+       --ink-300   8.05 / 7.39 / 6.50 : 1   on oxblood 950 / 900 / 850
+       --ink-350   6.81 / 6.24 / 5.49 : 1
+       --accent-400 6.65 / 6.10 / 5.37 : 1
+     Chroma on the warm ramp stops at 0.078. sRGB can reach 0.087 at these
+     lightnesses, but the last stretch drives green to 0 and blue into single
+     digits, where the hue skews and flat fills band on 8-bit panels. */
+
+  /* ==========================================================================
+     2. ACCENT — the existing brand #d94f5c, kept exact, given a ramp
+     --------------------------------------------------------------------------
+     HARD RULE: --accent-500 is a FILL and is never text.
+                4.88:1 on ink-950 but 4.24:1 on ink-800 = fail.
+     HARD RULE: --accent-400 is the TEXT token. 5.83:1 worst case (on ink-800).
+     Banned pairs: white on --accent-500 (4.02) · --ink-50 on --accent-500 (3.65).
+     The primary CTA is --ink-1000 on --accent-500 (5.00:1).
+     ========================================================================== */
+  --accent-700: #8E2B37; /* oklch(44.3% 0.133 17.6)  pressed fill               */
+  --accent-600: #B23947; /* oklch(52.4% 0.156 17.8)  graphic only               */
+  --accent-500: #D94F5C; /* oklch(61.7% 0.173 18.3)  BRAND — fill only          */
+  --accent-400: #E8737C; /* oklch(69.4% 0.145 16.8)  ACCENT TEXT / links        */
+  --accent-300: #F5A8AD; /* oklch(80.7% 0.091 15.0)  hover text                 */
+  --accent-200: #FAC9CC; /* oklch(87.9% 0.056 14.1)  rare, Surface C only       */
+
+  /* The primary button's fills. Same reason --on-accent exists: this is the one
+     place the accent ramp is a FILL under a near-black label instead of text on
+     a surface, so it must not follow the text tokens down the ramp when the
+     light theme darkens accent text for a pale page.
+
+     WHY THE RESTING FILL MOVED UP A STEP. --on-accent on --accent-500 measures
+     5.00:1, which passes WCAG and is why it shipped — but APCA puts it at Lc
+     37.4 at the button's 15px/500, where fluent text wants roughly 60. WCAG
+     cannot see this failure: it models contrast as a luminance ratio and is
+     blind to the size and weight the text is actually set at. An in-gamut sweep
+     of the rose family showed near-black labels cap near Lc 52, so the pair
+     cannot be tuned into compliance where it stood.
+
+     The obvious escape — invert to a light label on a deep rose — measures far
+     better (--ink-50 on --accent-700 is 7.47:1 and Lc -84.8) and was rejected
+     anyway. The page's whole colour problem is that saturated paint covers
+     0.128% of the document; darkening the single brightest thing on it to win
+     an APCA point would deepen the complaint this work exists to fix. Moving UP
+     the ramp instead reaches Lc 48.7 at 6.86:1 — better on both models than what
+     shipped — and gets brighter rather than dimmer. Honest residual: 48.7 is
+     short of 60. Closing the rest is a type-size question, not a colour one. */
+  --accent-fill: var(--accent-400);
+  --accent-fill-hover: var(--accent-300);
+
+  /* ==========================================================================
+     2b. EMBER — the WARM accent, hue 47.8
+     --------------------------------------------------------------------------
+     WHY A SECOND ACCENT FAMILY EXISTS AT ALL. §1b gave the page a ground ramp
+     that swings section lightness 10.1pp and flips temperature twice:
+     #experience and #contact sit on --oxblood-* rather than --night-*. That
+     flip currently has no foreground consequence — both warm sections carry
+     the identical cold ink and the identical rose accent as their cold
+     neighbours — so the most expensive colour move on the page reads as a
+     background tint nobody can name. Ember finishes the idea: a warm section
+     gets a warm accent, and the temperature becomes structure instead of
+     decoration.
+
+     THIS IS NOT MORE ACCENT, IT IS A SECOND ACCENT. Every cold section is
+     byte-identical after this change. The whole spend is two tokens plus the
+     three aliases in §5, repointed inside ONE scoping block that fires on two
+     sections and the footer. No cold section gains a single new colour, no
+     third hue is introduced, and --accent-500's chroma is untouched.
+
+     #C36024 is not a new colour on this site. It is promoted verbatim from the
+     surface-local literal that was already hiding at surface-a.css:402 in the
+     hero light-source composite — identical sRGB bytes 195/96/36 — so that
+     composite is unchanged and does not need re-verifying. Promoting it also
+     closes a real hole: written rgb() rather than hex, it slipped past the
+     colour-literal check in tools/check-routes.mjs.
+
+     HARD RULE: --ember-600 is an EDGE/FILL and is never text.
+                Its whole job is the 2px leading border and the 1px spines.
+     HARD RULE: --ember-400 is the warm TEXT token.
+                5.20:1 worst case, on --oxblood-850 in the footer.
+
+     THE MEASUREMENT THAT JUSTIFIES THE WHOLE BLOCK. The ledger's own leading
+     edge — the 2px rule that is supposed to announce #experience and #contact —
+     shipped as --accent-700 on --oxblood-900: 2.17:1. That is the literal
+     mechanical cause of "màu sắc đang khó nhìn" on those two sections. The same
+     edge in --ember-600 measures 4.27:1. A 1.97x jump on the element whose only
+     purpose is to be seen, and it is the highest contrast delta in this pass. */
+  --ember-600: #C36024; /* oklch(59.9% 0.145 47.8)  WARM EDGE/FILL — never text */
+  --ember-400: #D87D4C; /* oklch(68.0% 0.130 47.8)  WARM ACCENT TEXT            */
+
+  /* --ember-600 on its ten possible grounds, dark theme:
+       --oxblood-900  4.27:1   (its main ground — the ledger edge)
+       --oxblood-850  3.75:1   (footer)
+       --oxblood-950  4.65:1
+       --night-950    4.60:1
+     Every consumer is a 1px or 2px decorative/UI element, floor 3:1, cleared
+     everywhere. --ember-400 as text: 5.92 / 5.20 / 6.44 / 6.37 : 1 on the same
+     four, all clear of the 4.5:1 body floor with 1.16x headroom at worst. It
+     sits deliberately just UNDER --accent-400 on the same grounds (6.10 / 5.37)
+     so swapping one for the other can never drop a passing pair below AA.
+
+     --ember-600 gets NO light-theme override, for the same reason --accent-500
+     gets none: it is a self-contained fill, not text on a page ground, and it
+     still clears the 3:1 decorative floor on the pale warm grounds (3.73:1 on
+     light --oxblood-900, 3.53:1 worst case on light --oxblood-850). Only the
+     TEXT weight moves, and it moves in [data-theme="light"] below. */
+
+  /* ==========================================================================
+     3. PEARL — champagne neutral. SURFACE C ONLY.
+     Any use in surface-a.css or surface-b.css is a defect.
+     ========================================================================== */
+  --pearl-600: #A8977C;  /* oklch(68.4% 0.043 79.3)                             */
+  --pearl-500: #C9B79B;  /* oklch(78.7% 0.043 78.9)  C hairline + label 10.03:1 */
+  --pearl-400: #DCCDB6;  /* oklch(85.4% 0.035 78.6)                             */
+  --pearl-300: #EADFCC;  /* oklch(90.7% 0.028 81.5)                             */
+
+  /* ==========================================================================
+     4. SEMANTIC — functional only. Never decorative.
+     --danger neighbours --accent-500 in hue: it must always ship with an icon,
+     because colour alone cannot carry the signal.
+     ========================================================================== */
+  --success: #4FD1A5;    /* oklch(77.7% 0.131 167.1)  >=8.22:1                  */
+  --warning: #E8A33D;    /* oklch(76.5% 0.140  72.9)  >=7.28:1                  */
+  --danger:  #FF6152;    /* oklch(69.5% 0.195  28.5)  >=5.29:1                  */
+  --focus:   #F2969C;    /* oklch(76.9% 0.111  15.8)  8.99:1 on ink-950         */
+
+  /* --------------------------------------------------------------------------
+     Two names that had to leave the ramp so [data-theme="light"] could flip it.
+     Both render byte-identical to what they replaced; nothing moved in dark.
+
+     --on-accent  the label on an --accent-500 fill. It was --ink-1000, which
+                  reads as "the deepest tone" everywhere else in the system —
+                  and the deepest tone inverts to the LIGHTEST one under a light
+                  theme, which would have put white on the rose fill at 4.02:1,
+                  the exact pair §2 bans. The CTA label is not a surface tone,
+                  so it stops borrowing a surface token. Never overridden below:
+                  --accent-500 stays #D94F5C in both themes, so its legal label
+                  stays the same colour too.
+     --scrim      the layer behind the open mobile drawer. Built from --ink-1000
+                  it would invert to a white fog over a white page and stop
+                  dimming anything at all.
+     ------------------------------------------------------------------------ */
+  --on-accent: #020811;  /* 5.00:1 on --accent-500 */
+  --scrim: color-mix(in oklab, #020811 62%, transparent);
+
+  /* Mask stops are alpha, not paint: `#000` in a mask-image means "keep", not
+     "black". It lives here because surface files may carry no literals at all,
+     and a reader who meets `#000` in a colour position needs to know this one
+     never lands in a colour position. */
+  --mask-opaque: #000;
+
+  /* ==========================================================================
+     5. READING SURFACE — semantic names, dark defaults
+     --------------------------------------------------------------------------
+     These nine names are the ones [data-reading="paper"] overrides (Surface B
+     only). Declaring dark defaults here means surface-b.css authors the article
+     once against the semantic names and the paper block is a pure override.
+     Surfaces A and C never expose the toggle.
+     ========================================================================== */
+  --page:       var(--ink-950);
+  --surface:    var(--ink-900);
+  --surface-2:  var(--ink-850);
+  --text:       var(--ink-150);
+  --text-2:     var(--ink-200);
+  --text-muted: var(--ink-350);   /* floor */
+  --text-faint: var(--ink-500);   /* non-text only */
+
+  /* Uppercase micro-labels — eyebrows, kickers, flags. About 85 of them ship on
+     Surface A at --fs-micro (12px), and at that size --text-muted is not enough:
+     #8895A2 on the page ground is 6.29:1, a comfortable WCAG pass, and APCA Lc
+     -43.9, under the 45 floor for body text. The two models disagree because
+     WCAG is a pure luminance ratio and cannot see the size or weight the text is
+     actually set at, while a 12px uppercase run with wide tracking is close to
+     the thinnest thing on the page. This is not a defect in --text-muted, which
+     is correct at the sizes it is otherwise used at, so it gets its own name
+     rather than dragging the floor up for everyone. --ink-300 measures Lc -52.9
+     to -54.3 across all four grounds. */
+  --text-label: var(--ink-300);
+  --rule:       var(--ink-700);   /* decorative only */
+  --link:       var(--accent-400);
+
+  /* THE THREE TEMPERATURE ALIASES. Everything that draws an accent now asks for
+     one of these by ROLE rather than naming a ramp step, so a section can be
+     retuned by overriding three custom properties on one selector instead of by
+     editing every rule that happens to paint rose.
+
+     All three default to exactly what shipped, which is the point: repointing
+     the existing declarations to them changes nothing anywhere. A single
+     changed pixel in a cold section after that repoint means a scoping bug, and
+     that is precisely how it gets verified. The defaults are also load-bearing
+     for the other two surfaces — components.css is shared with Surfaces B and
+     C, and those must render byte-identical.
+
+       --accent-edge  the leading rule / spine / eyebrow tick   (decorative, 3:1)
+       --accent-line  the 2px section leading border            (decorative, 3:1)
+       --accent-ink   accent TEXT                               (body, 4.5:1)
+
+     --accent-line's only consumer is the ledger treatment, which is always
+     warm, so its default is never actually rendered. It exists so the token has
+     a legal fallback and so a future COLD ledger resolves to something rather
+     than to nothing. */
+  --accent-edge: var(--accent-500);  /* 4.78:1 on --night-950, 4.44 on oxblood-900 */
+  --accent-line: var(--accent-700);  /* default never rendered — see above         */
+  --accent-ink:  var(--accent-400);  /* 6.57:1 on --night-950, 5.99 on --night-900 */
+
+  /* ==========================================================================
+     6. TYPE — families
+     --------------------------------------------------------------------------
+     Poppins is NOT in this system. It has no Vietnamese subset: every
+     tone-marked vowel (U+1EA0-1EF9) falls back mid-word. See base.css for the
+     metric-matched *Fallback families — they are declared in base.css with
+     size-adjust / ascent-override so `font-display: swap` costs 0 CLS.
+     Mono is a system stack: zero bytes downloaded.
+     ========================================================================== */
+  --font-display: 'Anton', 'Anton Fallback', 'Arial Narrow', sans-serif;
+  --font-body:    'Be Vietnam Pro', 'BVP Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif:   'Newsreader', 'Newsreader Fallback', Georgia, 'Times New Roman', serif;
+  --font-mono:    ui-monospace, SFMono-Regular, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* ==========================================================================
+     7. TYPE — fluid scale, solved for 360px -> 1440px
+     Every clamp() hits the stated min at exactly 360px and the max at 1440px.
+     ========================================================================== */
+  /* DISPLAY — Anton */
+  --fs-display-2xl: clamp(3.5rem,    1.167rem  + 10.37vw,    10.5rem);  /*  56 -> 168 */
+  --fs-display-xl:  clamp(2.75rem,   1.5rem    +  5.556vw,    6.5rem);  /*  44 -> 104 */
+  --fs-display-lg:  clamp(2.25rem,   1.333rem  +  4.074vw,      5rem);  /*  36 ->  80 */
+  --fs-display-md:  clamp(1.875rem,  1.333rem  +  2.407vw,    3.5rem);  /*  30 ->  56 */
+
+  /* A ROLE RUNG, not a scale rung: the seven section titles, and only those.
+     They were --fs-h2 in Be Vietnam Pro 700 — 38px at 1440 — which is why the
+     display face stops working the instant you scroll past the hero. Anton
+     appears at 168px, then never again above the fold's horizon, and every
+     section head below it is the same bold body face at the same size, so the
+     page has one typographic register for 20,000px of scroll.
+
+     72, NOT 80. --fs-display-lg is already spoken for twice on this surface —
+     the kinetic band (surface-a.css:807) and the testimonials quote mark
+     (:1559) — so reusing it would put the section title at the exact weight of
+     two decorative elements it has to outrank. 72 sits clear of both, and
+     clear of --fs-display-md's 56 on the plate indices.
+
+     THE SLOPE IS THE FILE'S, NOT THE SPEC'S. The proposal that produced this
+     rung wrote `0.9375rem + 5.833vw`, which reaches its 72px ceiling at a
+     977px viewport — every laptop from 1024 up would sit pinned at maximum,
+     breaking the invariant stated at the top of §7 that every clamp hits its
+     max at exactly 1440. 1.5rem + 3.333vw hits the same two endpoints the
+     proposal measured (36 at 360, 72 at 1440) and interpolates properly
+     between them: 58px at 1023, where the plate grid splits. */
+  --fs-section:     clamp(2.25rem,   1.5rem    +  3.333vw,    4.5rem);  /*  36 ->  72 */
+
+  /* HEADINGS — Be Vietnam Pro */
+  --fs-h1:          clamp(1.875rem,  1.417rem  +  2.037vw,   3.25rem);  /*  30 ->  52 */
+  --fs-h2:          clamp(1.562rem,  1.292rem  +  1.204vw,  2.375rem);  /*  25 ->  38 */
+  --fs-h3:          clamp(1.312rem,  1.167rem  +  0.6481vw,  1.75rem);  /*  21 ->  28 */
+  --fs-h4:          clamp(1.125rem,  1.042rem  +  0.3704vw, 1.375rem);  /*  18 ->  22 */
+
+  /* BODY + UI */
+  --fs-title:       clamp(1.062rem,  1rem      +  0.2778vw,  1.25rem);  /*  17 ->  20 */
+  --fs-body-lg:     clamp(1.062rem,  1.021rem  +  0.1852vw, 1.188rem);  /*  17 ->  19 */
+  --fs-body:        clamp(1rem,      0.9792rem +  0.09259vw,1.062rem);  /*  16 ->  17 */
+  --fs-body-sm:     clamp(0.9062rem, 0.8958rem +  0.0463vw, 0.9375rem); /* 14.5 ->  15 */
+  --fs-caption:     clamp(0.8125rem, 0.8021rem +  0.0463vw, 0.8438rem); /*  13 -> 13.5 */
+  --fs-micro:       clamp(0.7188rem, 0.7083rem +  0.0463vw,   0.75rem); /* 11.5 ->  12 */
+
+  /* ARTICLE — Newsreader, Surface B */
+  --fs-article:      clamp(1.125rem, 1.083rem  +  0.1852vw,  1.25rem);  /*  18 ->  20 */
+  --fs-article-lead: clamp(1.25rem,  1.167rem  +  0.3704vw,   1.5rem);  /*  20 ->  24 */
+
+  /* ==========================================================================
+     8. TYPE — line height
+     --------------------------------------------------------------------------
+     Floors are set by Vietnamese diacritic stacking, not by taste.
+     Vietnamese stacks TWO marks on one vowel (e-circumflex-acute = e; the
+     dot-below on e sits well under the baseline).
+
+     HARD: --lh-display floor is 0.94. The tutorial-standard 0.86 clips the
+           acute on E/O/U against the descender of the line above.
+     HARD: --lh-body floor is 1.65. Below 1.55 the e dot-below lands within
+           1px of the next line's acute.
+     Never overflow:hidden a single-line Anton element — that is what crops the
+     marks. Masked reveal wrappers get padding-block: 0.08em.
+     ========================================================================== */
+  --lh-display: 0.94;   /* Anton — NOT 0.86 */
+  --lh-tight:   1.14;
+  --lh-heading: 1.22;
+  --lh-snug:    1.42;
+  --lh-body:    1.65;   /* Be Vietnam Pro Vietnamese floor */
+  --lh-article: 1.72;   /* Newsreader longform */
+
+  /* ==========================================================================
+     9. TYPE — tracking
+     ========================================================================== */
+  --ls-display: -0.02em;
+  --ls-tight:   -0.015em;
+  --ls-normal:   0em;
+  --ls-label:    0.14em;   /* uppercase micro-labels */
+  --ls-nav:      0.06em;
+
+  /* ==========================================================================
+     10. SPACE — 8px base
+     Steps 0-14 are the layout grid; the fluid tokens are section rhythm only.
+     Semantics: --s-2/3 same group · --s-5/6 related · --s-9/10 new idea ·
+     --space-section new chapter.
+     ========================================================================== */
+  --s-0:  0;
+  --s-1:  0.25rem;   /*   4 */
+  --s-2:  0.5rem;    /*   8 */
+  --s-3:  0.75rem;   /*  12 */
+  --s-4:  1rem;      /*  16 */
+  --s-5:  1.5rem;    /*  24 */
+  --s-6:  2rem;      /*  32 */
+  --s-7:  2.5rem;    /*  40 */
+  --s-8:  3rem;      /*  48 */
+  --s-9:  4rem;      /*  64 */
+  --s-10: 5rem;      /*  80 */
+  --s-11: 6.5rem;    /* 104 */
+  --s-12: 8rem;      /* 128 */
+  --s-13: 10rem;     /* 160 */
+  --s-14: 13rem;     /* 208 */
+
+  --space-section-sm: clamp(3rem,    2.333rem  + 2.963vw,  5rem);     /*  48 ->  80  (B)  */
+  --space-section:    clamp(4.5rem,  3.083rem  + 6.296vw,  8.75rem);  /*  72 -> 140  (A)  */
+  --space-section-lg: clamp(6.5rem,  4.5rem    + 8.889vw, 12.5rem);   /* 104 -> 200  (A)  */
+  --space-gutter:     clamp(1.25rem, 0.8333rem + 1.852vw,  2.5rem);   /*  20 ->  40       */
+  --space-bleed:      clamp(1rem,    0rem      + 4.444vw,  4rem);     /*  16 ->  64       */
+
+  /* ==========================================================================
+     11. CONTAINER WIDTHS
+     Surface files may not carry literals, so the measures live here.
+     ========================================================================== */
+  --w-full:     100%;     /* C stages, A section bands   */
+  --w-wide:     1440px;   /* media plates, gallery rows  */
+  --w-shell:    1320px;   /* A default container         */
+  --w-content:  1140px;   /* A text-bearing rows         */
+  --w-narrow:   760px;    /* A intros, FAQ, form         */
+  --w-read:     66ch;     /* B article body — enforced   */
+  --w-read-max: 68ch;     /* A prose maximum             */
+
+  --nav-h: 64px;          /* fixed site header height, never changes */
+
+  /* ==========================================================================
+     12. SHAPE — near-square by decision
+     Dark Luxe wants edges that read as machined, not as a component kit.
+     Max radius in this system is 14px and it is used on exactly two things.
+     border-radius:16px on everything is the fastest way to look generated.
+     ========================================================================== */
+  --r-0:    0;       /* section bands, image plates, tables, full-bleed media   */
+  --r-xs:   2px;     /* media frames, thumbnails, badges — the default          */
+  --r-sm:   4px;     /* buttons, inputs, selects, chips                         */
+  --r-md:   8px;     /* dialogs, popovers, the sticky nav capsule               */
+  --r-lg:   14px;    /* lightbox shell, mobile drawer. Nothing else.            */
+  --r-pill: 999px;   /* status dots and the scroll-progress bar ONLY            */
+
+  /* ==========================================================================
+     13. BORDER
+     --border-interactive (--ink-400, 3.99:1) is the ONLY legal control boundary.
+     --border-default / --border-strong are decorative rules only (1.44 / 1.84).
+     ========================================================================== */
+  --bw-hair: 1px;
+  --bw-rule: 2px;    /* section leading edge          */
+  --bw-slab: 4px;    /* pull-quote / callout left rule */
+
+  --border-faint:       color-mix(in oklab, var(--ink-700) 60%, transparent);
+  --border-default:     var(--ink-700);     /* 1.44:1 — decorative only        */
+  --border-strong:      var(--ink-600);     /* 1.84:1 — decorative only        */
+  --border-interactive: var(--ink-400);     /* 3.99:1 — controls               */
+  --border-accent:      var(--accent-500);  /* 4.88:1 — active indicator       */
+
+  /* the hairline that makes dark surfaces feel like material, not paint */
+  --edge-top: inset 0 1px 0 0 rgb(255 255 255 / 0.055);
+  --edge-all: inset 0 0 0 1px rgb(255 255 255 / 0.035);
+
+  /* ==========================================================================
+     14. ELEVATION
+     On near-black a drop shadow is nearly invisible: elevation here is tonal,
+     not cast. Shadows are tinted to the page mood (midnight navy), never
+     neutral black, and appear only on things that genuinely float.
+
+     e0 flush   background --ink-950 · no border · no shadow
+     e1 inset   --ink-900 · 1px --border-faint
+     e2 surface --ink-850 · --edge-top
+     e3 raised  --ink-800 · --edge-top · --shadow-lift
+     e4 float   --ink-800 · --edge-all · --shadow-float · backdrop-filter (ONE per page)
+     e5 over    --ink-850 · --edge-all · --shadow-over
+     ========================================================================== */
+  --shadow-lift:   0 1px 2px rgb(2 8 17 / 0.50), 0 2px 6px rgb(2 8 17 / 0.32);
+  --shadow-float:  0 6px 16px rgb(2 8 17 / 0.52), 0 2px 6px rgb(2 8 17 / 0.38);
+  --shadow-over:   0 18px 44px rgb(2 8 17 / 0.62), 0 6px 14px rgb(2 8 17 / 0.42);
+  --shadow-accent: 0 10px 30px color-mix(in oklab, var(--accent-700) 26%, transparent);
+
+  /* ==========================================================================
+     15. MOTION
+     Budget per surface: A = --dur-3..--dur-6 · B = --dur-2..--dur-4 only ·
+     C = full range including --dur-7.
+     Every --dur-* collapses to 1ms under prefers-reduced-motion (see base.css).
+     ========================================================================== */
+  --dur-1: 120ms;   /* press, checkbox, instant feedback   */
+  --dur-2: 180ms;   /* hover colour, underline, icon       */
+  --dur-3: 260ms;   /* button fill sweep, small transform  */
+  --dur-4: 420ms;   /* panel open, accordion, card lift    */
+  --dur-5: 700ms;   /* section reveal, mask wipe           */
+  --dur-6: 1200ms;  /* hero entry, chapter transition      */
+  --dur-7: 1800ms;  /* Surface C stage cut only            */
+
+  --ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-quiet: cubic-bezier(0.22, 1, 0.36, 1);   /* reveals, entries       */
+  --ease-luxe:      cubic-bezier(0.65, 0, 0.35, 1);   /* symmetric, weighted    */
+  --ease-mask:      cubic-bezier(0.83, 0, 0.17, 1);   /* clip-path curtains     */
+  --ease-exit:      cubic-bezier(0.4, 0, 1, 1);
+
+  /* a real weighted spring, CSS-native — no JS, no build step.
+     Used on the Surface C lightbox and nowhere else, so it stays memorable. */
+  --ease-spring: linear(
+    0, 0.006, 0.025 2.8%, 0.101 6.1%, 0.539 18.9%, 0.721 25.3%, 0.849 31.5%,
+    0.937 38.1%, 0.968 41.8%, 0.991 45.7%, 1.007 50.1%, 1.016 55%, 1.017 63.9%, 1.001 100%);
+
+  --stagger: 70ms;  /* between siblings in a reveal group. Capped at 6 items. */
+
+  /* ==========================================================================
+     16. LAYER — eight values, no exceptions.
+     No bare z-index number appears anywhere in this system.
+     ========================================================================== */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-nav:     200;
+  --z-drawer:  300;
+  --z-overlay: 400;
+  --z-dialog:  500;
+  --z-toast:   600;
+}
+
+/* ============================================================================
+   LIGHT — daylight theme. SURFACE A.
+   ----------------------------------------------------------------------------
+   Dark is still canonical; this is the second skin, not a redesign. It is one
+   block in one file because surface-a.css consumes the --ink-* and --accent-*
+   ramps directly and carries no colour literals of its own — so remapping the
+   ramps here re-themes the whole surface with zero component edits. Set
+   pre-paint by an inline <head> script and persisted to localStorage under
+   `minthep:theme`; the toggle lives in the site header.
+
+   NOT a lightness inversion. Inverting the dark ramp arithmetically lands the
+   six surface steps at L 70-87%, which is grey, not daylight — the dark ramp
+   deliberately compresses its surfaces into a narrow band down at L 13-30%.
+   The light ramp re-expands that band toward paper (L 89-100%) and re-expands
+   the text end down to ink, so the ORDER and the ROLE of every step is kept
+   while the actual separations are re-solved for a pale page.
+
+   Direction of elevation flips, and that is intended: on near-black, higher =
+   lighter; on paper, higher = a touch more tinted. --ink-1000 stays the
+   deepest recess in role and so becomes the one true white (footer, kinetic
+   band), which keeps the two documented tonal ghosts intact —
+   --ink-800 on --ink-1000 measures 1.15:1 here against 1.20-1.28:1 dark, and
+   --ink-850 on --ink-1000 1.10:1 against 1.15:1. Still texture, not text.
+
+   Foreground        on --ink-950   on --ink-900   on --ink-800   on --ink-750
+   --ink-50   #0D141B    17.85          17.10          15.85          14.63   AAA
+   --ink-100  #1A2129    15.34          14.70          13.62          12.57   AAA
+   --ink-150  #262E38    13.24          12.68          11.75          10.85   AAA
+   --ink-200  #333D48    10.93          10.47           9.70           8.95   AAA
+   --ink-300  #47535F     8.03           7.69           7.13           6.58   AAA
+   --ink-350  #5A6878     5.83           5.59           5.18           4.78   AA  (floor)
+   --ink-400  #6E7F93     4.10           3.93           3.64           3.36   UI  (border only)
+   --ink-500  #94A3B5     2.42           2.32           2.15           1.98   non-text ONLY
+
+   HARD RULES carry over unchanged: --ink-400 is a border and never text,
+   --ink-350 is the muted-text floor, --accent-500 is a fill and never text.
+   ========================================================================== */
+[data-theme="light"] {
+  /* --- neutral: same 16 roles, re-solved for paper --------------------- */
+  --ink-1000: #FFFFFF;  /* deepest recess in role: footer, kinetic band       */
+  --ink-950:  #FAFBFD;  /* page background                                    */
+  --ink-900:  #F2F5F8;  /* surface                                            */
+  --ink-850:  #EBEFF4;  /* raised surface                                     */
+  --ink-800:  #E3E9F0;  /* raised +1 / inputs / the nav capsule               */
+  --ink-750:  #D9E0EA;  /* highest surface                                    */
+  --ink-700:  #CBD5E1;  /* hairline, decorative                               */
+  --ink-600:  #B2BFCF;  /* hairline, emphasised                               */
+  --ink-500:  #94A3B5;  /* disabled fill                                      */
+  --ink-400:  #6E7F93;  /* INTERACTIVE BORDER — not text (3.36:1 worst case)  */
+  --ink-350:  #5A6878;  /* muted text FLOOR  >=4.78:1                         */
+  --ink-300:  #47535F;  /* secondary text    >=6.58:1                         */
+  --ink-200:  #333D48;  /* body text (B)     >=8.95:1                         */
+  --ink-150:  #262E38;  /* body text (A)    >=10.85:1                         */
+  --ink-100:  #1A2129;  /* headings         >=12.57:1                         */
+  --ink-50:   #0D141B;  /* display / max    >=14.63:1                         */
+
+  /* --- ground: the §1b ramp, re-solved for paper -----------------------
+     Without these the section treatments would keep their dark values and the
+     light theme would paint navy and oxblood behind dark text. The cold steps
+     reuse the pale ramp above so the two stay in lockstep; the warm steps are
+     new, at iso-lightness with their cold partners and hue 40, which is the
+     pale-warm register (blush / champagne) rather than a tint of the brand red.
+     Warm-on-cold survives the theme flip; it just stops being wine and becomes
+     paper. --ink-150 #262E38 measures 12.98 / 12.23 / 11.59 : 1 on the three.
+     --------------------------------------------------------------------- */
+  --night-1000: #FFFFFF;  /* deepest recess in role: band                     */
+  --night-950:  #FAFBFD;  /* page ground                                      */
+  --night-900:  #F2F5F8;  /* plate, raised                                    */
+  --night-850:  #EBEFF4;  /* raised +1                                        */
+  --night-800:  #E3E9F0;  /* BORDER ONLY — not a text ground                  */
+
+  --oxblood-950: #FFF7F4; /* oklch(98.1% 0.016 40)  pairs --night-950         */
+  --oxblood-900: #FDEFEB; /* oklch(96.2% 0.016 40)  pairs --night-900         */
+  --oxblood-850: #F7E9E5; /* oklch(94.4% 0.016 40)  pairs --night-850         */
+
+  /* --- accent ----------------------------------------------------------
+     Only the TEXT weights move. --accent-500/600/700 are fills carrying a
+     near-black --on-accent label, so they are self-contained: what is behind
+     the button cannot change what is legible on it, and re-solving them would
+     only break a contrast pair that currently passes.
+     --------------------------------------------------------------------- */
+  --accent-400: #A82F3D;  /* oklch(49.4% 0.156 18.7)  link / accent text 5.4:1 */
+  --accent-300: #7E2530;  /* hover text — darker, not lighter, on paper        */
+
+  /* --- ember (§2b) -----------------------------------------------------
+     MANDATORY, not optional. The warm TEXT weight is the one ember token
+     that has to move for a pale page: the dark #D87D4C on light
+     --oxblood-900 #FDEFEB measures 2.69:1, so without this line the light
+     theme ships failing text on #experience, #contact and the footer.
+
+     Exactly the same shape as the rose note above — only the TEXT weight
+     moves. --ember-600 is deliberately absent: it is a self-contained
+     edge/fill, it clears the 3:1 decorative floor on the pale warm grounds
+     (3.73:1 / 3.53:1), and overriding it would only break a pair that
+     already passes.
+
+     Light: 6.39:1 on --oxblood-900, 6.05:1 worst case on --oxblood-850,
+     6.78:1 on --oxblood-950, 6.92:1 on light --night-950. That puts it in
+     the same register as the light --accent-400 it partners (5.96:1 on the
+     same ground), so the two accent families stay peers under both themes
+     rather than one quietly outshouting the other. */
+  --ember-400: #8F410F;   /* oklch(47.0% 0.120 47.8)  warm accent text 6.4:1  */
+
+  /* The button fills must NOT follow those two down. This is the exact hazard
+     the note above describes, and it was already live: --accent-fill-hover was
+     declared as var(--accent-400) in :root with no override here, so hovering
+     the primary CTA under a light theme put the near-black --on-accent label on
+     #A82F3D at 3.00:1 / APCA Lc 22. Pinning both fills to their dark-theme
+     literals restores the invariant the file states — what is behind the button
+     cannot change what is legible on it — and holds the measured 6.86:1 /
+     Lc 48.7 pair in both themes. */
+  --accent-fill: #E8737C;
+  --accent-fill-hover: #F5A8AD;
+
+  --focus: #A82F3D;       /* 6.0:1 on --ink-950; #F2969C is invisible here     */
+
+  /* Tuned for a pale page rather than for a dark one. */
+  --success: #0F7A5A;
+  --warning: #8A5A0B;
+  --danger:  #B3261E;
+
+  /* The hairline that reads as material. On near-black it is a white highlight
+     catching light from above; on paper the same job is done by a faint dark
+     edge, because a white inset on white is nothing at all. */
+  --edge-top: inset 0 1px 0 0 rgb(13 20 27 / 0.05);
+  --edge-all: inset 0 0 0 1px rgb(13 20 27 / 0.07);
+
+  /* Elevation stops being tonal and starts actually casting: on paper a shadow
+     is visible, so the alphas drop by roughly 5x or every raised thing reads
+     as a smudge. */
+  --shadow-lift:  0 1px 2px rgb(13 20 27 / 0.07), 0 2px 6px rgb(13 20 27 / 0.05);
+  --shadow-float: 0 6px 16px rgb(13 20 27 / 0.10), 0 2px 6px rgb(13 20 27 / 0.06);
+  --shadow-over:  0 18px 44px rgb(13 20 27 / 0.14), 0 6px 14px rgb(13 20 27 / 0.09);
+}
+
+
+/* ============================================================================
+   PAPER — light reading mode. SURFACE B ONLY.
+   ----------------------------------------------------------------------------
+   Dark is canonical. This is a reading-comfort feature for 40-minute study
+   sessions, not an aesthetic alternative — which is why it exists on exactly
+   one surface. Set pre-paint by an inline <head> script, persisted to
+   localStorage under minthep:reading.
+
+   NOT the same thing as [data-theme="light"] above, and the two are
+   deliberately not merged. PAPER re-solves nine SEMANTIC names for a warm
+   reading page and reaches only Surface B; LIGHT re-solves the whole neutral
+   ramp and reaches every surface that consumes it. They key off different
+   attributes and different storage keys, so a reader can hold a paper article
+   inside a dark site — which is the point. Surface C has neither toggle.
+
+   Foreground        on --page   on --surface   on --surface-2
+   --text  #1A1614     15.96        14.62          13.22    AAA all
+   --text-2 #3B3330    10.96        10.04           9.08    AAA all
+   --text-muted #605551 6.40         5.86           5.30    AA all (floor)
+   --link  #A82F3D      5.94         5.44           4.92    AA all
+   --text-faint #7A6E69 4.38         4.01           3.63    non-text ONLY
+   ========================================================================== */
+[data-reading="paper"] {
+  --page:       #F5F1EA;  /* oklch(95.9% 0.010 81.8) */
+  --surface:    #EDE7DE;  /* oklch(93.0% 0.014 78.3) */
+  --surface-2:  #E4DCD1;  /* oklch(89.8% 0.017 76.1) */
+  --text:       #1A1614;  /* oklch(20.4% 0.008 48.3) */
+  --text-2:     #3B3330;  /* oklch(32.9% 0.013 41.7) */
+  --text-muted: #605551;  /* oklch(45.9% 0.016 41.1)  FLOOR */
+  --text-faint: #7A6E69;  /* non-text only */
+  /* Paper redefines the semantic names but not the --ink ramp, so --text-label
+     must be stated here too: left to resolve var(--ink-300) it would fall
+     through to the DARK #9DA8B3 and put pale grey on cream. Paper's own muted
+     tone is already Lc 76.9 at 12px, so this only needs to not be broken. */
+  --text-label: #3B3330;
+  --rule:       #D6CCBF;  /* decorative only */
+  --link:       #A82F3D;  /* oklch(49.4% 0.156 18.7) */
+}

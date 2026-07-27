@@ -1,23 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css">
-    <link rel="stylesheet" href="iframe/styleDoor.css">
-    <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
-    <script defer src="iframe/mainDoor.js"></script>
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Cảnh cửa — Bộ sưu tập Jang Wonyoung | MINTHEP</title>
+<meta name="description" content="Cảnh cửa của bộ sưu tập ảnh Jang Wonyoung: một khung hình phóng to theo nhịp cuộn để mở ra khung hình phía sau. Trang fan phi thương mại, HTML tĩnh.">
+
+<link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/wy/wy.html">
+
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MINTHEP">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Cảnh cửa — Bộ sưu tập Jang Wonyoung | MINTHEP">
+<meta property="og:description" content="Cảnh cửa của bộ sưu tập ảnh Jang Wonyoung: một khung hình phóng to theo nhịp cuộn để mở ra khung hình phía sau. Trang fan phi thương mại, HTML tĩnh.">
+<meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/wy/wy.html">
+<meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Logo MINTHEP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cảnh cửa — Bộ sưu tập Jang Wonyoung | MINTHEP">
+<meta name="twitter:description" content="Cảnh cửa của bộ sưu tập ảnh Jang Wonyoung: một khung hình phóng to theo nhịp cuộn để mở ra khung hình phía sau. Trang fan phi thương mại, HTML tĩnh.">
+<meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/img/logo.png">
+
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../img/favicon-32.ico" sizes="32x32">
+<link rel="manifest" href="../manifest.webmanifest">
+
+<!-- Every photograph on this surface is served by one third-party origin.
+     One connection opened early pays for all of them. -->
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+
+<!-- EXACTLY TWO font preloads. The LCP element is the Anton wordmark and
+     nothing else on this surface paints before it. See fonts/README.md §5:
+     "Do not add a third preload." -->
+<link rel="preload" href="../fonts/anton-400-latin.woff2"      as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/anton-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Fixed order: tokens -> base -> components -> surface. Never reorder. -->
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/surface-c.css">
+
+<!--
+  Page-local, and page-local only. surface-c.css belongs to every document on
+  this surface and is not this task's to edit; these four rules exist solely to
+  give a scripting-disabled visitor a working way out of a <button> that needs
+  JavaScript. Every value is a var() into tokens.css — no literals.
+-->
+<style>
+  .sc-slat__nojs {
+    position: absolute;
+    inset-block-end: var(--s-2);
+    inset-inline-start: var(--s-2);
+    z-index: var(--z-raised);
+    padding: var(--s-1) var(--s-3);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--ink-50);
+    background-color: color-mix(in oklab, var(--ink-1000) 72%, transparent);
+    border: var(--bw-hair) solid var(--border-interactive);
+    border-radius: var(--r-pill);
+    text-decoration: none;
+  }
+
+  .no-js .sc-slat__btn { cursor: default; }
+
+  .sc-note {
+    margin-block-start: var(--s-6);
+    max-inline-size: var(--w-read-max);
+    font-size: var(--fs-caption);
+    color: var(--text-muted);
+  }
+
+  .sc-backlink { margin-block-start: var(--s-8); font-size: var(--fs-body-sm); }
+</style>
+
+<!-- Swap no-js -> js before first paint. Inline and here on purpose: an
+     external file would flash. js/surface-c.js repeats it, harmlessly. -->
+<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
 </head>
-<body>
-  <div class="wrapper">
-    <div class="content" style="overflow: hidden;">
-      <section class="section hero"></section>
-    </div>
-    <div class="image-container">
-      <img src="https://assets-global.website-files.com/63ec206c5542613e2e5aa784/643312a6bc4ac122fc4e3afa_main%20home.webp" alt="image">
-    </div>
+
+<body class="sc-page">
+
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="../">MINTHEP</a>
+
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="../">Trang chủ</a></li>
+        <li><a data-nav-link href="../blog/myblog.html">Blog học tập</a></li>
+        <li><a data-nav-link href="wy.html" aria-current="page">Bộ sưu tập</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" data-nav-toggle aria-expanded="false"
+            aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true" focusable="false" width="24" height="24"><use href="../img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true" focusable="false" width="24" height="24"><use href="../img/sprite.svg#close"></use></svg>
+    </button>
   </div>
+</header>
+
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="../">Trang chủ</a></li>
+      <li><a href="../blog/myblog.html">Blog học tập</a></li>
+      <li><a href="wy.html">Bộ sưu tập</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="main">
+  <section class="sc-stage sc-stage--pad">
+    <p data-eyebrow>Cảnh 4 / 4 · trang người hâm mộ</p>
+    <h1 class="sc-h2">Cảnh cửa</h1>
+    <p class="sc-lede">
+      Khung hình phía trước phóng dần theo nhịp cuộn cho tới khi mở ra khung hình
+      phía sau. Đây là hoạt cảnh duy nhất của bản dựng cũ được giữ nguyên: nó chỉ
+      thay đổi tỉ lệ và độ sâu, nên trình duyệt không phải tính lại bố cục lần nào.
+    </p>
+  </section>
+
+  <!--
+    S4 · DOOR. PINNED. It must never carry [data-cv]: a height change while the
+    element is skipped invalidates the pin's cached measurements. surface-c.css
+    force-resets content-visibility inside .sc-door and surface-c.js warns at
+    idle if one ever appears — this comment is the third leg of that contract.
+    The gate is loaded eagerly on purpose: surface-c.js counts it as one of the
+    two images whose decode releases ScrollTrigger.refresh(), and a lazy image
+    would hold that refresh open until the visitor scrolled to it.
+  -->
+  <section class="sc-stage sc-door" id="door" aria-labelledby="sc-door-title">
+    <h2 class="visually-hidden" id="sc-door-title">Khung hình cửa</h2>
+
+    <div class="sc-door__wrap">
+      <div class="sc-door__hero" style="--sc-img:url('https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494282/2024-01-09_09-32-17_UTC_10_qxyuux.jpg')" aria-hidden="true"></div>
+
+      <div class="sc-door__port">
+        <img class="sc-door__gate"
+             src="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1200/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg"
+             srcset="https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1000/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1000w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1200/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1200w, https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_1600/v1743494571/2024-03-08_04-05-24_UTC_2_fjsx9z.jpg 1600w"
+             sizes="100vw"
+             width="1200" height="1500"
+             alt="Jang Wonyoung — ảnh lưu trữ từ bài đăng công khai ngày 08/03/2024, khung 2"
+             decoding="async" fetchpriority="low">
+      </div>
+    </div>
+  </section>
+
+  <section class="sc-stage sc-stage--pad">
+    <h2 class="sc-h2">Về trang này</h2>
+    <p class="sc-lede">
+      Đây là một cảnh riêng lẻ của bộ sưu tập: cảnh cửa cuộn ghim. Trang được giữ nguyên địa chỉ
+      vì đã tồn tại từ phiên bản trước và vẫn có người truy cập trực tiếp. Bản đầy đủ
+      gồm cả bốn cảnh, phần hợp tác thương hiệu và phần ghi công nằm ở
+      <a data-link href="wy.html">bộ sưu tập hoàn chỉnh</a>.
+    </p>
+    <p class="sc-note">
+      Trang người hâm mộ phi thương mại. Toàn bộ hình ảnh thuộc quyền sở hữu của các chủ
+      sở hữu tương ứng. Yêu cầu gỡ nội dung: <a data-link href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">mở issue trên GitHub</a>,
+      xử lý trong 48 giờ. Chi tiết: <a data-link href="CREDITS.md">CREDITS.md</a>.
+    </p>
+    <p class="sc-backlink"><a data-link href="wy.html">← Xem toàn bộ bộ sưu tập</a></p>
+  </section>
+</main>
+
+<!-- No lightbox on this page: it has no [data-lightbox-open] triggers, so the
+     dialog would be 1.2 kB of markup that nothing can ever open. -->
+
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="../">Trang chủ</a></li>
+        <li><a href="../blog/myblog.html">Blog học tập</a></li>
+        <li><a href="wy.html">Bộ sưu tập</a></li>
+        <li><a href="../sitemap.xml">Sơ đồ trang</a></li>
+      </ul>
+    </nav>
+    <p data-colophon>Static HTML · GitHub Pages · Việt Nam</p>
+  </div>
+  <p data-colophon>Trang người hâm mộ phi thương mại. Không có liên kết với Jang Wonyoung, IVE hay Starship Entertainment. Chủ sở hữu quyền muốn gỡ nội dung xin <a href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Takedown%20request" target="_blank" rel="noopener noreferrer">mở một issue trên GitHub</a> — xử lý trong 48 giờ. Xem <a href="CREDITS.md">CREDITS.md</a>.</p>
+</footer>
+
+<!-- GSAP as CLASSIC scripts, deliberately. These are UMD bundles: an ES
+     `import` of one throws "Cannot set property window of #<Window> which has
+     only a getter" and takes js/surface-c.js down with it. A classic,
+     non-async script always runs before a deferred module script, so
+     window.gsap and window.ScrollTrigger are set before surface-c.js starts.
+     surface-c.js only reads the globals; it imports nothing from vendor/. -->
+<script src="../vendor/gsap/gsap.min.js"></script>
+<script src="../vendor/gsap/ScrollTrigger.min.js"></script>
+<script type="module" src="../js/surface-c.js"></script>
+
 </body>
 </html>

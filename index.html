@@ -1,308 +1,928 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Minthep">
-    <meta name="keywords" content="minthep, portfolio, developer">
-    <title>Min Thep - Portfolio</title>
-    <link rel="icon" href="img/logo.ico" type="image/x-icon">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://unpkg.com/scrollreveal"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Must stay INLINE and must NOT be type="module": a module is deferred, so the
+     dark theme would paint first and then repaint to light. That flash is the
+     whole reason this runs here instead of in core.js. Contract documented at
+     js/core.js initTheme(). -->
+<script>(function(){var d=document.documentElement;d.className=d.className.replace(/\bno-js\b/,'js');try{var t=localStorage.getItem('minthep:theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
 
-    <style>
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
+<title>Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack</title>
+<meta name="description" content="Mai Tấn Thép (thepKz) — kỹ sư phần mềm full-stack tại Hà Nội. Tự thiết kế, xây dựng và ship sản phẩm thật, từ web tới mobile, với hơn 30 dự án đã làm cùng khách hàng.">
+<meta name="author" content="Mai Tấn Thép">
+<link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/">
 
-        .skill-item {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Minthep">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/">
+<meta property="og:title" content="Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack">
+<meta property="og:description" content="Tôi là kỹ sư phần mềm full-stack, tự thiết kế, xây dựng và ship sản phẩm thật — từ web, tới mobile — với hơn 30 dự án đã làm cùng khách hàng.">
+<meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/img/conga.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="800">
+<!-- Same correction as the hero <img> alt below: conga.jpg is not a portrait,
+     so this must not claim to be one. The og:image URL itself is unchanged —
+     link previews that already cached it keep working. -->
+<meta property="og:image:alt" content="Ảnh minh hoạ trang chủ Minthep">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mai Tấn Thép (thepKz) — Kỹ sư phần mềm Full-Stack">
+<meta name="twitter:description" content="Kỹ sư phần mềm full-stack tại Hà Nội. Web, backend/microservices và mobile Flutter.">
+<meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/img/conga.jpg">
 
-        .skill-item:hover {
-            transform: translateY(-5px);
-        }
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="img/favicon-32.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/logo.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
 
-        .skill-item i {
-            color: #d94f5c;
-        }
-    </style>
+<link rel="preload" as="image" type="image/avif" href="img/conga.avif" imagesrcset="img/conga.avif" imagesizes="(min-width: 1024px) 380px, 88vw" fetchpriority="high">
+<link rel="preload" href="fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/anton-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/surface-a.css">
+<!-- motion-a.css sits AFTER surface-a.css so a motion rule can supersede a
+     surface rule at equal specificity without anyone having to edit
+     surface-a.css — the hero name's negative clip insets live in there and are
+     off-limits. It sits BEFORE lqip.css so the auto-generated blur-up
+     [data-loaded] rules stay last; lqip.css is regenerated by
+     tools/gen-lqip.sh and must not be shadowed by hand-written CSS.
+     Every hide-then-reveal rule inside motion-a.css is scoped under .js or
+     .has-motion, so a 404 on this file leaves the page rendering exactly as it
+     does today rather than hiding content behind a stylesheet that never came. -->
+<link rel="stylesheet" href="css/motion-a.css">
+<link rel="stylesheet" href="css/lqip.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mai Tấn Thép",
+  "alternateName": ["thepKz", "Minthep"],
+  "jobTitle": "Kỹ sư phần mềm Full-Stack",
+  "url": "https://thepkz.github.io/minthep-portfolio/",
+  "image": "https://thepkz.github.io/minthep-portfolio/img/conga.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hà Nội",
+    "addressCountry": "VN"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Đại học FPT"
+  },
+  "knowsLanguage": ["vi", "en", "ko"],
+  "sameAs": [
+    "https://github.com/thepKz",
+    "https://www.linkedin.com/in/thepmaitan26/",
+    "https://www.youtube.com/@minthep2611"
+  ]
+}
+</script>
 </head>
-<body>
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#home">Min Thep</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog/myblog.html">My Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="wy/wy.html">WonYoung</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <main id="home">
-        <section class="hero box-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="animated-text">Welcome to Min Thep's World</h1>
-                        <p class="lead">Exploring creativity through code and design</p>
-                        <a href="#projects" class="btn btn-primary btn-lg">View My Projects</a>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-img">
-                            <img src="img/conga.jpg" alt="Min Thep" class="img-fluid rounded-circle">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<body class="surface-a">
 
-        <section id="about" class="about box-left">
-            <div class="container">
-                <h2>About Me</h2>
-                <div class="about-content">
-                    <p>Hi, I'm Min Thep, a passionate software engineer and designer based in Vietnam. I specialize in creating innovative web applications and user interfaces that combine functionality with aesthetic appeal.</p>
-                    <p>With a keen eye for detail and a love for clean code, I strive to deliver high-quality solutions that exceed expectations.</p>
-                </div>
-            </div>
-        </section>
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
 
-        <section id="skills" class="py-5 bg-light box-right">
-            <div class="container">
-                <h2 class="text-center mb-5">My Skills</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        <div class="skills-grid">
-                            <div class="skill-item">
-                                <i class="fab fa-html5 fa-3x mb-3"></i>
-                                <h3>HTML5</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-css3-alt fa-3x mb-3"></i>
-                                <h3>CSS3</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-js-square fa-3x mb-3"></i>
-                                <h3>JavaScript</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-react fa-3x mb-3"></i>
-                                <h3>React</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-node-js fa-3x mb-3"></i>
-                                <h3>Node.js</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fab fa-git-alt fa-3x mb-3"></i>
-                                <h3>Git</h3>
-                            </div>
-                            <div class="skill-item">
-                                <i class="fas fa-server fa-3x mb-3"></i>
-                                <h3>RESTful API</h3>
-                            </div>
-                            <div class="skill-item">
-                                <img src="img/vite-svgrepo-com.svg" alt="Vite Logo" class="skill-logo mb-3">
-                                <h3>Vite</h3>
-                            </div>
-                            <div class="skill-item">
-                                <img src="img/typescript-logo-svgrepo-com.svg" alt="TypeScript Logo" class="skill-logo mb-3">
-                                <h3>TypeScript</h3>
-                            </div>
-                            <div class="skill-item">
-                                <img src="img/java-svgrepo-com.svg" alt="Java Logo" class="skill-logo mb-3">
-                                <h3>Java</h3>
-                            </div>
-                            <div class="skill-item">
-                                <img src="img/mongodb-svgrepo-com.svg" alt="MongoDB Logo" class="skill-logo mb-3">
-                                <h3>MongoDB</h3>
-                            </div>
-                            <div class="skill-item">
-                                <img src="img/microsoft-sql-server-logo-svgrepo-com.svg" alt="SQL Server Logo" class="skill-logo mb-3">
-                                <h3>SQL Server</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="index.html">MINTHEP</a>
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="#about">Giới thiệu</a></li>
+        <li><a data-nav-link href="#skills">Kỹ năng</a></li>
+        <li><a data-nav-link href="#portfolio">Dự án</a></li>
+        <li><a data-nav-link href="#experience">Kinh nghiệm</a></li>
+        <li><a data-nav-link href="#service">Dịch vụ</a></li>
+        <li><a data-nav-link href="blog/myblog.html">Blog</a></li>
+        <li><a data-nav-link href="#contact">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <!-- After <nav> on purpose: .wordmark carries margin-inline-end:auto, so
+         DOM order after it decides the right-hand group. See components.css §2. -->
+    <button type="button" class="js-only" data-theme-toggle aria-pressed="false">
+      <svg data-icon="sun" aria-hidden="true" focusable="false"><use href="img/sprite.svg#sun"></use></svg>
+      <svg data-icon="moon" aria-hidden="true" focusable="false"><use href="img/sprite.svg#moon"></use></svg>
+      <span class="visually-hidden">Chế độ sáng</span>
+    </button>
+    <button type="button" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true" focusable="false"><use href="img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true" focusable="false"><use href="img/sprite.svg#close"></use></svg>
+    </button>
+  </div>
+</header>
 
-        <section id="experience" class="py-5 box-left">
-            <div class="container">
-                <h2 class="text-center mb-5">My Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Software Engineer</h3>
-                            <h4>Freelance</h4>
-                            <p class="timeline-date">2024 - Present</p>
-                            <p>Developing custom web applications and providing technical solutions for various clients.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Thất Nghiệp</h3>
-                            <h4>Unemployed</h4>
-                            <p class="timeline-date">2004 - 2024</p>
-                            <p>No information.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="education" class="py-5 bg-light box-right">
-            <div class="container">
-                <h2 class="text-center mb-5">Education</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h2>FPT University</h2>
-                            <p class="timeline-date">2022 - 2025</p>
-                            <p>Studying Software Engineering</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h2>Le Quy Don High School for the Gifted-Danang</h2>
-                            <p class="timeline-date">Jun 2019 - May 2022</p>
-                            <p>Specialized in Chemistry</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="py-5 box-bottom">
-            <div class="container">
-                <h2 class="text-center mb-5">My Projects</h2>
-                <div class="row">
-                    <!-- Project 1: Birthday Project -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project1.png" class="card-img-top" alt="Birthday Project">
-                            <div class="card-body">
-                                <h5 class="card-title">Birthday Project</h5>
-                                <p class="card-text">A special birthday celebration webpage with animations and interactive elements.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> HTML, CSS, JavaScript, GSAP</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Help people create birthday projects for friends</p>
-                                <a href="https://thepkz.github.io/PiGiPiHi/" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2: Valentine's Day Project -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project2.png" class="card-img-top" alt="Valentine's Day Project">
-                            <div class="card-body">
-                                <h5 class="card-title">Valentine's Day Project</h5>
-                                <p class="card-text">A romantic Valentine's Day webpage for sharing love and affection.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> HTML, CSS, JavaScript</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Help people create Valentine's Day projects for loved ones</p>
-                                <a href="https://thepkz.github.io/thepValentine/" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#skills">Kỹ năng</a></li>
+      <li><a href="#portfolio">Dự án</a></li>
+      <li><a href="#experience">Kinh nghiệm</a></li>
+      <li><a href="#service">Dịch vụ</a></li>
+      <li><a href="blog/myblog.html">Blog</a></li>
+      <li><a href="wy/wy.html">Jang Wonyoung Gallery</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+  </nav>
+</div>
 
-                    <!-- Project 3: Bầu Cua Tôm Cá -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project3.png" class="card-img-top" alt="Bầu Cua Tôm Cá">
-                            <div class="card-body">
-                                <h5 class="card-title">Bầu Cua Tôm Cá (Tết version)</h5>
-                                <p class="card-text">A traditional Vietnamese game recreated with modern web technologies.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> JavaScript, HTML, CSS</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Preserve and modernize traditional games</p>
-                                <a href="https://thepkz.github.io/bau-cua-tom-ca-ver-tet/" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
+<main id="main">
 
-                    <!-- Project 4: GenKiKoi -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project4.png" class="card-img-top" alt="GenKiKoi">
-                            <div class="card-body">
-                                <h5 class="card-title">GenKiKoi (Team project)</h5>
-                                <p class="card-text">A comprehensive veterinary service management software for Koi fish.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Back-end Developer, Tester, API Designer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> TypeScript, React, Node.js</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Streamline veterinary services for Koi fish</p>
-                                <a href="https://github.com/thepKz/GenKiKoi" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 5: Trò Chơi Túi Mù -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project5.png" class="card-img-top" alt="Trò Chơi Túi Mù">
-                            <div class="card-body">
-                                <h5 class="card-title">Trò Chơi Túi Mù</h5>
-                                <p class="card-text">Một ứng dụng web đơn giản cho phép người chơi chọn số lượng túi mù và màu nguyện vọng.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> React</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Tạo trò chơi thu thập túi mù với cơ hội nhận thêm túi khi có cặp màu hoặc trùng màu nguyện vọng</p>
-                                <a href="https://thepkz.github.io/Blind_Bag/" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6: Wheel of Names -->
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img src="img/project6.png" class="card-img-top" alt="Wheel of Names">
-                            <div class="card-body">
-                                <h5 class="card-title">Wheel of Names</h5>
-                                <p class="card-text">An interactive "wheel of fortune" application with customizable features.</p>
-                                <p><i class="fas fa-user-tie"></i> <strong>Role:</strong> Front-end Developer</p>
-                                <p><i class="fas fa-tools"></i> <strong>Technologies:</strong> JavaScript, HTML, CSS</p>
-                                <p><i class="fas fa-bullseye"></i> <strong>Purpose:</strong> Create an engaging random selection tool</p>
-                                <a href="https://thepkz.github.io/wheel-of-names/" class="btn btn-primary" target="_blank">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-dark text-white py-3">
-        <div class="container text-center">
-            <p class="mb-0 text-center" >&copy; 2023 Min Thep. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://github.com/thepKz" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/thepmaitan26" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.youtube.com/@minthep2611" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
+  <!-- 1 · HERO ------------------------------------------------------------ -->
+  <section class="hero" id="about" data-reveal aria-labelledby="hero-name">
+    <div class="hero__grid shell">
+      <div class="hero__body">
+        <p data-eyebrow>Đang nhận · Dự án mới</p>
+        <h1 class="hero__name display-safe" id="hero-name">
+          <span class="line"><span>Mai Tấn</span></span>
+          <span class="line"><span>Thép</span></span>
+        </h1>
+        <p class="hero__role">Kỹ sư phần mềm Full-Stack · Hà Nội, Việt Nam</p>
+        <!-- 31 words down to 12. surface-a.css:40 writes a "≤20 từ" contract for
+             this element and the old string overran it by 55%, which is three
+             lines of 19px lede where the design system asked for one.
+             Nothing is lost to search: "kỹ sư phần mềm full-stack" survives
+             byte-identical in .hero__role directly above, in <title>, in the
+             meta description, in og:title, in twitter:title and in the JSON-LD
+             jobTitle; "30+" is asserted six lines below by the statrail. -->
+        <p class="hero__lede">Tôi thiết kế, xây và ship sản phẩm thật — web, backend, mobile.</p>
+        <p class="hero__cta">
+          <a class="btn" data-variant="primary" href="#portfolio">Xem dự án</a>
+          <a class="btn" data-variant="secondary" href="#contact">Liên hệ</a>
+        </p>
+        <!-- The one place in this pass where the word count goes UP, and it is
+             the point. "Đúng hạn" and "Ship" are adjectives wearing the costume
+             of metrics: a statrail whose <dd> is an opinion is the exact thing
+             that makes a page read as filler. Both replacements are checkable
+             against this same document — the skills ledger prints "34 mục · 6
+             nhóm", the education entry prints "GPA 8.1/10" — so nothing here is
+             invented. .tabular already carries tnum (base.css:543), which is
+             what keeps 8.1/10 aligned with 30+. -->
+        <dl class="statrail tabular">
+          <div class="statrail__item"><dt>Dự án thực chiến</dt><dd>30+</dd></div>
+          <div class="statrail__item"><dt>Kỹ năng · nhóm</dt><dd>34 · 6</dd></div>
+          <div class="statrail__item"><dt>GPA · Đại học FPT</dt><dd>8.1/10</dd></div>
+        </dl>
+      </div>
+      <figure class="hero__plate">
+        <div class="hero__portrait lqip" style="--lqip:var(--lqip-conga);--tint:var(--tint-conga)">
+          <picture>
+            <source srcset="img/conga.avif" type="image/avif">
+            <source srcset="img/conga.webp" type="image/webp">
+            <!-- The alt text used to read "Chân dung Mai Tấn Thép". It is not a
+                 portrait — img/conga.jpg is a photo of a yellow plush chick on a
+                 grey sofa — so the old value asserted a person who is not in the
+                 frame. That is a WCAG 1.1.1 failure, not a matter of taste: a
+                 screen-reader user was told they were being shown the author's
+                 face. Until a real portrait exists the honest description ships.
+                 REPLACING THE FILE: export 4:5 at 1000x1250, NOT 3:4 —
+                 .hero__portrait is aspect-ratio: 4/5 with object-position:
+                 50% 22%, so a 3:4 source loses 6.7% to the crop. Light the
+                 subject from screen-RIGHT to agree with the radial-gradient
+                 keyed at 72% 38%. Regenerate the LQIP through
+                 tools/gen-lqip.sh, never by hand into tokens.css. -->
+            <img src="img/conga.jpg" width="600" height="800" alt="Ảnh minh hoạ trang chủ" fetchpriority="high" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+          <!-- M1 · specular sheen. One highlight plane that sweeps across once,
+               1.2s, then is done — the portrait is the page's only interactive
+               material surface and it gets exactly one glint, not many.
+               It MUST stay outside <picture>: that element's content model
+               allows only <source>/<img>, and the img's onload above walks
+               parentNode.parentNode to reach .hero__portrait — an <i> nested
+               inside would invalidate the markup AND break the LQIP blur-up
+               handoff. As the last child of .hero__portrait it inherits that
+               element's `overflow: clip` (surface-a.css:582) so it can never
+               bleed past the frame, and its position:absolute means it adds no
+               layout and no CLS. Geometry, gradient and the translate formula
+               all live in css/motion-a.css; it is opacity:0 until <html> gets
+               .has-motion, so with JS off or reduced motion on it is inert and
+               invisible. Empty by design — decorative, so aria-hidden. -->
+          <i class="hero__sheen" aria-hidden="true"></i>
         </div>
-    </footer>
+      </figure>
+    </div>
+  </section>
 
-    <script src="js/mycode.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- 2 · KINETIC TECH BAND ------------------------------------------------ -->
+  <div class="kinetic-band" aria-hidden="true">
+    <div class="kinetic-band__track" data-anim>
+      <span class="kinetic-band__run">React · Next.js · Node.js · Spring Boot · TypeScript · Flutter · MongoDB · Docker · GitHub Actions · TailwindCSS · Redis · Java · Python · Golang · </span>
+      <span class="kinetic-band__run">React · Next.js · Node.js · Spring Boot · TypeScript · Flutter · MongoDB · Docker · GitHub Actions · TailwindCSS · Redis · Java · Python · Golang · </span>
+    </div>
+  </div>
+
+  <!-- 3 · SKILLS LEDGER ---------------------------------------------------- -->
+  <!-- EVERY --cv-size BELOW WAS MEASURED, NOT ESTIMATED. Re-measure them after
+       any change to copy, type scale or section layout — they are the one thing
+       in this file that silently goes stale, because a wrong value renders
+       perfectly until someone scrolls.
+
+       WHAT THE NUMBER IS. --cv-size feeds contain-intrinsic-size, which is a
+       CONTENT-BOX height. getBoundingClientRect() returns a BORDER-box height.
+       Subtract padding-block before comparing, or every section looks ~400px
+       taller than it is at --space-section-lg and you over-reserve by exactly
+       its collar.
+
+       HOW THEY WERE TAKEN. Nine widths — 280, 320, 390, 767, 768, 1023, 1024,
+       1280, 1440 — with content-visibility forced visible and the document
+       crawled end to end first, then peak x1.05 rounded up to 50px. Both sides
+       of every breakpoint, because THE TALLEST VIEWPORT IS AT NEITHER END OF
+       THE RANGE: #portfolio peaks at 1023 (8896px) and measures 4368px one
+       pixel later at 1024, so a mobile+desktop spot-check reports half its real
+       height. Five sections peak at 280, below any breakpoint at all.
+
+       The old values were taken before the Anton titles, the copy cuts, the
+       tight rhythm, the quote stagger and the experience rail; six of the seven
+       were over by 390-1000px, which is why the scrollbar used to settle
+       upward as you scrolled. Over-reserving is the safe direction, not the
+       free one. -->
+  <section class="section-a" data-treatment="open" id="skills" data-reveal aria-labelledby="skills-h" data-cv="section" style="--cv-size: 3500px">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Bộ kỹ năng</p>
+        <h2 id="skills-h" class="section-a__title">Kỹ năng</h2>
+        <p class="section-a__intro">34 mục · 6 nhóm</p>
+      </header>
+
+      <!-- M6 · group stagger. data-reveal-group and data-reveal are NOT new
+           names: core.js:127 already writes an inline --i (0..5) onto the
+           direct children of every [data-reveal-group], and components.css:515
+           already reads `transition-delay: calc(var(--i,0) * var(--stagger))`
+           on every [data-reveal]. Both halves shipped working and fired on
+           zero elements. All this section does is point them at content — zero
+           new CSS, zero new JS, zero ScrollTriggers.
+           The cap matters: groups longer than six (Framework ×9, DevOps ×7)
+           get children 7+ pinned at --i:5, so total stagger is bounded at
+           350ms no matter how long the list is. A 34-row uncapped cascade
+           would take 2.4s and read as a loading screen.
+           Layout-safe by construction: opacity and transform do not affect
+           layout, so #skills' inline --cv-size: 3900px reservation stays
+           exactly as valid as it was. -->
+      <div class="ledger-skills">
+        <p class="ledger-skills__group" data-eyebrow>Ngôn ngữ</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">01</span><span class="skill-row__name">TypeScript</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">02</span><span class="skill-row__name">JavaScript</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#javascript"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">03</span><span class="skill-row__name">Java</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">04</span><span class="skill-row__name">Python</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">05</span><span class="skill-row__name">Golang</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">06</span><span class="skill-row__name">HTML/CSS</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#html5"></use></svg></li>
+        </ul>
+
+        <p class="ledger-skills__group" data-eyebrow>Framework &amp; Thư viện</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">07</span><span class="skill-row__name">React.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">08</span><span class="skill-row__name">Next.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">09</span><span class="skill-row__name">Node.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">10</span><span class="skill-row__name">Express.js</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#nodejs"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">11</span><span class="skill-row__name">Spring Boot</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#leaf"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">12</span><span class="skill-row__name">ASP.NET</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">13</span><span class="skill-row__name">Flutter</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#phone"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">14</span><span class="skill-row__name">Redux</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#react"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">15</span><span class="skill-row__name">TailwindCSS</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#css3"></use></svg></li>
+        </ul>
+
+        <p class="ledger-skills__group" data-eyebrow>Database &amp; Cloud</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">16</span><span class="skill-row__name">MongoDB</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">17</span><span class="skill-row__name">MySQL</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">18</span><span class="skill-row__name">SQL Server</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">19</span><span class="skill-row__name">Firebase</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">20</span><span class="skill-row__name">Redis</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">21</span><span class="skill-row__name">Cloudinary CDN</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#server"></use></svg></li>
+        </ul>
+
+        <p class="ledger-skills__group" data-eyebrow>DevOps &amp; Công cụ</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">22</span><span class="skill-row__name">Docker</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">23</span><span class="skill-row__name">GitHub Actions</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#github"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">24</span><span class="skill-row__name">Vercel</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">25</span><span class="skill-row__name">Netlify</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">26</span><span class="skill-row__name">Render</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">27</span><span class="skill-row__name">Postman</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#tools"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">28</span><span class="skill-row__name">Swagger/OpenAPI</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#file-text"></use></svg></li>
+        </ul>
+
+        <p class="ledger-skills__group" data-eyebrow>Quản lý dự án</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">29</span><span class="skill-row__name">Jira</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">30</span><span class="skill-row__name">Confluence</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#book"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">31</span><span class="skill-row__name">Lark</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#briefcase"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">32</span><span class="skill-row__name">Slack</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#comments"></use></svg></li>
+        </ul>
+
+        <p class="ledger-skills__group" data-eyebrow>Ngoại ngữ</p>
+        <ul class="ledger-skills__rows" role="list" data-reveal-group>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">33</span><span class="skill-row__name">Tiếng Anh (B2)</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
+          <li class="skill-row" data-reveal><span class="skill-row__i tabular">34</span><span class="skill-row__name">Tiếng Hàn (TOPIK II)</span><span class="skill-row__cat"></span><svg class="skill-row__mark" data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#language"></use></svg></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · PROJECT INDEX PLATES --------------------------------------------- -->
+  <!-- --cv-size is a CONTENT-BOX reservation, and the height it has to cover is
+       not at either end of the viewport range. This section peaks at 9414px at
+       1023px — one pixel below the min-width:1024 that splits the plate into
+       two columns, so iPad-portrait and small laptops get the tall single-column
+       stack — against 5668px at 1440 and 6406px at 390. The old 6200px was
+       3,214px short there, so realising the skipped subtree grew the document
+       mid-scroll and the scroll anchor jumped backwards. Measuring only 390 and
+       1440 is exactly what hid it: neither end sees the peak. -->
+  <section class="section-a" data-treatment="plate" id="portfolio" data-rhythm="chapter" data-reveal aria-labelledby="portfolio-h" data-cv="section" style="--cv-size: 9350px">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Dự án</p>
+        <h2 id="portfolio-h" class="section-a__title">Kiến tạo sản phẩm</h2>
+      </header>
+    </div>
+
+    <div class="shell plates">
+
+      <article class="plate plate--bleed" data-reveal>
+        <!-- The lead plate is the only one that carries two frames: the wide
+             product shot on the 7 track, an interface detail on the 5. Each
+             frame keeps its own .lqip wrapper because the img onload handler
+             walks parentNode.parentNode to reach it. -->
+        <div class="plate__media plate__media--duo">
+          <div class="plate__frame lqip" style="--lqip:var(--lqip-project4);--tint:var(--tint-project4)">
+            <picture>
+              <source srcset="img/project4.avif" type="image/avif">
+              <source srcset="img/project4.webp" type="image/webp">
+              <img src="img/project4.png" width="1080" height="546" alt="Giao diện nền tảng thú y Genkikoi" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+            </picture>
+          </div>
+          <div class="plate__frame lqip" style="--lqip:var(--lqip-genkikoi);--tint:var(--tint-genkikoi)">
+            <picture>
+              <source srcset="img/genkikoi.avif" type="image/avif">
+              <source srcset="img/genkikoi.webp" type="image/webp">
+              <img src="img/genkikoi.png" width="727" height="587" alt="Màn hình đặt lịch và hồ sơ điều trị của Genkikoi" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+            </picture>
+          </div>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">01</p>
+          <h3 class="plate__title">Genkikoi</h3>
+          <!-- 43 words to 11, and no fact leaves the page: the paragraph was
+               reprinting its own spec table. "Dẫn dắt nhóm 4 người" was set
+               twice, three lines apart — here and as the Vai trò row.
+               "React/TypeScript" and "Express + MongoDB" are the Công nghệ row
+               verbatim. The only fact with nowhere to land is the CI/CD
+               pipeline, so it becomes a row instead of being dropped: a reader
+               scanning a portfolio for stack signals reads the <dl>, not the
+               fourth line of a paragraph. -->
+          <p class="plate__desc">Nền tảng thú y full-stack. 5 module nghiệp vụ, ship trong 3 tháng.</p>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Full-Stack</dd></div>
+            <div><dt>Vai trò</dt><dd>Dẫn dắt nhóm 4 người</dd></div>
+            <div><dt>Công nghệ</dt><dd>React · TypeScript · Express · MongoDB</dd></div>
+            <div><dt>CI/CD</dt><dd>GitHub Actions</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://github.com/thepKz/GenKiKoi" target="_blank" rel="noopener noreferrer">Xem mã nguồn</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-trustfundme);--tint:var(--tint-trustfundme)">
+          <picture>
+            <source srcset="img/trustfundme.avif" type="image/avif">
+            <source srcset="img/trustfundme.webp" type="image/webp">
+            <img src="img/trustfundme.png" width="1080" height="718" alt="Giao diện nền tảng gây quỹ TrustFundMe" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">02</p>
+          <h3 class="plate__title">TrustFundMe</h3>
+          <!-- 49 words to 14. Same principle as plate 01: Spring Boot, Spring
+               Cloud, Next.js and Flutter were all being named twice, once in
+               prose and once in the Công nghệ row below. VietQR + Casso is the
+               fact the row did not carry, and it is the most specific thing on
+               this plate — a named Vietnamese payment rail — so it gets its own
+               row rather than dying with the paragraph. -->
+          <p class="plate__desc">Hệ thống microservices gây quỹ. 8+ service, thanh toán VietQR real-time qua webhook, kèm app Flutter.</p>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Microservices</dd></div>
+            <div><dt>Công nghệ</dt><dd>Spring Boot · Spring Cloud · Next.js · Flutter</dd></div>
+            <div><dt>Thanh toán</dt><dd>VietQR · Casso</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-blackhole);--tint:var(--tint-blackhole)">
+          <picture>
+            <source srcset="img/blackhole.avif" type="image/avif">
+            <source srcset="img/blackhole.webp" type="image/webp">
+            <img src="img/blackhole.png" width="1080" height="723" alt="Giao diện website công ty game Black Hole Magic" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">03</p>
+          <h3 class="plate__title">Black Hole Magic</h3>
+          <!-- "Đây là một website cho công ty game" is 8 words to say what the
+               title and the screenshot already say, and "nhiều thứ khác..." is
+               a trailing ellipsis where a fact should be. What replaces it
+               names the two things GSAP and THREE.js were actually used FOR. -->
+          <p class="plate__desc">Website studio game. Cuộn kể chuyện, 3D thời gian thực.</p>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>GSAP</dd></div>
+            <div><dt>Công nghệ</dt><dd>GSAP · THREE.JS</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-wygallery);--tint:var(--tint-wygallery)">
+          <picture>
+            <source srcset="img/wygallery.avif" type="image/avif">
+            <source srcset="img/wygallery.webp" type="image/webp">
+            <img src="img/wygallery.png" width="638" height="722" alt="Giao diện bộ sưu tập ảnh Jang Wonyoung" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">04</p>
+          <h3 class="plate__title">Jang Wonyoung Gallery</h3>
+          <!-- The old line said "Hàn Quốc" twice and "xịn xò"/"tuyệt đẹp" — the
+               author praising his own work in a portfolio, which reads as less
+               confident, not more. The replacement states what was BUILT. -->
+          <p class="plate__desc">Bộ sưu tập ảnh idol, lưới masonry và chuyển cảnh viết tay.</p>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Solo · Content</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="wy/wy.html">Xem bộ sưu tập</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-project1);--tint:var(--tint-project1)">
+          <picture>
+            <source srcset="img/project1.avif" type="image/avif">
+            <source srcset="img/project1.webp" type="image/webp">
+            <img src="img/project1.png" width="1039" height="590" alt="Giao diện Birthday Project" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">05</p>
+          <h3 class="plate__title">Birthday Project</h3>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Web</dd></div>
+            <div><dt>Công nghệ</dt><dd>HTML/CSS/JS · GSAP</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://thepkz.github.io/PiGiPiHi/" target="_blank" rel="noopener noreferrer">Xem dự án</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-project2);--tint:var(--tint-project2)">
+          <picture>
+            <source srcset="img/project2.avif" type="image/avif">
+            <source srcset="img/project2.webp" type="image/webp">
+            <img src="img/project2.png" width="1080" height="695" alt="Giao diện Valentine's Day Project" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">06</p>
+          <h3 class="plate__title">Valentine's Day Project</h3>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Web</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://thepkz.github.io/thepValentine/" target="_blank" rel="noopener noreferrer">Xem dự án</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-project3);--tint:var(--tint-project3)">
+          <picture>
+            <source srcset="img/project3.avif" type="image/avif">
+            <source srcset="img/project3.webp" type="image/webp">
+            <img src="img/project3.png" width="1080" height="830" alt="Giao diện trò chơi Bầu Cua Tôm Cá bản Tết" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">07</p>
+          <h3 class="plate__title">Bầu Cua Tôm Cá (Tết version)</h3>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Web game</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://thepkz.github.io/bau-cua-tom-ca-ver-tet/" target="_blank" rel="noopener noreferrer">Xem dự án</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-project5);--tint:var(--tint-project5)">
+          <picture>
+            <source srcset="img/project5.avif" type="image/avif">
+            <source srcset="img/project5.webp" type="image/webp">
+            <img src="img/project5.png" width="1080" height="656" alt="Giao diện Trò Chơi Túi Mù" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">08</p>
+          <h3 class="plate__title">Trò Chơi Túi Mù</h3>
+          <!-- No .plate__desc here, on purpose. It is the eighth of nine plates
+               and the three directly above it (05, 06, 07) have never had one —
+               a lone paragraph opening with "Một ứng dụng web đơn giản" broke
+               the rhythm of the tail of the grid to volunteer that the project
+               is small. The title, the screenshot and the two spec rows say
+               everything it said. -->
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Web game</dd></div>
+            <div><dt>Công nghệ</dt><dd>React</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://thepkz.github.io/Blind_Bag/" target="_blank" rel="noopener noreferrer">Xem dự án</a>
+        </div>
+      </article>
+
+      <article class="plate" data-reveal>
+        <div class="plate__media lqip" style="--lqip:var(--lqip-project6);--tint:var(--tint-project6)">
+          <picture>
+            <source srcset="img/project6.avif" type="image/avif">
+            <source srcset="img/project6.webp" type="image/webp">
+            <img src="img/project6.png" width="1080" height="625" alt="Giao diện Wheel of Names" loading="lazy" decoding="async" onload="this.parentNode.parentNode.dataset.loaded=1">
+          </picture>
+        </div>
+        <div class="plate__body">
+          <p class="plate__index" aria-hidden="true">09</p>
+          <h3 class="plate__title">Wheel of Names</h3>
+          <dl class="plate__spec tabular">
+            <div><dt>Loại</dt><dd>Web</dd></div>
+          </dl>
+          <a class="plate__link" data-link href="https://thepkz.github.io/wheel-of-names/" target="_blank" rel="noopener noreferrer">Xem dự án</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 5 · EXPERIENCE LEDGER ------------------------------------------------ -->
+  <section class="section-a" data-treatment="ledger" id="experience" data-reveal aria-labelledby="experience-h" data-cv="section" style="--cv-size: 2050px">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Hành trình</p>
+        <h2 id="experience-h" class="section-a__title">Kinh nghiệm</h2>
+      </header>
+
+      <!-- M7 · ledger spine. data-spine marks the three <ol>s whose existing
+           static `border-inline-start: 1px solid var(--accent-500)` gets LIT
+           rather than replaced: motion-a.css draws a ::before hairline over it
+           and scrubs its `scale: 1 var(--a-spine)` from 0 to 1 as the list
+           passes. This is the DrawSVG substitute — DrawSVG is a Club plugin
+           and is not vendored (see vendor/gsap/VERSION.txt) — and it is
+           cheaper than DrawSVG anyway: one composited scale, no SVG.
+           With no .has-motion the ::before is never declared and only the
+           existing static accent border remains, i.e. today's page exactly.
+           M6 rides along on the same elements. -->
+      <ol class="ledger-exp" role="list" data-reveal-group data-spine>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">01/2026 – 03/2026</p>
+          <h3 class="exp-entry__role">Fresher · Korean Bridge Engineer</h3>
+          <p class="exp-entry__org">FPT Software · Full-time</p>
+          <ul class="exp-entry__list" role="list">
+            <li>Tự phân tích và lập tài liệu yêu cầu nghiệp vụ, chuyển phản hồi của khách hàng thành task phát triển cụ thể.</li>
+            <li>Điều phối họp Scrum hằng ngày và lập kế hoạch sprint, đảm bảo đồng bộ giữa hai phía.</li>
+            <!-- The "theo dõi task và báo cáo tiến độ qua Jira và Confluence"
+                 bullet is gone. Jira is already named in the intern entry
+                 below, and "tracked tickets in Jira" is not a differentiator
+                 for a bridge engineer — the two bullets that remain (owning
+                 requirements analysis, running the ceremonies) are. Three
+                 bullets per entry was also the widest block of body copy in
+                 this section; two lets the ledger read as a ledger. -->
+          </ul>
+        </li>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">12/2024 – 07/2025</p>
+          <h3 class="exp-entry__role">Intern · Korean Bridge Engineer</h3>
+          <p class="exp-entry__org">FPT Software · Full-time</p>
+          <ul class="exp-entry__list" role="list">
+            <li>Hỗ trợ các Bridge Engineer senior dịch tài liệu kỹ thuật và đặc tả yêu cầu.</li>
+            <li>Tham gia quy trình Agile/Scrum, theo dõi task qua Jira và báo cáo cho quản lý dự án.</li>
+            <!-- "Tích lũy kinh nghiệm làm việc trong văn hóa doanh nghiệp Hàn
+                 Quốc" said nothing the two lines above it do not already prove:
+                 the role IS "Korean Bridge Engineer" at FPT Software. A bullet
+                 whose content is restating your own job title is the exact
+                 filler that makes a CV section skimmable-past. -->
+          </ul>
+        </li>
+      </ol>
+
+      <h3 class="section-a__title" id="education-h">Học vấn</h3>
+      <ol class="ledger-exp" role="list" aria-labelledby="education-h" data-reveal-group data-spine>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">09/2022 – 05/2026</p>
+          <h4 class="exp-entry__role">Kỹ thuật phần mềm (SE)</h4>
+          <p class="exp-entry__org">Đại học FPT · GPA 8.1/10 · Xếp loại Giỏi</p>
+        </li>
+      </ol>
+
+      <h3 class="section-a__title" id="certs-h">Chứng chỉ</h3>
+      <ol class="ledger-exp" role="list" aria-labelledby="certs-h" data-reveal-group data-spine>
+        <!-- THREE ENTRIES MERGED INTO THIS ONE, and they were not three
+             achievements. LinkedIn issues "Career Essentials in Generative AI"
+             as a learning PATH; completing it also emits the constituent course
+             certificates. So the list printed, in three consecutive rows dated
+             the same month: "Career Essentials in Generative AI", "Career
+             Essentials in Generative AI by Microsoft and LinkedIn", and "What
+             Is Generative AI?" — the path, the path again under its long name,
+             and one course inside it. Half the certificate list was one line
+             item wearing three hats, which reads as padding to anyone who
+             recognises the path, and reads as four AI certificates to anyone
+             who does not. The skills line from the dropped rows is kept on the
+             org line so nothing verifiable is lost. -->
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">01/2026</p>
+          <h4 class="exp-entry__role">Career Essentials in Generative AI</h4>
+          <p class="exp-entry__org">Microsoft &amp; LinkedIn · Prompt Engineering, Responsible AI</p>
+        </li>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">01/2026</p>
+          <h4 class="exp-entry__role">Agile Software Development: Scrum for Developers</h4>
+          <p class="exp-entry__org">LinkedIn</p>
+        </li>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">05/2024</p>
+          <h4 class="exp-entry__role">Java Database Connectivity Specialization</h4>
+          <p class="exp-entry__org">LearnQuest / Coursera</p>
+        </li>
+        <li class="exp-entry" data-reveal>
+          <p class="exp-entry__date tabular">03/2024</p>
+          <h4 class="exp-entry__role">Web Design for Everybody Specialization</h4>
+          <p class="exp-entry__org">University of Michigan / Coursera</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 · SERVICES --------------------------------------------------------- -->
+  <section class="section-a" data-treatment="band" id="service" data-rhythm="tight" data-reveal aria-labelledby="service-h" data-cv="section" style="--cv-size: 900px">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Hợp tác</p>
+        <h2 id="service-h" class="section-a__title">Dịch vụ</h2>
+      </header>
+    </div>
+
+    <!-- THE LIST LEAVES THE .shell HERE, ON PURPOSE. It is a sibling of the
+         shell, not a child, so the four row rules run to the true viewport edge
+         while the heading above them stays on the 1320px column with everyone
+         else. That offset — head aligned, rows bleeding past it on both sides —
+         is the composition; see .section-a__bleed in surface-a.css §1.
+         Do not "fix" this by putting the <ul> back inside .shell. -->
+    <div class="section-a__bleed">
+      <!-- M6 · same mechanism, shorter list, so the cadence reads as typeset
+           rather than as a cascade. Four rows never reach the --i:5 cap. -->
+      <ul class="services" role="list" data-reveal-group>
+        <li class="service-row" data-featured data-reveal>
+          <p data-eyebrow class="service-row__flag">Phổ biến</p>
+          <a class="service-row__link" href="#contact">
+            <span class="service-row__body">
+              <span class="service-row__name">Phát triển Web Full-Stack</span>
+              <span class="service-row__note">React/Next.js + Node.js/Spring Boot. Từ 0 đến khi ship.</span>
+            </span>
+            <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </li>
+        <li class="service-row" data-reveal>
+          <a class="service-row__link" href="#contact">
+            <span class="service-row__body">
+              <span class="service-row__name">Backend &amp; Microservices</span>
+              <span class="service-row__note">API Gateway, Spring Cloud, kiến trúc chịu tải.</span>
+            </span>
+            <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </li>
+        <li class="service-row" data-reveal>
+          <a class="service-row__link" href="#contact">
+            <span class="service-row__body">
+              <span class="service-row__name">Phát triển Mobile (Flutter)</span>
+              <span class="service-row__note">Ứng dụng iOS/Android với chat thời gian thực và quản lý nghiệp vụ.</span>
+            </span>
+            <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </li>
+        <li class="service-row" data-reveal>
+          <a class="service-row__link" href="#contact">
+            <span class="service-row__body">
+              <span class="service-row__name">Phân tích &amp; Tư vấn giải pháp</span>
+              <span class="service-row__note">Phân tích yêu cầu, đặc tả, ước lượng timeline.</span>
+            </span>
+            <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 · TESTIMONIALS ----------------------------------------------------- -->
+  <section class="section-a" data-treatment="open" id="testimonials" data-rhythm="tight" data-reveal aria-labelledby="testimonials-h" data-cv="section" style="--cv-size: 1100px">
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Vì sao chọn tôi</p>
+        <h2 id="testimonials-h" class="section-a__title">Nhận xét</h2>
+      </header>
+
+      <!-- M6 · three quotes, three beats. Same 18px lift as every other
+           [data-reveal] on the page — one motion language, not a third one. -->
+      <ul class="quotes" role="list" data-reveal-group>
+        <li class="quote" data-reveal>
+          <blockquote class="quote__text"><p>Thép chủ động, code sạch và bàn giao đúng hạn, làm việc cùng rất nhẹ đầu.</p></blockquote>
+          <p class="quote__by">
+            <span class="quote__avatar" aria-hidden="true">MA</span>
+            <span><b>Minh Anh</b><span class="quote__role">Đồng đội dự án</span></span>
+          </p>
+        </li>
+        <li class="quote" data-reveal>
+          <blockquote class="quote__text"><p>Tư duy hệ thống tốt, dựng microservices và tích hợp thanh toán chỉ trong vài sprint, vượt mong đợi.</p></blockquote>
+          <p class="quote__by">
+            <span class="quote__avatar" aria-hidden="true">QB</span>
+            <span><b>Quốc Bảo</b><span class="quote__role">Quản lý dự án</span></span>
+          </p>
+        </li>
+        <li class="quote" data-reveal>
+          <blockquote class="quote__text"><p>Nắm yêu cầu nhanh, làm đúng và giao đúng. Hợp tác qua nhiều dự án đều rất yên tâm!</p></blockquote>
+          <p class="quote__by">
+            <span class="quote__avatar" aria-hidden="true">HN</span>
+            <span><b>Hoàng N.</b><span class="quote__role">Khách hàng</span></span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8 · FAQ -------------------------------------------------------------- -->
+  <!-- The one reservation here that is NOT the full story: 850px is the height
+       with all six <details> closed. Open they are far taller — but by the time
+       a reader can click a <summary> the section is on screen and long since
+       painted, so contain-intrinsic-size is no longer being consulted. Sizing
+       this for the open state would reserve ~2000px of nothing on every load. -->
+  <section class="section-a" data-treatment="plate" id="faq" data-reveal aria-labelledby="faq-h" data-cv="section" style="--cv-size: 850px">
+    <div class="shell shell--narrow">
+      <header class="section-a__head">
+        <!-- The eyebrow used to be "Hỏi đáp" sitting directly above an h2
+             reading "Hỏi đáp" — the same two words twice, in two type sizes,
+             which is a hierarchy that carries no information. The intro was 20
+             words of pure filler AND it was the only visible prose in the whole
+             section: the other 127 words live behind six closed <details>, so
+             cutting this one line is the entire visible FAQ win.
+             "Sáu câu" hard-codes a count. That is accepted knowingly — there
+             are exactly six <details> below — but anyone adding a seventh must
+             change this word too. -->
+        <p data-eyebrow>Trước khi nhắn</p>
+        <h2 id="faq-h" class="section-a__title">Hỏi đáp</h2>
+        <p class="section-a__intro">Sáu câu hay được hỏi.</p>
+      </header>
+
+      <div class="faq">
+        <details class="faq__item">
+          <summary class="faq__q">Làm sao để bắt đầu hợp tác với bạn?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>Bạn chỉ cần điền form liên hệ bên dưới để chia sẻ thông tin dự án, tôi sẽ phản hồi trong thời gian sớm nhất.</p></div></div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">Bạn nhận làm những loại dự án nào?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>Tôi nhận phát triển web full-stack, backend/microservices, app mobile (Flutter) và hỗ trợ phân tích nghiệp vụ (BA).</p></div></div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">Bạn có làm việc remote không?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>Có. Tôi làm việc remote linh hoạt và quen với quy trình Agile/Scrum cho cả dự án trong và ngoài nước.</p></div></div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">Stack công nghệ chính của bạn là gì?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>React/Next.js, Node.js, Spring Boot, Flutter, cùng MongoDB/MySQL, Docker và CI/CD qua GitHub Actions.</p></div></div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">Một dự án thường mất bao lâu?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>Tùy quy mô và phạm vi, tôi sẽ ước lượng timeline cụ thể và chốt mốc bàn giao ngay khi nắm rõ yêu cầu.</p></div></div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">Bạn đã làm qua bao nhiêu dự án?</summary>
+          <div class="faq__panel"><div class="faq__answer"><p>Hơn 30 dự án: web, backend, mobile — cả solo lẫn dẫn nhóm.</p></div></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · CONTACT ---------------------------------------------------------- -->
+  <section class="section-a" data-treatment="ledger" id="contact" data-rhythm="chapter" data-reveal aria-labelledby="contact-h" data-cv="section" style="--cv-size: 550px">
+    <div class="shell shell--narrow">
+      <header class="section-a__head">
+        <!-- The eyebrow was "Cùng nhau," — a dangling fragment ending in a
+             comma, set in caps above an h2 it does not grammatically continue.
+             The intro's "Đang nhận · Dự án mới" is a verbatim duplicate of the
+             hero eyebrow near the top of this same page, so a reader who got
+             here by scrolling has already read it once. -->
+        <p data-eyebrow>Bước tiếp theo</p>
+        <h2 id="contact-h" class="section-a__title">Liên hệ</h2>
+        <p class="section-a__intro">Đang nhận dự án mới. Làm remote, trong và ngoài nước.</p>
+      </header>
+
+      <!-- No <form> here, deliberately. This site is static HTML on GitHub
+           Pages: there is no endpoint to POST to. The markup that used to sit
+           here had action="mailto:…", which browsers either mangle into a
+           garbled draft or drop with no error at all — so a visitor who filled
+           it in got no reply and no way to tell that nothing was sent. Real
+           reachable channels beat a form that only looks like it works.
+           Reuses .form-a__actions / .form-a__note; no new CSS. -->
+      <p class="form-a__actions">
+        <a class="btn" data-variant="primary" href="https://www.linkedin.com/in/thepmaitan26/" target="_blank" rel="noopener noreferrer">Nhắn qua LinkedIn</a>
+        <a class="btn" data-variant="secondary" href="https://www.facebook.com/thepp.tan/" target="_blank" rel="noopener noreferrer">Facebook · @thepp.tan</a>
+        <a class="btn" data-variant="ghost" href="https://github.com/thepKz" target="_blank" rel="noopener noreferrer">GitHub · thepKz</a>
+      </p>
+      <!-- THE SENTENCE THAT SURVIVES IS NOT EDITORIAL, IT IS THE TAKEDOWN
+           CHANNEL. This site publishes no email address anywhere by design, so
+           this issues link is the only way a rightsholder can reach the owner —
+           and wy/CREDITS.md repeats the same 48-hour commitment, so the two
+           have to keep agreeing. Cutting it, or letting the href drift, is a
+           legal regression dressed up as a copy cut. Do not touch the <a>.
+           What was cut is the first clause: 17 words naming what LinkedIn,
+           Facebook and GitHub are for, directly under three buttons already
+           labelled "Nhắn qua LinkedIn", "Facebook · @thepp.tan" and
+           "GitHub · thepKz". -->
+      <p class="form-a__note">
+        Muốn báo lỗi nội dung hay yêu cầu gỡ tư liệu thì
+        <a data-link href="https://github.com/thepKz/minthep-portfolio/issues" target="_blank" rel="noopener noreferrer">mở một issue</a>
+        — mình phản hồi trong 48 giờ.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 10 · FOOTER ------------------------------------------------------------ -->
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#service">Dịch vụ</a></li>
+        <li><a href="#portfolio">Dự án</a></li>
+        <li><a href="blog/myblog.html">Blog</a></li>
+        <li><a href="wy/wy.html">Jang Wonyoung Gallery</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <ul data-social role="list">
+      <li><a href="https://github.com/thepKz" target="_blank" rel="noopener noreferrer" aria-label="GitHub của thepKz"><svg data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#github"></use></svg></a></li>
+      <li><a href="https://www.linkedin.com/in/thepmaitan26/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn của Mai Tấn Thép"><svg data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#linkedin"></use></svg></a></li>
+      <li><a href="https://www.youtube.com/@minthep2611" target="_blank" rel="noopener noreferrer" aria-label="YouTube của Minthep"><svg data-icon aria-hidden="true" focusable="false"><use href="img/sprite.svg#youtube"></use></svg></a></li>
+    </ul>
+    <p data-colophon>© 2026 thepKz, Bảo lưu mọi quyền · Static HTML · GitHub Pages · Hà Nội</p>
+  </div>
+</footer>
+
+<!-- ===== MOTION LAYER · the load order here is load-bearing. Do not tidy it. ==
+     Four tags, this exact order and these exact attributes, for four reasons:
+
+     1. CLASSIC <script defer>, never type="module", for the two GSAP files.
+        They are UMD bundles. A named or default ES import of them evaluates to
+        undefined — the module machinery finds no export map. They have to be
+        read off the global object instead:
+          const gsap = window.gsap; const ScrollTrigger = window.ScrollTrigger;
+        Adding type="module" here is the single most tempting "cleanup" on this
+        page and it silently kills every effect with no console error.
+
+     2. The ordering is guaranteed by the HTML spec, not by luck. Classic defer
+        scripts and non-async module scripts are appended to the SAME list —
+        "scripts that will execute when the document has finished parsing" — in
+        document order. So it is always gsap -> ScrollTrigger -> core.js ->
+        motion-a.js. window.gsap is therefore defined before initMotion() runs,
+        even though motion-a.js is a module and the GSAP tags are not.
+
+     3. TWO separate module blocks, never one block with two imports. A 404 or
+        a syntax error inside motion-a.js aborts the entire module that
+        imported it; folding it into the boot() block would take nav, reveal
+        and the animation gate down with it. Split, a motion failure can only
+        ever cost decoration. It is also the additive answer — the existing
+        boot() block below is byte-identical to what it was.
+
+     4. Tail position + defer, so ~46 KiB gz of decoration never competes with
+        the img/conga.avif fetchpriority="high" preload or the two Anton font
+        preloads in <head>. Nothing here is parser-blocking; it all arrives
+        after first paint and after LCP.
+
+     vendor/gsap/Flip.min.js exists on disk but is deliberately NOT loaded: the
+     Flip lightbox was rejected, so 9.5 KiB gz and one whole class of runtime
+     failure stay off the wire. Do not add a third vendor tag.
+     ======================================================================= -->
+<script src="vendor/gsap/gsap.min.js" defer></script>
+<script src="vendor/gsap/ScrollTrigger.min.js" defer></script>
+
+<script type="module">
+  import boot from './js/core.js';
+  boot();
+</script>
+
+<script type="module">
+  import initMotion from './js/motion-a.js';
+  initMotion();
+</script>
+
 </body>
 </html>

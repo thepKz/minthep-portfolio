@@ -1,0 +1,1279 @@
+/* ============================================================================
+   components.css — MINTHEP design system, shared component layer
+   ----------------------------------------------------------------------------
+   Loaded third, on all 17 pages:
+     tokens.css -> base.css -> components.css -> surface-{a|b|c}.css
+
+   Public API is data-attributes, so markup stays semantic and no surface file
+   has to know a class name:
+
+     [data-nav]                      site header, --nav-h tall, fixed
+     [data-nav-bar]                  optional inner bar -> floating capsule
+     [data-nav-link]                 a nav item; [aria-current] draws the rule
+     [data-nav-toggle] / [data-drawer]   mobile drawer, <=768px
+     [data-reveal] / [data-reveal-group] scroll reveal + capped stagger
+     [data-eyebrow]                  micro-label with a leading accent rule
+     .btn[data-variant="primary|secondary|ghost"]
+     [data-link]                     prose link, background-image underline
+     [data-table]                    scrollable table wrapper
+     [data-icon="name"]              <svg data-icon><use href="…/sprite.svg#name">
+     [data-anim]                     paused-by-default infinite animation
+     [data-cv]                       content-visibility: auto
+     [data-footer]                   the shared footer band
+     .skip-link                      the skip link
+
+   RULES OBSERVED IN THIS FILE
+   1. Every colour, duration, radius, easing, layer and space value is a
+      var() reference into tokens.css. No hex, no rgb(), no bare z-index.
+   2. The handful of magic numbers this layer genuinely owns (tap target,
+      capsule inset, scrollbar thickness…) are named as --c-* custom
+      properties in section 0. They are component-local implementation
+      detail, NOT part of the tokens.css public API — surface files should
+      keep reading tokens.css, and may override a --c-* to retune a
+      component.
+   3. Progressive enhancement: no element is left at opacity: 0 by static
+      CSS. Every reveal initial state is scoped under `html.js` (base.css
+      section 6), so html.no-js renders a complete, readable page.
+   4. Motion is transform/opacity. Infinite animations start paused.
+
+   CLASS/STATE CONTRACT WITH js/core.js (do not drift):
+     initNav        -> [data-nav].is-scrolled past 80px
+                       [data-drawer].is-open, html.is-nav-open
+                       [data-nav-toggle][aria-expanded]
+     initReveal     -> [data-reveal].is-in, and --i (0..5) inline on the
+                       direct children of every [data-reveal-group]
+     initAnimGate   -> inline style.animationPlayState on [data-anim]
+   ========================================================================== */
+
+
+/* ============================================================================
+   0. COMPONENT-LOCAL CUSTOM PROPERTIES
+   ----------------------------------------------------------------------------
+   Named so that no literal appears in a rule below. Anything a tokens.css
+   token already covers is NOT redeclared here — it is used directly.
+   ========================================================================== */
+
+:root {
+  /* the WCAG 2.5.5 / 2.5.8 floor for anything you can click or tap */
+  --c-tap: 44px;
+
+  /* nav */
+  --c-nav-inset: 12px;      /* capsule offset from the top edge when scrolled */
+  --c-nav-blur: 14px;       /* backdrop-filter radius on the e4 capsule       */
+  --c-nav-saturate: 115%;
+  --c-wordmark-size: 1.25rem;   /* 20px Anton — the wordmark never scales     */
+  --c-nav-rule-h: 2px;      /* active-item underline thickness                */
+  --c-nav-rule-drop: 6px;   /* …inset below the baseline                      */
+
+  /* drawer */
+  --c-drawer-w: 88vw;
+  --c-drawer-max: 400px;
+
+  /* reveal */
+  --c-reveal-shift: 18px;
+
+  /* eyebrow */
+  --c-eyebrow-rule: 24px;
+  --c-eyebrow-gap: 12px;
+
+  /* buttons */
+  --c-btn-pad-block: 14px;
+  --c-btn-pad-inline: 26px;
+  --c-btn-sheen-angle: 105deg;
+  --c-btn-spinner: 14px;
+  --c-btn-spinner-w: 2px;
+  --c-btn-press: 1px;
+
+  /* prose link underline */
+  --c-underline-h: 1px;
+  --c-underline-drop: 0.16em;   /* clears the Vietnamese dot-below on e/o/u  */
+
+  /* tables */
+  --c-scrollbar: 6px;
+  --c-table-fade: 44px;
+  --c-table-pad-block: 14px;
+  --c-table-pad-inline: 16px;
+  --c-table-bg: var(--page);    /* override when the table sits on --surface */
+
+  /* icons */
+  --c-icon: 1.25em;
+  --c-icon-social: 20px;
+
+  /* footer */
+  --c-footer-bg: var(--ink-1000);
+}
+
+
+/* ============================================================================
+   1. SKIP LINK
+   ----------------------------------------------------------------------------
+     <a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+   First focusable element in <body>. Never display:none — it must stay in the
+   tab order; it is moved off-screen with a transform and slides back on focus.
+   ========================================================================== */
+
+.skip-link {
+  position: fixed;
+  inset-block-start: var(--s-2);
+  inset-inline-start: var(--s-2);
+  z-index: var(--z-toast);
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--c-tap);
+  padding-inline: var(--s-5);
+  border-radius: var(--r-sm);
+  /* Was --accent-500: 5.00:1 but APCA Lc 37.4 at 15px/500. This is the first
+     thing a keyboard user ever focuses and it was the weakest fill on the page.
+     --accent-fill is the same token the primary button now uses, so the two
+     agree: 6.86:1 / Lc 48.7. */
+  background-color: var(--accent-fill);
+  color: var(--on-accent);         /* 6.86:1 · APCA Lc 48.7 */
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-nav);
+  text-decoration: none;
+  box-shadow: var(--shadow-float);
+  transform: translateY(calc(-100% - var(--s-6)));
+  transition: transform var(--dur-3) var(--ease-out-quiet);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+
+/* ============================================================================
+   2. SITE HEADER — [data-nav]
+   ----------------------------------------------------------------------------
+   Markup contract (the inner [data-nav-bar] is optional but recommended):
+
+     <header class="site-header" data-nav>
+       <div data-nav-bar>
+         <a class="wordmark" href="index.html">MINTHEP</a>
+         <nav aria-label="Điều hướng chính">
+           <ul role="list">
+             <li><a data-nav-link href="#projects">Dự án</a></li>
+           </ul>
+         </nav>
+         <button type="button" data-nav-toggle aria-expanded="false"
+                 aria-controls="site-drawer" aria-label="Mở menu">…</button>
+       </div>
+     </header>
+
+   Height is var(--nav-h) and never changes. Past 80px of scroll core.js adds
+   .is-scrolled and the bar becomes the e4 floating capsule.
+
+   Without [data-nav-bar] the header still works: .is-scrolled gives it a
+   full-bleed e4 treatment instead of a capsule. That fallback is what makes
+   this component safe on every page, whatever its markup.
+   ========================================================================== */
+
+[data-nav] {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-block-size: var(--nav-h);
+  padding-inline: var(--space-gutter);
+  /* backdrop-filter is deliberately NOT in this list — interpolating a blur
+     radius is one of the most expensive things a compositor can be asked to
+     do, and it snaps imperceptibly under the background fade. */
+  transition:
+    background-color var(--dur-4) var(--ease-out-quiet),
+    box-shadow var(--dur-4) var(--ease-out-quiet);
+}
+
+/* full-bleed fallback treatment (no [data-nav-bar] present) */
+[data-nav].is-scrolled {
+  background-color: var(--ink-800);
+  box-shadow: var(--edge-all), var(--shadow-float);
+  backdrop-filter: blur(var(--c-nav-blur)) saturate(var(--c-nav-saturate));
+}
+
+/* --- the capsule variant ------------------------------------------------- */
+@supports selector(:has(*)) {
+  /* the header is only a positioning shell once a bar exists */
+  [data-nav]:has([data-nav-bar]),
+  [data-nav]:has([data-nav-bar]).is-scrolled {
+    background-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+}
+
+[data-nav-bar] {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  inline-size: 100%;
+  max-inline-size: var(--w-shell);
+  min-block-size: var(--nav-h);
+  padding-inline: var(--s-0);
+  border-radius: var(--r-0);
+  transition:
+    max-inline-size var(--dur-4) var(--ease-out-quiet),
+    margin-block-start var(--dur-4) var(--ease-out-quiet),
+    padding-inline var(--dur-4) var(--ease-out-quiet),
+    border-radius var(--dur-4) var(--ease-out-quiet),
+    background-color var(--dur-4) var(--ease-out-quiet),
+    box-shadow var(--dur-4) var(--ease-out-quiet);
+}
+
+[data-nav].is-scrolled [data-nav-bar] {
+  max-inline-size: var(--w-content);
+  margin-block-start: var(--c-nav-inset);
+  padding-inline: var(--s-5);
+  border-radius: var(--r-md);
+  background-color: var(--ink-800);
+  box-shadow: var(--edge-all), var(--shadow-float);
+  backdrop-filter: blur(var(--c-nav-blur)) saturate(var(--c-nav-saturate));
+}
+
+/* --- wordmark ------------------------------------------------------------ */
+
+[data-nav] .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--c-tap);
+  margin-inline-end: auto;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--c-wordmark-size);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-label);
+  color: var(--ink-50);
+  text-decoration: none;
+  /* Anton at --lh-display would clip Ế/Ộ/Ữ inside a flex line box; the extra
+     block padding is the same 0.08em .display-safe uses in base.css. */
+  padding-block: 0.08em;
+}
+
+/* --- nav items ----------------------------------------------------------- */
+
+[data-nav] nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+[data-nav-link] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--c-tap);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-nav);
+  color: var(--ink-300);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+[data-nav-link]:hover,
+[data-nav-link]:focus-visible {
+  color: var(--ink-50);
+}
+
+/* the active rule — scaleX only, so it is a compositor-only animation */
+[data-nav-link]::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: var(--c-nav-rule-drop);
+  block-size: var(--c-nav-rule-h);
+  background-color: var(--accent-500);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-3) var(--ease-out-quiet);
+}
+
+[data-nav-link]:hover::after,
+[data-nav-link][aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* [aria-current] must not rely on colour alone */
+[data-nav-link][aria-current] {
+  color: var(--ink-50);
+}
+
+/* --- theme toggle -------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+     <button type="button" class="js-only" data-theme-toggle aria-pressed="false">
+       <svg data-icon="sun"  aria-hidden="true"><use href="img/sprite.svg#sun"></use></svg>
+       <svg data-icon="moon" aria-hidden="true"><use href="img/sprite.svg#moon"></use></svg>
+       <span class="visually-hidden">Chế độ sáng</span>
+     </button>
+
+   DOM order is load-bearing: [data-nav] .wordmark carries margin-inline-end:auto,
+   so everything authored after it lands on the right of the bar. This button
+   goes after <nav> and before [data-nav-toggle], which puts it immediately left
+   of the hamburger at every width — the same slot on mobile and on desktop, so
+   the control never moves when the viewport does.
+
+   ONE label, not two. Surface B's .b-modetoggle swaps its visible text between
+   "Chế độ giấy" and "Chế độ tối" because it is a labelled pill in a reading
+   toolbar. This is an icon button in a nav bar, and with aria-pressed present
+   the correct accessible name is the THING being toggled, held still, while
+   pressed/not-pressed carries the state: "Chế độ sáng, nút chuyển, đã bật".
+   A name that changed alongside aria-pressed would announce the action and the
+   state in contradiction. So the Vietnamese string is authored once, in the
+   markup, and js/core.js never touches it — initTheme() writes exactly two
+   things, aria-pressed here and data-theme on <html>.
+
+   .js-only removes the button entirely when scripting is off (base.css §6):
+   the theme is stored client-side, so a control that could set it with no way
+   to unset it would be a trap.
+   --------------------------------------------------------------------------- */
+
+[data-theme-toggle] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--c-tap);
+  min-inline-size: var(--c-tap);
+  block-size: var(--c-tap);
+  border-radius: var(--r-sm);
+  color: var(--ink-300);
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+[data-theme-toggle]:hover,
+[data-theme-toggle]:focus-visible {
+  color: var(--ink-50);
+  background-color: color-mix(in oklab, var(--ink-50) 8%, transparent);
+}
+
+/* One button, two glyphs — swapped by aria-pressed, never by a JS class, so
+   the state lives in exactly one attribute. The glyph shows the mode you are
+   ABOUT TO GET, which is the convention every OS uses: on the dark page the
+   button offers a sun. */
+[data-theme-toggle] [data-icon='moon'] { display: none; }
+[data-theme-toggle][aria-pressed='true'] [data-icon='sun'] { display: none; }
+[data-theme-toggle][aria-pressed='true'] [data-icon='moon'] { display: block; }
+
+
+/* ============================================================================
+   3. MOBILE DRAWER — [data-nav-toggle] / [data-drawer]
+   ----------------------------------------------------------------------------
+     <button type="button" data-nav-toggle aria-expanded="false"
+             aria-controls="site-drawer" aria-label="Mở menu">
+       <svg data-icon="menu"  aria-hidden="true"><use href="img/sprite.svg#menu"></use></svg>
+       <svg data-icon="close" aria-hidden="true"><use href="img/sprite.svg#close"></use></svg>
+     </button>
+
+     <div id="site-drawer" data-drawer tabindex="-1" hidden-until-open…>
+       <nav aria-label="Điều hướng di động"><ul role="list">…</ul></nav>
+     </div>
+
+   core.js focus-traps it, syncs aria-expanded, sets `inert` on <main>, and
+   closes on Esc or on any link click. This file supplies: the closed state
+   (visibility:hidden, so it leaves the tab order and the a11y tree), the
+   slide, the scrim, and the >768px / .no-js suppression.
+
+   NO-JS: the toggle and the drawer are both suppressed and the inline nav
+   simply wraps under the wordmark. Nothing is unreachable without JS.
+   ========================================================================== */
+
+[data-nav-toggle] {
+  display: none;                       /* shown at <=768px, under .js only */
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--c-tap);
+  min-inline-size: var(--c-tap);
+  block-size: var(--c-tap);
+  border-radius: var(--r-sm);
+  color: var(--ink-150);
+  background-color: transparent;
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+[data-nav-toggle]:hover {
+  color: var(--ink-50);
+  background-color: color-mix(in oklab, var(--ink-50) 8%, transparent);
+}
+
+/* one button, two glyphs — swap by aria-expanded, never by JS class */
+[data-nav-toggle] [data-icon='close'] { display: none; }
+[data-nav-toggle][aria-expanded='true'] [data-icon='menu'] { display: none; }
+[data-nav-toggle][aria-expanded='true'] [data-icon='close'] { display: block; }
+
+[data-drawer] {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+  inline-size: var(--c-drawer-w);
+  max-inline-size: var(--c-drawer-max);
+  padding: calc(var(--nav-h) + var(--s-6)) var(--space-gutter) var(--s-8);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* e5 — over */
+  background-color: var(--ink-850);
+  box-shadow: var(--edge-all), var(--shadow-over);
+  border-start-start-radius: var(--r-lg);
+  border-end-start-radius: var(--r-lg);
+  /* closed: out of the tab order AND out of the a11y tree */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    transform var(--dur-4) var(--ease-out-quiet),
+    opacity var(--dur-4) var(--ease-out-quiet),
+    visibility 0s linear var(--dur-4);
+}
+
+[data-drawer].is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    transform var(--dur-4) var(--ease-out-quiet),
+    opacity var(--dur-4) var(--ease-out-quiet),
+    visibility 0s linear 0s;
+}
+
+[data-drawer] nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+[data-drawer] a {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--c-tap);
+  padding-block: var(--s-2);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-150);
+  text-decoration: none;
+  border-block-end: var(--bw-hair) solid var(--border-faint);
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+[data-drawer] a:hover,
+[data-drawer] a:focus-visible {
+  color: var(--accent-300);
+}
+
+/* staggered entry, capped at 6 — the same cap the reveal system uses */
+[data-drawer].is-open nav li {
+  animation: c-drawer-in var(--dur-4) var(--ease-out-quiet) both;
+}
+[data-drawer].is-open nav li:nth-child(1) { animation-delay: calc(0 * var(--stagger)); }
+[data-drawer].is-open nav li:nth-child(2) { animation-delay: calc(1 * var(--stagger)); }
+[data-drawer].is-open nav li:nth-child(3) { animation-delay: calc(2 * var(--stagger)); }
+[data-drawer].is-open nav li:nth-child(4) { animation-delay: calc(3 * var(--stagger)); }
+[data-drawer].is-open nav li:nth-child(5) { animation-delay: calc(4 * var(--stagger)); }
+[data-drawer].is-open nav li:nth-child(n + 6) { animation-delay: calc(5 * var(--stagger)); }
+
+@keyframes c-drawer-in {
+  from { opacity: 0; transform: translateX(var(--s-5)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* scrim. Attached to html so it can sit under the header but over the page.
+   Note: core.js closes on Esc and on link click, not on scrim click, so this
+   layer is deliberately non-interactive. */
+.is-nav-open::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-nav);
+  background-color: var(--scrim);
+  pointer-events: none;
+}
+
+/* scroll lock while the drawer is open */
+.is-nav-open,
+.is-nav-open body {
+  overflow: hidden;
+}
+
+/* --- viewport + no-js gating -------------------------------------------- */
+
+@media (max-width: 768px) {
+  .js [data-nav-toggle] { display: inline-flex; }
+  /* Only a nav that is a direct child of the header (or of its bar) is the
+     desktop nav. A [data-drawer] > nav is never matched, wherever it sits. */
+  .js [data-nav] > nav,
+  .js [data-nav] > [data-nav-bar] > nav {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  /* never leave a drawer reachable on desktop, even mid-resize */
+  [data-drawer],
+  [data-drawer].is-open {
+    display: none;
+  }
+  .is-nav-open::before { content: none; }
+  .is-nav-open,
+  .is-nav-open body { overflow: visible; }
+}
+
+/* Without JS there is nothing to open the drawer with, so the drawer and its
+   toggle are both removed and the inline nav stays in the flow. */
+.no-js [data-drawer],
+.no-js [data-nav-toggle] {
+  display: none;
+}
+
+/* A fixed header would cover the page once the link row wraps, and there is no
+   toggle to collapse it, so without JS the header simply joins the flow. The
+   only cost is one extra --nav-h of leading whitespace on surfaces that also
+   pad <main> — cosmetic, never broken. */
+.no-js [data-nav] {
+  position: static;
+  min-block-size: auto;
+  padding-block: var(--s-3);
+  background-color: var(--ink-900);
+}
+
+.no-js [data-nav-bar] {
+  flex-wrap: wrap;
+  min-block-size: auto;
+}
+
+
+/* ============================================================================
+   4. REVEAL — [data-reveal] / [data-reveal-group]
+   ----------------------------------------------------------------------------
+   The hidden state is scoped under `.js` and NOWHERE ELSE. base.css section 6
+   documents the contract: an inline <head> script swaps class="no-js" for
+   class="js" on <html> before first paint. If that script never runs, or the
+   browser has JS off, `.js` is absent and every [data-reveal] renders at its
+   natural opacity — the page is complete and readable with zero motion code.
+
+   Stagger: core.js writes --i (0..5) inline on the direct children of every
+   [data-reveal-group]. The nth-child rules below duplicate that cap in pure
+   CSS so the ordering is auditable here and identical either way.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--c-reveal-shift));
+  transition:
+    opacity var(--dur-5) var(--ease-out-quiet),
+    transform var(--dur-5) var(--ease-out-quiet);
+  transition-delay: calc(var(--i, 0) * var(--stagger));
+  /* deliberately NO will-change: a landing page has ~10 [data-reveal]
+     sections and pre-promoting all of them costs more GPU memory than the
+     transition saves. opacity/transform transitions are composited anyway. */
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* stagger index, capped at 6 direct children */
+[data-reveal-group] > *              { --i: 0; }
+[data-reveal-group] > :nth-child(2)  { --i: 1; }
+[data-reveal-group] > :nth-child(3)  { --i: 2; }
+[data-reveal-group] > :nth-child(4)  { --i: 3; }
+[data-reveal-group] > :nth-child(5)  { --i: 4; }
+[data-reveal-group] > :nth-child(n + 6) { --i: 5; }
+
+/* Under reduced motion core.js adds .is-in immediately and builds no observer;
+   this rule guarantees the same result even if core.js never loads at all. */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+
+/* ============================================================================
+   5. EYEBROW — [data-eyebrow]
+   ----------------------------------------------------------------------------
+     <p data-eyebrow>Dự án</p>          <!-- rule + label -->
+     <p data-eyebrow data-rule="none">  <!-- label only   -->
+   --text-muted is the muted-text floor (>=5.04:1 dark, >=5.30:1 paper).
+   ========================================================================== */
+
+[data-eyebrow] {
+  display: flex;
+  align-items: center;
+  gap: var(--c-eyebrow-gap);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-micro);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-label);
+}
+
+[data-eyebrow]::before {
+  content: '';
+  flex: 0 0 var(--c-eyebrow-rule);
+  block-size: var(--bw-hair);
+  background-color: var(--accent-edge);
+}
+
+[data-eyebrow][data-rule='none']::before {
+  content: none;
+}
+
+
+/* ============================================================================
+   6. BUTTONS — .btn[data-variant="primary|secondary|ghost"]
+   ----------------------------------------------------------------------------
+     <a class="btn" data-variant="primary" href="#contact">Liên hệ</a>
+     <button class="btn" data-variant="secondary" type="button">Tải CV</button>
+
+   Primary is --on-accent on --accent-500 = 5.00:1.
+   White on --accent-500 is 4.02:1 and --ink-50 on --accent-500 is 3.65:1 —
+   both BANNED, which is why the label token here is --on-accent and nothing
+   in this file ever puts a light colour on the accent fill. --on-accent is
+   its own token rather than --ink-1000 precisely so that a light theme, which
+   inverts the ink ramp, cannot drag this label up into the banned range.
+   ========================================================================== */
+
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;                       /* contains the sheen, not the ring */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--c-tap);
+  padding: var(--c-btn-pad-block) var(--c-btn-pad-inline);
+  border: 0;
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-nav);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-3) var(--ease-standard),
+    border-color var(--dur-3) var(--ease-standard),
+    color var(--dur-3) var(--ease-standard),
+    transform var(--dur-1) var(--ease-standard);
+}
+
+.btn:active:not([disabled]):not([aria-disabled='true']) {
+  transform: translateY(var(--c-btn-press)) scale(0.985);
+}
+
+/* --- primary ------------------------------------------------------------- */
+
+.btn[data-variant='primary'] {
+  /* Was --accent-500. That pair is 5.00:1, a WCAG pass, but APCA Lc 37.4 at
+     this button's 15px/500 where fluent text wants ~60 — and an in-gamut sweep
+     showed near-black labels cap near Lc 52 anywhere in the rose family, so it
+     could not be tuned in place. One step up the ramp reaches 6.86:1 / Lc 48.7:
+     better on both models, and brighter rather than darker, which matters on a
+     page whose measured problem is that saturated paint covers 0.128% of it. */
+  background-color: var(--accent-fill);
+  color: var(--on-accent);              /* 6.86:1 · APCA Lc 48.7 */
+}
+
+.btn[data-variant='primary']:hover,
+.btn[data-variant='primary']:focus-visible {
+  background-color: var(--accent-fill-hover);  /* 10.61:1 · APCA Lc 67.9 */
+}
+
+.btn[data-variant='primary']:active:not([disabled]) {
+  background-color: var(--accent-600);
+}
+
+/* directional sheen — a --ink-50 band at 22%, translated across the face */
+.btn[data-variant='primary']::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  z-index: var(--z-base);
+  pointer-events: none;
+  background-image: linear-gradient(
+    var(--c-btn-sheen-angle),
+    transparent 30%,
+    color-mix(in oklab, var(--ink-50) 22%, transparent) 48%,
+    transparent 66%
+  );
+  transform: translateX(-120%);
+  transition: transform var(--dur-5) var(--ease-luxe);
+}
+
+.btn[data-variant='primary']:hover::after {
+  transform: translateX(120%);
+}
+
+/* --- secondary ----------------------------------------------------------- */
+
+.btn[data-variant='secondary'] {
+  background-color: transparent;
+  border: var(--bw-hair) solid var(--border-interactive);   /* 3.99:1 */
+  color: var(--text);
+}
+
+.btn[data-variant='secondary']:hover,
+.btn[data-variant='secondary']:focus-visible {
+  border-color: var(--accent-500);
+  color: var(--accent-300);
+  background-color: color-mix(in oklab, var(--accent-500) 8%, transparent);
+}
+
+/* --- ghost --------------------------------------------------------------- */
+
+.btn[data-variant='ghost'] {
+  background-color: transparent;
+  border: var(--bw-hair) solid transparent;
+  color: var(--text-2);
+  padding-inline: var(--s-4);
+}
+
+.btn[data-variant='ghost']:hover,
+.btn[data-variant='ghost']:focus-visible {
+  color: var(--text);
+  background-color: color-mix(in oklab, var(--text) 8%, transparent);
+}
+
+/* --- disabled ------------------------------------------------------------ */
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  background-color: var(--ink-500);
+  border-color: transparent;
+  color: var(--ink-350);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn[disabled]::after,
+.btn[aria-disabled='true']::after {
+  content: none;
+}
+
+/* --- loading -------------------------------------------------------------
+   The only infinite animation in this file that is NOT [data-anim]-gated: it
+   exists solely while the attribute is present, i.e. during an in-flight
+   request, so it can never contribute to idle CPU. Width is not touched, so
+   entering the state costs zero layout shift. */
+
+.btn[data-loading] {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.btn[data-loading] > * {
+  opacity: 0.5;
+}
+
+.btn[data-loading]::before {
+  content: '';
+  inline-size: var(--c-btn-spinner);
+  block-size: var(--c-btn-spinner);
+  border: var(--c-btn-spinner-w) solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: var(--r-pill);
+  animation: c-spin var(--dur-6) linear infinite;
+}
+
+@keyframes c-spin {
+  to { transform: rotate(1turn); }
+}
+
+/* --- reduced motion ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn[data-variant='primary']::after { content: none; }
+  .btn:active:not([disabled]) { transform: none; }
+  .btn[data-loading]::before { animation: none; }
+}
+
+
+/* ============================================================================
+   7. PROSE LINK — [data-link]
+   ----------------------------------------------------------------------------
+   The underline is a background-image, never text-decoration.
+   text-decoration draws through the descender zone and clips the Vietnamese
+   dot-below on ệ / ậ / ợ — the exact defect this component exists to avoid.
+   background-position: 0 100% plus padding-block-end keeps the rule clear of
+   the mark entirely.
+   ========================================================================== */
+
+[data-link] {
+  color: var(--link);
+  text-decoration: none;
+  padding-block-end: var(--c-underline-drop);
+  background-image: linear-gradient(to top, var(--accent-500), var(--accent-500));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 var(--c-underline-h);
+  transition:
+    background-size var(--dur-2) var(--ease-out-quiet),
+    color var(--dur-2) var(--ease-standard);
+}
+
+[data-link]:hover,
+[data-link]:focus-visible {
+  color: var(--accent-300);
+  background-size: 100% var(--c-underline-h);
+}
+
+/* right-to-left retract on the way out reads as a mistake; keep the draw
+   one-directional by anchoring the origin on the inline start edge. */
+[data-link]:active {
+  color: var(--accent-500);
+}
+
+/* External links carry a real <svg data-icon="external-link"> in the markup —
+   a mask referencing the sprite cannot work here, because an external-file
+   mask is blocked in every browser. This rule only spaces it. */
+[data-link] > svg[data-icon] {
+  margin-inline-start: 0.28em;
+  --c-icon: 0.82em;
+}
+
+/* An always-on variant for places where colour alone cannot carry the affordance
+   (link inside a coloured callout, link in a caption). */
+[data-link][data-underline='always'] {
+  background-size: 100% var(--c-underline-h);
+}
+
+
+/* ============================================================================
+   8. TABLE — [data-table]
+   ----------------------------------------------------------------------------
+     <div data-table role="region" aria-label="…" tabindex="0">
+       <table>…</table>
+     </div>
+
+   tabindex="0" is required, not decorative: a scrollable region must be
+   reachable by keyboard (WCAG 2.1.1). The right-edge fade uses the
+   local/scroll background-attachment pair, so it appears only when there is
+   actually more content in that direction and disappears at each end — a
+   fade that never turns off is worse than none, because it reads as a bug.
+   ========================================================================== */
+
+[data-table] {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-600) transparent;
+}
+
+[data-table]::-webkit-scrollbar {
+  block-size: var(--c-scrollbar);
+  inline-size: var(--c-scrollbar);
+}
+
+[data-table]::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+[data-table]::-webkit-scrollbar-thumb {
+  background-color: var(--ink-600);
+  border-radius: var(--r-pill);
+}
+
+[data-table]::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ink-500);
+}
+
+[data-table] > table {
+  inline-size: 100%;
+  min-inline-size: max-content;
+  border: 0;
+}
+
+[data-table] th {
+  padding: var(--c-table-pad-block) var(--c-table-pad-inline);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  text-align: start;
+  white-space: nowrap;
+  color: var(--text-muted);
+  border-block-end: var(--bw-rule) solid var(--rule);
+}
+
+[data-table] td {
+  padding: var(--c-table-pad-block) var(--c-table-pad-inline);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-snug);
+  color: var(--text-2);
+  border-block-end: var(--bw-hair) solid
+    color-mix(in oklab, var(--rule) 55%, transparent);
+}
+
+[data-table] td[data-num],
+[data-table] th[data-num] {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+[data-table] tbody tr {
+  transition: background-color var(--dur-2) var(--ease-standard);
+}
+
+[data-table] tbody tr:hover {
+  background-color: var(--surface);
+}
+
+[data-table] caption {
+  caption-side: bottom;
+  padding-block-start: var(--s-3);
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+  text-align: start;
+}
+
+/* right-edge fade, <=768px only, self-hiding at both ends */
+@media (max-width: 768px) {
+  [data-table] {
+    background-image:
+      /* cover panels — scroll with the content and hide the shadow at the ends */
+      linear-gradient(to right, var(--c-table-bg), transparent),
+      linear-gradient(to left, var(--c-table-bg), transparent),
+      /* the shadows themselves — pinned to the wrapper */
+      linear-gradient(to right, color-mix(in oklab, var(--ink-1000) 70%, transparent), transparent),
+      linear-gradient(to left, color-mix(in oklab, var(--ink-1000) 70%, transparent), transparent);
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+    background-size: var(--c-table-fade) 100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+  }
+}
+
+
+/* ============================================================================
+   9. ICONS — [data-icon="name"]
+   ----------------------------------------------------------------------------
+     <svg data-icon="download" aria-hidden="true" focusable="false">
+       <use href="img/sprite.svg#download"></use>
+     </svg>
+   Path is relative to the PAGE: "img/sprite.svg#…" at the root,
+   "../img/sprite.svg#…" from blog/ and wy/. Never root-absolute.
+
+   Every symbol in img/sprite.svg carries its own fill/stroke presentation
+   attributes and paints with currentColor, so this rule deliberately sets
+   NEITHER fill NOR stroke — doing so would flatten the stroke-based line
+   icons and the fill-based brand marks into each other.
+   ========================================================================== */
+
+svg[data-icon] {
+  display: inline-block;
+  flex: 0 0 auto;
+  inline-size: var(--c-icon);
+  block-size: var(--c-icon);
+  vertical-align: -0.145em;
+  color: inherit;
+  overflow: visible;
+  pointer-events: none;
+}
+
+svg[data-icon][data-size='sm'] { --c-icon: 1em; }
+svg[data-icon][data-size='lg'] { --c-icon: 1.5em; }
+
+/* social row: 20px marks, --ink-400 -> --accent-400 on hover, 44px hit area */
+[data-social] {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+[data-social] a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--c-tap);
+  block-size: var(--c-tap);
+  border-radius: var(--r-sm);
+  color: var(--ink-400);
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+[data-social] a:hover,
+[data-social] a:focus-visible {
+  color: var(--accent-400);
+}
+
+[data-social] svg[data-icon] {
+  --c-icon: var(--c-icon-social);
+}
+
+
+/* ============================================================================
+   10. ANIMATION GATE — [data-anim]
+   ----------------------------------------------------------------------------
+   THE CONTRACT, and the single rule that fixes this site's idle CPU burn:
+
+     any element carrying an infinite CSS animation MUST also carry
+     [data-anim], and it starts PAUSED. js/core.js (initAnimGate) sets
+     element.style.animationPlayState to 'running' only while the element is
+     intersecting AND document.visibilityState !== 'hidden', and back to
+     'paused' otherwise. An inline style beats this stylesheet, so the gate
+     always wins; if core.js never loads, the animation simply never starts
+     and the page costs nothing.
+
+   Do not add `animation-play-state: running` anywhere in a surface file.
+
+   ⚠️ THE ONE WAY TO BREAK THIS, and how not to.
+   The `animation` SHORTHAND resets animation-play-state to `running`. A
+   surface rule such as
+
+       WRONG   .kinetic-band { animation: belt 30s linear infinite; }
+
+   silently re-enables the burn, because surface CSS loads after this file.
+   Two safe forms — use either:
+
+       SAFE    .kinetic-band { animation: belt 30s linear infinite paused; }
+       SAFE    .kinetic-band { animation-name: belt;
+                               animation-duration: 30s;
+                               animation-timing-function: linear;
+                               animation-iteration-count: infinite; }
+
+   The doubled attribute below raises this rule to specificity (0,2,0) so it
+   still wins against a normal single-class surface rule. It is deliberately
+   NOT !important: an author !important declaration outranks core.js's inline
+   style, which would pause the animation permanently and break the gate.
+   ========================================================================== */
+
+[data-anim],
+[data-anim][data-anim] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* core.js builds no observer under REDUCED, so nothing would ever release
+     these; drop the animation outright rather than leave it half-applied. */
+  [data-anim] {
+    animation: none !important;
+  }
+}
+
+
+/* ============================================================================
+   11. CONTENT-VISIBILITY — [data-cv]
+   ----------------------------------------------------------------------------
+     <section data-cv="section">…</section>
+
+   contain-intrinsic-size is ALWAYS paired, otherwise skipping the subtree
+   collapses the element to zero and destroys the scrollbar. `auto` in the
+   value means "remember the last rendered size", so the placeholder is only
+   used before the section has ever been laid out.
+
+   NEVER put this on a pinned element (GSAP ScrollTrigger pin on Surface C):
+   the height change while off-screen invalidates the trigger's measurements.
+
+   SIZE THE RESERVE. The 100dvh default is only right for a section that is
+   roughly one screen tall. #portfolio on the home page is 5781px — reserving
+   900px meant the document grew by 4.5 screens the first time you scrolled
+   into it, which throws every scroll offset below it and makes the page feel
+   like it is fighting the wheel. Override per element with an inline
+   --cv-size set to the real measured height:
+
+     <section data-cv="section" style="--cv-size: 5800px">
+
+   Round up, never down: over-reserving settles by shrinking once, which
+   scroll anchoring absorbs; under-reserving grows under the cursor.
+
+   THE HOME PAGE'S NUMBERS ARE MEASURED, NOT ESTIMATED — do not "tidy" them
+   back to round guesses. Every [data-cv] section was rendered and measured at
+   390x844, 768x1024, 1280x800, 1440x900 and 1920x1080, and the inline value is
+   the tallest of the five rounded up to the next 100px:
+
+     skills 3877 -> 3900   portfolio 6183 -> 6200   experience 2482 -> 2500
+     service/testimonials/faq 1362 -> 1400          contact 1482 -> 1500
+
+   Six of the seven previously under-reserved — portfolio held 5900 for 6183,
+   and the four that fell through to the 100dvh default held 900 for ~1360 —
+   so the document grew ~1900px under the cursor on the first pass down the
+   page, which is the "fighting the wheel" feel this comment already warns
+   about. These sections are TALLER at 768px than at 1440px because the text
+   wraps more, so the widest viewport is not the worst case and measuring only
+   the desktop width is how the old numbers ended up short.
+   Re-measure with scratchpad/cvsize.mjs after any content change.
+   ========================================================================== */
+
+[data-cv] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cv-size, 100dvh);
+}
+
+[data-cv='section'] {
+  --cv-size: 100dvh;
+}
+
+[data-cv='row'] {
+  --cv-size: var(--s-14);
+}
+
+
+/* ============================================================================
+   12. FOOTER — [data-footer]
+   ----------------------------------------------------------------------------
+     <footer data-footer>
+       <p data-footer-mark aria-hidden="true">MINTHEP</p>
+       <div data-footer-grid>
+         <nav aria-label="Liên kết chân trang"><ul role="list">…</ul></nav>
+         <ul data-social role="list">…</ul>
+         <p data-colophon>Static HTML · GitHub Pages · Hà Nội</p>
+       </div>
+     </footer>
+
+   The wordmark is tonal (--ink-850 on --ink-1000, 1.15:1): it is texture, not
+   text, which is why it is aria-hidden and why its low contrast is correct
+   rather than a violation.
+   ========================================================================== */
+
+[data-footer] {
+  background-color: var(--c-footer-bg);
+  color: var(--ink-300);
+  padding-block: var(--s-10) var(--s-6);
+  padding-inline: var(--space-gutter);
+  overflow: clip;
+}
+
+[data-footer-mark] {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--ink-850);
+  padding-block: 0.08em;          /* Anton diacritic clearance, per base.css */
+  user-select: none;
+}
+
+[data-footer-grid] {
+  display: grid;
+  gap: var(--s-6);
+  grid-template-columns: 1fr;
+  max-inline-size: var(--w-shell);
+  margin-block-start: var(--s-6);
+  padding-block-start: var(--s-6);
+  border-block-start: var(--bw-hair) solid var(--ink-800);
+}
+
+@media (min-width: 769px) {
+  [data-footer-grid] {
+    grid-template-columns: 1fr auto auto;
+    align-items: start;
+    gap: var(--s-8);
+  }
+}
+
+[data-footer] nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+[data-footer] nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--c-tap);
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-nav);
+  color: var(--ink-300);
+  text-decoration: none;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+[data-footer] nav a:hover,
+[data-footer] nav a:focus-visible {
+  color: var(--ink-50);
+}
+
+[data-colophon] {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--ink-350);          /* muted floor — --ink-500 fails as text */
+}
+
+
+/* ============================================================================
+   13. SHARED UTILITIES
+   ========================================================================== */
+
+/* Guarantees the 44x44 target on any control whose visual box is smaller,
+   without changing the visual box: the pseudo grows the hit area only. */
+.tap-safe {
+  position: relative;
+}
+
+.tap-safe::before {
+  content: '';
+  position: absolute;
+  inset-block: 50%;
+  inset-inline: 50%;
+  inline-size: max(100%, var(--c-tap));
+  block-size: max(100%, var(--c-tap));
+  translate: -50% -50%;
+}
+
+/* One shared styled scroller for any component well that needs it
+   (math blocks, code blocks, gallery rails). Same 6px thumb as [data-table]. */
+.well-scroll {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-600) transparent;
+}
+
+.well-scroll::-webkit-scrollbar {
+  block-size: var(--c-scrollbar);
+  inline-size: var(--c-scrollbar);
+}
+
+.well-scroll::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.well-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--ink-600);
+  border-radius: var(--r-pill);
+}

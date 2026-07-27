@@ -1,0 +1,1570 @@
+/* ============================================================================
+   surface-b.css — THE READING SURFACE
+   ----------------------------------------------------------------------------
+   Owns: blog/myblog.html, blog/textblog-0…6.html, blog/Speaking.html (9 pages).
+
+   Load order (fixed, never varies):
+     tokens.css -> base.css -> components.css -> surface-b.css
+
+   HARD RULE inherited from the system: this file declares NO colour, size,
+   radius, duration or z-index literal. Every value is a var() from tokens.css
+   / components.css, or a calc() of them. tools/check-routes.mjs check "G"
+   fails the build on a raw hex, a raw px outside a border/outline/var()
+   fallback/@media prelude, or a bare numeric z-index.
+
+   Why px never appears even in the local custom properties below: the linter
+   inspects the declaration, not the selector. `--b-toc-w: 200px` is a raw px
+   value on a property that is not a border. So the two rail widths are
+   composed out of the 8px spacing scale and the arithmetic is stated in the
+   comment beside each one.
+
+   ----------------------------------------------------------------------------
+   MARKUP CONTRACT — T10–T13 build against exactly this. Anything not listed
+   here is not styled by this file.
+
+   <html lang="vi" class="no-js">          <- pre-paint snippet swaps to "js"
+                                              and may add data-reading="paper"
+   <body>
+     <a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+     <header data-nav> … </header>                      (components.css)
+
+     <div class="b-progress" data-progress aria-hidden="true">
+       <span class="b-progress__bar"></span>
+     </div>
+
+     <main id="main" class="grid-b">
+       <aside class="b-toc" data-toc aria-labelledby="b-toc-title">
+         <p class="b-toc__title" id="b-toc-title">Mục lục</p>
+         <nav>
+           <ol class="b-toc__list" role="list">
+             <li><a href="#chuong-1" data-toc-link>
+                   <span class="b-toc__num" aria-hidden="true">01</span>
+                   <span class="b-toc__label">Thống kê mô tả</span></a></li>
+             <li data-depth="3"><a href="#chuong-1-1" data-toc-link> … </a></li>
+           </ol>
+         </nav>
+       </aside>
+
+       <article class="b-article">
+         <header class="b-head">
+           <p data-eyebrow>MAS291</p>
+           <h1>…</h1>
+           <p class="b-lead">…</p>
+           <dl class="b-meta"> <dt>Cập nhật</dt><dd><time …>…</time></dd> … </dl>
+         </header>
+         … prose: h2[id] / h3[id] / p / ul / ol / blockquote / figure /
+           details / [data-table] / [data-math] / figure.b-code / .b-callout …
+       </article>
+
+       <aside class="b-rail" data-rail aria-label="Ghi chú bên lề">
+         <div class="b-note"> <p class="b-note__title">…</p> … </div>
+       </aside>
+     </main>
+
+     <nav class="b-twins" aria-label="Bài trước và bài sau"> … </nav>
+     <footer data-footer> … </footer>
+   </body>
+
+   Progressive enhancement: nothing in this file hides content behind a JS
+   class. If js/surface-b.js 404s the page is still a complete, readable,
+   navigable article — the TOC is plain anchors, the progress rail simply
+   stays at zero (it is aria-hidden), the copy buttons are never injected and
+   the video facade is a real link to YouTube.
+   ========================================================================== */
+
+
+/* ============================================================================
+   0. SURFACE-LOCAL CUSTOM PROPERTIES
+   ----------------------------------------------------------------------------
+   Two groups. GEOMETRY is fixed for both reading modes. COLOUR ROLES are the
+   indirection that makes §12 ([data-reading="paper"]) a pure re-point rather
+   than a second stylesheet: every rule below paints with a --b-* role, never
+   with an --ink-*/--accent-* token directly.
+   ========================================================================== */
+
+:root {
+  /* --- geometry ---------------------------------------------------------- */
+  --b-toc-w:      calc(var(--s-13) + var(--s-7));                 /* 160 + 40      = 200px */
+  --b-rail-w:     calc(var(--s-14) + var(--s-8) + var(--s-1));    /* 208 + 48 + 4  = 260px */
+  --b-gutter:     var(--s-8);                                     /* 48px between tracks   */
+  --b-progress-h: var(--bw-slab);                                 /* 4px                   */
+  --b-toc-top:    calc(var(--nav-h) + var(--s-6));
+  --b-toc-max-h:  calc(100dvh - var(--nav-h) - var(--s-10));
+  --b-strip-max-h: calc(100dvh - var(--nav-h) - var(--s-14));     /* ≤860px strip cap      */
+  --b-num-w:      var(--s-6);                                     /* Anton numeral column  */
+  --b-rule-inset: var(--s-5);                                     /* callout / well inset  */
+
+  /* --- colour roles (dark = canonical) ----------------------------------- */
+  --b-body:        var(--text-2);      /* --ink-200, 9.29:1 — article prose         */
+  --b-heading:     var(--ink-100);     /* headings                                   */
+  --b-display:     var(--ink-50);      /* h1 only                                    */
+  --b-muted:       var(--text-muted);  /* --ink-350 floor — meta, captions           */
+  --b-rule-color:  var(--rule);        /* decorative hairlines                       */
+  --b-well:        var(--surface);     /* math well / code well background           */
+  --b-well-2:      var(--surface-2);   /* raised well (rail notes, twins hover)      */
+  --b-well-rule:   var(--accent-700);  /* the --bw-slab left rule on a math well     */
+  --b-fill:        var(--accent-500);  /* graphic fill: progress, active markers     */
+  --b-fill-quiet:  var(--ink-700);     /* the progress rail's own track              */
+  --b-link:        var(--link);        /* prose link text                            */
+  --b-link-hover:  var(--accent-300);
+  --b-edge:        var(--edge-top);    /* the material hairline on dark surfaces     */
+  --b-shadow:      var(--shadow-lift);
+  --b-scroll-thumb: var(--ink-600);
+
+  /* callout keys — colour is never the only signal: every variant also
+     carries an icon and a Vietnamese label. */
+  --b-key-note: var(--ink-400);
+  --b-key-tip:  var(--success);
+  --b-key-warn: var(--warning);
+  --b-key-main: var(--accent-500);
+}
+
+
+/* ============================================================================
+   1. .grid-b — THE THREE-TRACK SHELL
+   ----------------------------------------------------------------------------
+     [toc 200px] [gutter] [read 66ch] [gutter] [rail 260px]
+
+   Named lines let the two folds below re-place children without re-declaring
+   the whole template. align-self:start on both rails is load-bearing: a
+   stretched grid item is exactly as tall as its area and therefore cannot
+   travel, so position:sticky would do nothing. Content-height + a tall grid
+   area = the sticky rail everyone expects.
+
+   Folds:
+     ≤1080px  the margin rail leaves its track and continues in the reading
+              column, in flow, after the article.
+     ≤860px   the TOC leaves its track and becomes a sticky horizontal strip
+              directly under the fixed header.
+   ========================================================================== */
+
+.grid-b {
+  display: grid;
+  grid-template-columns:
+    [toc-start] var(--b-toc-w)
+    [toc-end read-start] minmax(0, var(--w-read))
+    [read-end rail-start] var(--b-rail-w)
+    [rail-end];
+  column-gap: var(--b-gutter);
+  row-gap: var(--s-9);
+  justify-content: center;
+  align-items: start;
+  padding-inline: var(--space-gutter);
+  padding-block: var(--space-section-sm) var(--space-section);
+}
+
+.grid-b > .b-toc     { grid-column: toc-start / toc-end; }
+.grid-b > .b-article { grid-column: read-start / read-end; min-inline-size: 0; }
+.grid-b > .b-rail    { grid-column: rail-start / rail-end; }
+
+/* FOLD 1 — the margin rail joins the reading flow. */
+@media (max-width: 1080px) {
+  .grid-b {
+    grid-template-columns:
+      [toc-start] var(--b-toc-w)
+      [toc-end read-start] minmax(0, var(--w-read))
+      [read-end rail-end];
+    row-gap: var(--s-8);
+  }
+
+  .grid-b > .b-rail {
+    grid-column: read-start / read-end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--w-narrow)), 1fr));
+    gap: var(--s-5);
+  }
+}
+
+/* FOLD 2 — single column; the TOC becomes a sticky strip. */
+@media (max-width: 860px) {
+  .grid-b {
+    grid-template-columns: [toc-start read-start rail-start] minmax(0, 1fr) [toc-end read-end rail-end];
+    row-gap: var(--s-6);
+    padding-block-start: var(--s-0);
+  }
+
+  .grid-b > .b-toc,
+  .grid-b > .b-article,
+  .grid-b > .b-rail {
+    grid-column: read-start / read-end;
+  }
+
+  .grid-b > .b-article,
+  .grid-b > .b-rail {
+    inline-size: 100%;
+    max-inline-size: var(--w-read);
+    margin-inline: auto;
+  }
+}
+
+
+/* ============================================================================
+   2. READING PROGRESS RAIL
+   ----------------------------------------------------------------------------
+   Two implementations of one bar, never both at once:
+
+   A) animation-timeline: scroll(root block) — the whole thing runs on the
+      compositor, costs zero main-thread work and needs no listener at all.
+   B) transform: scaleX(var(--b-progress)) — js/surface-b.js writes that one
+      custom property from a rAF-throttled passive scroll handler.
+
+   surface-b.js runs B only when `CSS.supports('animation-timeline','scroll()')`
+   is false OR reduced motion is on — matching the @supports/@media pair below
+   exactly. Under reduced motion the CSS path is dropped on purpose: base.css
+   forces `animation-duration: 1ms !important`, which is meaningless for a
+   progress-based timeline and would freeze the bar. The JS path writes a
+   transform directly and is unaffected.
+
+   The bar is decorative (aria-hidden). With no JS and no scroll-timeline it
+   simply never fills, which costs the reader nothing.
+   ========================================================================== */
+
+.b-progress {
+  position: fixed;
+  inset-block-start: var(--nav-h);
+  inset-inline: 0;
+  block-size: var(--b-progress-h);
+  background-color: color-mix(in oklab, var(--b-fill-quiet) 55%, transparent);
+  z-index: var(--z-sticky);
+  pointer-events: none;
+  contain: strict;
+}
+
+.b-progress__bar {
+  display: block;
+  block-size: 100%;
+  inline-size: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--b-progress, 0));
+  background-image: linear-gradient(
+    to right,
+    var(--b-well-rule),
+    var(--b-fill)
+  );
+  will-change: transform;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .b-progress__bar {
+      transform: scaleX(0);
+      animation-name: b-progress-fill;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      /* declared last: the `animation` shorthand would reset it to auto */
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes b-progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+
+/* ============================================================================
+   3. TOC RAIL — the only place Anton survives on this surface
+   ----------------------------------------------------------------------------
+   Anton appears exactly once in this stylesheet: .b-toc__num. Chapter
+   numerals are the display voice's entire remaining job here; the article
+   itself is Newsreader and Be Vietnam Pro and nothing else.
+
+   Active state is set by js/surface-b.js via aria-current="location" on the
+   anchor — an ARIA state, not a class, so assistive tech gets it for free.
+   ========================================================================== */
+
+.b-toc {
+  position: sticky;
+  inset-block-start: var(--b-toc-top);
+  align-self: start;
+  max-block-size: var(--b-toc-max-h);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--b-scroll-thumb) transparent;
+  padding-inline-end: var(--s-2);
+}
+
+.b-toc::-webkit-scrollbar {
+  inline-size: var(--c-scrollbar);
+  block-size: var(--c-scrollbar);
+}
+
+.b-toc::-webkit-scrollbar-track { background-color: transparent; }
+
+.b-toc::-webkit-scrollbar-thumb {
+  background-color: var(--b-scroll-thumb);
+  border-radius: var(--r-pill);
+}
+
+.b-toc__title {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--b-muted);
+  padding-block-end: var(--s-3);
+  margin-block-end: var(--s-3);
+  border-block-end: var(--bw-hair) solid var(--b-rule-color);
+}
+
+.b-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.b-toc__list a {
+  display: grid;
+  grid-template-columns: var(--b-num-w) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--s-2);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-2);
+  border-inline-start: var(--bw-rule) solid transparent;
+  border-radius: var(--r-xs);
+  color: var(--b-muted);
+  text-decoration: none;
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+.b-toc__list a:hover {
+  color: var(--b-heading);
+  background-color: color-mix(in oklab, var(--b-well) 70%, transparent);
+}
+
+.b-toc__list a[aria-current] {
+  color: var(--b-heading);
+  border-inline-start-color: var(--b-fill);
+  background-color: color-mix(in oklab, var(--b-well) 85%, transparent);
+}
+
+/* THE ANTON EXCEPTION — chapter numerals, and nothing else on Surface B. */
+.b-toc__num {
+  font-family: var(--font-display);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  font-variant-numeric: tabular-nums;
+  color: var(--b-muted);
+  /* base.css §4: never crop an Anton box — the tone marks live outside the
+     em box even on numerals-plus-punctuation strings. */
+  padding-block: 0.08em;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+.b-toc__list a[aria-current] .b-toc__num,
+.b-toc__list a:hover .b-toc__num {
+  color: var(--b-fill);
+}
+
+.b-toc__label {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  text-wrap: pretty;
+}
+
+/* h3-level entries hang one step in and lose the numeral column. */
+.b-toc__list li[data-depth='3'] a {
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline-start: calc(var(--s-2) + var(--b-num-w));
+}
+
+.b-toc__list li[data-depth='3'] .b-toc__num { display: none; }
+
+/* --- ≤860px: sticky horizontal strip ------------------------------------ */
+@media (max-width: 860px) {
+  .b-toc {
+    inset-block-start: var(--nav-h);
+    max-block-size: var(--b-strip-max-h);
+    overflow: visible;
+    padding-inline-end: 0;
+    padding-block: var(--s-3);
+    margin-inline: calc(var(--space-gutter) * -1);
+    padding-inline: var(--space-gutter);
+    background-color: var(--page);
+    border-block-end: var(--bw-hair) solid var(--b-rule-color);
+    box-shadow: var(--b-shadow);
+    z-index: var(--z-sticky);
+  }
+
+  .b-toc__title {
+    padding-block-end: 0;
+    margin-block-end: var(--s-2);
+    border-block-end: 0;
+  }
+
+  .b-toc nav {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .b-toc nav::-webkit-scrollbar { display: none; }
+
+  .b-toc__list {
+    flex-direction: row;
+    gap: var(--s-2);
+    inline-size: max-content;
+  }
+
+  .b-toc__list a {
+    grid-template-columns: auto auto;
+    gap: var(--s-1);
+    white-space: nowrap;
+    border-inline-start: 0;
+    border-block-end: var(--bw-rule) solid transparent;
+    border-radius: 0;
+  }
+
+  .b-toc__list a[aria-current] {
+    border-block-end-color: var(--b-fill);
+    background-color: transparent;
+  }
+
+  .b-toc__list li[data-depth='3'] { display: none; }  /* strip shows h2 only */
+}
+
+
+/* ============================================================================
+   4. ARTICLE TYPOGRAPHY
+   ----------------------------------------------------------------------------
+   Newsreader at --fs-article / --lh-article / --ink-200 (via --b-body).
+   These pages are read for 40–60 minutes; every value here is a legibility
+   decision, not a stylistic one.
+
+   Rhythm is a lobotomised owl for the default gap plus explicit overrides on
+   the elements that open or close a thought. Headings get more space above
+   than below so they bind to the text they introduce (proximity), never to
+   the paragraph they follow.
+   ========================================================================== */
+
+.b-article {
+  font-family: var(--font-serif);
+  font-size: var(--fs-article);
+  line-height: var(--lh-article);
+  color: var(--b-body);
+  font-optical-sizing: auto;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  hanging-punctuation: first last;
+  max-inline-size: var(--w-read);
+}
+
+.b-article > * + * { margin-block-start: var(--s-5); }
+.b-article > :first-child { margin-block-start: 0; }
+
+/* --- article head ------------------------------------------------------- */
+
+.b-head {
+  padding-block-end: var(--s-6);
+  margin-block-end: var(--s-8);
+  border-block-end: var(--bw-hair) solid var(--b-rule-color);
+}
+
+.b-head > * + * { margin-block-start: var(--s-4); }
+
+.b-article h1 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--b-display);
+  text-wrap: balance;
+}
+
+.b-lead {
+  font-family: var(--font-serif);
+  font-size: var(--fs-article-lead);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  color: var(--b-body);
+  text-wrap: pretty;
+}
+
+/* Meta strip: mono + tabular so dates and reading times align down the page. */
+.b-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--lh-snug);
+  color: var(--b-muted);
+}
+
+.b-meta dt {
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--b-muted);
+}
+
+.b-meta dt::after { content: ':'; }
+
+.b-meta dd {
+  margin: 0;
+  color: var(--b-body);
+}
+
+.b-meta > dt + dd { margin-inline-start: var(--s-1); }
+
+/* --- headings ----------------------------------------------------------- */
+
+.b-article h2,
+.b-article h3,
+.b-article h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--b-heading);
+  text-wrap: balance;
+  /* clears the fixed header + the progress rail on anchor jumps; base.css
+     already sets scroll-padding-top on <html>, this is the belt-and-braces
+     for browsers that ignore it inside a sticky-heavy layout. */
+  scroll-margin-block-start: calc(var(--nav-h) + var(--s-6));
+}
+
+.b-article > h2 {
+  font-size: var(--fs-h2);
+  margin-block-start: var(--s-10);
+  margin-block-end: var(--s-4);
+  padding-block-start: var(--s-5);
+  border-block-start: var(--bw-hair) solid var(--b-rule-color);
+}
+
+.b-article > h3 {
+  font-size: var(--fs-h3);
+  margin-block-start: var(--s-8);
+  margin-block-end: var(--s-3);
+}
+
+.b-article > h4 {
+  font-size: var(--fs-h4);
+  margin-block-start: var(--s-6);
+  margin-block-end: var(--s-2);
+  color: var(--b-body);
+}
+
+.b-article > h2 + h3,
+.b-article > h3 + h4 { margin-block-start: var(--s-5); }
+
+/* --- paragraphs, lists, definitions ------------------------------------- */
+
+.b-article p { text-wrap: pretty; }
+
+.b-article > ul,
+.b-article > ol {
+  padding-inline-start: var(--s-6);
+}
+
+.b-article li + li { margin-block-start: var(--s-2); }
+
+.b-article li > ul,
+.b-article li > ol {
+  margin-block-start: var(--s-2);
+  padding-inline-start: var(--s-5);
+}
+
+.b-article ul > li::marker { color: var(--b-fill); }
+
+.b-article ol > li::marker {
+  color: var(--b-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+}
+
+.b-article > dl { display: grid; gap: var(--s-2); }
+
+.b-article dt {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--b-heading);
+}
+
+.b-article dd { margin-inline-start: var(--s-5); }
+
+/* --- inline ------------------------------------------------------------- */
+
+.b-article strong,
+.b-article b {
+  font-weight: 600;
+  color: var(--b-heading);
+}
+
+.b-article em,
+.b-article i { font-style: italic; }
+
+.b-article mark {
+  background-color: color-mix(in oklab, var(--b-key-main) 22%, transparent);
+  color: var(--b-heading);
+  padding-inline: var(--s-1);
+  border-radius: var(--r-xs);
+}
+
+.b-article :not(pre) > code,
+.b-article kbd {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding-inline: var(--s-1);
+  padding-block: 0.12em;
+  background-color: var(--b-well);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-xs);
+  color: var(--b-heading);
+  word-break: break-word;
+}
+
+.b-article abbr[title] {
+  text-decoration: none;
+  border-block-end: var(--bw-hair) dotted var(--border-strong);
+  cursor: help;
+}
+
+.b-article sup,
+.b-article sub { font-size: 0.72em; line-height: 0; }
+
+/* Prose links. NEVER text-decoration — the underline clips the Vietnamese
+   dot-below on ệ/ọ/ụ. The gradient sits at --c-underline-drop, which clears
+   it. Applies to every anchor in the article, including legacy markup that
+   predates the [data-link] component. */
+.b-article a:not(.btn):not([data-link]):not(.b-video__play) {
+  color: var(--b-link);
+  text-decoration: none;
+  /* Same geometry as [data-link] in components.css, but drawn at rest instead
+     of on hover: inside 12,000 words of prose a link must be identifiable
+     without a pointer (WCAG 1.4.1). */
+  padding-block-end: var(--c-underline-drop);
+  background-image: linear-gradient(to top, currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% var(--c-underline-h);
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    background-size var(--dur-2) var(--ease-out-quiet);
+}
+
+.b-article a:not(.btn):not([data-link]):not(.b-video__play):hover,
+.b-article a:not(.btn):not([data-link]):not(.b-video__play):focus-visible {
+  color: var(--b-link-hover);
+  background-size: 100% var(--bw-rule);
+}
+
+/* --- rules -------------------------------------------------------------- */
+
+.b-article hr {
+  margin-block: var(--s-9);
+  border: 0;
+  block-size: var(--bw-hair);
+  background-image: linear-gradient(
+    to right,
+    var(--b-rule-color),
+    color-mix(in oklab, var(--b-rule-color) 10%, transparent)
+  );
+}
+
+
+/* ============================================================================
+   5. BLOCKQUOTE / PULL QUOTE
+   ========================================================================== */
+
+.b-article blockquote {
+  margin-block: var(--s-7);
+  margin-inline: 0;
+  padding-inline-start: var(--b-rule-inset);
+  border-inline-start: var(--bw-slab) solid var(--b-key-main);
+  font-style: italic;
+  color: var(--b-heading);
+}
+
+.b-article blockquote > * + * { margin-block-start: var(--s-3); }
+
+.b-article blockquote cite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-style: normal;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--b-muted);
+}
+
+
+/* ============================================================================
+   6. FIGURES
+   ----------------------------------------------------------------------------
+   Every blog image carries explicit width/height (base.css keeps the ratio).
+   [data-wide] borrows the margin rail on ≥1081px — the one legal way for an
+   article child to exceed the 66ch measure.
+   ========================================================================== */
+
+.b-figure,
+.b-article > figure {
+  margin-block: var(--s-8);
+  margin-inline: 0;
+}
+
+.b-figure img,
+.b-article > figure img {
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--r-xs);
+  background-color: var(--b-well);
+}
+
+.b-figure figcaption,
+.b-article figcaption {
+  margin-block-start: var(--s-3);
+  padding-inline-start: var(--s-3);
+  border-inline-start: var(--bw-rule) solid var(--b-rule-color);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--b-muted);
+  text-wrap: pretty;
+}
+
+@media (min-width: 1081px) {
+  .b-article [data-wide] {
+    inline-size: calc(100% + var(--b-gutter) + var(--b-rail-w));
+    max-inline-size: none;
+  }
+}
+
+
+/* ============================================================================
+   7. CALLOUTS ×4 — [data-callout="note|tip|warn|key"]
+   ----------------------------------------------------------------------------
+     <aside class="b-callout" data-callout="warn">
+       <p class="b-callout__label">
+         <svg data-icon="alert-circle" aria-hidden="true" focusable="false">
+           <use href="../img/sprite.svg#alert-circle"></use></svg>
+         Cảnh báo
+       </p>
+       <p>…</p>
+     </aside>
+
+   The label text is mandatory, not decoration: --warning and --danger sit
+   next to --accent-500 in hue, so colour alone cannot carry the signal
+   (WCAG 1.4.1). Icon + word + colour, always all three.
+   ========================================================================== */
+
+.b-callout {
+  --b-key: var(--b-key-note);
+  margin-block: var(--s-7);
+  padding: var(--s-5);
+  padding-inline-start: var(--b-rule-inset);
+  background-color: color-mix(in oklab, var(--b-well) 82%, transparent);
+  border-inline-start: var(--bw-slab) solid var(--b-key);
+  border-radius: 0 var(--r-xs) var(--r-xs) 0;
+  box-shadow: var(--b-edge);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  font-family: var(--font-body);
+  color: var(--b-body);
+}
+
+.b-callout > * + * { margin-block-start: var(--s-3); }
+
+.b-callout__label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--b-key);
+}
+
+.b-callout__label svg[data-icon] {
+  --c-icon: 1.15em;
+  color: var(--b-key);
+  flex: none;
+}
+
+.b-callout[data-callout='note'] { --b-key: var(--b-key-note); }
+.b-callout[data-callout='tip']  { --b-key: var(--b-key-tip); }
+.b-callout[data-callout='warn'] { --b-key: var(--b-key-warn); }
+.b-callout[data-callout='key']  { --b-key: var(--b-key-main); }
+
+/* "key" is the chapter takeaway — it carries the most weight of the four. */
+.b-callout[data-callout='key'] {
+  background-color: color-mix(in oklab, var(--b-key-main) 10%, var(--b-well));
+  color: var(--b-heading);
+}
+
+
+/* ============================================================================
+   8. MATH WELLS — [data-math]
+   ----------------------------------------------------------------------------
+     <div data-math role="figure" aria-label="Công thức …">
+       \[ … \]
+     </div>
+
+   textblog-3 is 12,374 words of probability and statistics and its display
+   equations are wider than a phone. Today they force the whole document to
+   scroll horizontally, which breaks every fixed and sticky element on the
+   page. The fix has two halves:
+
+     1. the well itself scrolls (overflow-x: auto + overscroll-behavior
+        containment, so the gesture never chains out to the document);
+     2. MathJax's own generated container is caught too, because MathJax v3
+        emits <mjx-container display="true"> directly into the flow and it is
+        that element, not our wrapper, that establishes the wide box.
+
+   The scrollbar is styled rather than hidden on purpose — a silent overflow
+   is a lost equation.
+   ========================================================================== */
+
+.b-article [data-math],
+.b-article mjx-container[display='true'] {
+  display: block;
+  margin-block: var(--s-7);
+  padding-block: var(--s-5);
+  padding-inline: var(--b-rule-inset) var(--s-5);
+  background-color: var(--b-well);
+  border-inline-start: var(--bw-slab) solid var(--b-well-rule);
+  border-radius: 0 var(--r-xs) var(--r-xs) 0;
+  box-shadow: var(--b-edge);
+  color: var(--b-heading);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--b-scroll-thumb) transparent;
+}
+
+/* A MathJax container that is already inside our well must not draw a second
+   well around itself. */
+.b-article [data-math] mjx-container[display='true'] {
+  margin-block: 0;
+  padding: 0;
+  background-color: transparent;
+  border-inline-start: 0;
+  box-shadow: none;
+}
+
+/* Zeroing the margin above kills the gap *between* stacked equations too, so a
+   tall numerator ends up touching the denominator on the line above it. Restore
+   the air between siblings only — the well's own padding still owns the top and
+   bottom edges. */
+.b-article [data-math] mjx-container[display='true'] + mjx-container[display='true'] {
+  margin-block-start: var(--s-5);
+}
+
+.b-article [data-math]::-webkit-scrollbar,
+.b-article mjx-container[display='true']::-webkit-scrollbar {
+  block-size: var(--c-scrollbar);
+  inline-size: var(--c-scrollbar);
+}
+
+.b-article [data-math]::-webkit-scrollbar-track,
+.b-article mjx-container[display='true']::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.b-article [data-math]::-webkit-scrollbar-thumb,
+.b-article mjx-container[display='true']::-webkit-scrollbar-thumb {
+  background-color: var(--b-scroll-thumb);
+  border-radius: var(--r-pill);
+}
+
+.b-article [data-math]::-webkit-scrollbar-thumb:hover,
+.b-article mjx-container[display='true']::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-interactive);
+}
+
+/* Inline math never scrolls and never breaks the line box. */
+.b-article mjx-container:not([display='true']) {
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+}
+
+/* MathJax injects its own <mjx-container> font sizing; hold it to the article
+   measure so a long derivation cannot widen the document. */
+.b-article mjx-container { max-inline-size: 100%; }
+
+.b-math__caption {
+  display: block;
+  margin-block-start: var(--s-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  color: var(--b-muted);
+}
+
+
+/* ============================================================================
+   9. CODE BLOCKS + COPY BUTTON
+   ----------------------------------------------------------------------------
+     <figure class="b-code" data-code>
+       <figcaption>schema.sql</figcaption>
+       <pre><code>…</code></pre>
+     </figure>
+
+   The copy button is INJECTED by js/surface-b.js, never authored. That is the
+   whole progressive-enhancement story for this component: no JS, no button,
+   no dead control — and the code is still selectable and readable.
+   ========================================================================== */
+
+.b-code {
+  position: relative;
+  margin-block: var(--s-7);
+  margin-inline: 0;
+  background-color: var(--b-well);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-sm);
+  box-shadow: var(--b-edge);
+  overflow: hidden;
+}
+
+.b-code > figcaption {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  margin: 0;
+  padding-inline-end: calc(var(--s-12) + var(--s-2));  /* clears the button */
+  border-inline-start: 0;
+  border-block-end: var(--bw-hair) solid var(--border-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-nav);
+  text-transform: none;
+  color: var(--b-muted);
+}
+
+.b-code pre,
+.b-article > pre {
+  margin: 0;
+  padding: var(--s-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--b-scroll-thumb) transparent;
+  tab-size: 2;
+}
+
+.b-article > pre {
+  margin-block: var(--s-7);
+  background-color: var(--b-well);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-sm);
+}
+
+.b-code pre code,
+.b-article > pre code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-snug);
+  color: var(--b-body);
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}
+
+.b-code pre::-webkit-scrollbar,
+.b-article > pre::-webkit-scrollbar {
+  block-size: var(--c-scrollbar);
+  inline-size: var(--c-scrollbar);
+}
+
+.b-code pre::-webkit-scrollbar-thumb,
+.b-article > pre::-webkit-scrollbar-thumb {
+  background-color: var(--b-scroll-thumb);
+  border-radius: var(--r-pill);
+}
+
+/* --- the injected control ------------------------------------------------ */
+
+.b-code__copy {
+  position: absolute;
+  inset-block-start: var(--s-2);
+  inset-inline-end: var(--s-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-nav);
+  color: var(--b-muted);
+  background-color: color-mix(in oklab, var(--b-well-2) 90%, transparent);
+  border: var(--bw-hair) solid var(--border-interactive);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  z-index: var(--z-raised);
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+.b-code__copy:hover {
+  color: var(--b-heading);
+  border-color: var(--b-fill);
+}
+
+.b-code__copy[data-state='done'] {
+  color: var(--b-key-tip);
+  border-color: var(--b-key-tip);
+}
+
+.b-code__copy[data-state='fail'] {
+  color: var(--b-key-warn);
+  border-color: var(--b-key-warn);
+}
+
+
+/* ============================================================================
+   10. TABLES INSIDE THE ARTICLE
+   ----------------------------------------------------------------------------
+   The wrapper component lives in components.css ([data-table]). This section
+   only does the two things that are Surface-B specific: article rhythm, and
+   the [data-wide] escape into the margin rail — textblog-1 alone ships 10
+   tables / 123 rows of counter readings and they are unreadable at 66ch.
+   ========================================================================== */
+
+.b-article [data-table] {
+  margin-block: var(--s-7);
+  --c-table-bg: var(--page);
+}
+
+.b-article [data-table] > table {
+  font-family: var(--font-body);
+}
+
+.b-article [data-table] caption {
+  font-family: var(--font-body);
+}
+
+/* A table sitting inside a well needs the fade to match the well, not the
+   page, or the ≤768px right-edge fade paints a visible seam. */
+.b-callout [data-table],
+.b-note [data-table] { --c-table-bg: var(--surface); }
+
+
+/* ============================================================================
+   11. MARGIN RAIL, DETAILS, TWINS, VIDEO FACADE, MODE TOGGLE
+   ========================================================================== */
+
+/* --- 11.1 margin rail notes --------------------------------------------- */
+
+.b-rail {
+  align-self: start;
+  position: sticky;
+  inset-block-start: var(--b-toc-top);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  font-family: var(--font-body);
+}
+
+.b-note {
+  padding: var(--s-4);
+  background-color: var(--b-well);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-xs);
+  box-shadow: var(--b-edge);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--b-body);
+}
+
+.b-note > * + * { margin-block-start: var(--s-2); }
+
+.b-note__title {
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--b-muted);
+}
+
+.b-note ul {
+  margin: 0;
+  padding-inline-start: var(--s-5);
+}
+
+@media (max-width: 1080px) {
+  .b-rail { position: static; }
+}
+
+/* --- 11.2 <details> ------------------------------------------------------
+   textblog-1's 17 grammar points shipped as a Bootstrap 4 accordion driven by
+   Bootstrap 5 attributes and have therefore never opened in production. They
+   become native <details>, which needs no JS at all and cannot regress.
+   ------------------------------------------------------------------------ */
+
+.b-article details {
+  margin-block: var(--s-4);
+  background-color: color-mix(in oklab, var(--b-well) 70%, transparent);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-xs);
+}
+
+.b-article details + details { margin-block-start: var(--s-2); }
+
+.b-article summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  min-block-size: var(--c-tap);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: var(--lh-body);
+  color: var(--b-heading);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+.b-article summary::-webkit-details-marker { display: none; }
+.b-article summary::marker { content: ''; }
+
+.b-article summary:hover { color: var(--b-link); }
+
+/* + rotates to × on open. Drawn from two bars so it needs no icon fetch. */
+.b-article summary::after {
+  content: '';
+  flex: none;
+  inline-size: 0.75em;
+  block-size: 0.75em;
+  background-image:
+    linear-gradient(to right, currentColor, currentColor),
+    linear-gradient(to right, currentColor, currentColor);
+  background-size: 100% var(--bw-rule), var(--bw-rule) 100%;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  color: var(--b-fill);
+  transition: rotate var(--dur-3) var(--ease-standard);
+}
+
+.b-article details[open] > summary::after { rotate: 45deg; }
+
+.b-article details > :not(summary) {
+  margin-inline: var(--s-4);
+  margin-block-end: var(--s-4);
+}
+
+.b-article details > summary + * { margin-block-start: 0; }
+
+/* --- 11.3 prev / next twins ---------------------------------------------
+     <nav class="b-twins" aria-label="Bài trước và bài sau">
+       <a class="b-twins__item" data-dir="prev" href="textblog-4.html">
+         <span class="b-twins__kicker">Bài trước</span>
+         <span class="b-twins__title">Góc tối của tư bản</span>
+       </a>
+       <a class="b-twins__item" data-dir="next" href="textblog-6.html"> … </a>
+     </nav>
+   The twin chain is what finally makes textblog-6 reachable by navigation —
+   it has been an orphan since April 2025.
+   ------------------------------------------------------------------------ */
+
+.b-twins {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+  inline-size: min(100%, calc(var(--b-toc-w) + var(--w-read) + var(--b-gutter)));
+  margin-inline: auto;
+  margin-block-end: var(--space-section);
+  padding-inline: var(--space-gutter);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 640px) {
+  .b-twins { grid-template-columns: minmax(0, 1fr); }
+}
+
+.b-twins__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  min-block-size: var(--c-tap);
+  background-color: color-mix(in oklab, var(--b-well) 70%, transparent);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-xs);
+  color: var(--b-body);
+  text-decoration: none;
+  transition:
+    background-color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    transform var(--dur-3) var(--ease-out-quiet);
+}
+
+.b-twins__item:hover {
+  background-color: var(--b-well-2);
+  border-color: var(--border-interactive);
+  transform: translateY(calc(var(--s-1) * -0.5));
+}
+
+.b-twins__item[data-dir='next'] { text-align: end; align-items: flex-end; }
+
+.b-twins__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--b-muted);
+}
+
+.b-twins__item[data-dir='prev'] .b-twins__kicker::before { content: '\2190\00a0'; }
+.b-twins__item[data-dir='next'] .b-twins__kicker::after  { content: '\00a0\2192'; }
+
+.b-twins__title {
+  font-size: var(--fs-title);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--b-heading);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-twins__item:hover { transform: none; }
+}
+
+/* --- 11.4 YouTube facade -------------------------------------------------
+     <div class="b-video" data-youtube="VIDEO_ID"
+          data-title="Bài giảng SWE201c">
+       <img class="b-video__poster" src="textblog-5/poster.webp" alt=""
+            width="1280" height="720" loading="lazy" decoding="async">
+       <a class="b-video__play" rel="noopener"
+          href="https://www.youtube.com/watch?v=VIDEO_ID">
+         <span class="b-video__icon" aria-hidden="true"></span>
+         <span class="b-video__label">Phát video trên YouTube</span>
+       </a>
+     </div>
+
+   The control is a real <a> to youtube.com, so the no-JS path works and is
+   honest about leaving the site. surface-b.js upgrades it in place: one click
+   swaps in the youtube-nocookie iframe. Nothing is requested from any Google
+   origin until that click. The poster is a LOCAL image — never i.ytimg.com,
+   which would be a new third-party origin on first paint.
+   ------------------------------------------------------------------------ */
+
+.b-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--b-well);
+  border: var(--bw-hair) solid var(--border-faint);
+  border-radius: var(--r-xs);
+}
+
+.b-video__poster,
+.b-video iframe {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+}
+
+.b-video__poster { object-fit: cover; }
+
+.b-video__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  text-decoration: none;
+  color: var(--ink-50);
+  background-image: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--ink-1000) 72%, transparent),
+    color-mix(in oklab, var(--ink-1000) 24%, transparent)
+  );
+  transition: background-color var(--dur-3) var(--ease-standard);
+}
+
+.b-video__icon {
+  inline-size: var(--s-9);
+  block-size: var(--s-9);
+  border-radius: var(--r-pill);
+  background-color: var(--b-fill);
+  transition: transform var(--dur-3) var(--ease-out-quiet);
+}
+
+/* the play triangle, drawn — no icon request, no literal */
+.b-video__icon::after {
+  content: '';
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--ink-1000);
+  clip-path: polygon(38% 30%, 38% 70%, 72% 50%);
+}
+
+.b-video__play:hover .b-video__icon { transform: scale(1.06); }
+
+.b-video__label {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  letter-spacing: var(--ls-nav);
+}
+
+.b-video.is-playing .b-video__play,
+.b-video.is-playing .b-video__poster { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .b-video__play:hover .b-video__icon { transform: none; }
+}
+
+/* --- 11.5 reading-mode toggle -------------------------------------------
+     <button type="button" class="b-modetoggle js-only" data-reading-toggle
+             aria-pressed="false">
+       <svg data-icon="sun" aria-hidden="true" focusable="false">
+         <use href="../img/sprite.svg#sun"></use></svg>
+       <span class="b-modetoggle__on">Chế độ giấy</span>
+       <span class="b-modetoggle__off">Chế độ tối</span>
+     </button>
+
+   JS only ever flips aria-pressed + the <html> attribute; the visible label
+   is swapped by the two rules below, so the Vietnamese strings live in the
+   markup and are never duplicated in JavaScript. .js-only keeps the control
+   out of the document entirely when scripting is off (base.css §6).
+   ------------------------------------------------------------------------ */
+
+.b-modetoggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--c-tap);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--b-body);
+  background-color: color-mix(in oklab, var(--b-well) 80%, transparent);
+  border: var(--bw-hair) solid var(--border-interactive);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition:
+    color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+.b-modetoggle:hover {
+  color: var(--b-heading);
+  border-color: var(--b-fill);
+}
+
+.b-modetoggle svg[data-icon] { color: var(--b-fill); }
+
+.b-modetoggle__off { display: none; }
+.b-modetoggle[aria-pressed='true'] .b-modetoggle__on  { display: none; }
+.b-modetoggle[aria-pressed='true'] .b-modetoggle__off { display: inline; }
+
+
+/* ============================================================================
+   12. [data-reading="paper"] — THE COMPLETE LIGHT SET
+   ----------------------------------------------------------------------------
+   The ONLY light mode on the site, and it exists for exactly one reason:
+   textblog-3 is a 62-minute read and textblog-5 is a 42-minute read. Nobody
+   should have to stare into a 15:1 light-on-dark page for an hour in daylight.
+   Surfaces A and C have no toggle and no light tokens.
+
+   tokens.css already re-points the nine semantic names (--page --surface
+   --surface-2 --text --text-2 --text-muted --text-faint --rule --link) on
+   [data-reading="paper"]. Everything in this file that paints with one of the
+   --b-* roles above therefore flips for free. This block handles only the
+   cases where "the same value" is the wrong answer on cream:
+
+     · --b-heading/--b-display pointed at --ink-100/--ink-50 (near white).
+     · --b-fill pointed at --accent-500, which measures 2.6:1 on #F5F1EA and
+       fails 1.4.11 as a graphic. --accent-700 measures ~6.5:1.
+     · --b-edge is a white inset hairline. On paper it is invisible at best
+       and a grey haze at worst — it becomes `none` and the borders carry it.
+     · --b-shadow is tinted rgb(8 7 7 / .5); on cream that reads as dirt.
+     · --success/--warning are light mint and amber: 1.7–2.0:1 on cream. They
+       are darkened toward --text with color-mix. NO new colour is introduced
+       — both operands are existing tokens.
+
+   Contrast on --page #F5F1EA (measured, from tokens.css §PAPER):
+     --text 15.96 · --text-2 10.96 · --text-muted 6.40 · --link 5.94 (all AA+)
+   ========================================================================== */
+
+[data-reading='paper'] {
+  color-scheme: light;
+
+  --b-body:        var(--text-2);
+  --b-heading:     var(--text);
+  --b-display:     var(--text);
+  --b-muted:       var(--text-muted);
+  --b-rule-color:  var(--rule);
+  --b-well:        var(--surface);
+  --b-well-2:      var(--surface-2);
+  --b-well-rule:   var(--accent-700);
+  --b-fill:        var(--accent-700);
+  --b-fill-quiet:  var(--rule);
+  --b-link:        var(--link);
+  --b-link-hover:  var(--text);
+  --b-edge:        none;
+  --b-shadow:      none;
+  --b-scroll-thumb: var(--text-faint);
+
+  --b-key-note: var(--text-muted);
+  --b-key-tip:  color-mix(in oklab, var(--success) 55%, var(--text));
+  --b-key-warn: color-mix(in oklab, var(--warning) 55%, var(--text));
+  --b-key-main: var(--accent-700);
+}
+
+/* base.css corrects antialiasing for light-on-dark. On paper that correction
+   is backwards: dark-on-light wants the default subpixel rendering back. */
+[data-reading='paper'] body {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* The play badge sits on a photo in both modes, so its glyph stays the dark
+   ink rather than following --page. */
+[data-reading='paper'] .b-video__play { color: var(--ink-50); }
+
+/* Wells lose their inset hairline; give them a real border instead. */
+[data-reading='paper'] .b-callout,
+[data-reading='paper'] .b-article [data-math],
+[data-reading='paper'] .b-article mjx-container[display='true'] {
+  border-block: var(--bw-hair) solid var(--rule);
+  border-inline-end: var(--bw-hair) solid var(--rule);
+}
+
+[data-reading='paper'] .b-code,
+[data-reading='paper'] .b-note,
+[data-reading='paper'] .b-article > pre {
+  border-color: var(--rule);
+}
+
+/* --b-fill is the darkened accent on paper, so the progress gradient would
+   run from --accent-700 to --accent-700. Give it a real ramp again. */
+[data-reading='paper'] .b-progress__bar {
+  background-image: linear-gradient(to right, var(--link), var(--accent-700));
+}
+
+[data-reading='paper'] .b-toc {
+  border-inline-end: 0;
+}
+
+@media (max-width: 860px) {
+  [data-reading='paper'] .b-toc {
+    box-shadow: none;
+    border-block-end: var(--bw-hair) solid var(--rule);
+  }
+}
+
+
+/* ============================================================================
+   13. PRINT
+   ----------------------------------------------------------------------------
+   Students print this material. A near-black page prints as a solid block of
+   toner, so print gets the paper treatment without needing any literal: the
+   CSS system colours (Canvas / CanvasText / GrayText / LinkText) resolve to
+   the printed page's own palette. Chrome is dropped, the measure is released,
+   and link targets are spelled out because a printed href is unreachable.
+   ========================================================================== */
+
+@media print {
+  :root {
+    color-scheme: light;
+    --page:       Canvas;
+    --surface:    Canvas;
+    --surface-2:  Canvas;
+    --text:       CanvasText;
+    --text-2:     CanvasText;
+    --text-muted: GrayText;
+    --text-faint: GrayText;
+    --rule:       GrayText;
+    --link:       LinkText;
+
+    --b-body:       CanvasText;
+    --b-heading:    CanvasText;
+    --b-display:    CanvasText;
+    --b-muted:      GrayText;
+    --b-rule-color: GrayText;
+    --b-well:       Canvas;
+    --b-well-2:     Canvas;
+    --b-well-rule:  CanvasText;
+    --b-fill:       CanvasText;
+    --b-fill-quiet: GrayText;
+    --b-link:       LinkText;
+    --b-edge:       none;
+    --b-shadow:     none;
+    --b-key-note:   GrayText;
+    --b-key-tip:    CanvasText;
+    --b-key-warn:   CanvasText;
+    --b-key-main:   CanvasText;
+  }
+
+  .b-progress,
+  .b-toc,
+  .b-rail,
+  .b-twins,
+  .b-modetoggle,
+  .b-code__copy,
+  .b-video__play,
+  [data-nav],
+  [data-drawer],
+  .skip-link {
+    display: none !important;
+  }
+
+  .grid-b {
+    display: block;
+    padding: 0;
+  }
+
+  .b-article {
+    max-inline-size: none;
+    color: CanvasText;
+  }
+
+  .b-article details { border: 0; }
+  .b-article details > :not(summary) { display: block; }
+
+  .b-article a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    color: GrayText;
+    word-break: break-all;
+  }
+
+  .b-article h2,
+  .b-article h3 { break-after: avoid; }
+
+  .b-article figure,
+  .b-article [data-table],
+  .b-article [data-math],
+  .b-callout { break-inside: avoid; }
+}

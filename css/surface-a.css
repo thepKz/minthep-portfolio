@@ -1,0 +1,2256 @@
+/* ============================================================================
+   surface-a.css — MINTHEP, Surface A (the landing page, index.html)
+   ----------------------------------------------------------------------------
+   Load order (fixed):
+     tokens.css -> base.css -> components.css -> surface-a.css
+   Optional 5th sheet on this page: css/lqip.css (blur-up placeholders).
+
+   THE ONE HARD RULE FOR THIS FILE
+   No colour, size, radius, duration or z-index LITERAL. var() or calc() over
+   tokens, only. tools/check-routes.mjs check G greps this file for
+   /#[0-9a-f]{3,8}/, raw `px` and bare `z-index:`. Where the design spec calls
+   for a number that tokens.css does not carry (68px rows, 96px band, 200px
+   ledger column), it is DERIVED in section 0 by calc() over --s-* / --bw-*.
+   That is deliberate: the number stays exact and no literal enters the file.
+
+   Not in this file (owned by components.css): nav, drawer, buttons, prose
+   link, eyebrow, reveal, tables, icons, [data-anim], [data-cv], the footer
+   shell. Surface A only ADDS what is specific to the landing page.
+
+   --pearl-* is BANNED on this surface (Surface C only). The design spec's
+   "1px --pearl-600 hairline" on the hero portrait is therefore rendered with
+   --edge-all + --ink-700, which is the same read at the same tonal step.
+   ============================================================================
+
+   MARKUP CONTRACT — the skeleton index.html is written against.
+   ----------------------------------------------------------------------------
+   <body class="surface-a">
+   <main id="main">
+
+   1 HERO ....................................................................
+   <section class="hero" id="about" data-reveal aria-labelledby="hero-name">
+     <div class="hero__grid shell">
+       <div class="hero__body">
+         <p data-eyebrow>Kỹ sư phần mềm Full-Stack</p>
+         <h1 class="hero__name display-safe" id="hero-name">
+           <span class="line"><span>Mai Tấn</span></span>
+           <span class="line"><span>Thép</span></span>
+         </h1>
+         <p class="hero__role">Kỹ sư phần mềm Full-Stack</p>
+         <p class="hero__lede">…một câu ≤20 từ…</p>
+         <p class="hero__cta">
+           <a class="btn" data-variant="primary" href="#portfolio">Xem dự án</a>
+           <a class="btn" data-variant="secondary" href="…">Tải CV</a>
+         </p>
+         <dl class="statrail tabular">
+           <div class="statrail__item"><dt>Năm</dt><dd>04</dd></div>
+           …3 items…
+         </dl>
+       </div>
+       <figure class="hero__plate">
+         <div class="hero__portrait lqip" style="--lqip:var(--lqip-conga);--tint:var(--tint-conga)">
+           <picture>…<img src="img/conga.jpg" width="600" height="800"
+                          alt="…" fetchpriority="high" decoding="async"></picture>
+         </div>
+       </figure>
+     </div>
+   </section>
+
+   2 KINETIC BAND ............................................................
+   <div class="kinetic-band" aria-hidden="true">
+     <div class="kinetic-band__track" data-anim>
+       <span class="kinetic-band__run">React · Next.js · … · </span>
+       <span class="kinetic-band__run">React · Next.js · … · </span>   <!-- exact copy -->
+     </div>
+   </div>
+
+   3 SKILLS LEDGER ...........................................................
+   <section class="section-a" data-treatment="open" id="skills" data-reveal
+            aria-labelledby="skills-h" data-cv="section">
+     <div class="shell">
+       <header class="section-a__head">
+         <p data-eyebrow>Bộ kỹ năng</p><h2 id="skills-h" class="section-a__title">Kỹ năng</h2>
+       </header>
+       <div class="ledger-skills">
+         <p class="ledger-skills__group" data-eyebrow>Ngôn ngữ</p>
+         <ul class="ledger-skills__rows" role="list">
+           <li class="skill-row">
+             <span class="skill-row__i tabular">01</span>
+             <span class="skill-row__name">TypeScript</span>
+             <span class="skill-row__cat">Ngôn ngữ</span>
+             <span class="skill-row__yrs tabular">4 năm</span>
+             <svg class="skill-row__mark" data-icon aria-hidden="true"><use href="img/sprite.svg#code"></use></svg>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </section>
+
+   4 PROJECT PLATES ..........................................................
+   <section class="section-a" data-treatment="plate" id="portfolio" …>
+     <div class="shell plates">
+       <article class="plate" data-reveal>            <!-- odd: media 7 / body 5 -->
+         <div class="plate__media"><picture>…</picture></div>
+         <div class="plate__body">
+           <p class="plate__index" aria-hidden="true">01</p>
+           <h3 class="plate__title">Genkikoi</h3>
+           <p class="plate__desc">…≤44ch…</p>
+           <dl class="plate__spec tabular">
+             <div><dt>Vai trò</dt><dd>Team lead</dd></div>…
+           </dl>
+           <a class="plate__link" data-link href="…">Xem chi tiết</a>
+         </div>
+       </article>
+       <article class="plate plate--bleed bleed-wide" data-reveal>…</article>
+     </div>
+   </section>
+
+   5 EXPERIENCE LEDGER · 6 SERVICES · 7 TESTIMONIALS · 8 FAQ · 9 CONTACT
+   see the per-section headers below; each documents its own skeleton.
+
+   10 FOOTER — <footer data-footer> exactly as components.css §12 documents.
+
+   SECTION ALTERNATION (enforced, §4.5 of the design spec)
+     band -> open -> plate -> ledger -> band -> open
+   Two adjacent bordered rectangles is a defect. Add data-rhythm-audit to
+   <html> in dev to have any repeat flag itself in --warning.
+   ========================================================================== */
+
+
+/* ============================================================================
+   0. SURFACE-LOCAL CUSTOM PROPERTIES
+   ----------------------------------------------------------------------------
+   Every value here is calc() over a tokens.css token. The comment states the
+   computed pixel result so the design spec stays checkable by eye.
+   ========================================================================== */
+
+:root {
+  /* --- ledger geometry ---------------------------------------------------- */
+  --a-led-index:  var(--s-8);                            /*  48px  index col   */
+  --a-led-cat:    calc(var(--s-13) + var(--s-7));        /* 200px  category    */
+  --a-led-yrs:    var(--s-10);                           /*  80px  years       */
+  --a-row-h:      calc(var(--s-9) + var(--s-1));         /*  68px  ruled row   */
+
+  /* --- kinetic band ------------------------------------------------------- */
+  --a-band-h:     calc(var(--s-8) * 2);                  /*  96px  band height */
+  --a-belt-dur:   calc(var(--dur-7) * 23.333);           /*  42s   one loop    */
+
+  /* --- marks and rules ---------------------------------------------------- */
+  --a-mark:       calc(var(--s-4) + var(--s-1));         /*  20px  row SVG     */
+  --a-node:       calc(var(--s-2) - var(--bw-hair));     /*   7px  accent sq   */
+  --a-plus:       calc(var(--s-4) - var(--s-1) / 2);     /*  14px  FAQ +       */
+  --a-sec-rule:   var(--s-9);                            /*  64px  lede rule   */
+
+  /* --- controls ----------------------------------------------------------- */
+  --a-field-h:    var(--s-8);                            /*  48px  min field   */
+  --a-field-pad:  calc(var(--s-4) - var(--s-1) / 2);     /*  14px  block pad   */
+  --a-avatar:     var(--s-6);                            /*  32px  initials    */
+  --a-svc-h:      calc(var(--s-12) - var(--s-2));        /* 120px  service row */
+
+  /* --- motion ------------------------------------------------------------- */
+  --a-line-step:  calc(var(--stagger) * 1.3);            /*  91ms  per hero line */
+  --a-breathe:    calc(var(--dur-5) * 2.86);             /*   2s   node breathe  */
+
+  /* --- measures ----------------------------------------------------------- */
+  --a-desc:       44ch;   /* project description maximum                       */
+  --a-lede:       46ch;   /* hero sentence maximum                             */
+  --a-entry:      60ch;   /* experience description maximum                    */
+  --a-answer:     62ch;   /* FAQ answer maximum                                */
+}
+
+
+/* ============================================================================
+   1. LAYOUT PRIMITIVES
+   ----------------------------------------------------------------------------
+   .shell    the default container
+   .grid-a   the 12-column breakout grid; children opt into wide/full tracks
+   .section-a + [data-treatment] the alternation utilities
+   ========================================================================== */
+
+.surface-a {
+  background-color: var(--night-950);
+  color: var(--ink-150);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.shell {
+  inline-size: 100%;
+  max-inline-size: var(--w-shell);
+  margin-inline: auto;
+  padding-inline: var(--space-gutter);
+}
+
+.shell--narrow {
+  max-inline-size: var(--w-narrow);
+}
+
+.shell--content {
+  max-inline-size: var(--w-content);
+}
+
+/* THE ONE FULL-BLEED CONTAINER ON THIS SURFACE, and it is deliberately not a
+   .shell variant. .shell is defined by three things — a max width, an auto
+   margin, and a gutter — and this is the negation of all three, so making it
+   .shell--bleed would mean a rule that unsets everything the base rule sets.
+   A sibling of .shell inside the section, not a child.
+
+   NO padding-inline, AND THAT IS THE WHOLE EFFECT. .service-row draws its rules
+   with border-block-end, so with a gutter the hairlines stop 20-40px short of
+   the viewport and the list reads as a boxed card that happens to have no box.
+   Run them to the true edge and the section stops being a container of rows and
+   becomes a stack of horizontal rules — which is what a 'band' treatment is
+   supposed to look like, and it is the single largest compositional change in
+   this pass for the least markup.
+
+   Text never touches the edge regardless: .service-row__link carries its own
+   padding-inline: var(--s-5), so the ROW bleeds and the CONTENT does not.
+
+   --w-wide (1440px), not --w-shell (1320px), so above 1440 the rows stop
+   widening with the window while still being visibly wider than every other
+   element on the page. Below 1440 the max never binds and this is pure 100%. */
+.section-a__bleed {
+  inline-size: 100%;
+}
+
+.section-a__bleed .services {
+  max-inline-size: var(--w-wide);
+  margin-inline: auto;
+}
+
+/* The breakout grid. Named lines let a media plate exceed the text column
+   without leaving the grid — no negative margins anywhere on this surface. */
+.grid-a {
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--space-bleed)
+    [wide-start] minmax(0, 1fr)
+    [shell-start] repeat(12, minmax(0, calc(var(--w-content) / 12)))
+    [shell-end] minmax(0, 1fr)
+    [wide-end] var(--space-bleed) [full-end];
+  column-gap: var(--space-gutter);
+}
+
+.grid-a > * {
+  grid-column: shell;
+}
+
+.grid-a > .bleed-wide {
+  grid-column: wide;
+}
+
+.grid-a > .bleed-full {
+  grid-column: full;
+}
+
+/* Anchor targets must clear the 64px fixed header. */
+.surface-a :where([id]) {
+  scroll-margin-block-start: calc(var(--nav-h) + var(--s-5));
+}
+
+
+/* ---------------------------------------------------------------------------
+   1.1 Section rhythm + the alternation utilities
+   --------------------------------------------------------------------------- */
+
+.section-a {
+  padding-block: var(--space-section);
+  position: relative;
+}
+
+.section-a[data-rhythm='chapter'] {
+  padding-block: var(--space-section-lg);
+}
+
+/* THE THIRD RUNG, AND THE REASON THE RHYTHM READS AS RHYTHM. --space-section-lg
+   has existed since this file was written and --space-section-sm has existed in
+   tokens.css §10 the whole time — but on surface A nothing consumed it, so the
+   scale was 140/200 at 1440 with no short beat at all. Eight sections at 140 and
+   two at 200 is not a rhythm, it is a default with two exceptions.
+
+   80px here against 140 default and 200 chapter gives a 0.57 / 1 / 1.43 ratio:
+   #service and #testimonials pull IN toward the sections around them while
+   #portfolio and #contact push OUT. That is what makes the page feel authored
+   when you scroll it rather than evenly stamped, and it is the cheapest possible
+   version of "hiệu ứng từng section" — the pacing itself carries the beat, with
+   no JS and no paint.
+
+   WHY THESE TWO SECTIONS SPECIFICALLY. Both are short lists of short rows: four
+   .service-row and three .quote. They were already the two shortest sections on
+   the page (measured content-box at 390: service 810.7px, testimonials 768px)
+   and giving the shortest content the same 140px collar as a nine-plate
+   portfolio grid is what made them read as thin rather than as tight.
+
+   This SUBTRACTS 120px of page height at 1440 (60 top + 60 bottom, twice), so it
+   moves every ScrollTrigger window below #service. The table in js/motion-a.js
+   says the coordinates drift with layout — that is this, and W12 re-reads them
+   rather than adjusting by hand. */
+.section-a[data-rhythm='tight'] {
+  padding-block: var(--space-section-sm);
+}
+
+/* The four treatments now sit on the §1b ground ramp instead of the --ink text
+   ramp. Same four names, same four rules, same markup — only the paint moved.
+   Down the page they read:
+
+     hero      night-950   L16.6   |
+     skills    open        L16.6   |  rest
+     portfolio plate       L21.5   |  cold, raised
+     experience ledger     L21.4   |  WARM, raised   <- temperature flip
+     service   band        L11.4   |  cold, deepest
+     testimonials open     L16.6   |  rest
+     faq       plate       L21.5   |  cold, raised
+     contact   ledger      L21.4   |  WARM, raised   <- temperature flip
+
+   Lightness now swings 10.1pp across the page where it used to swing 4.4pp, and
+   temperature flips twice. The two ledgers are iso-lightness with the two plates
+   on purpose: they are the same elevation, distinguished only by being warm.
+   That is the one move that reads as art direction rather than as a box. */
+
+/* open — no background, no border. The rest beat. */
+.section-a[data-treatment='open'] {
+  background-color: transparent;
+}
+
+/* band — full-bleed tonal step down. Reads as a horizon line, not a box. */
+.section-a[data-treatment='band'] {
+  background-color: var(--night-1000);
+}
+
+/* plate — a raised surface, bordered top and bottom only. Never a rounded
+   rectangle floating in space: the rules run edge to edge. */
+.section-a[data-treatment='plate'] {
+  background-color: var(--night-900);
+  border-block: var(--bw-hair) solid var(--border-faint);
+}
+
+/* ledger — the warm beat, one 2px accent leading edge. Structure by rule.
+   It was transparent, which is why it never registered: falling through to the
+   page ground made #experience and #contact the same colour as #skills and
+   #testimonials, and four of the eight sections became one continuous field.
+   The leading rule was --ink-800, a cold navy that goes muddy on warm paint;
+   --accent-700 is the same hue family as the ground it now sits on, so the edge
+   reads as brand rather than as a stray border. */
+.section-a[data-treatment='ledger'] {
+  background-color: var(--oxblood-900);
+  border-block-start: var(--bw-rule) solid var(--accent-line);
+}
+
+/* ---------------------------------------------------------------------------
+   THE TEMPERATURE SCOPE — the whole colour idea, one rule.
+
+   §1b already swings the section grounds 10.1pp and flips temperature twice:
+   #experience and #contact are oxblood, everything else is night. But the flip
+   had no foreground consequence — both warm sections carried the identical cold
+   ink and the identical rose accent as their cold neighbours — so the most
+   expensive colour move on the page read as a background tint nobody could
+   name. Here the temperature becomes structure: a warm section gets a warm
+   accent, and the page acquires a second accent family rather than more accent.
+
+   Nothing outside this selector list changes. The three aliases in tokens.css
+   §5 default to exactly what shipped, so every cold section is byte-identical
+   and a single changed pixel in #skills, #portfolio, #service, #testimonials or
+   #faq means this block leaked.
+
+   WHY THE 2px EDGE IS THE POINT. .section-a[data-treatment='ledger'] draws its
+   leading border in --accent-line. That resolved to --accent-700 on an
+   --oxblood-900 ground: 2.17:1, on the one element whose entire purpose is to
+   announce the section. It is the literal mechanical cause of the "màu sắc
+   đang khó nhìn" complaint on these two sections. --ember-600 puts the same
+   edge at 4.27:1 — a 1.97x jump, and the largest contrast delta in this pass.
+
+   THE FOOTER GROUND, CORRECTED. The spec assumed the footer sits on
+   --oxblood-850 (which would have made --ember-600 3.75:1). It does not:
+   --c-footer-bg is var(--ink-1000) (components.css:103), #020811 dark and
+   #FFFFFF light. Measured on what is actually there, every pair is better than
+   the spec assumed — --ember-600 4.80:1 dark / 4.18:1 light against a 3:1
+   decorative floor, --ember-400 6.66:1 dark / 7.16:1 light against a 4.5:1
+   text floor. The footer is scoped in anyway, and deliberately: #contact is the
+   last warm section and the footer is what follows it, so the page closes in
+   the same register the hero opened in instead of snapping back to rose for
+   one final block.
+
+   --link is repointed HERE rather than globally. A global change would drag
+   Surfaces B and C warm as well, and components.css is shared with both. */
+.section-a[data-treatment='ledger'],
+.surface-a [data-footer] {
+  --accent-edge: var(--ember-600);
+  --accent-line: var(--ember-600);
+  --accent-ink:  var(--ember-400);
+  --link:        var(--ember-400);
+}
+
+/* Defensive: if two plates or two ledgers ever land adjacent, at least do not
+   render the doubled rule. The audit hook below makes the mistake visible. */
+.section-a[data-treatment='plate'] + .section-a[data-treatment='plate'] {
+  border-block-start-color: transparent;
+}
+
+.section-a[data-treatment='ledger'] + .section-a[data-treatment='ledger'] {
+  border-block-start-color: transparent;
+}
+
+/* Opt-in defect flag: <html data-rhythm-audit>. Dev only, ships harmlessly. */
+[data-rhythm-audit] .section-a[data-treatment='plate'] + .section-a[data-treatment='plate'],
+[data-rhythm-audit] .section-a[data-treatment='band'] + .section-a[data-treatment='band'],
+[data-rhythm-audit] .section-a[data-treatment='ledger'] + .section-a[data-treatment='ledger'] {
+  outline: var(--bw-slab) dashed var(--warning);
+  outline-offset: calc(var(--s-1) * -1);
+}
+
+
+/* ---------------------------------------------------------------------------
+   1.2 Section head — the 2px accent leading edge, then eyebrow, then title
+   --------------------------------------------------------------------------- */
+
+.section-a__head {
+  margin-block-end: var(--s-9);
+  max-inline-size: var(--w-read-max);
+}
+
+.section-a__head::before {
+  content: '';
+  display: block;
+  inline-size: var(--a-sec-rule);
+  block-size: var(--bw-rule);
+  background-color: var(--accent-edge);
+  margin-block-end: var(--s-5);
+}
+
+.section-a__title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-100);
+  margin-block-start: var(--s-3);
+}
+
+/* The seven section titles in Anton. Kept as a second rule rather than folded
+   into the one above, because the DESCENDANT COMBINATOR IS LOAD-BEARING and a
+   reader who merges them will silently break two headings.
+
+   .section-a__title is used nine times, not seven: index.html:539 and :548
+   ("Học vấn" and "Chứng chỉ") are h3 subheads sitting as direct children of
+   .shell inside #experience, NOT inside a .section-a__head. They are a level
+   BELOW "Kinh nghiệm" and must stay at --fs-h2's 38/25.37px or the section
+   grows three peers where it has one parent and two children. Scoping to
+   `.section-a__head .section-a__title` is what keeps that hierarchy.
+
+   padding-block IS NOT SPACING. --lh-display is 0.94, below 1, so the line box
+   is shorter than the em box and Vietnamese stacked diacritics — the Ế in
+   "Kiến tạo sản phẩm", the ỹ in "Kỹ năng", the ậ in "Nhận xét" — sit outside
+   it. 0.08em top and bottom is the measured headroom that keeps them off any
+   clipping edge at every size in the clamp, and it scales with the font rather
+   than with the spacing scale, which is why it is an em and not an --s-*.
+
+   No [data-scene] head variants accompany this, deliberately. Once every head
+   carries a 72px Anton title, three different head silhouettes buy almost
+   nothing and cost a grid rewrite. */
+.section-a__head .section-a__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-section);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  padding-block: 0.08em;
+}
+
+.section-a__intro {
+  margin-block-start: var(--s-4);
+  max-inline-size: var(--w-read-max);
+  color: var(--ink-300);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+}
+
+
+/* ============================================================================
+   2. HERO — offset stage. 8/4, never centred.
+   ----------------------------------------------------------------------------
+   DESIGN_VARIANCE 6 bans the centred hero and bans 6/6. This is 8/4: text on
+   the wide track, portrait plate on the narrow one. 100dvh, never 100vh —
+   mobile Safari's collapsing chrome breaks the first scene otherwise.
+
+   The background carries exactly ONE light source: an elliptical --accent-700
+   highlight sitting behind the portrait. No orbs, no blobs, no second glow.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-block-size: 100dvh;
+  display: grid;
+  align-items: center;
+  background-color: var(--night-950);
+  padding-block: calc(var(--nav-h) + var(--s-9)) var(--s-9);
+  overflow: clip;   /* clips the highlight, never the type — see .line */
+}
+
+/* THE page's only light source. 60%/50% ellipse anchored behind the portrait
+   plate at 72% 38%, fading out by 70%. Painted on a pseudo-element so it
+   never becomes a paint-blocking background on the section itself. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+
+  /* EMBER, not rose — and this is a STRUCTURAL fix, not a taste tweak.
+     --accent-700 at 22% over --ink-950 composites to oklch(21.2% 0.033 334):
+     plum. The rose ramp cannot fix that by amplitude. Every --accent-* step
+     has G-B < 0, as does the navy floor, so the sum is blue-over-green at
+     EVERY alpha, and at chroma ~0.03 and L ~0.20 the hue lands in the 270-350
+     arc. Raising the alpha, switching to plus-lighter/screen, using a lighter
+     rose step and interpolating in oklab were all checked numerically and all
+     fail — so nobody re-tries them.
+
+     The lever is the hue path's CHROMA, not its amplitude: route the falloff
+     through a near-achromatic null instead of through a chromatic violet. An
+     ember source (G-B = +60) does that. Measured composite over #040C18:
+       centre  #2E1E1B  oklch(25.4% 0.0259  30.8)  <- true ember
+       80%     #261B1A  oklch(23.5% 0.0177  24.5)
+       60%     #1D171A  oklch(21.3% 0.0111 346.5)  <- chroma null, reads neutral
+       40%     #151319  oklch(19.2% 0.0123 300.5)  <- chroma null, reads neutral
+       20%     #0C1019  oklch(17.3% 0.0199 265.8)
+     No pixel in the field exceeds the bare page's own chroma (0.0297), so the
+     glow adds warmth and light but never saturation and is structurally
+     incapable of reading as a haze. Peak luminance 1.230:1, was 1.103:1.
+     Geometry, alpha, position and reach are all unchanged; only the source
+     colour moves.
+
+     THIS USED TO BE A SURFACE-LOCAL TOKEN. The note here read "NOT in
+     tokens.css: a second --ember-* anywhere would make this a cross-file
+     dependency instead of one rule", and it was written rgb(195 96 36) rather
+     than #C36024 specifically so it would not trip check G1 in
+     tools/check-routes.mjs, which greps this file for raw hex in declarations.
+     Both of those are now obsolete and the second one was a hole, not a
+     technique: a colour literal is a colour literal whatever notation it wears,
+     and G1 only missed it on syntax.
+
+     --ember-600 is a real token in tokens.css §2b now, promoted from HERE with
+     identical sRGB bytes (C3=195, 60=96, 24=36), so every measured composite
+     above still holds byte-for-byte and none of it needs re-verifying. What
+     changed is that the warm accent grew a second consumer — the ledger edge,
+     the spines and the eyebrow ticks on the two oxblood sections — so it is no
+     longer one rule's private business. The local declaration is simply gone;
+     the var() below now resolves up to :root. */
+
+  background-image: radial-gradient(
+    60% 50% at 72% 38%,
+    color-mix(in oklab, var(--ember-600) 22%, transparent),
+    transparent 70%
+  );
+}
+
+.hero__grid {
+  position: relative;
+  z-index: var(--z-raised);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-9);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero__grid {
+    /* the 8/4 split */
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: var(--space-gutter);
+    align-items: center;
+  }
+}
+
+.hero__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-5);
+}
+
+
+/* ---------------------------------------------------------------------------
+   2.1 The name — Anton at --fs-display-2xl, revealed per line
+   ---------------------------------------------------------------------------
+   Every .line carries padding-block: 0.08em, and for a long time that was the
+   ONLY thing protecting the diacritics. It was not enough, and the clipping
+   shipped: measured on Anton at --fs-display-2xl (168px at 1440w), the glyph
+   ink of "MAI TẤN" ascends 174.5px from the baseline while the .line box is
+   only 184.8px tall — the stacked mark on Ấ and the acute on É begin 34.6px
+   ABOVE the box's top edge, and the wipe's `inset(0 …)` top sheared them off
+   flat. 0.08em is 13.44px of padding against a 34.6px overflow: 2.6x short.
+
+   So both mask edges are now variables, and both are negative. --a-line-top
+   opens 26% of headroom above the box (48px against the 34.6px measured worst
+   case) and --a-line-foot opens 16% below (29.6px against the 20.5px p
+   descender in "THÉP"). The wipe still travels on the bottom edge alone: the
+   closed state parks that edge at calc(100% - top), so the rect collapses to
+   zero height exactly on the new top line. The reveal therefore starts above
+   the marks and sweeps down through them, rather than starting below them and
+   never uncovering them.
+
+   Keep both values negative. Any authored 0 here re-ships the bug.
+   --------------------------------------------------------------------------- */
+
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-2xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  /* --ink-50 measured APCA Lc -100.3 here. Past |Lc| 100 on a dark ground the
+     eye is reading near-white at 168px across most of the viewport, the pupil
+     dilates, and the glyph edges smear — worst on exactly the thin diacritic
+     strokes this name is full of. --ink-100 is Lc -92.8 and 15.76:1: still the
+     brightest type on the page, no longer the one that hurts to look at. */
+  color: var(--ink-100);
+  text-transform: uppercase;
+  margin: var(--s-0);
+  text-wrap: balance;
+
+  /* Unclipping the mask does not move the ink, it only stops hiding it — and
+     the ink of "MAI TẤN" sits 21.1px above this element's border box, which
+     left a 2.9px gap to the eyebrow above. Expressed in em of the display size
+     because the overflow scales with the font, not with the spacing scale. */
+  margin-block-start: 0.12em;
+}
+
+.hero__name .line {
+  display: block;
+  padding-block: 0.08em;   /* rhythm only — the clip headroom is below */
+  will-change: clip-path;
+
+  --a-line-top:  -26%;   /* headroom for stacked marks: Ấ Ầ Ẫ Ế Ộ Ữ */
+  --a-line-foot: -16%;   /* headroom for descenders: p g y */
+}
+
+/* Reveal states are scoped under .js only. If JS never runs, .no-js keeps the
+   name fully visible — nothing on this page is hidden by static CSS. */
+.js .hero__name .line {
+  /* closed: bottom parked at calc(100% - top) collapses the rect to zero
+     height ON the top line, so the sweep begins above the diacritics */
+  clip-path: inset(var(--a-line-top) 0 calc(100% - var(--a-line-top)) 0);
+  transition: clip-path var(--dur-6) var(--ease-mask);
+  transition-delay: var(--a-line-delay, 0ms);
+}
+
+.js .hero.is-in .hero__name .line {
+  clip-path: inset(var(--a-line-top) 0 var(--a-line-foot) 0);
+}
+
+.js .hero__name .line:nth-child(2)  { --a-line-delay: var(--a-line-step); }
+.js .hero__name .line:nth-child(3)  { --a-line-delay: calc(var(--a-line-step) * 2); }
+.js .hero__name .line:nth-child(4)  { --a-line-delay: calc(var(--a-line-step) * 3); }
+
+
+/* ---------------------------------------------------------------------------
+   2.2 Role line, sentence, CTAs
+   --------------------------------------------------------------------------- */
+
+.hero__role {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-article-lead);
+  line-height: var(--lh-snug);
+  color: var(--ink-300);
+  margin: var(--s-0);
+}
+
+.hero__lede {
+  max-inline-size: var(--a-lede);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-200);
+  margin: var(--s-0);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin: var(--s-0);
+  margin-block-start: var(--s-2);
+}
+
+/* Sub-copy and CTAs arrive after the name has finished wiping: +400ms in the
+   spec, expressed as --dur-4 so reduced-motion collapses it with everything
+   else. Again: .js-scoped, so no-JS shows them immediately. */
+.js .hero__role,
+.js .hero__lede,
+.js .hero__cta,
+.js .statrail {
+  opacity: 0;
+  translate: 0 var(--s-2);
+  transition:
+    opacity var(--dur-5) var(--ease-out-quiet),
+    translate var(--dur-5) var(--ease-out-quiet);
+  transition-delay: var(--dur-4);
+}
+
+.js .hero.is-in .hero__role,
+.js .hero.is-in .hero__lede,
+.js .hero.is-in .hero__cta,
+.js .hero.is-in .statrail {
+  opacity: 1;
+  translate: none;
+}
+
+
+/* ---------------------------------------------------------------------------
+   2.3 Stat rail — bottom-left, mono, tabular
+   ---------------------------------------------------------------------------
+     <dl class="statrail tabular">
+       <div class="statrail__item"><dt>Dự án</dt><dd>30+</dd></div> …
+   Figures are tabular-nums so the three values sit on a shared vertical rhythm
+   rather than jittering. Separated by 1px --ink-700 verticals, never by dots.
+   --------------------------------------------------------------------------- */
+
+.statrail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-0);
+  margin: var(--s-0);
+  margin-block-start: var(--s-6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--ink-350);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.statrail__item {
+  padding-inline: var(--s-5);
+  border-inline-start: var(--bw-hair) solid var(--ink-700);
+}
+
+.statrail__item:first-child {
+  padding-inline-start: var(--s-0);
+  border-inline-start: 0 solid transparent;
+}
+
+.statrail dt {
+  color: var(--ink-350);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  font-size: var(--fs-micro);
+}
+
+.statrail dd {
+  margin: var(--s-0);
+  margin-block-start: var(--s-1);
+  color: var(--ink-150);
+  font-size: var(--fs-body-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* At >=1024px the rail anchors to the bottom-left of the stage, which is what
+   makes the hero read as a composed field rather than a stack. */
+@media (min-width: 1024px) {
+  .hero {
+    align-items: start;
+    align-content: center;
+  }
+
+  .statrail {
+    margin-block-start: var(--s-10);
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   2.4 Portrait plate
+   ---------------------------------------------------------------------------
+   aspect-ratio 4/5, --r-xs, one hairline edge-light via --edge-all (the spec's
+   --pearl-600 hairline is Surface C vocabulary and is banned here).
+   The image is the LCP element: no loading="lazy", fetchpriority="high".
+   --------------------------------------------------------------------------- */
+
+.hero__plate {
+  margin: var(--s-0);
+  justify-self: end;
+  inline-size: 100%;
+  max-inline-size: var(--w-narrow);
+}
+
+.hero__portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-xs);
+  overflow: clip;
+  box-shadow: var(--edge-all);
+  background-color: var(--night-900);
+}
+
+.hero__portrait :where(img) {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  filter: contrast(1.06) saturate(0.92);
+}
+
+.js .hero__portrait {
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path var(--dur-6) var(--ease-mask);
+}
+
+.js .hero__portrait :where(img) {
+  scale: 1.06;
+  transition: scale var(--dur-6) var(--ease-mask);
+}
+
+.js .hero.is-in .hero__portrait {
+  clip-path: inset(0);
+}
+
+.js .hero.is-in .hero__portrait :where(img) {
+  scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__name .line,
+  .js .hero__portrait {
+    clip-path: none;
+  }
+
+  .js .hero__portrait :where(img) {
+    scale: 1;
+  }
+
+  .js .hero__role,
+  .js .hero__lede,
+  .js .hero__cta,
+  .js .statrail {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+
+/* ============================================================================
+   3. KINETIC BAND — the tonal marquee
+   ----------------------------------------------------------------------------
+   Full-bleed --ink-1000 strip, 96px, Anton --fs-display-lg in --ink-800.
+   --ink-800 on --ink-1000 is 1.28:1 — a near-invisible tonal step, and that is
+   the point. This is texture at the edge of perception, not a bright marquee
+   shouting a tech stack. It is aria-hidden and carries no information that is
+   not already in the skills ledger.
+
+   THE GATE. The track carries [data-anim], so components.css §10 has already
+   set animation-play-state: paused and js/core.js releases it only while the
+   band is on screen and the tab is visible. This file MUST NOT re-declare
+   `running`, and MUST NOT use the `animation` shorthand — the shorthand resets
+   play-state to running and silently defeats the gate. Longhand only, below.
+
+   Hover pause uses !important scoped to :hover. That is safe: core.js's inline
+   `running` wins everywhere else, so the gate is never permanently defeated —
+   which is exactly what an unscoped !important would do.
+   ========================================================================== */
+
+.kinetic-band {
+  display: flex;
+  align-items: center;
+  block-size: var(--a-band-h);
+  background-color: var(--night-1000);
+  overflow: clip;
+  user-select: none;
+  /* the band is the "band" beat in the alternation; it needs no border because
+     the tonal drop to --ink-1000 already draws the edge */
+
+  /* Edge fade, both ends. Now that the type is actually legible the belt would
+     otherwise slam into the viewport edge mid-word; this lets it arrive out of
+     the dark and leave into it. mask-image composites, so the belt keeps its
+     own layer and the fade costs nothing per frame. */
+     --mask-opaque is NOT a colour here — a mask reads only alpha, so the hue is
+     inert and any opaque value would do. It is a token anyway because
+     check-routes G bans bare hex in surface CSS on sight, and a mask is exactly
+     the case where an exception would look reasonable and then get copied
+     somewhere it is a real colour. */
+  -webkit-mask-image: linear-gradient(to right, transparent, var(--mask-opaque) 9%, var(--mask-opaque) 91%, transparent);
+  mask-image: linear-gradient(to right, transparent, var(--mask-opaque) 9%, var(--mask-opaque) 91%, transparent);
+}
+
+.kinetic-band__track {
+  display: flex;
+  flex: none;
+  inline-size: max-content;
+  will-change: transform;
+
+  /* LONGHAND ONLY — see the note above. */
+  animation-name: a-belt;
+  animation-duration: var(--a-belt-dur);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.kinetic-band__run {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+
+  /* --ink-800 on --ink-1000 measured 1.20:1. That is not "recessive", that is
+     not painted — the band read as an empty black stripe and the stack names
+     were unreadable at any brightness. --ink-400 is 4.26:1 here: still clearly
+     the quietest type on the page at 80px, but it exists. */
+  color: var(--ink-400);
+  text-transform: uppercase;
+  padding-block: 0.08em;          /* Anton diacritic clearance */
+  padding-inline-end: var(--s-6);
+  white-space: nowrap;
+}
+
+/* Two identical runs, so -50% lands exactly on the seam. */
+@keyframes a-belt {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.kinetic-band:hover .kinetic-band__track,
+.kinetic-band:focus-within .kinetic-band__track {
+  animation-play-state: paused !important;
+}
+
+/* "Removed entirely, not just slowed." components.css already drops
+   [data-anim] animations under reduce; this also parks the transform at its
+   start so no half-applied offset survives, and drops will-change so the
+   compositor layer is released. */
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-band__track {
+    animation-name: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .kinetic-band {
+    justify-content: center;
+  }
+
+  .kinetic-band__run + .kinetic-band__run {
+    display: none;   /* one static run is enough when nothing moves */
+  }
+}
+
+
+/* ============================================================================
+   4. SKILLS — capability ledger
+   ----------------------------------------------------------------------------
+   grid-template-columns: 48px 1fr 200px 80px
+     index (mono) / name / category / years
+   68px ruled rows, 1px --border-faint between them, NO card backgrounds
+   anywhere. The 12 white .skill-item boxes this replaces were the single
+   strongest generated-UI tell on the old page.
+
+   Hover, all over --dur-2:
+     row background -> --ink-900 · index -> --accent-400 · 20px mark 0.45 -> 1
+   ========================================================================== */
+
+.ledger-skills {
+  display: grid;
+  gap: var(--s-8);
+}
+
+.ledger-skills__group {
+  margin: var(--s-0);
+  /* [data-eyebrow] from components.css supplies type, colour and accent rule */
+}
+
+.ledger-skills__rows {
+  list-style: none;
+  margin: var(--s-0);
+  margin-block-start: var(--s-4);
+  padding: var(--s-0);
+  border-block-start: var(--bw-hair) solid var(--border-faint);
+}
+
+.skill-row {
+  display: grid;
+  /* Track 3 is `auto`, not var(--a-led-cat), because .skill-row__cat is now an
+     EMPTY span. The six category strings still ship — once each, as the
+     .ledger-skills__group eyebrow directly above the list they label — instead
+     of 34 times down the third column, where "Framework & Thư viện" was
+     printed nine times in nine consecutive rows. The span itself stays so the
+     four-item / four-track correspondence holds; delete it and the mark svg
+     wraps to a second row.
+     --a-led-cat is left defined at :130 and unused rather than removed: it is
+     the reservation this column would need if the categories ever come back,
+     and its 200px is quoted in the ledger geometry comment. An empty `auto`
+     track collapses to 0, so the name track takes the width and the mark stays
+     hard right. */
+  grid-template-columns:
+    var(--a-led-index)
+    minmax(0, 1fr)
+    auto
+    var(--a-led-yrs);
+  align-items: center;
+  column-gap: var(--s-4);
+  min-block-size: var(--a-row-h);
+  padding-inline: var(--s-3);
+  border-block-end: var(--bw-hair) solid var(--border-faint);
+  background-color: transparent;
+  transition: background-color var(--dur-2) var(--ease-standard);
+}
+
+.skill-row:hover {
+  background-color: var(--night-900);
+}
+
+.skill-row__i {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  /* This was --ink-500 on the claim that an ordinal is an ornament rather than
+     text. The claim was never enforced: aria-hidden computes to null on both
+     this span and its parent, so all 34 ordinals are exposed to assistive tech
+     and are read by sighted users as part of the row. At 2.60:1 they were a
+     straight WCAG 1.4.3 failure. --ink-350 is the documented text floor and
+     measures 6.29:1 on the page ground. */
+  color: var(--ink-350);
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+.skill-row:hover .skill-row__i {
+  color: var(--accent-400);
+}
+
+.skill-row__name {
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  color: var(--ink-100);
+}
+
+.skill-row__cat {
+  font-size: var(--fs-body-sm);
+  color: var(--ink-350);
+}
+
+.skill-row__yrs {
+  font-size: var(--fs-body-sm);
+  color: var(--ink-300);
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.skill-row__mark {
+  inline-size: var(--a-mark);
+  block-size: var(--a-mark);
+  opacity: 0.45;
+  color: var(--ink-300);
+  transition: opacity var(--dur-2) var(--ease-standard);
+  justify-self: end;
+}
+
+.skill-row:hover .skill-row__mark {
+  opacity: 1;
+}
+
+/* Below 768px the ledger folds to two columns, with a 'cat' row under 'name'.
+   THAT ROW IS NOW EMPTY AND THAT IS INTENTIONAL — do not "fix" it by putting
+   the category text back. The line that used to be here claimed the category
+   "is the only thing that groups the list"; that stopped being true when the
+   .ledger-skills__group eyebrows were added above each <ul>, and repeating the
+   group name on every row was the single largest block of redundant words on
+   the page. The area is kept so the template stays symmetric with the desktop
+   one, and so restoring the text is a markup change rather than a CSS change;
+   with an empty span the row collapses and --a-row-h's min-block-size binds,
+   which is why this costs no height. */
+@media (max-width: 768px) {
+  .skill-row {
+    grid-template-columns: var(--a-led-index) minmax(0, 1fr) auto;
+    grid-template-areas:
+      'i name yrs'
+      'i cat  yrs';
+    row-gap: var(--s-1);
+    padding-block: var(--s-3);
+  }
+
+  .skill-row__i    { grid-area: i; align-self: start; }
+  .skill-row__name { grid-area: name; }
+  .skill-row__cat  { grid-area: cat; }
+  .skill-row__yrs  { grid-area: yrs; align-self: center; }
+  .skill-row__mark { display: none; }
+}
+
+
+/* ============================================================================
+   5. PROJECTS — index plates
+   ----------------------------------------------------------------------------
+   Alternating 7/5 and 5/7, --s-11 apart. NEVER a 2-column card grid: a plate
+   is a full-width editorial row, and the alternation is what carries the eye
+   down the page. One plate (.plate--bleed, GenKiKoi) takes the wide track at
+   21/9 to break the rhythm before it becomes a pattern.
+
+   Media: saturate(.88) contrast(1.04) -> saturate(1) contrast(1) plus
+   scale(1.03) inside overflow:clip, --dur-4. Filter + scale on media is one of
+   the four hover idioms on this site; scale(1.05) on everything is not.
+   ========================================================================== */
+
+.plates {
+  display: grid;
+  gap: var(--s-11);
+}
+
+.plate {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-6);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  /* odd plates: media on 7, body on 5 */
+  .plate {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-gutter);
+  }
+
+  /* even plates: mirrored to 5/7. Order is set on the children so the DOM
+     order (media first, body second) stays constant for screen readers. */
+  .plate:nth-of-type(even) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .plate:nth-of-type(even) .plate__media { order: 2; }
+  .plate:nth-of-type(even) .plate__body  { order: 1; }
+}
+
+/* --- media -------------------------------------------------------------- */
+
+.plate__media {
+  position: relative;
+  overflow: clip;              /* the scale lives inside this box */
+  border-radius: var(--r-xs);
+  background-color: var(--ink-900);
+  aspect-ratio: 16 / 10;
+}
+
+/* css/lqip.css sets `.lqip > picture > img { height: auto }` at 0-1-2, which
+   beat the :where() rule below and let every screenshot set its own height —
+   the 16/10 above was a suggestion nothing honoured, so the plate column ran
+   at eight different heights (and a portrait shot blew out to 4/5). Scoping to
+   .plates takes this to 0-2-2 so the declared crop is the one that ships.
+   Anchored to the top edge: these are screenshots, and the masthead is the
+   part worth keeping when the crop has to take something. */
+.plates .plate__media > picture { display: block; block-size: 100%; }
+
+.plates .plate__media > picture > img {
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+.plate__media :where(img) {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.04);
+  transition:
+    filter var(--dur-4) var(--ease-out-quiet),
+    scale var(--dur-4) var(--ease-out-quiet);
+}
+
+.plate:hover .plate__media :where(img),
+.plate:focus-within .plate__media :where(img) {
+  filter: saturate(1) contrast(1);
+  scale: 1.03;
+}
+
+/* --- body --------------------------------------------------------------- */
+
+.plate__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-4);
+}
+
+/* A large tonal numeral, not a badge: structure you feel rather than read,
+   which is why it is aria-hidden.
+
+   REGRESSION FIX. This was --ink-800, a ghost tuned to sit 5.1pp ABOVE the old
+   --ink-900 plate. Giving #portfolio the 'plate' treatment raised its ground to
+   --night-900 (L21.5), which is ABOVE --ink-800 (L22.7) by only 1.2pp — so the
+   ghost did not merely weaken, it inverted: measured 1.03:1 and APCA Lc +1.6,
+   i.e. nine 56px numerals rendering as nothing. --night-800 restores it on the
+   new ground at 1.36:1 / 9.9pp, deliberately a little stronger than the 1.28:1
+   it used to be, because "boring" is the complaint this whole pass exists to
+   answer and an invisible numeral is the most boring thing on the plate.
+
+   --night-800 is declared BORDER-ONLY in tokens.css. That rule is about it
+   being a GROUND under text; here it IS the mark, and an aria-hidden one.
+   In light theme it resolves to #E3E9F0 on the #F2F5F8 plate — 3.7pp DARKER,
+   so the ghost still recedes rather than flipping. */
+.plate__index {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--night-800);
+  padding-block: 0.08em;
+  margin: var(--s-0);
+  font-variant-numeric: tabular-nums;
+}
+
+.plate__title {
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-100);
+  margin: var(--s-0);
+}
+
+.plate__desc {
+  max-inline-size: var(--a-desc);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-300);
+  margin: var(--s-0);
+}
+
+/* Spec list: a 2-column dl with 1px rules. Replaces the three icon+bold-label
+   paragraphs the old page used. Values are tabular so versions and years line
+   up between plates. */
+.plate__spec {
+  inline-size: 100%;
+  margin: var(--s-0);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.plate__spec > div {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-block-end: var(--bw-hair) solid var(--ink-700);
+}
+
+.plate__spec dt {
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-350);
+}
+
+.plate__spec dd {
+  margin: var(--s-0);
+  font-size: var(--fs-body-sm);
+  color: var(--ink-200);
+  text-align: end;
+}
+
+/* The link is a text link with the underline draw ([data-link] from
+   components.css), never a filled button — six filled buttons down one page
+   is what makes a portfolio look like a template. */
+.plate__link {
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-nav);
+}
+
+/* --- the rhythm breaker: one 21/9 wide plate ---------------------------- */
+
+.plate--bleed {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-6);
+}
+
+.plate--bleed .plate__media {
+  aspect-ratio: 21 / 9;
+}
+
+/* THE LEAD PLATE ACTUALLY BLEEDS ON A PHONE. Above 768px .plate--bleed earns
+   its name from the wide grid track; below it the grid collapses to one column
+   and the modifier stopped meaning anything at all — the "rhythm breaker" plate
+   rendered as an ordinary card, inset by the same gutter as the eight plates
+   below it, on the viewport where the portfolio is mostly consumed.
+
+   --space-gutter negated is EXACTLY the .shell padding this list sits in
+   (.shell { padding-inline: var(--space-gutter) }), so this lands the media on
+   the true viewport edge and not one pixel past it. Anything else here — a vw
+   calc, a round number — desynchronises the moment the gutter clamp moves.
+
+   RADIUS GOES TO ZERO ON THE FRAMES, NOT JUST THE CONTAINER. On this plate the
+   container is .plate__media--duo, which already carries border-radius: 0 and
+   overflow: visible; the corners a reader actually sees belong to the two
+   .plate__frame children. Zeroing only the container would have been a no-op
+   that looked like a fix. A rounded corner sitting flush against the edge of
+   the screen reads as a rendering bug, so once the image touches the edge the
+   radius has to go with it.
+
+   Scoped to .plate--bleed alone. The other eight plates keep their gutter: if
+   everything bleeds, nothing does, and the point of this plate is that it is
+   the one that breaks the column. */
+@media (max-width: 768px) {
+  .plate--bleed .plate__media {
+    margin-inline: calc(var(--space-gutter) * -1);
+    border-radius: 0;
+  }
+
+  .plate--bleed .plate__media .plate__frame {
+    border-radius: 0;
+  }
+}
+
+/* --- two-up media: the lead plate only --------------------------------- */
+/* The duo is a container, not a frame — it holds no crop, no radius and no
+   fill of its own; each .plate__frame clips itself. Stacked below 768px so a
+   phone never renders two 40%-width screenshots side by side. */
+
+.plate__media--duo,
+.plate--bleed .plate__media--duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.plate__frame {
+  position: relative;
+  overflow: clip;
+  border-radius: var(--r-xs);
+  background-color: var(--ink-900);
+  aspect-ratio: 16 / 10;
+}
+
+@media (min-width: 768px) {
+  /* One aspect-ratio on the container, none on the frames: both cells then
+     resolve to exactly the same height instead of two independent crops. */
+  .plate__media--duo,
+  .plate--bleed .plate__media--duo {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    aspect-ratio: 32 / 10;
+  }
+
+  .plate__media--duo .plate__frame {
+    aspect-ratio: auto;
+    block-size: 100%;
+  }
+}
+
+/* Beats .lqip > picture > img (0-1-2) from css/lqip.css, which would
+   otherwise leave height:auto and let the crop escape the cell. */
+.plate__media--duo .plate__frame :where(picture) {
+  display: block;
+  block-size: 100%;
+}
+
+.plate__media--duo .plate__frame > picture > img {
+  block-size: 100%;
+  object-fit: cover;
+  /* Left-top, not centre-top: the wide cell is narrower than the 1080x546
+     source, and a centred crop shaves the left edge — where the logo, the nav
+     and the headline all live. Taking it all off the right loses empty water. */
+  object-position: 0 0;
+}
+
+.plate--bleed .plate__body {
+  max-inline-size: var(--w-content);
+}
+
+@media (min-width: 1024px) {
+  .plate--bleed,
+  .plate--bleed:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .plate--bleed .plate__media,
+  .plate--bleed:nth-of-type(even) .plate__media { order: 1; }
+
+  .plate--bleed .plate__body,
+  .plate--bleed:nth-of-type(even) .plate__body  { order: 2; }
+
+  /* the body of the wide plate reads as a caption band under the crop */
+  .plate--bleed .plate__body {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-gutter);
+    align-items: start;
+    justify-items: start;
+  }
+
+  .plate--bleed .plate__index { grid-area: 1 / 1; }
+  .plate--bleed .plate__title { grid-area: 2 / 1; }
+  .plate--bleed .plate__desc  { grid-area: 3 / 1; }
+  .plate--bleed .plate__spec  { grid-area: 1 / 2 / 4 / 3; align-self: end; }
+  .plate--bleed .plate__link  { grid-area: 4 / 1; }
+}
+
+
+/* ============================================================================
+   6. EXPERIENCE — ledger
+   ----------------------------------------------------------------------------
+     <ol class="ledger-exp" role="list">
+       <li class="exp-entry">
+         <p class="exp-entry__date tabular">01/2026 – 03/2026</p>
+         <h3 class="exp-entry__role">Fresher · Korean Bridge Engineer</h3>
+         <p class="exp-entry__org">FPT Software · Full-time</p>
+         <ul class="exp-entry__list" role="list"><li>…</li></ul>
+       </li>
+       <li class="exp-entry" data-current>…</li>
+     </ol>
+
+   A 1px --accent-500 vertical rule with the entries hanging off it, and a 7px
+   accent square on the rule at each entry's baseline. No cards, no shadows —
+   the rule IS the component.
+   ========================================================================== */
+
+.ledger-exp {
+  list-style: none;
+  margin: var(--s-0);
+  padding: var(--s-0);
+  padding-inline-start: var(--s-6);
+  border-inline-start: var(--bw-hair) solid var(--accent-edge);
+  display: grid;
+  gap: var(--s-9);
+}
+
+.exp-entry {
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  justify-items: start;
+}
+
+/* the 7px square, centred on the rule at the entry's first baseline */
+.exp-entry::before {
+  content: '';
+  position: absolute;
+  inline-size: var(--a-node);
+  block-size: var(--a-node);
+  background-color: var(--accent-edge);
+  inset-block-start: var(--s-2);
+  inset-inline-start: calc((var(--s-6) + var(--a-node) / 2) * -1);
+}
+
+/* Current entry only: a 2s opacity breathe. Infinite, therefore [data-anim]
+   in the markup — components.css keeps it paused until it is on screen. */
+.exp-entry[data-current]::before {
+  animation-name: a-breathe;
+  animation-duration: var(--a-breathe);
+  animation-timing-function: var(--ease-luxe);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes a-breathe {
+  from { opacity: 1; }
+  to   { opacity: 0.45; }
+}
+
+.exp-entry__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-normal);
+  color: var(--ink-350);
+  margin: var(--s-0);
+}
+
+.exp-entry__role {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  color: var(--ink-100);
+  margin: var(--s-0);
+}
+
+.exp-entry__org {
+  font-size: var(--fs-body);
+  color: var(--ink-300);
+  margin: var(--s-0);
+}
+
+.exp-entry__list {
+  list-style: none;
+  margin: var(--s-0);
+  margin-block-start: var(--s-2);
+  padding: var(--s-0);
+  display: grid;
+  gap: var(--s-2);
+  max-inline-size: var(--a-entry);
+  color: var(--ink-200);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
+
+.exp-entry__list > li {
+  position: relative;
+  padding-inline-start: var(--s-4);
+}
+
+.exp-entry__list > li::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0.7em;
+  inset-inline-start: 0;
+  inline-size: var(--s-2);
+  block-size: var(--bw-hair);
+  background-color: var(--ink-600);
+}
+
+/* THE TWO EMPLOYMENT ENTRIES BECOME A CHRONOLOGY. Metadata (when, where) takes
+   a narrow left rail; substance (what the role was, what was done in it) takes
+   the wide right one. That is what a CV reader's eye is already trying to do
+   with this content — scan the dates down one edge and stop where a role looks
+   relevant — and a four-item vertical stack forces them to re-find the date at
+   every entry instead.
+
+   THREE THINGS HERE ARE NOT STYLE CHOICES; GET ANY ONE WRONG AND IT BREAKS.
+
+   1. MAPPED BY CLASS, NEVER :nth-child. The children are, in source order,
+      [p.exp-entry__date, h3.exp-entry__role, p.exp-entry__org, ul.exp-entry__list]
+      — date, ROLE, org, list. So :nth-child(1),(2) → rail puts the DATE and the
+      ROLE in the narrow track and the ORG and the BULLETS in the wide one,
+      which is the exact inverse of the intent. Measured with the positional
+      version: .exp-entry__role squeezed to 133px inside a 292px track (from
+      461px) and .exp-entry__org sprawling at 465px. Class selectors cannot
+      drift when a <p> is added or reordered; positions can.
+
+   2. justify-items: stretch IS LOAD-BEARING. .exp-entry above sets
+      justify-items: start, which makes every grid item shrink-to-fit. Inherited
+      into a 292px rail, the h3 wraps mid-role-title. stretch restores the
+      normal fill so each item takes its whole track.
+
+   3. SCOPED TO :first-of-type. .shell holds three <ol class="ledger-exp"> — the
+      two jobs, then education (one entry), then certificates (four). Those
+      seven entries have only THREE children (date, role, org) and no bullet
+      list, so the two-track rule leaves them with an empty 9fr column beside a
+      lone org line. They keep today's stack, which is correct for them: a
+      single-line certificate is not a chronology, it is a list item.
+
+   3fr/9fr against the 12-column grid this page is built on, and --space-gutter
+   for the gap, so the split lands on the same rhythm as .plate--bleed's 7fr/5fr
+   caption band rather than inventing a second column system.
+
+   THIS MAKES #experience TALLER, by a measured +188px, because the bullets now
+   wrap inside a 9fr track instead of the full width. That is the opposite of
+   what a two-column layout intuitively promises and it is why --cv-size is not
+   touched here — W12 re-measures the whole page after every geometry change in
+   this pass has landed.
+
+   1024px so the rail only exists where there is room for it; below that the
+   entries stay exactly as they ship today. */
+@media (min-width: 1024px) {
+  #experience .shell > ol.ledger-exp:first-of-type .exp-entry {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    column-gap: var(--space-gutter);
+    align-items: start;
+    justify-items: stretch;
+  }
+
+  #experience .shell > ol.ledger-exp:first-of-type .exp-entry__date,
+  #experience .shell > ol.ledger-exp:first-of-type .exp-entry__org {
+    grid-column: 1;
+  }
+
+  #experience .shell > ol.ledger-exp:first-of-type .exp-entry__role,
+  #experience .shell > ol.ledger-exp:first-of-type .exp-entry__list {
+    grid-column: 2;
+  }
+}
+
+
+/* ============================================================================
+   7. SERVICES — priced list
+   ----------------------------------------------------------------------------
+     <ul class="services" role="list">
+       <li class="service-row">
+         <a class="service-row__link" href="#contact">
+           <span class="service-row__body">
+             <span class="service-row__name">Phát triển Web Full-Stack</span>
+             <span class="service-row__note">React/Next.js + Node.js/Spring Boot…</span>
+           </span>
+           <span class="service-row__price tabular">Theo dự án</span>
+           <span class="service-row__arrow" aria-hidden="true">&#8594;</span>
+         </a>
+       </li>
+       <li class="service-row" data-featured>
+         <p data-eyebrow class="service-row__flag">Phổ biến</p> …
+       </li>
+     </ul>
+
+   Two-column ruled rows, 120px min height, NOT cards. Emphasis on the
+   recommended tier comes from a --bw-slab --accent-500 left border and a label
+   — never from an enlarged, elevated, or outlined card.
+
+   Hover: an --ink-900 background wipes in from the left via scaleX with
+   transform-origin: left, and the arrow translates in. Background wipe on rows
+   is the second of the four hover idioms.
+   ========================================================================== */
+
+.services {
+  list-style: none;
+  margin: var(--s-0);
+  padding: var(--s-0);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+}
+
+.service-row {
+  position: relative;
+  border-block-end: var(--bw-hair) solid var(--ink-700);
+  border-inline-start: var(--bw-slab) solid transparent;
+}
+
+.service-row[data-featured] {
+  border-inline-start-color: var(--accent-500);
+}
+
+.service-row__flag {
+  margin: var(--s-0);
+  padding-inline-start: var(--s-5);
+  padding-block-start: var(--s-5);
+}
+
+.service-row__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: var(--s-5);
+  min-block-size: var(--a-svc-h);
+  padding-inline: var(--s-5);
+  padding-block: var(--s-5);
+  color: inherit;
+  text-decoration: none;   /* rows are not prose links */
+}
+
+/* the wipe. A pseudo-element scaleX, so no layout and no paint of the row. */
+.service-row__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  background-color: var(--ink-900);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-3) var(--ease-out-quiet);
+}
+
+.service-row__link:hover::before,
+.service-row__link:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.service-row__link > * {
+  position: relative;
+  z-index: var(--z-raised);
+}
+
+.service-row__body {
+  display: grid;
+  gap: var(--s-1);
+}
+
+.service-row__name {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  color: var(--ink-100);
+}
+
+.service-row__note {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--ink-350);
+  max-inline-size: var(--a-entry);
+}
+
+.service-row__price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-h4);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-150);
+  white-space: nowrap;
+}
+
+.service-row__arrow {
+  font-size: var(--fs-h4);
+  /* --accent-ink, not --accent-400 directly. #service is a cold section, where
+     the alias resolves to --accent-400, so this is byte-identical today. It is
+     written through the alias so the arrow follows its section's temperature if
+     #service ever moves onto the warm ground — the same reason every other
+     accent-coloured foreground on this surface now reads an alias. */
+  color: var(--accent-ink);
+  opacity: 0;
+  translate: calc(var(--s-2) * -1) 0;
+  transition:
+    opacity var(--dur-3) var(--ease-out-quiet),
+    translate var(--dur-3) var(--ease-out-quiet);
+}
+
+.service-row__link:hover .service-row__arrow,
+.service-row__link:focus-visible .service-row__arrow {
+  opacity: 1;
+  translate: none;
+}
+
+@media (max-width: 768px) {
+  .service-row__link {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: var(--s-3);
+  }
+
+  .service-row__price {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .service-row__arrow {
+    grid-row: 1;
+    grid-column: 2;
+    opacity: 1;          /* no hover on touch — the affordance must be visible */
+    translate: none;
+  }
+}
+
+
+/* ============================================================================
+   8. TESTIMONIALS — staggered slab
+   ----------------------------------------------------------------------------
+     <ul class="quotes" role="list">
+       <li class="quote">
+         <blockquote class="quote__text"><p>…</p></blockquote>
+         <figcaption class="quote__by">
+           <span class="quote__avatar" aria-hidden="true">MA</span>
+           <span><b>Minh Anh</b><span class="quote__role">Đồng đội dự án</span></span>
+         </figcaption>
+       </li>
+     </ul>
+
+   Never a carousel. Each quote is offset horizontally from the last by --s-9,
+   alternating, so the group reads as a composed field rather than a stack of
+   three identical cards. Initials on --ink-800 where no photo exists — never a
+   generic silhouette SVG. Real quotes only; fewer than two and T08 omits the
+   whole section rather than padding it.
+   ========================================================================== */
+
+.quotes {
+  list-style: none;
+  margin: var(--s-0);
+  padding: var(--s-0);
+  display: grid;
+  gap: var(--s-10);
+}
+
+.quote {
+  position: relative;
+  max-inline-size: var(--w-narrow);
+}
+
+/* the opening quotation mark, tonal and behind the text */
+.quote::before {
+  content: '\201C';
+  position: absolute;
+  z-index: var(--z-base);
+  inset-block-start: calc(var(--s-6) * -1);
+  inset-inline-start: calc(var(--s-4) * -1);
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-display);
+  color: var(--ink-800);
+  pointer-events: none;
+}
+
+.quote > * {
+  position: relative;
+  z-index: var(--z-raised);
+}
+
+/* THE STAGGER, REWRITTEN — and the old version is the reason the section read
+   as three stacked paragraphs despite this block existing the whole time.
+
+   What was here: nth-child(even) got --s-9 (64px) and nth-child(3n) got 128px,
+   against quotes that were --w-narrow (760px) wide sitting in a 1240px content
+   column. A 128px shift on a 1240px field is a 10% offset that the eye reads as
+   a typo, not as composition — and because the MEASURE never changed, all three
+   quotes still ended on almost the same right edge, which is the edge the eye
+   actually tracks. Three left-aligned blocks of identical width, nudged.
+
+   What is here now moves both edges. The offsets are PERCENTAGES of the
+   container (0 / 26% / 50%) so the stagger scales with the column instead of
+   being a fixed 64px that vanishes at 1440, and each quote gets a SHORTER
+   measure than the one above it (34ch / 30ch / 28ch). The result is a diagonal:
+   the field of text steps right and narrows as you read down it, so the three
+   quotes describe a shape rather than a stack. Narrowing rather than widening
+   is deliberate — the last quote is the shortest string, and giving the
+   shortest text the widest measure is what produced the ragged single-line
+   third block.
+
+   ch, NOT px, for the measures. .quote__text is --font-serif italic at --fs-h3;
+   ch tracks that font's own advance width, so these stay at a real 28-34
+   characters per line at every viewport instead of drifting with the clamp.
+
+   THE SERIF LEAD-IN RULE FROM THE PROPOSAL IS DELIBERATELY NOT HERE. It set
+   .quote p:first-of-type in a different face at a larger size — but every
+   .quote__text on this page is a SINGLE paragraph, so :first-of-type matches
+   100% of them and the rule was a whole-section restyle wearing the costume of
+   an accent. .quote__text is already --font-serif italic; a second serif
+   treatment inside it is two ideas fighting.
+
+   1024px, matching the two rules it replaces: below that the shell is narrow
+   enough that a 50% offset would leave the third quote at a 14ch ribbon. */
+@media (min-width: 1024px) {
+  .quote:nth-child(1) {
+    max-inline-size: 34ch;
+  }
+
+  .quote:nth-child(2) {
+    margin-inline-start: 26%;
+    max-inline-size: 30ch;
+  }
+
+  .quote:nth-child(3) {
+    margin-inline-start: 50%;
+    max-inline-size: 28ch;
+  }
+}
+
+.quote__text {
+  margin: var(--s-0);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  color: var(--ink-150);
+}
+
+.quote__text p {
+  margin: var(--s-0);
+}
+
+.quote__by {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-block-start: var(--s-5);
+  font-size: var(--fs-body-sm);
+  color: var(--ink-350);
+}
+
+.quote__by b {
+  font-weight: 500;
+  color: var(--ink-200);
+  display: block;
+}
+
+.quote__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: var(--a-avatar);
+  block-size: var(--a-avatar);
+  border-radius: var(--r-pill);
+  background-color: var(--night-850);
+  color: var(--ink-200);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+}
+
+.quote__role {
+  display: block;
+  font-size: var(--fs-caption);
+  color: var(--ink-350);
+}
+
+
+/* ============================================================================
+   9. FAQ — quiet accordion, zero JS
+   ----------------------------------------------------------------------------
+     <div class="faq">
+       <details class="faq__item">
+         <summary class="faq__q">Làm sao để bắt đầu hợp tác với bạn?</summary>
+         <div class="faq__panel"><div class="faq__answer"><p>…</p></div></div>
+       </details>
+     </div>
+
+   The panel animates via grid-template-rows: 0fr -> 1fr and NEVER height:
+   height needs a magic number or a JS measurement, and both break the moment
+   the text reflows at another width or another font size.
+
+   Closed <details> content is not rendered, so the fr transition alone cannot
+   play on open. The @supports block below adds ::details-content with a
+   discrete content-visibility transition, which keeps the subtree alive for
+   the duration of the animation. Where ::details-content is unsupported the
+   panel simply snaps — correct content, no animation, zero JS either way.
+   ========================================================================== */
+
+.faq {
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+  max-inline-size: var(--w-narrow);
+}
+
+.faq__item {
+  border-block-end: var(--bw-hair) solid var(--ink-700);
+}
+
+.faq__q {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  padding-block: var(--s-5);
+  font-weight: 500;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  color: var(--ink-100);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+.faq__q::-webkit-details-marker {
+  display: none;
+}
+
+/* The marker: a 14px "+" that rotates 45deg into an "x". No chevron circles. */
+.faq__q::after {
+  content: '';
+  inline-size: var(--a-plus);
+  block-size: var(--a-plus);
+  background-color: var(--ink-400);
+  /* two bars drawn with a mask so the shape is one element and one transform */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 45%, black 45% 55%, transparent 55%),
+    linear-gradient(to right, transparent 45%, black 45% 55%, transparent 55%);
+  mask-image:
+    linear-gradient(to bottom, transparent 45%, black 45% 55%, transparent 55%),
+    linear-gradient(to right, transparent 45%, black 45% 55%, transparent 55%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+  rotate: 0deg;
+  transition:
+    rotate var(--dur-3) var(--ease-luxe),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+.faq__item[open] > .faq__q {
+  color: var(--accent-300);
+}
+
+.faq__item[open] > .faq__q::after {
+  rotate: 45deg;
+  background-color: var(--accent-400);
+}
+
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  background-color: var(--ink-900);
+  transition: grid-template-rows var(--dur-4) var(--ease-out-quiet);
+}
+
+.faq__item[open] > .faq__panel {
+  grid-template-rows: 1fr;
+}
+
+.faq__answer {
+  overflow: hidden;
+  min-block-size: 0;
+}
+
+.faq__answer > * {
+  margin: var(--s-0);
+  padding-inline: var(--s-5);
+  padding-block: var(--s-5);
+  max-inline-size: var(--a-answer);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-300);
+}
+
+@supports selector(::details-content) {
+  .faq__item::details-content {
+    content-visibility: hidden;
+    transition: content-visibility var(--dur-4) allow-discrete;
+  }
+
+  .faq__item[open]::details-content {
+    content-visibility: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__panel {
+    transition: none;
+  }
+}
+
+
+/* ============================================================================
+   10. CONTACT — form
+   ----------------------------------------------------------------------------
+     <form class="form-a" novalidate>
+       <p class="field">
+         <label class="field__label" for="f-name">Họ tên</label>
+         <input class="field__control" id="f-name" name="name" type="text"
+                required autocomplete="name"
+                aria-describedby="f-name-help f-name-err">
+         <span class="field__help" id="f-name-help">Tên bạn muốn tôi gọi.</span>
+         <span class="field__error" id="f-name-err" hidden>
+           <svg data-icon aria-hidden="true"><use href="img/sprite.svg#alert"></use></svg>
+           Vui lòng nhập họ tên
+         </span>
+       </p>
+       …
+       <p class="form-a__note">Khi gửi form này, bạn đồng ý với Chính sách bảo mật…</p>
+     </form>
+
+   Labels are ABOVE inputs — never floating, never a placeholder standing in
+   for a label. 48px minimum field height. Errors carry a 14px alert icon and
+   say what to fix, because --danger and --accent-500 are neighbouring reds and
+   hue alone cannot carry the signal.
+   ========================================================================== */
+
+.form-a {
+  display: grid;
+  gap: var(--s-5);
+  max-inline-size: var(--w-narrow);
+}
+
+@media (min-width: 769px) {
+  .form-a {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-a > .field--wide,
+  .form-a > .form-a__actions,
+  .form-a > .form-a__note {
+    grid-column: 1 / -1;
+  }
+}
+
+.field {
+  display: grid;
+  gap: var(--s-2);
+  margin: var(--s-0);
+}
+
+.field__label {
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-snug);
+  color: var(--ink-200);
+}
+
+/* Optionality is stated in words — T08 writes "(không bắt buộc)" into the
+   label as real text. Never a colour-coded asterisk carrying the meaning. */
+.field__label small {
+  font-weight: 400;
+  color: var(--ink-350);
+}
+
+.field__control {
+  inline-size: 100%;
+  min-block-size: var(--a-field-h);
+  padding-block: var(--a-field-pad);
+  padding-inline: var(--s-4);
+  background-color: var(--oxblood-950);
+  color: var(--ink-50);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+  border: var(--bw-hair) solid var(--border-interactive);
+  border-radius: var(--r-sm);
+  transition:
+    border-color var(--dur-2) var(--ease-standard),
+    background-color var(--dur-2) var(--ease-standard);
+}
+
+.field__control::placeholder {
+  color: var(--ink-400);   /* a hint, never the label */
+  opacity: 1;
+}
+
+.field__control:hover {
+  border-color: var(--ink-350);
+}
+
+.field__control:focus-visible {
+  border-color: var(--focus);
+  /* the 2px ring itself comes from the single global rule in base.css */
+}
+
+textarea.field__control {
+  min-block-size: calc(var(--s-8) * 3);
+  resize: vertical;
+}
+
+.field__help {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--ink-350);
+}
+
+/* --- error state --------------------------------------------------------- */
+
+.field__error {
+  display: flex;
+  align-items: start;
+  gap: var(--s-2);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--danger);
+}
+
+.field__error[hidden] {
+  display: none;
+}
+
+.field__error svg[data-icon] {
+  flex: none;
+  inline-size: var(--a-plus);
+  block-size: var(--a-plus);
+  margin-block-start: 0.15em;
+  color: var(--danger);
+}
+
+.field[data-invalid] .field__control,
+.field__control[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+/* :user-invalid fires only after the user has actually interacted, so a
+   pristine required field is never pre-shamed on load. */
+.field__control:user-invalid {
+  border-color: var(--danger);
+}
+
+/* --- actions, success ---------------------------------------------------- */
+
+.form-a__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  margin-block-start: var(--s-2);
+}
+
+.form-a__note {
+  margin: var(--s-0);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  color: var(--ink-350);
+}
+
+.form-a__success {
+  display: flex;
+  align-items: start;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background-color: var(--oxblood-850);
+  border-inline-start: var(--bw-slab) solid var(--success);
+  border-radius: var(--r-0);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--ink-150);
+}
+
+.form-a__success svg[data-icon] {
+  flex: none;
+  inline-size: var(--a-mark);
+  block-size: var(--a-mark);
+  color: var(--success);
+}
+
+.form-a[aria-busy='true'] .field__control {
+  opacity: 0.7;
+}
+
+
+/* ============================================================================
+   11. FOOTER — Surface A additions
+   ----------------------------------------------------------------------------
+   The shell, grid, nav, social and colophon all come from components.css §12.
+   Surface A adds one thing: the wordmark goes oversized. On the landing page
+   the mark is the closing beat of the composition, so it runs at
+   --fs-display-2xl rather than --fs-display-xl. --ink-850 on --ink-1000 is
+   1.15:1 — texture, not text, which is why it is aria-hidden and why the low
+   contrast is correct rather than a violation.
+   ========================================================================== */
+
+.surface-a [data-footer] {
+  padding-block-start: var(--space-section);
+}
+
+.surface-a [data-footer-mark] {
+  font-size: var(--fs-display-2xl);
+  /* [data-footer] already carries overflow: clip, and padding-block 0.08em is
+     inherited from the components rule, so the tone marks stay intact. */
+}
+
+/* The footer is the final "band" in the alternation. It must not gain a top
+   border: the tonal step from --ink-950 to --ink-1000 is the edge. */
+.surface-a [data-footer] {
+  border-block-start: 0 solid transparent;
+}
+
+
+/* ============================================================================
+   12. SURFACE-WIDE MOTION + PRINT GUARDS
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Nothing on this surface may translate, scale or wipe. base.css already
+     collapses every --dur-* to 1ms; this removes the residual transforms so
+     no element is left mid-state if a transition is interrupted. */
+  .plate__media :where(img),
+  .service-row__arrow,
+  .hero__portrait :where(img) {
+    translate: none;
+    scale: 1;
+  }
+
+  .service-row__link::before {
+    transform: none;
+    background-color: transparent;
+  }
+
+  .service-row__link:hover::before,
+  .service-row__link:focus-visible::before {
+    background-color: var(--ink-900);
+  }
+}
+
+/* Hover idioms are pointer-only. On a touch screen :hover latches after a tap
+   and leaves a row lit until the next scroll, which reads as a rendering bug. */
+@media (hover: none) {
+  .skill-row:hover {
+    background-color: transparent;
+  }
+
+  .skill-row:hover .skill-row__i {
+    color: var(--ink-350);
+  }
+
+  .skill-row__mark {
+    opacity: 0.45;
+  }
+}
+
+@media print {
+  .kinetic-band,
+  .hero::before {
+    display: none;
+  }
+
+  .hero {
+    min-block-size: auto;
+  }
+
+  .faq__panel {
+    grid-template-rows: 1fr;
+  }
+}

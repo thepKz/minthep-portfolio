@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml for minthep-portfolio
+  ===========================================================================
+  NOTE: XML forbids a double hyphen inside a comment, so this block uses "="
+  rules and spells out any command-line flag in prose. Do not paste a raw
+  git flag in here; it makes the file non-well-formed and crawlers reject it.
+  ===========================================================================
+
+  BASE URL IS A GITHUB PAGES *PROJECT PAGE*: https://thepkz.github.io/minthep-portfolio/
+  There is no CNAME. Every <loc> below is therefore fully qualified INCLUDING
+  the /minthep-portfolio/ path segment. Dropping that segment (or adding a
+  CNAME file, which rewrites the base path) 404s every URL in this file.
+
+  This file is the only place besides <link rel="canonical">, og:url, og:image
+  and JSON-LD where an absolute URL is allowed. Everything inside the HTML
+  itself uses relative paths.
+
+  Contents: 17 HTML routes plus 10 PDF payloads = 27 URLs.
+  <lastmod> is the real authoring date read out of git history (see README.md,
+  section "Regenerating sitemap.xml"), not a build timestamp. A fabricated
+  lastmod trains crawlers to ignore the field entirely.
+
+  Deliberately NOT listed:
+    * blog/index.html and wy/index.html are redirect stubs; their canonical
+      targets blog/myblog.html and wy/wy.html are listed instead.
+    * wy/header.html, wy/home.html, wy/lib.html, wy/Door.html ARE listed.
+      They are real standalone pages that canonicalise to wy/wy.html, they are
+      indexed today, and omitting them would cost live coverage.
+    * .rar / .zip / .mp3 / .obj payloads: not indexable document types.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Surface A: the landing page -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/</loc>
+    <lastmod>2024-11-22T03:32:02+07:00</lastmod>
+  </url>
+
+  <!-- Surface B: study blog (8 articles, the hub, and the exercise page) -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/Speaking.html</loc>
+    <lastmod>2025-06-06T13:42:50+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/myblog.html</loc>
+    <lastmod>2025-05-14T15:31:28+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/test.html</loc>
+    <lastmod>2025-03-17T22:25:20+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-0.html</loc>
+    <lastmod>2024-10-17T23:41:04+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-1.html</loc>
+    <lastmod>2024-11-22T23:41:18+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-2.html</loc>
+    <lastmod>2024-11-22T23:41:18+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-3.html</loc>
+    <lastmod>2025-06-06T13:43:20+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-4.html</loc>
+    <lastmod>2025-03-19T21:58:25+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-5.html</loc>
+    <lastmod>2025-08-09T23:33:00+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-6.html</loc>
+    <lastmod>2025-04-14T18:23:15+07:00</lastmod>
+  </url>
+
+  <!-- Surface B: orphan front-end exercise -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/test_html/vc.html</loc>
+    <lastmod>2025-04-14T18:23:15+07:00</lastmod>
+  </url>
+
+  <!-- Surface C: wy/ (wy.html is canonical; the other four alias to it) -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/wy/Door.html</loc>
+    <lastmod>2024-05-26T15:03:29+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/wy/header.html</loc>
+    <lastmod>2025-04-01T15:17:28+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/wy/home.html</loc>
+    <lastmod>2025-04-01T15:17:28+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/wy/lib.html</loc>
+    <lastmod>2025-04-01T15:17:28+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/wy/wy.html</loc>
+    <lastmod>2025-04-01T14:43:03+07:00</lastmod>
+  </url>
+
+  <!-- PDF payloads: Japanese study material (downloadfile/) -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/JDP113SPK.pdf</loc>
+    <lastmod>2024-10-19T23:12:16+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/JDP123SPK.pdf</loc>
+    <lastmod>2024-10-19T23:12:16+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/SoDoTuDuy.pdf</loc>
+    <lastmod>2024-05-22T09:59:44+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/ghoctuvung.pdf</loc>
+    <lastmod>2024-05-22T09:59:44+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/grammar.pdf</loc>
+    <lastmod>2024-05-22T09:59:44+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/gvocab.pdf</loc>
+    <lastmod>2024-05-22T09:59:44+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/downloadfile/jpd-script.pdf</loc>
+    <lastmod>2024-05-13T19:07:19+07:00</lastmod>
+  </url>
+
+  <!-- PDF payloads: MAS291 statistics (blog/textblog-3/).
+       Two hostile filenames live here: a DOUBLE space and a comma.
+       Both are percent-encoded below and must never be renamed. -->
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-3/Exercise%20Book%20MAS291%20%202021.pdf</loc>
+    <lastmod>2024-09-22T03:05:53+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-3/Montgomery_Runger_Applied_Statistics_and_Probability_for_Engineers%2C_5th.pdf</loc>
+    <lastmod>2024-09-22T03:05:53+07:00</lastmod>
+  </url>
+  <url>
+    <loc>https://thepkz.github.io/minthep-portfolio/blog/textblog-3/SummaryMAS291.pdf</loc>
+    <lastmod>2024-09-22T03:05:53+07:00</lastmod>
+  </url>
+
+</urlset>

@@ -1,0 +1,28 @@
+{
+  "name": "Mai Tấn Thép — Kỹ sư phần mềm Full-Stack",
+  "short_name": "MINTHEP",
+  "description": "Portfolio và blog học tập của Mai Tấn Thép: dự án phần mềm, tài liệu tiếng Nhật JPD113/JPD123, Xác suất Thống kê MAS291 và Kỹ nghệ phần mềm SWE201c.",
+  "lang": "vi",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#040C18",
+  "background_color": "#040C18",
+  "icons": [
+    {
+      "src": "img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "img/favicon-32.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ]
+}
