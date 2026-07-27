@@ -1,2 +1,7 @@
 node_modules/
 .env
+
+# Per-machine Claude Code state. .claude/launch.json IS committed — it documents
+# how to run the dev server — but settings.local.json holds one user's tool
+# permissions and would fight anyone else's.
+.claude/settings.local.json

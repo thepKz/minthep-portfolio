@@ -1,712 +1,1255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="no-js">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GREENWEAVE - 360° Product Viewer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Thêm Three.js và các loader cần thiết -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <style>
-        .product-container {
-            perspective: 1000px;
-        }
-        .product-viewer {
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-        }
-        .spin-control {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-        }
-        .color-option {
-            transition: all 0.3s ease;
-        }
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-        .color-option.selected {
-            border: 2px solid #000;
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-        }
-        .zoomable-image {
-            transition: transform 0.3s ease;
-        }
-        .zoomable-image:hover {
-            transform: scale(1.05);
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating-icon {
-            animation: float 3s ease-in-out infinite;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement;d.className=d.className.replace(/\bno-js\b/,'js');try{var t=localStorage.getItem('minthep:theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+
+<title>Trình xem sản phẩm 360° bằng WebGL — Mai Tấn Thép</title>
+<meta name="description" content="Bài tập WebGL: xoay, phóng to và đổi màu một mô hình trang phục 3D ngay trong trình duyệt bằng Three.js, không cần cài gì. Có ảnh tĩnh thay thế nếu máy không hỗ trợ WebGL.">
+<meta name="author" content="Mai Tấn Thép">
+<link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/test_html/vc.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mai Tấn Thép">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Trình xem sản phẩm 360° bằng WebGL">
+<meta property="og:description" content="Xoay, phóng to và đổi màu một mô hình trang phục 3D ngay trong trình duyệt bằng Three.js.">
+<meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/test_html/vc.html">
+<meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/test_html/product.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="Ảnh tĩnh của mẫu trang phục dùng trong trình xem 360°">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trình xem sản phẩm 360° bằng WebGL">
+<meta name="twitter:description" content="Xoay, phóng to và đổi màu một mô hình trang phục 3D ngay trong trình duyệt bằng Three.js.">
+<meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/test_html/product.png">
+
+<meta name="theme-color" content="#040C18">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../img/favicon-32.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="../img/logo.png">
+<link rel="manifest" href="../manifest.webmanifest">
+
+<link rel="preload" href="../fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/anton-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- The 3D engine is this page's only third-party origin, and it was already
+     one of the four the old build used. Warm the socket; the modules are still
+     fetched lazily, after first paint, and only if the stage is scrolled to. -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/surface-a.css">
+
+<!-- Three.js is PINNED to an exact version. r180 was verified to return 200 on
+     jsDelivr for the build and for all three add-ons before it was chosen.
+     The keys deliberately omit the .js extension so the import specifiers in
+     the module below stay bare and are never mistaken for local paths. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.min.js",
+    "three/addons/controls/OrbitControls": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/loaders/OBJLoader": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/OBJLoader.js",
+    "three/addons/loaders/MTLLoader": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/MTLLoader.js"
+  }
+}
+</script>
+
+<style>
+/* ---------------------------------------------------------------------------
+   Page-local styles for test_html/vc.html — the 360° viewer.
+   Every value is a var() into css/tokens.css. The only literals are the four
+   fabric swatch colours, which are product data rather than chrome; they are
+   declared once as --sw on the swatch buttons so the script has a single
+   source of truth and never repeats a hex code.
+   --------------------------------------------------------------------------- */
+
+.vc-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--ink-50);
+  margin-block: var(--s-4) var(--s-0);
+  text-wrap: balance;
+}
+
+.vc-intro { padding-block-start: calc(var(--nav-h) + var(--space-section-sm)); }
+
+.vc-lede {
+  margin-block-start: var(--s-5);
+  max-inline-size: var(--w-read-max);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-200);
+}
+
+.vc-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: start;
+  max-inline-size: var(--w-read-max);
+  margin-block-start: var(--s-7);
+  padding: var(--s-5);
+  border-inline-start: var(--bw-slab) solid var(--accent-500);
+  background-color: var(--ink-900);
+  border-radius: var(--r-0) var(--r-sm) var(--r-sm) var(--r-0);
+  color: var(--ink-200);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
+
+.vc-note > svg { color: var(--accent-400); }
+.vc-note p { margin: var(--s-0); }
+.vc-note p + p { margin-block-start: var(--s-3); }
+
+/* --- the stage ------------------------------------------------------------ */
+
+.vc-stage {
+  position: relative;
+  margin: var(--s-0);
+  border: var(--bw-hair) solid var(--ink-700);
+  border-radius: var(--r-md);
+  background-color: var(--ink-900);
+  overflow: clip;
+  box-shadow: var(--shadow-float);
+}
+
+.vc-stage__viewport {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  inline-size: 100%;
+  display: grid;
+  place-items: center;
+  touch-action: none;          /* OrbitControls owns the gesture once live */
+  background-image: radial-gradient(
+    ellipse at 50% 38%,
+    var(--ink-850) 0%,
+    var(--ink-950) 72%);
+}
+
+@media (max-width: 640px) {
+  .vc-stage__viewport { aspect-ratio: 1 / 1; }
+}
+
+.vc-stage__viewport canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.vc-stage__viewport:focus-visible {
+  outline: var(--bw-rule) solid var(--focus);
+  outline-offset: calc(var(--s-1) * -1);
+}
+
+/* The still image plus its explanation is the DEFAULT state, sitting in the
+   HTML. It is only hidden once WebGL has actually produced a frame — so no-JS,
+   no-WebGL and blocked-CDN all land on the same honest fallback for free. */
+.vc-fallback {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: center;
+  text-align: center;
+  padding: var(--s-6);
+  max-inline-size: var(--w-read-max);
+}
+
+.vc-fallback img {
+  inline-size: 100%;
+  max-inline-size: 32rem;
+  block-size: auto;
+  border-radius: var(--r-sm);
+}
+
+.vc-fallback p {
+  margin: var(--s-0);
+  color: var(--ink-200);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+}
+
+.vc-fallback strong { color: var(--ink-100); font-weight: 500; }
+
+/* loading readout; disappears the moment it has nothing to say */
+.vc-status {
+  position: absolute;
+  inset-block-end: var(--s-4);
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  padding: var(--s-2) var(--s-5);
+  border-radius: var(--r-pill);
+  background-color: var(--ink-1000);
+  border: var(--bw-hair) solid var(--ink-700);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-200);
+}
+
+.vc-status:empty { display: none; }
+
+/* --- the control bar ------------------------------------------------------ */
+
+.vc-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+  background-color: var(--ink-900);
+}
+
+.vc-controls__group {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.vc-controls__spacer { flex: 1 1 var(--s-4); }
+
+.vc-btn {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--s-9);
+  block-size: var(--s-9);
+  padding: var(--s-0);
+  border: var(--bw-hair) solid var(--ink-700);
+  border-radius: var(--r-sm);
+  background-color: transparent;
+  color: var(--ink-150);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard),
+    color var(--dur-2) var(--ease-standard);
+}
+
+.vc-btn:hover:not(:disabled) {
+  background-color: var(--ink-850);
+  border-color: var(--ink-600);
+  color: var(--ink-50);
+}
+
+.vc-btn:disabled {
+  color: var(--ink-400);
+  border-color: var(--ink-800);
+  cursor: not-allowed;
+}
+
+/* view presets read as words, not as four copies of the same fake thumbnail */
+.vc-view {
+  padding: var(--s-2) var(--s-4);
+  border: var(--bw-hair) solid var(--ink-700);
+  border-radius: var(--r-pill);
+  background-color: transparent;
+  color: var(--ink-200);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-2) var(--ease-standard),
+    color var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard);
+}
+
+.vc-view[aria-pressed='true'] {
+  background-color: var(--ink-100);
+  border-color: var(--ink-100);
+  color: var(--ink-1000);
+}
+
+.vc-view:hover:not(:disabled):not([aria-pressed='true']) {
+  border-color: var(--ink-500);
+  color: var(--ink-50);
+}
+
+.vc-view:disabled {
+  color: var(--ink-400);
+  border-color: var(--ink-800);
+  cursor: not-allowed;
+}
+
+/* --- fabric swatches ------------------------------------------------------ */
+
+.vc-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin: var(--s-0);
+  padding: var(--s-0);
+  list-style: none;
+}
+
+.vc-sw {
+  --sw: var(--ink-500);
+  inline-size: var(--s-9);
+  block-size: var(--s-9);
+  padding: var(--s-0);
+  border: var(--bw-rule) solid transparent;
+  border-radius: var(--r-pill);
+  background-color: var(--sw);
+  background-clip: padding-box;
+  cursor: pointer;
+  transition:
+    scale var(--dur-2) var(--ease-standard),
+    border-color var(--dur-2) var(--ease-standard);
+}
+
+.vc-sw:hover:not(:disabled) { scale: 1.08; }
+.vc-sw[aria-pressed='true'] { border-color: var(--ink-100); }
+.vc-sw:disabled { cursor: not-allowed; opacity: 0.45; }
+
+.vc-sw[data-c='rung'] { --sw: #2F5D3A; }
+.vc-sw[data-c='bien'] { --sw: #2A4E6E; }
+.vc-sw[data-c='dat']  { --sw: #6B4A32; }
+.vc-sw[data-c='troi'] { --sw: #7E8C99; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-sw, .vc-btn, .vc-view { transition: none; }
+  .vc-sw:hover:not(:disabled) { scale: none; }
+}
+
+.vc-legend {
+  margin-block: var(--s-6) var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-350);
+}
+
+.vc-swatch-name {
+  margin-block-start: var(--s-3);
+  font-size: var(--fs-body-sm);
+  color: var(--ink-150);
+}
+
+/* --- spec ledger ---------------------------------------------------------- */
+
+.vc-specs {
+  margin-block-start: var(--s-7);
+  max-inline-size: var(--w-narrow);
+  border-block-start: var(--bw-hair) solid var(--ink-700);
+}
+
+.vc-specs > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-1);
+  padding-block: var(--s-4);
+  border-block-end: var(--bw-hair) solid var(--ink-800);
+}
+
+@media (min-width: 641px) {
+  .vc-specs > div {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: var(--s-5);
+    align-items: baseline;
+  }
+}
+
+.vc-specs dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-350);
+}
+
+.vc-specs dd {
+  margin: var(--s-0);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--ink-150);
+}
+
+/* --- the split on the viewer section -------------------------------------- */
+
+.vc-split {
+  display: grid;
+  gap: var(--s-9);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (min-width: 981px) {
+  .vc-split {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: var(--s-10);
+  }
+}
+
+.vc-panel h3 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h4);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  color: var(--ink-100);
+  margin: var(--s-0);
+}
+
+.vc-panel p {
+  margin-block-start: var(--s-4);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body);
+  color: var(--ink-200);
+}
+
+.vc-hint {
+  margin-block-start: var(--s-6);
+  padding-block-start: var(--s-5);
+  border-block-start: var(--bw-hair) solid var(--ink-800);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-body);
+  color: var(--ink-350);
+  max-inline-size: var(--w-read-max);
+}
+
+.vc-hint kbd {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+  border: var(--bw-hair) solid var(--ink-700);
+  border-radius: var(--r-xs);
+  color: var(--ink-150);
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://thepkz.github.io/minthep-portfolio/test_html/vc.html",
+      "url": "https://thepkz.github.io/minthep-portfolio/test_html/vc.html",
+      "name": "Trình xem sản phẩm 360° bằng WebGL",
+      "inLanguage": "vi",
+      "description": "Bài tập WebGL dựng trình xem sản phẩm 360° bằng Three.js, có ảnh tĩnh thay thế khi trình duyệt không hỗ trợ.",
+      "primaryImageOfPage": "https://thepkz.github.io/minthep-portfolio/test_html/product.png",
+      "isPartOf": { "@id": "https://thepkz.github.io/minthep-portfolio/" },
+      "author": { "@type": "Person", "name": "Mai Tấn Thép", "url": "https://thepkz.github.io/minthep-portfolio/" },
+      "mainEntity": {
+        "@type": "CreativeWork",
+        "name": "Trình xem sản phẩm 360° — bài tập WebGL",
+        "learningResourceType": "Bài tập thực hành",
+        "genre": "WebGL / Three.js",
+        "inLanguage": "vi",
+        "author": { "@type": "Person", "name": "Mai Tấn Thép" }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://thepkz.github.io/minthep-portfolio/" },
+        { "@type": "ListItem", "position": 2, "name": "Trình xem sản phẩm 360° bằng WebGL" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
-<body class="bg-gray-50 font-sans">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                    <i class="fas fa-leaf text-white text-xl"></i>
-                </div>
-                <h1 class="text-2xl font-bold text-green-800">GREENWEAVE</h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#" class="text-gray-700 hover:text-green-600 transition">Home</a>
-                <a href="#" class="text-gray-700 hover:text-green-600 transition">Shop</a>
-                <a href="#" class="text-gray-700 hover:text-green-600 transition">Collections</a>
-                <a href="#" class="text-gray-700 hover:text-green-600 transition">About</a>
-                <a href="#" class="text-gray-700 hover:text-green-600 transition">Contact</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <button class="p-2 text-gray-600 hover:text-green-600 transition">
-                    <i class="fas fa-search text-lg"></i>
-                </button>
-                <button class="p-2 text-gray-600 hover:text-green-600 transition">
-                    <i class="fas fa-user text-lg"></i>
-                </button>
-                <button class="p-2 text-gray-600 hover:text-green-600 transition relative">
-                    <i class="fas fa-shopping-cart text-lg"></i>
-                    <span class="absolute -top-1 -right-1 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                </button>
-                <button class="md:hidden p-2 text-gray-600">
-                    <i class="fas fa-bars text-lg"></i>
-                </button>
-            </div>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Product Viewer Section -->
-            <div class="lg:w-1/2">
-                <div class="product-container relative h-96 md:h-[500px] bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-                    <div class="product-viewer w-full h-full flex items-center justify-center">
-                        <!-- Thay thẻ img bằng thẻ div cho Three.js canvas -->
-                        <div id="product-model-container" class="w-full h-full"></div>
-                        <!-- Ẩn hình ảnh cũ -->
-                        <img id="current-product-view" src="" alt="Product" class="hidden w-full h-full object-contain">
-                    </div>
-                    
-                    <!-- Spin Controls -->
-                    <div class="spin-control absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center bg-white rounded-full px-4 py-2 shadow-md">
-                        <button id="spin-left" class="p-2 text-gray-600 hover:text-green-600">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <span class="mx-4 text-sm font-medium">Drag or click arrows to rotate</span>
-                        <button id="spin-right" class="p-2 text-gray-600 hover:text-green-600">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Zoom Controls -->
-                    <div class="absolute top-4 right-4 flex flex-col space-y-2">
-                        <button id="zoom-in" class="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-gray-600 hover:text-green-600">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <button id="zoom-out" class="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-gray-600 hover:text-green-600">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- 360° Icon -->
-                    <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                        <i class="fas fa-rotate mr-1"></i>
-                        <span>360° VIEW</span>
-                    </div>
-                </div>
-                
-                <!-- Thumbnail Gallery -->
-                <div class="mt-4 grid grid-cols-4 gap-2">
-                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
-                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
-                        <span class="text-xs font-medium">Front</span>
-                    </button>
-                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
-                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
-                        <span class="text-xs font-medium">Side</span>
-                    </button>
-                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
-                        <i class="fas fa-sync-alt text-green-600 text-xl mb-1"></i>
-                        <span class="text-xs font-medium">Back</span>
-                    </button>
-                    <button class="thumbnail py-3 cursor-pointer border-2 border-gray-200 hover:border-green-500 rounded-lg bg-white shadow-sm flex flex-col items-center justify-center">
-                        <i class="fas fa-search-plus text-green-600 text-xl mb-1"></i>
-                        <span class="text-xs font-medium">Detail</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Product Info Section -->
-            <div class="lg:w-1/2 py-4">
-                <div class="mb-6">
-                    <span class="text-green-600 font-medium">Eco-Friendly Collection</span>
-                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">Organic Cotton T-Shirt</h1>
-                    <div class="flex items-center mt-3">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span class="text-gray-500 ml-2">(142 reviews)</span>
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <span class="text-3xl font-bold text-gray-900">$29.99</span>
-                    <span class="ml-2 text-lg text-gray-500 line-through">$39.99</span>
-                    <span class="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-medium">25% OFF</span>
-                </div>
-                
-                <div class="mb-6">
-                    <p class="text-gray-700 mb-4">
-                        Crafted from 100% organic cotton, this premium t-shirt offers exceptional comfort and breathability. 
-                        Our eco-friendly dye process ensures minimal environmental impact while delivering vibrant, long-lasting colors.
-                    </p>
-                    <div class="flex items-center text-green-600">
-                        <i class="fas fa-check-circle mr-2"></i>
-                        <span class="font-medium">In stock (Ready to ship)</span>
-                    </div>
-                </div>
-                
-                <!-- Color Options -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-3">Color: <span id="selected-color" class="font-bold">Forest Green</span></h3>
-                    <div class="flex space-x-3">
-                        <div class="color-option selected" data-color="Forest Green">
-                            <div class="w-10 h-10 rounded-full bg-green-800 border-2 border-white shadow-md"></div>
-                        </div>
-                        <div class="color-option" data-color="Ocean Blue">
-                            <div class="w-10 h-10 rounded-full bg-blue-700 border-2 border-white shadow-md"></div>
-                        </div>
-                        <div class="color-option" data-color="Earth Brown">
-                            <div class="w-10 h-10 rounded-full bg-amber-800 border-2 border-white shadow-md"></div>
-                        </div>
-                        <div class="color-option" data-color="Sky Gray">
-                            <div class="w-10 h-10 rounded-full bg-gray-500 border-2 border-white shadow-md"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Size Options -->
-                <div class="mb-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="text-lg font-medium text-gray-900">Size</h3>
-                        <a href="#" class="text-sm text-green-600 hover:underline">Size Guide</a>
-                    </div>
-                    <div class="grid grid-cols-5 gap-2">
-                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">XS</button>
-                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">S</button>
-                        <button class="py-2 px-3 border rounded-md text-center font-medium bg-green-600 text-white">M</button>
-                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">L</button>
-                        <button class="py-2 px-3 border rounded-md text-center font-medium hover:bg-gray-100">XL</button>
-                    </div>
-                </div>
-                
-                <!-- Quantity & Add to Cart -->
-                <div class="mb-8">
-                    <div class="flex items-center space-x-4">
-                        <div class="flex items-center border rounded-md overflow-hidden">
-                            <button class="px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200">-</button>
-                            <span class="px-4 py-2 w-12 text-center">1</span>
-                            <button class="px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200">+</button>
-                        </div>
-                        <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md font-medium transition flex items-center justify-center">
-                            <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                        </button>
-                        <button class="p-3 border rounded-md text-gray-600 hover:bg-gray-100">
-                            <i class="far fa-heart text-lg"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product Details Accordion -->
-                <div class="border-t border-b border-gray-200 divide-y divide-gray-200">
-                    <div class="py-4">
-                        <button class="flex justify-between items-center w-full text-left">
-                            <span class="font-medium text-gray-900">Product Details</span>
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden">
-                            <p>• 100% Organic Cotton</p>
-                            <p>• Eco-friendly dyes</p>
-                            <p>• Reinforced stitching</p>
-                            <p>• Pre-shrunk fabric</p>
-                            <p>• Machine wash cold</p>
-                        </div>
-                    </div>
-                    <div class="py-4">
-                        <button class="flex justify-between items-center w-full text-left">
-                            <span class="font-medium text-gray-900">Shipping & Returns</span>
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden">
-                            <p>• Free shipping on orders over $50</p>
-                            <p>• Carbon-neutral shipping options</p>
-                            <p>• Easy 30-day returns</p>
-                        </div>
-                    </div>
-                    <div class="py-4">
-                        <button class="flex justify-between items-center w-full text-left">
-                            <span class="font-medium text-gray-900">Sustainability</span>
-                            <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
-                        </button>
-                        <div class="mt-2 text-gray-600 hidden">
-                            <p>• Made in a Fair Trade certified facility</p>
-                            <p>• 100% renewable energy used in production</p>
-                            <p>• 1% of profits donated to reforestation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Related Products -->
-        <section class="mt-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">You May Also Like</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+1" alt="Product 1" class="w-full h-64 object-cover">
-                        <div class="absolute top-2 right-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-bold">
-                            NEW
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-1">Organic Linen Shirt</h3>
-                        <div class="flex items-center text-yellow-400 text-sm mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-gray-900">$34.99</span>
-                            <button class="text-green-600 hover:text-green-800">
-                                <i class="fas fa-plus-circle text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+2" alt="Product 2" class="w-full h-64 object-cover">
-                        <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                            SALE
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-1">Bamboo Fiber Pants</h3>
-                        <div class="flex items-center text-yellow-400 text-sm mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="font-bold text-gray-900">$49.99</span>
-                                <span class="ml-2 text-sm text-gray-500 line-through">$59.99</span>
-                            </div>
-                            <button class="text-green-600 hover:text-green-800">
-                                <i class="fas fa-plus-circle text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+3" alt="Product 3" class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-1">Hemp Canvas Jacket</h3>
-                        <div class="flex items-center text-yellow-400 text-sm mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-gray-900">$79.99</span>
-                            <button class="text-green-600 hover:text-green-800">
-                                <i class="fas fa-plus-circle text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="https://via.placeholder.com/300x300/EDF2F7/64748B?text=Product+4" alt="Product 4" class="w-full h-64 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-900 mb-1">Recycled Polyester Hoodie</h3>
-                        <div class="flex items-center text-yellow-400 text-sm mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-gray-900">$54.99</span>
-                            <button class="text-green-600 hover:text-green-800">
-                                <i class="fas fa-plus-circle text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Sustainability Promise -->
-        <div class="mt-16 bg-green-50 rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">Our Sustainability Promise</h2>
-                <p class="text-gray-700 mb-4">
-                    At GREENWEAVE, we're committed to creating fashion that doesn't cost the earth. 
-                    Every product is designed with sustainability at its core, from material sourcing 
-                    to ethical manufacturing.
-                </p>
-                <ul class="space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>100% Organic & Recycled Materials</span>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>Carbon Neutral Shipping</span>
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>Fair Trade Certified</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="md:w-1/2 relative">
-                <div class="floating-icon absolute -top-8 -left-8 z-10 bg-white p-4 rounded-full shadow-lg">
-                    <i class="fas fa-leaf text-green-600 text-3xl"></i>
-                </div>
-                <img src="https://via.placeholder.com/500x300/EDF2F7/64748B?text=Sustainable+Fashion" alt="Sustainable Fashion" class="w-full rounded-lg shadow-md">
-            </div>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-16">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-2">
-                            <i class="fas fa-leaf text-white"></i>
-                        </div>
-                        GREENWEAVE
-                    </h3>
-                    <p class="text-gray-400 mb-4">
-                        Sustainable fashion for a better tomorrow. Ethically made, environmentally conscious clothing.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-pinterest-p"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-lg font-medium mb-4">Shop</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">New Arrivals</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Best Sellers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Men's Collection</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Women's Collection</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessories</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-medium mb-4">Information</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sustainability</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-medium mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Return Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Size Guide</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQs</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Track Order</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2023 GREENWEAVE. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=VISA" alt="Visa" class="h-8">
-                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=MC" alt="Mastercard" class="h-8">
-                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=AMEX" alt="Amex" class="h-8">
-                    <img src="https://via.placeholder.com/50x30/EDF2F7/64748B?text=PP" alt="PayPal" class="h-8">
-                </div>
-            </div>
-        </div>
-    </footer>
+<body class="surface-a">
 
-    <script>
-        // Code để hiển thị mô hình 3D KazakLowPoly.obj và KazakLowPoly.mtl
-        // Sử dụng thư viện Three.js
-        
-        // Khai báo các biến toàn cục cho Three.js
-        let scene, camera, renderer, controls, model;
-        let container = document.getElementById('product-model-container');
-        
-        // Hàm khởi tạo Three.js scene
-        function initThreeJS() {
-            // Tạo scene
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xf1f5f9); // Màu xám nhạt giống background hiện tại
-            
-            // Tạo camera
-            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.set(0, 0, 5);
-            
-            // Tạo renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-            
-            // Thêm ánh sáng
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            scene.add(ambientLight);
-            
-            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight1.position.set(1, 1, 1);
-            scene.add(directionalLight1);
-            
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight2.position.set(-1, 0.5, -1);
-            scene.add(directionalLight2);
-            
-            // Thêm controls để người dùng có thể xoay mô hình
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.screenSpacePanning = false;
-            controls.minDistance = 3;
-            controls.maxDistance = 10;
-            controls.maxPolarAngle = Math.PI / 1.5;
-            
-            // Tải mô hình 3D
-            loadModel();
-            
-            // Thêm sự kiện resize
-            window.addEventListener('resize', onWindowResize);
-            
-            // Bắt đầu animation loop
-            animate();
-        }
-        
-        // Hàm tải mô hình
-        function loadModel() {
-            // Tải MTL (materials)
-            const mtlLoader = new THREE.MTLLoader();
-            mtlLoader.load('KazakLowPoly.mtl', function(materials) {
-                materials.preload();
-                
-                // Sử dụng vật liệu đã tải để tải OBJ
-                const objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.load('KazakLowPoly.obj', function(object) {
-                    model = object;
-                    
-                    // Điều chỉnh kích thước và vị trí của mô hình
-                    const box = new THREE.Box3().setFromObject(model);
-                    const size = box.getSize(new THREE.Vector3()).length();
-                    const center = box.getCenter(new THREE.Vector3());
-                    
-                    model.position.x = -center.x;
-                    model.position.y = -center.y;
-                    model.position.z = -center.z;
-                    
-                    // Tính toán scale phù hợp
-                    const scale = 3 / size;
-                    model.scale.set(scale, scale, scale);
-                    
-                    // Thêm mô hình vào scene
-                    scene.add(model);
-                    
-                    // Tự động xoay nhẹ mô hình ban đầu
-                    model.rotation.y = Math.PI / 4;
-                    
-                }, onProgress, onError);
-            }, onProgress, onError);
-        }
-        
-        // Hàm xử lý tiến trình tải
-        function onProgress(xhr) {
-            if (xhr.lengthComputable) {
-                const percentComplete = xhr.loaded / xhr.total * 100;
-                console.log('Model ' + Math.round(percentComplete, 2) + '% downloaded');
-            }
-        }
-        
-        // Hàm xử lý lỗi
-        function onError(error) {
-            console.error('Không thể tải mô hình 3D: ' + error);
-        }
-        
-        // Hàm xử lý thay đổi kích thước cửa sổ
-        function onWindowResize() {
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        }
-        
-        // Hàm animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        
-        // Gọi hàm khởi tạo khi trang đã tải xong
-        window.addEventListener('load', initThreeJS);
-        
-        // Thêm xử lý sự kiện cho các nút spin và zoom
-        document.getElementById('spin-left').addEventListener('click', function() {
-            if (model) {
-                model.rotation.y -= Math.PI / 8;
-            }
-        });
-        
-        document.getElementById('spin-right').addEventListener('click', function() {
-            if (model) {
-                model.rotation.y += Math.PI / 8;
-            }
-        });
-        
-        document.getElementById('zoom-in').addEventListener('click', function() {
-            if (camera.position.z > 3.5) {
-                camera.position.z -= 0.5;
-            }
-        });
-        
-        document.getElementById('zoom-out').addEventListener('click', function() {
-            if (camera.position.z < 10) {
-                camera.position.z += 0.5;
-            }
-        });
-        
-        // 360° Product Viewer Functionality (giữ lại code cũ cho phần thumbnails)
-        const productImages = [
-            "product.png",
-            "product.png",
-            "product.png",
-            "product.png",
-            "product.png",
-            "product.png",
-            "product.png",
-            "product.png"
-        ];
-        
-        // Color selection
-        const colorOptions = document.querySelectorAll('.color-option');
-        const selectedColorText = document.getElementById('selected-color');
-        
-        colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                colorOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                selectedColorText.textContent = option.dataset.color;
-                
-                // Trong trường hợp thực tế, bạn có thể muốn thay đổi màu sắc của mô hình tại đây
-            });
-        });
-        
-        // Thumbnail click - cập nhật để xoay mô hình thay vì thay đổi ảnh
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        
-        thumbnails.forEach((thumb, index) => {
-            thumb.addEventListener('click', () => {
-                if (model) {
-                    // Tất cả nút thumbnails trở về trạng thái thường
-                    thumbnails.forEach(t => t.classList.remove('border-green-500'));
-                    // Nút được nhấp vào sẽ có viền xanh
-                    thumb.classList.add('border-green-500');
-                    
-                    // Xoay mô hình dựa trên index của nút được click
-                    if (index === 0) {
-                        // Front view
-                        model.rotation.y = 0;
-                    } else if (index === 1) {
-                        // Side view
-                        model.rotation.y = Math.PI / 2; // 90 độ
-                    } else if (index === 2) {
-                        // Back view
-                        model.rotation.y = Math.PI; // 180 độ
-                    } else if (index === 3) {
-                        // Detail view - zoom in gần hơn
-                        model.rotation.y = Math.PI * 1.25; // 225 độ
-                        // Zoom in cho chế độ detail
-                        camera.position.z = 3.5;
-                    }
-                }
-            });
-        });
-        
-        // Accordion functionality
-        const accordionButtons = document.querySelectorAll('footer button, main button');
-        
-        accordionButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                
-                if(content && content.style) {
-                if(content.style.display === 'block') {
-                    content.style.display = 'none';
-                        if (icon) icon.style.transform = 'rotate(0deg)';
-                } else {
-                    content.style.display = 'block';
-                        if (icon) icon.style.transform = 'rotate(180deg)';
-                    }
-                }
-            });
-        });
-    </script>
-    
+<a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
+
+<header class="site-header" data-nav>
+  <div data-nav-bar>
+    <a class="wordmark" href="../index.html">MINTHEP</a>
+    <nav aria-label="Điều hướng chính">
+      <ul role="list">
+        <li><a data-nav-link href="../index.html">Trang chủ</a></li>
+        <li><a data-nav-link href="../blog/myblog.html">Blog</a></li>
+        <li><a data-nav-link href="vc.html" aria-current="page">Trình xem 360°</a></li>
+        <li><a data-nav-link href="../blog/test.html">Bài tập giao diện</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="js-only" data-theme-toggle aria-pressed="false">
+      <svg data-icon="sun" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#sun"></use></svg>
+      <svg data-icon="moon" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#moon"></use></svg>
+      <span class="visually-hidden">Chế độ sáng</span>
+    </button>
+    <button type="button" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="Mở menu">
+      <svg data-icon="menu" aria-hidden="true"><use href="../img/sprite.svg#menu"></use></svg>
+      <svg data-icon="close" aria-hidden="true"><use href="../img/sprite.svg#close"></use></svg>
+    </button>
+  </div>
+</header>
+
+<div id="site-drawer" data-drawer tabindex="-1">
+  <nav aria-label="Điều hướng di động">
+    <ul role="list">
+      <li><a href="../index.html">Trang chủ</a></li>
+      <li><a href="../blog/myblog.html">Blog</a></li>
+      <li><a href="vc.html" aria-current="page">Trình xem 360°</a></li>
+      <li><a href="../blog/test.html">Bài tập giao diện</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- 1 · intro ---------------------------------------------------------- -->
+  <section class="section-a vc-intro" data-treatment="open" aria-labelledby="vc-h1" data-reveal>
+    <div class="shell">
+      <p data-eyebrow>Bài tập WebGL · Three.js</p>
+      <h1 class="vc-title display-safe" id="vc-h1">Trình xem sản phẩm 360°</h1>
+      <p class="vc-lede">
+        Một mô hình trang phục 3D chạy thẳng trong trình duyệt: kéo để xoay, cuộn để phóng to,
+        bấm để đổi màu vải. Không cài phần mềm, không plugin, không tài khoản — chỉ một tệp
+        HTML, một cặp tệp mô hình và thư viện Three.js. Bài tập này trả lời một câu hỏi rất cụ
+        thể: một trang bán hàng có thể cho khách xoay món đồ trong tay mà vẫn nhẹ, vẫn mở được
+        trên máy yếu hay không.
+      </p>
+
+      <div class="vc-note">
+        <svg data-icon="info-circle" aria-hidden="true"><use href="../img/sprite.svg#info-circle"></use></svg>
+        <div>
+          <p>
+            <b>GREENWEAVE là một thương hiệu giả định.</b> Mình dựng nó ra để có bối cảnh thật
+            khi thử nghiệm — tên gọi, mô tả vải và mọi thông số bên dưới đều là nội dung minh
+            hoạ. Trang này không bán gì và không nhận đơn hàng.
+          </p>
+          <p>
+            Mô hình 3D là một tấm áo khoác dài low-poly dựng sẵn trong Blender. Nó không phải
+            áo phông; mình để nguyên hình dáng thật của lưới mô hình thay vì gọi nó là một thứ
+            khác cho khớp với lời quảng cáo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · the viewer ------------------------------------------------------ -->
+  <section class="section-a" data-treatment="plate" id="trinh-xem" aria-labelledby="vc-h-viewer" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Thử ngay</p>
+        <h2 id="vc-h-viewer" class="section-a__title">Xoay thử</h2>
+        <p class="section-a__intro">
+          Kéo chuột hoặc vuốt để xoay. Cuộn hoặc chụm hai ngón để phóng to. Nếu bạn dùng bàn
+          phím, các nút ngay dưới khung làm đúng những việc mà con chuột làm.
+        </p>
+      </header>
+
+      <div class="vc-split">
+
+        <!-- stage -->
+        <figure class="vc-stage" id="vc-stage">
+          <div class="vc-stage__viewport" id="vc-viewport" tabindex="0" role="group"
+               aria-label="Khung xem mô hình 3D. Dùng phím mũi tên để xoay, phím cộng và trừ để phóng to hoặc thu nhỏ.">
+
+            <!-- Default state. Also the no-JS, no-WebGL and blocked-CDN state. -->
+            <div class="vc-fallback" id="vc-fallback">
+              <img src="product.png" width="1200" height="800" fetchpriority="high" decoding="async"
+                   alt="Ảnh mẫu áo khoác dệt GREENWEAVE trên nền trung tính, nhìn từ phía trước.">
+              <p id="vc-fallback-msg">
+                <strong>Đang chuẩn bị bản 3D…</strong>
+                Nếu khung này không chuyển thành mô hình xoay được, trình duyệt của bạn chưa bật
+                WebGL hoặc không tải được thư viện đồ hoạ. Ảnh tĩnh phía trên là bản thay thế đầy đủ.
+              </p>
+            </div>
+
+            <p class="vc-status" id="vc-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <figcaption class="vc-controls">
+            <span class="vc-controls__group">
+              <button type="button" class="vc-btn" data-act="left" disabled aria-label="Xoay sang trái">
+                <svg data-icon="chevron-left" aria-hidden="true"><use href="../img/sprite.svg#chevron-left"></use></svg>
+              </button>
+              <button type="button" class="vc-btn" data-act="right" disabled aria-label="Xoay sang phải">
+                <svg data-icon="chevron-right" aria-hidden="true"><use href="../img/sprite.svg#chevron-right"></use></svg>
+              </button>
+            </span>
+
+            <span class="vc-controls__group">
+              <button type="button" class="vc-btn" data-act="in" disabled aria-label="Phóng to">
+                <svg data-icon="plus" aria-hidden="true"><use href="../img/sprite.svg#plus"></use></svg>
+              </button>
+              <button type="button" class="vc-btn" data-act="out" disabled aria-label="Thu nhỏ">
+                <svg data-icon="minus" aria-hidden="true"><use href="../img/sprite.svg#minus"></use></svg>
+              </button>
+              <button type="button" class="vc-btn" data-act="reset" disabled aria-label="Đặt lại góc nhìn">
+                <svg data-icon="refresh" aria-hidden="true"><use href="../img/sprite.svg#refresh"></use></svg>
+              </button>
+            </span>
+
+            <span class="vc-controls__spacer"></span>
+
+            <span class="vc-controls__group" role="group" aria-label="Góc nhìn dựng sẵn">
+              <button type="button" class="vc-view" data-view="0"   aria-pressed="true"  disabled>Trước</button>
+              <button type="button" class="vc-view" data-view="90"  aria-pressed="false" disabled>Hông</button>
+              <button type="button" class="vc-view" data-view="180" aria-pressed="false" disabled>Sau</button>
+              <button type="button" class="vc-view" data-view="35"  aria-pressed="false" disabled data-close="1">Cận</button>
+            </span>
+          </figcaption>
+        </figure>
+
+        <!-- panel -->
+        <div class="vc-panel">
+          <h3>Áo khoác dệt hữu cơ GREENWEAVE</h3>
+          <p>
+            Mẫu áo khoác dài, dệt từ sợi bông hữu cơ, đường cắt thẳng và không có chi tiết thừa.
+            Toàn bộ hình khối bạn thấy trong khung bên là lưới đa giác thật của mô hình, phủ một
+            lớp vân dệt sinh ra bằng mã ngay lúc trang chạy — không có tệp ảnh vân vải nào phải
+            tải về.
+          </p>
+
+          <p class="vc-legend" id="vc-color-legend">Màu vải</p>
+          <ul class="vc-swatches" role="list" aria-labelledby="vc-color-legend">
+            <li>
+              <button type="button" class="vc-sw" data-c="rung" data-name="Xanh rừng"
+                      aria-pressed="true" disabled aria-label="Màu Xanh rừng"></button>
+            </li>
+            <li>
+              <button type="button" class="vc-sw" data-c="bien" data-name="Xanh biển"
+                      aria-pressed="false" disabled aria-label="Màu Xanh biển"></button>
+            </li>
+            <li>
+              <button type="button" class="vc-sw" data-c="dat" data-name="Nâu đất"
+                      aria-pressed="false" disabled aria-label="Màu Nâu đất"></button>
+            </li>
+            <li>
+              <button type="button" class="vc-sw" data-c="troi" data-name="Xám trời"
+                      aria-pressed="false" disabled aria-label="Màu Xám trời"></button>
+            </li>
+          </ul>
+          <p class="vc-swatch-name" id="vc-swatch-name">Đang chọn: Xanh rừng</p>
+
+          <p class="vc-hint">
+            Bàn phím: <kbd>Tab</kbd> tới khung xem rồi dùng <kbd>←</kbd> <kbd>→</kbd> để xoay,
+            <kbd>↑</kbd> <kbd>↓</kbd> để ngẩng và cúi, <kbd>+</kbd> <kbd>−</kbd> để phóng to
+            thu nhỏ, <kbd>0</kbd> để về góc ban đầu. Nếu hệ điều hành của bạn đang bật chế độ
+            giảm chuyển động, mô hình sẽ đứng yên cho tới khi bạn chủ động xoay nó.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · specs ----------------------------------------------------------- -->
+  <section class="section-a" data-treatment="ledger" id="thong-so" aria-labelledby="vc-h-spec" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Thông số</p>
+        <h2 id="vc-h-spec" class="section-a__title">Sản phẩm giả định</h2>
+        <p class="section-a__intro">
+          Bảng dưới đây là nội dung minh hoạ, dùng để kiểm tra xem bố cục chịu được bao nhiêu
+          chữ trước khi vỡ.
+        </p>
+      </header>
+
+      <dl class="vc-specs">
+        <div><dt>Chất liệu</dt><dd>100% bông hữu cơ, dệt thoi hai lớp</dd></div>
+        <div><dt>Định lượng</dt><dd><span class="tabular">280 g/m²</span></dd></div>
+        <div><dt>Màu</dt><dd>Bốn màu nhuộm gốc thực vật: xanh rừng, xanh biển, nâu đất, xám trời</dd></div>
+        <div><dt>Cỡ</dt><dd><span class="tabular">XS · S · M · L · XL</span></dd></div>
+        <div><dt>Bảo quản</dt><dd>Giặt máy nước lạnh, phơi ngang, không dùng máy sấy</dd></div>
+        <div><dt>Xuất xứ</dt><dd>Dệt và may tại Việt Nam</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 4 · accordions ------------------------------------------------------ -->
+  <section class="section-a" data-treatment="open" id="chi-tiet" aria-labelledby="vc-h-faq" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Chi tiết</p>
+        <h2 id="vc-h-faq" class="section-a__title">Ba khối mở rộng</h2>
+        <p class="section-a__intro">
+          Bản cũ của trang này dùng JavaScript để đóng mở ba khối dưới đây, và đoạn mã đó bắt
+          nhầm mọi nút bấm trên trang. Giờ chúng là thẻ
+          <span class="tabular">&lt;details&gt;</span> của chính HTML: không một dòng script,
+          không thể hỏng, và tìm kiếm trong trang vẫn thấy được nội dung đang đóng.
+        </p>
+      </header>
+
+      <div class="faq">
+        <details class="faq__item">
+          <summary class="faq__q">Chi tiết sản phẩm</summary>
+          <div class="faq__panel">
+            <div class="faq__answer">
+              <p>
+                Áo khoác dài dệt thoi hai lớp, thân suông, không chiết eo. Cổ dựng thấp, nẹp
+                khuất, hai túi dọc sườn. Đường may kép ở vai và sườn để chịu lực.
+              </p>
+              <p>
+                Vải mộc không tẩy trắng, giữ lại chút sắc kem tự nhiên của sợi bông. Sau vài
+                lần giặt, mặt vải mềm xuống và bám dáng người hơn.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Vận chuyển và đổi trả</summary>
+          <div class="faq__panel">
+            <div class="faq__answer">
+              <p>
+                Đây là nội dung minh hoạ cho một cửa hàng không tồn tại. Trong một trang thật,
+                phần này sẽ nêu rõ thời gian giao, phí vận chuyển theo vùng, và thời hạn đổi
+                trả tính từ ngày nhận hàng.
+              </p>
+              <p>
+                Mình giữ nguyên khối này trong bài tập vì nó là chỗ nhiều chữ nhất trên trang —
+                nếu bố cục chịu được nó thì chịu được phần còn lại.
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Vì sao lại là 3D</summary>
+          <div class="faq__panel">
+            <div class="faq__answer">
+              <p>
+                Ảnh chụp cho biết món đồ trông thế nào ở một góc. Mô hình 3D cho biết nó trông
+                thế nào ở mọi góc, và người xem tự chọn góc mình quan tâm. Với quần áo, thứ
+                người ta muốn nhìn thường là mặt sau và đường vai — hai chỗ ảnh sản phẩm hay bỏ qua.
+              </p>
+              <p>
+                Cái giá phải trả là dung lượng và điện năng. Vì thế trang này chỉ dựng hình khi
+                khung xem thực sự nằm trong tầm mắt, và dừng hẳn khi bạn chuyển sang thẻ khác.
+              </p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · technical notes -------------------------------------------------- -->
+  <section class="section-a" data-treatment="ledger" id="ghi-chu" aria-labelledby="vc-h-tech" data-reveal>
+    <div class="shell">
+      <header class="section-a__head">
+        <p data-eyebrow>Ghi chú kỹ thuật</p>
+        <h2 id="vc-h-tech" class="section-a__title">Trang này được dựng thế nào</h2>
+      </header>
+
+      <dl class="vc-specs">
+        <div>
+          <dt>Thư viện</dt>
+          <dd>
+            Three.js ghim cứng ở phiên bản <span class="tabular">r180</span>. Không dùng dải
+            phiên bản, không dùng bản “mới nhất” — một trang chạy được hôm nay thì vài năm nữa
+            vẫn phải chạy đúng như thế.
+          </dd>
+        </div>
+        <div>
+          <dt>Cách nạp</dt>
+          <dd>
+            Nạp bằng <span class="tabular">&lt;script type="module"&gt;</span> nên mặc định đã
+            hoãn lại tới sau khi HTML dựng xong, và thư viện chỉ thực sự được tải khi khung xem
+            lọt vào tầm nhìn. Trang hiện chữ trước, đồ hoạ sau.
+          </dd>
+        </div>
+        <div>
+          <dt>Mô hình</dt>
+          <dd>
+            Một cặp <span class="tabular">.obj</span> + <span class="tabular">.mtl</span> xuất
+            từ Blender, nằm cùng thư mục với trang và được gọi bằng đúng tên tệp trần. Chương
+            trình tự tính hộp bao của lưới rồi căn giữa và co giãn về vừa khung, nên đổi sang
+            mô hình khác cũng không phải chỉnh tay.
+          </dd>
+        </div>
+        <div>
+          <dt>Vân vải</dt>
+          <dd>
+            Tệp <span class="tabular">.mtl</span> trỏ tới một ảnh vân chưa từng có trong kho.
+            Thay vì để trình duyệt đi xin một tệp không tồn tại, trình nạp được cài một bộ đổi
+            hướng: khi thấy tên ảnh đó, nó trả về một vân dệt vẽ bằng
+            <span class="tabular">&lt;canvas&gt;</span> ngay tại chỗ. Không thêm một yêu cầu
+            mạng nào.
+          </dd>
+        </div>
+        <div>
+          <dt>Khi không có WebGL</dt>
+          <dd>
+            Ảnh tĩnh và lời giải thích là trạng thái <em>mặc định</em> nằm sẵn trong HTML; mô
+            hình chỉ thay chỗ chúng sau khi đã dựng xong khung hình đầu tiên. Nghĩa là máy
+            không có WebGL, trình duyệt tắt JavaScript, hay mạng chặn thư viện đều rơi vào cùng
+            một trạng thái tử tế chứ không phải một ô trống.
+          </dd>
+        </div>
+        <div>
+          <dt>Tiết kiệm pin</dt>
+          <dd>
+            Vòng lặp dựng hình dừng khi khung xem ra khỏi màn hình hoặc khi bạn đổi thẻ trình
+            duyệt. Nếu hệ điều hành đang bật chế độ giảm chuyển động, mô hình không tự quay.
+          </dd>
+        </div>
+        <div>
+          <dt>Đã gỡ khỏi bản cũ</dt>
+          <dd>
+            Bốn nguồn bên ngoài rút xuống còn một. Bộ khung CSS dựng sẵn, bộ icon web font bên
+            thứ ba và các ảnh giữ chỗ lấy từ dịch vụ ngoài đều được thay bằng CSS của chính
+            trang và bộ icon <span class="tabular">SVG</span> tự chứa.
+          </dd>
+        </div>
+      </dl>
+
+      <p class="vc-hint">
+        Mã nguồn nằm ngay trong tệp này — bấm <kbd>Ctrl</kbd> + <kbd>U</kbd> là đọc được toàn
+        bộ, không có bước dịch, không có tệp dựng sẵn.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer data-footer>
+  <p data-footer-mark aria-hidden="true">MINTHEP</p>
+  <div data-footer-grid>
+    <nav aria-label="Liên kết chân trang">
+      <ul role="list">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="../blog/myblog.html">Blog</a></li>
+        <li><a href="vc.html">Trình xem 360°</a></li>
+        <li><a href="../blog/test.html">Bài tập giao diện</a></li>
+        <li><a href="../wy/wy.html">Wonyoung</a></li>
+      </ul>
+    </nav>
+    <ul data-social role="list">
+      <li>
+        <a href="https://github.com/thepKz" rel="noopener noreferrer" target="_blank" aria-label="GitHub của Mai Tấn Thép">
+          <svg data-icon="github" aria-hidden="true"><use href="../img/sprite.svg#github"></use></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/thepmaitan26/" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn của Mai Tấn Thép">
+          <svg data-icon="linkedin" aria-hidden="true"><use href="../img/sprite.svg#linkedin"></use></svg>
+        </a>
+      </li>
+    </ul>
+    <p data-colophon>Static HTML · GitHub Pages · Hà Nội</p>
+  </div>
+</footer>
+
+<script type="module">
+import boot from '../js/core.js';
+boot();
+</script>
+
+<script type="module">
+/* ---------------------------------------------------------------------------
+   360° viewer.
+
+   Contract with the rest of the repo:
+   · KazakLowPoly.obj and KazakLowPoly.mtl are siblings of this file and are
+     requested by BARE RELATIVE NAME. Do not add a path prefix — the loaders
+     resolve them against this document's URL, which is exactly what we want.
+   · The .mtl declares `map_Kd UW.png`, and UW.png has never existed in this
+     repo. Rather than ship a guaranteed 404, a LoadingManager URL modifier
+     swaps that one filename for a weave texture drawn on a <canvas>.
+   · Nothing is fetched until the stage is about to scroll into view.
+   --------------------------------------------------------------------------- */
+
+const stage    = document.getElementById('vc-stage');
+const viewport = document.getElementById('vc-viewport');
+const fallback = document.getElementById('vc-fallback');
+const msg      = document.getElementById('vc-fallback-msg');
+const statusEl = document.getElementById('vc-status');
+const swatchNm = document.getElementById('vc-swatch-name');
+
+const rotBtns  = Array.from(document.querySelectorAll('.vc-btn'));
+const viewBtns = Array.from(document.querySelectorAll('.vc-view'));
+const swatches = Array.from(document.querySelectorAll('.vc-sw'));
+const allBtns  = rotBtns.concat(viewBtns, swatches);
+
+const reducedMQ = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---- 0. capability gate -------------------------------------------------- */
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext &&
+              (c.getContext('webgl2') || c.getContext('webgl')));
+  } catch (err) {
+    return false;
+  }
+}
+
+function giveUp(reason) {
+  statusEl.textContent = '';
+  msg.replaceChildren();
+  const b = document.createElement('strong');
+  b.textContent = 'Bản 3D không chạy được trên máy này.';
+  msg.append(b, ' ' + reason + ' Ảnh tĩnh phía trên là bản thay thế đầy đủ.');
+}
+
+if (!hasWebGL()) {
+  giveUp('Trình duyệt của bạn chưa bật WebGL.');
+} else if (!('IntersectionObserver' in window)) {
+  giveUp('Trình duyệt của bạn quá cũ so với bản dựng này.');
+} else {
+  /* Only pay for the library once the stage is actually about to be seen. */
+  const io = new IntersectionObserver(function (entries, obs) {
+    if (!entries.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    start().catch(function (err) {
+      console.error('[vc] viewer failed', err);
+      giveUp('Không tải được thư viện đồ hoạ — có thể mạng đang chặn nguồn ngoài.');
+    });
+  }, { rootMargin: '200px' });
+  io.observe(stage);
+}
+
+/* ---- 1. the woven texture, drawn instead of downloaded ------------------- */
+
+function weaveDataURI() {
+  const S = 128;
+  const cell = 8;
+  const c = document.createElement('canvas');
+  c.width = S;
+  c.height = S;
+  const g = c.getContext('2d');
+
+  g.fillStyle = '#d8d2c8';
+  g.fillRect(0, 0, S, S);
+
+  /* plain weave: warp over weft, alternating every cell */
+  for (let y = 0; y < S; y += cell) {
+    for (let x = 0; x < S; x += cell) {
+      const over = ((x / cell) + (y / cell)) % 2 === 0;
+      g.fillStyle = over ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.10)';
+      g.fillRect(x, y, cell, cell);
+    }
+  }
+  /* slub: enough irregularity that it stops reading as a checkerboard */
+  for (let i = 0; i < 900; i++) {
+    g.fillStyle = 'rgba(0,0,0,' + (Math.random() * 0.07).toFixed(3) + ')';
+    g.fillRect(Math.random() * S, Math.random() * S, 1 + Math.random() * 3, 1);
+  }
+  return c.toDataURL();          // defaults to PNG
+}
+
+/* ---- 2. boot -------------------------------------------------------------- */
+
+async function start() {
+  statusEl.textContent = 'Đang tải thư viện…';
+
+  const mods = await Promise.all([
+    import('three'),
+    import('three/addons/controls/OrbitControls'),
+    import('three/addons/loaders/OBJLoader'),
+    import('three/addons/loaders/MTLLoader')
+  ]);
+  const THREE = mods[0];
+  const OrbitControls = mods[1].OrbitControls;
+  const OBJLoader = mods[2].OBJLoader;
+  const MTLLoader = mods[3].MTLLoader;
+
+  /* --- renderer --- */
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true,
+    powerPreference: 'low-power'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.domElement.setAttribute('aria-hidden', 'true');
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(38, 1.5, 0.1, 100);
+  camera.position.set(0, 0.15, 3.4);
+
+  /* --- lights: enough to read a fold, not a photo studio --- */
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x30282a, 1.15));
+  const key = new THREE.DirectionalLight(0xfff4ec, 1.5);
+  key.position.set(2.5, 3.5, 2.5);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x9fb6d0, 0.7);
+  rim.position.set(-3, 1.2, -2.5);
+  scene.add(rim);
+
+  /* --- controls --- */
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.075;
+  controls.enablePan = false;
+  controls.minDistance = 1.6;
+  controls.maxDistance = 6.5;
+  controls.autoRotateSpeed = 1.1;
+
+  /* --- the UW.png interception ----------------------------------------- */
+  const manager = new THREE.LoadingManager();
+  const weave = weaveDataURI();
+  manager.setURLModifier(function (url) {
+    return /UW\.png(?:[?#].*)?$/i.test(url) ? weave : url;
+  });
+  /* The weave texture is a data URI, so it decodes asynchronously and finishes
+     AFTER the .obj has parsed and the viewer has already gone live. Without
+     this latch its itemEnd would repaint the readout and leave a permanent
+     "100%" pill sitting over a finished model. */
+  let settled = false;
+  manager.onProgress = function (url, loaded, total) {
+    if (settled || total <= 0) return;
+    statusEl.textContent = 'Đang tải mô hình ' + Math.round((loaded / total) * 100) + '%';
+  };
+
+  /* --- load: bare relative names, resolved against this document -------- */
+  const root = await new Promise(function (resolve, reject) {
+    const mtlLoader = new MTLLoader(manager);
+    mtlLoader.load('KazakLowPoly.mtl', function (materials) {
+      materials.preload();
+      const objLoader = new OBJLoader(manager);
+      objLoader.setMaterials(materials);
+      objLoader.load('KazakLowPoly.obj', resolve, undefined, reject);
+    }, undefined, reject);
+  });
+
+  /* --- fit the mesh to the frame, whatever units it was authored in ----- */
+  const box = new THREE.Box3().setFromObject(root);
+  const size = box.getSize(new THREE.Vector3());
+
+  /* Blender's native Z-up shows up as a mesh far deeper than it is tall. */
+  if (size.z > size.y * 1.6) {
+    root.rotation.x = -Math.PI / 2;
+    box.setFromObject(root);
+    box.getSize(size);
+  }
+
+  const center = box.getCenter(new THREE.Vector3());
+  root.position.sub(center);
+
+  const maxDim = Math.max(size.x, size.y, size.z) || 1;
+  root.scale.setScalar(2.1 / maxDim);
+
+  const holder = new THREE.Group();
+  holder.add(root);
+  scene.add(holder);
+
+  /* --- collect materials so the swatches have something to tint --------- */
+  const mats = [];
+  root.traverse(function (node) {
+    if (!node.isMesh || !node.material) return;
+    const list = Array.isArray(node.material) ? node.material : [node.material];
+    for (const m of list) {
+      if (mats.indexOf(m) !== -1) continue;
+      if (m.map) m.map.colorSpace = THREE.SRGBColorSpace;
+      mats.push(m);
+    }
+  });
+
+  function paint(hex) {
+    for (const m of mats) if (m.color) m.color.set(hex);
+    draw();
+  }
+
+  /* --- go live ---------------------------------------------------------- */
+  viewport.appendChild(renderer.domElement);
+
+  function resize() {
+    const w = viewport.clientWidth;
+    const h = viewport.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(viewport);
+  else window.addEventListener('resize', resize);
+
+  /* The render loop is the expensive thing on the page, so it is treated as a
+     cost rather than a default. It runs only while something is actually
+     moving: the idle spin, a finger or mouse on the model, or the short tail
+     where damping is still coasting to a stop. Everything else — a button
+     press, a colour change, a resize — is a single repaint on demand. */
+  let running = false;      // rAF loop attached?
+  let visible = false;      // stage on screen?
+  let dragging = false;     // pointer currently on the model?
+  let coastUntil = 0;       // damping tail deadline
+  let painting = false;     // re-entrancy guard for the 'change' event
+
+  function moving() {
+    return visible && !document.hidden &&
+           (controls.autoRotate || dragging || performance.now() < coastUntil);
+  }
+
+  function tick() {
+    controls.update();
+    renderer.render(scene, camera);
+    if (!moving()) pause();
+  }
+
+  function play() {
+    if (running || !moving()) return;
+    running = true;
+    renderer.setAnimationLoop(tick);
+  }
+
+  function pause() {
+    if (!running) return;
+    running = false;
+    renderer.setAnimationLoop(null);
+  }
+
+  /* One frame, right now, without starting the loop. Guarded because
+     controls.update() itself dispatches 'change', which calls back in here. */
+  function draw() {
+    if (running || painting) return;
+    painting = true;
+    controls.update();
+    renderer.render(scene, camera);
+    painting = false;
+  }
+
+  function coast(ms) {
+    coastUntil = performance.now() + (ms || 1200);
+    play();
+  }
+
+  controls.addEventListener('start',  function () { dragging = true; play(); });
+  controls.addEventListener('end',    function () { dragging = false; coast(1200); });
+  controls.addEventListener('change', function () { draw(); });
+
+  draw();                                           // first frame, then swap state
+  settled = true;                                   // no late itemEnd may repaint
+  statusEl.textContent = '';
+  fallback.hidden = true;
+  allBtns.forEach(function (b) { b.disabled = false; });
+
+  controls.autoRotate = !reducedMQ.matches;
+  reducedMQ.addEventListener('change', function (e) {
+    controls.autoRotate = !e.matches;
+    if (e.matches) pause(); else play();
+  });
+
+  /* Stop the GPU the moment nobody is looking. */
+  new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+    if (visible) play(); else pause();
+  }, { threshold: 0.01 }).observe(stage);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) pause(); else play();
+  });
+
+  /* --- controls: buttons ------------------------------------------------ */
+  const STEP = Math.PI / 9;                          // 20° per press
+
+  const _off = new THREE.Vector3();
+  const _sph = new THREE.Spherical();
+
+  function spin(rad) {
+    holder.rotation.y += rad;
+    controls.autoRotate = false;
+    draw();
+  }
+
+  /* Dolly along the target -> camera axis, not along the world origin, so the
+     keyboard zoom behaves identically to the wheel even in the close-up view
+     where the orbit target is not at (0,0,0). */
+  function zoom(f) {
+    _off.copy(camera.position).sub(controls.target);
+    const d = Math.min(Math.max(_off.length() * f, controls.minDistance), controls.maxDistance);
+    camera.position.copy(controls.target).add(_off.setLength(d));
+    controls.autoRotate = false;
+    draw();
+  }
+
+  /* Raise or lower the eye by moving along the orbit sphere, which keeps the
+     distance fixed — nudging camera.position.y directly would not. */
+  function tilt(rad) {
+    _off.copy(camera.position).sub(controls.target);
+    _sph.setFromVector3(_off);
+    _sph.phi = Math.min(Math.max(_sph.phi + rad, 0.25), Math.PI - 0.25);
+    camera.position.copy(controls.target).add(_off.setFromSpherical(_sph));
+    controls.autoRotate = false;
+    draw();
+  }
+
+  function goToView(deg, close) {
+    holder.rotation.y = THREE.MathUtils.degToRad(-deg);
+    camera.position.set(0, close ? 0.45 : 0.15, close ? 2.1 : 3.4);
+    controls.target.set(0, close ? 0.35 : 0, 0);
+    controls.autoRotate = false;
+    draw();
+  }
+
+  function markView(el) {
+    viewBtns.forEach(function (v) {
+      v.setAttribute('aria-pressed', String(v === el));
+    });
+  }
+
+  rotBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      const a = b.dataset.act;
+      if (a === 'left')  spin(-STEP);
+      if (a === 'right') spin(STEP);
+      if (a === 'in')    zoom(0.82);
+      if (a === 'out')   zoom(1.22);
+      if (a === 'reset') {
+        goToView(0, false);
+        markView(viewBtns[0]);
+        controls.autoRotate = !reducedMQ.matches;
+        play();
+      }
+    });
+  });
+
+  viewBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      markView(b);
+      goToView(Number(b.dataset.view), b.dataset.close === '1');
+    });
+  });
+
+  /* --- controls: swatches ---------------------------------------------- */
+  function swColor(b) {
+    return getComputedStyle(b).getPropertyValue('--sw').trim();
+  }
+
+  swatches.forEach(function (b) {
+    b.addEventListener('click', function () {
+      swatches.forEach(function (s) {
+        s.setAttribute('aria-pressed', String(s === b));
+      });
+      swatchNm.textContent = 'Đang chọn: ' + b.dataset.name;
+      paint(swColor(b));
+    });
+  });
+  paint(swColor(swatches[0]));      // honour the swatch already marked pressed
+
+  /* --- controls: keyboard on the viewport ------------------------------ */
+  viewport.addEventListener('keydown', function (e) {
+    const acts = {
+      ArrowLeft:  function () { spin(-STEP); },
+      ArrowRight: function () { spin(STEP); },
+      ArrowUp:    function () { tilt(-0.14); },
+      ArrowDown:  function () { tilt(0.14); },
+      '+':        function () { zoom(0.82); },
+      '=':        function () { zoom(0.82); },
+      '-':        function () { zoom(1.22); },
+      '0':        function () { goToView(0, false); markView(viewBtns[0]); }
+    };
+    const fn = acts[e.key];
+    if (!fn) return;
+    e.preventDefault();
+    fn();
+  });
+}
+</script>
 
 </body>
 </html>

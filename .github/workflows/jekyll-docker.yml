@@ -1,10 +1,32 @@
-name: Jekyll site CI
+# Jekyll site CI — RETIRED. Manual dispatch only.
+#
+# WHY IT IS OFF
+# This repository is not a Jekyll site. It ships as plain HTML/CSS/ESM with no
+# build step: .github/workflows/static.yml hands the repo root to
+# actions/upload-pages-artifact verbatim, and .nojekyll at the root tells Pages
+# not to process it. Running `jekyll build --future` alongside that is not
+# merely redundant, it contradicts the deploy — the site this job builds is
+# never the site that ships.
+#
+# It also failed on every push (no _config.yml, no Gemfile), which put a
+# standing red X on the commit list and taught everyone to ignore CI results —
+# including verify.yml's, which are real.
+#
+# WHY IT IS STILL HERE
+# Deleting a workflow discards its run history in the Actions UI. Emptying the
+# triggers keeps the record and keeps the door open: if this ever does become a
+# Jekyll site, restore the push/pull_request block and nothing else changes.
+#
+# The live workflows are:
+#   verify.yml  — routes, link/case correctness, CSS literals (reports, non-gating)
+#   static.yml  — the actual Pages deploy
+
+name: Jekyll site CI (retired)
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # Manual only. Do NOT re-add `push:` or `pull_request:` without also removing
+  # .nojekyll and static.yml, or the two deploy paths will disagree.
+  workflow_dispatch:
 
 jobs:
   build:

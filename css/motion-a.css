@@ -1,0 +1,351 @@
+/* motion-a.css — MINTHEP, Surface A motion layer (index.html)
+   ---------------------------------------------------------------------------
+   Load order: tokens · base · components · surface-a · MOTION-A · lqip.
+   After surface-a so a motion rule supersedes a surface rule at equal
+   specificity without editing it; before lqip so [data-loaded] stays last.
+
+   The declarative half of MOTION-SPEC.md — js/motion-a.js writes numbers, every
+   unit, gradient, transform and curve lives here. So the resting page is
+   described entirely in CSS and is correct before JS runs, if JS 404s, and if
+   JS never runs.
+
+   TWO GATES, not interchangeable:
+     .js          inline <head> script, index.html:6. ALWAYS runs. Used by M5
+                  alone, which needs no motion module — only core.js's .is-in.
+     .has-motion  motion-a.js, added only after window.gsap AND
+                  window.ScrollTrigger both exist AND REDUCED is false. Every
+                  rule whose value comes from JS hangs off this.
+   Nothing here may be the only thing between the reader and content: with JS
+   off the page must look as it does after all animation ends.
+
+   RULE A — every custom property JS writes is a UNITLESS NUMBER; CSS applies
+   the unit via calc(… * 1px / * 1deg). That deletes every unit negotiation
+   between implementers who cannot see each other's files.
+
+   No raw hex, no raw px, no bare z-index (as surface-a.css). Missing numbers
+   derive by calc() over --s-* / --bw-*. Two argued exceptions: the sheen alpha
+   in §1, and RULE A's unit multipliers.
+
+   Three of ten effects cost this file nothing and are deliberately absent:
+   M4 band velocity (JS sets playbackRate; a rule here would tempt the
+   `animation` shorthand, which resets play-state and defeats core.js's
+   [data-anim] gate) · M6 stagger (components.css:515) · M10 (components.css:295).
+*/
+
+
+/* 0. REGISTERED PROPERTIES ==================================================
+   inherits: false is not cosmetic — a non-inheriting registered property does
+   not invalidate descendants' style, so a per-frame write touches one element.
+   Registration is not what lets GSAP tween these; it buys that scope and a
+   typed initial-value. Firefox < 128 / Safari < 16.4 ignore @property, so each
+   is also declared in its own rule below and read through a var() fallback. */
+
+@property --a-sheen  { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --a-tilt-x { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --a-tilt-y { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --a-por-y  { syntax: '<number>'; inherits: false; initial-value: 0; }
+
+/* The one inherits: true property, and it must be: a ::before inherits from its
+   originating element, so at inherits: false the pseudo would read
+   initial-value instead of the tweened value and the spine would never draw.
+   The system's only per-frame subtree invalidation (3 <ol>, ~46 descendants)
+   and so the first thing to cut if the perf gate fails. */
+@property --a-spine  { syntax: '<number>'; inherits: true;  initial-value: 0; }
+
+/* SPEC GAP — --a-mark is deliberately NOT registered, though MOTION-SPEC §1.1
+   says it should be. Registering it breaks 34 skill rows.
+   The name is already taken: surface-a.css:139 declares --a-mark on :root as
+   calc(var(--s-4) + var(--s-1)) — 20px — and consumes it as a LENGTH at :819
+   (.skill-row__mark, 34 rows) and :1711 (.form-a__success svg). Register it
+   '<number>'/inherits:false and that :root declaration is invalid at
+   computed-value time, falls back to initial-value, and consumers resolve
+   `inline-size: var(--a-mark)` to `inline-size: 1` — itself invalid, computing
+   to auto. 35 icons lose their sizing. syntax '*' does not rescue it:
+   inherits:false stops .skill-row__mark seeing :root, inherits:true lets the
+   20px reach [data-footer-mark] and poison the §7 clip-path calc.
+   Fix that keeps the frozen cross-file name AND the shipped page: leave it
+   unregistered, shadow it on [data-footer-mark] (§7). IMPLEMENTER-JS is
+   unaffected — GSAP needs no registration to tween a custom property. All that
+   is lost is invalidation scope on one aria-hidden <p> with no element
+   children. surface-a.css is additive-only, so renaming there was never
+   available. Flagged for reconciliation. */
+
+
+/* 1. M1 — HERO PORTRAIT SPECULAR SWEEP ======================================
+   One <i class="hero__sheen"> inside .hero__portrait, already position:
+   relative + overflow: clip (surface-a.css:578), so containment is free. */
+
+.hero__sheen {
+  position: absolute;
+
+  /* -10% because the plane is SKEWED: one exactly as tall as its frame shows
+     triangular notches at the top and bottom edges as it crosses. Clipped by
+     the parent, so the overhang costs no layout. */
+  inset-block: -10%;
+  inset-inline-start: 0;
+  inline-size: 46%;
+  transform: skewX(-14deg);
+
+  /* Non-negotiable — .hero is M2's pointer source, and a sheen that swallowed
+     pointermove would blank the tilt wherever it sat. */
+  pointer-events: none;
+
+  /* The one alpha literal: a specular highlight is light, not ink, so it has no
+     --ink-* token. 8.5% white is ~one tonal step at the plane's centre and
+     nothing at its edges — which is what makes the sweep invisible at both ends
+     of its travel. */
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / .085),
+    transparent
+  );
+
+  /* Hidden by DEFAULT, revealed by .has-motion — never the reverse. */
+  opacity: 0;
+
+  /* -110% parks it off the left edge, +230% off the right: 46% x 340%. */
+  --a-sheen: 0;
+  translate: calc(var(--a-sheen, 0) * 340% - 110%) 0;
+}
+
+.has-motion .hero__sheen { opacity: 1; }
+
+
+/* 2. M2 — HERO PORTRAIT POINTER TILT ========================================
+   .hero__plate hosts the perspective (no transform/perspective/will-change on
+   it today, so nothing is overridden). The tilt goes on .hero__portrait, one
+   level ABOVE the <img>, which already animates its own `scale`
+   (surface-a.css:600) and must not be fought over. JS clamps to +/-3.2deg —
+   ~10px of corner travel at 380px wide, inside .hero's overflow: clip. */
+
+.has-motion .hero__plate {
+  perspective: calc(var(--s-14) * 5 + var(--s-9) - var(--s-1));   /* 1100px */
+}
+
+.has-motion .hero__portrait {
+  --a-tilt-x: 0;
+  --a-tilt-y: 0;
+
+  /* transform, clip-path and the img's `scale` are independent properties the
+     browser composes, so this ADDS to the shipped reveal, never replaces it. */
+  transform:
+    rotateX(calc(var(--a-tilt-x, 0) * 1deg))
+    rotateY(calc(var(--a-tilt-y, 0) * 1deg));
+
+  /* Inert today — overflow: clip forces transform-style flat. Kept so a future
+     edit that drops the clip does not silently lose the 3D context. */
+  transform-style: preserve-3d;
+}
+
+/* Fine-pointer-gated, not global: the browser cannot infer that a custom
+   property feeding a transform IS a transform animation, so without the hint
+   the portrait repaints instead of recompositing — but M2 only initialises when
+   FINE_POINTER && !LOW_END, and a global hint would buy a permanently resident
+   GPU layer on touch devices for an effect that can never run there. */
+@media (hover: hover) and (pointer: fine) {
+  .has-motion .hero__portrait { will-change: transform; }
+}
+
+
+/* 3. M3 — HERO PORTRAIT COUNTER-PARALLAX ====================================
+   --a-por-y runs 0 -> -26 inside a frame whose aspect-ratio and overflow: clip
+   are already fixed: no layout moves, no CLS. `translate`, not `transform` —
+   they are independent properties, and the img already animates `scale`, so
+   translate composes where transform would merely be safe. */
+
+.has-motion .hero__portrait :where(img) {
+  --a-por-y: 0;
+  translate: 0 calc(var(--a-por-y, 0) * 1px);
+}
+
+
+/* 4. M5 — PROJECT PLATE MEDIA CURTAIN · pure CSS, no JS, no ScrollTrigger ====
+   Scoped .js, NOT .has-motion: it consumes only the .is-in class core.js
+   already adds, so it survives a GSAP load failure, a LOW_END device and an old
+   browser untouched. Plates 02/03/04 have no .plate__media and go unmatched.
+
+   `round var(--r-xs)` is MANDATORY at both ends — a bare inset(0) overrides the
+   element's border-radius and squares the corners for the whole transition,
+   reading as a rendering fault rather than a reveal.
+
+   No will-change: components.css:522 documents a deliberate refusal across the
+   [data-reveal] population for GPU-memory reasons, and M6 takes that population
+   from 17 to 67. clip-path composites without the hint anyway. */
+
+.js .plate[data-reveal] .plate__media {
+  clip-path: inset(0 0 0 100% round var(--r-xs));
+  /* Plate fades up over --dur-5 (components.css:515); the curtain opens over
+     --dur-6 starting --dur-2 later — overlapped, not butt-joined. */
+  transition: clip-path var(--dur-6) var(--ease-mask);
+  transition-delay: var(--dur-2);
+}
+
+.js .plate[data-reveal].is-in .plate__media {
+  clip-path: inset(0 round var(--r-xs));
+}
+
+
+/* 5. M7 — LEDGER SPINE ======================================================
+   ol.ledger-exp already has border-inline-start: var(--bw-hair) solid
+   var(--accent-500) (surface-a.css:1060). This ::before sits exactly on top of
+   it, so at --a-spine 0 the ledger looks precisely as it does today and the
+   effect reads as that hairline being drawn, not a second rule appearing beside
+   it. One composited `scale` — no SVG, no plugin, no path length to measure.
+   position: relative on the <ol> is safe: .exp-entry is already relative, so
+   its own ::before node square keeps resolving against the entry. */
+
+.has-motion ol[data-spine] {
+  position: relative;
+  --a-spine: 0;
+}
+
+.has-motion ol[data-spine]::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: calc(var(--bw-hair) * -1);
+  inline-size: var(--bw-hair);
+
+  /* Fading to 25% by the foot reads as light falling down the rule rather than
+     a solid border. */
+  background-image: linear-gradient(
+    to bottom,
+    var(--accent-400),
+    color-mix(in oklab, var(--accent-400) 25%, transparent)
+  );
+
+  transform-origin: top;
+  scale: 1 var(--a-spine, 0);
+  pointer-events: none;
+}
+
+
+/* 6. M8 — DIRECTIONALLY AWARE HEADER ========================================
+   JS toggles one boolean class per direction change; CSS owns the movement.
+   Verified safe: [data-drawer] is a SIBLING of <header data-nav>
+   (index.html:108 vs :87), not a descendant, so a translate on the header can
+   never become the containing block for the drawer's fixed positioning.
+
+   Deliberately NO resting `translate: 0 0`. `translate: none` creates no
+   containing block and no stacking context; `0 0` creates both despite an
+   identity matrix. Transitions interpolate from `none` as if 0 0, so a resting
+   declaration buys nothing and would cost a stacking context on a fixed,
+   backdrop-filtered element for all the time the header is not tucked.
+
+   Keyboard safety lives in JS — never tuck while the header contains
+   document.activeElement. A focused link driven off-screen is a keyboard trap. */
+
+.has-motion [data-nav] {
+  /* components.css:180-183 already transitions background-color and box-shadow
+     here. A bare `transition: translate …` would REPLACE that list and silently
+     kill the .is-scrolled capsule fade — the shorthand resets every longhand it
+     does not name. All three restated. */
+  transition:
+    translate var(--dur-3) var(--ease-luxe),
+    background-color var(--dur-4) var(--ease-out-quiet),
+    box-shadow var(--dur-4) var(--ease-out-quiet);
+}
+
+.has-motion [data-nav].is-tucked { translate: 0 -100%; }
+
+
+/* 7. M9 — FOOTER WORDMARK RISE ==============================================
+   [data-footer-mark] is the aria-hidden "MINTHEP" at --ink-850 on --ink-1000
+   (1.15:1) — texture, not text, which is what makes clipping it acceptable.
+   [data-footer] is overflow: clip, so the 0.10em rise cannot bleed.
+
+   THE INSETS ARE COPIED VERBATIM from surface-a.css:458-459 — not re-derived,
+   not re-measured, not rounded. "MINTHEP" carries no diacritics, so -26% is not
+   strictly needed today; it is reused so no future edit derives a 0 top inset
+   by reading this rule. On Anton an authored 0 top inset is a bug by
+   definition: Ấ Ầ Ẫ Ế Ộ Ữ stack a mark on a mark whose ink rises up to 34.6px
+   above the line box at display size. That already shipped as a bug once.
+
+   At --a-mark 0 the foot inset is 1*116% - 16% = 100%, over-constraining the
+   rect against the -26% top: an empty box, fully hidden. At 1 it is -16% —
+   exactly the open state of .hero__name .line, the same curtain grammar
+   closing the page it opened. */
+
+/* SPEC GAP shadow, see §0: --a-mark is inherited from surface-a.css:139 as a
+   20px LENGTH, and declaring the resting number here stops that length reaching
+   the calc below, where it would make the whole clip-path invalid at
+   computed-value time. Unconditional and outside .has-motion on purpose — GSAP
+   reads the computed value before it sets one, and 1 is the finished,
+   fully-visible state, correct for a page where JS never runs. */
+[data-footer-mark] { --a-mark: 1; }
+
+.has-motion [data-footer-mark] {
+  --a-fmark-top:  -26%;   /* stacked-mark headroom — verbatim, never re-derived */
+  --a-fmark-foot: -16%;   /* descender headroom    — verbatim, never re-derived */
+
+  clip-path: inset(
+    var(--a-fmark-top) 0
+    calc((1 - var(--a-mark, 1)) * 116% + var(--a-fmark-foot)) 0
+  );
+  translate: 0 calc((1 - var(--a-mark, 1)) * 0.10em);
+}
+
+
+/* 8. NO-JS SAFETY ===========================================================
+   Everything above is already scoped .js or .has-motion, so this adds no reveal
+   that JS must trigger — it only removes cost. If either rule is ever what makes
+   the page readable, the scoping is broken and that is the real bug. */
+
+.no-js .hero__sheen  { display: none; }   /* release the compositor layer */
+.no-js .plate__media { clip-path: none; }
+
+
+/* 9. REDUCED MOTION — KILL SWITCH. LAST BLOCK IN THE FILE, BY CONTRACT. ======
+   Neutralises every effect this file introduces, landing each in its readable
+   final state.
+
+   NOT dead code, though it looks it: motion-a.js returns before adding
+   .has-motion when REDUCED is true, so on a cold load no .has-motion rule can
+   match. The live case is a reader flipping the setting MID-SESSION — core.js's
+   REDUCED is a live binding, but .has-motion is added once and never removed,
+   so the class outlives the preference. These rules make the page obey
+   immediately instead of at the next reload.
+
+   Every selector mirrors the one it neutralises EXACTLY, winning on source order
+   at equal specificity rather than by escalation. Media queries add no
+   specificity — ordering is the whole mechanism, hence this block is last.
+
+   Handled upstream, not restated here because restating invites drift: the
+   kinetic band (surface-a.css:752 drops animation-name and will-change) and all
+   timing (base.css:629 forces every transition-duration to 1ms and every delay
+   to 0ms, !important, across *, *::before, *::after). */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Stronger than opacity: 0, and it releases the layer. */
+  .hero__sheen { display: none; }
+
+  /* perspective alone still establishes a containing block, so drop it too. */
+  .has-motion .hero__plate { perspective: none; }
+
+  .has-motion .hero__portrait {
+    transform: none;
+    will-change: auto;
+  }
+
+  .has-motion .hero__portrait :where(img) { translate: none; }
+
+  /* Both ends, so no plate is caught mid-wipe if the preference changes while a
+     transition is in flight. */
+  .js .plate[data-reveal] .plate__media,
+  .js .plate[data-reveal].is-in .plate__media { clip-path: none; }
+
+  /* content: none removes the pseudo entirely, leaving the static --accent-500
+     border that shipped before any of this existed. */
+  .has-motion ol[data-spine]::before { content: none; }
+
+  /* Both states — .is-tucked may already be on the element when it flips. */
+  .has-motion [data-nav],
+  .has-motion [data-nav].is-tucked { translate: none; }
+
+  /* Which is also --a-mark's resting 1, so the two paths agree. */
+  .has-motion [data-footer-mark] {
+    clip-path: none;
+    translate: none;
+  }
+}

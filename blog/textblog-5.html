@@ -1,70 +1,176 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="no-js">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Min Thep - Blog SWE201c</title>
-    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="textblog-5/textblog-5.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://count-view-pagea.onrender.com/counter.js" data-site-id="1c54e6e9"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE — Min Thep</title>
+  <meta name="description" content="Tổng hợp SWE201c: Waterfall, V-Model, Spiral, RUP, Prototype, Scrum, Kanban, XP, tiêu chí lựa chọn mô hình, kiểm thử phần mềm và hướng dẫn thi PE/FE chi tiết.">
+  <meta name="author" content="Min Thep">
+  <link rel="canonical" href="https://thepkz.github.io/minthep-portfolio/blog/textblog-5.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Min Thep">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE">
+  <meta property="og:description" content="Tổng hợp SWE201c: Waterfall, V-Model, Spiral, RUP, Prototype, Scrum, Kanban, XP, tiêu chí lựa chọn mô hình, kiểm thử phần mềm và hướng dẫn thi PE/FE chi tiết.">
+  <meta property="og:url" content="https://thepkz.github.io/minthep-portfolio/blog/textblog-5.html">
+  <meta property="og:image" content="https://thepkz.github.io/minthep-portfolio/blog/textblog-5/swe201c.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE">
+  <meta name="twitter:description" content="Tổng hợp SWE201c: Waterfall, V-Model, Spiral, RUP, Prototype, Scrum, Kanban, XP, tiêu chí lựa chọn mô hình, kiểm thử phần mềm và hướng dẫn thi PE/FE chi tiết.">
+  <meta name="twitter:image" content="https://thepkz.github.io/minthep-portfolio/blog/textblog-5/swe201c.webp">
+
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="../img/favicon-32.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../img/logo.png">
+  <meta name="theme-color" content="#040C18">
+
+  <link rel="preload" href="../fonts/newsreader-vf-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/newsreader-vf-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/surface-b.css">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      d.classList.add('js');
+      try {
+        var m = localStorage.getItem('minthep:reading');
+        if (m === 'paper' || m === 'dark') d.setAttribute('data-reading', m);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SWE201c: 9 mô hình phát triển phần mềm và cách làm bài thi PE, FE",
+    "description": "Tổng hợp SWE201c: Waterfall, V-Model, Spiral, RUP, Prototype, Scrum, Kanban, XP, tiêu chí lựa chọn mô hình, kiểm thử phần mềm và hướng dẫn thi PE/FE chi tiết.",
+    "inLanguage": "vi",
+    "author": { "@type": "Person", "name": "Min Thep" },
+    "mainEntityOfPage": "https://thepkz.github.io/minthep-portfolio/blog/textblog-5.html",
+    "image": "https://thepkz.github.io/minthep-portfolio/blog/textblog-5/swe201c.webp",
+    "dateModified": "2025-03-30",
+    "about": { "@type": "Course", "name": "SWE201c — Introduction to Software Engineering" }
+  }
+  </script>
 </head>
 
 <body>
-    <header id="header" class="animate__animated animate__fadeIn" style="z-index: 1000;">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="../index.html">Min Thep</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="myblog.html">My Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../wy/wy.html">WonYoung</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <a class="skip-link" href="#main">Bỏ qua tới nội dung chính</a>
 
-    <main class="container mt-5">
-        <section id="intro" class="mb-5 animate__animated animate__fadeInUp">
-            <h1 class="text-center mb-4">SWE201c</h1>
-            <div class="author-info text-center mb-3">
-                <p><strong>Tác giả:</strong> Min Thep</p>
-               <iframe src="https://count-view-pagea.onrender.com/counter-widget/1c54e6e9" frameborder="0" style="height:30px; width:100px; overflow:hidden;"></iframe>
-                <p><strong>Cập nhật lần cuối:</strong> 5:00, ngày 30 tháng 3 năm 2025</p>
-                <p>Nếu thấy bài viết này hữu ích, hãy để lại 1 ⭐ trên <a href="https://github.com/thepKz/minthep-portfolio" target="_blank">GitHub</a> của mình nhé! Cảm ơn mọi người ❤️</p>
-            </div>
-            <div class="intro-content ">
+  <header class="site-header" data-nav>
+    <div data-nav-bar>
+      <a class="wordmark" href="../index.html">MINTHEP</a>
+      <nav aria-label="Điều hướng chính">
+        <ul role="list">
+          <li><a data-nav-link href="../index.html">Trang chủ</a></li>
+          <li><a data-nav-link href="../index.html#projects">Dự án</a></li>
+          <li><a data-nav-link href="myblog.html" aria-current="page">Blog</a></li>
+          <li><a data-nav-link href="../index.html#about">Giới thiệu</a></li>
+        </ul>
+      </nav>
+      <button type="button" data-nav-toggle aria-expanded="false" aria-controls="site-drawer" aria-label="Mở menu">
+        <svg data-icon="menu" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#menu"></use></svg>
+        <svg data-icon="close" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#close"></use></svg>
+      </button>
+    </div>
+  </header>
 
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-check-circle"></i> Nội dung được biên soạn phù hợp với đề thi PE EOS hiện tại
-                    </li>
-                    <li><i class="fas fa-check-circle"></i> Link youtube học cho vui: <a href="https://www.youtube.com/watch?v=XdydUcxqvOk">Link YT SWE201c</a></li>
-                    <li><i class="fas fa-book-open"></i> Lưu ý: Tài liệu này được chia sẻ miễn phí và không được phép sử
-                        dụng cho mục đích thương mại hoặc giảng dạy có thu phí. Các bạn có thể tự do sử dụng cho việc
-                        học tập và giảng dạy phi lợi nhuận. Chúc mọi người học tốt!</li>
-                    <li><i class="fas fa-exclamation-circle"></i> Nếu phát hiện sai sót, vui lòng liên hệ tác giả</li>
-                    <li><i class="fas fa-exclamation-circle"></i>Tài liệu này được tham khảo từ : <a
-                            href="https://cmcglobal.com.vn/it-outsourcing/9-types-of-software-development-models/">9
-                            loại phát triển phần mềm được sử dụng hiện nay</a></li>
-                </ul>
-            </div>
-        </section>
-        <section class="mb-5 animate__animated animate__fadeInUp">
-            <div class="alert alert-info">
-                <h4 class="alert-heading"><i class="fas fa-info-circle"></i> Lời mở đầu</h4>
-                <p>Hello mọi người, SWE201c là một môn khá quan trọng ở trong ngành IT này và môn này cũng là môn tiên
+  <div id="site-drawer" data-drawer tabindex="-1">
+    <nav aria-label="Điều hướng di động">
+      <ul role="list">
+        <li><a href="../index.html">Trang chủ</a></li>
+        <li><a href="../index.html#projects">Dự án</a></li>
+        <li><a href="myblog.html">Blog</a></li>
+        <li><a href="../index.html#about">Giới thiệu</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="b-progress" data-progress aria-hidden="true">
+    <span class="b-progress__bar"></span>
+  </div>
+
+  <main id="main" class="grid-b">
+    <aside class="b-toc" data-toc aria-labelledby="b-toc-title">
+      <p class="b-toc__title" id="b-toc-title">Mục lục</p>
+      <nav aria-label="Mục lục bài viết">
+        <ol class="b-toc__list" role="list">
+          <li><a href="#table-of-contents" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">00</span>
+          <span class="b-toc__label">Mục lục</span></a></li>
+          <li><a href="#phuongphap" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">01</span>
+          <span class="b-toc__label">Các phương pháp phát triển phần mềm</span></a></li>
+          <li><a href="#luachon" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">02</span>
+          <span class="b-toc__label">Tiêu chí lựa chọn phương pháp</span></a></li>
+          <li><a href="#kiemthu" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">03</span>
+          <span class="b-toc__label">Các loại kiểm thử</span></a></li>
+          <li><a href="#yeucau" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">04</span>
+          <span class="b-toc__label">Yêu cầu chức năng và phi chức năng</span></a></li>
+          <li><a href="#pe-guide" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">05</span>
+          <span class="b-toc__label">Hướng dẫn làm bài thi PE SWE201c</span></a></li>
+          <li><a href="#fe-guide" data-toc-link>
+          <span class="b-toc__num" aria-hidden="true">06</span>
+          <span class="b-toc__label">Hướng dẫn làm bài thi FE SWE201c</span></a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <article class="b-article">
+      <header class="b-head">
+        <p data-eyebrow>SWE201c · Introduction to Software Engineering</p>
+        <h1>SWE201c</h1>
+        <p class="b-lead">Chín mô hình phát triển phần mềm, tiêu chí chọn mô hình cho từng loại dự án, các mức kiểm thử, yêu cầu chức năng và phi chức năng — kèm hướng dẫn làm bài PE và FE.</p>
+        <dl class="b-meta">
+          <dt>Tác giả:</dt><dd>Min Thep</dd>
+          <dt>Cập nhật lần cuối:</dt><dd>5:00, ngày 30 tháng 3 năm 2025</dd>
+        </dl>
+        <button type="button" class="b-modetoggle js-only" data-reading-toggle aria-pressed="false">
+          <svg data-icon="sun" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#sun"></use></svg>
+          <span class="b-modetoggle__on">Chế độ giấy</span>
+          <span class="b-modetoggle__off">Chế độ tối</span>
+        </button>
+      </header>
+
+      <p>Nếu thấy bài viết này hữu ích, hãy để lại 1 ⭐ trên <a href="https://github.com/thepKz/minthep-portfolio" target="_blank" rel="noopener">GitHub</a> của mình nhé! Cảm ơn mọi người ❤️</p>
+
+      <ul>
+        <li><svg data-icon="check-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#check-circle"></use></svg> Nội dung được biên soạn phù hợp với đề thi PE EOS hiện tại
+        </li>
+        <li><svg data-icon="youtube" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#youtube"></use></svg> Link youtube học cho vui: <a href="https://www.youtube.com/watch?v=XdydUcxqvOk" target="_blank" rel="noopener">Link YT SWE201c</a></li>
+        <li><svg data-icon="book-open" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#book-open"></use></svg> Lưu ý: Tài liệu này được chia sẻ miễn phí và không được phép sử
+          dụng cho mục đích thương mại hoặc giảng dạy có thu phí. Các bạn có thể tự do sử dụng cho việc
+          học tập và giảng dạy phi lợi nhuận. Chúc mọi người học tốt!</li>
+        <li><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Nếu phát hiện sai sót, vui lòng liên hệ tác giả</li>
+        <li><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg>Tài liệu này được tham khảo từ : <a
+            href="https://cmcglobal.com.vn/it-outsourcing/9-types-of-software-development-models/" target="_blank" rel="noopener">9
+            loại phát triển phần mềm được sử dụng hiện nay</a></li>
+      </ul>
+
+      <div class="b-video" data-youtube="XdydUcxqvOk" data-title="Bài giảng SWE201c">
+        <img class="b-video__poster" src="textblog-5/swe201c.webp" alt="" width="722" height="726" loading="lazy" decoding="async">
+        <a class="b-video__play" rel="noopener" href="https://www.youtube.com/watch?v=XdydUcxqvOk">
+          <span class="b-video__icon" aria-hidden="true"></span>
+          <span class="b-video__label">Phát video trên YouTube</span>
+        </a>
+      </div>
+
+<aside class="b-callout" data-callout="note">
+<p class="b-callout__label"><svg data-icon="info-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#info-circle"></use></svg> Lời mở đầu</p>
+<p>Hello mọi người, SWE201c là một môn khá quan trọng ở trong ngành IT này và môn này cũng là môn tiên
                     quyết của SWT, SWR, SWP. Nếu học tốt thì bạn sẽ thấy SWR SWT khá là ổn và bạn sẽ được áp dụng mô
                     hình SCRUM (xài JIRA để quản lí) để mà các bạn làm nhóm.</p>
                 <ul>
@@ -74,68 +180,58 @@
                     <li>Thứ 3: Người ra đề chọn mô hình abcxyz ở trong đề thi PE SWE201c câu 1 chỉ là mang tính chất
                         tượng trưng, mình có quyền từ chối và chấp nhận miễn là đúng tính chất và không nên lệch tiêu chuẩn của đề quad nhiều. Bản thân mình cũng đạt điểm không cao PE của môn này mặc dù total mình 9.0 nhưng mình có thể chỉ cho bạn những điểm mình từng mắc phải và
                         giúp các bạn giải quyết môn này mà không phải bị đúp kì <3 </li>
-                    <li>Thứ 4: Các bạn nếu có thể thì <span class="text-danger font-weight-bold">Paraphrase</span> lại
+                    <li>Thứ 4: Các bạn nếu có thể thì <strong>Paraphrase</strong> lại
                         cái mẫu của mình vì nếu không sẽ đánh chéo bài (cụ thể SWT301 PE 1300 views cho cái đáp án
                         sample của mình nên gần như câu 1 với 3 ai cũng gần y chang nhau nhưng đa số mọi người đạt 8+ PE
                         hết :))) )</li>
                 </ul>
                 <hr>
-                <p class="mb-0">Thứ 5: Chúc mọi người học tốt!</p>
-            </div>
-        </section>
-        <section id="table-of-contents" class="mb-5 animate__animated animate__fadeInUp animate__delay-1s">
-            <h2 class="mb-4">Mục lục:</h2>
-            <div class="list-group">
-                <a href="#phuongphap" class="list-group-item list-group-item-action">1. Các phương pháp phát triển phần
-                    mềm</a>
-                <a href="#luachon" class="list-group-item list-group-item-action">2. Tiêu chí lựa chọn phương pháp</a>
-                <a href="#kiemthu" class="list-group-item list-group-item-action">3. Các loại kiểm thử</a>
-                <a href="#yeucau" class="list-group-item list-group-item-action">4. Yêu cầu chức năng và phi chức
-                    năng</a>
-                <a href="#pe-guide"
-                    class="list-group-item list-group-item-action bg-warning text-dark font-weight-bold">5. Hướng dẫn
-                    làm bài thi PE
-                    SWE201c</a>
-                <a href="#fe-guide" class="list-group-item list-group-item-action bg-warning text-dark font-weight-bold">6. Hướng dẫn làm bài thi FE SWE201c</a>
-            </div>
-        </section>
+                <p>Thứ 5: Chúc mọi người học tốt!</p>
+</aside>
 
-        <section id="phuongphap" class="mb-5 lesson-section animate__animated fade-in">
-            <h2 class="text-center mb-4">1. Các phương pháp phát triển phần mềm</h2>
+            <h2 id="table-of-contents">Mục lục:</h2>
+            <ul>
+<li><a href="#phuongphap">1. Các phương pháp phát triển phần mềm</a></li>
+<li><a href="#luachon">2. Tiêu chí lựa chọn phương pháp</a></li>
+<li><a href="#kiemthu">3. Các loại kiểm thử</a></li>
+<li><a href="#yeucau">4. Yêu cầu chức năng và phi chức năng</a></li>
+<li><a href="#pe-guide">5. Hướng dẫn làm bài thi PE SWE201c</a></li>
+<li><a href="#fe-guide">6. Hướng dẫn làm bài thi FE SWE201c</a></li>
+</ul>
 
-            <div class="alert alert-info">
-                <h4>Tổng quan</h4>
-                <p>Phương pháp phát triển phần mềm (SDLC - Software Development Life Cycle) được chia thành hai nhóm
+
+            <h2 id="phuongphap">1. Các phương pháp phát triển phần mềm</h2>
+
+            <aside class="b-callout" data-callout="note">
+<p class="b-callout__label"><svg data-icon="info-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#info-circle"></use></svg> Tổng quan</p>
+<p>Phương pháp phát triển phần mềm (SDLC - Software Development Life Cycle) được chia thành hai nhóm
                     chính:</p>
                 <ul>
                     <li><strong>6 Mô hình SDLC cơ bản:</strong> Waterfall, V-Model, Incremental & Iterative, Spiral,
                         RUP, và Prototype</li>
                     <li><strong>3 Mô hình thuộc nhóm Agile:</strong> Scrum, Kanban, và Extreme Programming (XP)</li>
                 </ul>
-            </div>
+</aside>
 
-            <h3 class="mb-4">A. 6 Mô hình SDLC cơ bản</h3>
+            <h3>A. 6 Mô hình SDLC cơ bản</h3>
 
             <!-- 1. Waterfall Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-primary text-white">
+
                     <h4>#1. Mô hình thác nước (Waterfall)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Mô hình thác nước là phương pháp phát triển tuần tự, trong đó quá trình phát triển được xem
                             như dòng chảy liên tục qua các giai đoạn: Phân tích yêu cầu → Thiết kế → Triển khai → Kiểm
                             thử → Bảo trì.</p>
-                    </div>
-                    <div class="text-center mb-3">
-                        <img src="textblog-5/waterfall-model.png" class="img-fluid" alt="Waterfall Model"
-                            style="max-width: 600px;">
-                    </div>
-                    <div class="phases mb-3">
+
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/waterfall-model.avif" type="image/avif"><source srcset="textblog-5/waterfall-model.webp" type="image/webp"><img src="textblog-5/waterfall-model.webp" width="758" height="566" alt="Sơ đồ mô hình thác nước: năm khối xếp bậc thang từ phân tích yêu cầu, thiết kế, triển khai, kiểm thử tới bảo trì" loading="lazy" decoding="async"></picture>
+<figcaption>Waterfall — mỗi giai đoạn chỉ bắt đầu khi giai đoạn trước đã hoàn tất.</figcaption>
+</figure>
+
                         <h5>Các giai đoạn chính</h5>
-                        <div class="timeline">
-                            <div class="phase-block">
+
                                 <h6>1. Giai đoạn phân tích</h6>
                                 <hr>
                                 <br>
@@ -145,8 +241,7 @@
                                     <li>Phân tích tính khả thi</li>
                                     <li>Lập kế hoạch dự án</li>
                                 </ul>
-                            </div>
-                            <div class="phase-block">
+
                                 <h6>2. Giai đoạn thiết kế</h6>
                                 <hr>
                                 <br>
@@ -156,8 +251,7 @@
                                     <li>Thiết kế chi tiết các module</li>
                                     <li>Thiết kế giao diện người dùng</li>
                                 </ul>
-                            </div>
-                            <div class="phase-block">
+
                                 <h6>3. Giai đoạn triển khai</h6>
                                 <hr>
                                 <br>
@@ -167,8 +261,7 @@
                                     <li>Kiểm thử đơn vị</li>
                                     <li>Tích hợp các module</li>
                                 </ul>
-                            </div>
-                            <div class="phase-block">
+
                                 <h6>4. Giai đoạn kiểm thử</h6>
                                 <hr>
                                 <br>
@@ -178,8 +271,7 @@
                                     <li>Kiểm thử hệ thống</li>
                                     <li>Kiểm thử chấp nhận</li>
                                 </ul>
-                            </div>
-                            <div class="phase-block">
+
                                 <h6>5. Giai đoạn bảo trì</h6>
                                 <hr>
                                 <br>
@@ -189,11 +281,9 @@
                                     <li>Bảo trì và nâng cấp</li>
                                     <li>Hỗ trợ người dùng</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="characteristics mb-3">
+
+
                         <h5>Đặc điểm nổi bật</h5>
                         <ul>
                             <li>Quy trình tuần tự chặt chẽ</li>
@@ -201,9 +291,8 @@
                             <li>Tài liệu đầy đủ cho mỗi giai đoạn</li>
                             <li>Không có sự chồng chéo giữa các giai đoạn</li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Yêu cầu dự án rõ ràng và ổn định</li>
@@ -211,60 +300,53 @@
                             <li>Nguồn lực và thời gian dự án đầy đủ</li>
                             <li>Cần tài liệu chi tiết cho mỗi giai đoạn</li>
                         </ul>
-                    </div>
 
-                    <div class="pros-cons row">
-                        <div class="col-md-6">
+
+
                             <h5>Ưu điểm</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <i class="fas fa-check text-success"></i> Dễ quản lý và kiểm soát
+                            <ul>
+                                <li>
+                                    Dễ quản lý và kiểm soát
                                 </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-check text-success"></i> Tài liệu đầy đủ và chi tiết
+                                <li>
+                                    Tài liệu đầy đủ và chi tiết
                                 </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-check text-success"></i> Phù hợp với dự án nhỏ và trung bình
+                                <li>
+                                    Phù hợp với dự án nhỏ và trung bình
                                 </li>
                             </ul>
-                        </div>
-                        <div class="col-md-6">
+
                             <h5>Nhược điểm</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <i class="fas fa-times text-danger"></i> Khó thay đổi yêu cầu
+                            <ul>
+                                <li>
+                                    Khó thay đổi yêu cầu
                                 </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-times text-danger"></i> Rủi ro cao nếu yêu cầu không chính xác
+                                <li>
+                                    Rủi ro cao nếu yêu cầu không chính xác
                                 </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-times text-danger"></i> Thời gian phát triển dài
+                                <li>
+                                    Thời gian phát triển dài
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
 
             <!-- 2. V-Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-info text-white">
+
                     <h4>#2. Mô hình chữ V (V-Model)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>V-Model là phiên bản mở rộng của mô hình thác nước, trong đó các hoạt động kiểm thử được thực
                             hiện song song với từng giai đoạn phát triển tương ứng.</p>
-                    </div>
-                    <div class="text-center mb-3">
-                        <img src="textblog-5/V-model.png" alt="V-Model Diagram" class="img-fluid"
-                            style="max-width: 80%;">
-                    </div>
-                    <div class="phases mb-3">
+
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/V-model.avif" type="image/avif"><source srcset="textblog-5/V-model.webp" type="image/webp"><img src="textblog-5/V-model.webp" width="749" height="554" alt="Sơ đồ chữ V với nhánh trái là các giai đoạn đặc tả và nhánh phải là các mức kiểm thử tương ứng" loading="lazy" decoding="async"></picture>
+<figcaption>V-Model — mỗi giai đoạn đặc tả ở nhánh trái có một mức kiểm thử đối xứng ở nhánh phải.</figcaption>
+</figure>
+
                         <h5>Các giai đoạn</h5>
-                        <div class="row">
-                            <div class="col-md-6">
+
                                 <h6>Verification Phases (Bên trái)</h6>
                                 <ul>
                                     <li>Phân tích yêu cầu</li>
@@ -272,8 +354,7 @@
                                     <li>Thiết kế kiến trúc</li>
                                     <li>Thiết kế module</li>
                                 </ul>
-                            </div>
-                            <div class="col-md-6">
+
                                 <h6>Validation Phases (Bên phải)</h6>
                                 <ul>
                                     <li>Unit Testing</li>
@@ -281,41 +362,34 @@
                                     <li>System Testing</li>
                                     <li>Acceptance Testing</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
+
                         <h5>Khi nào sử dụng</h5>
                         <ul>
                             <li>Yêu cầu rõ ràng và cố định</li>
                             <li>Có sẵn nguồn lực kỹ thuật</li>
                             <li>Dự án nhỏ hoặc trung bình</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+
+
 
             <!-- 3. Incremental & Iterative Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-success text-white">
+
                     <h4>#3. Mô hình Tăng dần & Lặp lại (Incremental & Iterative)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Mô hình phát triển tăng dần và lặp lại là phương pháp phát triển phần mềm đặc trưng bởi chu
                             kỳ lặp đi lặp lại của việc phát hành cập nhật và dần dần tích hợp các tính năng mới.</p>
-                    </div>
-                </div>
-                <div class="text-center mb-3">
-                    <img src="textblog-5/iterative-and-incremental-model.webp"
-                        alt="Iterative and Incremental Model Diagram" class="img-fluid" style="max-width: 80%;">
-                </div>
 
 
+                    <figure class="b-figure">
+<picture><source srcset="textblog-5/iterative-and-incremental-model.avif" type="image/avif"><source srcset="textblog-5/iterative-and-incremental-model.webp" type="image/webp"><img src="textblog-5/iterative-and-incremental-model.webp" width="722" height="407" alt="Sơ đồ nhiều vòng lặp nối tiếp, mỗi vòng gồm phân tích, thiết kế, lập trình và kiểm thử, sản phẩm lớn dần qua từng vòng" loading="lazy" decoding="async"></picture>
+<figcaption>Incremental và Iterative — sản phẩm lớn dần qua từng vòng lặp thay vì hoàn thiện một lần.</figcaption>
+</figure>
 
-                <div class="phases mb-3">
+
                     <h5>Các giai đoạn chính</h5>
                     <ul>
                         <li><strong>Giai đoạn Khởi tạo:</strong> Xác định phạm vi, yêu cầu và rủi ro tiềm ẩn</li>
@@ -325,9 +399,8 @@
                             xuất</li>
                         <li><strong>Giai đoạn Chuyển giao:</strong> Đưa hệ thống vào môi trường hoạt động</li>
                     </ul>
-                </div>
 
-                <div class="when-to-use mb-3">
+
                     <h5>Khi nào nên sử dụng</h5>
                     <ul>
                         <li>Cần nhanh chóng cung cấp chức năng thiết yếu</li>
@@ -335,26 +408,22 @@
                         <li>Team chưa quen với lĩnh vực hoặc chủ đề cụ thể</li>
                         <li>Tổ chức có mục tiêu cải tiến và nâng cấp đáng kể</li>
                     </ul>
-                </div>
-            </div>
 
             <!-- 4. Spiral Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-warning text-dark">
+
                     <h4>#4. Mô hình Xoắn ốc (Spiral)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Mô hình Xoắn ốc là cách tiếp cận phát triển phần mềm trong đó các hoạt động được tổ chức theo
                             mô hình xoắn ốc và thực hiện theo thứ tự được xác định thông qua phân tích rủi ro.</p>
-                    </div>
-                    <div class="text-center mb-3">
-                        <img src="textblog-5/spiral-model.png" alt="Spiral Model Diagram" class="img-fluid"
-                            style="max-width: 80%;">
-                    </div>
 
-                    <div class="phases mb-3">
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/spiral-model.avif" type="image/avif"><source srcset="textblog-5/spiral-model.webp" type="image/webp"><img src="textblog-5/spiral-model.webp" width="635" height="561" alt="Sơ đồ xoắn ốc chia bốn góc phần tư: xác định mục tiêu, phân tích rủi ro, phát triển và lập kế hoạch" loading="lazy" decoding="async"></picture>
+<figcaption>Spiral — mỗi vòng xoắn là một chu kỳ có bước phân tích rủi ro riêng.</figcaption>
+</figure>
+
+
                         <h5>Các giai đoạn chính</h5>
                         <ul>
                             <li><strong>Giai đoạn Lập kế hoạch:</strong>
@@ -384,9 +453,8 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Cần phát hành phần mềm thường xuyên</li>
@@ -396,27 +464,24 @@
                             <li>Yêu cầu khó nắm bắt rõ ràng</li>
                             <li>Môi trường thay đổi liên tục</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+
+
             <!-- 5. RUP Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-info text-white">
+
                     <h4>#5. Mô hình RUP (Rational Unified Process)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>RUP là phương pháp phát triển phần mềm được trang bị nhiều công cụ hỗ trợ việc tạo ra sản
                             phẩm cuối cùng và các nhiệm vụ liên quan. Đây là phương pháp hướng đối tượng được sử
                             dụng cho cả quản lý dự án và phát triển phần mềm chất lượng cao.</p>
-                    </div>
-                    <div class="image-container text-center mb-3">
-                        <img src="textblog-5/Rational-Unified-Process.png" class="img-fluid"
-                            alt="Rational Unified Process Model" style="max-width: 80%;">
-                    </div>
 
-                    <div class="phases mb-3">
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/Rational-Unified-Process.avif" type="image/avif"><source srcset="textblog-5/Rational-Unified-Process.webp" type="image/webp"><img src="textblog-5/Rational-Unified-Process.webp" width="748" height="446" alt="Biểu đồ RUP với bốn pha Inception, Elaboration, Construction, Transition trên trục ngang và các luồng công việc trên trục dọc" loading="lazy" decoding="async"></picture>
+<figcaption>RUP — bốn pha trên trục ngang, các luồng công việc chồng lấn nhau trên trục dọc.</figcaption>
+</figure>
+
+
                         <h5>Các giai đoạn chính</h5>
                         <ul>
                             <li><strong>Khởi tạo (Inception):</strong> Hình dung và khởi động dự án</li>
@@ -424,35 +489,31 @@
                             <li><strong>Xây dựng (Construction):</strong> Từ thiết kế đến sản phẩm cuối cùng</li>
                             <li><strong>Chuyển giao (Transition):</strong> Đảm bảo sự hài lòng của khách hàng</li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Yêu cầu thay đổi liên tục</li>
                             <li>Có thông tin và dữ liệu chính xác</li>
                             <li>Cần tích hợp ở nhiều giai đoạn khác nhau</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+
+
             <!-- 6. Prototype Model -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-danger text-white">
+
                     <h4>#6. Mô hình Prototype</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Mô hình Prototype là quá trình tạo ra một phiên bản thử nghiệm của sản phẩm để kiểm
                             tra và đánh giá trước khi phát triển phiên bản cuối cùng. Đây là cách tiếp cận hiệu
                             quả để thu thập phản hồi về yêu cầu, chức năng và khả năng sử dụng.</p>
-                    </div>
-                    <div class="image-container text-center mb-3">
-                        <img src="textblog-5/prototype-model.webp" class="img-fluid" alt="Prototype Model"
-                            style="max-width: 80%;">
-                    </div>
-                    <div class="phases mb-3">
+
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/prototype-model.avif" type="image/avif"><source srcset="textblog-5/prototype-model.webp" type="image/webp"><img src="textblog-5/prototype-model.webp" width="500" height="600" alt="Sơ đồ vòng lặp tạo mẫu: thu thập yêu cầu, dựng mẫu nhanh, khách hàng đánh giá, tinh chỉnh rồi mới xây dựng sản phẩm" loading="lazy" decoding="async"></picture>
+<figcaption>Prototype — dựng mẫu nhanh để chốt yêu cầu trước khi xây dựng thật.</figcaption>
+</figure>
+
                         <h5>Các giai đoạn chính</h5>
                         <ul>
                             <li><strong>Xác định yêu cầu:</strong> Thu thập các yêu cầu cơ bản cho hệ thống</li>
@@ -462,9 +523,8 @@
                             <li><strong>Tinh chỉnh:</strong> Cải thiện prototype dựa trên phản hồi</li>
                             <li><strong>Phát triển sản phẩm:</strong> Xây dựng sản phẩm cuối cùng</li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Yêu cầu của hệ thống không rõ ràng</li>
@@ -472,30 +532,27 @@
                             <li>Cần thu thập phản hồi sớm từ người dùng</li>
                             <li>Muốn giảm thiểu rủi ro trong phát triển</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
 
-            <h3 class="mb-4">B. 3 Mô hình thuộc nhóm Agile</h3>
+
+
+            <h3>B. 3 Mô hình thuộc nhóm Agile</h3>
 
             <!-- 7. Scrum -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-primary text-white">
+
                     <h4>#7. Scrum (Quan trọng - Cần học)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Scrum là framework phổ biến nhất trong Agile, tập trung vào việc quản lý dự án
                             thông qua các sprint ngắn và các cuộc họp thường xuyên. Đây là phương pháp được sử dụng rộng
                             rãi
                             trong ngành công nghiệp phần mềm và là kiến thức bắt buộc cho mọi lập trình viên.</p>
-                    </div>
-                    <div class="image-container text-center mb-3">
-                        <img src="textblog-5/scrum-model.webp" class="img-fluid" alt="Scrum Model"
-                            style="max-width: 80%;">
-                    </div>
-                    <div class="key-elements mb-3">
+
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/scrum-model.avif" type="image/avif"><source srcset="textblog-5/scrum-model.webp" type="image/webp"><img src="textblog-5/scrum-model.webp" width="757" height="458" alt="Sơ đồ Scrum: product backlog đi vào sprint planning, sprint backlog, sprint hai đến bốn tuần với daily scrum, kết thúc bằng increment" loading="lazy" decoding="async"></picture>
+<figcaption>Scrum — product backlog, sprint backlog, sprint và increment cùng các sự kiện định kỳ.</figcaption>
+</figure>
+
                         <h5>Các yếu tố chính</h5>
                         <ul>
                             <li><strong>Vai trò:</strong>
@@ -524,9 +581,8 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Dự án có yêu cầu thay đổi thường xuyên</li>
@@ -535,9 +591,8 @@
                             <li>Cần phát triển và release sản phẩm nhanh</li>
                             <li>Dự án phức tạp cần chia nhỏ thành các phần có thể quản lý được</li>
                         </ul>
-                    </div>
 
-                    <div class="when-not-to-use mb-3">
+
                         <h5>Khi nào không nên sử dụng</h5>
                         <ul>
                             <li>Team quá lớn (>9 người) hoặc phân tán địa lý</li>
@@ -546,9 +601,8 @@
                             <li>Tổ chức có văn hóa command-and-control mạnh</li>
                             <li>Dự án đòi hỏi tài liệu chi tiết từ đầu</li>
                         </ul>
-                    </div>
 
-                    <div class="important-note mb-3">
+
                         <h5>Lưu ý quan trọng</h5>
                         <p>Scrum là framework phổ biến nhất trong phát triển phần mềm hiện đại và là kiến thức
                             cốt lõi cho mọi lập trình viên. Việc hiểu và thực hành tốt Scrum sẽ giúp bạn:</p>
@@ -558,28 +612,25 @@
                             <li>Tăng cơ hội nghề nghiệp trong ngành công nghệ</li>
                             <li>Hiểu rõ quy trình phát triển phần mềm hiện đại</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+
+
 
             <!-- 8. Kanban -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-success text-white">
+
                     <h4>#8. Kanban</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>Kanban là phương pháp quản lý công việc trực quan, bắt nguồn từ hệ thống sản xuất của Toyota.
                             Phương pháp này tập trung vào việc cải thiện liên tục và tối ưu hóa luồng công việc thông
                             qua
                             việc trực quan hóa quy trình làm việc trên bảng Kanban.</p>
-                    </div>
-                    <div class="text-center mb-3">
-                        <img src="textblog-5/Kanban-Software-Development-Model-1536x768.png" class="img-fluid"
-                            alt="Kanban Software Development Model" style="max-width: 800px;">
-                    </div>
-                    <div class="principles mb-3">
+
+                        <figure class="b-figure">
+<picture><source srcset="textblog-5/Kanban-Software-Development-Model-1536x768.avif" type="image/avif"><source srcset="textblog-5/Kanban-Software-Development-Model-1536x768.webp" type="image/webp"><img src="textblog-5/Kanban-Software-Development-Model-1536x768.webp" width="1400" height="700" alt="Bảng Kanban với các cột To Do, In Progress, Review và Done cùng các thẻ công việc di chuyển từ trái sang phải" loading="lazy" decoding="async"></picture>
+<figcaption>Kanban — dòng công việc chạy qua các cột, mỗi cột có giới hạn WIP.</figcaption>
+</figure>
+
                         <h5>Nguyên tắc cơ bản</h5>
                         <ul>
                             <li><strong>Trực quan hóa công việc:</strong> Sử dụng bảng Kanban với các cột như "To Do",
@@ -595,9 +646,8 @@
                             <li><strong>Cải tiến liên tục:</strong> Thường xuyên phân tích metrics và tìm cách tối ưu
                                 hóa quy trình</li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Cần quản lý công việc liên tục và có tính lặp lại</li>
@@ -607,9 +657,8 @@
                             <li>Team cần sự linh hoạt trong quản lý công việc</li>
                             <li>Muốn giảm thiểu lãng phí và tối ưu hóa nguồn lực</li>
                         </ul>
-                    </div>
 
-                    <div class="benefits mb-3">
+
                         <h5>Lợi ích chính</h5>
                         <ul>
                             <li>Tăng tính minh bạch và khả năng theo dõi công việc</li>
@@ -618,23 +667,19 @@
                             <li>Tăng sự hài lòng của khách hàng</li>
                             <li>Giảm stress cho team và tăng sự hợp tác</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
+
+
             <!-- 9. Extreme Programming (XP) -->
-            <div class="model-card card mb-4">
-                <div class="card-header bg-warning text-dark">
+
                     <h4>#9. Extreme Programming (XP)</h4>
-                </div>
-                <div class="card-body">
-                    <div class="definition mb-3">
+
+
                         <h5>Định nghĩa</h5>
                         <p>XP là phương pháp phát triển phần mềm tập trung vào việc cải thiện chất lượng
                             và khả năng đáp ứng với yêu cầu thay đổi của khách hàng thông qua 12 nguyên tắc thực hành
                             cốt lõi.</p>
-                    </div>
 
-                    <div class="practices mb-3">
+
                         <h5>12 Nguyên tắc thực hành cốt lõi</h5>
                         <ul>
                             <li><strong>Planning Game:</strong> Lập kế hoạch 2 cấp độ (release và iteration) với 3 bước:
@@ -660,9 +705,8 @@
                             <li><strong>Sustainable Pace:</strong> Duy trì tốc độ phát triển bền vững, có thời gian
                                 buffer để xử lý vấn đề</li>
                         </ul>
-                    </div>
 
-                    <div class="when-to-use mb-3">
+
                         <h5>Khi nào nên sử dụng</h5>
                         <ul>
                             <li>Dự án nhỏ với yêu cầu thay đổi thường xuyên</li>
@@ -671,38 +715,33 @@
                             <li>Cần đảm bảo chất lượng code cao thông qua TDD</li>
                             <li>Muốn giảm thiểu rủi ro kỹ thuật thông qua tích hợp liên tục</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="luachon" class="mb-5 animate__animated fade-in">
-            <h2 class="text-center mb-4">2. Tiêu chí lựa chọn phương pháp</h2>
-            <div class="info-note card mb-4">
-                <div class="card-body">
-                    <p class="mb-0"><i class="fas fa-info-circle text-info me-2"></i> Bạn chỉ cần nắm vững Waterfall với
+
+
+
+            <h2 id="luachon">2. Tiêu chí lựa chọn phương pháp</h2>
+
+                    <p>Bạn chỉ cần nắm vững Waterfall với
                         Scrum thôi là đủ rồi nhé, còn nếu chuyên sâu hơn thì coi ở dưới nhé. </p>
-                </div>
-            </div>
-            <div class="criteria-section">
-                <div class="card mb-4">
-                    <div class="card-header">
+
+
+
                         <h3>Đặc điểm dự án</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
+
+                        <div data-table role="region" aria-label="So sánh chín mô hình phát triển phần mềm theo đặc điểm dự án" tabindex="0">
+<table>
                             <thead>
                                 <tr>
-                                    <th>Tiêu chí</th>
-                                    <th>Waterfall</th>
-                                    <th>V-Model</th>
-                                    <th>Incremental</th>
-                                    <th>Spiral</th>
-                                    <th>RUP</th>
-                                    <th>Prototype</th>
-                                    <th>Scrum</th>
-                                    <th>Kanban</th>
-                                    <th>XP</th>
+                                    <th scope="col">Tiêu chí</th>
+                                    <th scope="col">Waterfall</th>
+                                    <th scope="col">V-Model</th>
+                                    <th scope="col">Incremental</th>
+                                    <th scope="col">Spiral</th>
+                                    <th scope="col">RUP</th>
+                                    <th scope="col">Prototype</th>
+                                    <th scope="col">Scrum</th>
+                                    <th scope="col">Kanban</th>
+                                    <th scope="col">XP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -744,27 +783,26 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+</div>
 
-                <div class="card mb-4">
-                    <div class="card-header">
+
+
                         <h3>Đặc điểm đội ngũ</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
+
+                        <div data-table role="region" aria-label="So sánh chín mô hình theo đặc điểm đội ngũ phát triển" tabindex="0">
+<table>
                             <thead>
                                 <tr>
-                                    <th>Tiêu chí</th>
-                                    <th>Waterfall</th>
-                                    <th>V-Model</th>
-                                    <th>Incremental</th>
-                                    <th>Spiral</th>
-                                    <th>RUP</th>
-                                    <th>Prototype</th>
-                                    <th>Scrum</th>
-                                    <th>Kanban</th>
-                                    <th>XP</th>
+                                    <th scope="col">Tiêu chí</th>
+                                    <th scope="col">Waterfall</th>
+                                    <th scope="col">V-Model</th>
+                                    <th scope="col">Incremental</th>
+                                    <th scope="col">Spiral</th>
+                                    <th scope="col">RUP</th>
+                                    <th scope="col">Prototype</th>
+                                    <th scope="col">Scrum</th>
+                                    <th scope="col">Kanban</th>
+                                    <th scope="col">XP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -806,27 +844,26 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+</div>
 
-                <div class="card mb-4">
-                    <div class="card-header">
+
+
                         <h3>Sự tham gia của khách hàng</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
+
+                        <div data-table role="region" aria-label="So sánh chín mô hình theo ràng buộc thời gian và ngân sách" tabindex="0">
+<table>
                             <thead>
                                 <tr>
-                                    <th>Tiêu chí</th>
-                                    <th>Waterfall</th>
-                                    <th>V-Model</th>
-                                    <th>Incremental</th>
-                                    <th>Spiral</th>
-                                    <th>RUP</th>
-                                    <th>Prototype</th>
-                                    <th>Scrum</th>
-                                    <th>Kanban</th>
-                                    <th>XP</th>
+                                    <th scope="col">Tiêu chí</th>
+                                    <th scope="col">Waterfall</th>
+                                    <th scope="col">V-Model</th>
+                                    <th scope="col">Incremental</th>
+                                    <th scope="col">Spiral</th>
+                                    <th scope="col">RUP</th>
+                                    <th scope="col">Prototype</th>
+                                    <th scope="col">Scrum</th>
+                                    <th scope="col">Kanban</th>
+                                    <th scope="col">XP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -868,19 +905,16 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+</div>
 
-        <section id="kiemthu" class="mb-5 animate__animated fade-in">
-            <h2 class="text-center mb-4">3. Kiểm thử phần mềm (Software Testing - Môn SWT301)</h2>
 
-            <div class="testing-intro card mb-4">
-                <div class="card-header bg-primary text-white">
+
+
+            <h2 id="kiemthu">3. Kiểm thử phần mềm (Software Testing - Môn SWT301)</h2>
+
+
                     <h3>Giới thiệu về kiểm thử</h3>
-                </div>
-                <div class="card-body">
+
                     <h4>Kiểm thử là gì?</h4>
                     <p>Kiểm thử phần mềm là quá trình đánh giá và xác minh xem một ứng dụng hoặc sản phẩm phần mềm có
                         đáp ứng các yêu cầu kỹ thuật và nghiệp vụ đã đề ra hay không.</p>
@@ -913,23 +947,20 @@
                         <li><strong>Kiểm thử phụ thuộc ngữ cảnh (Testing is context dependent):</strong> Cách thức kiểm
                             thử phụ thuộc vào bối cảnh của ứng dụng.</li>
                     </ol>
-                </div>
-            </div>
 
-            <div class="testing-types">
-                <div class="card mb-4">
-                    <div class="card-header bg-success text-white">
+
+
                         <h3>1. Kiểm thử chức năng (Functional Testing)</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+
+
+                            <div data-table role="region" aria-label="Bốn mức kiểm thử: unit, integration, system và acceptance" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Loại kiểm thử</th>
-                                        <th>Mô tả</th>
-                                        <th>Khi nào thực hiện</th>
-                                        <th>Ai thực hiện</th>
+                                        <th scope="col">Loại kiểm thử</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th scope="col">Khi nào thực hiện</th>
+                                        <th scope="col">Ai thực hiện</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -980,24 +1011,23 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
+</div>
 
-                <div class="card mb-4">
-                    <div class="card-header bg-info text-white">
+
+
+
                         <h3>2. Kiểm thử phi chức năng (Non-functional Testing) - KHÔNG CẦN NHỚ CÔNG CỤ PHỔ BIẾN ĐỂ TEST
                             ĐÂU NHA</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+
+
+                            <div data-table role="region" aria-label="Các loại kiểm thử phi chức năng và mục tiêu của từng loại" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Loại kiểm thử</th>
-                                        <th>Mô tả</th>
-                                        <th>Mục đích</th>
-                                        <th>Công cụ phổ biến</th>
+                                        <th scope="col">Loại kiểm thử</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th scope="col">Mục đích</th>
+                                        <th scope="col">Công cụ phổ biến</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1063,16 +1093,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
 
-            <div class="testing-process card mb-4">
-                <div class="card-header bg-warning">
+
+
+
+
                     <h3>Quy trình kiểm thử</h3>
-                </div>
-                <div class="card-body">
+
                     <ol>
                         <li><strong>Lập kế hoạch kiểm thử:</strong> Xác định phạm vi, mục tiêu, và chiến lược</li>
                         <li><strong>Thiết kế test case:</strong> Xây dựng các kịch bản kiểm thử</li>
@@ -1082,39 +1110,33 @@
                         <li><strong>Kiểm thử lại:</strong> Verify lỗi sau khi đã được sửa</li>
                         <li><strong>Báo cáo kết quả:</strong> Tổng hợp và đánh giá kết quả kiểm thử</li>
                     </ol>
-                </div>
-            </div>
-        </section>
 
-        <section id="yeucau" class="mb-5 animate__animated fade-in">
-            <h2 class="text-center mb-4">4. Yêu cầu chức năng và phi chức năng</h2>
 
-            <div class="requirements-intro card mb-4">
-                <div class="card-header bg-primary text-white">
+
+            <h2 id="yeucau">4. Yêu cầu chức năng và phi chức năng</h2>
+
+
                     <h3>Tổng quan về yêu cầu phần mềm</h3>
-                </div>
-                <div class="card-body">
+
                     <p>Yêu cầu phần mềm là những điều kiện hoặc khả năng mà hệ thống phải đáp ứng. Được chia thành hai
                         loại chính:</p>
                     <ul>
                         <li><strong>Yêu cầu chức năng (FR):</strong> Mô tả những gì hệ thống phải làm</li>
                         <li><strong>Yêu cầu phi chức năng (NFR):</strong> Mô tả hệ thống phải làm như thế nào</li>
                     </ul>
-                </div>
-            </div>
 
-            <div class="functional-requirements card mb-4">
-                <div class="card-header bg-success text-white">
+
+
                     <h3>1. Yêu cầu chức năng (Functional Requirements)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+
+
+                        <div data-table role="region" aria-label="Phân biệt yêu cầu chức năng và yêu cầu phi chức năng" tabindex="0">
+<table>
                             <thead>
                                 <tr>
-                                    <th>Phân loại</th>
-                                    <th>Mô tả</th>
-                                    <th>Ví dụ cụ thể</th>
+                                    <th scope="col">Phân loại</th>
+                                    <th scope="col">Mô tả</th>
+                                    <th scope="col">Ví dụ cụ thể</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1165,23 +1187,22 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
+</div>
 
-            <div class="non-functional-requirements card mb-4">
-                <div class="card-header bg-info text-white">
+
+
+
                     <h3>2. Yêu cầu phi chức năng (Non-Functional Requirements)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+
+
+                        <div data-table role="region" aria-label="Các nhóm yêu cầu phi chức năng thường gặp" tabindex="0">
+<table>
                             <thead>
                                 <tr>
-                                    <th>Loại yêu cầu</th>
-                                    <th>Mô tả</th>
-                                    <th>Tiêu chí đánh giá</th>
-                                    <th>Ví dụ cụ thể</th>
+                                    <th scope="col">Loại yêu cầu</th>
+                                    <th scope="col">Mô tả</th>
+                                    <th scope="col">Tiêu chí đánh giá</th>
+                                    <th scope="col">Ví dụ cụ thể</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1269,15 +1290,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
+</div>
 
-            <div class="requirements-tips card">
-                <div class="card-header bg-warning">
+
+
+
                     <h3>Lưu ý khi xác định yêu cầu</h3>
-                </div>
-                <div class="card-body">
+
                     <ul>
                         <li><strong>SMART:</strong> Yêu cầu phải Specific (cụ thể), Measurable (đo lường được),
                             Achievable (khả thi), Relevant (phù hợp), Time-bound (có thời hạn)</li>
@@ -1287,23 +1306,18 @@
                         </li>
                         <li><strong>Tính nhất quán:</strong> Các yêu cầu không mâu thuẫn với nhau</li>
                     </ul>
-                </div>
-            </div>
-        </section>
 
-        <section id="pe-guide" class="mb-5 lesson-section animate__animated fade-in">
-            <h2 class="text-center mb-4">Hướng dẫn làm bài thi PE SWE201c - LƯU Ý MANG TÍNH CHẤT THAM KHẢO</h2>
 
-            <div class="exam-guide card mb-4">
-                <div class="card-header bg-primary text-white">
+
+            <h2 id="pe-guide">Hướng dẫn làm bài thi PE SWE201c - LƯU Ý MANG TÍNH CHẤT THAM KHẢO</h2>
+
+
                     <h3>Phân tích đề thi PE SWE201c</h3>
-                </div>
-                <div class="card-body">
+
                     <!-- Cấu trúc đề thi -->
-                    <div class="exam-structure mb-4">
+
                         <h4>1. Cấu trúc đề thi điển hình</h4>
-                        <div class="card">
-                            <div class="card-body">
+
                                 <ul>
                                     <li><strong>Phần mô tả dự án</strong>
                                         <ul>
@@ -1324,15 +1338,13 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
+
+
 
                     <!-- Kỹ thuật đọc hiểu đề -->
-                    <div class="reading-technique mb-4">
+
                         <h4>2. Kỹ thuật đọc hiểu đề</h4>
-                        <div class="card">
-                            <div class="card-body">
+
                                 <h5>Bước 1: Đọc tổng quan</h5>
                                 <ul>
                                     <li>Xác định loại dự án (new/maintenance)</li>
@@ -1341,13 +1353,14 @@
                                 </ul>
 
                                 <h5>Bước 2: Đánh dấu từ khóa quan trọng</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
+
+                                    <div data-table role="region" aria-label="Tiêu chí chấm câu 1 đề PE: lựa chọn mô hình phát triển" tabindex="0">
+<table>
                                         <thead>
                                             <tr>
-                                                <th>Loại từ khóa</th>
-                                                <th>Ví dụ</th>
-                                                <th>Ý nghĩa</th>
+                                                <th scope="col">Loại từ khóa</th>
+                                                <th scope="col">Ví dụ</th>
+                                                <th scope="col">Ý nghĩa</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1368,7 +1381,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+</div>
 
                                 <h5>Bước 3: Phân tích ràng buộc</h5>
                                 <ul>
@@ -1376,20 +1389,16 @@
                                     <li>Business constraints</li>
                                     <li>Resource constraints</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="question-type card mb-4">
-                        <div class="card-header bg-primary text-white">
+
+
+
                             <h3>Câu 1: Lựa chọn mô hình phát triển (2đ)</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="model-selection mb-4">
+
+
                                 <h4>Cách chọn mô hình phát triển</h4>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="decision-tree mb-4">
+
+
                                             <h5>Quy trình ra quyết định</h5>
                                             <ul>
                                                 <li><strong>Bước 1:</strong> Phân tích yêu cầu
@@ -1414,15 +1423,14 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </div>
 
-                                        <div class="model-templates mb-4">
+
                                             <h5>Templates trả lời cho từng mô hình</h5>
 
-                                            <div class="agile-template mb-3">
                                                 <h6>Template cho Agile (Scrum)</h6>
-                                                <pre class="bg-light p-3">
-Recommendation to use Agile:
+                                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>Recommendation to use Agile:
 I suggest using the Agile method for these reasons:
 
 a) Requirements:
@@ -1439,13 +1447,14 @@ b) Development Team:
 
 Conclusion:
 Scrum is best due to team structure, need for iteration, and ability to handle changing requirements.
-                            </pre>
-                                            </div>
+                            </code></pre>
+</figure>
 
-                                            <div class="waterfall-template mb-3">
+
                                                 <h6>Template cho Waterfall</h6>
-                                                <pre class="bg-light p-3">
-Recommendation to use Waterfall:
+                                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>Recommendation to use Waterfall:
 I recommend the Waterfall method for these reasons:
 
 a) Requirements:
@@ -1461,19 +1470,19 @@ b) Development Team:
 
 Conclusion:
 Waterfall is best due to clear requirements, structured roles, and need for documentation.
-                            </pre>
-                                            </div>
-                                        </div>
+                            </code></pre>
+</figure>
 
-                                        <div class="scoring-criteria">
+
                                             <h5>Tiêu chí chấm điểm</h5>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
+
+                                                <div data-table role="region" aria-label="Ví dụ test case cho câu hỏi kiểm thử" tabindex="0">
+<table>
                                                     <thead>
                                                         <tr>
-                                                            <th>Tiêu chí</th>
-                                                            <th>Điểm</th>
-                                                            <th>Mô tả</th>
+                                                            <th scope="col">Tiêu chí</th>
+                                                            <th scope="col">Điểm</th>
+                                                            <th scope="col">Mô tả</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -1506,27 +1515,23 @@ Waterfall is best due to clear requirements, structured roles, and need for docu
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+</div>
+
+
+
+
 
                     <!-- Phần hướng dẫn cho Câu 2: Testing -->
-                    <div class="question-type card mb-4">
-                        <div class="card-header bg-info text-white">
+
                             <h3>Câu 2: Testing Levels & Responsibilities (1đ)</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="testing-framework mb-4">
+
+
                                 <h4>Template trả lời mẫu (Nhớ paraphrase lại nhé và học thuộc hoặc học hiểu tùy vào bạn)
                                 </h4>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <pre class="bg-light p-3">
-Based on the project requirements, the following testing levels are proposed:
+
+                                        <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>Based on the project requirements, the following testing levels are proposed:
 
 1. Unit Testing
    Tester: Developers
@@ -1534,21 +1539,21 @@ Based on the project requirements, the following testing levels are proposed:
    - Testing individual software components
    - Verifying correct functionality of each component
    - Code coverage and basic functionality checks
-   
-2. Integration Testing  
+
+2. Integration Testing
    Tester: Developers or dedicated integration testing team
    Focus:
    - Component interactions and compatibility
    - Interface testing between modules
    - Data flow verification
-   
+
 3. System Testing
    Tester: Dedicated testing team
    Focus:
    - End-to-end system functionality
    - Requirements verification
    - Complete system behavior testing
-   
+
 4. User Acceptance Testing (UAT)
    Tester: End users
    Focus:
@@ -1569,21 +1574,21 @@ Based on the project requirements, the following testing levels are proposed:
    - System performance under load
    - Stress testing and reliability
    - Peak usage simulation
-                                            </pre>
-                                    </div>
-                                </div>
-                            </div>
+                                            </code></pre>
+</figure>
 
-                            <div class="testing-keywords mb-4">
+
+
                                 <h4>Từ khóa quan trọng cho mỗi level</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
+
+                                    <div data-table role="region" aria-label="Tiêu chí chấm câu 2 đề PE: các loại kiểm thử" tabindex="0">
+<table>
                                         <thead>
                                             <tr>
-                                                <th>Testing Level</th>
-                                                <th>Keywords</th>
-                                                <th>Responsible Team</th>
-                                                <th>When to Use</th>
+                                                <th scope="col">Testing Level</th>
+                                                <th scope="col">Keywords</th>
+                                                <th scope="col">Responsible Team</th>
+                                                <th scope="col">When to Use</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1633,45 +1638,37 @@ Based on the project requirements, the following testing levels are proposed:
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
+</div>
 
-                            <div class="special-cases mb-4">
+
                                 <h4>Các trường hợp đặc biệt</h4>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">Regression Testing</div>
-                                            <div class="card-body">
+
+
+                                            <p><strong>Regression Testing</strong></p>
+
                                                 <ul>
                                                     <li>Change Impact Analysis</li>
                                                     <li>Automated Test Suites</li>
                                                     <li>System Stability Checks</li>
                                                     <li>Feature Verification</li>
                                                 </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">Performance Testing</div>
-                                            <div class="card-body">
+
+
+
+                                            <p><strong>Performance Testing</strong></p>
+
                                                 <ul>
                                                     <li>Load Testing</li>
                                                     <li>Stress Testing</li>
                                                     <li>Performance Monitoring</li>
                                                     <li>Peak Load Simulation</li>
                                                 </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="testing-tips mb-4">
+
+
+
                                 <h4>Tips quan trọng</h4>
-                                <div class="card">
-                                    <div class="card-body">
+
                                         <ol>
                                             <li><strong>Phân công testing đúng người</strong>
                                                 <ul>
@@ -1698,19 +1695,18 @@ Based on the project requirements, the following testing levels are proposed:
                                                 </ul>
                                             </li>
                                         </ol>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="scoring-criteria mb-4">
+
+
                                 <h4>Tiêu chí chấm điểm</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
+
+                                    <div data-table role="region" aria-label="Tiêu chí chấm câu 3 đề PE: yêu cầu chức năng và phi chức năng" tabindex="0">
+<table>
                                         <thead>
                                             <tr>
-                                                <th>Tiêu chí</th>
-                                                <th>Điểm</th>
-                                                <th>Mô tả</th>
+                                                <th scope="col">Tiêu chí</th>
+                                                <th scope="col">Điểm</th>
+                                                <th scope="col">Mô tả</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1731,19 +1727,17 @@ Based on the project requirements, the following testing levels are proposed:
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+</div>
 
-                    <div class="question-type card mb-4">
-                        <div class="card-header bg-warning">
+
+
+
+
                             <h3>Câu 3: Functional & Non-functional Requirements (2đ)</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="quick-guide alert alert-info">
-                                <h4>Cách nhận diện nhanh</h4>
-                                <ul>
+
+                            <aside class="b-callout" data-callout="tip">
+<p class="b-callout__label"><svg data-icon="lightbulb" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#lightbulb"></use></svg> Cách nhận diện nhanh</p>
+<ul>
                                     <li><strong>Functional Requirements (FR):</strong>
                                         <br>= [Danh từ] + [Động từ hành động]
                                         <br>Ví dụ: "User(n) can register(v)", "System(n) must calculate(v)"
@@ -1753,17 +1747,17 @@ Based on the project requirements, the following testing levels are proposed:
                                         <br>Ví dụ: "System needs to be secure", "System must respond within 3 seconds"
                                     </li>
                                 </ul>
-                            </div>
+</aside>
 
-                            <div class="requirements-guide mb-4">
                                 <h4>Bảng nhận diện chi tiết</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
+
+                                    <div data-table role="region" aria-label="Mẫu bảng phân rã user story theo INVEST" tabindex="0">
+<table>
                                         <thead>
                                             <tr>
-                                                <th>Tiêu chí</th>
-                                                <th>Functional (FR)</th>
-                                                <th>Non-functional (NFR)</th>
+                                                <th scope="col">Tiêu chí</th>
+                                                <th scope="col">Functional (FR)</th>
+                                                <th scope="col">Non-functional (NFR)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1816,35 +1810,33 @@ Based on the project requirements, the following testing levels are proposed:
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
+</div>
 
-                            <div class="answer-template mb-4">
+
                                 <h4>Template trả lời chuẩn</h4>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <pre class="bg-light p-3">
-                            Functional Requirements:
+
+                                        <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>                            Functional Requirements:
                             • [Tên chức năng ngắn gọn]: The system shall [động từ] [mô tả chi tiết chức năng].
                             Source: "[trích dẫn từ case study]"
-                            
+
                             Ví dụ:
                             • User Registration: The system shall allow users to create new accounts with email and password.
                             • Order Processing: The system shall enable customers to place and track their orders.
                             • Report Generation: The system shall provide managers with daily sales reports.
-                            
+
                             Non-Functional Requirements:
                             • [Loại NFR]: The system shall [mô tả yêu cầu] [chỉ số cụ thể nếu có].
                             Source: "[trích dẫn từ case study]"
-                            
+
                             Ví dụ:
                             • Performance: The system shall respond to user requests within 3 seconds.
                             • Security: The system shall encrypt all user passwords using SHA-256.
-                            • Reliability: The system shall maintain 99.9% uptime during business hours.</pre>
-                                    </div>
-                                </div>
+                            • Reliability: The system shall maintain 99.9% uptime during business hours.</code></pre>
+</figure>
 
-                                <div class="format-tips mt-4">
+
                                     <h5>Quy tắc format:</h5>
                                     <ul>
                                         <li><strong>Cách đặt tên FR:</strong>
@@ -1872,50 +1864,47 @@ Based on the project requirements, the following testing levels are proposed:
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
 
-                                <div class="example-answer mt-4">
+
                                     <h5>Ví dụ đáp án hoàn chỉnh:</h5>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <pre class="bg-light p-3">
-                            Functional Requirements:
+
+                                            <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>                            Functional Requirements:
                             • Data Entry: The system shall allow users to input customer information into the database.
                             Source: "Users need to input customer details into the system"
-                            
+
                             • Report Generation: The system shall generate monthly sales reports automatically.
                             Source: "System must provide monthly reports for management"
-                            
+
                             • User Management: The system shall enable administrators to create and modify user accounts.
                             Source: "Admin needs to manage system users"
-                            
+
                             Non-Functional Requirements:
                             • Performance: The system shall process all data entry operations within 1 second.
                             Source: "System must be fast and responsive"
-                            
+
                             • Security: The system shall require two-factor authentication for admin access.
                             Source: "System needs strong security measures"
-                            
+
                             • Reliability: The system shall maintain 99.9% uptime during working hours.
-                            Source: "System must be highly available"</pre>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            Source: "System must be highly available"</code></pre>
+</figure>
 
 
-                        </div>
-                    </div>
 
-                    <div class="scoring-criteria mb-4">
+
+
+
                         <h4>Tiêu chí chấm điểm</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+
+                            <div data-table role="region" aria-label="Tiêu chí chấm câu 4 đề PE: user story" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Tiêu chí</th>
-                                        <th>Điểm</th>
-                                        <th>Mô tả</th>
+                                        <th scope="col">Tiêu chí</th>
+                                        <th scope="col">Điểm</th>
+                                        <th scope="col">Mô tả</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1941,58 +1930,52 @@ Based on the project requirements, the following testing levels are proposed:
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Phần hướng dẫn cho Câu 4: User Stories -->
-            <div class="question-type card mb-4">
-                <div class="card-header bg-purple text-white">
-                    <h3>Câu 4: User Stories dựa trên Requirements (1.5đ)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="important-note alert alert-info">
-                        <h4>Lưu ý quan trọng</h4>
-                        <p>User Stories phải được viết dựa trên các Requirements đã xác định ở câu 3!</p>
-                    </div>
+</div>
 
-                    <div class="story-structure mb-4">
+
+
+            <!-- Phần hướng dẫn cho Câu 4: User Stories -->
+
+                    <h3>Câu 4: User Stories dựa trên Requirements (1.5đ)</h3>
+
+                    <aside class="b-callout" data-callout="warn">
+<p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Lưu ý quan trọng</p>
+<p>User Stories phải được viết dựa trên các Requirements đã xác định ở câu 3!</p>
+</aside>
+
                         <h4>Cấu trúc chuẩn cho mỗi User Story</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <pre class="bg-light p-3">
-            As a [role]
+
+                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>            As a [role]
             I want to [action/feature từ FR hoặc NFR]
             So that [benefit/value]
-            
+
             Ví dụ từ FR "System shall allow users to register":
             As a new user
             I want to register an account
-            So that I can access the system's features</pre>
-                            </div>
-                        </div>
-                    </div>
+            So that I can access the system's features</code></pre>
+</figure>
 
-                    <div class="answer-template mb-4">
+
+
                         <h4>Template trả lời</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <pre class="bg-light p-3">
-            User Story 1: [Từ FR/NFR 1]
+
+                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>            User Story 1: [Từ FR/NFR 1]
             As a [role liên quan đến requirement]
             I want to [chức năng/yêu cầu từ requirement]
             So that [lợi ích mang lại]
-            
-            [Tiếp tục với 4 User Story còn lại...]</pre>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="tips-section card mb-4">
-                        <div class="card-header">
+            [Tiếp tục với 4 User Story còn lại...]</code></pre>
+</figure>
+
+
+
+
                             <h4>Tips làm bài</h4>
-                        </div>
-                        <div class="card-body">
+
                             <ol>
                                 <li><strong>Chọn requirement để viết story</strong>
                                     <ul>
@@ -2016,20 +1999,18 @@ Based on the project requirements, the following testing levels are proposed:
                                     </ul>
                                 </li>
                             </ol>
-                        </div>
-                    </div>
 
-                    <div class="scoring-guide card">
-                        <div class="card-header">
+
+
                             <h4>Thang điểm chi tiết (1.5đ) - Tham khảo chứ không hẳn là đúng</h4>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered">
+
+                            <div data-table role="region" aria-label="Tiêu chí chấm câu 6 đề PE: phân tích và phân chia user story" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Tiêu chí</th>
-                                        <th>Điểm</th>
-                                        <th>Chi tiết</th>
+                                        <th scope="col">Tiêu chí</th>
+                                        <th scope="col">Điểm</th>
+                                        <th scope="col">Chi tiết</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -2055,32 +2036,29 @@ Based on the project requirements, the following testing levels are proposed:
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
+
+
+
             <!-- Phần hướng dẫn cho Câu 5: Quality Metrics -->
-            <div class="question-type card mb-4">
-                <div class="card-header bg-success text-white">
+
                     <h3>Câu 5: Quality Metrics (1.0đ) - Câu này khuyến khích bỏ vì khó làm và cũng là lần đầu ra thi
                     </h3>
-                </div>
-                <div class="card-body">
-                    <div class="important-note alert alert-info">
-                        <h4>Yêu cầu của câu hỏi</h4>
-                        <ul>
+
+                    <aside class="b-callout" data-callout="warn">
+<p class="b-callout__label"><svg data-icon="alert-circle" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#alert-circle"></use></svg> Yêu cầu của câu hỏi</p>
+<ul>
                             <li>Liệt kê ít nhất 5 metrics</li>
                             <li>Phải bao gồm metrics đo cohesion và coupling</li>
                             <li>Giải thích cách áp dụng vào dự án cụ thể</li>
                         </ul>
-                    </div>
+</aside>
 
-                    <div class="answer-template mb-4">
                         <h4>Template trả lời chuẩn</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <pre class="bg-light p-3">
-To measure code and design quality in this project, I propose these metrics:
+
+                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>To measure code and design quality in this project, I propose these metrics:
 
 1. LCOM (Lack of Cohesion of Methods) - Measuring Cohesion
    • Description: Measures how well methods of a class are related to each other
@@ -2110,25 +2088,24 @@ To measure code and design quality in this project, I propose these metrics:
    • Description: Measures inheritance levels in class hierarchy
    • Formula: Count levels from class to root of inheritance tree
    • Good Value: < 6 levels
-   • Application in Project: Keep inheritance hierarchies manageable and avoid deep nesting</pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   • Application in Project: Keep inheritance hierarchies manageable and avoid deep nesting</code></pre>
+</figure>
 
-                <div class="metrics-suggestions card mb-4">
-                    <div class="card-header">
+
+
+
+
                         <h4>Các Metrics phổ biến</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+
+
+                            <div data-table role="region" aria-label="Các metric chất lượng phổ biến: cohesion, coupling, độ phức tạp và kế thừa" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Loại</th>
-                                        <th>Tên Metric</th>
-                                        <th>Mô tả</th>
-                                        <th>Giá trị tốt</th>
+                                        <th scope="col">Loại</th>
+                                        <th scope="col">Tên Metric</th>
+                                        <th scope="col">Mô tả</th>
+                                        <th scope="col">Giá trị tốt</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -2176,15 +2153,13 @@ To measure code and design quality in this project, I propose these metrics:
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
+</div>
 
-                <div class="tips-section card">
-                    <div class="card-header">
+
+
+
                         <h4>Tips làm bài</h4>
-                    </div>
-                    <div class="card-body">
+
                         <ol>
                             <li><strong>Chọn metrics phù hợp</strong>
                                 <ul>
@@ -2208,20 +2183,16 @@ To measure code and design quality in this project, I propose these metrics:
                                 </ul>
                             </li>
                         </ol>
-                    </div>
-                </div>
-            </div>
+
+
 
             <!-- Phần hướng dẫn cho Câu 6: Story Mapping -->
-            <div class="question-type card mb-4">
-                <div class="card-header bg-info text-white">
+
                     <h3>Câu 6: Story Mapping (2.5đ)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="story-mapping-intro mb-4">
+
+
                         <h4>Story Mapping là gì?</h4>
-                        <div class="card">
-                            <div class="card-body">
+
                                 <p><strong>Story Mapping</strong> là một kỹ thuật trực quan để:</p>
                                 <ul>
                                     <li>Tổ chức và sắp xếp user stories theo luồng người dùng</li>
@@ -2229,11 +2200,13 @@ To measure code and design quality in this project, I propose these metrics:
                                     <li>Lập kế hoạch phát triển và releases</li>
                                 </ul>
 
-                                <div class="story-map-structure mt-3">
                                     <h5>Cấu trúc của Story Map:</h5>
-                                    <div class="text-center mb-3">
-                                        <img src="textblog-5/User-Story-Mapping.webp" class="img-fluid w-75" alt="User Story Mapping Structure">
-                                    </div>
+
+                                        <figure class="b-figure">
+<picture><source srcset="textblog-5/User-Story-Mapping.avif" type="image/avif"><source srcset="textblog-5/User-Story-Mapping.webp" type="image/webp"><img src="textblog-5/User-Story-Mapping.webp" width="1280" height="720" alt="Bản đồ user story: trục ngang là các activity theo thời gian, trục dọc là task và story xếp theo độ ưu tiên" loading="lazy" decoding="async"></picture>
+<figcaption>Story map — activity theo trục ngang, task và story xếp theo độ ưu tiên trên trục dọc.</figcaption>
+</figure>
+
                                     <ul>
                                         <li><strong>Trục ngang (Activities):</strong> Các hoạt động chính của người dùng theo thứ tự thời gian</li>
                                         <li><strong>Trục dọc (Tasks & Stories):</strong>
@@ -2243,9 +2216,8 @@ To measure code and design quality in this project, I propose these metrics:
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
 
-                                <div class="story-map-benefits mt-3">
+
                                     <h5>Lợi ích của Story Mapping:</h5>
                                     <ul>
                                         <li>Giúp team hiểu rõ luồng người dùng</li>
@@ -2253,15 +2225,12 @@ To measure code and design quality in this project, I propose these metrics:
                                         <li>Tạo cái nhìn tổng quan về scope của dự án</li>
                                         <li>Hỗ trợ giao tiếp giữa các bên liên quan</li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="story-map-format mb-4">
+
+
+
                         <h4>Cấu trúc trình bày Story Map trên EOS</h4>
-                        <div class="card">
-                            <div class="card-body">
+
                                 <p><strong>Story Map được chia làm 2 phần chính:</strong></p>
                                 <ol>
                                     <li><strong>Phần A - Activities and User tasks:</strong>
@@ -2279,16 +2248,14 @@ To measure code and design quality in this project, I propose these metrics:
                                         </ul>
                                     </li>
                                 </ol>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="example-story-map mb-4">
+
+
                         <h4>Ví dụ Story Map cho "Train Schedule Management"</h4>
-                        <div class="card">
-                            <div class="card-body">
-                                <pre class="bg-light p-3">
-A. Activities and User tasks
+
+                                <figure class="b-code" data-code>
+<figcaption>Mẫu trả lời</figcaption>
+<pre><code>A. Activities and User tasks
 1. Create Train Schedule
    1.1 Input Basic Schedule Information
    1.2 Set Route Details
@@ -2314,20 +2281,17 @@ Release 2 (Advanced Features)
 1.4.1 As a scheduler, I want to check schedule conflicts
 2.2.1 As a scheduler, I want to resolve timing conflicts
 2.3.1 As a scheduler, I want to send update notifications
-                    </pre>
-                            </div>
-                        </div>
-                    </div>
+                    </code></pre>
+</figure>
 
-                    <div class="story-map-tips mb-4">
+
+
                         <h4>Tips làm Story Map hiệu quả</h4>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card h-100">
-                                    <div class="card-header bg-primary text-white">
+
+
+
                                         <h5>1. Cách xác định Activities</h5>
-                                    </div>
-                                    <div class="card-body">
+
                                         <ul>
                                             <li><strong>Bắt đầu từ người dùng:</strong>
                                                 <ul>
@@ -2348,16 +2312,13 @@ Release 2 (Advanced Features)
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            <div class="col-md-4">
-                                <div class="card h-100">
-                                    <div class="card-header bg-success text-white">
+
+
+
+
+
                                         <h5>2. Cách chia User Tasks</h5>
-                                    </div>
-                                    <div class="card-body">
+
                                         <ul>
                                             <li><strong>Phân tích từng Activity:</strong>
                                                 <ul>
@@ -2375,16 +2336,13 @@ Release 2 (Advanced Features)
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            <div class="col-md-4">
-                                <div class="card h-100">
-                                    <div class="card-header bg-warning">
+
+
+
+
+
                                         <h5>3. Cách phân chia Releases</h5>
-                                    </div>
-                                    <div class="card-body">
+
                                         <ul>
                                             <li><strong>Release 1 (MVP):</strong>
                                                 <ul>
@@ -2401,16 +2359,12 @@ Release 2 (Advanced Features)
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="common-mistakes mb-4">
+
+
+
                         <h4>Lỗi thường gặp</h4>
-                        <div class="card">
-                            <div class="card-body">
+
                                 <ul>
                                     <li><strong>Sai cấu trúc đánh số</strong>
                                         <ul>
@@ -2434,19 +2388,18 @@ Release 2 (Advanced Features)
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="scoring-criteria mb-4">
+
+
                         <h4>Tiêu chí chấm điểm</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+
+                            <div data-table role="region" aria-label="Tiêu chí chấm câu 6 đề PE: story mapping" tabindex="0">
+<table>
                                 <thead>
                                     <tr>
-                                        <th>Tiêu chí</th>
-                                        <th>Điểm</th>
-                                        <th>Yêu cầu</th>
+                                        <th scope="col">Tiêu chí</th>
+                                        <th scope="col">Điểm</th>
+                                        <th scope="col">Yêu cầu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -2472,22 +2425,18 @@ Release 2 (Advanced Features)
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
+
+
 
             <!-- Phần tổng kết -->
-            <div class="summary card mb-4">
-                <div class="card-header bg-primary text-white">
+
                     <h3>Tổng kết và Tips chung</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header">Quản lý thời gian</div>
-                                <div class="card-body">
+
+
+
+                                <p><strong>Quản lý thời gian</strong></p>
+
                                     <ul>
                                         <li>Câu 1: 20 phút</li>
                                         <li>Câu 2: 10 phút</li>
@@ -2497,59 +2446,51 @@ Release 2 (Advanced Features)
                                         <li>Câu 6: 20 phút</li>
                                         <li>Review: 5 phút</li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header">Chiến lược làm bài</div>
-                                <div class="card-body">
+
+
+
+                                <p><strong>Chiến lược làm bài</strong></p>
+
                                     <ul>
                                         <li>Đọc kỹ coi đề là agile hay waterfall</li>
                                         <li>Học thuộc sẵn template của chính mình</li>
                                         <li>Làm theo thứ tự câu 1 tới 6 và cẩn thận câu 5 có thể bỏ</li>
 
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <div class="card-header">Lưu ý quan trọng</div>
-                                <div class="card-body">
+
+
+
+                                <p><strong>Lưu ý quan trọng</strong></p>
+
                                     <ul>
                                         <li>Đọc kỹ yêu cầu từng câu</li>
                                         <li>Trình bày rõ ràng, có cấu trúc</li>
                                         <li>Dừng để sai tiếng anh nhiều người chấm trừ đỉm đóa</li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="exam-sample card mb-4">
-                <div class="card-header bg-primary text-white">
+
+
+
+
+
                     <h3>Đề mẫu:</h3>
-                </div>
-                <div class="card-body">
-                    <p class="text-center">
-                        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#examContent" aria-expanded="false" aria-controls="examContent">
-                            Xem đề thi
-                        </button>
+
+                    <p>
+
                     </p>
-                    <div class="collapse" id="examContent">
-                        <div class="card card-body">
-                            <img src="textblog-5/swe.png" class="img-fluid" alt="Đề thi SWE201c FA24">
-                        </div>
-                    </div>
-                    
-                    <div class="solution mt-4">
+                    <details id="examContent">
+<summary>Xem đề thi</summary>
+
+                            <figure class="b-figure">
+<picture><source srcset="textblog-5/swe.avif" type="image/avif"><source srcset="textblog-5/swe.webp" type="image/webp"><img src="textblog-5/swe.webp" width="687" height="2978" alt="Ảnh chụp toàn bộ đề thi PE SWE201c kỳ FA24 gồm sáu câu hỏi" loading="lazy" decoding="async"></picture>
+<figcaption>Đề thi PE SWE201c kỳ FA24 — ảnh gốc, mở ở tab mới để phóng to.</figcaption>
+</figure>
+
+</details>
+
                         <h4>Đáp án tham khảo:</h4>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 1: Lựa chọn mô hình phát triển phần mềm</div>
-                            <div class="card-body">
+
+                            <p><strong>Câu 1: Lựa chọn mô hình phát triển phần mềm</strong></p>
+
                                 <p>I agree with the suggestion to use the Unified Process (UP) for this project for the following reasons:</p>
                                 <p><strong>a) Requirements:</strong></p>
                                 <ul>
@@ -2564,12 +2505,11 @@ Release 2 (Advanced Features)
                                     <li><strong>Architecture-Centric:</strong> The project requires a solid system architecture for the cruise control software.</li>
                                 </ul>
                                 <p><strong>Conclusion:</strong> The Unified Process is the best model to this development, with clear requirements, risk managements, and etc.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 2: Các loại kiểm thử</div>
-                            <div class="card-body">
+
+
+
+                            <p><strong>Câu 2: Các loại kiểm thử</strong></p>
+
                                 <ol>
                                     <li><strong>Unit Testing:</strong>
                                         <ul>
@@ -2608,12 +2548,11 @@ Release 2 (Advanced Features)
                                         </ul>
                                     </li>
                                 </ol>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 3: Yêu cầu chức năng và phi chức năng</div>
-                            <div class="card-body">
+
+
+
+                            <p><strong>Câu 3: Yêu cầu chức năng và phi chức năng</strong></p>
+
                                 <h5>Functional Requirements:</h5>
                                 <ul>
                                     <li>The system should allow the driver to set a speed within a safe range (eg 30 - 120 km/h).</li>
@@ -2622,25 +2561,24 @@ Release 2 (Advanced Features)
                                     <li>The system should show the driver the current status (eg Cruise Control Active).</li>
                                     <li>The system should turn off automatically when certain conditions are met (eg brake press, system malfunction).</li>
                                 </ul>
-                                
+
                                 <h5>Performance Requirements:</h5>
                                 <ul>
                                     <li>The system must respond quickly to changes in speed and distance, with no delay.</li>
                                     <li>The system should perform well under different driving speeds, loads, and sensor inputs.</li>
                                     <li>The system should use resources efficiently (eg processor and memory), ensuring that safety-critical processes are prioritized.</li>
                                 </ul>
-                                
+
                                 <h5>Usability Requirements:</h5>
                                 <ul>
                                     <li>The system should support multiple languages and have an easy-to-use interface.</li>
                                     <li>The system should be user-friendly, allowing the driver to operate it with minimal distraction.</li>
                                 </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 4: User Stories</div>
-                            <div class="card-body">
+
+
+
+                            <p><strong>Câu 4: User Stories</strong></p>
+
                                 <ul>
                                     <li>As a driver, I want to be able to set the speed of my car within a safe range, so that I can keep a steady speed while driving</li>
                                     <li>As a driver, I want the system to automatically adjust the car's speed to maintain a safe distance from the vehicle ahead, so that I can drive safely without manual intervention.</li>
@@ -2648,30 +2586,28 @@ Release 2 (Advanced Features)
                                     <li>As a driver, I want the system to provide visual feedback so that I can always know the system's status while driving</li>
                                     <li>As a driver, I want the system to disengage automatically if certain conditions are met, so that I feel safe in emergency situations.</li>
                                 </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 5: Các mô hình phát triển phần mềm</div>
-                            <div class="card-body">
+
+
+
+                            <p><strong>Câu 5: Các mô hình phát triển phần mềm</strong></p>
+
                                 <h5>Predictive Models:</h5>
                                 <ul>
                                     <li><strong>Waterfall Model:</strong> This is a step-by-step approach where each phase (planning, design, development, etc.) must be completed before moving to the next. It works best when the project's requirements are clear and unlikely to change.</li>
                                     <li><strong>V-Model:</strong> This model is like the Waterfall, but it focuses more on testing. Testing happens at each stage of development, so the product is checked for issues right away.</li>
                                 </ul>
-                                
+
                                 <h5>Adaptive Models:</h5>
                                 <ul>
                                     <li><strong>Agile Model:</strong> This approach is flexible and allows changes during development based on feedback. The team works in short cycles, called iterations, to deliver small parts of the project.</li>
                                     <li><strong>Scrum:</strong> Scrum is a specific way of applying Agile. The team works in sprints (short periods, usually 2-4 weeks) to complete small tasks, and the customer gives feedback at the end of each sprint.</li>
                                     <li><strong>Lean Software Development:</strong> This model focuses on delivering value to the customer by cutting out waste and making small, regular improvements to the product. It aims to work faster and more efficiently.</li>
                                 </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Câu 6: Phân tích và phân chia User Stories</div>
-                            <div class="card-body">
+
+
+
+                            <p><strong>Câu 6: Phân tích và phân chia User Stories</strong></p>
+
                                 <h5>A. Activities and User Tasks</h5>
                                 <ol>
                                     <li>Set Speed
@@ -2693,7 +2629,7 @@ Release 2 (Advanced Features)
                                         </ol>
                                     </li>
                                 </ol>
-                                
+
                                 <h5>Release 1</h5>
                                 <ul>
                                     <li><strong>1.1.1</strong> As a driver, I want to set a speed between 30-120 km/h so that I can maintain a safe and steady speed.</li>
@@ -2702,7 +2638,7 @@ Release 2 (Advanced Features)
                                     <li><strong>2.2.1</strong> User Story: As a driver, I want to set a preferred following distance so that the system can automatically adjust speed to maintain it.</li>
                                     <li><strong>3.1.1</strong> User Story: As a driver, I want to be able to cancel cruise control at any time using the brake pedal or a dedicated button so that I can take full control of the car immediately.</li>
                                 </ul>
-                                
+
                                 <h5>Release 2</h5>
                                 <ul>
                                     <li><strong>1.1.2</strong> User Story: As a driver, I want the system to show my current set speed so that I can monitor it easily.</li>
@@ -2710,30 +2646,25 @@ Release 2 (Advanced Features)
                                     <li><strong>2.1.2</strong> User Story: As a driver, I want to be alerted when the system detects a vehicle in front.</li>
                                     <li><strong>3.2.1</strong> User Story: As a driver, I want the cruise control to disengage automatically if a malfunction is detected or the brake pedal is pressed, ensuring my safety in critical situations.</li>
                                 </ul>
-                                
+
                                 <h5>Release 3</h5>
                                 <ul>
                                     <li><strong>2.2.2</strong> User Story: As a driver, I want to be able to adjust the following distance at any time using the interface.</li>
                                     <li><strong>3.1.2</strong> User Story: As a driver, I want to receive a visual notification when cruise control is canceled manually.</li>
                                     <li><strong>3.2.2</strong> User Story: As a driver, I want to be notified if cruise control is disengaged due to a malfunction or system issue.</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="fe-guide" class="mb-5 lesson-section animate__animated fade-in">
-            <h2 class="text-center mb-4">Hướng dẫn làm bài thi FE SWE201c</h2>
 
-            <div class="exam-guide card mb-4">
-                <div class="card-header bg-primary text-white">
+
+
+
+            <h2 id="fe-guide">Hướng dẫn làm bài thi FE SWE201c</h2>
+
+
                     <h3>Từ vựng quan trọng</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+
+
+
                             <h4>Thuật ngữ cơ bản</h4>
                             <ul>
                                 <li><strong>Cohesion:</strong> Tính gắn kết</li>
@@ -2747,8 +2678,7 @@ Release 2 (Advanced Features)
                                 <li><strong>Capacity:</strong> Công suất</li>
                                 <li><strong>Truncated:</strong> Rút ngắn</li>
                             </ul>
-                        </div>
-                        <div class="col-md-6">
+
                             <h4>Thuật ngữ nâng cao</h4>
                             <ul>
                                 <li><strong>Agile mindset:</strong> Tư duy nhanh nhẹn</li>
@@ -2762,57 +2692,46 @@ Release 2 (Advanced Features)
                                 <li><strong>Estimate:</strong> Ước lượng</li>
                                 <li><strong>Refactoring:</strong> Cải tiến thiết kế</li>
                             </ul>
-                        </div>
-                    </div>
 
-                    <div class="theory-summary mt-4">
+
                         <h4>Tổng hợp lý thuyết quan trọng</h4>
-                        
-                        <div class="card mb-3">
-                            <div class="card-header">Agile & Scrum</div>
-                            <div class="card-body">
+
+                            <p><strong>Agile & Scrum</strong></p>
+
                                 <ul>
                                     <li><strong>Agile:</strong> Phương pháp quản lý dự án linh hoạt</li>
                                     <li><strong>Velocity:</strong> Thước đo lượng công việc hoàn thành trong sprint</li>
                                     <li><strong>Scrum Events:</strong> Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective</li>
                                     <li><strong>Scrum Artifacts:</strong> Product Backlog, Sprint Backlog, Increment</li>
                                 </ul>
-                            </div>
-                        </div>
 
-                        <div class="card mb-3">
-                            <div class="card-header">Kiểm thử & Bảo mật</div>
-                            <div class="card-body">
+
+                            <p><strong>Kiểm thử & Bảo mật</strong></p>
+
                                 <ul>
                                     <li><strong>Black Box Testing:</strong> Kiểm tra chức năng không quan tâm cấu trúc bên trong</li>
                                     <li><strong>White Box Testing:</strong> Kiểm tra cấu trúc và luồng xử lý mã nguồn</li>
                                     <li><strong>CIA Triad:</strong> Confidentiality (Bảo mật), Integrity (Toàn vẹn), Availability (Khả dụng)</li>
                                 </ul>
-                            </div>
-                        </div>
 
-                        <div class="card mb-3">
-                            <div class="card-header">Nguyên lý SOLID & Design Patterns</div>
-                            <div class="card-body">
+
+                            <p><strong>Nguyên lý SOLID & Design Patterns</strong></p>
+
                                 <ul>
                                     <li><strong>OCP:</strong> Open for extension, closed for modification</li>
                                     <li><strong>DIP:</strong> High-level modules shouldn't depend on low-level modules</li>
                                     <li><strong>Observer Pattern:</strong> Quản lý quan hệ phụ thuộc một-nhiều</li>
                                     <li><strong>Strategy Pattern:</strong> Đóng gói thuật toán có thể thay thế</li>
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="exam-guide card mb-4">
-                <div class="card-header bg-primary text-white">
+
+
+
+
                     <h3>Từ vựng bổ sung</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+
+
+
                             <h4>Thuật ngữ thêm</h4>
                             <ul>
                                 <li><strong>Utilize:</strong> Sử dụng</li>
@@ -2827,60 +2746,106 @@ Release 2 (Advanced Features)
                                 <li><strong>Arise:</strong> Phát sinh</li>
                                 <li><strong>Explicitly:</strong> Rõ ràng</li>
                             </ul>
-                        </div>
-                        
-                        <div class="col-md-6">
+
+
                             <h4>Lý thuyết bổ sung</h4>
-                            <div class="card mb-3">
-                                <div class="card-header">Các loại lỗi</div>
-                                <div class="card-body">
+
+                                <p><strong>Các loại lỗi</strong></p>
+
                                     <ul>
                                         <li><strong>Fault/Bug:</strong> Lỗi trong mã nguồn</li>
                                         <li><strong>Latent Error:</strong> Lỗi tồn tại chưa kích hoạt</li>
                                         <li><strong>Effective Error:</strong> Lỗi đã kích hoạt</li>
                                         <li><strong>Failure:</strong> Hành vi sai lệch quan sát được</li>
                                     </ul>
-                                </div>
-                            </div>
 
-                            <div class="card mb-3">
-                                <div class="card-header">Agile Manifesto</div>
-                                <div class="card-body">
+
+                                <p><strong>Agile Manifesto</strong></p>
+
                                     <ul>
                                         <li>Individuals and interactions > processes and tools</li>
                                         <li>Working software > comprehensive documentation</li>
                                         <li>Customer collaboration > contract negotiation</li>
                                         <li>Responding to change > following a plan</li>
                                     </ul>
-                                </div>
-                            </div>
 
-                            <div class="card">
-                                <div class="card-header">Prototyping Methods</div>
-                                <div class="card-body">
+
+                                <p><strong>Prototyping Methods</strong></p>
+
                                     <ul>
                                         <li><strong>Throwaway:</strong> Tạo mẫu nhanh để khám phá yêu cầu</li>
                                         <li><strong>Exploratory:</strong> Xây dựng để thử nghiệm công nghệ mới</li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5 animate__animated animate__fadeIn animate__delay-2s">
-        <p>&copy; 2024 Min Thep. All rights reserved.</p>
-    </footer>
+      <p><a href="myblog.html">← Quay lại danh sách bài viết</a></p>
+    </article>
 
-    <button id="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    <aside class="b-rail" data-rail aria-label="Ghi chú bên lề">
+      <div class="b-note">
+        <p class="b-note__title">Sáu phần chính</p>
+        <ul role="list">
+          <li><a href="#phuongphap">1 — 9 mô hình phát triển</a></li>
+          <li><a href="#luachon">2 — Chọn mô hình nào</a></li>
+          <li><a href="#kiemthu">3 — Các loại kiểm thử</a></li>
+          <li><a href="#yeucau">4 — Yêu cầu FR và NFR</a></li>
+          <li><a href="#pe-guide">5 — Làm bài PE</a></li>
+          <li><a href="#fe-guide">6 — Làm bài FE</a></li>
+        </ul>
+      </div>
+      <div class="b-note">
+        <p class="b-note__title">Đi thẳng vào đề</p>
+        <p>Nếu bạn thi PE trong tuần này thì đọc thẳng phần <a href="#pe-guide">Hướng dẫn làm bài thi PE</a> — mỗi câu đều có thang điểm và một mẫu trả lời bấm-để-chép.</p>
+      </div>
+      <div class="b-note">
+        <p class="b-note__title">Học tiếp</p>
+        <ul role="list">
+          <li><a href="textblog-4.html">Bảng giá khóa học</a></li>
+          <li><a href="textblog-6.html">Tiếng Hàn cơ bản</a></li>
+        </ul>
+      </div>
+      <div class="b-note">
+        <p class="b-note__title">Giấy phép sử dụng</p>
+        <p>Tài liệu miễn phí, không dùng cho mục đích thương mại hay giảng dạy có thu phí. Phát hiện sai sót thì <a href="https://github.com/thepKz/minthep-portfolio/issues/new?title=Content%20correction" target="_blank" rel="noopener noreferrer">mở một issue trên GitHub</a>.</p>
+      </div>
+    </aside>
+  </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="textblog-5/textblog-5.js"></script>
+  <nav class="b-twins" aria-label="Bài trước và bài sau">
+    <a class="b-twins__item" data-dir="prev" href="textblog-4.html">
+      <span class="b-twins__kicker">Bài trước</span>
+      <span class="b-twins__title">Bảng giá khóa học — CSD201, PRJ301, MAS291</span>
+    </a>
+    <a class="b-twins__item" data-dir="next" href="textblog-6.html">
+      <span class="b-twins__kicker">Bài sau</span>
+      <span class="b-twins__title">Tiếng Hàn cơ bản — Hangul, âm tiết và Patchim</span>
+    </a>
+  </nav>
+
+  <footer data-footer>
+    <p data-footer-mark aria-hidden="true">MINTHEP</p>
+    <div data-footer-grid>
+      <nav aria-label="Liên kết chân trang">
+        <ul role="list">
+          <li><a href="../index.html">Trang chủ</a></li>
+          <li><a href="myblog.html">Blog</a></li>
+          <li><a href="../index.html#projects">Dự án</a></li>
+          <li><a href="../index.html#about">Giới thiệu</a></li>
+        </ul>
+      </nav>
+      <ul data-social role="list">
+        <li><a href="https://github.com/thepKz" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg data-icon="github" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#github"></use></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/thepmaitan26" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg data-icon="linkedin" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#linkedin"></use></svg></a></li>
+        <li><a href="https://www.youtube.com/@minthep2611" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg data-icon="youtube" aria-hidden="true" focusable="false"><use href="../img/sprite.svg#youtube"></use></svg></a></li>
+      </ul>
+      <p data-colophon>© 2026 Min Thep · Static HTML · GitHub Pages · Hà Nội</p>
+    </div>
+  </footer>
+
+  <!-- surface-b.js imports core.js and calls boot() itself. -->
+  <script type="module" src="../js/surface-b.js"></script>
 </body>
 
 </html>

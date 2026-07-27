@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Minthep">
+<title>Minthep</title>
+<style>
+  /* Presentation attributes below are the dark-UI default and the only thing
+     non-CSS renderers (ImageMagick, some feed readers) will see.
+     On light browser chrome the tile drops one accent step so its edge stays
+     readable against white. */
+  @media (prefers-color-scheme: light) { .tile { fill: #B23947 } }
+</style>
+<rect class="tile" width="32" height="32" rx="7" fill="#D94F5C"/>
+<path fill="#040C18" d="M5.6 26V6h4.6l5.8 7.4L21.8 6h4.6v20h-4.9V14.2L16 21.2l-5.5-7V26z"/>
+</svg>

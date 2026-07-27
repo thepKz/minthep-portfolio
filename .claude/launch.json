@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "static", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "8099"], "port": 8099 },
+
+    // Same static server, but on whatever port is free. `python3 -m http.server`
+    // takes its port from argv and ignores $PORT, so this goes through `sh -c`
+    // to expand it. Use this one when 8099 is already taken by another session.
+    { "name": "static-auto", "runtimeExecutable": "sh", "runtimeArgs": ["-c", "python3 -m http.server ${PORT:-8100}"], "port": 8100, "autoPort": true }
+  ]
+}

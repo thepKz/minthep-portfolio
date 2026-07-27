@@ -1,0 +1,1170 @@
+/* surface-c.css — Jang Wonyoung page (/wy/). Load after tokens/base/components.
+   Comments are terse on purpose: this file ships to the browser uncompiled and
+   the surface has a 20 KB gz CSS budget. Full teardown numbers live in
+   scratchpad/reports/audit-wy-perf.md.
+
+   Why every rule here looks the way it does: the old page (wy.html + 4 iframes)
+   burned 240 style recalcs/s, 120 layouts/s and 27.7% CPU sitting completely
+   idle at scrollY=0. A/B isolation: pausing the SVG stroke animation took
+   layouts 120 -> 0; pausing carouselSlide took recalcs 240 -> 120; deleting the
+   iframes took CPU 27.7% -> 3.3%.
+
+   Target: 6 s idle at scrollY=0 -> LayoutCount delta 0, RecalcStyle delta < 60,
+   CPU < 4%. Full-page scroll -> zero layout bars.
+
+   HOUSE RULES (CI check G in tools/check-routes.mjs enforces 1-3)
+   1 no raw hex   2 no raw px   3 no bare z-index — tokens only.
+     The one non-token colour is rgb(0 0 0 / a) inside mask-image, which is an
+     alpha ramp, not a colour: a mask never paints a pixel.
+   4 motion = transform / opacity / clip-path / mask only. Nothing animates
+     width, height, margin, border-radius, stroke-width, % stroke-dasharray,
+     filter or backdrop-filter.
+   5 every infinite animation carries [data-anim] and starts paused. The
+     `animation` SHORTHAND resets animation-play-state, so animated rules here
+     use LONGHANDS only.
+   6 --pearl-600..300 are this surface's own accent ramp.
+
+   ---------------------------------------------------------------------------
+   MARKUP CONTRACT FOR wy/wy.html — build to this.
+
+   <body class="sc-page"> <header data-nav> <main id="main">
+
+   S1 ENTRY   .sc-stage.sc-entry            (above the fold — NO data-cv)
+     .sc-entry__viewport > .sc-entry__cols > .sc-col x4 > figure.sc-tile.sc-frame > img
+                        > .sc-entry__veil
+                        > .sc-entry__panel  > [data-eyebrow] h1.sc-wordmark .sc-dek
+   S2 GALLERY .sc-stage.sc-stage--pad#gallery[data-cv=section]
+     ul.sc-gallery > li.sc-slat > button.sc-slat__btn[data-lightbox-open]
+       [data-full][data-caption][aria-haspopup=dialog]
+       > span.sc-slat__frame.sc-frame > img          (x13)
+   S3 CAROUSEL .sc-stage.sc-stage--pad#carousel[data-cv=section]
+     .sc-carousel[style="--sc-car-count:11"] > .sc-carousel__stage
+       > .sc-carousel__dir[data-anim][data-anim-local]
+         > ul.sc-carousel__ring[data-anim][data-anim-local]
+           > li.sc-carousel__item[style="--sc-i:N;--sc-img:url(…)"]
+               > button.sc-carousel__face[data-lightbox-open]   (x11)
+           > li.sc-carousel__ground[aria-hidden]
+     > .sc-carousel__controls > button.sc-carousel__toggle[data-carousel-toggle]
+         [aria-pressed] > span.sc-carousel__toggle-on / -off
+       + span.sc-carousel__dirgroup[role=radiogroup]
+           > label.sc-carousel__radio > input[type=radio][name=sc-dir][aria-label]
+   S4 DOOR    .sc-stage.sc-door#door        !! PINNED — NEVER data-cv
+     .sc-door__wrap > .sc-door__hero[style="--sc-img:url(…)"]
+                    > .sc-door__port > img.sc-door__gate
+   S5 BRANDS  ol.sc-ledger > li.sc-ledger__row > .sc-ledger__name/__role/__year
+   S6 QUOTE   .sc-stage.sc-quote > blockquote.sc-quote__text (+ .sc-quote__cite)
+   S8 CREDITS .sc-credits > .sc-credits__body + dl.sc-credits__ledger
+
+   </main>
+   S7 LIGHTBOX — direct child of <body>, outside <main>:
+     dialog.sc-lightbox[data-lightbox][aria-label]
+       > figure.sc-lightbox__figure > img.sc-lightbox__img[data-lightbox-img]
+                                    + figcaption.sc-lightbox__cap[data-lightbox-cap]
+       > button.sc-lightbox__close[data-lightbox-close][aria-label]
+       > button.sc-lightbox__nav--prev[data-lightbox-prev] / --next[data-lightbox-next]
+   <footer data-footer> <script type="module" src="../js/surface-c.js">
+
+   Every img: explicit width/height (1440x1800 originals), Vietnamese alt,
+   loading="lazy" decoding="async" below the fold, never lazy on the LCP image.
+   Every .sc-frame carries style="--sc-lqip:url('…w_32,e_blur:800/…')".
+
+   ---------------------------------------------------------------------------
+   CLOUDINARY (Override 2 — the images STAY, they get fast)
+   Today all 51 are full-res 1440x1800 with ZERO transforms. Insert the
+   transform segment straight after /upload/ :
+     https://res.cloudinary.com/dacbvhtgz/image/upload/f_auto,q_auto,w_400/<v>/<id>.jpg
+   entry tiles w_400+w_800 sizes="25vw" · gallery w_400+w_800 · carousel w_450
+   door hero w_1600 fetchpriority=high NOT lazy · lightbox w_1600 (data-full)
+   LQIP f_auto,q_auto,w_32,e_blur:800 = 442 bytes, measured.
+
+   ---------------------------------------------------------------------------
+   JS CONTRACT
+   core.js: [data-reveal].is-in · animationPlayState on
+            [data-anim]:not([data-anim-local]) · .sc-frame.is-loaded
+   surface-c.js: animationPlayState on [data-anim-local] (ANDed with the user's
+            play/pause, so there is exactly ONE writer per element) ·
+            --sc-panel-r scrub · .sc-lightbox[open] · html.sc-modal-open ·
+            .is-morphing · .sc-carousel.is-paused
+   ========================================================================== */
+
+
+/* --- 0. surface-local properties (implementation detail, not tokens) ------ */
+
+.sc-page {
+  /* S1 entry */
+  --sc-entry-scroll: 180dvh;
+  --sc-tile-gap: 0.5rem;
+  --sc-tile-ratio: 4 / 5;
+  --sc-veil-stop: 42%;
+  --sc-panel-blur: 0.875rem;     /* STATIC. Never transitioned. */
+  --sc-panel-reveal: 78%;
+  /* S2 gallery */
+  --sc-slat-row: clamp(13rem, 25vw, 25rem);
+  --sc-slat-row-sm: clamp(9rem, 34vw, 15rem);
+  --sc-slat-x: 1;                /* scaleX driver; the img takes 1/this */
+  --sc-slat-x-hot: 1.075;
+  --sc-slat-scrim: 0.5;
+  /* S3 carousel */
+  --sc-car-count: 11;
+  --sc-car-diameter: 50rem;
+  --sc-car-item-w: 13.5rem;
+  --sc-car-item-h: 19.5rem;
+  --sc-car-perspective: 62.5rem; /* was 1000px */
+  --sc-car-spin: 25s;
+  --sc-car-lift: 1.075;
+  --sc-car-glow: 5rem;
+  --sc-car-reflect-h: 62%;
+  /* S4 door */
+  --sc-door-perspective: 31.25rem;
+  /* S7 lightbox */
+  --sc-lb-max-w: min(92vw, 62rem);
+  --sc-lb-max-h: 86dvh;
+  --sc-lb-ctrl: 2.75rem;
+  /* misc */
+  --sc-tap: 2.75rem;             /* WCAG 2.5.8 target floor */
+  --sc-rule: color-mix(in oklab, var(--pearl-600) 34%, transparent);
+}
+
+
+/* --- 1. page shell --------------------------------------------------------
+   FIX 11 — the old wy.css:21-30 set `transition: all .75s ease-in-out` on BOTH
+   html and body (confirmed live via getComputedStyle), spinning a 750 ms
+   transition over every animatable property on the two largest elements in the
+   document and fighting ScrollTrigger's scrub. Stated dead here.
+   FIX 8 — four iframes gone means one scroller and one scroll position; the
+   928 px trapped inside header.html and 1266 px inside Door.html on a 390x844
+   phone disappear by construction. Nothing below creates a nested scroller. */
+
+.sc-page {
+  background-color: var(--ink-1000);
+  color: var(--ink-150);
+  font-family: var(--font-body);
+  line-height: var(--lh-body);
+  transition: none;
+  overflow-x: clip;
+}
+
+/* ScrollTrigger's scrub and CSS smooth scrolling are two controllers fighting
+   over one scroll position. The page owns it; CSS does not. */
+.sc-page,
+html:has(.sc-page) { scroll-behavior: auto; }
+
+html.sc-modal-open { overflow: hidden; }
+
+
+/* --- 2. stage scaffolding -------------------------------------------------
+   FIX 9 — content-visibility per stage, applied by components.css via
+   [data-cv="section"] (which always pairs contain-intrinsic-size).
+   NEVER on a pinned element: a height change while it is skipped invalidates
+   the pin's measurements. The guard makes that bug unshippable. */
+
+.sc-stage {
+  position: relative;
+  inline-size: 100%;
+  margin-inline: auto;
+}
+
+.sc-stage--pad {
+  max-inline-size: var(--w-wide);
+  padding-block: var(--space-section);
+  padding-inline: var(--space-gutter);
+}
+
+.sc-door[data-cv],
+.sc-door [data-cv] {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
+}
+
+.sc-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-display);      /* 0.94 floor — 0.86 clips Ế Ộ Ữ */
+  letter-spacing: var(--ls-display);
+  color: var(--ink-50);
+  text-transform: uppercase;
+  margin-block-end: var(--s-7);
+
+  /* Room for stacked Vietnamese marks. 0.08em was a guess and is ~5x too small.
+     Measured on Anton with canvas actualBoundingBoxAscent: "CẢNH CỬA" inks to
+     1.22em, while the 0.94 line box is only 0.94em tall — so the Ả/Ở/Ữ marks
+     escape 0.41em ABOVE the box and land on the eyebrow above it, which sits at
+     a 0px gap. Raising --lh-display instead would need ~1.25 and would wreck the
+     tight setting for the plain-caps headings, so the headroom is reserved on
+     the block-start edge only. The descender is 0.02em, so the end edge stays. */
+  padding-block-start: 0.49em;
+  padding-block-end: 0.08em;
+}
+
+.sc-lede {
+  max-inline-size: var(--w-read-max);
+  color: var(--ink-300);
+  font-size: var(--fs-body-lg);
+}
+
+
+/* --- 3. frame + LQIP (shared) ---------------------------------------------
+   The 442-byte w_32,e_blur:800 variant paints as the wrapper background.
+   core.js initLazyFrames('.sc-frame') adds .is-loaded on load OR error — fail
+   open, never a permanent blur. The fade is a one-shot CSS animation with
+   fill-mode:both rather than a .js-gated opacity swap, so an image still
+   appears if the module never runs. */
+
+.sc-frame {
+  position: relative;
+  display: block;
+  overflow: clip;
+  background-color: var(--ink-900);
+  background-image: var(--sc-lqip, none);
+  background-size: cover;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+  border-radius: var(--r-xs);
+}
+
+.sc-frame > img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.sc-frame.is-loaded { background-image: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .sc-frame > img {
+    animation-name: sc-fade-in;
+    animation-duration: var(--dur-4);
+    animation-timing-function: var(--ease-out-quiet);
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes sc-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+
+/* --- 4. STAGE 1 · ENTRY ---------------------------------------------------
+   Old: a 45-degree-rotated 5x7 grid of 35 img in an iframe, pinned, scrubbing
+   `width` on 35 flex children. Measured over 180 scrolled frames: LayoutCount
+   178, p99 frame 123.3 ms, max 158.4 ms. Same library/scroller/machine, the
+   Door timeline animating only scale/z: LayoutCount 0, p99 10.3 ms.
+   New: four columns translated on Y by ONE gsap.quickSetter each, from ONE
+   cached scrollY in ONE gsap.ticker callback that early-returns when scrollY
+   is unchanged. Nothing to lay out. position:sticky does the pinning — no
+   ScrollTrigger pin, no pin-spacer, no transformed ancestor. */
+
+.sc-entry {
+  min-block-size: var(--sc-entry-scroll);
+  background-color: var(--ink-1000);
+}
+
+.sc-entry__viewport {
+  position: sticky;
+  inset-block-start: 0;
+  block-size: 100dvh;
+  overflow: clip;
+  display: grid;
+  isolation: isolate;
+}
+
+.sc-entry__cols {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sc-tile-gap);
+  align-items: start;
+  pointer-events: none;
+}
+
+.sc-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-tile-gap);
+  will-change: transform;              /* the only 4 promoted layers at rest */
+  transform: translate3d(0, 0, 0);
+}
+
+/* Static head-room so a column translating down never reveals the mosaic's top
+   edge. Set once, never animated. */
+.sc-col:nth-child(1) { margin-block-start: -6%; }
+.sc-col:nth-child(2) { margin-block-start: -22%; }
+.sc-col:nth-child(3) { margin-block-start: -2%; }
+.sc-col:nth-child(4) { margin-block-start: -16%; }
+
+.sc-tile {
+  flex: 0 0 auto;
+  aspect-ratio: var(--sc-tile-ratio);
+  inline-size: 100%;
+  margin: 0;
+}
+
+/* One paint, not a filter. */
+.sc-entry__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom,
+    color-mix(in oklab, var(--ink-1000) 74%, transparent) 0%,
+    color-mix(in oklab, var(--ink-1000) 18%, transparent) 28%,
+    color-mix(in oklab, var(--ink-1000) 62%, transparent) var(--sc-veil-stop),
+    var(--ink-1000) 100%);
+}
+
+/* FIX 7 — backdrop-filter + animated border-radius is gone.
+   Old: styleheader.css:108-113 gave .content backdrop-filter:blur(10px) plus
+   border-radius:100%, and main.js:30 scrubbed the radius 100% -> 0% every tick
+   — the compositor re-sampled AND re-blurred the whole backdrop every frame.
+   (The `will-change: border-radius transform` meant to mitigate it was invalid
+   syntax and confirmed dropped by the parser.)
+   New: the blur is STATIC, the reveal is clip-path circle(), which composites.
+   The radius never changes. backdrop-filter still re-samples when the backdrop
+   moves — and here it is four parallaxing columns — so it is restricted to
+   fine pointers. Everyone else gets an opaque plate: visually near-identical
+   over the veil, and free. */
+
+.sc-entry__panel {
+  position: relative;
+  place-self: center;
+  z-index: var(--z-raised);
+  max-inline-size: min(92vw, var(--w-content));
+  padding: var(--s-8) var(--s-6);
+  text-align: center;
+  border-radius: var(--r-md);
+  background-color: color-mix(in oklab, var(--ink-1000) 46%, transparent);
+  clip-path: circle(var(--sc-panel-reveal) at 50% 50%);
+}
+
+@media (pointer: fine) {
+  @supports (backdrop-filter: blur(1rem)) {
+    .sc-entry__panel {
+      backdrop-filter: blur(var(--sc-panel-blur));
+      background-color: color-mix(in oklab, var(--ink-1000) 28%, transparent);
+    }
+  }
+}
+
+/* JS scrubs --sc-panel-r 0% -> 78%. The property is consumed only inside
+   clip-path, so a write costs one element's recalc and zero layout. The
+   fallback is the FULL reveal, so nothing is ever hidden by static CSS. */
+.js .sc-entry__panel {
+  clip-path: circle(var(--sc-panel-r, var(--sc-panel-reveal)) at 50% 50%);
+}
+
+/* Wordmark, two variants; the page picks one.
+   (a) .sc-wordmark — default. Real text, Anton, mix-blend-mode:difference. One
+       element, zero animation, and it is the h1 so it is also the LCP
+       candidate and the accessible name of the page.
+   (b) .sc-wordmark--outline + .sc-wordmark__svg — the FIXED stroke draw. */
+
+.sc-wordmark {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-2xl);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+  color: var(--ink-50);
+  margin: 0;
+
+  /* Same stacked-diacritic headroom as .sc-h2, but this one is set at
+     --fs-display-2xl (168px at 1440w), so the overflow is 76px of raw ink:
+     "CẢNH MỞ ĐẦU" measures 205px of ascent inside a 158px line box. At 0.08em
+     the Ả hook and Ở horn were painting straight through the eyebrow above. */
+  padding-block-start: 0.54em;
+  padding-block-end: 0.08em;
+
+  mix-blend-mode: difference;
+}
+
+.sc-dek {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--fs-article-lead);
+  line-height: var(--lh-snug);
+  color: var(--pearl-400);
+  max-inline-size: 34ch;
+  margin-inline: auto;
+  margin-block-start: var(--s-5);
+}
+
+/* FIX 4 — the SVG stroke animation, solely responsible for all 120 layouts/sec
+   at idle (pausing it took layout/s 120 -> 0; deleting the svg gave the same).
+   What was wrong with wy.css:225-246:
+     · selector was bare `svg text` — UNSCOPED, hit every SVG on the page;
+     · animated `stroke-width`, a GEOMETRY property -> forced layout per frame;
+     · animated `stroke-dasharray: 0 50%` — a % dasharray needs a resolved path
+       length -> a second forced measurement per frame;
+     · `6s infinite alternate` — it never stopped;
+     · @keyframes stroke was defined TWICE (wy.css:195-222 and 235-246);
+     · `svg { height: 100% }` on an auto-height parent collapsed the box to
+       150 px against 108 px of text, clipping the wordmark;
+     · the intended face (Hina Mincho) never loaded — its @import sat after
+       style rules and was discarded per spec.
+   Fixed: scoped, ABSOLUTE dasharray, fixed stroke-width, one-shot `forwards`,
+   longhands so the paused-by-default gate survives. stroke-dashoffset is the
+   only animated property and it does not affect geometry. */
+
+.sc-wordmark--outline { mix-blend-mode: normal; padding-block: 0; }
+
+.sc-wordmark__svg {
+  display: block;
+  inline-size: min(92vw, var(--w-content));
+  block-size: auto;                 /* NOT 100% — that is what collapsed it */
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.sc-wordmark__svg text {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-xl);
+  letter-spacing: var(--ls-display);
+  fill: transparent;
+  stroke: var(--pearl-300);
+  stroke-width: var(--bw-rule);     /* FIXED. Never animated. */
+  paint-order: stroke fill;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sc-wordmark__svg text[data-anim] {
+    stroke-dasharray: 1200;         /* absolute: no path length to resolve */
+    stroke-dashoffset: 1200;
+    animation-name: sc-draw;
+    animation-duration: var(--dur-7);
+    animation-timing-function: var(--ease-luxe);
+    animation-iteration-count: 1;   /* NOT infinite, NOT alternate */
+    animation-fill-mode: forwards;
+    /* play-state stays `paused` from components.css; the IO releases it once */
+  }
+}
+
+@keyframes sc-draw { to { stroke-dashoffset: 0; fill: var(--pearl-300); } }
+
+
+/* --- 5. STAGE 2 · SLAT GALLERY -------------------------------------------
+   FIX 6 + the mobile bug. Old home.html laid 13 slats out as
+   `width: calc(var(--idx) * 3)` with the unit = calc(1vw + 1vh). Measured on a
+   390x844 phone the strip is 558 px wide inside a 390 px viewport under
+   body{overflow:hidden}: FOUR OF THE THIRTEEN IMAGES could never be seen or
+   reached, on every phone, ever. It also transitioned width, height, margin
+   AND filter on hover — a full relayout of the row every frame for 1.25 s plus
+   a 3 s re-raster of 13 promoted layers — behind :hover only (nonexistent on
+   touch), backed by nine 4-deep sibling chains and four
+   `:has(+ * + * + * + :hover)` rules, the canonical style-invalidation hazard.
+   New: an fr grid, which cannot overflow its container, so the 558-in-390 bug
+   is impossible by construction. Emphasis is scaleX on the frame with the
+   exact inverse scaleX on the child img — with overflow:clip + object-fit:cover
+   that is visually identical to a width animation and runs on the compositor.
+   NEVER width. `:has(… :hover)` appears zero times below. */
+
+.sc-gallery {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-auto-rows: var(--sc-slat-row);
+  gap: var(--sc-tile-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 5-item cycle summing to 16 = exactly two full rows, so 13 items land with no
+   ragged tail and no dense-packing pass. */
+.sc-slat                   { grid-column: span 3; }
+.sc-slat:nth-child(5n + 2) { grid-column: span 2; }
+.sc-slat:nth-child(5n + 4) { grid-column: span 4; }
+.sc-slat:nth-child(5n)     { grid-column: span 4; }
+
+.sc-slat { position: relative; margin: 0; }
+
+.sc-slat__btn {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.sc-slat__frame {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: clip;                    /* half of the inverse-scale trick */
+  transform: scaleX(var(--sc-slat-x));
+  transform-origin: 50% 50%;
+  transition: transform var(--dur-4) var(--ease-out-quiet);
+}
+
+.sc-slat__frame > img {
+  transform: scaleX(calc(1 / var(--sc-slat-x)));   /* the other half */
+  transform-origin: 50% 50%;
+  transition: transform var(--dur-4) var(--ease-out-quiet);
+}
+
+/* Replaces `filter: grayscale(1) brightness(.5)` and its 3 s filter
+   transition. Opacity on a solid layer is free; a filter transition
+   re-rasterises a promoted layer every frame. */
+.sc-slat__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--ink-1000);
+  opacity: var(--sc-slat-scrim);
+  transition: opacity var(--dur-4) var(--ease-out-quiet);
+  pointer-events: none;
+}
+
+/* Hover AND focus-visible, so the keyboard path equals the mouse path. The old
+   page gave keyboards 13 anonymous tabindex="0" divs with no role, no label and
+   no key handler. These are real buttons. */
+.sc-slat__btn:hover .sc-slat__frame,
+.sc-slat__btn:focus-visible .sc-slat__frame,
+.sc-slat__btn:hover .sc-slat__frame > img,
+.sc-slat__btn:focus-visible .sc-slat__frame > img {
+  --sc-slat-x: var(--sc-slat-x-hot);
+}
+
+.sc-slat__btn:hover .sc-slat__frame::after,
+.sc-slat__btn:focus-visible .sc-slat__frame::after { opacity: 0; }
+
+.sc-slat:has(.sc-slat__btn:hover),
+.sc-slat:has(.sc-slat__btn:focus-visible) { z-index: var(--z-raised); }
+
+/* Touch has no hover state, so it gets the images at full strength instead of
+   a permanently dimmed page. */
+@media (pointer: coarse) {
+  .sc-page { --sc-slat-scrim: 0.16; }
+  .sc-slat__frame,
+  .sc-slat__frame > img { transition: none; }
+}
+
+@media (max-width: 48rem) {
+  .sc-gallery { grid-auto-rows: var(--sc-slat-row-sm); }
+  /* span 4 of 8 = exactly two per row at any width, forever. */
+  .sc-slat,
+  .sc-slat:nth-child(5n + 2),
+  .sc-slat:nth-child(5n + 4),
+  .sc-slat:nth-child(5n) { grid-column: span 4; }
+}
+
+
+/* --- 6. STAGE 3 · CAROUSEL ------------------------------------------------
+   Ported from iframe/lib.css. Kept the 3D ring; removed, in order of measured
+   cost:
+   FIX 5 · both rotations now carry [data-anim][data-anim-local] and start
+     paused. getAnimations() confirmed the originals live with
+     iterations:Infinity, no observer, no visibilitychange handler — 120 style
+     recalcs/sec forever, including in a background tab.
+   · lib.css:196 put `box-shadow: 0 0 5rem transparent` on all 11 items AT REST
+     — an 80 px blur radius allocated and rasterised while fully transparent,
+     on elements rotating in 3D. Now declared only on :hover / :focus-within.
+   · lib.css:223-245 gave 11 ::before reflections
+     `filter: blur(.25rem) grayscale(100%)` over 1440x1800 JPEGs inside
+     preserve-3d. ::before does not appear in querySelectorAll, so the real
+     filtered-layer count was 22, not 11. Replaced with mask-image: masks
+     composite, blurs re-rasterise.
+   · `perspective:1000px` on 24 brand items and `filter: grayscale(100%)` on
+     their img are gone with the brand carousel itself (see 8). Both defeat
+     compositor promotion and neither is reintroduced anywhere.
+   · `*:focus { outline: none }` (lib.css:45-47) is NOT ported.
+   · pause-on-:has(:hover) is NOT ported — its job is now a real, visible,
+     keyboard-reachable play/pause button (WCAG 2.2.2) that touch users can
+     also press. They previously had no way to stop the rotation at all. */
+
+.sc-carousel {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-6);
+}
+
+.sc-carousel__stage {
+  --sc-car-radius: calc(var(--sc-car-diameter) / 2);
+  position: relative;
+  inline-size: var(--sc-car-diameter);
+  block-size: var(--sc-car-diameter);
+  max-inline-size: 100%;
+  perspective: var(--sc-car-perspective);
+  perspective-origin: 50% 20%;
+}
+
+.sc-carousel__dir,
+.sc-carousel__ring { transform-style: preserve-3d; }
+
+.sc-carousel__dir {
+  --sc-car-z: calc(var(--sc-car-radius) * -1);
+  transform: translateZ(var(--sc-car-z));
+  animation-name: sc-ring-reverse;
+  animation-duration: calc(var(--sc-car-spin) / 2);
+  animation-direction: reverse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.sc-carousel__ring {
+  position: relative;
+  inline-size: inherit;
+  block-size: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation-name: sc-ring-normal;
+  animation-duration: var(--sc-car-spin);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Selecting a radio is a user gesture, so this :has() is evaluated on click,
+   not on every pointer move. There is no :has(:hover) on this surface. */
+.sc-carousel:not(:has(input[value='left']:checked)) .sc-carousel__dir {
+  animation-name: none;
+}
+
+@keyframes sc-ring-normal {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+@keyframes sc-ring-reverse {
+  from { transform: translateZ(var(--sc-car-z)) rotateY(0deg); }
+  to   { transform: translateZ(var(--sc-car-z)) rotateY(360deg); }
+}
+
+.sc-carousel__item {
+  --sc-car-rot: calc(360 / var(--sc-car-count) * var(--sc-i) * 1deg);
+  position: absolute;
+  inset-block-start: calc(var(--sc-car-radius) - var(--sc-car-item-h) / 2);
+  inset-inline-start: calc(var(--sc-car-radius) - var(--sc-car-item-w) / 2);
+  inline-size: var(--sc-car-item-w);
+  block-size: var(--sc-car-item-h);
+  transform: rotateY(var(--sc-car-rot)) translateZ(var(--sc-car-radius));
+  transform-style: preserve-3d;
+  /* named properties only — `transition: all` here was transitioning every
+     property on 11 elements continuously rotating in 3D */
+  transition: transform var(--dur-3) var(--ease-out-quiet),
+              box-shadow var(--dur-3) var(--ease-out-quiet);
+  /* NO box-shadow at rest. */
+}
+
+.sc-carousel__item:hover,
+.sc-carousel__item:focus-within {
+  transform: rotateY(var(--sc-car-rot))
+             translateZ(calc(var(--sc-car-radius) * var(--sc-car-lift)));
+  box-shadow: 0 0 var(--sc-car-glow)
+              color-mix(in oklab, var(--pearl-300) 42%, transparent);
+}
+
+.sc-carousel__face {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: var(--ink-850);
+  background-image: var(--sc-img);
+  background-repeat: no-repeat;
+  background-position: 50% 22%;
+  background-size: cover;
+  border-radius: var(--r-xs);
+  /* no filter — the old build ran grayscale(100%) on all 11 faces */
+}
+
+/* The reflection. rgb(0 0 0 / a) inside mask-image is an ALPHA RAMP, not a
+   colour: a mask never paints a pixel, it only says how much of what is
+   already there survives. This is the one non-token colour function in the
+   file, and it is deliberate. */
+.sc-carousel__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  block-size: var(--sc-car-reflect-h);
+  background-color: var(--ink-900);
+  background-image: var(--sc-img);
+  background-repeat: no-repeat;
+  background-position: 50% 22%;
+  background-size: cover;
+  transform-style: preserve-3d;
+  transform-origin: 50% 100%;
+  transform: rotateX(90deg) rotateZ(180deg) rotateY(180deg);
+  pointer-events: none;
+  opacity: 0.28;
+  -webkit-mask-image: linear-gradient(to top, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0) 88%);
+          mask-image: linear-gradient(to top, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0) 88%);
+}
+
+.sc-carousel__ground {
+  --sc-car-rot: 90deg;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: var(--sc-car-diameter);
+  block-size: var(--sc-car-diameter);
+  transform: rotateX(var(--sc-car-rot))
+             translateZ(calc(var(--sc-car-item-h) / -2));
+  border-radius: var(--r-pill);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--pearl-600) 30%, transparent) 15%, transparent 60%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* controls — WCAG 2.2.2: motion that starts automatically, lasts over five
+   seconds and runs beside other content needs a pause mechanism. */
+
+.sc-carousel__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+}
+
+.sc-carousel__toggle {
+  min-block-size: var(--sc-tap);
+  min-inline-size: var(--sc-tap);
+  padding: var(--s-2) var(--s-5);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-100);
+  background-color: var(--ink-850);
+  border: var(--bw-hair) solid var(--border-interactive);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-standard),
+              color var(--dur-2) var(--ease-standard);
+}
+
+.sc-carousel__toggle:hover,
+.sc-carousel__toggle:focus-visible {
+  background-color: var(--ink-750);
+  color: var(--ink-50);
+}
+
+/* one label per state; only one is ever in the accessibility tree */
+.sc-carousel__toggle .sc-carousel__toggle-off { display: none; }
+.sc-carousel__toggle[aria-pressed='true'] .sc-carousel__toggle-on { display: none; }
+.sc-carousel__toggle[aria-pressed='true'] .sc-carousel__toggle-off { display: inline; }
+
+.sc-carousel__dirgroup { display: inline-flex; gap: var(--s-2); }
+
+.sc-carousel__radio {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--sc-tap);
+  block-size: var(--sc-tap);
+  color: var(--ink-350);
+  cursor: pointer;
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+/* real, focusable, labelled inputs — they were previously opacity:0 with no
+   label and no aria-label at all */
+.sc-carousel__radio input {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sc-carousel__radio:hover,
+.sc-carousel__radio:has(input:checked) { color: var(--pearl-300); }
+
+.sc-carousel__radio:has(input:focus-visible) {
+  outline: var(--bw-rule) solid var(--focus);
+  outline-offset: 0.125rem;
+}
+
+@media (max-width: 48rem) {
+  .sc-carousel__stage {
+    --sc-car-diameter: 30rem;
+    --sc-car-item-w: 9rem;
+    --sc-car-item-h: 13rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .sc-carousel__stage {
+    --sc-car-diameter: 20rem;
+    --sc-car-item-w: 6.5rem;
+    --sc-car-item-h: 9.5rem;
+  }
+}
+
+
+/* --- 7. STAGE 4 · DOOR ----------------------------------------------------
+   The one timeline the old build got right: over the same 180 scrolled frames
+   as the header grid, animating only scale and z — LayoutCount 0, p99 10.3 ms,
+   max 10.5 ms, zero frames over 16.7 ms. Kept in kind.
+   Three things around it fixed:
+   · Door.html:6 loaded a render-blocking stylesheet from someone else's
+     CodePen pen. The handful of rules it actually supplied are inlined below.
+   · mainDoor.js:17 targeted `.to("img", …)` — every img in the document. The
+     class .sc-door__gate is explicit.
+   · mainDoor.js:1 was console.clear(), which wiped the shared DevTools console
+     from an iframe and erased the app.js:70 TypeError. Not ported. (FIX 1.)
+   PINNED — must never carry [data-cv]. Section 2 enforces it. */
+
+.sc-door {
+  position: relative;
+  inline-size: 100%;
+  background-color: var(--ink-1000);
+}
+
+.sc-door__wrap {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100dvh;
+  z-index: var(--z-base);
+  overflow: clip;
+}
+
+.sc-door__hero {
+  position: absolute;
+  inset: 0;
+  background-color: var(--ink-950);
+  background-image: var(--sc-img);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  /* the original used background-size:contain with `transition: background-size
+     .5s` — a paint-and-layout property whose transition re-decodes the image */
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.sc-door__port {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-raised);
+  perspective: var(--sc-door-perspective);
+  overflow: clip;
+}
+
+.sc-door__gate {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+
+/* --- 8. STAGE 5 · BRAND LEDGER -------------------------------------------
+   Replaces the 12-item .brand-carousel, which ran `carouselSlide 30s linear
+   infinite` ungated (120 style recalcs/sec forever), was defeated as a
+   compositor animation anyway by perspective on 24 children and grayscale on
+   their images, pulled its logos from logo.clearbit.com (RETIRED DEC 2024 — 12
+   guaranteed-failing requests), duplicated all 12 items in JS so a screen
+   reader heard the same four names twice, and hid those names at opacity:0
+   until :hover so touch and AT never saw them at all.
+   A ruled ledger has none of those problems and animates nothing. */
+
+.sc-ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-start: var(--bw-hair) solid var(--sc-rule);
+}
+
+.sc-ledger__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr) auto;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-5);
+  border-block-end: var(--bw-hair) solid var(--sc-rule);
+}
+
+.sc-ledger__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+  color: var(--ink-100);
+  transition: color var(--dur-2) var(--ease-standard);
+}
+
+.sc-ledger__row:hover .sc-ledger__name,
+.sc-ledger__row:focus-within .sc-ledger__name { color: var(--pearl-400); }
+
+.sc-ledger__role { color: var(--ink-300); font-size: var(--fs-body-sm); }
+
+.sc-ledger__year {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-350);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+}
+
+@media (max-width: 48rem) {
+  .sc-ledger__row { grid-template-columns: minmax(0, 1fr) auto; }
+  .sc-ledger__role { grid-column: 1 / -1; }
+}
+
+
+/* --- 9. STAGE 6 · QUOTE PLATE — the rest beat. No motion, nothing observed. */
+
+.sc-quote {
+  display: grid;
+  place-items: center;
+  min-block-size: 68dvh;
+  padding-block: var(--space-section-lg);
+  padding-inline: var(--space-gutter);
+  background-color: var(--ink-1000);
+}
+
+.sc-quote__text {
+  margin: 0;
+  max-inline-size: 24ch;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-display-md);
+  line-height: var(--lh-tight);
+  color: var(--pearl-300);
+  text-wrap: balance;
+}
+
+.sc-quote__text p { margin: 0; }
+
+.sc-quote__cite {
+  display: block;
+  margin-block-start: var(--s-6);
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--pearl-600);
+}
+
+
+/* --- 10. STAGE 7 · LIGHTBOX ----------------------------------------------
+   dialog.showModal() supplies a focus trap, Esc-to-close, an inert background
+   and focus restoration in the platform, with no JS to get wrong. The old page
+   had no lightbox at all — full-resolution 1440x1800 files were used as
+   70x351 thumbnails.
+   --ease-spring is this site's weighted spring and it appears here and nowhere
+   else, which is exactly why it stays memorable. */
+
+.sc-lightbox {
+  inline-size: min(100vw, var(--sc-lb-max-w));
+  max-inline-size: none;
+  max-block-size: none;
+  padding: var(--s-4);
+  border: 0;
+  border-radius: var(--r-lg);
+  background-color: var(--ink-850);
+  color: var(--ink-150);
+  box-shadow: var(--shadow-over), var(--edge-all);
+  overflow: visible;
+}
+
+.sc-lightbox::backdrop {
+  background-color: color-mix(in oklab, var(--ink-1000) 88%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sc-lightbox[open] {
+    animation-name: sc-lb-in;
+    animation-duration: var(--dur-4);
+    animation-timing-function: var(--ease-spring);
+    animation-fill-mode: both;
+  }
+
+  .sc-lightbox[open]::backdrop {
+    animation-name: sc-fade-in;
+    animation-duration: var(--dur-3);
+    animation-timing-function: var(--ease-out-quiet);
+    animation-fill-mode: both;
+  }
+}
+
+/* Under reduce the shell never moves; JS supplies a 0.2 s opacity fade. */
+@media (prefers-reduced-motion: reduce) {
+  .sc-lightbox[open] { animation: none; opacity: 1; transform: none; }
+}
+
+@keyframes sc-lb-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* set by JS while a Flip morph owns the element, so the entry keyframes never
+   fight the tween */
+.sc-lightbox.is-morphing { animation: none; }
+
+.sc-lightbox__figure { margin: 0; display: grid; gap: var(--s-3); }
+
+.sc-lightbox__img {
+  display: block;
+  inline-size: 100%;
+  max-block-size: var(--sc-lb-max-h);
+  block-size: auto;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  background-color: var(--ink-900);
+}
+
+.sc-lightbox__cap {
+  font-size: var(--fs-caption);
+  color: var(--ink-300);
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.sc-lightbox__close,
+.sc-lightbox__nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inline-size: var(--sc-lb-ctrl);
+  block-size: var(--sc-lb-ctrl);
+  min-inline-size: var(--sc-tap);
+  min-block-size: var(--sc-tap);
+  padding: 0;
+  font-size: var(--fs-h3);
+  line-height: 1;
+  color: var(--ink-100);
+  background-color: color-mix(in oklab, var(--ink-1000) 62%, transparent);
+  border: var(--bw-hair) solid var(--border-interactive);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-standard),
+              color var(--dur-2) var(--ease-standard);
+}
+
+.sc-lightbox__close:hover,
+.sc-lightbox__nav:hover,
+.sc-lightbox__close:focus-visible,
+.sc-lightbox__nav:focus-visible {
+  background-color: var(--ink-750);
+  color: var(--ink-50);
+}
+
+.sc-lightbox__close {
+  inset-block-start: calc(var(--s-4) * -1);
+  inset-inline-end: calc(var(--s-4) * -1);
+}
+
+.sc-lightbox__nav--prev { inset-inline-start: calc(var(--s-6) * -1); inset-block-start: 50%; }
+.sc-lightbox__nav--next { inset-inline-end: calc(var(--s-6) * -1); inset-block-start: 50%; }
+
+@media (max-width: 48rem) {
+  .sc-lightbox__nav--prev { inset-inline-start: var(--s-2); }
+  .sc-lightbox__nav--next { inset-inline-end: var(--s-2); }
+  .sc-lightbox__close     { inset-block-start: var(--s-2); inset-inline-end: var(--s-2); }
+}
+
+
+/* --- 11. STAGE 8 · CREDITS (bilingual disclaimer, see wy/CREDITS.md) ------ */
+
+.sc-credits { background-color: var(--ink-950); }
+
+.sc-credits__body {
+  max-inline-size: var(--w-read-max);
+  color: var(--ink-300);
+  font-size: var(--fs-body-sm);
+}
+
+.sc-credits__body p + p { margin-block-start: var(--s-4); }
+.sc-credits__body[lang='en'] { color: var(--ink-350); }
+
+.sc-credits__ledger {
+  margin-block-start: var(--s-8);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--s-2) var(--s-5);
+  font-size: var(--fs-caption);
+  border-block-start: var(--bw-hair) solid var(--sc-rule);
+  padding-block-start: var(--s-5);
+}
+
+.sc-credits__ledger dt { color: var(--ink-200); font-variant-numeric: tabular-nums; }
+.sc-credits__ledger dd { margin: 0; color: var(--ink-350); overflow-wrap: anywhere; }
+
+@media (max-width: 48rem) {
+  .sc-credits__ledger { grid-template-columns: minmax(0, 1fr); gap: var(--s-1); }
+  .sc-credits__ledger dd { margin-block-end: var(--s-3); }
+}
+
+
+/* --- 12. FIX 12 · prefers-reduced-motion ---------------------------------
+   `grep -rc "prefers-reduced-motion" wy/` returned 0 — zero occurrences across
+   the whole sub-site, against six infinite animations, five scrubbed
+   ScrollTriggers, two full-screen 3D rotations and a scroll-jacked pin.
+   base.css already collapses --dur-* to 1 ms and components.css already sets
+   `animation: none !important` on [data-anim]. This block removes what is
+   specific to this surface STRUCTURALLY rather than speeding it up: a 1 ms
+   360-degree rotateY is still a 360-degree rotateY. js/surface-c.js mirrors it
+   exactly — under REDUCED it creates no ticker callback, no scrub, no pin, no
+   Flip. */
+
+@media (prefers-reduced-motion: reduce) {
+  /* S1 — no parallax, no scrubbed reveal, no draw-on */
+  .sc-col { transform: none !important; }
+
+  .js .sc-entry__panel,
+  .sc-entry__panel { clip-path: none; }
+
+  .sc-wordmark__svg text[data-anim] {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    fill: var(--pearl-300);
+    animation: none !important;
+  }
+
+  /* S2 — the slats stop scaling; the scrim still lifts, which is opacity, not
+     motion */
+  .sc-slat__frame,
+  .sc-slat__frame > img { transform: none !important; transition: none !important; }
+
+  /* S3 — the ring holds still, and loses its depth so nothing can lurch */
+  .sc-carousel__dir,
+  .sc-carousel__ring { animation: none !important; }
+  .sc-carousel__item { transition: none !important; }
+
+  /* S4 — no pin, no zoom */
+  .sc-door__hero,
+  .sc-door__gate { transform: none !important; }
+
+  /* stop promoting layers the surface no longer needs */
+  .sc-col,
+  .sc-door__hero,
+  .sc-door__gate { will-change: auto; }
+}
+
+
+/* --- 13. no-JS floor ------------------------------------------------------
+   If the module never executes, every stage is still a complete, readable
+   page. Nothing here is left at opacity:0 or clipped to nothing by static CSS:
+   the columns sit where CSS put them, the panel is fully revealed, the ring is
+   a still 3D arrangement of eleven photographs, the Door is a full-bleed hero.
+   Each .sc-slat__btn is a real button that needs JS, so the page renders the
+   buttons only under .js and gives noscript a plain <a href> to the full
+   image. */
+
+.no-js .sc-carousel__controls { display: none; }
+.no-js .sc-entry__panel { clip-path: circle(var(--sc-panel-reveal) at 50% 50%); }
+
+
+/* --- 14. print ------------------------------------------------------------ */
+
+@media print {
+  .sc-entry__cols,
+  .sc-carousel,
+  .sc-door,
+  .sc-lightbox { display: none; }
+
+  .sc-page { background: none; color: inherit; }
+}

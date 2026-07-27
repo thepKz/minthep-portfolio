@@ -1,0 +1,51 @@
+# robots.txt — minthep-portfolio
+# =============================================================================
+# READ THIS BEFORE EDITING — this file is ADVISORY ONLY on this site.
+# -----------------------------------------------------------------------------
+# The site is a GitHub Pages *project page*. It is served from
+#
+#     https://thepkz.github.io/minthep-portfolio/
+#
+# robots.txt is a per-ORIGIN file. The only robots.txt any crawler will ever
+# fetch for this origin is
+#
+#     https://thepkz.github.io/robots.txt
+#
+# which belongs to the thepkz.github.io user page — a page we do not own and
+# cannot publish to (there is no thepkz.github.io user repo). The file you are
+# reading right now is served at
+#
+#     https://thepkz.github.io/minthep-portfolio/robots.txt
+#
+# and NO crawler looks there. It is shipped for completeness, for humans, and
+# so that it is already correct on the day the site ever moves to its own
+# origin. Do not rely on it for anything.
+#
+# ACTUAL crawl control on this site therefore lives in the HTML:
+#   * <meta name="robots" content="…">      per-page indexing decisions
+#   * <link rel="canonical" href="…">        duplicate consolidation
+#                                            (wy/header|home|lib|Door.html all
+#                                            canonicalise to wy/wy.html)
+#   * sitemap.xml                            discovery of all 27 URLs
+# If you need a page de-indexed, add a meta robots tag. Editing this file
+# will do nothing.
+#
+# Paths below are written with the /minthep-portfolio/ prefix on purpose: a
+# bare "/blog/…" here would refer to the ROOT of thepkz.github.io, which is a
+# different site. Prefixed paths are the only ones that would still be correct
+# if these rules were ever pasted into a real origin-level robots.txt.
+#
+# DO NOT add a CNAME file to fix any of this. A CNAME rewrites the base path
+# from /minthep-portfolio/ to /, which instantly 404s every indexed URL and
+# every <loc> in sitemap.xml. See README.md.
+# =============================================================================
+
+User-agent: *
+Allow: /
+
+# Editor and Windows artefacts that were accidentally committed years ago.
+# Kept on disk (nothing is ever deleted from this repo) but not worth crawling.
+Disallow: /minthep-portfolio/.vscode/
+Disallow: /minthep-portfolio/blog/clone.txt
+
+Sitemap: https://thepkz.github.io/minthep-portfolio/sitemap.xml
